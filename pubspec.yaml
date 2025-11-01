@@ -14,6 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_secure_storage: ^9.2.4
+  flutter_svg: ^2.2.1
   import_sorter: ^4.6.0
   intl: ^0.20.2
   meta: ^1.16.0
@@ -26,9 +27,25 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.10.1
   auto_route_generator: 10.2.5
+
+
 flutter:
   generate: true
   uses-material-design: true
+  assets:
+  - lib/presentation/assets/icons/
+  fonts:
+    - family: Helvetica
+      fonts:
+        - asset: lib/presentation/assets/fonts/helvetica-neue-bold.ttf
+          weight: 700
+        - asset: lib/presentation/assets/fonts/helvetica-neue-regular.ttf
+          weight: 400
+        - asset: lib/presentation/assets/fonts/helvetica-neue-medium.ttf
+          weight: 500
+
+
+
 import_sorter:
   emojis: false
   comments: false

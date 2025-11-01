@@ -1,109 +1,102 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class AppPalette extends ThemeExtension<AppPalette> {
-  AppPalette({
-    required this.gray800,
-    required this.gray700,
-    required this.gray600,
-    required this.gray500,
-    required this.gray400,
-    required this.gray300,
-    required this.gray200,
-    required this.gray100,
-    required this.error,
-    required this.success,
-    this.gradientOrange,
-    required this.orangeIndicator,
-    required this.blueIndicator,
-    required this.yellowIndicator,
-    required this.background,
-    required this.shadow1,
-    required this.shadow2,
+  const AppPalette({
+    required this.white,
+    required this.light100,
+    required this.input200,
+    required this.message,
+    required this.stroke300,
+    required this.text400,
+    required this.text700,
+    required this.icon500,
+    required this.black,
+    required this.white10,
+    required this.red15,
+    required this.orange40,
+    required this.orange60,
+    required this.red,
+    required this.orange,
+    required this.orange100,
   });
-  final Color gray800;
-  final Color gray700;
-  final Color gray600;
-  final Color gray500;
-  final Color gray400;
-  final Color gray300;
-  final Color gray200;
-  final Color gray100;
-  final Color error;
-  final Color success;
-  final Gradient? gradientOrange;
-  final Color orangeIndicator;
-  final Color blueIndicator;
-  final Color yellowIndicator;
-  final Color background;
-  final BoxShadow shadow1;
-  final BoxShadow shadow2;
+
+  final Color white;
+  final Color light100;
+  final Color input200;
+  final Color message;
+  final Color stroke300;
+  final Color text400;
+  final Color text700;
+  final Color icon500;
+  final Color black;
+  final Color white10;
+  final Color red15;
+  final Color orange40;
+  final Color orange60;
+  final Color red;
+  final Color orange;
+  final Color orange100;
 
   @override
-  ThemeExtension<AppPalette> copyWith({
-    Color? gray800,
-    Color? gray700,
-    Color? gray600,
-    Color? gray500,
-    Color? gray400,
-    Color? gray300,
-    Color? gray200,
-    Color? gray100,
-    Color? error,
-    Color? success,
-    Gradient? gradientOrange,
-    Color? orangeIndicator,
-    Color? blueIndicator,
-    Color? yellowIndicator,
-    Color? background,
-    BoxShadow? shadow1,
-    BoxShadow? shadow2,
+  AppPalette copyWith({
+    Color? white,
+    Color? light100,
+    Color? input200,
+    Color? message,
+    Color? stroke300,
+    Color? text400,
+    Color? text700,
+    Color? icon500,
+    Color? black,
+    Color? white10,
+    Color? red15,
+    Color? orange40,
+    Color? orange60,
+    Color? red,
+    Color? orange,
+    Color? orange100,
   }) {
     return AppPalette(
-      gray800: gray800 ?? this.gray800,
-      gray700: gray700 ?? this.gray700,
-      gray600: gray600 ?? this.gray600,
-      gray500: gray500 ?? this.gray500,
-      gray400: gray400 ?? this.gray400,
-      gray300: gray300 ?? this.gray300,
-      gray200: gray200 ?? this.gray200,
-      gray100: gray100 ?? this.gray100,
-      error: error ?? this.error,
-      success: success ?? this.success,
-      orangeIndicator: orangeIndicator ?? this.orangeIndicator,
-      blueIndicator: blueIndicator ?? this.blueIndicator,
-      yellowIndicator: yellowIndicator ?? this.yellowIndicator,
-      gradientOrange: gradientOrange ?? this.gradientOrange,
-      background: background ?? this.background,
-      shadow1: shadow1 ?? this.shadow1,
-      shadow2: shadow2 ?? this.shadow2,
+      white: white ?? this.white,
+      light100: light100 ?? this.light100,
+      input200: input200 ?? this.input200,
+      message: message ?? this.message,
+      stroke300: stroke300 ?? this.stroke300,
+      text400: text400 ?? this.text400,
+      text700: text700 ?? this.text700,
+      icon500: icon500 ?? this.icon500,
+      black: black ?? this.black,
+      white10: white10 ?? this.white10,
+      red15: red15 ?? this.red15,
+      orange40: orange40 ?? this.orange40,
+      orange60: orange60 ?? this.orange60,
+      red: red ?? this.red,
+      orange: orange ?? this.orange,
+      orange100: orange100 ?? this.orange100,
     );
   }
 
   @override
-  ThemeExtension<AppPalette> lerp(
-    covariant ThemeExtension<AppPalette>? other,
-    double t,
-  ) {
-    if (other is! AppPalette) {
-      return this;
-    }
+  AppPalette lerp(ThemeExtension<AppPalette>? other, double t) {
+    if (other is! AppPalette) return this;
     return AppPalette(
-      gray800: Color.lerp(gray800, other.gray800, t)!,
-      gray700: Color.lerp(gray700, other.gray700, t)!,
-      gray600: Color.lerp(gray600, other.gray600, t)!,
-      gray500: Color.lerp(gray500, other.gray500, t)!,
-      gray400: Color.lerp(gray400, other.gray400, t)!,
-      gray300: Color.lerp(gray300, other.gray300, t)!,
-      gray200: Color.lerp(gray200, other.gray200, t)!,
-      gray100: Color.lerp(gray100, other.gray100, t)!,
-      error: Color.lerp(error, other.error, t)!,
-      success: Color.lerp(success, other.success, t)!,
-      orangeIndicator: Color.lerp(orangeIndicator, other.orangeIndicator, t)!,
-      blueIndicator: Color.lerp(blueIndicator, other.blueIndicator, t)!,
-      yellowIndicator: Color.lerp(yellowIndicator, other.yellowIndicator, t)!,
-      background: Color.lerp(background, other.background, t)!,
-      shadow1: BoxShadow.lerp(shadow1, other.shadow1, t)!,
-      shadow2: BoxShadow.lerp(shadow2, other.shadow2, t)!,
+      white: Color.lerp(white, other.white, t)!,
+      light100: Color.lerp(light100, other.light100, t)!,
+      input200: Color.lerp(input200, other.input200, t)!,
+      message: Color.lerp(message, other.message, t)!,
+      stroke300: Color.lerp(stroke300, other.stroke300, t)!,
+      text400: Color.lerp(text400, other.text400, t)!,
+      text700: Color.lerp(text700, other.text700, t)!,
+      icon500: Color.lerp(icon500, other.icon500, t)!,
+      black: Color.lerp(black, other.black, t)!,
+      white10: Color.lerp(white10, other.white10, t)!,
+      red15: Color.lerp(red15, other.red15, t)!,
+      orange40: Color.lerp(orange40, other.orange40, t)!,
+      orange60: Color.lerp(orange60, other.orange60, t)!,
+      red: Color.lerp(red, other.red, t)!,
+      orange: Color.lerp(orange, other.orange, t)!,
+      orange100: Color.lerp(orange100, other.orange100, t)!,
     );
   }
 }
