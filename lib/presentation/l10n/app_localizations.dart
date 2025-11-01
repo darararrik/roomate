@@ -93,6 +93,288 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ru')];
+
+  /// No description provided for @main.
+  ///
+  /// In ru, this message translates to:
+  /// **'Главная'**
+  String get main;
+
+  /// No description provided for @favorites.
+  ///
+  /// In ru, this message translates to:
+  /// **'Избранное'**
+  String get favorites;
+
+  /// No description provided for @place.
+  ///
+  /// In ru, this message translates to:
+  /// **'Разместить'**
+  String get place;
+
+  /// No description provided for @messages.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сообщения'**
+  String get messages;
+
+  /// No description provided for @profile.
+  ///
+  /// In ru, this message translates to:
+  /// **'Профиль'**
+  String get profile;
+
+  /// No description provided for @search.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поиск'**
+  String get search;
+
+  /// No description provided for @settings.
+  ///
+  /// In ru, this message translates to:
+  /// **'Настройки'**
+  String get settings;
+
+  /// No description provided for @notifications.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уведомления'**
+  String get notifications;
+
+  /// No description provided for @login.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти'**
+  String get login;
+
+  /// No description provided for @logout.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти'**
+  String get logout;
+
+  /// No description provided for @register.
+  ///
+  /// In ru, this message translates to:
+  /// **'Регистрация'**
+  String get register;
+
+  /// No description provided for @password.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль'**
+  String get password;
+
+  /// No description provided for @email.
+  ///
+  /// In ru, this message translates to:
+  /// **'Электронная почта'**
+  String get email;
+
+  /// No description provided for @confirm.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтвердить'**
+  String get confirm;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отмена'**
+  String get cancel;
+
+  /// No description provided for @save.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранить'**
+  String get save;
+
+  /// No description provided for @delete.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить'**
+  String get delete;
+
+  /// No description provided for @edit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Редактировать'**
+  String get edit;
+
+  /// No description provided for @next.
+  ///
+  /// In ru, this message translates to:
+  /// **'Далее'**
+  String get next;
+
+  /// No description provided for @back.
+  ///
+  /// In ru, this message translates to:
+  /// **'Назад'**
+  String get back;
+
+  /// No description provided for @error.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка'**
+  String get error;
+
+  /// No description provided for @loading.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузка...'**
+  String get loading;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In ru, this message translates to:
+  /// **'Повторить попытку'**
+  String get tryAgain;
+
+  /// No description provided for @success.
+  ///
+  /// In ru, this message translates to:
+  /// **'Успешно'**
+  String get success;
+
+  /// No description provided for @yes.
+  ///
+  /// In ru, this message translates to:
+  /// **'Да'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нет'**
+  String get no;
+
+  /// No description provided for @ok.
+  ///
+  /// In ru, this message translates to:
+  /// **'ОК'**
+  String get ok;
+
+  /// No description provided for @close.
+  ///
+  /// In ru, this message translates to:
+  /// **'Закрыть'**
+  String get close;
+
+  /// No description provided for @home.
+  ///
+  /// In ru, this message translates to:
+  /// **'Домой'**
+  String get home;
+
+  /// No description provided for @details.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подробнее'**
+  String get details;
+
+  /// No description provided for @about.
+  ///
+  /// In ru, this message translates to:
+  /// **'О приложении'**
+  String get about;
+
+  /// No description provided for @help.
+  ///
+  /// In ru, this message translates to:
+  /// **'Помощь'**
+  String get help;
+
+  /// No description provided for @language.
+  ///
+  /// In ru, this message translates to:
+  /// **'Язык'**
+  String get language;
+
+  /// No description provided for @theme.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тема'**
+  String get theme;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тёмная тема'**
+  String get darkMode;
+
+  /// No description provided for @lightMode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Светлая тема'**
+  String get lightMode;
+
+  /// No description provided for @welcome.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добро пожаловать'**
+  String get welcome;
+
+  /// No description provided for @signIn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти в аккаунт'**
+  String get signIn;
+
+  /// No description provided for @signUp.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать аккаунт'**
+  String get signUp;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Забыли пароль?'**
+  String get forgotPassword;
+
+  /// No description provided for @send.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправить'**
+  String get send;
+
+  /// No description provided for @retry.
+  ///
+  /// In ru, this message translates to:
+  /// **'Повторить'**
+  String get retry;
+
+  /// No description provided for @done.
+  ///
+  /// In ru, this message translates to:
+  /// **'Готово'**
+  String get done;
+
+  /// No description provided for @add.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить'**
+  String get add;
+
+  /// No description provided for @remove.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить'**
+  String get remove;
+
+  /// No description provided for @update.
+  ///
+  /// In ru, this message translates to:
+  /// **'Обновить'**
+  String get update;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In ru, this message translates to:
+  /// **'Показать всё'**
+  String get viewAll;
 }
 
 class _AppLocalizationsDelegate

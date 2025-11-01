@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:roomate/presentation/constants/app_icons.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/widgets/app_icon.dart';
 
 @RoutePage(name: 'NavBarRoute')
 class NavBar extends StatelessWidget {
@@ -12,22 +15,46 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [HomeRoute()],
+      routes: const [
+        HomeWrapperRoute(),
+        FavoritesWrapperRoute(),
+        CreateWrapperRoute(),
+        ChatsWrapperRoute(),
+        ProfileWrapperRoute(),
+      ],
       bottomNavigationBuilder: (_, tabsRouter) {
-        return ClipRRect(
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(P.p24),
-          ),
-          child: NavigationBar(
-            selectedIndex: tabsRouter.activeIndex,
-            onDestinationSelected: (index) {
-              tabsRouter.setActiveIndex(index);
-            },
-            destinations: const [
-              NavigationDestination(icon: Icon(Icons.abc), label: 'abc'),
-              NavigationDestination(icon: Icon(Icons.abc), label: 'abc'),
-            ],
-          ),
+        return NavigationBar(
+          selectedIndex: tabsRouter.activeIndex,
+          onDestinationSelected: (index) {
+            tabsRouter.setActiveIndex(index);
+          },
+          destinations: [
+            NavigationDestination(
+              icon: const AppIcon(AppIcons.home),
+              label: context.l10n.main,
+              selectedIcon: AppIcon(AppIcons.home, color: context.appColors.orange),
+            ),
+            NavigationDestination(
+              icon: const AppIcon(AppIcons.favourite),
+              label: context.l10n.favorites,
+              selectedIcon: AppIcon(AppIcons.favourite, color: context.appColors.orange),
+            ),
+            NavigationDestination(
+              icon: const AppIcon(AppIcons.add),
+              label: context.l10n.place,
+              selectedIcon: AppIcon(AppIcons.add, color: context.appColors.orange),
+            ),
+            NavigationDestination(
+              icon: const AppIcon(AppIcons.chats),
+              label: context.l10n.messages,
+              selectedIcon: AppIcon(AppIcons.chats, color: context.appColors.orange),
+            ),
+            NavigationDestination(
+              icon: const AppIcon(AppIcons.profile),
+              label: context.l10n.profile,
+              selectedIcon: AppIcon(AppIcons.profile, color: context.appColors.orange),
+            ),
+          ],
         );
       },
     );
