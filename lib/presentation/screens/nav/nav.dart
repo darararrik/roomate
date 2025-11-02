@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:roomate/presentation/constants/app_icons.dart';
 
-import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
@@ -16,7 +14,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
-        HomeWrapperRoute(),
+        HomeRoute(),
         FavoritesWrapperRoute(),
         CreateWrapperRoute(),
         ChatsWrapperRoute(),

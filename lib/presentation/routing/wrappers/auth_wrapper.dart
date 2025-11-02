@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-@RoutePage(name: "HomeWrapperRoute")
-class HomeWrapper extends StatelessWidget implements AutoRouteWrapper {
-  const HomeWrapper({super.key});
+
+@RoutePage()
+class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
+  const AuthWrapper({super.key});
 
   @override
   Widget wrappedRoute(BuildContext context) {

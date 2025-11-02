@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 class AppPalette extends ThemeExtension<AppPalette> {
@@ -19,6 +21,13 @@ class AppPalette extends ThemeExtension<AppPalette> {
     required this.red,
     required this.orange,
     required this.orange100,
+    required this.shadow,
+    required this.green100,
+    required this.green700,
+    required this.yellow100,
+    required this.yellow700,
+    required this.red100,
+    required this.red700,
   });
 
   final Color white;
@@ -37,7 +46,13 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color red;
   final Color orange;
   final Color orange100;
-
+  final BoxShadow shadow;
+  final Color green100;
+  final Color green700;
+  final Color yellow100;
+  final Color yellow700;
+  final Color red100;
+  final Color red700;
   @override
   AppPalette copyWith({
     Color? white,
@@ -56,6 +71,13 @@ class AppPalette extends ThemeExtension<AppPalette> {
     Color? red,
     Color? orange,
     Color? orange100,
+    Color? green100,
+    Color? green700,
+    Color? yellow100,
+    Color? yellow700,
+    Color? red100,
+    Color? red700,
+    BoxShadow? shadow,
   }) {
     return AppPalette(
       white: white ?? this.white,
@@ -74,6 +96,13 @@ class AppPalette extends ThemeExtension<AppPalette> {
       red: red ?? this.red,
       orange: orange ?? this.orange,
       orange100: orange100 ?? this.orange100,
+      shadow: shadow ?? this.shadow,
+      green100: green100 ?? this.green100,
+      green700: green700 ?? this.green700,
+      yellow100: yellow100 ?? this.yellow100,
+      yellow700: yellow700 ?? this.yellow700,
+      red100: red100 ?? this.red100,
+      red700: red700 ?? this.red700,
     );
   }
 
@@ -97,6 +126,13 @@ class AppPalette extends ThemeExtension<AppPalette> {
       red: Color.lerp(red, other.red, t)!,
       orange: Color.lerp(orange, other.orange, t)!,
       orange100: Color.lerp(orange100, other.orange100, t)!,
+      shadow: BoxShadow.lerp(shadow, other.shadow, t)!,
+      green100: Color.lerp(green100, other.orange, t)!,
+      green700: Color.lerp(green700, other.orange100, t)!,
+      yellow100: Color.lerp(yellow100, other.orange, t)!,
+      yellow700: Color.lerp(yellow700, other.orange100, t)!,
+      red100: Color.lerp(red100, other.orange, t)!,
+      red700: Color.lerp(red700, other.orange100, t)!,
     );
   }
 }

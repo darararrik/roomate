@@ -24,6 +24,122 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profile => 'Профиль';
 
   @override
+  String get searchRegion => 'Регион поиска >';
+
+  @override
+  String get apartments => 'Квартиры';
+
+  @override
+  String get neighbours => 'Соседи';
+
+  @override
+  String get coworking => 'Коворкинг';
+
+  @override
+  String get filters => 'Фильтры';
+
+  @override
+  String get term => 'Срок';
+
+  @override
+  String get district => 'Район';
+
+  @override
+  String get optionsFound => 'Найдено вариантов';
+
+  @override
+  String get r => '₽';
+
+  @override
+  String get r_month => '₽/мес.';
+
+  @override
+  String get map => 'Карта';
+
+  @override
+  String get call => 'Позвонить';
+
+  @override
+  String get write => 'Написать';
+
+  @override
+  String get join => 'Присоединиться';
+
+  @override
+  String get aboutTheGroup => 'О группе';
+
+  @override
+  String get match => 'совпадения';
+
+  @override
+  String get percent => '%';
+
+  @override
+  String get participants => 'участники';
+
+  @override
+  String get aboutServiceTitle => 'Сервис по поиску сожителя';
+
+  @override
+  String get aboutServiceDescription =>
+      'Найдите соседа в пару кликов - и забудьте о долгих поисках!';
+
+  @override
+  String get loginByphoneNumber => 'Войти по номеру телефона';
+
+  @override
+  String get loginViaSocialNetworks => 'Войти через соц.сети';
+
+  @override
+  String get enterYourPhoneNumber => 'Введите номер телефона';
+
+  @override
+  String get descriptionSMSCode1 => 'На ваш номер придет смс с кодом';
+
+  @override
+  String get enterPhoneNumber => 'Введите номер';
+
+  @override
+  String get enterSMSCode => 'Введите смс-код';
+
+  @override
+  String get descriptionSMSCode2 => 'Мы его отправили на ваш номер телефона';
+
+  @override
+  String get didntReceiveTheCode => 'Не пришел код?';
+
+  @override
+  String get sendAgain => 'Отправить еще раз';
+
+  @override
+  String get next => 'Далее';
+
+  @override
+  String get age => 'Возраст';
+
+  @override
+  String get sex => 'Пол';
+
+  @override
+  String get tellUsAboutYourself1 => 'Расскажите о себе';
+
+  @override
+  String get tellUsAboutYourself2 =>
+      'Расскажите немного о себе, чтобы помочь потенциальным соседям лучше о вас узнать';
+
+  @override
+  String get almostDone1 => 'Почти готово!';
+
+  @override
+  String get almostDone2 => 'Осталось пройти верификацию';
+
+  @override
+  String get uploadDocument => 'Загрузите документ';
+
+  @override
+  String get skip => 'Пропустить';
+
+  @override
   String get search => 'Поиск';
 
   @override
@@ -61,9 +177,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get edit => 'Редактировать';
-
-  @override
-  String get next => 'Далее';
 
   @override
   String get back => 'Назад';

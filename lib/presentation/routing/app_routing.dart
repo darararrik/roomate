@@ -11,14 +11,15 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(
       page: NavBarRoute.page,
-      initial: true,
-      path: '/',
       children: [
         AutoRoute(
+          page: HomeRoute.page,
           initial: true,
-          page: HomeWrapperRoute.page,
-          path: 'home',
-          children: [AutoRoute(page: HomeRoute.page, initial: true)],
+          children: [
+            AutoRoute(page: ApartamentsTab.page),
+            AutoRoute(page: NeighboursTab.page),
+            AutoRoute(page: CoworkingTab.page),
+          ],
         ),
         AutoRoute(
           page: FavoritesWrapperRoute.page,
@@ -42,5 +43,14 @@ class AppRouter extends RootStackRouter {
         ),
       ],
     ),
+    AutoRoute(
+      page: AuthWrapper.page,
+      initial: true,
+      children: [
+        AutoRoute(page: WelcomeRoute.page, initial: true),
+        AutoRoute(page: RegNumberRoute.page),
+      ],
+    ),
+    AutoRoute(page: AboutGroupRoute.page),
   ];
 }

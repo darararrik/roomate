@@ -124,6 +124,234 @@ abstract class AppLocalizations {
   /// **'Профиль'**
   String get profile;
 
+  /// No description provided for @searchRegion.
+  ///
+  /// In ru, this message translates to:
+  /// **'Регион поиска >'**
+  String get searchRegion;
+
+  /// No description provided for @apartments.
+  ///
+  /// In ru, this message translates to:
+  /// **'Квартиры'**
+  String get apartments;
+
+  /// No description provided for @neighbours.
+  ///
+  /// In ru, this message translates to:
+  /// **'Соседи'**
+  String get neighbours;
+
+  /// No description provided for @coworking.
+  ///
+  /// In ru, this message translates to:
+  /// **'Коворкинг'**
+  String get coworking;
+
+  /// No description provided for @filters.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фильтры'**
+  String get filters;
+
+  /// No description provided for @term.
+  ///
+  /// In ru, this message translates to:
+  /// **'Срок'**
+  String get term;
+
+  /// No description provided for @district.
+  ///
+  /// In ru, this message translates to:
+  /// **'Район'**
+  String get district;
+
+  /// No description provided for @optionsFound.
+  ///
+  /// In ru, this message translates to:
+  /// **'Найдено вариантов'**
+  String get optionsFound;
+
+  /// No description provided for @r.
+  ///
+  /// In ru, this message translates to:
+  /// **'₽'**
+  String get r;
+
+  /// No description provided for @r_month.
+  ///
+  /// In ru, this message translates to:
+  /// **'₽/мес.'**
+  String get r_month;
+
+  /// No description provided for @map.
+  ///
+  /// In ru, this message translates to:
+  /// **'Карта'**
+  String get map;
+
+  /// No description provided for @call.
+  ///
+  /// In ru, this message translates to:
+  /// **'Позвонить'**
+  String get call;
+
+  /// No description provided for @write.
+  ///
+  /// In ru, this message translates to:
+  /// **'Написать'**
+  String get write;
+
+  /// No description provided for @join.
+  ///
+  /// In ru, this message translates to:
+  /// **'Присоединиться'**
+  String get join;
+
+  /// No description provided for @aboutTheGroup.
+  ///
+  /// In ru, this message translates to:
+  /// **'О группе'**
+  String get aboutTheGroup;
+
+  /// No description provided for @match.
+  ///
+  /// In ru, this message translates to:
+  /// **'совпадения'**
+  String get match;
+
+  /// No description provided for @percent.
+  ///
+  /// In ru, this message translates to:
+  /// **'%'**
+  String get percent;
+
+  /// No description provided for @participants.
+  ///
+  /// In ru, this message translates to:
+  /// **'участники'**
+  String get participants;
+
+  /// No description provided for @aboutServiceTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сервис по поиску сожителя'**
+  String get aboutServiceTitle;
+
+  /// No description provided for @aboutServiceDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Найдите соседа в пару кликов - и забудьте о долгих поисках!'**
+  String get aboutServiceDescription;
+
+  /// No description provided for @loginByphoneNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти по номеру телефона'**
+  String get loginByphoneNumber;
+
+  /// No description provided for @loginViaSocialNetworks.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти через соц.сети'**
+  String get loginViaSocialNetworks;
+
+  /// No description provided for @enterYourPhoneNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите номер телефона'**
+  String get enterYourPhoneNumber;
+
+  /// No description provided for @descriptionSMSCode1.
+  ///
+  /// In ru, this message translates to:
+  /// **'На ваш номер придет смс с кодом'**
+  String get descriptionSMSCode1;
+
+  /// No description provided for @enterPhoneNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите номер'**
+  String get enterPhoneNumber;
+
+  /// No description provided for @enterSMSCode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите смс-код'**
+  String get enterSMSCode;
+
+  /// No description provided for @descriptionSMSCode2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мы его отправили на ваш номер телефона'**
+  String get descriptionSMSCode2;
+
+  /// No description provided for @didntReceiveTheCode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не пришел код?'**
+  String get didntReceiveTheCode;
+
+  /// No description provided for @sendAgain.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправить еще раз'**
+  String get sendAgain;
+
+  /// No description provided for @next.
+  ///
+  /// In ru, this message translates to:
+  /// **'Далее'**
+  String get next;
+
+  /// No description provided for @age.
+  ///
+  /// In ru, this message translates to:
+  /// **'Возраст'**
+  String get age;
+
+  /// No description provided for @sex.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пол'**
+  String get sex;
+
+  /// No description provided for @tellUsAboutYourself1.
+  ///
+  /// In ru, this message translates to:
+  /// **'Расскажите о себе'**
+  String get tellUsAboutYourself1;
+
+  /// No description provided for @tellUsAboutYourself2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Расскажите немного о себе, чтобы помочь потенциальным соседям лучше о вас узнать'**
+  String get tellUsAboutYourself2;
+
+  /// No description provided for @almostDone1.
+  ///
+  /// In ru, this message translates to:
+  /// **'Почти готово!'**
+  String get almostDone1;
+
+  /// No description provided for @almostDone2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Осталось пройти верификацию'**
+  String get almostDone2;
+
+  /// No description provided for @uploadDocument.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузите документ'**
+  String get uploadDocument;
+
+  /// No description provided for @skip.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пропустить'**
+  String get skip;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:
@@ -201,12 +429,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Редактировать'**
   String get edit;
-
-  /// No description provided for @next.
-  ///
-  /// In ru, this message translates to:
-  /// **'Далее'**
-  String get next;
 
   /// No description provided for @back.
   ///

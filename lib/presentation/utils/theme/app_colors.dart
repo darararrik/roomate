@@ -1,0 +1,32 @@
+part of 'app_theme.dart';
+
+final AppPalette _appColors = AppPalette(
+  white: const Color(0xFFFFFFFF),
+  light100: const Color(0xFFF4F4F4),
+  input200: const Color(0xFFF6F6F6),
+  message: const Color(0xFFE2E2E2),
+  stroke300: const Color(0xFFDBDBDB),
+  text400: const Color(0xFF999999),
+  text700: const Color(0xFF737373),
+  icon500: const Color(0xFF808080),
+  black: const Color(0xFF000000),
+  white10: const Color.fromRGBO(255, 255, 255, 0.1),
+  red15: const Color.fromRGBO(221, 1, 1, 0.1),
+  orange40: const Color.fromRGBO(242, 119, 78, 0.15),
+  orange60: const Color.fromRGBO(242, 119, 78, 0.6),
+  red: const Color(0xFFF10000),
+  orange: const Color(0xFFFF5343),
+  orange100: const Color(0xFFF7AD95),
+  shadow: BoxShadow(
+    offset: const Offset(0, 4),
+    blurRadius: 13.7,
+    spreadRadius: 0,
+    color: Colors.black.withValues(alpha: 0.09),
+  ),
+  green100: const Color(0xFFE5FFD8),
+  green700: const Color(0xFF538D36),
+  yellow100: const Color(0xFFFFFAD8),
+  yellow700: const Color(0xFF8B7A0B),
+  red100: const Color(0xFFFFE0D8),
+  red700: const Color(0xFFD03C15),
+);

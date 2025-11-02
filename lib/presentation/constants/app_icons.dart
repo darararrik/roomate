@@ -35,4 +35,5 @@ abstract class AppIcons {
   static const String xSmall = 'lib/presentation/assets/icons/x_small.svg';
   static const String yandex = 'lib/presentation/assets/icons/yandex.svg';
   static const String add = 'lib/presentation/assets/icons/add.svg';
+  static const String gos = 'lib/presentation/assets/icons/gos.svg';
 }
