@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/a_b.dart';
+import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
+import 'package:roomate/presentation/widgets/input_widget.dart';
+
+@RoutePage()
+class RegNumberScreen extends StatefulWidget {
+  const RegNumberScreen({super.key});
+
+  @override
+  State<RegNumberScreen> createState() => _RegNumberScreenState();
+}
+
+class _RegNumberScreenState extends State<RegNumberScreen> {
+  late TextEditingController _controller;
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AB(title: Text(context.l10n.register), centerTitle: false),
+          SliverFillRemaining(
+            child: Padding(
+              padding: const P(horizontal: S.p16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const P(vertical: S.p28),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(context.l10n.enterYourPhoneNumber, style: context.textStyle.headline1),
+                        const SizedBox(height: S.p8),
+                        Text(
+                          context.l10n.descriptionSMSCode1,
+                          style: context.textStyle.headline2.copyWith(color: context.colors.text400),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: S.p10),
+                  //TODO: Добавить дроп даун
+                  InputWidget(hintText: context.l10n.enterPhoneNumber, controller: _controller),
+                  const Spacer(),
+                  PButton.botPadding(
+                    title: context.l10n.next,
+                    onPressed: () => context.router.push(const SmsCodeRoute()),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

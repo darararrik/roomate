@@ -1,12 +1,14 @@
-import 'package:auto_route/annotations.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/p_button.dart';
-import 'package:roomate/presentation/widgets/social_button.dart';
+import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
+import 'package:roomate/presentation/widgets/buttons/social_button.dart';
 
+//TODO: Занести в стили
 @RoutePage()
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -73,13 +75,13 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         context.l10n.aboutServiceTitle,
-                        style: context.appTextStyle.headline0.copyWith(color: context.appColors.white),
+                        style: context.textStyle.headline0.copyWith(color: context.colors.white),
                       ),
                       const SizedBox(height: S.p16),
                       Text(
                         context.l10n.aboutServiceDescription,
-                        style: context.appTextStyle.headline1.copyWith(
-                          color: context.appColors.white.withValues(alpha: 0.59),
+                        style: context.textStyle.headline1.copyWith(
+                          color: context.colors.white.withValues(alpha: 0.59),
                         ),
                       ),
                     ],
@@ -99,15 +101,15 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: S.p40,
-                            child: Divider(color: context.appColors.white, thickness: S.p1),
+                            child: Divider(color: context.colors.white, thickness: S.p1),
                           ),
                           Text(
                             context.l10n.loginViaSocialNetworks,
-                            style: context.appTextStyle.activesLabel.copyWith(color: context.appColors.input200),
+                            style: context.textStyle.activesLabel.copyWith(color: context.colors.input200),
                           ),
                           SizedBox(
                             width: S.p40,
-                            child: Divider(color: context.appColors.white, thickness: S.p1),
+                            child: Divider(color: context.colors.white, thickness: S.p1),
                           ),
                         ].separated(const SizedBox(width: S.p10)),
                       ),

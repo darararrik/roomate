@@ -18,7 +18,7 @@ final AppTypography _appTextStyle = AppTypography(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     color: _appColors.black,
-    height: 0.16,
+    height: 1.16,
   ),
   bodyTitle: TextStyle(
     fontFamily: const String.fromEnvironment("FONT_FAMILY"),

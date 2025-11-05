@@ -1,11 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/ap_card.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/filter_card.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:roomate/presentation/widgets/p_button.dart';
+
+import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
+import 'package:roomate/presentation/widgets/chip_cards/ap_card.dart';
+import 'package:roomate/presentation/widgets/chip_cards/filter_card.dart';
 
 @RoutePage()
 class ApartamentsTab extends StatelessWidget {
@@ -51,7 +53,7 @@ class ApartamentsTab extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${context.l10n.optionsFound} ${82}", style: context.appTextStyle.bodyTitle),
+                  Text("${context.l10n.optionsFound} ${82}", style: context.textStyle.bodyTitle),
                   const AppIcon(AppIcons.sort, width: S.p32),
                 ],
               ),

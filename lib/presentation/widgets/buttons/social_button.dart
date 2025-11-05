@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 
@@ -11,15 +12,15 @@ class SocialButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       borderRadius: BorderRadius.circular(S.p12),
-      overlayColor: WidgetStatePropertyAll(context.appColors.white10),
+      overlayColor: WidgetStatePropertyAll(context.colors.white10),
       child: SizedBox(
         width: S.p48,
         height: S.p48,
         child: DecoratedBox(
-          decoration: BoxDecoration(color: context.appColors.white10, borderRadius: BorderRadius.circular(S.p12)),
+          decoration: BoxDecoration(color: context.colors.white10, borderRadius: BorderRadius.circular(S.p12)),
           child: Padding(
             padding: const P(all: S.p12),
-            child: AppIcon(iconPath, color: context.appColors.white),
+            child: AppIcon(iconPath, color: context.colors.white),
           ),
         ),
       ),

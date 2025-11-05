@@ -1,10 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_image_carousel_slider/image_carousel_slider.dart';
 import 'package:flutter_image_carousel_slider/image_carousel_slider_left_right_show.dart';
+
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/p_button.dart';
+import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
 
 class ApCard extends StatelessWidget {
   const ApCard({super.key});
@@ -16,8 +18,8 @@ class ApCard extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(S.p12)),
-          color: context.appColors.white,
-          boxShadow: [context.appColors.shadow],
+          color: context.colors.white,
+          boxShadow: [context.colors.shadow],
         ),
         child: Column(
           children: [
@@ -25,7 +27,7 @@ class ApCard extends StatelessWidget {
             ClipRRect(
               borderRadius: const BorderRadiusGeometry.vertical(top: Radius.circular(S.p12)),
               child: ImageCarouselSlider(
-                dotColor: context.appColors.orange,
+                dotColor: context.colors.orange,
                 items: const [
                   "https://www.omgtu.ru/upload/iblock/73e/rvhs0t416qqkgvh3h0p31cnxtktv6ro5/Banner_na_sayt_portal_abiturienta_67.png",
                   "https://www.omgtu.ru/upload/iblock/73e/rvhs0t416qqkgvh3h0p31cnxtktv6ro5/Banner_na_sayt_portal_abiturienta_67.png",
@@ -44,14 +46,14 @@ class ApCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("${10000} ${context.l10n.r_month}", style: context.appTextStyle.headline1),
+                        Text("${10000} ${context.l10n.r_month}", style: context.textStyle.headline1),
                         const AppIcon(AppIcons.favourite, width: S.p24),
                       ],
                     ),
-                    Text("1 комн., 39м², этаж 3/17", style: context.appTextStyle.bodyDescription),
+                    Text("1 комн., 39м², этаж 3/17", style: context.textStyle.bodyDescription),
                     Text(
                       "Омск, улица Красный путь, 101к1",
-                      style: context.appTextStyle.bodySmall.copyWith(color: context.appColors.text400),
+                      style: context.textStyle.bodySmall.copyWith(color: context.colors.text400),
                     ),
                   ].separated(const SizedBox(height: S.p8)),
                   const SizedBox(height: S.p12),

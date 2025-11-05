@@ -13,7 +13,7 @@ final AppPalette _appColors = AppPalette(
   white10: const Color.fromRGBO(255, 255, 255, 0.1),
   red15: const Color.fromRGBO(221, 1, 1, 0.1),
   orange40: const Color.fromRGBO(242, 119, 78, 0.15),
-  orange60: const Color.fromRGBO(242, 119, 78, 0.6),
+  orange60: const Color(0xFFF2774E).withValues(alpha: 0.6),
   red: const Color(0xFFF10000),
   orange: const Color(0xFFFF5343),
   orange100: const Color(0xFFF7AD95),
@@ -29,4 +29,5 @@ final AppPalette _appColors = AppPalette(
   yellow700: const Color(0xFF8B7A0B),
   red100: const Color(0xFFFFE0D8),
   red700: const Color(0xFFD03C15),
+  fillsSecondary: const Color(0xFF787880).withValues(alpha: 0.16),
 );

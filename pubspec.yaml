@@ -22,6 +22,9 @@ dependencies:
   rxdart: ^0.28.0
   shared_preferences: ^2.5.3
   flutter_image_carousel_slider: ^2.0.1
+  dropdown_button2: ^2.3.9
+  flutter_bloc: ^9.1.1
+  group_button: ^5.3.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

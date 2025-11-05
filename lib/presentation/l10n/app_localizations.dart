@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -340,6 +341,12 @@ abstract class AppLocalizations {
   /// **'Осталось пройти верификацию'**
   String get almostDone2;
 
+  /// No description provided for @almostDone3.
+  ///
+  /// In ru, this message translates to:
+  /// **'С проверенным профилем шанс найти соседа выше, рекомендуем пройти'**
+  String get almostDone3;
+
   /// No description provided for @uploadDocument.
   ///
   /// In ru, this message translates to:
@@ -351,6 +358,30 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Пропустить'**
   String get skip;
+
+  /// No description provided for @confirmation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтверждение'**
+  String get confirmation;
+
+  /// No description provided for @whatUname.
+  ///
+  /// In ru, this message translates to:
+  /// **'Как вас зовут?'**
+  String get whatUname;
+
+  /// No description provided for @whatURealName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Лучше написать настоящее имя'**
+  String get whatURealName;
+
+  /// No description provided for @name.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя'**
+  String get name;
 
   /// No description provided for @search.
   ///

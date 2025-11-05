@@ -36,4 +36,5 @@ abstract class AppIcons {
   static const String yandex = 'lib/presentation/assets/icons/yandex.svg';
   static const String add = 'lib/presentation/assets/icons/add.svg';
   static const String gos = 'lib/presentation/assets/icons/gos.svg';
+  static const String camera = 'lib/presentation/assets/icons/camera.svg';
 }

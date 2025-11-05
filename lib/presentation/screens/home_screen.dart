@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/p.dart';
@@ -22,9 +23,9 @@ class HomeScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(context.l10n.searchRegion, style: context.appTextStyle.headline2),
+                  Text(context.l10n.searchRegion, style: context.textStyle.headline2),
                   const SizedBox(height: S.p4),
-                  Text('Омская область', style: context.appTextStyle.headline1),
+                  Text('Омская область', style: context.textStyle.headline1),
                 ],
               ),
               bottom: PreferredSize(
@@ -34,8 +35,8 @@ class HomeScreen extends StatelessWidget {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(S.p32),
-                      color: context.appColors.white,
-                      border: Border.all(color: context.appColors.input200, width: S.p2),
+                      color: context.colors.white,
+                      border: Border.all(color: context.colors.input200, width: S.p2),
                     ),
                     child: TabBar(
                       controller: tabController,

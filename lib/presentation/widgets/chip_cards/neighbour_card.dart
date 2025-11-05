@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/chip_match.dart';
+import 'package:roomate/presentation/widgets/chip_cards/chip_match.dart';
 import 'package:roomate/presentation/widgets/overlapping_avatars.dart';
 
 class NeighbourCard extends StatelessWidget {
@@ -13,8 +14,8 @@ class NeighbourCard extends StatelessWidget {
       onTap: onTap,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: context.appColors.white,
-          boxShadow: [context.appColors.shadow],
+          color: context.colors.white,
+          boxShadow: [context.colors.shadow],
           borderRadius: BorderRadius.circular(S.p12),
         ),
         child: Padding(
@@ -24,10 +25,10 @@ class NeighbourCard extends StatelessWidget {
             children: [
               ...[
                 const ChipMatch(),
-                Text("Тихий уголок в центре", style: context.appTextStyle.headline1),
+                Text("Тихий уголок в центре", style: context.textStyle.headline1),
                 Text(
                   "Ищем соседей для уютной квартиры в центре города. Главное для нас — спокойствие, уважение личного пространства и чистота. Гостей приводим редко, любим работать и отдыхать в тишине. Если тебе тоже важен комфортный и размеренный быт — добро пожаловать!",
-                  style: context.appTextStyle.bodyDescription,
+                  style: context.textStyle.bodyDescription,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -37,7 +38,7 @@ class NeighbourCard extends StatelessWidget {
               const SizedBox(height: S.p8),
               Text(
                 "4/5 ${context.l10n.participants}",
-                style: context.appTextStyle.bodySmall.copyWith(color: context.appColors.text400),
+                style: context.textStyle.bodySmall.copyWith(color: context.colors.text400),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     required this.yellow700,
     required this.red100,
     required this.red700,
+    required this.fillsSecondary,
   });
 
   final Color white;
@@ -53,6 +55,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color yellow700;
   final Color red100;
   final Color red700;
+  final Color fillsSecondary;
   @override
   AppPalette copyWith({
     Color? white,
@@ -78,6 +81,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     Color? red100,
     Color? red700,
     BoxShadow? shadow,
+    Color? fillsSecondary,
   }) {
     return AppPalette(
       white: white ?? this.white,
@@ -103,6 +107,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
       yellow700: yellow700 ?? this.yellow700,
       red100: red100 ?? this.red100,
       red700: red700 ?? this.red700,
+      fillsSecondary: fillsSecondary ?? this.fillsSecondary,
     );
   }
 
@@ -133,6 +138,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
       yellow700: Color.lerp(yellow700, other.orange100, t)!,
       red100: Color.lerp(red100, other.orange, t)!,
       red700: Color.lerp(red700, other.orange100, t)!,
+      fillsSecondary: Color.lerp(fillsSecondary, other.fillsSecondary, t)!,
     );
   }
 }

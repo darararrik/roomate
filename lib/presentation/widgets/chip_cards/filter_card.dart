@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/presentation/presentation.dart';
 
 class FilterCard extends StatelessWidget {
@@ -11,8 +12,8 @@ class FilterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.appColors;
-    final textStyle = context.appTextStyle.activesLabel;
+    final colors = context.colors;
+    final textStyle = context.textStyle.activesLabel;
     return InkWell(
       borderRadius: BorderRadius.circular(S.p12),
       onTap: onTap,

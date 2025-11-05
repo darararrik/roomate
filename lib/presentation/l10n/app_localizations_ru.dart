@@ -1,5 +1,7 @@
 // ignore: unused_import
+
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -134,10 +136,26 @@ class AppLocalizationsRu extends AppLocalizations {
   String get almostDone2 => 'Осталось пройти верификацию';
 
   @override
+  String get almostDone3 =>
+      'С проверенным профилем шанс найти соседа выше, рекомендуем пройти';
+
+  @override
   String get uploadDocument => 'Загрузите документ';
 
   @override
   String get skip => 'Пропустить';
+
+  @override
+  String get confirmation => 'Подтверждение';
+
+  @override
+  String get whatUname => 'Как вас зовут?';
+
+  @override
+  String get whatURealName => 'Лучше написать настоящее имя';
+
+  @override
+  String get name => 'Имя';
 
   @override
   String get search => 'Поиск';

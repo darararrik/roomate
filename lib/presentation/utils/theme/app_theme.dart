@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/utils/p.dart';
 import 'package:roomate/presentation/utils/theme/theme_x/app_palette.dart';
 import 'package:roomate/presentation/utils/theme/theme_x/app_typography.dart';
+
 part 'app_text_style.dart';
 part 'app_colors.dart';
 
@@ -41,6 +44,27 @@ class AppTheme {
       unselectedLabelStyle: _appTextStyle.inputTextRegular,
       indicator: BoxDecoration(color: _appColors.light100, borderRadius: BorderRadius.circular(S.p20)),
       splashBorderRadius: BorderRadius.circular(S.p20),
+    ),
+
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: _appColors.input200,
+      contentPadding: const P(horizontal: S.p16, vertical: S.p18),
+
+      hintStyle: _appTextStyle.inputTextRegular.copyWith(color: _appColors.text400),
+      //TODO: в макетах разные закругления
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
+      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
+      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(S.p16),
+        borderSide: const BorderSide(width: S.p1_3),
+      ),
+      disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p11), borderSide: BorderSide.none),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(S.p11),
+        borderSide: const BorderSide(width: S.p1_3),
+      ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

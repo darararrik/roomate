@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 
@@ -10,9 +11,15 @@ class PButton extends StatelessWidget {
       title: title,
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: context.appColors.white10,
+        backgroundColor: context.colors.white10,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p33)),
       ),
+    );
+  }
+  static Padding botPadding({required String title, required VoidCallback onPressed}) {
+    return Padding(
+      padding: const P(bottom: S.p40),
+      child: PButton(title: title, onPressed: onPressed),
     );
   }
 

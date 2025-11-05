@@ -1,11 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/ap_card.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/neighbour_card.dart';
+import 'package:roomate/presentation/widgets/chip_cards/ap_card.dart';
+import 'package:roomate/presentation/widgets/chip_cards/neighbour_card.dart';
 import 'package:roomate/presentation/widgets/overlapping_avatars.dart';
 
 @RoutePage()
@@ -24,7 +26,7 @@ class NeighboursTab extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${context.l10n.optionsFound} ${82}", style: context.appTextStyle.bodyTitle),
+                  Text("${context.l10n.optionsFound} ${82}", style: context.textStyle.bodyTitle),
                   const AppIcon(AppIcons.sort, width: S.p32),
                 ],
               ),
