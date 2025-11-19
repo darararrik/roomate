@@ -59,7 +59,7 @@ class AboutGroupScreen extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  PButton.botPadding(title: context.l10n.join, onPressed: () {}),
+                  PButton.botPadding(titleText: Text(context.l10n.join), onPressed: () {}),
                 ],
               ),
             ),

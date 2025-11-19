@@ -135,8 +135,8 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                   ),
                   const Spacer(),
                   PButton.botPadding(
-                    title: context.l10n.next,
-                    onPressed: () => context.pushRoute(const EditProfileRoute()),
+                    titleText: Text(context.l10n.next),
+                    onPressed: () => context.pushRoute(const QuizRoute()),
                   ),
                 ],
               ),

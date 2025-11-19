@@ -60,9 +60,9 @@ class ApCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: PButton(title: context.l10n.write, onPressed: () {}),
+                        child: PButton(titleText: Text(context.l10n.write), onPressed: () {}),
                       ),
-                      Expanded(child: PButton(title: context.l10n.call)),
+                      Expanded(child: PButton(titleText: Text(context.l10n.call))),
                     ].separated(const SizedBox(width: S.p8)),
                   ),
                 ],

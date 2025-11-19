@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/screens/quiz_screen.dart';
 import 'package:roomate/presentation/widgets/ui/auth_edit_first_page.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
@@ -45,20 +46,21 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(
+      page: EditProfileRoute.page,
+      children: [
+        AutoRoute(page: AuthEditFirstRoute.page),
+        AutoRoute(page: AuthEditSecondRoute.page),
+        AutoRoute(page: AuthEditThirdRoute.page),
+      ],
+    ),
+    AutoRoute(
       page: AuthWrapper.page,
       initial: true,
       children: [
         AutoRoute(page: WelcomeRoute.page, initial: true),
         AutoRoute(page: RegNumberRoute.page),
         AutoRoute(page: SmsCodeRoute.page),
-        AutoRoute(
-          page: EditProfileRoute.page,
-          children: [
-            AutoRoute(page: AuthEditFirstRoute.page),
-            AutoRoute(page: AuthEditSecondRoute.page),
-            AutoRoute(page: AuthEditThirdRoute.page),
-          ],
-        ),
+        AutoRoute(page: QuizRoute.page),
       ],
     ),
     AutoRoute(page: AboutGroupRoute.page),
