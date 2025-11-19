@@ -10,10 +10,7 @@ class PButton extends StatelessWidget {
     return PButton(
       title: title,
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: context.colors.white10,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p33)),
-      ),
+      style: ElevatedButton.styleFrom(backgroundColor: context.colors.white10),
     );
   }
   static Padding botPadding({required String title, required VoidCallback onPressed}) {

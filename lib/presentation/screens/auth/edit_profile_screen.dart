@@ -99,7 +99,7 @@ class EditProfileScreen extends StatelessWidget {
                         foregroundColor: WidgetStatePropertyAll(context.colors.text400),
                       ),
                       title: context.l10n.skip,
-                      onPressed: () {},
+                      onPressed: () => context.replaceRoute(const NavBarRoute()),
                     ),
                   ),
                 ),

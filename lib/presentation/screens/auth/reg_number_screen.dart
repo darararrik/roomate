@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/widget_previews.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/a_b.dart';
-import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
-import 'package:roomate/presentation/widgets/input_widget.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class RegNumberScreen extends StatefulWidget {
@@ -20,6 +19,10 @@ class RegNumberScreen extends StatefulWidget {
 
 class _RegNumberScreenState extends State<RegNumberScreen> {
   late TextEditingController _controller;
+  //TODO: УБрать мок данные
+  final List<String> _countryCodes = ['+7', '+1', '+44', '+49', '+33', '+86', '+91'];
+  final String _selectedCountryCode = '+7';
+
   @override
   void initState() {
     _controller = TextEditingController();
@@ -59,8 +62,25 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
                     ),
                   ),
                   const SizedBox(height: S.p10),
-                  //TODO: Добавить дроп даун
-                  InputWidget(hintText: context.l10n.enterPhoneNumber, controller: _controller),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CountryCodeDropdown(
+                        countryCodes: _countryCodes,
+                        selectedCode: _selectedCountryCode,
+                        onChanged: (value) {},
+                      ),
+                      const SizedBox(width: S.p12),
+
+                      Expanded(
+                        child: InputWidget(
+                          hintText: context.l10n.enterPhoneNumber,
+                          controller: _controller,
+                          keyboardType: TextInputType.phone,
+                        ),
+                      ),
+                    ],
+                  ),
                   const Spacer(),
                   PButton.botPadding(
                     title: context.l10n.next,

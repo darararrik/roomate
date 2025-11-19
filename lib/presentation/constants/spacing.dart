@@ -11,7 +11,7 @@ abstract class S {
   static const double p10 = 10.0;
   static const double p11 = 11.0;
   static const double p12 = 12.0;
-  static const double p13 = 13.0;
+  // static const double p13 = 13.0;
 
   static const double p16 = 16.0;
   static const double p18 = 18.0;
@@ -20,7 +20,7 @@ abstract class S {
   static const double p24 = 24.0;
   static const double p28 = 28.0;
   static const double p32 = 32.0;
-  static const double p33 = 33.0;
+  // static const double p33 = 33.0;
 
   static const double p36 = 36.0;
   static const double p40 = 40.0;
@@ -29,6 +29,7 @@ abstract class S {
   static const double p46 = 46.0;
   static const double p48 = 48.0;
   static const double p56 = 56.0;
+  static const double p58 = 58.0;
   static const double p60 = 60.0;
   static const double p70 = 70.0;
   static const double p86 = 86.0;

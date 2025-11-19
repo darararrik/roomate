@@ -48,7 +48,6 @@ class InputWidget extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final FocusNode? focusNode;
   final TextStyle? style;
-  //TODO: не нравится переделать
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

@@ -44,7 +44,7 @@ class AuthEditThirdPage extends StatelessWidget {
             padding: const P(bottom: S.p40),
             child: SizedBox.expand(
               child: DecoratedBox(
-                decoration: BoxDecoration(color: context.colors.light100, borderRadius: BorderRadius.circular(S.p13)),
+                decoration: BoxDecoration(color: context.colors.light100, borderRadius: BorderRadius.circular(S.p12)),
                 child: const Center(
                   // выравниваем иконку по центру
                   child: AppIcon(AppIcons.camera, width: S.p100),

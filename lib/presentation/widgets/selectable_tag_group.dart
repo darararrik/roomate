@@ -34,7 +34,7 @@ class SelectableTagGroup extends StatelessWidget {
             return Card(
               elevation: S.p0,
               color: selected ? context.colors.orange60 : context.colors.light100,
-              shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(S.p13)),
+              shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(S.p12)),
               child: Padding(
                 padding: const P(horizontal: S.p16, vertical: S.p12),
                 child: Text(

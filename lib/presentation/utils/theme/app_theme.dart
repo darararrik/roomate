@@ -45,14 +45,11 @@ class AppTheme {
       indicator: BoxDecoration(color: _appColors.light100, borderRadius: BorderRadius.circular(S.p20)),
       splashBorderRadius: BorderRadius.circular(S.p20),
     ),
-
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: _appColors.input200,
       contentPadding: const P(horizontal: S.p16, vertical: S.p18),
-
       hintStyle: _appTextStyle.inputTextRegular.copyWith(color: _appColors.text400),
-      //TODO: в макетах разные закругления
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
@@ -60,15 +57,15 @@ class AppTheme {
         borderRadius: BorderRadius.circular(S.p16),
         borderSide: const BorderSide(width: S.p1_3),
       ),
-      disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p11), borderSide: BorderSide.none),
+      disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(S.p11),
+        borderRadius: BorderRadius.circular(S.p16),
         borderSide: const BorderSide(width: S.p1_3),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(S.p16))),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(S.p32))),
         textStyle: WidgetStatePropertyAll(_appTextStyle.activesButton),
         minimumSize: const WidgetStatePropertyAll(Size.fromHeight(S.p48)),
         elevation: const WidgetStatePropertyAll(0),
@@ -78,7 +75,7 @@ class AppTheme {
         }),
         backgroundColor: WidgetStateProperty.fromMap({
           WidgetState.disabled: _appColors.orange60,
-          WidgetState.any: _appColors.orange, // fallback (рекомендуется)
+          WidgetState.any: _appColors.orange,
         }),
       ),
     ),
