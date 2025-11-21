@@ -42,107 +42,109 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          AB(title: Text(context.l10n.confirmation), centerTitle: false),
-          SliverFillRemaining(
-            child: Padding(
-              padding: const P(horizontal: S.p16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const P(vertical: S.p28),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(context.l10n.enterSMSCode, style: context.textStyle.headline1),
-                        const SizedBox(height: S.p8),
-                        Text(
-                          context.l10n.descriptionSMSCode2,
-                          style: context.textStyle.headline2.copyWith(color: context.colors.text400),
-                        ),
-                      ],
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            AB(title: Text(context.l10n.confirmation), centerTitle: false),
+            SliverFillRemaining(
+              child: Padding(
+                padding: const P(horizontal: S.p16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const P(vertical: S.p28),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(context.l10n.enterSMSCode, style: context.textStyle.headline1),
+                          const SizedBox(height: S.p8),
+                          Text(
+                            context.l10n.descriptionSMSCode2,
+                            style: context.textStyle.headline2.copyWith(color: context.colors.text400),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: S.p10),
-                  Padding(
-                    padding: const P(horizontal: S.p44),
-                    child: Row(
-                      children: List.generate(4, (index) {
-                        return Expanded(
-                          child: KeyboardListener(
-                            focusNode: FocusNode(), // отдельный listener
-                            onKeyEvent: (KeyEvent event) {
-                              if (event is KeyDownEvent &&
-                                  event.logicalKey == LogicalKeyboardKey.backspace &&
-                                  _controllers[index].text.isEmpty &&
-                                  index > 0) {
-                                _focusNodes[index - 1].requestFocus();
-                              }
-                            },
-                            child: TextField(
-                              style: context.textStyle.activesCodeNumber,
-                              decoration: InputDecoration(
-                                fillColor: context.colors.white,
-                                filled: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(S.p16),
-                                  borderSide: BorderSide(width: S.p1, color: context.colors.stroke300),
+                    const SizedBox(height: S.p10),
+                    Padding(
+                      padding: const P(horizontal: S.p44),
+                      child: Row(
+                        children: List.generate(4, (index) {
+                          return Expanded(
+                            child: KeyboardListener(
+                              focusNode: FocusNode(), // отдельный listener
+                              onKeyEvent: (KeyEvent event) {
+                                if (event is KeyDownEvent &&
+                                    event.logicalKey == LogicalKeyboardKey.backspace &&
+                                    _controllers[index].text.isEmpty &&
+                                    index > 0) {
+                                  _focusNodes[index - 1].requestFocus();
+                                }
+                              },
+                              child: TextField(
+                                style: context.textStyle.activesCodeNumber,
+                                decoration: InputDecoration(
+                                  fillColor: context.colors.white,
+                                  filled: true,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(S.p16),
+                                    borderSide: BorderSide(width: S.p1, color: context.colors.stroke300),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(S.p16),
+                                    borderSide: BorderSide(width: S.p1, color: context.colors.orange),
+                                  ),
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(S.p16),
-                                  borderSide: BorderSide(width: S.p1, color: context.colors.orange),
-                                ),
+                                maxLength: 1,
+                                buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                                controller: _controllers[index],
+                                focusNode: _focusNodes[index],
+                                onChanged: (val) => _onChanged(val, index),
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                               ),
-                              maxLength: 1,
-                              buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.center,
-                              controller: _controllers[index],
-                              focusNode: _focusNodes[index],
-                              onChanged: (val) => _onChanged(val, index),
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                            ),
+                          );
+                        }).separated(const SizedBox(width: S.p16)),
+                      ),
+                    ),
+                    const SizedBox(height: S.p24),
+                    Padding(
+                      padding: const P(all: S.p12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(context.l10n.didntReceiveTheCode, style: context.textStyle.activesLabel),
+                          const SizedBox(width: S.p4),
+                          GestureDetector(
+                            onTap: () {
+                              // TODO: добавить логику повторной отправки
+                            },
+                            child: Text(
+                              context.l10n.sendAgain,
+                              style: context.textStyle.activesLabel.copyWith(
+                                color: context.colors.orange,
+                                decoration: TextDecoration.underline,
+                                decorationColor: context.colors.orange,
+                              ),
                             ),
                           ),
-                        );
-                      }).separated(const SizedBox(width: S.p16)),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: S.p24),
-                  Padding(
-                    padding: const P(all: S.p12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(context.l10n.didntReceiveTheCode, style: context.textStyle.activesLabel),
-                        const SizedBox(width: S.p4),
-                        GestureDetector(
-                          onTap: () {
-                            // TODO: добавить логику повторной отправки
-                          },
-                          child: Text(
-                            context.l10n.sendAgain,
-                            style: context.textStyle.activesLabel.copyWith(
-                              color: context.colors.orange,
-                              decoration: TextDecoration.underline,
-                              decorationColor: context.colors.orange,
-                            ),
-                          ),
-                        ),
-                      ],
+                    const Spacer(),
+                    PrimaryButton.botPadding(
+                      titleText: Text(context.l10n.next),
+                      onPressed: () => context.pushRoute(const QuizRoute()),
                     ),
-                  ),
-                  const Spacer(),
-                  PrimaryButton.botPadding(
-                    titleText: Text(context.l10n.next),
-                    onPressed: () => context.pushRoute(const QuizRoute()),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

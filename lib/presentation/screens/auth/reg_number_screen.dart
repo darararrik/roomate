@@ -38,59 +38,61 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          AB(title: Text(context.l10n.register), centerTitle: false),
-          SliverFillRemaining(
-            child: Padding(
-              padding: const P(horizontal: S.p16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const P(vertical: S.p28),
-                    child: Column(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            AB(title: Text(context.l10n.register), centerTitle: false),
+            SliverFillRemaining(
+              child: Padding(
+                padding: const P(horizontal: S.p16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const P(vertical: S.p28),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(context.l10n.enterYourPhoneNumber, style: context.textStyle.headline1),
+                          const SizedBox(height: S.p8),
+                          Text(
+                            context.l10n.descriptionSMSCode1,
+                            style: context.textStyle.headline2.copyWith(color: context.colors.text400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: S.p10),
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(context.l10n.enterYourPhoneNumber, style: context.textStyle.headline1),
-                        const SizedBox(height: S.p8),
-                        Text(
-                          context.l10n.descriptionSMSCode1,
-                          style: context.textStyle.headline2.copyWith(color: context.colors.text400),
+                        CountryCodeDropdown(
+                          countryCodes: _countryCodes,
+                          selectedCode: _selectedCountryCode,
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(width: S.p12),
+
+                        Expanded(
+                          child: InputWidget(
+                            hintText: context.l10n.enterPhoneNumber,
+                            controller: _controller,
+                            keyboardType: TextInputType.phone,
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: S.p10),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CountryCodeDropdown(
-                        countryCodes: _countryCodes,
-                        selectedCode: _selectedCountryCode,
-                        onChanged: (value) {},
-                      ),
-                      const SizedBox(width: S.p12),
-
-                      Expanded(
-                        child: InputWidget(
-                          hintText: context.l10n.enterPhoneNumber,
-                          controller: _controller,
-                          keyboardType: TextInputType.phone,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  PrimaryButton.botPadding(
-                    titleText: Text(context.l10n.next),
-                    onPressed: () => context.router.push(const SmsCodeRoute()),
-                  ),
-                ],
+                    const Spacer(),
+                    PrimaryButton.botPadding(
+                      titleText: Text(context.l10n.next),
+                      onPressed: () => context.router.push(const SmsCodeRoute()),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -19,7 +19,7 @@ class PrimaryButton extends StatelessWidget {
   }
   static Padding botPadding({required Text titleText, required VoidCallback onPressed}) {
     return Padding(
-      padding: const P(bottom: S.p40),
+      padding: const P(bottom: S.p20),
       child: PrimaryButton(titleText: titleText, onPressed: onPressed),
     );
   }

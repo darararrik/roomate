@@ -31,6 +31,7 @@ abstract class S {
   static const double p56 = 56.0;
   static const double p58 = 58.0;
   static const double p60 = 60.0;
+  static const double p64 = 64.0;
   static const double p70 = 70.0;
   static const double p86 = 86.0;
   static const double p96 = 96.0;

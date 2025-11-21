@@ -17,16 +17,14 @@ class WelcomeScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              Padding(
-                padding: const P(horizontal: S.p16, vertical: S.p6),
-                child: Row(
-                  mainAxisAlignment: .end,
-                  children: [
-                    IconButton(
-                      onPressed: () => context.replaceRoute(const NavBarRoute()),
-                      icon: const AppIcon(AppIcons.xBig, width: S.p32),
-                    ),
-                  ],
+              Align(
+                alignment: .topRight,
+                child: Padding(
+                  padding: const P(horizontal: S.p4),
+                  child: IconButton(
+                    onPressed: () => context.replaceRoute(const NavBarRoute()),
+                    icon: const AppIcon(AppIcons.xBig, width: S.p32),
+                  ),
                 ),
               ),
               Expanded(

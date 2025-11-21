@@ -60,7 +60,7 @@ class _QuizContent extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const P(horizontal: S.p16, vertical: S.p8),
+                      padding: const P(horizontal: S.p4),
                       child: Row(
                         mainAxisAlignment: .spaceBetween,
                         children: [

@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppIcon extends StatelessWidget {
-  const AppIcon(
-    this.assetName, {
-    super.key,
-    this.width,
-    this.height,
-    this.color,
-    this.fit,
-  });
+  const AppIcon(this.assetName, {super.key, this.width, this.height, this.color, this.fit});
   final String assetName;
   final double? width;
   final BoxFit? fit;
@@ -24,9 +17,7 @@ class AppIcon extends StatelessWidget {
       width: width,
       height: height,
       fit: fit ?? BoxFit.contain,
-      colorFilter: color != null
-          ? ColorFilter.mode(color!, BlendMode.srcIn)
-          : null,
+      colorFilter: color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
     );
   }
 }

@@ -12,8 +12,8 @@ class BB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: AppIcon(AppIcons.arrowLeft, width: S.p32, height: S.p32, color: color ?? context.colors.black),
       onPressed: onPressed ?? () => context.pop(),
+      icon: AppIcon(AppIcons.arrowLeft, color: color ?? context.colors.black, width: S.p32, height: S.p32),
     );
   }
 }
