@@ -156,6 +156,33 @@ class AppLocalizationsRu extends AppLocalizations {
   String get name => 'Имя';
 
   @override
+  String get quiz_q1_title => 'С чем вам помочь?';
+
+  @override
+  String get quiz_q1_subtitle => 'Настроим поиск для вашего удобства';
+
+  @override
+  String get quiz_q1_opt1 => 'Найти помещение';
+
+  @override
+  String get quiz_q1_opt2 => 'Сдать помещение';
+
+  @override
+  String get quiz_q1_opt3 => 'Я просто посмотреть';
+
+  @override
+  String get quiz_q2_title => 'Хотите создать объявление?';
+
+  @override
+  String get quiz_q2_subtitle => 'Вы можете это сделать позже';
+
+  @override
+  String get quiz_q2_opt1 => 'Разместить объявление';
+
+  @override
+  String get quiz_q2_opt2 => 'Пропустить';
+
+  @override
   String get search => 'Поиск';
 
   @override

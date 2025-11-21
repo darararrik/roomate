@@ -1,154 +1,190 @@
 import 'package:flutter/material.dart';
-//TODO: Вынести логику в блок
-// Предполагаемые импорты из вашего проекта
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:roomate/domain/models/quiz_step_model.dart';
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/utils/utils.dart'; // Для ContextExtensions
-import 'package:roomate/presentation/widgets/background.dart';
-import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart'; // Для PButton
+import 'package:roomate/presentation/l10n/app_localizations.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+import 'package:roomate/state/quiz_bloc/quiz_bloc.dart';
 
-// Вспомогательный класс для описания шага (вопроса и вариантов ответа)
-class QuizStep {
-  QuizStep({required this.question, required this.options, required this.subqQuestion});
-  final String question;
-  final String subqQuestion;
-
-  final List<String> options;
-}
-
-// Данные для квиза
-final List<QuizStep> quizData = [
-  QuizStep(
-    question: 'С чем вам помочь?',
-    subqQuestion: "Настроим поиск для вашего удобства",
-    options: ['Найти помещение', 'Сдать помещение', 'Я просто посмотреть'], // 3 варианта
-  ),
-  QuizStep(
-    question: 'На какой срок аренды вы рассчитываете?',
-    subqQuestion: "Вы можете это сделать позже",
-    options: ['Разместить объявление', 'Пропустить'], // 2 варианта
-  ),
-  QuizStep(
-    question: 'Квиз завершен!',
-    subqQuestion: "Можете приступать к поиску.",
-    options: ['Начать'], // Финальный шаг
-  ),
-];
-
-class QuizScreen extends StatefulWidget {
+@RoutePage()
+class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key});
 
   @override
-  State<QuizScreen> createState() => _QuizScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(create: (context) => QuizBloc(), child: _QuizContent());
+  }
 }
 
-class _QuizScreenState extends State<QuizScreen> {
-  int _currentStepIndex = 0;
-
-  // Метод для перехода к следующему вопросу
-  void _nextQuestion(String selectedOption) {
-    print('Выбранный ответ: $selectedOption');
-
-    if (_currentStepIndex < quizData.length - 1) {
-      // Использование setState вызывает перерисовку и активирует AnimatedSwitcher
-      setState(() {
-        _currentStepIndex++;
-      });
-    } else {
-      // Квиз завершен, можно переходить на главный экран
-      print('Квиз завершен, переход на следующий экран.');
-      // context.router.push(const HomeRoute());
-    }
-  }
-
-  // Вспомогательный метод для построения списка кнопок для текущего шага
-  List<Widget> _buildOptionsList(BuildContext context, QuizStep step) {
-    return step.options
-        .map(
-          (option) => PButton.withOpacity(
-            // Привязываем функцию перехода к нажатию
-            onPressed: () => _nextQuestion(option),
-            titleText: Text(option, style: context.textStyle.activesButton.copyWith(color: context.colors.orange)),
-            backgroundColor: context.colors.orange40,
-          ),
-        )
-        .toList()
-        // Разделитель между кнопками
-        .separated(const SizedBox(height: S.p12));
-  }
-
+class _QuizContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Динамически получаем данные для текущего шага
-    final currentStep = quizData[_currentStepIndex];
+    final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      body: Background(
-        // Используем Center для центрирования белого блока
-        child: Center(
-          child: Padding(
-            padding: const P(horizontal: S.p12, vertical: S.p24),
-            child: DecoratedBox(
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(S.p32)),
-              child: Padding(
-                padding: const P(horizontal: S.p12, vertical: S.p24),
-                // *** КЛЮЧЕВОЙ ЭЛЕМЕНТ: AnimatedSwitcher ***
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 500),
-                  // Анимация: SlideTransition для перехода справа налево
-                  transitionBuilder: (child, animation) {
-                    // Используем CurvedAnimation для более плавной анимации
-                    final offsetAnimation = Tween<Offset>(
-                      begin: const Offset(1.0, 0.0), // Начинаем справа
-                      end: Offset.zero, // Заканчиваем в центре
-                    ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOutCubic));
+    final steps = [
+      QuizStepModel(
+        question: l10n.quiz_q1_title,
+        subQuestion: l10n.quiz_q1_subtitle,
+        options: [l10n.quiz_q1_opt1, l10n.quiz_q1_opt2, l10n.quiz_q1_opt3],
+      ),
+      QuizStepModel(
+        question: l10n.quiz_q2_title,
+        subQuestion: l10n.quiz_q2_subtitle,
+        options: [l10n.quiz_q2_opt1, l10n.quiz_q2_opt2],
+      ),
+    ];
 
-                    final fadeAnimation = Tween<double>(
-                      begin: 0.0,
-                      end: 1.0,
-                    ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInCubic));
-
-                    return SlideTransition(
-                      position: offsetAnimation,
-                      child: FadeTransition(opacity: fadeAnimation, child: child),
-                    );
-                  },
-                  // KEY: Смена ключа при смене индекса запускает анимацию
-                  child: AnimatedSize(
-                    // *** НОВЫЙ ВИДЖЕТ: AnimatedSize ***
-                    duration: const Duration(milliseconds: 500), // Длительность анимации
-                    curve: Curves.easeOutCubic, // Кривая анимации
-                    child: Column(
-                      key: ValueKey(_currentStepIndex), // Key для AnimatedSwitcher и AnimatedSize
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch, // Растягиваем текст и кнопки
-                      children: [
-                        // 1. Вопросы и подвопросы
-                        Padding(
-                          padding: const P(vertical: S.p12),
-                          child: Column(
-                            children: [
-                              Text(
-                                currentStep.question,
-                                style: context.textStyle.headline0,
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: S.p16),
-                              Text(
-                                currentStep.subqQuestion,
-                                style: context.textStyle.headline2.copyWith(color: context.colors.text700),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
+    return BlocConsumer<QuizBloc, QuizState>(
+      listenWhen: (prev, curr) => prev.status != curr.status,
+      listener: (context, state) {
+        if (state.status == QuizStatus.completed) {
+          //TODO: Потом добавить логику
+        }
+      },
+      builder: (context, state) {
+        final isFirstStep = state.currentIndex == 0;
+        return PopScope(
+          canPop: isFirstStep,
+          onPopInvokedWithResult: (didPop, result) {
+            if (didPop) return;
+            context.read<QuizBloc>().add(const QuizEvent.stepBack());
+          },
+          child: Scaffold(
+            body: Background(
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const P(horizontal: S.p16, vertical: S.p8),
+                      child: Row(
+                        mainAxisAlignment: .spaceBetween,
+                        children: [
+                          BB(
+                            color: context.colors.white,
+                            onPressed: () {
+                              if (state.currentIndex > 0) {
+                                context.read<QuizBloc>().add(const QuizEvent.stepBack());
+                              } else {
+                                context.pop();
+                              }
+                            },
                           ),
+                          IconButton(
+                            onPressed: () => context.replaceRoute(const NavBarRoute()),
+                            icon: const AppIcon(AppIcons.xBig, width: S.p32),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const .only(bottom: S.p325),
+                        child: Center(
+                          child: state.currentIndex >= steps.length
+                              ? const SizedBox()
+                              : buildContent(context, state, steps[state.currentIndex], steps.length),
                         ),
-                        const SizedBox(height: S.p16),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
-                        // 2. Список анимированных кнопок
-                        ..._buildOptionsList(context, currentStep),
+  Padding buildContent(BuildContext context, QuizState state, QuizStepModel currentStep, int totalSteps) {
+    return Padding(
+      padding: const P(horizontal: S.p12, vertical: S.p24),
+      child: DecoratedBox(
+        decoration: BoxDecoration(color: context.colors.white, borderRadius: BorderRadius.circular(S.p32)),
+        child: Padding(
+          padding: const P(horizontal: S.p12, bottom: S.p12, top: S.p24),
+          child: AnimatedSize(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.ease,
+            alignment: Alignment.topCenter,
+
+            //alignment: Alignment.center,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 400),
+              switchInCurve: Curves.easeInOutCubic,
+              switchOutCurve: Curves.easeInOutCubic,
+
+              layoutBuilder: (currentChild, previousChildren) {
+                return Stack(
+                  alignment: Alignment.topCenter,
+                  children: [...previousChildren, if (currentChild != null) currentChild],
+                );
+              },
+
+              transitionBuilder: (child, animation) {
+                final offsetAnimation = Tween<Offset>(
+                  begin: const Offset(0.0, 0.1),
+                  end: Offset.zero,
+                ).animate(animation);
+
+                final fadeAnimation = Tween<double>(
+                  begin: 0.0,
+                  end: 1.0,
+                ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut));
+                return FadeTransition(
+                  opacity: fadeAnimation,
+                  child: SlideTransition(position: offsetAnimation, child: child),
+                );
+              },
+
+              child: Column(
+                key: ValueKey<int>(state.currentIndex),
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const P(vertical: S.p12),
+                    child: Column(
+                      children: [
+                        Text(currentStep.question, style: context.textStyle.headline0, textAlign: TextAlign.center),
+                        const SizedBox(height: S.p16),
+                        Text(
+                          currentStep.subQuestion,
+                          style: context.textStyle.headline2.copyWith(color: context.colors.text700),
+                          textAlign: TextAlign.center,
+                        ),
                       ],
                     ),
                   ),
-                ),
+                  const SizedBox(height: S.p16),
+                  ...currentStep.options.asMap().entries.map((entry) {
+                    final int index = entry.key;
+                    final String optionText = entry.value;
+                    final bool isLast = index == currentStep.options.length - 1;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: S.p12),
+                      child: PrimaryButton.withOpacity(
+                        onPressed: !isLast
+                            ? () => context.read<QuizBloc>().add(
+                                QuizEvent.optionSelected(answer: optionText, totalSteps: totalSteps),
+                              )
+                            : () => context.replaceRoute(const NavBarRoute()),
+                        backgroundColor: isLast ? context.colors.light100 : context.colors.orange40,
+                        titleText: Text(
+                          optionText,
+                          style: context.textStyle.activesButton.copyWith(
+                            color: isLast ? context.colors.text400 : context.colors.orange,
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ],
               ),
             ),
           ),

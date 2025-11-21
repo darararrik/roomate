@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/widget_previews.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
@@ -82,7 +82,7 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
                     ],
                   ),
                   const Spacer(),
-                  PButton.botPadding(
+                  PrimaryButton.botPadding(
                     titleText: Text(context.l10n.next),
                     onPressed: () => context.router.push(const SmsCodeRoute()),
                   ),

@@ -18,6 +18,8 @@ analyzer:
     invalid_annotation_target: false
     unused_import: false
   exclude:
-    - "**/*.g.dart"
-    - "**/*.gr.dart"
-    - "**/*.freezed.dart"
+      - "**/*.g.dart"
+      - "**/*.freezed.dart"
+      - "**/*.gr.dart"      # Для AutoRoute
+      - "lib/generated/**"  # Если генерация в отдельной папке
+      - "test/**.mocks.dart"

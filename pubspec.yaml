@@ -25,6 +25,10 @@ dependencies:
   dropdown_button2: ^2.3.9
   flutter_bloc: ^9.1.1
   group_button: ^5.3.4
+  freezed_annotation: ^3.1.0
+  freezed: ^3.2.3
+  analysis_server_plugin: '0.2.0'
+  analyzer: '8.1.1'
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -7,7 +7,7 @@ import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/a_b.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/b_b.dart';
-import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
 import 'package:roomate/presentation/widgets/chip_cards/chip_match.dart';
 import 'package:roomate/presentation/widgets/overlapping_avatars.dart';
 
@@ -59,7 +59,7 @@ class AboutGroupScreen extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  PButton.botPadding(titleText: Text(context.l10n.join), onPressed: () {}),
+                  PrimaryButton.botPadding(titleText: Text(context.l10n.join), onPressed: () {}),
                 ],
               ),
             ),

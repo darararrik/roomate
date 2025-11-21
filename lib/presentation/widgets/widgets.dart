@@ -1,6 +1,7 @@
 export 'a_b.dart';
 export 'app_icon.dart';
 export 'b_b.dart';
+export 'background.dart';
 export 'buttons/buttons.dart';
 export 'chip_cards/chip_cards.dart';
 export 'country_code_drop_down.dart';

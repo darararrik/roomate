@@ -1,2 +1,2 @@
-export 'elev_button_x.dart';
+export 'primary_btn.dart';
 export 'social_button.dart';

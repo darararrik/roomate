@@ -382,6 +382,60 @@ abstract class AppLocalizations {
   /// **'Имя'**
   String get name;
 
+  /// No description provided for @quiz_q1_title.
+  ///
+  /// In ru, this message translates to:
+  /// **'С чем вам помочь?'**
+  String get quiz_q1_title;
+
+  /// No description provided for @quiz_q1_subtitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Настроим поиск для вашего удобства'**
+  String get quiz_q1_subtitle;
+
+  /// No description provided for @quiz_q1_opt1.
+  ///
+  /// In ru, this message translates to:
+  /// **'Найти помещение'**
+  String get quiz_q1_opt1;
+
+  /// No description provided for @quiz_q1_opt2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сдать помещение'**
+  String get quiz_q1_opt2;
+
+  /// No description provided for @quiz_q1_opt3.
+  ///
+  /// In ru, this message translates to:
+  /// **'Я просто посмотреть'**
+  String get quiz_q1_opt3;
+
+  /// No description provided for @quiz_q2_title.
+  ///
+  /// In ru, this message translates to:
+  /// **'Хотите создать объявление?'**
+  String get quiz_q2_title;
+
+  /// No description provided for @quiz_q2_subtitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы можете это сделать позже'**
+  String get quiz_q2_subtitle;
+
+  /// No description provided for @quiz_q2_opt1.
+  ///
+  /// In ru, this message translates to:
+  /// **'Разместить объявление'**
+  String get quiz_q2_opt1;
+
+  /// No description provided for @quiz_q2_opt2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пропустить'**
+  String get quiz_q2_opt2;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:

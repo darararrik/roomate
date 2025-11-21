@@ -9,19 +9,11 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'package:auto_route/auto_route.dart' as _i24;
+
 import 'package:roomate/presentation/routing/wrappers/auth_wrapper.dart' as _i6;
-import 'package:roomate/presentation/routing/wrappers/chats_wrapper.dart'
-    as _i8;
-import 'package:roomate/presentation/routing/wrappers/create_wrapper.dart'
-    as _i11;
-import 'package:roomate/presentation/routing/wrappers/favorites_wrapper.dart'
-    as _i14;
-import 'package:roomate/presentation/routing/wrappers/profile_wrapper.dart'
-    as _i19;
 import 'package:roomate/presentation/screens/about_group_screen.dart' as _i1;
-import 'package:roomate/presentation/screens/auth/reg_number_screen.dart'
-    as _i21;
 import 'package:roomate/presentation/screens/auth/sms_code_screen.dart' as _i22;
 import 'package:roomate/presentation/screens/auth/welcome_screen.dart' as _i23;
 import 'package:roomate/presentation/screens/chats_screen.dart' as _i7;
@@ -35,6 +27,17 @@ import 'package:roomate/presentation/widgets/nav.dart' as _i16;
 import 'package:roomate/presentation/widgets/tabs/apartments_tab.dart' as _i2;
 import 'package:roomate/presentation/widgets/tabs/coworking_tab.dart' as _i9;
 import 'package:roomate/presentation/widgets/tabs/neighbours_tab.dart' as _i17;
+
+import 'package:roomate/presentation/routing/wrappers/chats_wrapper.dart'
+    as _i8;
+import 'package:roomate/presentation/routing/wrappers/create_wrapper.dart'
+    as _i11;
+import 'package:roomate/presentation/routing/wrappers/favorites_wrapper.dart'
+    as _i14;
+import 'package:roomate/presentation/routing/wrappers/profile_wrapper.dart'
+    as _i19;
+import 'package:roomate/presentation/screens/auth/reg_number_screen.dart'
+    as _i21;
 import 'package:roomate/presentation/widgets/ui/auth_edit_first_page.dart'
     as _i3;
 import 'package:roomate/presentation/widgets/ui/auth_edit_second_page.dart'

@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 
-class PButton extends StatelessWidget {
-  const PButton({super.key, required this.titleText, this.onPressed, this.style});
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({super.key, required this.titleText, this.onPressed, this.style});
 
-  factory PButton.withOpacity({
+  factory PrimaryButton.withOpacity({
     required Text titleText,
     required VoidCallback onPressed,
     required Color backgroundColor,
   }) {
-    return PButton(
+    return PrimaryButton(
       titleText: titleText,
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(backgroundColor: backgroundColor),
@@ -20,7 +20,7 @@ class PButton extends StatelessWidget {
   static Padding botPadding({required Text titleText, required VoidCallback onPressed}) {
     return Padding(
       padding: const P(bottom: S.p40),
-      child: PButton(titleText: titleText, onPressed: onPressed),
+      child: PrimaryButton(titleText: titleText, onPressed: onPressed),
     );
   }
 

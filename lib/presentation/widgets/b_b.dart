@@ -6,12 +6,13 @@ import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 
 class BB extends StatelessWidget {
-  const BB({super.key, this.onPressed});
+  const BB({super.key, this.onPressed, this.color});
   final VoidCallback? onPressed;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: AppIcon(AppIcons.arrowLeft, width: S.p32, height: S.p32, color: context.colors.black),
+      icon: AppIcon(AppIcons.arrowLeft, width: S.p32, height: S.p32, color: color ?? context.colors.black),
       onPressed: onPressed ?? () => context.pop(),
     );
   }

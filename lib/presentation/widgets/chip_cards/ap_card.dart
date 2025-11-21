@@ -6,7 +6,7 @@ import 'package:flutter_image_carousel_slider/image_carousel_slider_left_right_s
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
 
 class ApCard extends StatelessWidget {
   const ApCard({super.key});
@@ -60,9 +60,9 @@ class ApCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: PButton(titleText: Text(context.l10n.write), onPressed: () {}),
+                        child: PrimaryButton(titleText: Text(context.l10n.write), onPressed: () {}),
                       ),
-                      Expanded(child: PButton(titleText: Text(context.l10n.call))),
+                      Expanded(child: PrimaryButton(titleText: Text(context.l10n.call))),
                     ].separated(const SizedBox(width: S.p8)),
                   ),
                 ],

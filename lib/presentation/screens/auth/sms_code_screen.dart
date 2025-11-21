@@ -8,7 +8,7 @@ import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/a_b.dart';
-import 'package:roomate/presentation/widgets/buttons/elev_button_x.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
 
 @RoutePage()
 class SmsCodeScreen extends StatefulWidget {
@@ -134,7 +134,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                     ),
                   ),
                   const Spacer(),
-                  PButton.botPadding(
+                  PrimaryButton.botPadding(
                     titleText: Text(context.l10n.next),
                     onPressed: () => context.pushRoute(const QuizRoute()),
                   ),

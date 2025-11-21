@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/utils/app_dropdown_styles.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/utils/app_dropdown_styles.dart';
 
 class CountryCodeDropdown extends StatelessWidget {
   const CountryCodeDropdown({
@@ -44,7 +45,10 @@ class CountryCodeDropdown extends StatelessWidget {
                 ],
               ),
             ),
-            buttonStyleData: const ButtonStyleData(padding: EdgeInsets.zero),
+            buttonStyleData: ButtonStyleData(
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(S.p16)),
+            ),
 
             items: countryCodes
                 .map(

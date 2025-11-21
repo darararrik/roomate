@@ -77,7 +77,7 @@ class EditProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(child: child),
-                PButton(
+                PrimaryButton(
                   titleText: Text(context.l10n.next),
                   onPressed: () {
                     final nextIndex = tabsRouter.activeIndex + 1;
@@ -93,7 +93,7 @@ class EditProfileScreen extends StatelessWidget {
                   replacement: const SizedBox(height: S.p40),
                   child: Padding(
                     padding: const P(bottom: S.p44, top: S.p12),
-                    child: PButton(
+                    child: PrimaryButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(context.colors.light100),
                         foregroundColor: WidgetStatePropertyAll(context.colors.text400),
