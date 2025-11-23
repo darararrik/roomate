@@ -67,48 +67,48 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                       ),
                     ),
                     const SizedBox(height: S.p10),
-                    Padding(
-                      padding: const P(horizontal: S.p44),
-                      child: Row(
-                        children: List.generate(4, (index) {
-                          return Expanded(
-                            child: KeyboardListener(
-                              focusNode: FocusNode(), // отдельный listener
-                              onKeyEvent: (KeyEvent event) {
-                                if (event is KeyDownEvent &&
-                                    event.logicalKey == LogicalKeyboardKey.backspace &&
-                                    _controllers[index].text.isEmpty &&
-                                    index > 0) {
-                                  _focusNodes[index - 1].requestFocus();
-                                }
-                              },
-                              child: TextField(
-                                style: context.textStyle.activesCodeNumber,
-                                decoration: InputDecoration(
-                                  fillColor: context.colors.white,
-                                  filled: true,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(S.p16),
-                                    borderSide: BorderSide(width: S.p1, color: context.colors.stroke300),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(S.p16),
-                                    borderSide: BorderSide(width: S.p1, color: context.colors.orange),
-                                  ),
+                    Row(
+                      mainAxisAlignment: .center,
+                      children: List.generate(4, (index) {
+                        return SizedBox(
+                          width: S.p56,
+                          height: S.p56,
+                          child: KeyboardListener(
+                            focusNode: FocusNode(), // отдельный listener
+                            onKeyEvent: (KeyEvent event) {
+                              if (event is KeyDownEvent &&
+                                  event.logicalKey == LogicalKeyboardKey.backspace &&
+                                  _controllers[index].text.isEmpty &&
+                                  index > 0) {
+                                _focusNodes[index - 1].requestFocus();
+                              }
+                            },
+                            child: TextField(
+                              style: context.textStyle.activesCodeNumber,
+                              decoration: InputDecoration(
+                                fillColor: context.colors.white,
+                                filled: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(S.p16),
+                                  borderSide: BorderSide(width: S.p1, color: context.colors.stroke300),
                                 ),
-                                maxLength: 1,
-                                buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
-                                keyboardType: TextInputType.number,
-                                textAlign: TextAlign.center,
-                                controller: _controllers[index],
-                                focusNode: _focusNodes[index],
-                                onChanged: (val) => _onChanged(val, index),
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(S.p16),
+                                  borderSide: BorderSide(width: S.p1, color: context.colors.orange),
+                                ),
                               ),
+                              maxLength: 1,
+                              buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              controller: _controllers[index],
+                              focusNode: _focusNodes[index],
+                              onChanged: (val) => _onChanged(val, index),
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                             ),
-                          );
-                        }).separated(const SizedBox(width: S.p16)),
-                      ),
+                          ),
+                        );
+                      }).separated(const SizedBox(width: S.p16)),
                     ),
                     const SizedBox(height: S.p24),
                     Padding(

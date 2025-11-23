@@ -19,7 +19,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: HomeRoute.page,
           path: 'home',
-          initial: true,
           children: [
             AutoRoute(page: ApartamentsTab.page, path: 'apartments', initial: true),
             AutoRoute(page: NeighboursTab.page, path: 'neighbours'),
@@ -44,6 +43,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ProfileWrapperRoute.page,
           path: 'profile',
+          initial: true,
           children: [AutoRoute(page: ProfileRoute.page, path: '', initial: true)],
         ),
       ],
@@ -69,8 +69,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: QuizRoute.page, path: 'quiz'),
       ],
     ),
-
-    // --- ОТДЕЛЬНЫЙ ЭКРАН (Например, детализация) ---
     AutoRoute(page: AboutGroupRoute.page, path: '/about-group'),
   ];
 }

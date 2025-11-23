@@ -15,6 +15,7 @@ class AppTheme {
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
     scaffoldBackgroundColor: _appColors.white,
     appBarTheme: AppBarTheme(
+      surfaceTintColor: _appColors.white,
       backgroundColor: _appColors.white,
       foregroundColor: _appColors.black,
       elevation: 0,
@@ -46,13 +47,11 @@ class AppTheme {
       splashBorderRadius: BorderRadius.circular(S.p20),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: _appColors.input200,
-      contentPadding: const P(horizontal: S.p16, vertical: S.p18),
+      contentPadding: const P(horizontal: S.p16, vertical: S.p16),
       hintStyle: _appTextStyle.inputTextRegular.copyWith(color: _appColors.text400),
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
-      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
-      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
+      border: InputBorder.none,
+      enabledBorder: InputBorder.none,
+      focusedBorder: InputBorder.none,
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
         borderSide: const BorderSide(width: S.p1_3),

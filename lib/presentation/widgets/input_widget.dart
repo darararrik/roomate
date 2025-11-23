@@ -20,7 +20,6 @@ class InputWidget extends StatelessWidget {
     this.border,
     this.enabledBorder,
     this.focusedBorder,
-    this.filled,
     this.fillColor,
     this.contentPadding,
     this.validator,
@@ -43,7 +42,6 @@ class InputWidget extends StatelessWidget {
   final InputBorder? border;
   final InputBorder? enabledBorder;
   final InputBorder? focusedBorder;
-  final bool? filled;
   final Color? fillColor;
   final EdgeInsets? contentPadding;
   final FocusNode? focusNode;
@@ -57,27 +55,35 @@ class InputWidget extends StatelessWidget {
           return ValueListenableBuilder<TextEditingValue>(
             valueListenable: controller,
             builder: (context, value, _) {
-              return TextFormField(
-                focusNode: focusNode,
-                readOnly: readOnly,
-                onTap: onTap,
-                controller: controller,
-                enabled: enabled,
-                obscureText: isPassword ? !isVisible : false,
-                keyboardType: keyboardType,
-                textInputAction: textInputAction,
-                onChanged: onChanged,
-                style: style ?? context.textStyle.inputTextRegular,
-                validator: validator,
-                decoration: InputDecoration(
-                  filled: filled,
-                  fillColor: fillColor,
-                  hintText: hintText,
-                  contentPadding: contentPadding,
-                  border: border,
-                  enabledBorder: enabledBorder,
-                  focusedBorder: focusedBorder,
-                  suffixIcon: _buildSuffixIcon(context, isVisible),
+              return DecoratedBox(
+                decoration: BoxDecoration(color: context.colors.input200, borderRadius: BorderRadius.circular(S.p16)),
+                child: SizedBox(
+                  height: S.p54,
+                  child: Center(
+                    child: TextFormField(
+                      textAlignVertical: .center,
+                      focusNode: focusNode,
+                      readOnly: readOnly,
+                      onTap: onTap,
+                      controller: controller,
+                      enabled: enabled,
+                      obscureText: isPassword ? !isVisible : false,
+                      keyboardType: keyboardType,
+                      textInputAction: textInputAction,
+                      onChanged: onChanged,
+                      style: style ?? context.textStyle.inputTextRegular,
+                      validator: validator,
+                      decoration: InputDecoration(
+                        hintText: hintText,
+                        isDense: true,
+                        contentPadding: contentPadding,
+                        border: border,
+                        enabledBorder: enabledBorder,
+                        focusedBorder: focusedBorder,
+                        suffixIcon: _buildSuffixIcon(context, isVisible),
+                      ),
+                    ),
+                  ),
                 ),
               );
             },

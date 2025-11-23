@@ -1,7 +1,5 @@
 // ignore: unused_import
-
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -185,10 +183,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String get quiz_q2_opt2 => 'Пропустить';
 
   @override
-  String get search => 'Поиск';
+  String get support => 'Поддержка';
 
   @override
   String get settings => 'Настройки';
+
+  @override
+  String get verification => 'Верификация';
+
+  @override
+  String get profile_subtitle => 'Изменение ваших данных';
+
+  @override
+  String get verification_subtitle => 'Подтверждение вашего профиля';
+
+  @override
+  String get support_subtitle => 'Сообщите о проблеме';
+
+  @override
+  String get settings_subtitle => 'Ваш аккаунт, уведомления';
+
+  @override
+  String get search => 'Поиск';
 
   @override
   String get notifications => 'Уведомления';
@@ -258,9 +274,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get about => 'О приложении';
-
-  @override
-  String get help => 'Помощь';
 
   @override
   String get language => 'Язык';

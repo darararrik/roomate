@@ -58,13 +58,17 @@
   "quiz_q2_subtitle":"Вы можете это сделать позже",
   "quiz_q2_opt1":"Разместить объявление",
   "quiz_q2_opt2":"Пропустить",
-  
-
+  "support": "Поддержка",
+  "settings": "Настройки",
+  "verification": "Верификация",
+  "profile_subtitle":"Изменение ваших данных",
+  "verification_subtitle":"Подтверждение вашего профиля",
+  "support_subtitle":"Сообщите о проблеме",
+  "settings_subtitle":"Ваш аккаунт, уведомления",
 
 
 
   "search": "Поиск",
-  "settings": "Настройки",
   "notifications": "Уведомления",
   "login": "Войти",
   "logout": "Выйти",
@@ -88,7 +92,7 @@
   "home": "Домой",
   "details": "Подробнее",
   "about": "О приложении",
-  "help": "Помощь",
+
   "language": "Язык",
   "theme": "Тема",
   "darkMode": "Тёмная тема",

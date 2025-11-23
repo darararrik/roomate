@@ -25,7 +25,7 @@ class CountryCodeDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: S.p58,
+      height: S.p54,
       child: DecoratedBox(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(S.p16), color: context.colors.input200),
         child: DropdownButtonHideUnderline(

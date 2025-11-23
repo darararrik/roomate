@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -437,17 +436,53 @@ abstract class AppLocalizations {
   /// **'Пропустить'**
   String get quiz_q2_opt2;
 
-  /// No description provided for @search.
+  /// No description provided for @support.
   ///
   /// In ru, this message translates to:
-  /// **'Поиск'**
-  String get search;
+  /// **'Поддержка'**
+  String get support;
 
   /// No description provided for @settings.
   ///
   /// In ru, this message translates to:
   /// **'Настройки'**
   String get settings;
+
+  /// No description provided for @verification.
+  ///
+  /// In ru, this message translates to:
+  /// **'Верификация'**
+  String get verification;
+
+  /// No description provided for @profile_subtitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменение ваших данных'**
+  String get profile_subtitle;
+
+  /// No description provided for @verification_subtitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтверждение вашего профиля'**
+  String get verification_subtitle;
+
+  /// No description provided for @support_subtitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сообщите о проблеме'**
+  String get support_subtitle;
+
+  /// No description provided for @settings_subtitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваш аккаунт, уведомления'**
+  String get settings_subtitle;
+
+  /// No description provided for @search.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поиск'**
+  String get search;
 
   /// No description provided for @notifications.
   ///
@@ -586,12 +621,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'О приложении'**
   String get about;
-
-  /// No description provided for @help.
-  ///
-  /// In ru, this message translates to:
-  /// **'Помощь'**
-  String get help;
 
   /// No description provided for @language.
   ///
