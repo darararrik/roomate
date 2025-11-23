@@ -6,7 +6,7 @@ import 'package:flutter_image_carousel_slider/image_carousel_slider_left_right_s
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
+import 'package:roomate/presentation/widgets/primary_btn.dart';
 
 class ApCard extends StatelessWidget {
   const ApCard({super.key});

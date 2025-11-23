@@ -7,9 +7,9 @@ import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/a_b.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/b_b.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
-import 'package:roomate/presentation/widgets/chip_cards/chip_match.dart';
+import 'package:roomate/presentation/widgets/chip_match.dart';
 import 'package:roomate/presentation/widgets/overlapping_avatars.dart';
+import 'package:roomate/presentation/widgets/primary_btn.dart';
 
 @RoutePage()
 class AboutGroupScreen extends StatelessWidget {

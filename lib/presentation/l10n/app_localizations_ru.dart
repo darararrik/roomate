@@ -1,5 +1,7 @@
 // ignore: unused_import
+
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -118,7 +120,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get age => 'Возраст';
 
   @override
-  String get sex => 'Пол';
+  String get gender => 'Пол';
 
   @override
   String get tellUsAboutYourself1 => 'Расскажите о себе';
@@ -202,6 +204,33 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_subtitle => 'Ваш аккаунт, уведомления';
+
+  @override
+  String get basicSection => 'Основные';
+
+  @override
+  String get traitSociability => 'Общительность';
+
+  @override
+  String get traitBadHabits => 'Вредные привычки';
+
+  @override
+  String get traitGuestFrequency => 'Частота гостей';
+
+  @override
+  String get traitSleepMode => 'Режим сна';
+
+  @override
+  String get traitPetAttitude => 'Отношение к животным';
+
+  @override
+  String get roommateSearchSection => 'Какого соседа ищите?';
+
+  @override
+  String get traitGender => 'Пол';
+
+  @override
+  String get traitAge => 'Возраст';
 
   @override
   String get search => 'Поиск';

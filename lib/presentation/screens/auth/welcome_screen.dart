@@ -18,7 +18,7 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             children: [
               Align(
-                alignment: .topRight,
+                alignment: Alignment.topRight,
                 child: Padding(
                   padding: const P(horizontal: S.p4),
                   child: IconButton(
@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Padding(
                   padding: const P(horizontal: S.p16, bottom: S.p44),
                   child: Column(
-                    mainAxisAlignment: .end,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
                         padding: const P(horizontal: S.p16, vertical: S.p12),

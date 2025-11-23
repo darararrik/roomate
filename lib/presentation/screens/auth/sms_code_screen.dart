@@ -8,7 +8,7 @@ import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/a_b.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
+import 'package:roomate/presentation/widgets/primary_btn.dart';
 
 @RoutePage()
 class SmsCodeScreen extends StatefulWidget {
@@ -68,7 +68,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                     ),
                     const SizedBox(height: S.p10),
                     Row(
-                      mainAxisAlignment: .center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(4, (index) {
                         return SizedBox(
                           width: S.p56,

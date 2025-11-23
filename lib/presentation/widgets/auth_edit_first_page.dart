@@ -4,8 +4,8 @@ import 'package:auto_route/annotations.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/avatar.dart';
 import 'package:roomate/presentation/widgets/input_widget.dart';
-import 'package:roomate/presentation/widgets/ui/avatar.dart';
 
 @RoutePage()
 class AuthEditFirstPage extends StatefulWidget {
@@ -66,7 +66,7 @@ class _AuthEditFirstPageState extends State<AuthEditFirstPage> {
                   const SizedBox(width: S.p12),
                   //TODO: Заменить на дропдаун
                   Expanded(
-                    child: InputWidget(hintText: context.l10n.sex, controller: _ageController),
+                    child: InputWidget(hintText: context.l10n.gender, controller: _ageController),
                   ),
                 ],
               ),

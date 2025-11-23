@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
+
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/utils/extensions/extensions.dart';
-import 'package:roomate/presentation/utils/p.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class ProfileScreen extends StatelessWidget {
@@ -14,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(title: Text(context.l10n.profile, style: context.textStyle.headline1), centerTitle: true),
+          AB(title: Text(context.l10n.profile, style: context.textStyle.headline1), centerTitle: true, canPop: false),
           SliverPadding(
             padding: const P(vertical: S.p24),
             sliver: SliverToBoxAdapter(
@@ -46,25 +48,25 @@ class ProfileScreen extends StatelessWidget {
                   padding: const .symmetric(vertical: S.p24),
                   child: Column(
                     children: [
-                      _ProfileMenuItem(
+                      ProfileMenuItem(
                         iconPath: AppIcons.personSettings,
                         title: context.l10n.profile,
                         subtitle: context.l10n.profile_subtitle,
-                        onTap: () {},
+                        onTap: () => context.pushRoute(const ProfileEditRoute()),
                       ),
-                      _ProfileMenuItem(
+                      ProfileMenuItem(
                         iconPath: AppIcons.shield,
                         title: context.l10n.verification,
                         subtitle: context.l10n.verification_subtitle,
                         onTap: () {},
                       ),
-                      _ProfileMenuItem(
+                      ProfileMenuItem(
                         iconPath: AppIcons.settings,
                         title: context.l10n.settings,
                         subtitle: context.l10n.settings_subtitle,
                         onTap: () {},
                       ),
-                      _ProfileMenuItem(
+                      ProfileMenuItem(
                         iconPath: AppIcons.help,
                         title: context.l10n.support,
                         subtitle: context.l10n.support_subtitle,
@@ -77,52 +79,6 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _ProfileMenuItem extends StatelessWidget {
-  const _ProfileMenuItem({required this.iconPath, required this.title, required this.subtitle, required this.onTap});
-  final String iconPath;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const P(left: S.p12, right: S.p4),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Padding(
-          padding: const P(horizontal: S.p12),
-          child: Row(
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(color: context.colors.white, borderRadius: .circular(S.p12)),
-                child: Padding(padding: const .all(S.p10), child: AppIcon(iconPath)),
-              ),
-              const SizedBox(width: S.p4),
-              Expanded(
-                child: Padding(
-                  padding: const .symmetric(horizontal: S.p12),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    mainAxisAlignment: .center,
-                    children: [
-                      Text(title, style: context.textStyle.bodyDescription),
-                      const SizedBox(height: S.p8),
-                      Text(subtitle, style: context.textStyle.bodySmall.copyWith(color: context.colors.text400)),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(width: S.p4),
-              AppIcon(AppIcons.arrowRight, color: context.colors.icon500),
-            ],
-          ),
-        ),
       ),
     );
   }

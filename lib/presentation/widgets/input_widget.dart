@@ -61,7 +61,7 @@ class InputWidget extends StatelessWidget {
                   height: S.p54,
                   child: Center(
                     child: TextFormField(
-                      textAlignVertical: .center,
+                      textAlignVertical: TextAlignVertical.center,
                       focusNode: focusNode,
                       readOnly: readOnly,
                       onTap: onTap,

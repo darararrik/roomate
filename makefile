@@ -5,40 +5,40 @@ default: help
 
 ## Установка зависимостей
 get:
-	flutter pub get
+	fvm flutter pub get
 
 ## Очистка проекта
 clean:
-	flutter clean
-	flutter pub get
+	fvm flutter clean
+	fvm flutter pub get
 
 ## Сборка apk
 apk:
-	flutter build apk --release
+	fvm flutter build apk --release
 
 ## Spider (генерация констант)
 spider:
-	spider build
+	fvm spider build
 
 ## Сортировка импортов
 imports:
-	dart run import_sorter:main
+	fvm dart run import_sorter:main
 
 ## Генерация локализации
 locale:
-	flutter gen-l10n
+	fvm flutter gen-l10n
 
 ## Генерация кода build_runner
 runner:
-	dart run build_runner build --delete-conflicting-outputs
+	fvm dart run build_runner build --delete-conflicting-outputs
 
 ## Запуск форматирования кода
 format:
-	dart format .
+	fvm dart format .
 
 ## Запуск анализа
 analyze:
-	flutter analyze
+	fvm flutter analyze
 
 ## Обновление Pods
 pods:

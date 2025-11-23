@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -310,11 +311,11 @@ abstract class AppLocalizations {
   /// **'Возраст'**
   String get age;
 
-  /// No description provided for @sex.
+  /// No description provided for @gender.
   ///
   /// In ru, this message translates to:
   /// **'Пол'**
-  String get sex;
+  String get gender;
 
   /// No description provided for @tellUsAboutYourself1.
   ///
@@ -477,6 +478,60 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ваш аккаунт, уведомления'**
   String get settings_subtitle;
+
+  /// No description provided for @basicSection.
+  ///
+  /// In ru, this message translates to:
+  /// **'Основные'**
+  String get basicSection;
+
+  /// No description provided for @traitSociability.
+  ///
+  /// In ru, this message translates to:
+  /// **'Общительность'**
+  String get traitSociability;
+
+  /// No description provided for @traitBadHabits.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вредные привычки'**
+  String get traitBadHabits;
+
+  /// No description provided for @traitGuestFrequency.
+  ///
+  /// In ru, this message translates to:
+  /// **'Частота гостей'**
+  String get traitGuestFrequency;
+
+  /// No description provided for @traitSleepMode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Режим сна'**
+  String get traitSleepMode;
+
+  /// No description provided for @traitPetAttitude.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отношение к животным'**
+  String get traitPetAttitude;
+
+  /// No description provided for @roommateSearchSection.
+  ///
+  /// In ru, this message translates to:
+  /// **'Какого соседа ищите?'**
+  String get roommateSearchSection;
+
+  /// No description provided for @traitGender.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пол'**
+  String get traitGender;
+
+  /// No description provided for @traitAge.
+  ///
+  /// In ru, this message translates to:
+  /// **'Возраст'**
+  String get traitAge;
 
   /// No description provided for @search.
   ///

@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/screens/quiz_screen.dart';
-import 'package:roomate/presentation/widgets/ui/auth_edit_first_page.dart';
+import 'package:roomate/presentation/widgets/auth_edit_first_page.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -19,6 +19,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: HomeRoute.page,
           path: 'home',
+          initial: true,
           children: [
             AutoRoute(page: ApartamentsTab.page, path: 'apartments', initial: true),
             AutoRoute(page: NeighboursTab.page, path: 'neighbours'),
@@ -43,8 +44,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ProfileWrapperRoute.page,
           path: 'profile',
-          initial: true,
-          children: [AutoRoute(page: ProfileRoute.page, path: '', initial: true)],
+          children: [
+            AutoRoute(page: ProfileRoute.page, path: '', initial: true),
+            AutoRoute(page: ProfileEditRoute.page, path: 'profile-edit'),
+          ],
         ),
       ],
     ),

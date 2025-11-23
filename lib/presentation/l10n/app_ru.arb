@@ -37,7 +37,7 @@
   "sendAgain":"Отправить еще раз",
   "next": "Далее",
   "age":"Возраст",
-  "sex":"Пол",
+  "gender":"Пол",
   "tellUsAboutYourself1":"Расскажите о себе",
   "tellUsAboutYourself2":"Расскажите немного о себе, чтобы помочь потенциальным соседям лучше о вас узнать",
   "almostDone1":"Почти готово!",
@@ -65,7 +65,15 @@
   "verification_subtitle":"Подтверждение вашего профиля",
   "support_subtitle":"Сообщите о проблеме",
   "settings_subtitle":"Ваш аккаунт, уведомления",
-
+  "basicSection":"Основные",
+  "traitSociability":"Общительность",
+  "traitBadHabits":"Вредные привычки",
+  "traitGuestFrequency":"Частота гостей",
+  "traitSleepMode":"Режим сна",
+  "traitPetAttitude":"Отношение к животным",
+  "roommateSearchSection":"Какого соседа ищите?",
+  "traitGender":"Пол",
+  "traitAge":"Возраст",
 
 
   "search": "Поиск",

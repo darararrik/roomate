@@ -4,10 +4,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/widgets/ap_card.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
-import 'package:roomate/presentation/widgets/chip_cards/ap_card.dart';
-import 'package:roomate/presentation/widgets/chip_cards/filter_card.dart';
+import 'package:roomate/presentation/widgets/filter_card.dart';
+import 'package:roomate/presentation/widgets/primary_btn.dart';
 
 @RoutePage()
 class ApartamentsTab extends StatelessWidget {

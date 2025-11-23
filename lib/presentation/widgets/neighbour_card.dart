@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/chip_cards/chip_match.dart';
+import 'package:roomate/presentation/widgets/chip_match.dart';
 import 'package:roomate/presentation/widgets/overlapping_avatars.dart';
 
 class NeighbourCard extends StatelessWidget {
