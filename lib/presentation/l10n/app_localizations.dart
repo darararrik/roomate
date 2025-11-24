@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -532,6 +531,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Возраст'**
   String get traitAge;
+
+  /// No description provided for @editPhoto.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить фото'**
+  String get editPhoto;
 
   /// No description provided for @search.
   ///

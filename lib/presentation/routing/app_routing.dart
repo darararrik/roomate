@@ -47,6 +47,7 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(page: ProfileRoute.page, path: '', initial: true),
             AutoRoute(page: ProfileEditRoute.page, path: 'profile-edit'),
+            AutoRoute(page: EditRoute.page)
           ],
         ),
       ],

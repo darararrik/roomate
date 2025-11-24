@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/profile_list_item.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -45,9 +46,12 @@ class ProfileEditScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: S.p4),
-                    Padding(
-                      padding: const P(all: S.p4),
-                      child: AppIcon(AppIcons.edit, color: context.colors.orange100),
+                    InkWell(
+                      onTap: () => context.pushRoute(EditRoute()),
+                      child: Padding(
+                        padding: const P(all: S.p4),
+                        child: AppIcon(AppIcons.edit, color: context.colors.orange100),
+                      ),
                     ),
                   ],
                 ),
