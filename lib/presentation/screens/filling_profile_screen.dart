@@ -8,8 +8,8 @@ import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+class FillingProfileScreen extends StatelessWidget {
+  const FillingProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

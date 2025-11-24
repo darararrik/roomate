@@ -234,6 +234,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get editPhoto => 'Изменить фото';
 
   @override
+  String get updateData => 'Изменение данных';
+
+  @override
   String get search => 'Поиск';
 
   @override

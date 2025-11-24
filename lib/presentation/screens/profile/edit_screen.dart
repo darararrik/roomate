@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
-@RoutePage()
+@RoutePage(name: "ProfileEditRoute")
 class EditScreen extends StatefulWidget {
   const EditScreen({super.key});
 
@@ -30,7 +30,13 @@ class _EditScreenState extends State<EditScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          AB(title: Text(context.l10n.profile)),
+          AB(
+            title: Text(
+              context.l10n.updateData,
+              style: context.textStyle.headline1.copyWith(fontWeight: FontWeight.w500),
+            ),
+            centerTitle: false,
+          ),
           SliverPadding(
             padding: const P(vertical: S.p24),
             sliver: SliverToBoxAdapter(
@@ -60,7 +66,7 @@ class _EditScreenState extends State<EditScreen> {
                   Padding(
                     padding: const P(horizontal: S.p8, vertical: S.p12),
                     child: Text(
-                      context.l10n.name,
+                      context.l10n.whatUname,
                       style: context.textStyle.bodyDescription.copyWith(color: context.colors.text400),
                     ),
                   ),
@@ -103,6 +109,8 @@ class _EditScreenState extends State<EditScreen> {
                       ],
                     ),
                   ),
+                  Spacer(),
+                  PrimaryButton(titleText: Text(context.l10n.save), onPressed: () {}),
                 ],
               ),
             ),

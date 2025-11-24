@@ -47,7 +47,7 @@ class ProfileEditScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: S.p4),
                     InkWell(
-                      onTap: () => context.pushRoute(EditRoute()),
+                      onTap: () => context.pushRoute(ProfileEditRoute()),
                       child: Padding(
                         padding: const P(all: S.p4),
                         child: AppIcon(AppIcons.edit, color: context.colors.orange100),

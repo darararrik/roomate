@@ -47,20 +47,21 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(page: ProfileRoute.page, path: '', initial: true),
             AutoRoute(page: ProfileEditRoute.page, path: 'profile-edit'),
-            AutoRoute(page: EditRoute.page)
           ],
         ),
       ],
     ),
-    AutoRoute(
-      page: EditProfileRoute.page,
-      path: '/edit-profile',
-      children: [
-        AutoRoute(page: AuthEditFirstRoute.page, path: 'step1', initial: true),
-        AutoRoute(page: AuthEditSecondRoute.page, path: 'step2'),
-        AutoRoute(page: AuthEditThirdRoute.page, path: 'step3'),
-      ],
-    ),
+    AutoRoute(page: ProfileEditRoute.page, path: '/profile-edit'),
+
+    // AutoRoute(
+    //   page: EditProfileRoute.page,
+    //   path: '/edit-profile',
+    //   children: [
+    //     AutoRoute(page: AuthEditFirstRoute.page, path: 'step1', initial: true),
+    //     AutoRoute(page: AuthEditSecondRoute.page, path: 'step2'),
+    //     AutoRoute(page: AuthEditThirdRoute.page, path: 'step3'),
+    //   ],
+    // ),
 
     AutoRoute(
       page: AuthWrapper.page,

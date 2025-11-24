@@ -538,6 +538,12 @@ abstract class AppLocalizations {
   /// **'Изменить фото'**
   String get editPhoto;
 
+  /// No description provided for @updateData.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменение данных'**
+  String get updateData;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:
