@@ -7,7 +7,7 @@ import 'package:roomate/presentation/widgets/auth_edit_first_page.dart';
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
   @override
-  RouteType get defaultRouteType => const RouteType.adaptive();
+  RouteType get defaultRouteType => const RouteType.cupertino();
 
   @override
   List<AutoRoute> get routes => [
@@ -51,7 +51,7 @@ class AppRouter extends RootStackRouter {
         ),
       ],
     ),
-    AutoRoute(page: ProfileEditRoute.page, path: '/profile-edit'),
+    AutoRoute(page: ProfileDataEditRoute.page, path: '/profile-data-edit'),
 
     // AutoRoute(
     //   page: EditProfileRoute.page,
@@ -62,7 +62,6 @@ class AppRouter extends RootStackRouter {
     //     AutoRoute(page: AuthEditThirdRoute.page, path: 'step3'),
     //   ],
     // ),
-
     AutoRoute(
       page: AuthWrapper.page,
       path: '/',

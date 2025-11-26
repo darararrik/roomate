@@ -14,6 +14,8 @@ class AppTheme {
     useMaterial3: true,
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
     scaffoldBackgroundColor: _appColors.white,
+    dividerColor: _appColors.stroke300,
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: _appColors.white),
     appBarTheme: AppBarTheme(
       surfaceTintColor: _appColors.white,
       backgroundColor: _appColors.white,

@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BottomSheet;
 
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/bottom_sheet.dart';
 import 'package:roomate/presentation/widgets/profile_list_item.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
@@ -18,7 +19,6 @@ class ProfileEditScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           AB(title: Text(context.l10n.profile, style: context.textStyle.headline1), centerTitle: false),
-
           SliverPadding(
             padding: const P(horizontal: S.p16, vertical: S.p24),
             sliver: SliverToBoxAdapter(
@@ -47,7 +47,7 @@ class ProfileEditScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: S.p4),
                     InkWell(
-                      onTap: () => context.pushRoute(ProfileEditRoute()),
+                      onTap: () => context.pushRoute(const ProfileDataEditRoute()),
                       child: Padding(
                         padding: const P(all: S.p4),
                         child: AppIcon(AppIcons.edit, color: context.colors.orange100),
@@ -71,7 +71,19 @@ class ProfileEditScreen extends StatelessWidget {
                     iconPath: AppIcons.flash,
                     title: context.l10n.traitSociability,
                     value: 'Амбиверт',
-                    onTap: () {},
+
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      useRootNavigator: true,
+                      isScrollControlled: true,
+
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(S.p24)),
+                      ),
+                      builder: (context) {
+                        return const BottomSheet();
+                      },
+                    ),
                   ),
                   ProfileListItem(
                     iconPath: AppIcons.drink,

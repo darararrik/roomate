@@ -237,6 +237,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get updateData => 'Изменение данных';
 
   @override
+  String get apply => 'Применить';
+
+  @override
   String get search => 'Поиск';
 
   @override

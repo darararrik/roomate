@@ -544,6 +544,12 @@ abstract class AppLocalizations {
   /// **'Изменение данных'**
   String get updateData;
 
+  /// No description provided for @apply.
+  ///
+  /// In ru, this message translates to:
+  /// **'Применить'**
+  String get apply;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:
