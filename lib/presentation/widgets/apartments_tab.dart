@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/widgets/ap_card.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/filter_card.dart';
@@ -29,6 +30,7 @@ class ApartamentsTab extends StatelessWidget {
                   FilterCard(
                     leading: const AppIcon(AppIcons.filter2, width: S.p24),
                     title: context.l10n.filters,
+                    onTap: () => context.pushRoute(const FiltersWrapper()),
                   ),
                   const SizedBox(width: 12),
                   FilterCard(

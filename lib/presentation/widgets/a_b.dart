@@ -12,6 +12,7 @@ class AB extends StatelessWidget {
     this.actions,
     this.centerTitle = true,
     this.canPop = true,
+    this.onBackButtonPressed,
   });
   final Widget title;
   final EdgeInsets? actionsPadding;
@@ -19,6 +20,7 @@ class AB extends StatelessWidget {
   final List<Widget>? actions;
   final bool centerTitle;
   final bool canPop;
+  final VoidCallback? onBackButtonPressed;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -27,7 +29,7 @@ class AB extends StatelessWidget {
       centerTitle: centerTitle,
       actionsPadding: actionsPadding,
       backgroundColor: backgroundColor,
-      leading: canPop ? const BB() : null,
+      leading: canPop ? BB(onPressed: onBackButtonPressed) : null,
       title: title,
     );
   }

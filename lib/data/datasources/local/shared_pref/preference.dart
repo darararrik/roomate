@@ -14,38 +14,24 @@ part 'custom_listed_preference.dart';
 abstract base class Preference<Value> implements Storage<Value> {
   Preference._();
 
-  factory Preference.base({
-    required SharedPreferences preferences,
-    required String key,
-  }) => _BasePreference<Value>(shP: preferences, key: key);
+  factory Preference.base({required SharedPreferences preferences, required String key}) =>
+      _BasePreference<Value>(shP: preferences, key: key);
 
   factory Preference.custom({
     required SharedPreferences preferences,
     required String key,
     required DataTransformer<Value, String> decoder,
     required DataTransformer<String, Value> encoder,
-  }) => _CustomPreference<Value>(
-    shP: preferences,
-    key: key,
-    decoder: decoder,
-    encoder: encoder,
-  );
+  }) => _CustomPreference<Value>(shP: preferences, key: key, decoder: decoder, encoder: encoder);
 
   static Preference<List<Value>> listedCustom<Value>({
     required SharedPreferences preferences,
     required String key,
     required DataTransformer<Value, String> decoder,
     required DataTransformer<String, Value> encoder,
-  }) => _CustomListedPreference<Value>(
-    shP: preferences,
-    key: key,
-    decoder: decoder,
-    encoder: encoder,
-  );
+  }) => _CustomListedPreference<Value>(shP: preferences, key: key, decoder: decoder, encoder: encoder);
 
-  late final StreamController<Value?> _prefStream = BehaviorSubject.seeded(
-    value,
-  );
+  late final StreamController<Value?> _prefStream = BehaviorSubject.seeded(value);
 
   abstract final SharedPreferences shP;
 

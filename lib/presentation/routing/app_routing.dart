@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/screens/quiz_screen.dart';
 import 'package:roomate/presentation/widgets/auth_edit_first_page.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
   @override
-  RouteType get defaultRouteType => const RouteType.cupertino();
+  RouteType get defaultRouteType => const RouteType.adaptive();
 
   @override
   List<AutoRoute> get routes => [
@@ -41,6 +40,7 @@ class AppRouter extends RootStackRouter {
           path: 'chats',
           children: [AutoRoute(page: ChatsRoute.page, path: '', initial: true)],
         ),
+
         AutoRoute(
           page: ProfileWrapperRoute.page,
           path: 'profile',
@@ -49,6 +49,14 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: ProfileEditRoute.page, path: 'profile-edit'),
           ],
         ),
+      ],
+    ),
+    AutoRoute(
+      page: FiltersWrapper.page,
+      path: '/filters',
+      children: [
+        AutoRoute(page: FiltersRoute.page, path: '', initial: true),
+        AutoRoute(page: LocationRoute.page, path: 'location'),
       ],
     ),
     AutoRoute(page: ProfileDataEditRoute.page, path: '/profile-data-edit'),

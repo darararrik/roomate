@@ -9,7 +9,6 @@ export 'avatar.dart';
 export 'b_b.dart';
 export 'background.dart';
 export 'buttons.dart';
-export 'chip_cards.dart';
 export 'chip_match.dart';
 export 'country_code_drop_down.dart';
 export 'coworking_tab.dart';
