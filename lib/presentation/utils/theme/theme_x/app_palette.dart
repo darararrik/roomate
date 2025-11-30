@@ -30,6 +30,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     required this.red100,
     required this.red700,
     required this.fillsSecondary,
+    required this.orange20,
   });
 
   final Color white;
@@ -56,6 +57,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color red100;
   final Color red700;
   final Color fillsSecondary;
+  final Color orange20;
   @override
   AppPalette copyWith({
     Color? white,
@@ -82,6 +84,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     Color? red700,
     BoxShadow? shadow,
     Color? fillsSecondary,
+    Color? orange20,
   }) {
     return AppPalette(
       white: white ?? this.white,
@@ -108,6 +111,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
       red100: red100 ?? this.red100,
       red700: red700 ?? this.red700,
       fillsSecondary: fillsSecondary ?? this.fillsSecondary,
+      orange20: orange20 ?? this.orange20,
     );
   }
 
@@ -139,6 +143,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
       red100: Color.lerp(red100, other.orange, t)!,
       red700: Color.lerp(red700, other.orange100, t)!,
       fillsSecondary: Color.lerp(fillsSecondary, other.fillsSecondary, t)!,
+      orange20: Color.lerp(orange20, other.orange20, t)!,
     );
   }
 }

@@ -13,6 +13,7 @@ class FiltersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = ["Снять", "Купить"];
+    final types = ["Квартира", "Дом", "Комната", "Гараж", "Коммерческая"];
 
     return Scaffold(
       body: CustomScrollView(
@@ -23,37 +24,100 @@ class FiltersScreen extends StatelessWidget {
             onBackButtonPressed: () {
               context.navigateTo(const NavBarRoute());
             },
-          ),
-          SliverList.list(
-            children: [
-              GroupButton<String>(
-                isRadio: true,
-                buttons: List.from(categories),
-                buttonBuilder: (selected, String tag, context) {
-                  return Card(
-                    elevation: S.p0,
-                    color: selected ? context.colors.orange60 : context.colors.light100,
-                    shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(S.p12)),
-                    child: Padding(
-                      padding: const P(horizontal: S.p16, vertical: S.p12),
-                      child: Text(
-                        tag,
-                        style: context.textStyle.activesLabel.copyWith(
-                          color: selected ? context.colors.white : context.colors.text400,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                options: const GroupButtonOptions(
-                  groupingType: GroupingType.wrap,
-                  runSpacing: S.p4,
-                  mainGroupAlignment: MainGroupAlignment.start,
-                  spacing: S.p12,
-                  direction: Axis.horizontal,
+            actions: [
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  context.l10n.reset,
+                  style: context.textStyle.activesButton.copyWith(color: context.colors.orange100),
                 ),
               ),
             ],
+          ),
+          SliverPadding(
+            padding: const P(horizontal: S.p16),
+            sliver: SliverList.list(
+              children: [
+                Padding(
+                  padding: const P(vertical: S.p12),
+                  child: GroupButton<String>(
+                    isRadio: true,
+                    buttons: List.from(categories),
+                    buttonBuilder: (selected, String tag, context) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(S.p12),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: selected ? context.colors.orange20 : context.colors.light100,
+
+                            borderRadius: BorderRadius.circular(S.p12),
+                          ),
+                          child: Padding(
+                            padding: const P(horizontal: S.p16, vertical: S.p12),
+                            child: Text(
+                              tag,
+                              style: context.textStyle.activesLabel.copyWith(
+                                color: selected ? context.colors.orange : context.colors.text400,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    options: const GroupButtonOptions(
+                      groupingType: GroupingType.wrap,
+                      mainGroupAlignment: MainGroupAlignment.start,
+                      spacing: S.p12,
+                      direction: Axis.horizontal,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: S.p12),
+                Padding(
+                  padding: const P(vertical: S.p12),
+                  child: Text(context.l10n.typeOfProperty, style: context.textStyle.headline2),
+                ),
+                Padding(
+                  padding: const P(vertical: S.p12),
+                  child: GroupButton<String>(
+                    isRadio: true,
+                    buttons: List.from(types),
+                    buttonBuilder: (selected, String tag, context) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(S.p12),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: selected ? context.colors.orange20 : context.colors.light100,
+
+                            borderRadius: BorderRadius.circular(S.p12),
+                          ),
+                          child: Padding(
+                            padding: const P(horizontal: S.p16, vertical: S.p12),
+                            child: Text(
+                              tag,
+                              style: context.textStyle.activesLabel.copyWith(
+                                color: selected ? context.colors.orange : context.colors.text400,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    options: const GroupButtonOptions(
+                      groupingType: GroupingType.wrap,
+                      mainGroupAlignment: MainGroupAlignment.start,
+                      spacing: S.p12,
+                      runSpacing: S.p12,
+                      direction: Axis.horizontal,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const P(vertical: S.p12),
+                  child: Text(context.l10n.location, style: context.textStyle.headline2),
+                ),
+              ],
+            ),
           ),
         ],
       ),

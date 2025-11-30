@@ -17,6 +17,7 @@ final AppPalette _appColors = AppPalette(
   red: const Color(0xFFF10000),
   orange: const Color(0xFFFF5343),
   orange100: const Color(0xFFF7AD95),
+  orange20: const Color(0xFFF2774E).withValues(alpha: 0.2),
   shadow: BoxShadow(
     offset: const Offset(0, 4),
     blurRadius: 13.7,

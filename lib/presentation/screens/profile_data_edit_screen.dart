@@ -61,6 +61,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
             SliverPadding(
               padding: const P(horizontal: S.p16),
               sliver: SliverFillRemaining(
+                hasScrollBody: false,
                 child: Column(
                   crossAxisAlignment: .start,
                   children: [

@@ -77,7 +77,10 @@
   "editPhoto":"Изменить фото",
   "updateData":"Изменение данных",
   "apply":"Применить",
-  
+  "typeOfProperty":"Тип недвижимости",
+  "reset":"Сбросить",  
+  "location":"Расположение",
+
 
   "search": "Поиск",
   "notifications": "Уведомления",

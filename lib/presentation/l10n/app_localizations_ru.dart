@@ -240,6 +240,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get apply => 'Применить';
 
   @override
+  String get typeOfProperty => 'Тип недвижимости';
+
+  @override
+  String get reset => 'Сбросить';
+
+  @override
+  String get location => 'Расположение';
+
+  @override
   String get search => 'Поиск';
 
   @override

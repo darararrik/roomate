@@ -550,6 +550,24 @@ abstract class AppLocalizations {
   /// **'Применить'**
   String get apply;
 
+  /// No description provided for @typeOfProperty.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тип недвижимости'**
+  String get typeOfProperty;
+
+  /// No description provided for @reset.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сбросить'**
+  String get reset;
+
+  /// No description provided for @location.
+  ///
+  /// In ru, this message translates to:
+  /// **'Расположение'**
+  String get location;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:

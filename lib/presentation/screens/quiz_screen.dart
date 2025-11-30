@@ -174,7 +174,7 @@ class _QuizContent extends StatelessWidget {
                                 QuizEvent.optionSelected(answer: optionText, totalSteps: totalSteps),
                               )
                             : () => context.replaceRoute(const NavBarRoute()),
-                        backgroundColor: isLast ? context.colors.light100 : context.colors.orange40,
+                        backgroundColor: isLast ? context.colors.light100 : context.colors.orange20,
                         titleText: Text(
                           optionText,
                           style: context.textStyle.activesButton.copyWith(

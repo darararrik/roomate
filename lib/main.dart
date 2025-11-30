@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
   MainApp({super.key});
-  final appRouter = AppRouter();
 
+  final appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
