@@ -6,7 +6,7 @@ import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/state/password_visibility_cubit.dart';
-
+//TODO: переделать
 class InputWidget extends StatelessWidget {
   const InputWidget({
     super.key,
@@ -27,7 +27,9 @@ class InputWidget extends StatelessWidget {
     this.readOnly = false,
     this.focusNode,
     this.style,
+    this.isSearch = false,
   });
+  final bool isSearch;
 
   final bool readOnly;
   final VoidCallback? onTap;
@@ -100,6 +102,13 @@ class InputWidget extends StatelessWidget {
         padding: const P(horizontal: S.p16, vertical: S.p16),
         onPressed: controller.clear,
         icon: const AppIcon(AppIcons.xSmall, width: S.p24),
+      );
+    }
+    if (isSearch) {
+      return IconButton(
+        padding: const P(horizontal: S.p16, vertical: S.p16),
+        onPressed: controller.clear,
+        icon: const AppIcon(AppIcons.search, width: S.p24),
       );
     }
     //TODO: Заменить иконки

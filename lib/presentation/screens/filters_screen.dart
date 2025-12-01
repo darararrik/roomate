@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
+import 'package:roomate/presentation/constants/app_icons.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/profile_list_item.dart';
+import 'package:roomate/presentation/widgets/region_list_item.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -88,7 +91,6 @@ class FiltersScreen extends StatelessWidget {
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             color: selected ? context.colors.orange20 : context.colors.light100,
-
                             borderRadius: BorderRadius.circular(S.p12),
                           ),
                           child: Padding(
@@ -115,6 +117,15 @@ class FiltersScreen extends StatelessWidget {
                 Padding(
                   padding: const P(vertical: S.p12),
                   child: Text(context.l10n.location, style: context.textStyle.headline2),
+                ),
+                Padding(
+                  padding: const P(vertical: S.p12),
+                  child: RegionListItem(
+                    onTap: () => context.pushRoute(const LocationRoute()),
+                    title: 'dasjdabjdasb',
+                    subTitle: 'daskadkadskasdkdaskdsa',
+                    isArrow: true,
+                  ),
                 ),
               ],
             ),

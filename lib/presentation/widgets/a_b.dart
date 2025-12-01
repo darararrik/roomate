@@ -13,6 +13,7 @@ class AB extends StatelessWidget {
     this.centerTitle = true,
     this.canPop = true,
     this.onBackButtonPressed,
+    this.pinned = false,
   });
   final Widget title;
   final EdgeInsets? actionsPadding;
@@ -21,9 +22,11 @@ class AB extends StatelessWidget {
   final bool centerTitle;
   final bool canPop;
   final VoidCallback? onBackButtonPressed;
+  final bool pinned;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      pinned: pinned,
       automaticallyImplyLeading: false,
       actions: actions,
       centerTitle: centerTitle,
