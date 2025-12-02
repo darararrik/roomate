@@ -6,14 +6,14 @@ import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/buttons.dart';
 import 'package:roomate/presentation/widgets/drag_handle.dart';
 
-class BottomSheet extends StatefulWidget {
-  const BottomSheet({super.key});
+class TraitBottomSheet extends StatefulWidget {
+  const TraitBottomSheet({super.key});
 
   @override
-  State<BottomSheet> createState() => _BottomSheetState();
+  State<TraitBottomSheet> createState() => _TraitBottomSheetState();
 }
 
-class _BottomSheetState extends State<BottomSheet> {
+class _TraitBottomSheetState extends State<TraitBottomSheet> {
   final Map<String, bool> traits = {"Алкоголь": true, "Курение": true, "Маты": true};
 
   late final GroupButtonController _controller;
@@ -47,20 +47,20 @@ class _BottomSheetState extends State<BottomSheet> {
         minChildSize: 0.4,
         maxChildSize: 0.7,
         builder: (BuildContext context, ScrollController scrollController) {
-          return Padding(
-            padding: const P(horizontal: S.p24),
-            child: DecoratedBox(
-              decoration: const BoxDecoration(),
-              child: Column(
-                children: [
-                  const SizedBox(height: S.p8),
-                  const DragHandle(),
-                  Padding(
-                    padding: const P(vertical: S.p24),
-                    child: Text("dadada", style: context.textStyle.headline1),
-                  ),
-                  const Divider(),
-                  Expanded(
+          return DecoratedBox(
+            decoration: const BoxDecoration(),
+            child: Column(
+              children: [
+                const SizedBox(height: S.p8),
+                const DragHandle(),
+                Padding(
+                  padding: const P(all: S.p24),
+                  child: Text("dadada", style: context.textStyle.headline1),
+                ),
+                const Divider(),
+                Expanded(
+                  child: Padding(
+                    padding: const P(horizontal: S.p26),
                     child: ListView(
                       controller: scrollController,
                       padding: const P(top: S.p24, bottom: S.p64),
@@ -129,8 +129,8 @@ class _BottomSheetState extends State<BottomSheet> {
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

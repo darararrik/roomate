@@ -83,7 +83,7 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
                       ],
                     ),
                     const Spacer(),
-                    PrimaryButton.botPadding(
+                    PrimaryButton(
                       titleText: Text(context.l10n.next),
                       onPressed: () => context.router.push(const SmsCodeRoute()),
                     ),

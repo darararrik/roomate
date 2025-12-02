@@ -5,7 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/ap_card.dart';
+import 'package:roomate/presentation/widgets/apartment_card.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/neighbour_card.dart';
 import 'package:roomate/presentation/widgets/overlapping_avatars.dart';

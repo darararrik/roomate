@@ -12,12 +12,12 @@ class RegionListItem extends StatelessWidget {
     required this.onTap,
     required this.title,
     required this.subTitle,
-    this.isArrow = true,
+    required this.iconPath,
   });
   final VoidCallback onTap;
   final String title;
   final String subTitle;
-  final bool isArrow;
+  final String iconPath;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,9 @@ class RegionListItem extends StatelessWidget {
         padding: const P(horizontal: S.p12),
         child: Row(
           mainAxisAlignment: .center,
-          crossAxisAlignment: isArrow ? .center : .start,
+          crossAxisAlignment: .center,
           children: [
-            //TODO: сменить иконку
-            AppIcon(AppIcons.cake, color: context.colors.orange100),
+            Padding(padding: const .all(S.p10), child: AppIcon(iconPath)),
             const SizedBox(width: S.p12),
             Expanded(
               child: Column(
@@ -44,10 +43,7 @@ class RegionListItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: S.p12),
-            Visibility(
-              visible: isArrow,
-              child: AppIcon(AppIcons.arrowRight, color: context.colors.icon500),
-            ),
+            AppIcon(AppIcons.arrowRight, color: context.colors.icon500),
           ],
         ),
       ),

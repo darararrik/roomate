@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:roomate/presentation/l10n/app_localizations.dart';
-import 'package:roomate/presentation/utils/theme/theme.dart';
+import 'package:roomate/presentation/theme/theme.dart';
 
 extension BuildContextX on BuildContext {
   AppPalette get colors => Theme.of(this).extension<AppPalette>()!;

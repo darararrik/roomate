@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/p.dart';
-import 'package:roomate/presentation/utils/theme/theme_x/app_palette.dart';
-import 'package:roomate/presentation/utils/theme/theme_x/app_typography.dart';
+import 'package:roomate/presentation/theme/theme_x/app_palette.dart';
+import 'package:roomate/presentation/theme/theme_x/app_typography.dart';
 
 part 'app_text_style.dart';
 part 'app_colors.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(overlayColor: WidgetStateColor.fromMap({WidgetState.pressed: _appColors.light100})),
+    ),
     primaryColor: _appColors.orange,
     useMaterial3: true,
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],

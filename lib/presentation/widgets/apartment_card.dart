@@ -8,8 +8,8 @@ import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/primary_btn.dart';
 
-class ApCard extends StatelessWidget {
-  const ApCard({super.key});
+class ApartmentCard extends StatelessWidget {
+  const ApartmentCard({super.key});
 
   @override
   Widget build(BuildContext context) {

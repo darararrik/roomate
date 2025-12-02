@@ -25,57 +25,59 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: сделать поиск закреп
       body: CustomScrollView(
         slivers: [
-          AB(title: Text(context.l10n.location), centerTitle: false, pinned: true,),
-          SliverFillRemaining(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const P(horizontal: S.p16),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: context.colors.input200,
-                      borderRadius: BorderRadius.circular(S.p16),
-                    ),
-                    child: SizedBox(
-                      height: S.p54,
-                      //TODO: эффект краев
-                      child: Center(
-                        child: TextField(
-                          controller: _searchController,
-                          decoration: InputDecoration(
-                            hintText: context.l10n.search,
-                            prefixIcon: const AppIcon(AppIcons.search),
+          AB(title: Text(context.l10n.location), centerTitle: false, pinned: true),
+          PinnedHeaderSliver(
+            child: ColoredBox(
+              color: context.colors.white,
+              child: Padding(
+                padding: const P(horizontal: S.p16, bottom: S.p12),
+                child: InputWidget(
+                  controller: _searchController,
+                  prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
+                  hintText: context.l10n.search,
+                ),
+              ),
+            ),
+          ),
+          SliverList.separated(
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const P(horizontal: S.p12),
+                child: Row(
+                  mainAxisAlignment: .center,
+                  crossAxisAlignment: .start,
+                  children: [
+                    const Padding(padding: .all(S.p10), child: AppIcon(AppIcons.street)),
+                    const SizedBox(width: S.p12),
+                    Expanded(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: context.colors.stroke300)),
+                        ),
+                        child: Padding(
+                          padding: const P(bottom: S.p12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("метро Ухтомская", style: context.textStyle.bodyDescription),
+                              const SizedBox(height: S.p8),
+                              Text(
+                                "Люберцы, Люберцы (городской округ), Московская область, Москва и МО",
+                                style: context.textStyle.bodySmall.copyWith(color: context.colors.text400),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                const SizedBox(height: S.p12),
-                Expanded(
-                  child: Padding(
-                    padding: const P(vertical: S.p12),
-                    child: ListView.separated(
-                      padding: const P(horizontal: S.p16),
-                      itemCount: 4,
-                      itemBuilder: (BuildContext context, int index) {
-                        return RegionListItem(
-                          onTap: () {},
-                          title: 'улица Ленина',
-                          subTitle:
-                              'КП Лесное озеро, муниципальный муниципальныймуниципальныймуниципальныймуниципальныймуниципальныймуниципальныймуниципальныймуниципальныйокруг Шаховская, Московская область',
-                          isArrow: false,
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: S.p20),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(height: S.p12),
           ),
         ],
       ),

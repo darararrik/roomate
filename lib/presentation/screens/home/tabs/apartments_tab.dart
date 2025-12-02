@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/ap_card.dart';
+import 'package:roomate/presentation/widgets/apartment_card.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/filter_card.dart';
 import 'package:roomate/presentation/widgets/primary_btn.dart';
@@ -65,7 +65,7 @@ class ApartamentsTab extends StatelessWidget {
         SliverList.separated(
           itemCount: 10,
           itemBuilder: (context, index) {
-            return const ApCard();
+            return const ApartmentCard();
           },
           separatorBuilder: (context, index) {
             return const SizedBox(height: S.p12);

@@ -15,7 +15,7 @@ class FiltersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = ["Снять", "Купить"];
+    final categories = ["Снять", "Обменять"];
     final types = ["Квартира", "Дом", "Комната", "Гараж", "Коммерческая"];
 
     return Scaffold(
@@ -37,98 +37,95 @@ class FiltersScreen extends StatelessWidget {
               ),
             ],
           ),
-          SliverPadding(
-            padding: const P(horizontal: S.p16),
-            sliver: SliverList.list(
-              children: [
-                Padding(
-                  padding: const P(vertical: S.p12),
-                  child: GroupButton<String>(
-                    isRadio: true,
-                    buttons: List.from(categories),
-                    buttonBuilder: (selected, String tag, context) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(S.p12),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: selected ? context.colors.orange20 : context.colors.light100,
+          SliverList.list(
+            children: [
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: GroupButton<String>(
+                  isRadio: false,
+                  buttons: List.from(categories),
+                  buttonBuilder: (selected, String tag, context) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(S.p12),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: selected ? context.colors.orange20 : context.colors.light100,
 
-                            borderRadius: BorderRadius.circular(S.p12),
-                          ),
-                          child: Padding(
-                            padding: const P(horizontal: S.p16, vertical: S.p12),
-                            child: Text(
-                              tag,
-                              style: context.textStyle.activesLabel.copyWith(
-                                color: selected ? context.colors.orange : context.colors.text400,
-                              ),
+                          borderRadius: BorderRadius.circular(S.p12),
+                        ),
+                        child: Padding(
+                          padding: const P(horizontal: S.p16, vertical: S.p12),
+                          child: Text(
+                            tag,
+                            style: context.textStyle.activesLabel.copyWith(
+                              color: selected ? context.colors.orange : context.colors.text400,
                             ),
                           ),
                         ),
-                      );
-                    },
-                    options: const GroupButtonOptions(
-                      groupingType: GroupingType.wrap,
-                      mainGroupAlignment: MainGroupAlignment.start,
-                      spacing: S.p12,
-                      direction: Axis.horizontal,
-                    ),
+                      ),
+                    );
+                  },
+                  options: const GroupButtonOptions(
+                    groupingType: GroupingType.wrap,
+                    mainGroupAlignment: MainGroupAlignment.start,
+                    spacing: S.p12,
+                    direction: Axis.horizontal,
                   ),
                 ),
-                const SizedBox(height: S.p12),
-                Padding(
-                  padding: const P(vertical: S.p12),
-                  child: Text(context.l10n.typeOfProperty, style: context.textStyle.headline2),
-                ),
-                Padding(
-                  padding: const P(vertical: S.p12),
-                  child: GroupButton<String>(
-                    isRadio: true,
-                    buttons: List.from(types),
-                    buttonBuilder: (selected, String tag, context) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(S.p12),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: selected ? context.colors.orange20 : context.colors.light100,
-                            borderRadius: BorderRadius.circular(S.p12),
-                          ),
-                          child: Padding(
-                            padding: const P(horizontal: S.p16, vertical: S.p12),
-                            child: Text(
-                              tag,
-                              style: context.textStyle.activesLabel.copyWith(
-                                color: selected ? context.colors.orange : context.colors.text400,
-                              ),
+              ),
+              const SizedBox(height: S.p12),
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: Text(context.l10n.typeOfProperty, style: context.textStyle.headline2),
+              ),
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: GroupButton<String>(
+                  isRadio: false,
+                  buttons: List.from(types),
+                  buttonBuilder: (selected, String tag, context) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(S.p12),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: selected ? context.colors.orange20 : context.colors.light100,
+                          borderRadius: BorderRadius.circular(S.p12),
+                        ),
+                        child: Padding(
+                          padding: const P(horizontal: S.p16, vertical: S.p12),
+                          child: Text(
+                            tag,
+                            style: context.textStyle.activesLabel.copyWith(
+                              color: selected ? context.colors.orange : context.colors.text400,
                             ),
                           ),
                         ),
-                      );
-                    },
-                    options: const GroupButtonOptions(
-                      groupingType: GroupingType.wrap,
-                      mainGroupAlignment: MainGroupAlignment.start,
-                      spacing: S.p12,
-                      runSpacing: S.p12,
-                      direction: Axis.horizontal,
-                    ),
+                      ),
+                    );
+                  },
+                  options: const GroupButtonOptions(
+                    groupingType: GroupingType.wrap,
+                    mainGroupAlignment: MainGroupAlignment.start,
+                    spacing: S.p12,
+                    runSpacing: S.p12,
+                    direction: Axis.horizontal,
                   ),
                 ),
-                Padding(
-                  padding: const P(vertical: S.p12),
-                  child: Text(context.l10n.location, style: context.textStyle.headline2),
+              ),
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: Text(context.l10n.location, style: context.textStyle.headline2),
+              ),
+              Padding(
+                padding: const P(vertical: S.p12),
+                child: RegionListItem(
+                  iconPath: AppIcons.city,
+                  onTap: () => context.pushRoute(const LocationRoute()),
+                  title: 'г. Москва',
+                  subTitle: 'Метро, район, адрес, шоссе, ЖК',
                 ),
-                Padding(
-                  padding: const P(vertical: S.p12),
-                  child: RegionListItem(
-                    onTap: () => context.pushRoute(const LocationRoute()),
-                    title: 'dasjdabjdasb',
-                    subTitle: 'daskadkadskasdkdaskdsa',
-                    isArrow: true,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

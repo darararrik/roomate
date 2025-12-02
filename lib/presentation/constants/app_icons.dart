@@ -40,8 +40,7 @@ abstract class AppIcons {
   static const String train = 'lib/presentation/assets/icons/train.svg';
   static const String street = 'lib/presentation/assets/icons/street.svg';
   static const String metro = 'lib/presentation/assets/icons/metro.svg';
-  static const String district = 'lib/presentation/assets/icons/district.svg';
+  static const String disctrict = 'lib/presentation/assets/icons/disctrict.svg';
   static const String building = 'lib/presentation/assets/icons/building.svg';
-
-
+  static const String city = 'lib/presentation/assets/icons/city.svg';
 }

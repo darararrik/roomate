@@ -56,9 +56,9 @@ class WelcomeScreen extends StatelessWidget {
                         padding: const P(vertical: S.p40),
                         child: Column(
                           children: [
-                            PrimaryButton.withOpacity(
+                            PrimaryButton.filled(
                               titleText: Text(context.l10n.loginByphoneNumber),
-                              backgroundColor: context.colors.white10,
+                              color: context.colors.white10,
                               onPressed: () => context.router.push(const RegNumberRoute()),
                             ),
                             Row(

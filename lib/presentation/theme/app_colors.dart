@@ -31,4 +31,10 @@ final AppPalette _appColors = AppPalette(
   red100: const Color(0xFFFFE0D8),
   red700: const Color(0xFFD03C15),
   fillsSecondary: const Color(0xFF787880).withValues(alpha: 0.16),
+  bottomNavBarShadow: BoxShadow(
+    color: Colors.black.withValues(alpha: 0.04),
+    offset: const Offset(0, -4),
+    blurRadius: 9.1,
+    spreadRadius: 0.0,
+  ),
 );

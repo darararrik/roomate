@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/state/password_visibility_cubit.dart';
-//TODO: переделать
+
 class InputWidget extends StatelessWidget {
   const InputWidget({
     super.key,
@@ -14,7 +13,6 @@ class InputWidget extends StatelessWidget {
     this.hintText,
     this.onChanged,
     this.enabled = true,
-    this.isPassword = false,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.border,
@@ -28,9 +26,10 @@ class InputWidget extends StatelessWidget {
     this.focusNode,
     this.style,
     this.isSearch = false,
+    this.prefixIcon,
   });
   final bool isSearch;
-
+  final Widget? prefixIcon;
   final bool readOnly;
   final VoidCallback? onTap;
   final FormFieldValidator<String>? validator;
@@ -38,7 +37,6 @@ class InputWidget extends StatelessWidget {
   final String? hintText;
   final ValueChanged<String>? onChanged;
   final bool enabled;
-  final bool isPassword;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final InputBorder? border;
@@ -50,76 +48,40 @@ class InputWidget extends StatelessWidget {
   final TextStyle? style;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => PasswordVisibilityCubit(),
-      child: BlocBuilder<PasswordVisibilityCubit, bool>(
-        builder: (context, isVisible) {
-          return ValueListenableBuilder<TextEditingValue>(
-            valueListenable: controller,
-            builder: (context, value, _) {
-              return DecoratedBox(
-                decoration: BoxDecoration(color: context.colors.input200, borderRadius: BorderRadius.circular(S.p16)),
-                child: SizedBox(
-                  height: S.p54,
-                  child: Center(
-                    child: TextFormField(
-                      textAlignVertical: TextAlignVertical.center,
-                      focusNode: focusNode,
-                      readOnly: readOnly,
-                      onTap: onTap,
-                      controller: controller,
-                      enabled: enabled,
-                      obscureText: isPassword ? !isVisible : false,
-                      keyboardType: keyboardType,
-                      textInputAction: textInputAction,
-                      onChanged: onChanged,
-                      style: style ?? context.textStyle.inputTextRegular,
-                      validator: validator,
-                      decoration: InputDecoration(
-                        hintText: hintText,
-                        isDense: true,
-                        contentPadding: contentPadding,
-                        border: border,
-                        enabledBorder: enabledBorder,
-                        focusedBorder: focusedBorder,
-                        suffixIcon: _buildSuffixIcon(context, isVisible),
-                      ),
-                    ),
-                  ),
+    return ValueListenableBuilder<TextEditingValue>(
+      valueListenable: controller,
+      builder: (context, value, _) {
+        return DecoratedBox(
+          decoration: BoxDecoration(color: context.colors.input200, borderRadius: BorderRadius.circular(S.p16)),
+          child: SizedBox(
+            height: S.p54,
+            child: Center(
+              child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
+                focusNode: focusNode,
+                readOnly: readOnly,
+                onTap: onTap,
+                controller: controller,
+                enabled: enabled,
+                keyboardType: keyboardType,
+                textInputAction: textInputAction,
+                onChanged: onChanged,
+                style: style ?? context.textStyle.inputTextRegular,
+                validator: validator,
+                decoration: InputDecoration(
+                  hintText: hintText,
+                  isDense: true,
+                  contentPadding: contentPadding,
+                  border: border,
+                  enabledBorder: enabledBorder,
+                  focusedBorder: focusedBorder,
+                  prefixIcon: prefixIcon,
                 ),
-              );
-            },
-          );
-        },
-      ),
+              ),
+            ),
+          ),
+        );
+      },
     );
-  }
-
-  Widget? _buildSuffixIcon(BuildContext context, bool isVisible) {
-    // Кнопка очистки текста
-    if (!isPassword && controller.text.trim().isNotEmpty) {
-      return IconButton(
-        padding: const P(horizontal: S.p16, vertical: S.p16),
-        onPressed: controller.clear,
-        icon: const AppIcon(AppIcons.xSmall, width: S.p24),
-      );
-    }
-    if (isSearch) {
-      return IconButton(
-        padding: const P(horizontal: S.p16, vertical: S.p16),
-        onPressed: controller.clear,
-        icon: const AppIcon(AppIcons.search, width: S.p24),
-      );
-    }
-    //TODO: Заменить иконки
-    // Глазик для пароля
-    if (isPassword) {
-      return IconButton(
-        onPressed: () => context.read<PasswordVisibilityCubit>().toggle(),
-        icon: AppIcon(isVisible ? AppIcons.sber : AppIcons.vk, color: context.colors.text400),
-      );
-    }
-
-    return null;
   }
 }

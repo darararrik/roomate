@@ -112,7 +112,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                       ),
                     ),
                     const Spacer(),
-                    PrimaryButton.botPadding(titleText: Text(context.l10n.save), onPressed: () {}),
+                    PrimaryButton(titleText: Text(context.l10n.save), onPressed: () {}),
                   ],
                 ),
               ),
