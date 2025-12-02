@@ -18,6 +18,7 @@ class AppTheme {
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
     scaffoldBackgroundColor: _appColors.white,
     dividerColor: _appColors.stroke300,
+    dividerTheme: DividerThemeData(thickness: S.p1, space: S.p1, color: _appColors.stroke300),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: _appColors.white),
     appBarTheme: AppBarTheme(
       surfaceTintColor: _appColors.white,

@@ -9,13 +9,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
-final appRouter = AppRouter();
-
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
+  final appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
