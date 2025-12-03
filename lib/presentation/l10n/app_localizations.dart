@@ -574,6 +574,24 @@ abstract class AppLocalizations {
   /// **'Срок проживания'**
   String get rentPeriod;
 
+  /// No description provided for @toSort.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сортировать'**
+  String get toSort;
+
+  /// No description provided for @selectDistrict.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите район'**
+  String get selectDistrict;
+
+  /// No description provided for @selectRegion.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите регион'**
+  String get selectRegion;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:

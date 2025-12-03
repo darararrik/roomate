@@ -81,7 +81,9 @@
   "reset":"Сбросить",  
   "location":"Расположение",
   "rentPeriod":"Срок проживания",
-
+  "toSort":"Сортировать",
+  "selectDistrict":"Выберите район",
+"selectRegion":"Выберите регион",
   "search": "Поиск",
   "notifications": "Уведомления",
   "login": "Войти",

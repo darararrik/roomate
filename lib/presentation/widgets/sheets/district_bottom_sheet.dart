@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/widgets/app_check_box.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 class DistrictBottomSheet extends StatefulWidget {
@@ -73,7 +74,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
       builder: (context, controller) {
         return SafeArea(
           child: BaseBottomSheet(
-            title: 'Выберите район',
+            title: context.l10n.selectDistrict,
             child: Expanded(
               child: Padding(
                 padding: const P(horizontal: S.p24),
@@ -108,27 +109,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                                       child: Text(value, style: context.textStyle.bodyDescription),
                                     ),
                                   ),
-                                  Visibility(
-                                    visible: selected,
-                                    replacement: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        borderRadius: .circular(S.p4),
-                                        //TODO:Цвет бордера
-                                        border: .all(color: context.colors.stroke300),
-                                      ),
-                                      child: const SizedBox(width: S.p20, height: S.p20),
-                                    ),
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        color: context.colors.orange100,
-                                        borderRadius: .circular(S.p4),
-                                        border: .all(color: context.colors.orange100),
-                                      ),
-                                      child: Center(
-                                        child: Icon(Icons.check_rounded, color: context.colors.white, size: S.p20),
-                                      ),
-                                    ),
-                                  ),
+                                  AppCheckBox(selected: selected),
                                 ],
                               );
                             },

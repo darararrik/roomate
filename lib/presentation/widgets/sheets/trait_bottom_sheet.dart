@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/app_check_box.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 class TraitBottomSheet extends StatefulWidget {
@@ -74,32 +75,13 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
                             padding: const P(vertical: S.p12, left: S.p32, right: S.p16),
                             child: Row(
                               children: [
-                                Padding(
-                                  padding: const P(vertical: S.p12),
-                                  child: Text(tag, style: context.textStyle.bodyDescription),
-                                ),
-                                const Spacer(),
-                                Visibility(
-                                  visible: selected,
-                                  replacement: DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      borderRadius: .circular(S.p4),
-                                      //TODO:Цвет бордера
-                                      border: .all(color: context.colors.stroke300),
-                                    ),
-                                    child: const SizedBox(width: S.p20, height: S.p20),
-                                  ),
-                                  child: DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      color: context.colors.orange100,
-                                      borderRadius: .circular(S.p4),
-                                      border: .all(color: context.colors.orange100),
-                                    ),
-                                    child: Center(
-                                      child: Icon(Icons.check_rounded, color: context.colors.white, size: S.p20),
-                                    ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const P(vertical: S.p12),
+                                    child: Text(tag, style: context.textStyle.bodyDescription),
                                   ),
                                 ),
+                                AppCheckBox(selected: selected),
                               ],
                             ),
                           ),

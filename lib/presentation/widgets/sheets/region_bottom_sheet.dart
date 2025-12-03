@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/app_radio_button.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 class RegionBottomSheet extends StatefulWidget {
@@ -51,7 +52,7 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
       builder: (context, controller) {
         return SafeArea(
           child: BaseBottomSheet(
-            title: 'Выберите регион',
+            title: context.l10n.selectRegion,
             child: Expanded(
               child: Padding(
                 padding: const P(horizontal: S.p24),
@@ -82,26 +83,7 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                                       child: Text(value, style: context.textStyle.bodyDescription),
                                     ),
                                   ),
-                                  DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: context.colors.orange100),
-                                    ),
-                                    child: Padding(
-                                      padding: const P(all: S.p4),
-                                      child: Visibility(
-                                        visible: selected,
-                                        replacement: const SizedBox(width: S.p10, height: S.p10),
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: context.colors.orange100,
-                                          ),
-                                          child: const SizedBox(width: S.p10, height: S.p10),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  AppRadioButton(selected: selected),
                                 ],
                               );
                             },

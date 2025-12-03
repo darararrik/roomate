@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/region_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/sheets/region_bottom_sheet.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {

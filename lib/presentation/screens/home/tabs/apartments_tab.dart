@@ -4,8 +4,9 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/district_bottom_sheet.dart';
-import 'package:roomate/presentation/widgets/rent_duration_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/sheets/district_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/sheets/rent_duration_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/sheets/sort_bottom_sheet.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -67,7 +68,7 @@ class ApartamentsTab extends StatelessWidget {
                     onTap: () => showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                      builder: (context) => const DistrictBottomSheet(),
+                      builder: (context) => SortBottomSheet(),
                     ),
                     child: const AppIcon(AppIcons.sort, width: S.p32),
                   ),
@@ -86,18 +87,6 @@ class ApartamentsTab extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-}
-
-class SortBottomSheet extends StatelessWidget {
-  const SortBottomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const BaseBottomSheet(
-      title: '',
-      child: Column(children: []),
     );
   }
 }

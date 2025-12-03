@@ -252,6 +252,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get rentPeriod => 'Срок проживания';
 
   @override
+  String get toSort => 'Сортировать';
+
+  @override
+  String get selectDistrict => 'Выберите район';
+
+  @override
+  String get selectRegion => 'Выберите регион';
+
+  @override
   String get search => 'Поиск';
 
   @override
