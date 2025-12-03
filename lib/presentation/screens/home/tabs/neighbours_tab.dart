@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/sheets/sort_bottom_sheet.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -24,7 +25,14 @@ class NeighboursTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("${context.l10n.optionsFound} ${82}", style: context.textStyle.bodyTitle),
-                  const AppIcon(AppIcons.sort, width: S.p32),
+                  GestureDetector(
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => SortBottomSheet(),
+                    ),
+                    child: const AppIcon(AppIcons.sort, width: S.p32),
+                  ),
                 ],
               ),
             ),

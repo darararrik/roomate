@@ -10,20 +10,22 @@ class BaseBottomSheet extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const P(top: S.p8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const DragHandle(),
-          Padding(
-            padding: const P(all: S.p24),
-            child: Text(title, style: context.textStyle.headline1),
-          ),
-          const Divider(),
-          const SizedBox(height: S.p12),
-          child,
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: const P(top: S.p8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const DragHandle(),
+            Padding(
+              padding: const P(all: S.p24),
+              child: Text(title, style: context.textStyle.headline1),
+            ),
+            const Divider(),
+            const SizedBox(height: S.p12),
+            child,
+          ],
+        ),
       ),
     );
   }

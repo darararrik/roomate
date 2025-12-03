@@ -50,53 +50,51 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
       maxChildSize: 0.9,
       minChildSize: 0.4,
       builder: (context, controller) {
-        return SafeArea(
-          child: BaseBottomSheet(
-            title: context.l10n.selectRegion,
-            child: Expanded(
-              child: Padding(
-                padding: const P(horizontal: S.p24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const P(bottom: S.p12),
-                      child: InputWidget(
-                        controller: _searchController,
-                        prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
-                        hintText: context.l10n.search,
-                      ),
+        return BaseBottomSheet(
+          title: context.l10n.selectRegion,
+          child: Expanded(
+            child: Padding(
+              padding: const P(horizontal: S.p24),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: const P(bottom: S.p12),
+                    child: InputWidget(
+                      controller: _searchController,
+                      prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
+                      hintText: context.l10n.search,
                     ),
-                    Expanded(
-                      child: ListView(
-                        controller: controller,
-                        children: [
-                          GroupButton(
-                            buttons: cities,
-                            buttonBuilder: (selected, value, context) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(S.p12),
-                                      child: Text(value, style: context.textStyle.bodyDescription),
-                                    ),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      controller: controller,
+                      children: [
+                        GroupButton(
+                          buttons: cities,
+                          buttonBuilder: (selected, value, context) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(S.p12),
+                                    child: Text(value, style: context.textStyle.bodyDescription),
                                   ),
-                                  AppRadioButton(selected: selected),
-                                ],
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                                ),
+                                AppRadioButton(selected: selected),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const P(top: S.p16),
-                      child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
-                    ),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const P(top: S.p16),
+                    child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
+                  ),
+                ],
               ),
             ),
           ),

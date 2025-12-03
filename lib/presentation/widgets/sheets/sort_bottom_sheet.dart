@@ -16,37 +16,35 @@ class SortBottomSheet extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BaseBottomSheet(
-        title: context.l10n.toSort,
-        child: Padding(
-          padding: const P(horizontal: S.p24, top: S.p12),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              GroupButton(
-                buttons: sortTerms,
-                buttonBuilder: (selected, value, context) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(S.p12),
-                          child: Text(value, style: context.textStyle.bodyDescription),
-                        ),
+    return BaseBottomSheet(
+      title: context.l10n.toSort,
+      child: Padding(
+        padding: const P(horizontal: S.p24, top: S.p12),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            GroupButton(
+              buttons: sortTerms,
+              buttonBuilder: (selected, value, context) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(S.p12),
+                        child: Text(value, style: context.textStyle.bodyDescription),
                       ),
-                      AppRadioButton(selected: selected),
-                    ],
-                  );
-                },
-              ),
-              Padding(
-                padding: const P(top: S.p16),
-                child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
-              ),
-            ],
-          ),
+                    ),
+                    AppRadioButton(selected: selected),
+                  ],
+                );
+              },
+            ),
+            Padding(
+              padding: const P(top: S.p16),
+              child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
+            ),
+          ],
         ),
       ),
     );

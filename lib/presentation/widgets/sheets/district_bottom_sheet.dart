@@ -72,58 +72,56 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
       maxChildSize: 0.9,
       minChildSize: 0.4,
       builder: (context, controller) {
-        return SafeArea(
-          child: BaseBottomSheet(
-            title: context.l10n.selectDistrict,
-            child: Expanded(
-              child: Padding(
-                padding: const P(horizontal: S.p24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const P(bottom: S.p12),
-                      child: InputWidget(
-                        controller: _searchController,
-                        prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
-                        hintText: context.l10n.search,
-                      ),
+        return BaseBottomSheet(
+          title: context.l10n.selectDistrict,
+          child: Expanded(
+            child: Padding(
+              padding: const P(horizontal: S.p24),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: const P(bottom: S.p12),
+                    child: InputWidget(
+                      controller: _searchController,
+                      prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
+                      hintText: context.l10n.search,
                     ),
-                    Expanded(
-                      child: ListView(
-                        controller: controller,
-                        children: [
-                          GroupButton(
-                            isRadio: false,
-                            buttons: disctricts,
-                            onSelected: (val, index, isSelected) {
-                              debugPrint('Button: $val index: $index selected: $isSelected');
-                            },
-                            buttonBuilder: (selected, value, context) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const .all(S.p12),
-                                      child: Text(value, style: context.textStyle.bodyDescription),
-                                    ),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      controller: controller,
+                      children: [
+                        GroupButton(
+                          isRadio: false,
+                          buttons: disctricts,
+                          onSelected: (val, index, isSelected) {
+                            debugPrint('Button: $val index: $index selected: $isSelected');
+                          },
+                          buttonBuilder: (selected, value, context) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const .all(S.p12),
+                                    child: Text(value, style: context.textStyle.bodyDescription),
                                   ),
-                                  AppCheckBox(selected: selected),
-                                ],
-                              );
-                            },
-                            options: const GroupButtonOptions(crossGroupAlignment: .start, groupingType: .column),
-                          ),
-                        ],
-                      ),
+                                ),
+                                AppCheckBox(selected: selected),
+                              ],
+                            );
+                          },
+                          options: const GroupButtonOptions(crossGroupAlignment: .start, groupingType: .column),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const P(top: S.p16),
-                      child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
-                    ),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const P(top: S.p16),
+                    child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
+                  ),
+                ],
               ),
             ),
           ),

@@ -72,12 +72,8 @@ class ProfileEditScreen extends StatelessWidget {
 
                     onTap: () => showModalBottomSheet(
                       context: context,
-                      useRootNavigator: true,
                       isScrollControlled: true,
-
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(S.p24)),
-                      ),
+                      useRootNavigator: true,
                       builder: (context) {
                         return const TraitBottomSheet();
                       },

@@ -39,67 +39,55 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
   @override
   Widget build(BuildContext context) {
     final buttonsList = traits.keys.toList();
-    return DraggableScrollableSheet(
-      expand: false,
-      initialChildSize: 0.55,
-      minChildSize: 0.4,
-      maxChildSize: 0.6,
-      builder: (BuildContext context, ScrollController scrollController) {
-        return BaseBottomSheet(
-          title: context.l10n.traitAge,
-          child: Expanded(
-            child: Padding(
-              padding: const P(horizontal: S.p26),
-              child: ListView(
-                controller: scrollController,
-                padding: const P(top: S.p24, bottom: S.p64),
-                children: [
-                  GroupButton(
-                    controller: _controller,
-                    isRadio: false,
-                    buttons: buttonsList,
-                    onSelected: (val, index, isSelected) {
-                      debugPrint('Button: $val index: $index selected: $isSelected');
-                    },
-                    buttonBuilder: (selected, tag, context) {
-                      return Padding(
-                        padding: const P(bottom: S.p12),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            borderRadius: .circular(S.p12),
-                            color: context.colors.white,
-                            border: Border.all(color: selected ? context.colors.orange100 : context.colors.stroke300),
-                          ),
+    return BaseBottomSheet(
+      title: context.l10n.traitAge,
+      child: Padding(
+        padding: const P(horizontal: S.p24),
+        child: Column(
+          children: [
+            GroupButton(
+              controller: _controller,
+              isRadio: false,
+              buttons: buttonsList,
+              onSelected: (val, index, isSelected) {
+                debugPrint('Button: $val index: $index selected: $isSelected');
+              },
+              buttonBuilder: (selected, tag, context) {
+                return Padding(
+                  padding: const P(bottom: S.p12),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: .circular(S.p12),
+                      color: context.colors.white,
+                      border: Border.all(color: selected ? context.colors.orange100 : context.colors.stroke300),
+                    ),
 
-                          child: Padding(
-                            padding: const P(vertical: S.p12, left: S.p32, right: S.p16),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const P(vertical: S.p12),
-                                    child: Text(tag, style: context.textStyle.bodyDescription),
-                                  ),
-                                ),
-                                AppCheckBox(selected: selected),
-                              ],
+                    child: Padding(
+                      padding: const P(vertical: S.p12, left: S.p32, right: S.p16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const P(vertical: S.p12),
+                              child: Text(tag, style: context.textStyle.bodyDescription),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                    options: const GroupButtonOptions(crossGroupAlignment: .start, groupingType: .column),
+                          AppCheckBox(selected: selected),
+                        ],
+                      ),
+                    ),
                   ),
-                  Padding(
-                    padding: const P(top: S.p24),
-                    child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
-                  ),
-                ],
-              ),
+                );
+              },
+              options: const GroupButtonOptions(crossGroupAlignment: .start, groupingType: .column),
             ),
-          ),
-        );
-      },
+            Padding(
+              padding: const P(top: S.p24),
+              child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
