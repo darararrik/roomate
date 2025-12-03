@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

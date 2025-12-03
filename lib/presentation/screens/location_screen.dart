@@ -1,5 +1,7 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/annotations.dart';
+
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';

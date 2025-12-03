@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:group_button/group_button.dart';
+
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/app_check_box.dart';
 import 'package:roomate/presentation/widgets/app_radio_button.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
