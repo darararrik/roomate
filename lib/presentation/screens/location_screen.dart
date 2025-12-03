@@ -1,9 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:roomate/presentation/constants/app_icons.dart';
-import 'package:roomate/presentation/constants/spacing.dart';
+import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/region_list_item.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()

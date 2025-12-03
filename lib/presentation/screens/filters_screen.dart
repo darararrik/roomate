@@ -1,12 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
-import 'package:roomate/presentation/constants/app_icons.dart';
-import 'package:roomate/presentation/constants/spacing.dart';
+import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/profile_list_item.dart';
-import 'package:roomate/presentation/widgets/region_list_item.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()

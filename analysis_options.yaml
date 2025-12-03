@@ -16,10 +16,9 @@ linter:
 analyzer:
   errors:
     invalid_annotation_target: false
-    unused_import: false
   exclude:
       - "**/*.g.dart"
       - "**/*.freezed.dart"
-      - "**/*.gr.dart"      # Для AutoRoute
-      - "lib/generated/**"  # Если генерация в отдельной папке
+      - "**/*.gr.dart"      
+      - "lib/generated/**"
       - "test/**.mocks.dart"

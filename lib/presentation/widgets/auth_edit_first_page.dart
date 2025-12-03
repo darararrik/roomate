@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/annotations.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/avatar.dart';
 import 'package:roomate/presentation/widgets/input_widget.dart';
 

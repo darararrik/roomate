@@ -4,12 +4,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/a_b.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/b_b.dart';
-import 'package:roomate/presentation/widgets/chip_match.dart';
-import 'package:roomate/presentation/widgets/overlapping_avatars.dart';
-import 'package:roomate/presentation/widgets/primary_btn.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class AboutGroupScreen extends StatelessWidget {

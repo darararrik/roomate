@@ -249,6 +249,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get location => 'Расположение';
 
   @override
+  String get rentPeriod => 'Срок проживания';
+
+  @override
   String get search => 'Поиск';
 
   @override

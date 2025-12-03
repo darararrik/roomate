@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_image_carousel_slider/image_carousel_slider.dart';
-import 'package:flutter_image_carousel_slider/image_carousel_slider_left_right_show.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
@@ -60,9 +58,15 @@ class ApartmentCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: PrimaryButton(titleText: Text(context.l10n.write), onPressed: () {}),
+                        child: PrimaryButton.rounded(
+                          titleText: Text(context.l10n.write),
+                          onPressed: () {},
+                          radius: S.p16,
+                        ),
                       ),
-                      Expanded(child: PrimaryButton(titleText: Text(context.l10n.call))),
+                      Expanded(
+                        child: PrimaryButton.rounded(titleText: Text(context.l10n.call), radius: S.p16),
+                      ),
                     ].separated(const SizedBox(width: S.p8)),
                   ),
                 ],

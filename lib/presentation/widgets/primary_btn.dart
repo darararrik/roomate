@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/utils/utils.dart';
-
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,

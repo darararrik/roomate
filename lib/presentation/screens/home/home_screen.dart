@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:group_button/group_button.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/drag_handle.dart';
-import 'package:roomate/presentation/widgets/input_widget.dart';
 import 'package:roomate/presentation/widgets/region_bottom_sheet.dart';
 
 @RoutePage()
@@ -22,9 +18,11 @@ class HomeScreen extends StatelessWidget {
         return NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => [
             SliverAppBar(
+              // pinned: false,
+              floating: true,
               centerTitle: true,
-              title: TextButton(
-                onPressed: () => showModalBottomSheet(
+              title: GestureDetector(
+                onTap: () => showModalBottomSheet(
                   context: context,
                   isScrollControlled: true,
                   builder: (context) => const RegionBottomSheet(),

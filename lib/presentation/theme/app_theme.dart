@@ -13,6 +13,18 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(overlayColor: WidgetStateColor.fromMap({WidgetState.pressed: _appColors.light100})),
     ),
+    colorScheme: ColorScheme.fromSeed(seedColor: _appColors.orange),
+    // chipTheme: ChipThemeData(
+    //   backgroundColor: _appColors.light100,
+    //   disabledColor: _appColors.stroke300,
+    //   padding: const P(horizontal: S.p12, vertical: S.p8),
+    //   labelStyle: _appTextStyle.activesLabel,
+    //   brightness: Brightness.light,
+    //   shape: RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.circular(S.p12),
+    //     side: BorderSide(color: _appColors.input200),
+    //   ),
+    // ),
     primaryColor: _appColors.orange,
     useMaterial3: true,
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],

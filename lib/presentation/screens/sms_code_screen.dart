@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,8 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/a_b.dart';
-import 'package:roomate/presentation/widgets/primary_btn.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class SmsCodeScreen extends StatefulWidget {

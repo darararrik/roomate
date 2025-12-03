@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/apartment_card.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/filter_card.dart';
-import 'package:roomate/presentation/widgets/primary_btn.dart';
+import 'package:roomate/presentation/widgets/district_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/rent_duration_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class ApartamentsTab extends StatelessWidget {
@@ -32,17 +30,26 @@ class ApartamentsTab extends StatelessWidget {
                     title: context.l10n.filters,
                     onTap: () => context.pushRoute(const FiltersWrapper()),
                   ),
-                  const SizedBox(width: 12),
+                  //TODO: INFO: showModalBottomSheet умеет сам просчитывать дочерние размеры и можно не использовать DraggableScrollableSheet,  ГЛАВНОЕ: использовать isScrollControlled: true (ну он по умолчанию true)
                   FilterCard(
                     trailing: const AppIcon(AppIcons.arrowDown, width: S.p24),
                     title: context.l10n.term,
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => const RentDurationBottomSheet(),
+                    ),
                   ),
-                  const SizedBox(width: 12),
                   FilterCard(
                     trailing: const AppIcon(AppIcons.arrowDown, width: S.p24),
                     title: context.l10n.district,
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => const DistrictBottomSheet(),
+                    ),
                   ),
-                ],
+                ].separated(const SizedBox(width: S.p12)),
               ),
             ),
           ),
@@ -56,7 +63,14 @@ class ApartamentsTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("${context.l10n.optionsFound} ${82}", style: context.textStyle.bodyTitle),
-                  const AppIcon(AppIcons.sort, width: S.p32),
+                  GestureDetector(
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => const DistrictBottomSheet(),
+                    ),
+                    child: const AppIcon(AppIcons.sort, width: S.p32),
+                  ),
                 ],
               ),
             ),
@@ -72,6 +86,18 @@ class ApartamentsTab extends StatelessWidget {
           },
         ),
       ],
+    );
+  }
+}
+
+class SortBottomSheet extends StatelessWidget {
+  const SortBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const BaseBottomSheet(
+      title: '',
+      child: Column(children: []),
     );
   }
 }

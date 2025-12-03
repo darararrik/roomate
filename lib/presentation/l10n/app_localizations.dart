@@ -568,6 +568,12 @@ abstract class AppLocalizations {
   /// **'Расположение'**
   String get location;
 
+  /// No description provided for @rentPeriod.
+  ///
+  /// In ru, this message translates to:
+  /// **'Срок проживания'**
+  String get rentPeriod;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:

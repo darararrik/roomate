@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/auth_edit_first_page.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
