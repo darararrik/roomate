@@ -106,7 +106,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: const .all(S.p12),
+                                    padding: const P(all: S.p12),
                                     child: Text(value, style: context.textStyle.bodyDescription),
                                   ),
                                 ),
@@ -114,7 +114,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                               ],
                             );
                           },
-                          options: const GroupButtonOptions(crossGroupAlignment: .start, groupingType: .column),
+                          options: const GroupButtonOptions(crossGroupAlignment: CrossGroupAlignment.start, groupingType: GroupingType.column),
                         ),
                       ],
                     ),

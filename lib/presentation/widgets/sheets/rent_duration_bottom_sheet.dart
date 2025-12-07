@@ -52,7 +52,7 @@ class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
                   padding: const P(bottom: S.p12),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      borderRadius: .circular(S.p12),
+                      borderRadius: BorderRadius.circular(S.p12),
                       color: context.colors.white,
                       border: Border.all(color: selected ? context.colors.orange100 : context.colors.stroke300),
                     ),
@@ -74,7 +74,7 @@ class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
                   ),
                 );
               },
-              options: const GroupButtonOptions(crossGroupAlignment: .start, groupingType: .column),
+              options: const GroupButtonOptions(crossGroupAlignment: CrossGroupAlignment.start, groupingType: GroupingType.column),
             ),
             Padding(
               padding: const P(top: S.p16),

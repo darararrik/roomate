@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/utils/app_dropdown_styles.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 

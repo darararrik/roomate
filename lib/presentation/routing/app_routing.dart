@@ -37,7 +37,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ChatsWrapperRoute.page,
           path: 'chats',
-          children: [AutoRoute(page: ChatsRoute.page, path: '', initial: true)],
+          children: [
+            AutoRoute(page: ChatsRoute.page, path: '', initial: true),
+            AutoRoute(page: ChatRoute.page, path: 'chat'),
+          ],
         ),
 
         AutoRoute(

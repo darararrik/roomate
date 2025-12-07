@@ -46,10 +46,10 @@ class _LocationScreenState extends State<LocationScreen> {
               return Padding(
                 padding: const P(horizontal: S.p12),
                 child: Row(
-                  mainAxisAlignment: .center,
-                  crossAxisAlignment: .start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(padding: .all(S.p10), child: AppIcon(AppIcons.street)),
+                    const Padding(padding: P(all: S.p10), child: AppIcon(AppIcons.street)),
                     const SizedBox(width: S.p12),
                     Expanded(
                       child: DecoratedBox(

@@ -24,10 +24,10 @@ class RegionListItem extends StatelessWidget {
       child: Padding(
         padding: const P(horizontal: S.p12),
         child: Row(
-          mainAxisAlignment: .center,
-          crossAxisAlignment: .center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(padding: const .all(S.p10), child: AppIcon(iconPath)),
+            Padding(padding:const P(all: S.p10), child: AppIcon(iconPath)),
             const SizedBox(width: S.p12),
             Expanded(
               child: Column(

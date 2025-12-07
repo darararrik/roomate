@@ -13,7 +13,8 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(overlayColor: WidgetStateColor.fromMap({WidgetState.pressed: _appColors.light100})),
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: _appColors.orange),
+    colorScheme: ColorScheme.fromSeed(seedColor: _appColors.white),
+
     // chipTheme: ChipThemeData(
     //   backgroundColor: _appColors.light100,
     //   disabledColor: _appColors.stroke300,

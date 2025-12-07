@@ -28,13 +28,13 @@ class ProfileMenuItem extends StatelessWidget {
           child: Row(
             children: [
               DecoratedBox(
-                decoration: BoxDecoration(color: context.colors.white, borderRadius: .circular(S.p12)),
-                child: Padding(padding: const .all(S.p10), child: AppIcon(iconPath)),
+                decoration: BoxDecoration(color: context.colors.white, borderRadius: BorderRadius.circular(S.p12)),
+                child: Padding(padding: const P(all: S.p10), child: AppIcon(iconPath)),
               ),
               const SizedBox(width: S.p4),
               Expanded(
                 child: Padding(
-                  padding: const .symmetric(horizontal: S.p12),
+                  padding:  const P(horizontal: S.p12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -23,8 +23,8 @@ class ProfileEditScreen extends StatelessWidget {
               child: Padding(
                 padding: const P(right: S.p12),
                 child: Row(
-                  mainAxisAlignment: .spaceBetween,
-                  crossAxisAlignment: .center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Padding(
                       padding: P(vertical: S.p4, horizontal: S.p12),
@@ -32,7 +32,7 @@ class ProfileEditScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: Column(
-                        crossAxisAlignment: .start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Сергей Иванов', style: context.textStyle.bodyTitle),
                           const SizedBox(height: S.p8),

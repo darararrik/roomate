@@ -21,11 +21,11 @@ class ProfileScreen extends StatelessWidget {
             padding: const P(vertical: S.p24),
             sliver: SliverToBoxAdapter(
               child: Column(
-                crossAxisAlignment: .center,
-                mainAxisAlignment: .center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Padding(
-                    padding: .symmetric(horizontal: S.p12, vertical: S.p4),
+                    padding:  P(horizontal: S.p12, vertical: S.p4),
                     child: CircleAvatar(radius: S.p50),
                   ),
                   const SizedBox(height: S.p12),
@@ -43,9 +43,9 @@ class ProfileScreen extends StatelessWidget {
             padding: const P(horizontal: S.p16),
             sliver: SliverToBoxAdapter(
               child: DecoratedBox(
-                decoration: BoxDecoration(color: context.colors.light100, borderRadius: .circular(S.p32)),
+                decoration: BoxDecoration(color: context.colors.light100, borderRadius: BorderRadius.circular(S.p32)),
                 child: Padding(
-                  padding: const .symmetric(vertical: S.p24),
+                  padding:  const P(vertical: S.p24),
                   child: Column(
                     children: [
                       ProfileMenuItem(

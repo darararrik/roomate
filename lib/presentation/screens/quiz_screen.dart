@@ -62,7 +62,7 @@ class _QuizContent extends StatelessWidget {
                     Padding(
                       padding: const P(horizontal: S.p4),
                       child: Row(
-                        mainAxisAlignment: .spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BB(
                             color: context.colors.white,
@@ -83,7 +83,7 @@ class _QuizContent extends StatelessWidget {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const .only(bottom: S.p325),
+                        padding: const P(bottom: S.p325),
                         child: Center(
                           child: state.currentIndex >= steps.length
                               ? const SizedBox()

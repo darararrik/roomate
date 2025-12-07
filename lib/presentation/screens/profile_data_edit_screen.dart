@@ -44,11 +44,11 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
               padding: const P(vertical: S.p24),
               sliver: SliverToBoxAdapter(
                 child: Column(
-                  crossAxisAlignment: .center,
-                  mainAxisAlignment: .center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Padding(
-                      padding: .symmetric(horizontal: S.p12, vertical: S.p4),
+                      padding: P(horizontal: S.p12, vertical: S.p4),
                       child: CircleAvatar(radius: S.p50),
                     ),
                     const SizedBox(height: S.p12),
@@ -65,7 +65,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
               sliver: SliverFillRemaining(
                 hasScrollBody: false,
                 child: Column(
-                  crossAxisAlignment: .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const P(horizontal: S.p8, vertical: S.p12),
@@ -81,7 +81,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                         children: [
                           Expanded(
                             child: Column(
-                              crossAxisAlignment: .start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: const P(horizontal: S.p8, vertical: S.p12),
@@ -97,7 +97,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                           const SizedBox(width: S.p12),
                           Expanded(
                             child: Column(
-                              crossAxisAlignment: .start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: const P(horizontal: S.p8, vertical: S.p12),

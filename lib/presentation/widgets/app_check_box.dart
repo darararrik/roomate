@@ -11,17 +11,17 @@ class AppCheckBox extends StatelessWidget {
       visible: selected,
       replacement: DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: .circular(S.p4),
+          borderRadius: BorderRadius.circular(S.p4),
           //TODO:Цвет бордера
-          border: .all(color: context.colors.stroke300),
+          border: Border.all(color: context.colors.stroke300),
         ),
         child: const SizedBox(width: S.p20, height: S.p20),
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.colors.orange100,
-          borderRadius: .circular(S.p4),
-          border: .all(color: context.colors.orange100),
+          borderRadius: BorderRadius.circular(S.p4),
+          border: Border.all(color: context.colors.orange100),
         ),
         child: Center(
           child: Icon(Icons.check_rounded, color: context.colors.white, size: S.p20),
