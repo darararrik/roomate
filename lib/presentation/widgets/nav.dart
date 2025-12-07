@@ -13,13 +13,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [
-        HomeRoute(),
-        FavoritesWrapperRoute(),
-        CreateWrapperRoute(),
-        ChatsWrapperRoute(),
-        ProfileWrapperRoute(),
-      ],
+      routes: const [HomeRoute(), FavoritesRoute(), CreateRoute(), ChatsRoute(), ProfileRoute()],
       bottomNavigationBuilder: (_, tabsRouter) {
         return DecoratedBox(
           decoration: BoxDecoration(boxShadow: [context.colors.bottomNavBarShadow]),

@@ -14,8 +14,10 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+  // 1. Добавляем ScrollController для управления скроллом CustomScrollView
+  final ScrollController _scrollController = ScrollController();
 
-  // Пример данных — замени на реальные сообщения
+  // Пример данных
   final List<_MessageItem> _messages = List.generate(20, (i) {
     final now = DateTime.now().subtract(Duration(days: 20 - i));
     final isMine = i % 3 == 0;
@@ -36,19 +38,37 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     _controller.addListener(() => setState(() {}));
+    // 2. Инициализация (контроллер уже инициализирован, но здесь можно было бы добавить слушатели, если нужно)
+    // Также можно вызвать _scrollToBottom() здесь, если нужно начать с конца списка при загрузке.
+    // _scrollToBottom(); // Раскомментируйте, если нужно прокрутить к последнему сообщению при старте
   }
 
   @override
   void dispose() {
     _controller.dispose();
     _focusNode.dispose();
+    // 3. Освобождаем ScrollController
+    _scrollController.dispose();
     super.dispose();
   }
 
+  void _scrollToBottom() {
+    // 4. Функция для прокрутки к концу списка.
+    // Используем addPostFrameCallback, чтобы убедиться, что список уже перерисован
+    // и новое сообщение учтено в maxScrollExtent.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
   void _onAttach() {
-    // TODO: заменить реализацией выбора файла/медиа
     debugPrint('Attach pressed');
-    // пример: открывать picker и добавлять сообщение с медиа
   }
 
   void _onSend() {
@@ -65,24 +85,35 @@ class _ChatScreenState extends State<ChatScreen> {
       _messages.add(msg);
       _controller.clear();
     });
-    // сместить фокус, можно скроллить к концу (если понадобится)
+    // 5. Вызываем прокрутку после добавления сообщения
+    _scrollToBottom();
     _focusNode.requestFocus();
+  }
+
+  int _activeParticipantsCount() {
+    final set = <String>{};
+    for (final m in _messages) {
+      set.add(m.authorName);
+    }
+    return set.length;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.light100,
-      // AppBar через твой AB
+      // ВАЖНО: Это свойство поднимает body при открытии клавиатуры
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Column(
           children: [
-            // Верх — кастомный AppBar (AB)
-
-            // Тело — скроллируемый список сообщений
+            // 1. Скроллируемый список сообщений
+            // Используем Expanded, чтобы он занимал всё свободное место
             Expanded(
               child: CustomScrollView(
-                reverse: false,
+                // 6. Передаем ScrollController в CustomScrollView
+                controller: _scrollController,
+                reverse: false, // Обычно для чатов используют true, но оставляем как у вас
                 slivers: [
                   AB(
                     pinned: true,
@@ -101,8 +132,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   SliverPadding(
                     padding: const P(horizontal: S.p16, vertical: S.p8),
                     sliver: SliverList.builder(
+                      itemCount: _messages.length,
                       itemBuilder: (context, index) {
-                        // собираем с группировкой по дате
                         final item = _messages[index];
                         final prev = index > 0 ? _messages[index - 1] : null;
                         final needDate = prev == null || !isSameDate(prev.dateTime, item.dateTime);
@@ -122,112 +153,109 @@ class _ChatScreenState extends State<ChatScreen> {
                           ],
                         );
                       },
-                      itemCount: _messages.length,
                     ),
                   ),
-                  // Добавляем небольшой отступ снизу чтобы input не перекрывал последние элементы при абсолютном позиционировании
-                  const SliverToBoxAdapter(child: SizedBox(height: S.p70)),
+                  // Небольшой отступ в конце списка
+                  const SliverToBoxAdapter(child: SizedBox(height: S.p12)),
+                ],
+              ),
+            ),
+
+            // 2. Поле ввода (Input)
+            Container(
+              color: context.colors.white,
+              padding: const P(horizontal: S.p12, vertical: S.p8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end, // Выравнивание по низу для многострочного ввода
+                children: [
+                  // Attach button
+                  InkWell(
+                    onTap: _onAttach,
+                    borderRadius: BorderRadius.circular(S.p12),
+                    child: Padding(
+                      padding: const P(all: S.p8),
+                      child: Icon(Icons.attach_file, size: S.p20, color: context.colors.text700),
+                    ),
+                  ),
+                  const SizedBox(width: S.p8),
+
+                  // Input Field
+                  Expanded(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        minHeight: 40,
+                        maxHeight: S.p70 * 2.2, // Ограничение высоты при росте текста
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: context.colors.light100,
+                          borderRadius: BorderRadius.circular(S.p12),
+                          border: Border.all(color: context.colors.text400.withOpacity(0.12)),
+                        ),
+                        padding: const P(horizontal: S.p8, vertical: S.p4),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Scrollbar(
+                                child: TextField(
+                                  controller: _controller,
+                                  focusNode: _focusNode,
+                                  keyboardType: TextInputType.multiline,
+                                  textInputAction: TextInputAction.newline,
+                                  minLines: 1,
+                                  maxLines: 5,
+                                  decoration: InputDecoration(
+                                    isCollapsed: true,
+                                    hintText: "Введите сообщение...",
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+                                    hintStyle: context.textStyle.bodyDescription.copyWith(
+                                      color: context.colors.text400,
+                                    ),
+                                  ),
+                                  style: context.textStyle.bodyDescription,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: S.p8),
+
+                  // Send button
+                  InkWell(
+                    onTap: _canSend ? _onSend : null,
+                    borderRadius: BorderRadius.circular(S.p12),
+                    child: Container(
+                      padding: const P(all: S.p8),
+                      decoration: BoxDecoration(
+                        color: _canSend ? context.colors.orange : context.colors.text400.withOpacity(0.16),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.send,
+                        size: S.p20,
+                        color: _canSend ? context.colors.white : context.colors.text400,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ],
         ),
       ),
-
-      // Фиксированный input внизу — с авто-ростом до 5 строк, кнопка вложений и отправки
-      bottomNavigationBar: SafeArea(
-        top: false,
-        child: Container(
-          color: context.colors.white,
-          padding: const P(horizontal: S.p12, vertical: S.p8),
-          child: Row(
-            children: [
-              // Attach button
-              InkWell(
-                onTap: _onAttach,
-                borderRadius: BorderRadius.circular(S.p12),
-                child: Padding(
-                  padding: const P(all: S.p8),
-                  child: Icon(Icons.attach_file, size: S.p20, color: context.colors.text700),
-                ),
-              ),
-              const SizedBox(width: S.p8),
-
-              // Input
-              Expanded(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    minHeight: 40,
-                    maxHeight: S.p70 * 2.2, // примерно 5 lines (подгон под S)
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: context.colors.light100,
-                      borderRadius: BorderRadius.circular(S.p12),
-                      border: Border.all(color: context.colors.text400.withOpacity(0.12)),
-                    ),
-                    padding: const P(horizontal: S.p8, vertical: S.p4),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Scrollbar(
-                            child: TextField(
-                              controller: _controller,
-                              focusNode: _focusNode,
-                              keyboardType: TextInputType.multiline,
-                              textInputAction: TextInputAction.newline,
-                              minLines: 1,
-                              maxLines: 5,
-                              decoration: InputDecoration(
-                                isCollapsed: true,
-                                hintText: "Введите сообщение...",
-                                border: InputBorder.none,
-                                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
-                                hintStyle: context.textStyle.bodyDescription.copyWith(color: context.colors.text400),
-                              ),
-                              style: context.textStyle.bodyDescription,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(width: S.p8),
-
-              // Send button
-              InkWell(
-                onTap: _canSend ? _onSend : null,
-                borderRadius: BorderRadius.circular(S.p12),
-                child: Container(
-                  padding: const P(all: S.p8),
-                  decoration: BoxDecoration(
-                    color: _canSend ? context.colors.orange : context.colors.text400.withOpacity(0.16),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(Icons.send, size: S.p20, color: _canSend ? context.colors.white : context.colors.text400),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
-  }
-
-  int _activeParticipantsCount() {
-    // простая логика, можно заменить реальной
-    final set = <String>{};
-    for (final m in _messages) {
-      set.add(m.authorName);
-    }
-    return set.length;
   }
 }
 
-/// Утилиты
+// =========================================================================
+// Вспомогательные классы и утилиты (Оставлены без изменений для полноты)
+// =========================================================================
+
 bool isSameDate(DateTime a, DateTime b) {
   return a.year == b.year && a.month == b.month && a.day == b.day;
 }
@@ -238,7 +266,6 @@ String timeString(DateTime dt) {
   return '$h:$m';
 }
 
-/// --- Модели сообщений (локальный пример) ---
 class _MessageItem {
   _MessageItem({
     required this.id,
@@ -253,8 +280,6 @@ class _MessageItem {
   final bool isMine;
   final String authorName;
 }
-
-/// --- Виджеты сообщений и даты ---
 
 class DateLabel extends StatelessWidget {
   const DateLabel({super.key, required this.dateTime});
