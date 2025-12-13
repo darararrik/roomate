@@ -24,7 +24,7 @@ class SelectableTagGroup extends StatelessWidget {
       children: [
         Padding(
           padding: const P(vertical: S.p12),
-          child: Text(title, style: context.textStyle.headline2),
+          child: Text(title, style: context.typography.headline2),
         ),
         GroupButton<String>(
           isRadio: isRadio,
@@ -39,7 +39,7 @@ class SelectableTagGroup extends StatelessWidget {
                 padding: const P(horizontal: S.p16, vertical: S.p12),
                 child: Text(
                   tag,
-                  style: context.textStyle.activesLabel.copyWith(
+                  style: context.typography.activesLabel.copyWith(
                     color: selected ? context.colors.white : context.colors.text400,
                   ),
                 ),

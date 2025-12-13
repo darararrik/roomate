@@ -25,7 +25,7 @@ class AboutGroupScreen extends StatelessWidget {
                   const SizedBox(height: S.p10),
                   Text(
                     "4/5 ${context.l10n.participants}",
-                    style: context.textStyle.bodyTitle.copyWith(color: context.colors.text400),
+                    style: context.typography.bodyTitle.copyWith(color: context.colors.text400),
                   ),
                   Padding(
                     padding: const P(horizontal: S.p4),
@@ -33,22 +33,22 @@ class AboutGroupScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const ChipMatch(),
-                        Text("Тихий уголок в центре", style: context.textStyle.headline1),
+                        Text("Тихий уголок в центре", style: context.typography.headline1),
                         Text(
                           "Омск, улица Ленина, 12к1",
-                          style: context.textStyle.bodySmall.copyWith(color: context.colors.text400),
+                          style: context.typography.bodySmall.copyWith(color: context.colors.text400),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const CircleAvatar(),
                             const SizedBox(width: S.p12),
-                            Expanded(child: Text("Татьяна Иванова", style: context.textStyle.bodyDescription)),
+                            Expanded(child: Text("Татьяна Иванова", style: context.typography.bodyDescription)),
                           ],
                         ),
                         Text(
                           "Ищем соседей для уютной квартиры в центре города. Главное для нас — спокойствие, уважение личного пространства и чистота. Гостей приводим редко, любим работать и отдыхать в тишине. Если тебе тоже важен комфортный и размеренный быт — добро пожаловать!",
-                          style: context.textStyle.bodyDescription,
+                          style: context.typography.bodyDescription,
                         ),
                       ].separated(const SizedBox(height: S.p16)),
                     ),

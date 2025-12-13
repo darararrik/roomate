@@ -25,10 +25,10 @@ class NeighbourCard extends StatelessWidget {
             children: [
               ...[
                 const ChipMatch(),
-                Text("Тихий уголок в центре", style: context.textStyle.headline1),
+                Text("Тихий уголок в центре", style: context.typography.headline1),
                 Text(
                   "Ищем соседей для уютной квартиры в центре города. Главное для нас — спокойствие, уважение личного пространства и чистота. Гостей приводим редко, любим работать и отдыхать в тишине. Если тебе тоже важен комфортный и размеренный быт — добро пожаловать!",
-                  style: context.textStyle.bodyDescription,
+                  style: context.typography.bodyDescription,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -38,7 +38,7 @@ class NeighbourCard extends StatelessWidget {
               const SizedBox(height: S.p8),
               Text(
                 "4/5 ${context.l10n.participants}",
-                style: context.textStyle.bodySmall.copyWith(color: context.colors.text400),
+                style: context.typography.bodySmall.copyWith(color: context.colors.text400),
               ),
             ],
           ),

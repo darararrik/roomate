@@ -31,7 +31,7 @@ class FiltersScreen extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   context.l10n.reset,
-                  style: context.textStyle.activesButton.copyWith(color: context.colors.orange100),
+                  style: context.typography.activesButton.copyWith(color: context.colors.orange100),
                 ),
               ),
             ],
@@ -56,7 +56,7 @@ class FiltersScreen extends StatelessWidget {
                           padding: const P(horizontal: S.p16, vertical: S.p12),
                           child: Text(
                             tag,
-                            style: context.textStyle.activesLabel.copyWith(
+                            style: context.typography.activesLabel.copyWith(
                               color: selected ? context.colors.orange : context.colors.text400,
                             ),
                           ),
@@ -75,7 +75,7 @@ class FiltersScreen extends StatelessWidget {
               const SizedBox(height: S.p12),
               Padding(
                 padding: const P(vertical: S.p12, horizontal: S.p16),
-                child: Text(context.l10n.typeOfProperty, style: context.textStyle.headline2),
+                child: Text(context.l10n.typeOfProperty, style: context.typography.headline2),
               ),
               Padding(
                 padding: const P(vertical: S.p12, horizontal: S.p16),
@@ -94,7 +94,7 @@ class FiltersScreen extends StatelessWidget {
                           padding: const P(horizontal: S.p16, vertical: S.p12),
                           child: Text(
                             tag,
-                            style: context.textStyle.activesLabel.copyWith(
+                            style: context.typography.activesLabel.copyWith(
                               color: selected ? context.colors.orange : context.colors.text400,
                             ),
                           ),
@@ -113,7 +113,7 @@ class FiltersScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const P(vertical: S.p12, horizontal: S.p16),
-                child: Text(context.l10n.location, style: context.textStyle.headline2),
+                child: Text(context.l10n.location, style: context.typography.headline2),
               ),
               Padding(
                 padding: const P(vertical: S.p12),

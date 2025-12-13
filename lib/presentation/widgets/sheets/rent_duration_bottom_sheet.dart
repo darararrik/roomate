@@ -64,7 +64,7 @@ class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
                           Expanded(
                             child: Padding(
                               padding: const P(vertical: S.p12),
-                              child: Text(tag, style: context.textStyle.bodyDescription),
+                              child: Text(tag, style: context.typography.bodyDescription),
                             ),
                           ),
                           AppRadioButton(selected: selected),
@@ -74,7 +74,10 @@ class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
                   ),
                 );
               },
-              options: const GroupButtonOptions(crossGroupAlignment: CrossGroupAlignment.start, groupingType: GroupingType.column),
+              options: const GroupButtonOptions(
+                crossGroupAlignment: CrossGroupAlignment.start,
+                groupingType: GroupingType.column,
+              ),
             ),
             Padding(
               padding: const P(top: S.p16),

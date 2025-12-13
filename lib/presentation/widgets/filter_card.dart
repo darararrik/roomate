@@ -13,7 +13,7 @@ class FilterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final textStyle = context.textStyle.activesLabel;
+    final textStyle = context.typography.activesLabel;
     return InkWell(
       borderRadius: BorderRadius.circular(S.p12),
       onTap: onTap,

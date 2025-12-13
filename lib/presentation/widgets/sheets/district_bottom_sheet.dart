@@ -107,14 +107,17 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                                 Expanded(
                                   child: Padding(
                                     padding: const P(all: S.p12),
-                                    child: Text(value, style: context.textStyle.bodyDescription),
+                                    child: Text(value, style: context.typography.bodyDescription),
                                   ),
                                 ),
                                 AppCheckBox(selected: selected),
                               ],
                             );
                           },
-                          options: const GroupButtonOptions(crossGroupAlignment: CrossGroupAlignment.start, groupingType: GroupingType.column),
+                          options: const GroupButtonOptions(
+                            crossGroupAlignment: CrossGroupAlignment.start,
+                            groupingType: GroupingType.column,
+                          ),
                         ),
                       ],
                     ),

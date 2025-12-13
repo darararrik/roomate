@@ -37,4 +37,6 @@ final AppPalette _appColors = AppPalette(
     blurRadius: 9.1,
     spreadRadius: 0.0,
   ),
+  grayMessage: const Color(0xFFE2E2E2),
+  orangeChat: const Color(0xFFF2774E),
 );

@@ -63,7 +63,7 @@ class InputWidget extends StatelessWidget {
                 keyboardType: keyboardType,
                 textInputAction: textInputAction,
                 onChanged: onChanged,
-                style: style ?? context.textStyle.inputTextRegular,
+                style: style ?? context.typography.inputTextRegular,
                 validator: validator,
                 decoration: InputDecoration(
                   hintText: hintText,

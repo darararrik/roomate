@@ -35,7 +35,7 @@ class SortBottomSheet extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(S.p12),
-                        child: Text(value, style: context.textStyle.bodyDescription),
+                        child: Text(value, style: context.typography.bodyDescription),
                       ),
                     ),
                     AppRadioButton(selected: selected),

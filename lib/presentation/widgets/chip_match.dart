@@ -14,7 +14,7 @@ class ChipMatch extends StatelessWidget {
         padding: const P(all: S.p8),
         child: Text(
           "${95}${context.l10n.percent} ${context.l10n.match}",
-          style: context.textStyle.bodySmall.copyWith(color: context.colors.green700),
+          style: context.typography.bodySmall.copyWith(color: context.colors.green700),
         ),
       ),
     );

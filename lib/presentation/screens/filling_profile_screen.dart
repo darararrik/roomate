@@ -28,7 +28,7 @@ class FillingProfileScreen extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "${tabsRouter.activeIndex + 1}/${tabsRouter.pageCount}",
-                    style: context.textStyle.headline2,
+                    style: context.typography.headline2,
                   ),
                 ),
               ),

@@ -42,13 +42,13 @@ class ChatsScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     "Тихий уголок в центре",
-                                    style: context.textStyle.headline1,
+                                    style: context.typography.headline1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 Text(
                                   "18:30",
-                                  style: context.textStyle.bodySmall.copyWith(color: context.colors.text700),
+                                  style: context.typography.bodySmall.copyWith(color: context.colors.text700),
                                 ),
                               ],
                             ),
@@ -59,7 +59,7 @@ class ChatsScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text.rich(
                                     TextSpan(
-                                      style: context.textStyle.bodyDescription,
+                                      style: context.typography.bodyDescription,
                                       children: [
                                         TextSpan(text: '$name: '),
                                         TextSpan(

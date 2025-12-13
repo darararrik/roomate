@@ -27,16 +27,19 @@ class RegionListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(padding:const P(all: S.p10), child: AppIcon(iconPath)),
+            Padding(
+              padding: const P(all: S.p10),
+              child: AppIcon(iconPath),
+            ),
             const SizedBox(width: S.p12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(title, style: context.textStyle.bodyDescription),
+                  Text(title, style: context.typography.bodyDescription),
                   const SizedBox(height: S.p8),
-                  Text(subTitle, style: context.textStyle.bodySmall.copyWith(color: context.colors.text400)),
+                  Text(subTitle, style: context.typography.bodySmall.copyWith(color: context.colors.text400)),
                 ],
               ),
             ),

@@ -43,4 +43,6 @@ abstract class AppIcons {
   static const String disctrict = 'lib/presentation/assets/icons/disctrict.svg';
   static const String building = 'lib/presentation/assets/icons/building.svg';
   static const String city = 'lib/presentation/assets/icons/city.svg';
+  static const String addAction = 'lib/presentation/assets/icons/addAction.svg';
+  static const String pushAction = 'lib/presentation/assets/icons/pushAction.svg';
 }

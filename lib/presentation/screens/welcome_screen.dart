@@ -40,12 +40,12 @@ class WelcomeScreen extends StatelessWidget {
                           children: [
                             Text(
                               context.l10n.aboutServiceTitle,
-                              style: context.textStyle.headline0.copyWith(color: context.colors.white),
+                              style: context.typography.headline0.copyWith(color: context.colors.white),
                             ),
                             const SizedBox(height: S.p16),
                             Text(
                               context.l10n.aboutServiceDescription,
-                              style: context.textStyle.headline1.copyWith(
+                              style: context.typography.headline1.copyWith(
                                 color: context.colors.white.withValues(alpha: 0.59),
                               ),
                             ),
@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   context.l10n.loginViaSocialNetworks,
-                                  style: context.textStyle.activesLabel.copyWith(color: context.colors.input200),
+                                  style: context.typography.activesLabel.copyWith(color: context.colors.input200),
                                 ),
                                 SizedBox(
                                   width: S.p40,

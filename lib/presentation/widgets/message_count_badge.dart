@@ -26,7 +26,7 @@ class MessageCountBadge extends StatelessWidget {
         ),
         child: Text(
           count.toMessagedCount(),
-          style: context.textStyle.bodySmall.copyWith(color: context.colors.white),
+          style: context.typography.bodySmall.copyWith(color: context.colors.white),
           textAlign: TextAlign.center,
         ),
       ),

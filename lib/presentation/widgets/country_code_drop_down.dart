@@ -39,7 +39,7 @@ class CountryCodeDropdown extends StatelessWidget {
                   const SizedBox(width: S.p4),
                   Text(
                     selectedCode ?? countryCodes[0],
-                    style: context.textStyle.inputTextRegular.copyWith(color: context.colors.text400),
+                    style: context.typography.inputTextRegular.copyWith(color: context.colors.text400),
                   ),
                 ],
               ),
@@ -56,7 +56,7 @@ class CountryCodeDropdown extends StatelessWidget {
                     child: Center(
                       child: Text(
                         item,
-                        style: context.textStyle.inputTextRegular.copyWith(color: context.colors.text400),
+                        style: context.typography.inputTextRegular.copyWith(color: context.colors.text400),
                       ),
                     ),
                   ),

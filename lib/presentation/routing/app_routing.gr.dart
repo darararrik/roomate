@@ -9,28 +9,18 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'package:auto_route/auto_route.dart' as _i26;
+
 import 'package:roomate/presentation/routing/wrappers/auth_wrapper.dart' as _i6;
-import 'package:roomate/presentation/routing/wrappers/filters_wrapper.dart'
-    as _i14;
 import 'package:roomate/presentation/screens/about_group_screen.dart' as _i1;
 import 'package:roomate/presentation/screens/chats/chat_screen.dart' as _i7;
 import 'package:roomate/presentation/screens/chats/chats_screen.dart' as _i8;
 import 'package:roomate/presentation/screens/create_screen.dart' as _i10;
 import 'package:roomate/presentation/screens/favorites_screen.dart' as _i11;
-import 'package:roomate/presentation/screens/filling_profile_screen.dart'
-    as _i12;
 import 'package:roomate/presentation/screens/filters_screen.dart' as _i13;
 import 'package:roomate/presentation/screens/home/home_screen.dart' as _i15;
-import 'package:roomate/presentation/screens/home/tabs/apartments_tab.dart'
-    as _i2;
-import 'package:roomate/presentation/screens/home/tabs/coworking_tab.dart'
-    as _i9;
-import 'package:roomate/presentation/screens/home/tabs/neighbours_tab.dart'
-    as _i18;
 import 'package:roomate/presentation/screens/location_screen.dart' as _i16;
-import 'package:roomate/presentation/screens/profile_data_edit_screen.dart'
-    as _i19;
 import 'package:roomate/presentation/screens/profile_edit_screen.dart' as _i20;
 import 'package:roomate/presentation/screens/profile_screen.dart' as _i21;
 import 'package:roomate/presentation/screens/quiz_screen.dart' as _i22;
@@ -41,6 +31,19 @@ import 'package:roomate/presentation/widgets/auth_edit_first_page.dart' as _i3;
 import 'package:roomate/presentation/widgets/auth_edit_second_page.dart' as _i4;
 import 'package:roomate/presentation/widgets/auth_edit_third_page.dart' as _i5;
 import 'package:roomate/presentation/widgets/nav.dart' as _i17;
+
+import 'package:roomate/presentation/routing/wrappers/filters_wrapper.dart'
+    as _i14;
+import 'package:roomate/presentation/screens/filling_profile_screen.dart'
+    as _i12;
+import 'package:roomate/presentation/screens/home/tabs/apartments_tab.dart'
+    as _i2;
+import 'package:roomate/presentation/screens/home/tabs/coworking_tab.dart'
+    as _i9;
+import 'package:roomate/presentation/screens/home/tabs/neighbours_tab.dart'
+    as _i18;
+import 'package:roomate/presentation/screens/profile_data_edit_screen.dart'
+    as _i19;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]

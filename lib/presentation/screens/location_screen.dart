@@ -49,7 +49,10 @@ class _LocationScreenState extends State<LocationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(padding: P(all: S.p10), child: AppIcon(AppIcons.street)),
+                    const Padding(
+                      padding: P(all: S.p10),
+                      child: AppIcon(AppIcons.street),
+                    ),
                     const SizedBox(width: S.p12),
                     Expanded(
                       child: DecoratedBox(
@@ -62,11 +65,11 @@ class _LocationScreenState extends State<LocationScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("метро Ухтомская", style: context.textStyle.bodyDescription),
+                              Text("метро Ухтомская", style: context.typography.bodyDescription),
                               const SizedBox(height: S.p8),
                               Text(
                                 "Люберцы, Люберцы (городской округ), Московская область, Москва и МО",
-                                style: context.textStyle.bodySmall.copyWith(color: context.colors.text400),
+                                style: context.typography.bodySmall.copyWith(color: context.colors.text400),
                               ),
                             ],
                           ),

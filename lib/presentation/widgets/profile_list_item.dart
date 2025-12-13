@@ -36,9 +36,9 @@ class ProfileListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(title, style: context.textStyle.bodyTitle),
+                    Text(title, style: context.typography.bodyTitle),
                     const SizedBox(height: S.p8),
-                    Text(value, style: context.textStyle.bodyDescription.copyWith(color: context.colors.text400)),
+                    Text(value, style: context.typography.bodyDescription.copyWith(color: context.colors.text400)),
                   ],
                 ),
               ),

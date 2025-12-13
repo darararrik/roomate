@@ -55,11 +55,11 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(context.l10n.enterSMSCode, style: context.textStyle.headline1),
+                          Text(context.l10n.enterSMSCode, style: context.typography.headline1),
                           const SizedBox(height: S.p8),
                           Text(
                             context.l10n.descriptionSMSCode2,
-                            style: context.textStyle.headline2.copyWith(color: context.colors.text400),
+                            style: context.typography.headline2.copyWith(color: context.colors.text400),
                           ),
                         ],
                       ),
@@ -82,7 +82,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                               }
                             },
                             child: TextField(
-                              style: context.textStyle.activesCodeNumber,
+                              style: context.typography.activesCodeNumber,
                               decoration: InputDecoration(
                                 fillColor: context.colors.white,
                                 filled: true,
@@ -114,7 +114,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(context.l10n.didntReceiveTheCode, style: context.textStyle.activesLabel),
+                          Text(context.l10n.didntReceiveTheCode, style: context.typography.activesLabel),
                           const SizedBox(width: S.p4),
                           GestureDetector(
                             onTap: () {
@@ -122,7 +122,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                             },
                             child: Text(
                               context.l10n.sendAgain,
-                              style: context.textStyle.activesLabel.copyWith(
+                              style: context.typography.activesLabel.copyWith(
                                 color: context.colors.orange,
                                 decoration: TextDecoration.underline,
                                 decorationColor: context.colors.orange,

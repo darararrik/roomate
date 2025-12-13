@@ -51,11 +51,11 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(context.l10n.enterYourPhoneNumber, style: context.textStyle.headline1),
+                          Text(context.l10n.enterYourPhoneNumber, style: context.typography.headline1),
                           const SizedBox(height: S.p8),
                           Text(
                             context.l10n.descriptionSMSCode1,
-                            style: context.textStyle.headline2.copyWith(color: context.colors.text400),
+                            style: context.typography.headline2.copyWith(color: context.colors.text400),
                           ),
                         ],
                       ),

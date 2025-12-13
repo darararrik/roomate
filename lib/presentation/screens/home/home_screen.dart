@@ -31,9 +31,9 @@ class HomeScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(context.l10n.searchRegion, style: context.textStyle.headline2),
+                    Text(context.l10n.searchRegion, style: context.typography.headline2),
                     const SizedBox(height: S.p4),
-                    Text('Омская область', style: context.textStyle.headline1),
+                    Text('Омская область', style: context.typography.headline1),
                   ],
                 ),
               ),

@@ -151,11 +151,11 @@ class _QuizContent extends StatelessWidget {
                     padding: const P(vertical: S.p12),
                     child: Column(
                       children: [
-                        Text(currentStep.question, style: context.textStyle.headline0, textAlign: TextAlign.center),
+                        Text(currentStep.question, style: context.typography.headline0, textAlign: TextAlign.center),
                         const SizedBox(height: S.p16),
                         Text(
                           currentStep.subQuestion,
-                          style: context.textStyle.headline2.copyWith(color: context.colors.text700),
+                          style: context.typography.headline2.copyWith(color: context.colors.text700),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -177,7 +177,7 @@ class _QuizContent extends StatelessWidget {
                         color: isLast ? context.colors.light100 : context.colors.orange20,
                         titleText: Text(
                           optionText,
-                          style: context.textStyle.activesButton.copyWith(
+                          style: context.typography.activesButton.copyWith(
                             color: isLast ? context.colors.text400 : context.colors.orange,
                           ),
                         ),

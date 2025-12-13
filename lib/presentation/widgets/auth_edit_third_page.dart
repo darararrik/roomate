@@ -21,13 +21,13 @@ class AuthEditThirdPage extends StatelessWidget {
             children: [
               Text(
                 "${context.l10n.almostDone1}\n${context.l10n.almostDone2}",
-                style: context.textStyle.headline1,
+                style: context.typography.headline1,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: S.p8),
               Text(
                 context.l10n.almostDone3,
-                style: context.textStyle.headline2.copyWith(color: context.colors.text400),
+                style: context.typography.headline2.copyWith(color: context.colors.text400),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -36,7 +36,7 @@ class AuthEditThirdPage extends StatelessWidget {
         const SizedBox(height: S.p10),
         Padding(
           padding: const P(vertical: S.p12),
-          child: Text(context.l10n.uploadDocument, style: context.textStyle.headline1),
+          child: Text(context.l10n.uploadDocument, style: context.typography.headline1),
         ),
         const SizedBox(height: S.p12),
         Expanded(

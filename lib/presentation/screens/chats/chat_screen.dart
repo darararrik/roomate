@@ -1,10 +1,15 @@
 import 'dart:math';
 
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/annotations.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:provider/provider.dart';
+
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/message_cloud.dart';
 
 @RoutePage()
 class ChatScreen extends StatefulWidget {
@@ -16,57 +21,148 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   late final ChatController _chatController;
+  late final TextEditingController _textController;
+
+  final GlobalKey _composerKey = GlobalKey();
+
   List<Message> get _messages => List.generate(
     10,
     (int index) => TextMessage(
       id: index.toString(),
       createdAt: DateTime.now().subtract(Duration(days: index)),
       text: 'Looks great! How does it work? (Author = $index)',
-      authorId: index.toString(),
+      authorId: index.isEven ? 'user1' : '1',
     ),
   );
+
   @override
   void initState() {
     super.initState();
+    _textController = TextEditingController();
     _chatController = InMemoryChatController(messages: _messages);
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    _chatController.dispose();
+    super.dispose();
+  }
+
+  void _measureComposerHeight(BuildContext context) {
+    if (!mounted) return;
+
+    final renderBox = _composerKey.currentContext?.findRenderObject() as RenderBox?;
+    if (renderBox != null) {
+      final height = renderBox.size.height;
+      final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+
+      try {
+        context.read<ComposerHeightNotifier>().setHeight(height - bottomSafeArea);
+      } catch (e) {
+        debugPrint('Ошибка при доступе к ComposerHeightNotifier: $e');
+      }
+    }
+  }
+
+  void _handleSend() {
+    final text = _textController.text.trim();
+    if (text.isNotEmpty) {
+      _chatController.insertMessage(
+        TextMessage(
+          id: '${Random().nextInt(1000) + 1}',
+          authorId: 'user1',
+          createdAt: DateTime.now().toUtc(),
+          text: text,
+        ),
+      );
+      _textController.clear();
+    }
+  }
+
+  Widget _buildCustomComposer(BuildContext context) {
+    final double bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    const EdgeInsets defaultPadding = EdgeInsets.all(S.p8);
+
+    final EdgeInsets finalPadding = defaultPadding.copyWith(bottom: defaultPadding.bottom + bottomSafeArea);
+
+    final composerContent = Builder(
+      builder: (innerContext) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _measureComposerHeight(innerContext);
+        });
+
+        return ColoredBox(
+          key: _composerKey,
+          color: context.colors.white,
+          child: Padding(
+            padding: finalPadding,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: const AppIcon(AppIcons.addAction),
+                  onPressed: () {
+                    //TODO: Реализация прикрепления фото
+                  },
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const P(left: S.p4),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: context.colors.light100,
+                        borderRadius: BorderRadius.circular(S.p24),
+                      ),
+                      child: TextFormField(
+                        controller: _textController,
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 3,
+                        onChanged: (_) {
+                          _measureComposerHeight(innerContext);
+                        },
+                        decoration: const InputDecoration(
+                          hintText: 'Сообщение..',
+                          contentPadding: P(horizontal: S.p16, vertical: S.p10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const P(left: S.p4),
+                  child: IconButton(icon: const AppIcon(AppIcons.pushAction), onPressed: _handleSend),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    return Positioned(
+      left: 0,
+      right: 0,
+      bottom: 0, // Ключ к позиционированию внизу
+      child: Material(child: composerContent),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.light100,
-      // ВАЖНО: Это свойство поднимает body при открытии клавиатуры
-      // resizeToAvoidBottomInset: true,
       body: Padding(
-        padding: const P(top: 44.0),
+        padding: const P(top: S.p44),
         child: Chat(
-          theme: ChatTheme(
-            colors: ChatColors.fromThemeData(context.appTheme),
-            typography: ChatTypography.fromThemeData(context.appTheme),
-            shape: BorderRadius.circular(S.p24),
-          ),
+          builders: Builders(textMessageBuilder: buildCustomTextMessage, composerBuilder: _buildCustomComposer),
           currentUserId: 'user1',
           resolveUser: (UserID id) async {
-            return User(id: id, name: 'John Doe');
+            return User(id: id, name: 'John Doe $id');
           },
           chatController: _chatController,
-          onMessageSend: (text) {
-            _chatController.insertMessage(
-              TextMessage(
-                // Better to use UUID or similar for the ID - IDs must be unique
-                id: '${Random().nextInt(1000) + 1}',
-                authorId: 'user1',
-                createdAt: DateTime.now().toUtc(),
-                text: text,
-              ),
-            );
-          },
         ),
       ),
     );
   }
 }
-
-// =========================================================================
-// Вспомогательные классы и утилиты (Оставлены без изменений для полноты)
-// =========================================================================

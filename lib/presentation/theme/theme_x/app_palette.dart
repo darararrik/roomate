@@ -28,6 +28,8 @@ class AppPalette extends ThemeExtension<AppPalette> {
     required this.fillsSecondary,
     required this.orange20,
     required this.bottomNavBarShadow,
+    required this.grayMessage,
+    required this.orangeChat,
   });
 
   final Color white;
@@ -56,6 +58,8 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color fillsSecondary;
   final Color orange20;
   final BoxShadow bottomNavBarShadow;
+  final Color grayMessage;
+  final Color orangeChat;
   @override
   AppPalette copyWith({
     Color? white,
@@ -84,6 +88,8 @@ class AppPalette extends ThemeExtension<AppPalette> {
     Color? fillsSecondary,
     Color? orange20,
     BoxShadow? bottomNavBarShadow,
+    Color? grayMessage,
+    Color? orangeChat,
   }) {
     return AppPalette(
       white: white ?? this.white,
@@ -112,6 +118,8 @@ class AppPalette extends ThemeExtension<AppPalette> {
       fillsSecondary: fillsSecondary ?? this.fillsSecondary,
       orange20: orange20 ?? this.orange20,
       bottomNavBarShadow: bottomNavBarShadow ?? this.bottomNavBarShadow,
+      grayMessage: grayMessage ?? this.grayMessage,
+      orangeChat: orangeChat ?? this.orangeChat,
     );
   }
 
@@ -145,6 +153,8 @@ class AppPalette extends ThemeExtension<AppPalette> {
       fillsSecondary: Color.lerp(fillsSecondary, other.fillsSecondary, t)!,
       orange20: Color.lerp(orange20, other.orange20, t)!,
       bottomNavBarShadow: BoxShadow.lerp(bottomNavBarShadow, other.bottomNavBarShadow, t)!,
+      grayMessage: Color.lerp(grayMessage, other.orange, t)!,
+      orangeChat: Color.lerp(orangeChat, other.orange100, t)!,
     );
   }
 }

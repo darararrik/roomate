@@ -24,7 +24,7 @@ class NeighboursTab extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${context.l10n.optionsFound} ${82}", style: context.textStyle.bodyTitle),
+                  Text("${context.l10n.optionsFound} ${82}", style: context.typography.bodyTitle),
                   GestureDetector(
                     onTap: () => showModalBottomSheet(
                       context: context,

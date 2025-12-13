@@ -16,7 +16,7 @@ class ProfileEditScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          AB(title: Text(context.l10n.profile, style: context.textStyle.headline1), centerTitle: false),
+          AB(title: Text(context.l10n.profile, style: context.typography.headline1), centerTitle: false),
           SliverPadding(
             padding: const P(horizontal: S.p16, vertical: S.p24),
             sliver: SliverToBoxAdapter(
@@ -34,11 +34,11 @@ class ProfileEditScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Сергей Иванов', style: context.textStyle.bodyTitle),
+                          Text('Сергей Иванов', style: context.typography.bodyTitle),
                           const SizedBox(height: S.p8),
                           Text(
                             '+7 913 123 12 34',
-                            style: context.textStyle.bodyDescription.copyWith(color: context.colors.text400),
+                            style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
                           ),
                         ],
                       ),
@@ -63,7 +63,7 @@ class ProfileEditScreen extends StatelessWidget {
                 [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
-                    child: Text(context.l10n.basicSection, style: context.textStyle.headline2),
+                    child: Text(context.l10n.basicSection, style: context.typography.headline2),
                   ),
                   ProfileListItem(
                     iconPath: AppIcons.flash,
@@ -114,7 +114,7 @@ class ProfileEditScreen extends StatelessWidget {
                 [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
-                    child: Text(context.l10n.roommateSearchSection, style: context.textStyle.headline2),
+                    child: Text(context.l10n.roommateSearchSection, style: context.typography.headline2),
                   ),
                   ProfileListItem(
                     iconPath: AppIcons.male,

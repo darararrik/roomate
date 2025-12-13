@@ -44,14 +44,14 @@ class ApartmentCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("${10000} ${context.l10n.r_month}", style: context.textStyle.headline1),
+                        Text("${10000} ${context.l10n.r_month}", style: context.typography.headline1),
                         const AppIcon(AppIcons.favourite, width: S.p24),
                       ],
                     ),
-                    Text("1 комн., 39м², этаж 3/17", style: context.textStyle.bodyDescription),
+                    Text("1 комн., 39м², этаж 3/17", style: context.typography.bodyDescription),
                     Text(
                       "Омск, улица Красный путь, 101к1",
-                      style: context.textStyle.bodySmall.copyWith(color: context.colors.text400),
+                      style: context.typography.bodySmall.copyWith(color: context.colors.text400),
                     ),
                   ].separated(const SizedBox(height: S.p8)),
                   const SizedBox(height: S.p12),
