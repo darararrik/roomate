@@ -42,15 +42,6 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(page: ProfileDataEditRoute.page, path: '/profile-data-edit'),
 
-    // AutoRoute(
-    //   page: EditProfileRoute.page,
-    //   path: '/edit-profile',
-    //   children: [
-    //     AutoRoute(page: AuthEditFirstRoute.page, path: 'step1', initial: true),
-    //     AutoRoute(page: AuthEditSecondRoute.page, path: 'step2'),
-    //     AutoRoute(page: AuthEditThirdRoute.page, path: 'step3'),
-    //   ],
-    // ),
     AutoRoute(
       page: AuthWrapper.page,
       path: '/',

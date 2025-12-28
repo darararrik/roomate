@@ -736,6 +736,12 @@ abstract class AppLocalizations {
   /// **'О приложении'**
   String get about;
 
+  /// No description provided for @hintMessage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сообщение..'**
+  String get hintMessage;
+
   /// No description provided for @language.
   ///
   /// In ru, this message translates to:

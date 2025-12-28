@@ -27,7 +27,7 @@ class ApartmentCard extends StatelessWidget {
               child: ImageCarouselSlider(
                 dotColor: context.colors.orange,
                 items: const [
-                  "https://www.omgtu.ru/upload/iblock/73e/rvhs0t416qqkgvh3h0p31cnxtktv6ro5/Banner_na_sayt_portal_abiturienta_67.png",
+                  "https://60.img.avito.st/image/1/1.0spXDba5fiNhuvwufzLFzwGsfCXprPw1YaF8IeW4eiE.LkM4M1pgzThWpbCB7fAiDuXKsdw5CutMHSi16j7fLy0",
                   "https://www.omgtu.ru/upload/iblock/73e/rvhs0t416qqkgvh3h0p31cnxtktv6ro5/Banner_na_sayt_portal_abiturienta_67.png",
                   "https://www.omgtu.ru/upload/iblock/73e/rvhs0t416qqkgvh3h0p31cnxtktv6ro5/Banner_na_sayt_portal_abiturienta_67.png",
                 ],

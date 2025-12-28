@@ -1,0 +1,1959 @@
+Project Path: screens
+
+Source Tree:
+
+```txt
+screens
+├── about_group_screen.dart
+├── auth
+├── chats
+│   ├── chat_screen.dart
+│   └── chats_screen.dart
+├── create_screen.dart
+├── favorites_screen.dart
+├── filling_profile_screen.dart
+├── filters_screen.dart
+├── home
+│   ├── home_screen.dart
+│   └── tabs
+│       ├── apartments_tab.dart
+│       ├── coworking_tab.dart
+│       └── neighbours_tab.dart
+├── location_screen.dart
+├── profile_data_edit_screen.dart
+├── profile_edit_screen.dart
+├── profile_screen.dart
+├── quiz_screen.dart
+├── reg_number_screen.dart
+├── sms_code_screen.dart
+└── welcome_screen.dart
+
+```
+
+`about_group_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class AboutGroupScreen extends StatelessWidget {
+  const AboutGroupScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AB(title: Text(context.l10n.aboutTheGroup), centerTitle: false),
+          SliverPadding(
+            padding: const P(top: S.p4, horizontal: S.p16),
+            sliver: SliverFillRemaining(
+              child: Column(
+                children: [
+                  const OverlappingAvatars(avatarSize: S.p46),
+                  const SizedBox(height: S.p10),
+                  Text(
+                    "4/5 ${context.l10n.participants}",
+                    style: context.typography.bodyTitle.copyWith(color: context.colors.text400),
+                  ),
+                  Padding(
+                    padding: const P(horizontal: S.p4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const ChipMatch(),
+                        Text("Тихий уголок в центре", style: context.typography.headline1),
+                        Text(
+                          "Омск, улица Ленина, 12к1",
+                          style: context.typography.bodySmall.copyWith(color: context.colors.text400),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const CircleAvatar(),
+                            const SizedBox(width: S.p12),
+                            Expanded(child: Text("Татьяна Иванова", style: context.typography.bodyDescription)),
+                          ],
+                        ),
+                        Text(
+                          "Ищем соседей для уютной квартиры в центре города. Главное для нас — спокойствие, уважение личного пространства и чистота. Гостей приводим редко, любим работать и отдыхать в тишине. Если тебе тоже важен комфортный и размеренный быт — добро пожаловать!",
+                          style: context.typography.bodyDescription,
+                        ),
+                      ].separated(const SizedBox(height: S.p16)),
+                    ),
+                  ),
+                  const Spacer(),
+                  PrimaryButton(titleText: Text(context.l10n.join), onPressed: () {}),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+`chats\chat_screen.dart`:
+
+```dart
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/annotations.dart';
+import 'package:flutter_chat_core/flutter_chat_core.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:provider/provider.dart';
+
+import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/widgets/a_b.dart';
+import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/b_b.dart';
+import 'package:roomate/presentation/widgets/message_cloud.dart';
+
+@RoutePage()
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  late final ChatController _chatController;
+  late final TextEditingController _textController;
+
+  final GlobalKey _composerKey = GlobalKey();
+
+  List<Message> get _messages => List.generate(
+    10,
+    (int index) => TextMessage(
+      id: index.toString(),
+      createdAt: DateTime.now().subtract(Duration(days: index)),
+      text: 'Looks great! How does it work? (Author = $index)',
+      authorId: index.isEven ? 'user1' : '1',
+    ),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _textController = TextEditingController();
+    _chatController = InMemoryChatController(messages: _messages);
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    _chatController.dispose();
+    super.dispose();
+  }
+
+  void _measureComposerHeight(BuildContext context) {
+    if (!mounted) return;
+
+    final renderBox = _composerKey.currentContext?.findRenderObject() as RenderBox?;
+    if (renderBox != null) {
+      final height = renderBox.size.height;
+      final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+
+      try {
+        context.read<ComposerHeightNotifier>().setHeight(height - bottomSafeArea);
+      } catch (e) {
+        debugPrint('Ошибка при доступе к ComposerHeightNotifier: $e');
+      }
+    }
+  }
+
+  void _handleSend() {
+    final text = _textController.text.trim();
+    if (text.isNotEmpty) {
+      _chatController.insertMessage(
+        TextMessage(
+          id: '${Random().nextInt(1000) + 1}',
+          authorId: 'user1',
+          createdAt: DateTime.now().toUtc(),
+          text: text,
+        ),
+      );
+      _textController.clear();
+    }
+  }
+
+  Widget _buildCustomComposer(BuildContext context) {
+    final double bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    const EdgeInsets defaultPadding = EdgeInsets.all(S.p8);
+
+    final EdgeInsets finalPadding = defaultPadding.copyWith(bottom: defaultPadding.bottom + bottomSafeArea);
+
+    final composerContent = Builder(
+      builder: (innerContext) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _measureComposerHeight(innerContext);
+        });
+
+        return ColoredBox(
+          key: _composerKey,
+          color: context.colors.white,
+          child: Padding(
+            padding: finalPadding,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: const AppIcon(AppIcons.addAction),
+                  onPressed: () {
+                    //TODO: Реализация прикрепления фото
+                  },
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const P(left: S.p4),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: context.colors.light100,
+                        borderRadius: BorderRadius.circular(S.p24),
+                      ),
+                      child: TextFormField(
+                        controller: _textController,
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 3,
+                        onChanged: (_) {
+                          _measureComposerHeight(innerContext);
+                        },
+                        decoration: InputDecoration(
+                          hintText: context.l10n.hintMessage,
+                          contentPadding: const P(horizontal: S.p16, vertical: S.p10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const P(left: S.p4),
+                  child: IconButton(icon: const AppIcon(AppIcons.pushAction), onPressed: _handleSend),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    return Positioned(left: S.p0, right: S.p0, bottom: S.p0, child: composerContent);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: context.colors.light100,
+      appBar: AppBar(
+        title: const Text("dasads"),
+        leading: const BB(),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+      ),
+      body: Chat(
+        builders: Builders(textMessageBuilder: buildCustomTextMessage, composerBuilder: _buildCustomComposer),
+        currentUserId: 'user1',
+        resolveUser: (UserID id) async {
+          return User(id: id, name: 'John Doe $id');
+        },
+        chatController: _chatController,
+      ),
+    );
+  }
+}
+
+```
+
+`chats\chats_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/constants/spacing.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/a_b.dart';
+import 'package:roomate/presentation/widgets/message_count_badge.dart';
+
+@RoutePage()
+class ChatsScreen extends StatelessWidget {
+  const ChatsScreen({super.key});
+  final String name = "Сергей";
+  final String message = "Добрый день";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AB(title: Text(context.l10n.messages), canPop: false),
+          SliverList.separated(
+            itemCount: 10,
+            itemBuilder: (context, index) => InkWell(
+              onTap: () => context.pushRoute(const ChatRoute()),
+              child: Padding(
+                padding: const P(horizontal: S.p16),
+                child: Padding(
+                  padding: const P(all: S.p12),
+                  child: Row(
+                    children: [
+                      const CircleAvatar(radius: S.p24),
+                      const SizedBox(width: S.p12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Тихий уголок в центре",
+                                    style: context.typography.headline1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                Text(
+                                  "18:30",
+                                  style: context.typography.bodySmall.copyWith(color: context.colors.text700),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: S.p4),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text.rich(
+                                    TextSpan(
+                                      style: context.typography.bodyDescription,
+                                      children: [
+                                        TextSpan(text: '$name: '),
+                                        TextSpan(
+                                          text: message,
+                                          style: TextStyle(color: context.colors.text700),
+                                        ),
+                                      ],
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                const MessageCountBadge(count: 2),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            separatorBuilder: (_, _) => const SizedBox(height: S.p12),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+`create_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
+class CreateScreen extends StatelessWidget {
+  const CreateScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+```
+
+`favorites_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+```
+
+`filling_profile_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class FillingProfileScreen extends StatelessWidget {
+  const FillingProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoTabsRouter.pageView(
+      physics: const NeverScrollableScrollPhysics(),
+      routes: const [AuthEditFirstRoute(), AuthEditSecondRoute(), AuthEditThirdRoute()],
+      builder: (context, child, pageController) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        final totalPages = tabsRouter.pageCount;
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            actions: [
+              SizedBox(
+                width: S.p56,
+                child: Center(
+                  child: Text(
+                    "${tabsRouter.activeIndex + 1}/${tabsRouter.pageCount}",
+                    style: context.typography.headline2,
+                  ),
+                ),
+              ),
+            ],
+            leading: BB(
+              onPressed: () {
+                final prevIndex = tabsRouter.activeIndex - 1;
+                if (prevIndex >= 0) {
+                  tabsRouter.setActiveIndex(prevIndex);
+                } else {
+                  context.pop();
+                }
+              },
+            ),
+            title: Padding(
+              padding: const P(horizontal: S.p86),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final progress = (tabsRouter.activeIndex + 1) / totalPages; // процент заполнения
+                  return Stack(
+                    children: [
+                      Container(
+                        height: S.p4,
+                        decoration: BoxDecoration(
+                          color: context.colors.fillsSecondary,
+                          borderRadius: BorderRadius.circular(S.p4),
+                        ),
+                      ),
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        height: S.p4,
+                        width: constraints.maxWidth * progress,
+                        decoration: BoxDecoration(
+                          color: context.colors.orange,
+                          borderRadius: BorderRadius.circular(S.p4),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+          body: Padding(
+            padding: const P(horizontal: S.p16),
+            child: Column(
+              children: [
+                Expanded(child: child),
+                PrimaryButton(
+                  titleText: Text(context.l10n.next),
+                  onPressed: () {
+                    final nextIndex = tabsRouter.activeIndex + 1;
+                    if (nextIndex < tabsRouter.pageCount) {
+                      tabsRouter.setActiveIndex(nextIndex);
+                    } else {
+                      // или переход куда нужно
+                    }
+                  },
+                ),
+                Visibility(
+                  visible: tabsRouter.activeIndex == 2,
+                  replacement: const SizedBox(height: S.p40),
+                  child: Padding(
+                    padding: const P(bottom: S.p44, top: S.p12),
+                    child: PrimaryButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(context.colors.light100),
+                        foregroundColor: WidgetStatePropertyAll(context.colors.text400),
+                      ),
+                      titleText: Text(context.l10n.skip),
+                      onPressed: () => context.replaceRoute(const NavBarRoute()),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+```
+
+`filters_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:group_button/group_button.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class FiltersScreen extends StatelessWidget {
+  const FiltersScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final categories = ["Снять", "Обменять"];
+    final types = ["Квартира", "Дом", "Комната", "Гараж", "Коммерческая"];
+
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AB(
+            title: Text(context.l10n.filters),
+            centerTitle: false,
+            onBackButtonPressed: () {
+              context.navigateTo(const NavBarRoute());
+            },
+            actions: [
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  context.l10n.reset,
+                  style: context.typography.activesButton.copyWith(color: context.colors.orange100),
+                ),
+              ),
+            ],
+          ),
+          SliverList.list(
+            children: [
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: GroupButton<String>(
+                  isRadio: false,
+                  buttons: List.from(categories),
+                  buttonBuilder: (selected, String tag, context) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(S.p12),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: selected ? context.colors.orange20 : context.colors.light100,
+
+                          borderRadius: BorderRadius.circular(S.p12),
+                        ),
+                        child: Padding(
+                          padding: const P(horizontal: S.p16, vertical: S.p12),
+                          child: Text(
+                            tag,
+                            style: context.typography.activesLabel.copyWith(
+                              color: selected ? context.colors.orange : context.colors.text400,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  options: const GroupButtonOptions(
+                    groupingType: GroupingType.wrap,
+                    mainGroupAlignment: MainGroupAlignment.start,
+                    spacing: S.p12,
+                    direction: Axis.horizontal,
+                  ),
+                ),
+              ),
+              const SizedBox(height: S.p12),
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: Text(context.l10n.typeOfProperty, style: context.typography.headline2),
+              ),
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: GroupButton<String>(
+                  isRadio: false,
+                  buttons: List.from(types),
+                  buttonBuilder: (selected, String tag, context) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(S.p12),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: selected ? context.colors.orange20 : context.colors.light100,
+                          borderRadius: BorderRadius.circular(S.p12),
+                        ),
+                        child: Padding(
+                          padding: const P(horizontal: S.p16, vertical: S.p12),
+                          child: Text(
+                            tag,
+                            style: context.typography.activesLabel.copyWith(
+                              color: selected ? context.colors.orange : context.colors.text400,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  options: const GroupButtonOptions(
+                    groupingType: GroupingType.wrap,
+                    mainGroupAlignment: MainGroupAlignment.start,
+                    spacing: S.p12,
+                    runSpacing: S.p12,
+                    direction: Axis.horizontal,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const P(vertical: S.p12, horizontal: S.p16),
+                child: Text(context.l10n.location, style: context.typography.headline2),
+              ),
+              Padding(
+                padding: const P(vertical: S.p12),
+                child: RegionListItem(
+                  iconPath: AppIcons.city,
+                  onTap: () => context.pushRoute(const LocationRoute()),
+                  title: 'г. Москва',
+                  subTitle: 'Метро, район, адрес, шоссе, ЖК',
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+`home\home_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/widgets/sheets/region_bottom_sheet.dart';
+
+@RoutePage()
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoTabsRouter.tabBar(
+      routes: const [ApartamentsTab(), NeighboursTab(), CoworkingTab()],
+      builder: (context, child, tabController) {
+        return NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => [
+            SliverAppBar(
+              // pinned: false,
+              floating: true,
+              centerTitle: true,
+              title: GestureDetector(
+                onTap: () => showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (context) => const RegionBottomSheet(),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(context.l10n.searchRegion, style: context.typography.headline2),
+                    const SizedBox(height: S.p4),
+                    Text('Омская область', style: context.typography.headline1),
+                  ],
+                ),
+              ),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(S.p70),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: S.p16, vertical: S.p12),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(S.p32),
+                      color: context.colors.white,
+                      border: Border.all(color: context.colors.input200, width: S.p2),
+                    ),
+                    child: TabBar(
+                      controller: tabController,
+                      tabs: [
+                        Tab(text: context.l10n.apartments),
+                        Tab(text: context.l10n.neighbours),
+                        Tab(text: context.l10n.coworking),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+          body: child,
+        );
+      },
+    );
+  }
+}
+
+```
+
+`home\tabs\apartments_tab.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/widgets/sheets/district_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/sheets/rent_duration_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/sheets/sort_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class ApartamentsTab extends StatelessWidget {
+  const ApartamentsTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverPadding(
+          padding: const P(top: S.p4, horizontal: S.p16),
+          sliver: SliverToBoxAdapter(
+            child: SizedBox(
+              height: S.p48,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const P(vertical: S.p4, horizontal: S.p8),
+                children: [
+                  FilterCard(
+                    leading: const AppIcon(AppIcons.filter2, width: S.p24),
+                    title: context.l10n.filters,
+                    onTap: () => context.pushRoute(const FiltersWrapper()),
+                  ),
+                  //TODO: INFO: showModalBottomSheet умеет сам просчитывать дочерние размеры и можно не использовать DraggableScrollableSheet,  ГЛАВНОЕ: использовать isScrollControlled: true (ну он по умолчанию true)
+                  FilterCard(
+                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24),
+                    title: context.l10n.term,
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => const RentDurationBottomSheet(),
+                    ),
+                  ),
+                  FilterCard(
+                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24),
+                    title: context.l10n.district,
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => const DistrictBottomSheet(),
+                    ),
+                  ),
+                ].separated(const SizedBox(width: S.p12)),
+              ),
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: const P(horizontal: S.p16, vertical: S.p12),
+          sliver: SliverToBoxAdapter(
+            child: Padding(
+              padding: const P(horizontal: S.p8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("${context.l10n.optionsFound} ${82}", style: context.typography.bodyTitle),
+                  GestureDetector(
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => SortBottomSheet(),
+                    ),
+                    child: const AppIcon(AppIcons.sort, width: S.p32),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SliverList.separated(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return const ApartmentCard();
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: S.p12);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+```
+
+`home\tabs\coworking_tab.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
+class CoworkingTab extends StatelessWidget {
+  const CoworkingTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+```
+
+`home\tabs\neighbours_tab.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/sheets/sort_bottom_sheet.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class NeighboursTab extends StatelessWidget {
+  const NeighboursTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverPadding(
+          padding: const P(horizontal: S.p16, vertical: S.p12),
+          sliver: SliverToBoxAdapter(
+            child: Padding(
+              padding: const P(horizontal: S.p8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("${context.l10n.optionsFound} ${82}", style: context.typography.bodyTitle),
+                  GestureDetector(
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => SortBottomSheet(),
+                    ),
+                    child: const AppIcon(AppIcons.sort, width: S.p32),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: const P(horizontal: S.p16),
+          sliver: SliverList.separated(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return NeighbourCard(onTap: () => context.router.push(const AboutGroupRoute()));
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: S.p12);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+```
+
+`location_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/annotations.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
+  @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+  late final TextEditingController _searchController;
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AB(title: Text(context.l10n.location), centerTitle: false, pinned: true),
+          PinnedHeaderSliver(
+            child: ColoredBox(
+              color: context.colors.white,
+              child: Padding(
+                padding: const P(horizontal: S.p16, bottom: S.p12),
+                child: InputWidget(
+                  controller: _searchController,
+                  prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
+                  hintText: context.l10n.search,
+                ),
+              ),
+            ),
+          ),
+          SliverList.separated(
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const P(horizontal: S.p12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: P(all: S.p10),
+                      child: AppIcon(AppIcons.street),
+                    ),
+                    const SizedBox(width: S.p12),
+                    Expanded(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: context.colors.stroke300)),
+                        ),
+                        child: Padding(
+                          padding: const P(bottom: S.p12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("метро Ухтомская", style: context.typography.bodyDescription),
+                              const SizedBox(height: S.p8),
+                              Text(
+                                "Люберцы, Люберцы (городской округ), Московская область, Москва и МО",
+                                style: context.typography.bodySmall.copyWith(color: context.colors.text400),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(height: S.p12),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+`profile_data_edit_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class ProfileDataEditScreen extends StatefulWidget {
+  const ProfileDataEditScreen({super.key});
+
+  @override
+  State<ProfileDataEditScreen> createState() => _ProfileDataEditScreenState();
+}
+
+class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
+  late final TextEditingController _nameController;
+  late final TextEditingController _ageController;
+
+  late final TextEditingController _genderController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+    _ageController = TextEditingController();
+    _genderController = TextEditingController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            AB(
+              title: Text(
+                context.l10n.updateData,
+                style: context.typography.headline1.copyWith(fontWeight: FontWeight.w500),
+              ),
+              centerTitle: false,
+            ),
+            SliverPadding(
+              padding: const P(vertical: S.p24),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Padding(
+                      padding: P(horizontal: S.p12, vertical: S.p4),
+                      child: CircleAvatar(radius: S.p50),
+                    ),
+                    const SizedBox(height: S.p12),
+                    Text(
+                      context.l10n.editPhoto,
+                      style: context.typography.bodyDescription.copyWith(color: context.colors.orange100),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverPadding(
+              padding: const P(horizontal: S.p16),
+              sliver: SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const P(horizontal: S.p8, vertical: S.p12),
+                      child: Text(
+                        context.l10n.whatUname,
+                        style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                      ),
+                    ),
+                    InputWidget(controller: _nameController),
+                    const SizedBox(height: S.p12),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const P(horizontal: S.p8, vertical: S.p12),
+                                  child: Text(
+                                    context.l10n.age,
+                                    style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                                  ),
+                                ),
+                                InputWidget(controller: _ageController),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: S.p12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const P(horizontal: S.p8, vertical: S.p12),
+                                  child: Text(
+                                    context.l10n.gender,
+                                    style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                                  ),
+                                ),
+                                InputWidget(controller: _genderController),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                    PrimaryButton(titleText: Text(context.l10n.save), onPressed: () {}),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+`profile_edit_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart' hide BottomSheet;
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class ProfileEditScreen extends StatelessWidget {
+  const ProfileEditScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AB(title: Text(context.l10n.profile, style: context.typography.headline1), centerTitle: false),
+          SliverPadding(
+            padding: const P(horizontal: S.p16, vertical: S.p24),
+            sliver: SliverToBoxAdapter(
+              child: Padding(
+                padding: const P(right: S.p12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Padding(
+                      padding: P(vertical: S.p4, horizontal: S.p12),
+                      child: CircleAvatar(radius: S.p26),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Сергей Иванов', style: context.typography.bodyTitle),
+                          const SizedBox(height: S.p8),
+                          Text(
+                            '+7 913 123 12 34',
+                            style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: S.p4),
+                    InkWell(
+                      onTap: () => context.pushRoute(const ProfileDataEditRoute()),
+                      child: Padding(
+                        padding: const P(all: S.p4),
+                        child: AppIcon(AppIcons.edit, color: context.colors.orange100),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const P(horizontal: S.p16),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
+                    child: Text(context.l10n.basicSection, style: context.typography.headline2),
+                  ),
+                  ProfileListItem(
+                    iconPath: AppIcons.flash,
+                    title: context.l10n.traitSociability,
+                    value: 'Амбиверт',
+
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      useRootNavigator: true,
+                      builder: (context) {
+                        return const TraitBottomSheet();
+                      },
+                    ),
+                  ),
+                  ProfileListItem(
+                    iconPath: AppIcons.drink,
+                    title: context.l10n.traitBadHabits,
+                    value: 'Не выбраны',
+                    onTap: () {},
+                  ),
+                  ProfileListItem(
+                    iconPath: AppIcons.people,
+                    title: context.l10n.traitGuestFrequency,
+                    value: 'Иногда',
+                    onTap: () {},
+                  ),
+                  ProfileListItem(
+                    iconPath: AppIcons.sleep,
+                    title: context.l10n.traitSleepMode,
+                    value: 'Жаворонок',
+                    onTap: () {},
+                  ),
+                  ProfileListItem(
+                    iconPath: AppIcons.animal,
+                    title: context.l10n.traitPetAttitude,
+                    value: 'Положительно',
+                    onTap: () {},
+                  ),
+                ].separated(const SizedBox(height: S.p8)),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const P(horizontal: S.p16, vertical: S.p24),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
+                    child: Text(context.l10n.roommateSearchSection, style: context.typography.headline2),
+                  ),
+                  ProfileListItem(
+                    iconPath: AppIcons.male,
+                    title: context.l10n.traitGender,
+                    value: 'Не выбран',
+                    onTap: () {},
+                  ),
+                  ProfileListItem(
+                    iconPath: AppIcons.cake,
+                    title: context.l10n.traitAge,
+                    value: 'Не выбраны',
+                    onTap: () {},
+                  ),
+                ].separated(const SizedBox(height: S.p8)),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+`profile_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AB(title: Text(context.l10n.profile, style: context.typography.headline1), centerTitle: true, canPop: false),
+          SliverPadding(
+            padding: const P(vertical: S.p24),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: P(horizontal: S.p12, vertical: S.p4),
+                    child: CircleAvatar(radius: S.p50),
+                  ),
+                  const SizedBox(height: S.p12),
+                  Text('Сергей Иванов', style: context.typography.bodyTitle),
+                  const SizedBox(height: S.p8),
+                  Text(
+                    '+7 913 123 12 34',
+                    style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const P(horizontal: S.p16),
+            sliver: SliverToBoxAdapter(
+              child: DecoratedBox(
+                decoration: BoxDecoration(color: context.colors.light100, borderRadius: BorderRadius.circular(S.p32)),
+                child: Padding(
+                  padding: const P(vertical: S.p24),
+                  child: Column(
+                    children: [
+                      ProfileMenuItem(
+                        iconPath: AppIcons.personSettings,
+                        title: context.l10n.profile,
+                        subtitle: context.l10n.profile_subtitle,
+                        onTap: () => context.pushRoute(const ProfileEditRoute()),
+                      ),
+                      ProfileMenuItem(
+                        iconPath: AppIcons.shield,
+                        title: context.l10n.verification,
+                        subtitle: context.l10n.verification_subtitle,
+                        onTap: () {},
+                      ),
+                      ProfileMenuItem(
+                        iconPath: AppIcons.settings,
+                        title: context.l10n.settings,
+                        subtitle: context.l10n.settings_subtitle,
+                        onTap: () {},
+                      ),
+                      ProfileMenuItem(
+                        iconPath: AppIcons.help,
+                        title: context.l10n.support,
+                        subtitle: context.l10n.support_subtitle,
+                        onTap: () {},
+                      ),
+                    ].separated(const SizedBox(height: S.p24)),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+`quiz_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:roomate/domain/models/quiz_step_model.dart';
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/l10n/app_localizations.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+import 'package:roomate/state/quiz_bloc/quiz_bloc.dart';
+
+@RoutePage()
+class QuizScreen extends StatelessWidget {
+  const QuizScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(create: (context) => QuizBloc(), child: _QuizContent());
+  }
+}
+
+class _QuizContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final steps = [
+      QuizStepModel(
+        question: l10n.quiz_q1_title,
+        subQuestion: l10n.quiz_q1_subtitle,
+        options: [l10n.quiz_q1_opt1, l10n.quiz_q1_opt2, l10n.quiz_q1_opt3],
+      ),
+      QuizStepModel(
+        question: l10n.quiz_q2_title,
+        subQuestion: l10n.quiz_q2_subtitle,
+        options: [l10n.quiz_q2_opt1, l10n.quiz_q2_opt2],
+      ),
+    ];
+
+    return BlocConsumer<QuizBloc, QuizState>(
+      listenWhen: (prev, curr) => prev.status != curr.status,
+      listener: (context, state) {
+        if (state.status == QuizStatus.completed) {
+          //TODO: Потом добавить логику
+        }
+      },
+      builder: (context, state) {
+        final isFirstStep = state.currentIndex == 0;
+        return PopScope(
+          canPop: isFirstStep,
+          onPopInvokedWithResult: (didPop, result) {
+            if (didPop) return;
+            context.read<QuizBloc>().add(const QuizEvent.stepBack());
+          },
+          child: Scaffold(
+            body: Background(
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const P(horizontal: S.p4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          BB(
+                            color: context.colors.white,
+                            onPressed: () {
+                              if (state.currentIndex > 0) {
+                                context.read<QuizBloc>().add(const QuizEvent.stepBack());
+                              } else {
+                                context.pop();
+                              }
+                            },
+                          ),
+                          IconButton(
+                            onPressed: () => context.replaceRoute(const NavBarRoute()),
+                            icon: const AppIcon(AppIcons.xBig, width: S.p32),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const P(bottom: S.p325),
+                        child: Center(
+                          child: state.currentIndex >= steps.length
+                              ? const SizedBox()
+                              : buildContent(context, state, steps[state.currentIndex], steps.length),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Padding buildContent(BuildContext context, QuizState state, QuizStepModel currentStep, int totalSteps) {
+    return Padding(
+      padding: const P(horizontal: S.p12, vertical: S.p24),
+      child: DecoratedBox(
+        decoration: BoxDecoration(color: context.colors.white, borderRadius: BorderRadius.circular(S.p32)),
+        child: Padding(
+          padding: const P(horizontal: S.p12, bottom: S.p12, top: S.p24),
+          child: AnimatedSize(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.ease,
+            alignment: Alignment.topCenter,
+
+            //alignment: Alignment.center,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 400),
+              switchInCurve: Curves.easeInOutCubic,
+              switchOutCurve: Curves.easeInOutCubic,
+
+              layoutBuilder: (currentChild, previousChildren) {
+                return Stack(
+                  alignment: Alignment.topCenter,
+                  children: [...previousChildren, if (currentChild != null) currentChild],
+                );
+              },
+
+              transitionBuilder: (child, animation) {
+                final offsetAnimation = Tween<Offset>(
+                  begin: const Offset(0.0, 0.1),
+                  end: Offset.zero,
+                ).animate(animation);
+
+                final fadeAnimation = Tween<double>(
+                  begin: 0.0,
+                  end: 1.0,
+                ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut));
+                return FadeTransition(
+                  opacity: fadeAnimation,
+                  child: SlideTransition(position: offsetAnimation, child: child),
+                );
+              },
+
+              child: Column(
+                key: ValueKey<int>(state.currentIndex),
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const P(vertical: S.p12),
+                    child: Column(
+                      children: [
+                        Text(currentStep.question, style: context.typography.headline0, textAlign: TextAlign.center),
+                        const SizedBox(height: S.p16),
+                        Text(
+                          currentStep.subQuestion,
+                          style: context.typography.headline2.copyWith(color: context.colors.text700),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: S.p16),
+                  ...currentStep.options.asMap().entries.map((entry) {
+                    final int index = entry.key;
+                    final String optionText = entry.value;
+                    final bool isLast = index == currentStep.options.length - 1;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: S.p12),
+                      child: PrimaryButton.filled(
+                        onPressed: !isLast
+                            ? () => context.read<QuizBloc>().add(
+                                QuizEvent.optionSelected(answer: optionText, totalSteps: totalSteps),
+                              )
+                            : () => context.replaceRoute(const NavBarRoute()),
+                        color: isLast ? context.colors.light100 : context.colors.orange20,
+                        titleText: Text(
+                          optionText,
+                          style: context.typography.activesButton.copyWith(
+                            color: isLast ? context.colors.text400 : context.colors.orange,
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+`reg_number_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class RegNumberScreen extends StatefulWidget {
+  const RegNumberScreen({super.key});
+
+  @override
+  State<RegNumberScreen> createState() => _RegNumberScreenState();
+}
+
+class _RegNumberScreenState extends State<RegNumberScreen> {
+  late TextEditingController _controller;
+  //TODO: УБрать мок данные
+  final List<String> _countryCodes = ['+7', '+1', '+44', '+49', '+33', '+86', '+91'];
+  final String _selectedCountryCode = '+7';
+
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            AB(title: Text(context.l10n.register), centerTitle: false),
+            SliverFillRemaining(
+              child: Padding(
+                padding: const P(horizontal: S.p16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const P(vertical: S.p28),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(context.l10n.enterYourPhoneNumber, style: context.typography.headline1),
+                          const SizedBox(height: S.p8),
+                          Text(
+                            context.l10n.descriptionSMSCode1,
+                            style: context.typography.headline2.copyWith(color: context.colors.text400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: S.p10),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CountryCodeDropdown(
+                          countryCodes: _countryCodes,
+                          selectedCode: _selectedCountryCode,
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(width: S.p12),
+
+                        Expanded(
+                          child: InputWidget(
+                            hintText: context.l10n.enterPhoneNumber,
+                            controller: _controller,
+                            keyboardType: TextInputType.phone,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    PrimaryButton(
+                      titleText: Text(context.l10n.next),
+                      onPressed: () => context.router.push(const SmsCodeRoute()),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+`sms_code_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/constants/spacing.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class SmsCodeScreen extends StatefulWidget {
+  const SmsCodeScreen({super.key});
+
+  @override
+  State<SmsCodeScreen> createState() => _SmsCodeScreenState();
+}
+
+class _SmsCodeScreenState extends State<SmsCodeScreen> {
+  final List<TextEditingController> _controllers = List.generate(4, (_) => TextEditingController());
+  final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
+
+  @override
+  void dispose() {
+    for (final c in _controllers) {
+      c.dispose();
+    }
+    for (final f in _focusNodes) {
+      f.dispose();
+    }
+    super.dispose();
+  }
+
+  void _onChanged(String value, int index) {
+    if (value.isNotEmpty && index < _focusNodes.length - 1) {
+      _focusNodes[index + 1].requestFocus();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            AB(title: Text(context.l10n.confirmation), centerTitle: false),
+            SliverFillRemaining(
+              child: Padding(
+                padding: const P(horizontal: S.p16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const P(vertical: S.p28),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(context.l10n.enterSMSCode, style: context.typography.headline1),
+                          const SizedBox(height: S.p8),
+                          Text(
+                            context.l10n.descriptionSMSCode2,
+                            style: context.typography.headline2.copyWith(color: context.colors.text400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: S.p10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(4, (index) {
+                        return SizedBox(
+                          width: S.p56,
+                          height: S.p56,
+                          child: KeyboardListener(
+                            focusNode: FocusNode(), // отдельный listener
+                            onKeyEvent: (KeyEvent event) {
+                              if (event is KeyDownEvent &&
+                                  event.logicalKey == LogicalKeyboardKey.backspace &&
+                                  _controllers[index].text.isEmpty &&
+                                  index > 0) {
+                                _focusNodes[index - 1].requestFocus();
+                              }
+                            },
+                            child: TextField(
+                              style: context.typography.activesCodeNumber,
+                              decoration: InputDecoration(
+                                fillColor: context.colors.white,
+                                filled: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(S.p16),
+                                  borderSide: BorderSide(width: S.p1, color: context.colors.stroke300),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(S.p16),
+                                  borderSide: BorderSide(width: S.p1, color: context.colors.orange),
+                                ),
+                              ),
+                              maxLength: 1,
+                              buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              controller: _controllers[index],
+                              focusNode: _focusNodes[index],
+                              onChanged: (val) => _onChanged(val, index),
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                            ),
+                          ),
+                        );
+                      }).separated(const SizedBox(width: S.p16)),
+                    ),
+                    const SizedBox(height: S.p24),
+                    Padding(
+                      padding: const P(all: S.p12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(context.l10n.didntReceiveTheCode, style: context.typography.activesLabel),
+                          const SizedBox(width: S.p4),
+                          GestureDetector(
+                            onTap: () {
+                              // TODO: добавить логику повторной отправки
+                            },
+                            child: Text(
+                              context.l10n.sendAgain,
+                              style: context.typography.activesLabel.copyWith(
+                                color: context.colors.orange,
+                                decoration: TextDecoration.underline,
+                                decorationColor: context.colors.orange,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                    PrimaryButton(
+                      titleText: Text(context.l10n.next),
+                      onPressed: () => context.pushRoute(const QuizRoute()),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+`welcome_screen.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
+
+@RoutePage()
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Background(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const P(horizontal: S.p4),
+                  child: IconButton(
+                    onPressed: () => context.replaceRoute(const NavBarRoute()),
+                    icon: const AppIcon(AppIcons.xBig, width: S.p32),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const P(horizontal: S.p16, bottom: S.p44),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const P(horizontal: S.p16, vertical: S.p12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              context.l10n.aboutServiceTitle,
+                              style: context.typography.headline0.copyWith(color: context.colors.white),
+                            ),
+                            const SizedBox(height: S.p16),
+                            Text(
+                              context.l10n.aboutServiceDescription,
+                              style: context.typography.headline1.copyWith(
+                                color: context.colors.white.withValues(alpha: 0.59),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const P(vertical: S.p40),
+                        child: Column(
+                          children: [
+                            PrimaryButton.filled(
+                              titleText: Text(context.l10n.loginByphoneNumber),
+                              color: context.colors.white10,
+                              onPressed: () => context.router.push(const RegNumberRoute()),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: S.p40,
+                                  child: Divider(color: context.colors.white, thickness: S.p1),
+                                ),
+                                Text(
+                                  context.l10n.loginViaSocialNetworks,
+                                  style: context.typography.activesLabel.copyWith(color: context.colors.input200),
+                                ),
+                                SizedBox(
+                                  width: S.p40,
+                                  child: Divider(color: context.colors.white, thickness: S.p1),
+                                ),
+                              ].separated(const SizedBox(width: S.p10)),
+                            ),
+                            Material(
+                              color: Colors.transparent,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SocialButton(onPressed: () {}, iconPath: AppIcons.vk),
+                                  SocialButton(onPressed: () {}, iconPath: AppIcons.gos),
+                                  SocialButton(onPressed: () {}, iconPath: AppIcons.sber),
+                                  SocialButton(onPressed: () {}, iconPath: AppIcons.yandex),
+                                ].separated(const SizedBox(width: S.p16)),
+                              ),
+                            ),
+                          ].separated(const SizedBox(height: S.p16)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+```

@@ -333,6 +333,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get about => 'О приложении';
 
   @override
+  String get hintMessage => 'Сообщение..';
+
+  @override
   String get language => 'Язык';
 
   @override

@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/b_b.dart';
 import 'package:roomate/presentation/widgets/message_cloud.dart';
 
 @RoutePage()
@@ -121,9 +122,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         onChanged: (_) {
                           _measureComposerHeight(innerContext);
                         },
-                        decoration: const InputDecoration(
-                          hintText: 'Сообщение..',
-                          contentPadding: P(horizontal: S.p16, vertical: S.p10),
+                        decoration: InputDecoration(
+                          hintText: context.l10n.hintMessage,
+                          contentPadding: const P(horizontal: S.p16, vertical: S.p10),
                         ),
                       ),
                     ),
@@ -140,28 +141,26 @@ class _ChatScreenState extends State<ChatScreen> {
       },
     );
 
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 0, // Ключ к позиционированию внизу
-      child: Material(child: composerContent),
-    );
+    return Positioned(left: S.p0, right: S.p0, bottom: S.p0, child: composerContent);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.light100,
-      body: Padding(
-        padding: const P(top: S.p44),
-        child: Chat(
-          builders: Builders(textMessageBuilder: buildCustomTextMessage, composerBuilder: _buildCustomComposer),
-          currentUserId: 'user1',
-          resolveUser: (UserID id) async {
-            return User(id: id, name: 'John Doe $id');
-          },
-          chatController: _chatController,
-        ),
+      appBar: AppBar(
+        title: const Text("dasads"),
+        leading: const BB(),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+      ),
+      body: Chat(
+        builders: Builders(textMessageBuilder: buildCustomTextMessage, composerBuilder: _buildCustomComposer),
+        currentUserId: 'user1',
+        resolveUser: (UserID id) async {
+          return User(id: id, name: 'John Doe $id');
+        },
+        chatController: _chatController,
       ),
     );
   }
