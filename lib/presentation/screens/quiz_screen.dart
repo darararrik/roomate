@@ -120,10 +120,7 @@ class _QuizContent extends StatelessWidget {
               switchOutCurve: Curves.easeInOutCubic,
 
               layoutBuilder: (currentChild, previousChildren) {
-                return Stack(
-                  alignment: Alignment.topCenter,
-                  children: [...previousChildren, if (currentChild != null) currentChild],
-                );
+                return Stack(alignment: Alignment.topCenter, children: [...previousChildren, ?currentChild]);
               },
 
               transitionBuilder: (child, animation) {
