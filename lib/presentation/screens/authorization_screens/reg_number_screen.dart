@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:auto_route/auto_route.dart';
+
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
@@ -76,9 +78,7 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
                           decoration: BoxDecoration(
                             color: context.colors.input200,
                             borderRadius: BorderRadius.circular(S.p16),
-                            border: Border.all(
-                              color: Colors.grey.withValues(alpha: 0.2),
-                            ),
+                            border: Border.all(color: context.colors.stroke300),
                           ),
                           child: Padding(
                             padding: const P(

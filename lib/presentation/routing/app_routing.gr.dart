@@ -16,6 +16,14 @@ import 'package:roomate/presentation/routing/wrappers/auth_wrapper.dart' as _i7;
 import 'package:roomate/presentation/routing/wrappers/filters_wrapper.dart'
     as _i15;
 import 'package:roomate/presentation/screens/about_group_screen.dart' as _i1;
+import 'package:roomate/presentation/screens/authorization_screens/quiz_screen.dart'
+    as _i23;
+import 'package:roomate/presentation/screens/authorization_screens/reg_number_screen.dart'
+    as _i24;
+import 'package:roomate/presentation/screens/authorization_screens/sms_code_screen.dart'
+    as _i25;
+import 'package:roomate/presentation/screens/authorization_screens/welcome_screen.dart'
+    as _i26;
 import 'package:roomate/presentation/screens/chats/chat_screen.dart' as _i8;
 import 'package:roomate/presentation/screens/chats/chats_screen.dart' as _i9;
 import 'package:roomate/presentation/screens/create_screen.dart' as _i11;
@@ -35,10 +43,6 @@ import 'package:roomate/presentation/screens/profile_data_edit_screen.dart'
     as _i20;
 import 'package:roomate/presentation/screens/profile_edit_screen.dart' as _i21;
 import 'package:roomate/presentation/screens/profile_screen.dart' as _i22;
-import 'package:roomate/presentation/screens/quiz_screen.dart' as _i23;
-import 'package:roomate/presentation/screens/reg_number_screen.dart' as _i24;
-import 'package:roomate/presentation/screens/sms_code_screen.dart' as _i25;
-import 'package:roomate/presentation/screens/welcome_screen.dart' as _i26;
 import 'package:roomate/presentation/widgets/auth_edit_first_page.dart' as _i3;
 import 'package:roomate/presentation/widgets/auth_edit_second_page.dart' as _i5;
 import 'package:roomate/presentation/widgets/auth_edit_third_page.dart' as _i6;

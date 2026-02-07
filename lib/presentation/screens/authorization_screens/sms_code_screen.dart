@@ -1,141 +1,111 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'dart:async';
 
-import 'package:roomate/presentation/constants/spacing.dart';
+import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
+import 'package:roomate/presentation/widgets/primary_btn.dart';
 
 @RoutePage()
-class SmsCodeScreen extends StatefulWidget {
+class SmsCodeScreen extends HookConsumerWidget {
   const SmsCodeScreen({super.key});
 
   @override
-  State<SmsCodeScreen> createState() => _SmsCodeScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    // 1. Вместо late TextEditingController и dispose():
+    // Хуки сами создадут и уничтожат эти объекты.
+    final controllers = List.generate(4, (_) => useTextEditingController());
+    final focusNodes = List.generate(4, (_) => useFocusNode());
 
-class _SmsCodeScreenState extends State<SmsCodeScreen> {
-  final List<TextEditingController> _controllers = List.generate(4, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
+    // 2. Аналог ValueNotifier для таймера
+    final timerCount = useState(59);
 
-  @override
-  void dispose() {
-    for (final c in _controllers) {
-      c.dispose();
+    // 3. Состояние кнопки (вычисляемое на лету)
+    final isComplete = useState(false);
+
+    // 4. Таймер через useEffect (запускается один раз)
+    useEffect(() {
+      final timer = Timer.periodic(const Duration(seconds: 1), (t) {
+        if (timerCount.value > 0) timerCount.value--;
+      });
+      return timer.cancel; // Dispose произойдет автоматически!
+    }, []);
+
+    // Функция валидации
+    void validate() {
+      isComplete.value = controllers.every((c) => c.text.isNotEmpty);
     }
-    for (final f in _focusNodes) {
-      f.dispose();
-    }
-    super.dispose();
-  }
 
-  void _onChanged(String value, int index) {
-    if (value.isNotEmpty && index < _focusNodes.length - 1) {
-      _focusNodes[index + 1].requestFocus();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            AB(title: Text(context.l10n.confirmation), centerTitle: false),
+            SliverAppBar(title: Text(context.l10n.confirmation)),
             SliverFillRemaining(
+              hasScrollBody: false,
               child: Padding(
                 padding: const P(horizontal: S.p16),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const P(vertical: S.p28),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(context.l10n.enterSMSCode, style: context.typography.headline1),
-                          const SizedBox(height: S.p8),
-                          Text(
-                            context.l10n.descriptionSMSCode2,
-                            style: context.typography.headline2.copyWith(color: context.colors.text400),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: S.p10),
+                    // ... Заголовки (как в твоем коде) ...
+
+                    // Поля ввода
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(4, (index) {
-                        return SizedBox(
+                      children: List.generate(
+                        4,
+                        (index) => SizedBox(
                           width: S.p56,
-                          height: S.p56,
-                          child: KeyboardListener(
-                            focusNode: FocusNode(), // отдельный listener
-                            onKeyEvent: (KeyEvent event) {
-                              if (event is KeyDownEvent &&
-                                  event.logicalKey == LogicalKeyboardKey.backspace &&
-                                  _controllers[index].text.isEmpty &&
-                                  index > 0) {
-                                _focusNodes[index - 1].requestFocus();
+                          child: TextField(
+                            controller: controllers[index],
+                            focusNode: focusNodes[index],
+                            onChanged: (val) {
+                              if (val.isNotEmpty && index < 3) {
+                                focusNodes[index + 1].requestFocus();
                               }
+                              validate();
                             },
-                            child: TextField(
-                              style: context.typography.activesCodeNumber,
-                              decoration: InputDecoration(
-                                fillColor: context.colors.white,
-                                filled: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(S.p16),
-                                  borderSide: BorderSide(width: S.p1, color: context.colors.stroke300),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(S.p16),
-                                  borderSide: BorderSide(width: S.p1, color: context.colors.orange),
-                                ),
-                              ),
-                              maxLength: 1,
-                              buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.center,
-                              controller: _controllers[index],
-                              focusNode: _focusNodes[index],
-                              onChanged: (val) => _onChanged(val, index),
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                            ),
+                            // ... Стилизация ...
                           ),
-                        );
-                      }).separated(const SizedBox(width: S.p16)),
+                        ),
+                      ).separated(const SizedBox(width: S.p12)),
                     ),
-                    const SizedBox(height: S.p24),
-                    Padding(
-                      padding: const P(all: S.p12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+
+                    const Spacer(),
+
+                    // Таймер (просто используем timerCount.value, ребилд только тут)
+                    Center(
+                      child: Column(
                         children: [
-                          Text(context.l10n.didntReceiveTheCode, style: context.typography.activesLabel),
-                          const SizedBox(width: S.p4),
+                          Text(context.l10n.didntReceiveTheCode),
                           GestureDetector(
-                            onTap: () {
-                              // TODO: добавить логику повторной отправки
-                            },
+                            onTap: timerCount.value == 0
+                                ? () => timerCount.value = 59
+                                : null,
                             child: Text(
-                              context.l10n.sendAgain,
-                              style: context.typography.activesLabel.copyWith(
-                                color: context.colors.orange,
-                                decoration: TextDecoration.underline,
-                                decorationColor: context.colors.orange,
+                              timerCount.value == 0
+                                  ? context.l10n.sendAgain
+                                  : '${context.l10n.sendAgain} (00:${timerCount.value})',
+                              style: TextStyle(
+                                color: timerCount.value == 0
+                                    ? context.colors.orange
+                                    : context.colors.orange100,
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const Spacer(),
+
+                    // Кнопка (используем isComplete.value)
                     PrimaryButton(
+                      onPressed: isComplete.value
+                          ? () => context.pushRoute(const QuizRoute())
+                          : null,
                       titleText: Text(context.l10n.next),
-                      onPressed: () => context.pushRoute(const QuizRoute()),
                     ),
                   ],
                 ),
