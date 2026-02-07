@@ -9,6 +9,15 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
+  String get ru => 'Русский';
+
+  @override
+  String get ru_number => '+7';
+
+  @override
+  String get phone_placeholder => '(900) 000-00-00';
+
+  @override
   String get main => 'Главная';
 
   @override
@@ -94,7 +103,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get enterYourPhoneNumber => 'Введите номер телефона';
 
   @override
-  String get descriptionSMSCode1 => 'На ваш номер придет смс с кодом';
+  String get descriptionSMSCode => 'Мы отправим код подтверждения';
 
   @override
   String get enterPhoneNumber => 'Введите номер';

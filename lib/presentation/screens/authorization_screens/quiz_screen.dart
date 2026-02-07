@@ -68,15 +68,18 @@ class _QuizContent extends StatelessWidget {
                             color: context.colors.white,
                             onPressed: () {
                               if (state.currentIndex > 0) {
-                                context.read<QuizBloc>().add(const QuizEvent.stepBack());
+                                context.read<QuizBloc>().add(
+                                  const QuizEvent.stepBack(),
+                                );
                               } else {
                                 context.pop();
                               }
                             },
                           ),
                           IconButton(
-                            onPressed: () => context.replaceRoute(const NavBarRoute()),
-                            icon: const AppIcon(AppIcons.xBig, width: S.p32),
+                            onPressed: () =>
+                                context.replaceRoute(const NavBarRoute()),
+                            icon: const AppIcon(AppIcons.xBig, size: S.p32),
                           ),
                         ],
                       ),
@@ -87,7 +90,12 @@ class _QuizContent extends StatelessWidget {
                         child: Center(
                           child: state.currentIndex >= steps.length
                               ? const SizedBox()
-                              : buildContent(context, state, steps[state.currentIndex], steps.length),
+                              : buildContent(
+                                  context,
+                                  state,
+                                  steps[state.currentIndex],
+                                  steps.length,
+                                ),
                         ),
                       ),
                     ),
@@ -101,11 +109,19 @@ class _QuizContent extends StatelessWidget {
     );
   }
 
-  Padding buildContent(BuildContext context, QuizState state, QuizStepModel currentStep, int totalSteps) {
+  Padding buildContent(
+    BuildContext context,
+    QuizState state,
+    QuizStepModel currentStep,
+    int totalSteps,
+  ) {
     return Padding(
       padding: const P(horizontal: S.p12, vertical: S.p24),
       child: DecoratedBox(
-        decoration: BoxDecoration(color: context.colors.white, borderRadius: BorderRadius.circular(S.p32)),
+        decoration: BoxDecoration(
+          color: context.colors.white,
+          borderRadius: BorderRadius.circular(S.p32),
+        ),
         child: Padding(
           padding: const P(horizontal: S.p12, bottom: S.p12, top: S.p24),
           child: AnimatedSize(
@@ -120,7 +136,10 @@ class _QuizContent extends StatelessWidget {
               switchOutCurve: Curves.easeInOutCubic,
 
               layoutBuilder: (currentChild, previousChildren) {
-                return Stack(alignment: Alignment.topCenter, children: [...previousChildren, ?currentChild]);
+                return Stack(
+                  alignment: Alignment.topCenter,
+                  children: [...previousChildren, ?currentChild],
+                );
               },
 
               transitionBuilder: (child, animation) {
@@ -129,13 +148,19 @@ class _QuizContent extends StatelessWidget {
                   end: Offset.zero,
                 ).animate(animation);
 
-                final fadeAnimation = Tween<double>(
-                  begin: 0.0,
-                  end: 1.0,
-                ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut));
+                final fadeAnimation = Tween<double>(begin: 0.0, end: 1.0)
+                    .animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeInOut,
+                      ),
+                    );
                 return FadeTransition(
                   opacity: fadeAnimation,
-                  child: SlideTransition(position: offsetAnimation, child: child),
+                  child: SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  ),
                 );
               },
 
@@ -148,11 +173,17 @@ class _QuizContent extends StatelessWidget {
                     padding: const P(vertical: S.p12),
                     child: Column(
                       children: [
-                        Text(currentStep.question, style: context.typography.headline0, textAlign: TextAlign.center),
+                        Text(
+                          currentStep.question,
+                          style: context.typography.headline0,
+                          textAlign: TextAlign.center,
+                        ),
                         const SizedBox(height: S.p16),
                         Text(
                           currentStep.subQuestion,
-                          style: context.typography.headline2.copyWith(color: context.colors.text700),
+                          style: context.typography.headline2.copyWith(
+                            color: context.colors.text700,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -168,14 +199,21 @@ class _QuizContent extends StatelessWidget {
                       child: PrimaryButton.filled(
                         onPressed: !isLast
                             ? () => context.read<QuizBloc>().add(
-                                QuizEvent.optionSelected(answer: optionText, totalSteps: totalSteps),
+                                QuizEvent.optionSelected(
+                                  answer: optionText,
+                                  totalSteps: totalSteps,
+                                ),
                               )
                             : () => context.replaceRoute(const NavBarRoute()),
-                        color: isLast ? context.colors.light100 : context.colors.orange20,
+                        color: isLast
+                            ? context.colors.light100
+                            : context.colors.orange20,
                         titleText: Text(
                           optionText,
                           style: context.typography.activesButton.copyWith(
-                            color: isLast ? context.colors.text400 : context.colors.orange,
+                            color: isLast
+                                ? context.colors.text400
+                                : context.colors.orange,
                           ),
                         ),
                       ),

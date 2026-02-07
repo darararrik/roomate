@@ -11,7 +11,11 @@ part 'app_colors.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(overlayColor: WidgetStateColor.fromMap({WidgetState.pressed: _appColors.light100})),
+      style: ButtonStyle(
+        overlayColor: WidgetStateColor.fromMap({
+          WidgetState.pressed: _appColors.light100,
+        }),
+      ),
     ),
     colorScheme: ColorScheme.fromSeed(seedColor: _appColors.white),
 
@@ -31,7 +35,11 @@ class AppTheme {
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
     scaffoldBackgroundColor: _appColors.white,
     dividerColor: _appColors.stroke300,
-    dividerTheme: DividerThemeData(thickness: S.p1, space: S.p1, color: _appColors.stroke300),
+    dividerTheme: DividerThemeData(
+      thickness: S.p1,
+      space: S.p1,
+      color: _appColors.stroke300,
+    ),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: _appColors.white),
     appBarTheme: AppBarTheme(
       surfaceTintColor: _appColors.white,
@@ -62,20 +70,34 @@ class AppTheme {
       unselectedLabelColor: _appColors.black,
       labelStyle: _appTextStyle.inputTextRegular,
       unselectedLabelStyle: _appTextStyle.inputTextRegular,
-      indicator: BoxDecoration(color: _appColors.light100, borderRadius: BorderRadius.circular(S.p20)),
+      indicator: BoxDecoration(
+        color: _appColors.light100,
+        borderRadius: BorderRadius.circular(S.p20),
+      ),
       splashBorderRadius: BorderRadius.circular(S.p20),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const P(horizontal: S.p16, vertical: S.p16),
-      hintStyle: _appTextStyle.inputTextRegular.copyWith(color: _appColors.text400),
+      contentPadding: const P(horizontal: S.p16, vertical: S.p14),
+      hintStyle: _appTextStyle.inputTextRegular.copyWith(
+        color: _appColors.text400,
+      ),
       border: InputBorder.none,
-      enabledBorder: InputBorder.none,
-      focusedBorder: InputBorder.none,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(S.p16),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(S.p16),
+        borderSide: BorderSide(color: _appColors.orange, width: S.p2),
+      ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
         borderSide: const BorderSide(width: S.p1_3),
       ),
-      disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(S.p16),
+        borderSide: BorderSide.none,
+      ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
         borderSide: const BorderSide(width: S.p1_3),
@@ -83,7 +105,11 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(S.p32))),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(S.p32),
+          ),
+        ),
         textStyle: WidgetStatePropertyAll(_appTextStyle.activesButton),
         minimumSize: const WidgetStatePropertyAll(Size.fromHeight(S.p48)),
         elevation: const WidgetStatePropertyAll(0),

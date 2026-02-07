@@ -27,10 +27,17 @@ class Avatar extends StatelessWidget {
                 right: constraints.maxWidth * S.p0_3,
                 bottom: S.p0,
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: context.colors.light100, borderRadius: BorderRadius.circular(S.p12)),
+                  decoration: BoxDecoration(
+                    color: context.colors.light100,
+                    borderRadius: BorderRadius.circular(S.p12),
+                  ),
                   child: Padding(
                     padding: const P(all: S.p6),
-                    child: AppIcon(AppIcons.edit3, width: S.p24, color: context.colors.icon500),
+                    child: AppIcon(
+                      AppIcons.edit3,
+                      size: S.p24,
+                      color: context.colors.icon500,
+                    ),
                   ),
                 ),
               ),

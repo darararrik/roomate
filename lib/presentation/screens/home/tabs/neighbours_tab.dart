@@ -24,14 +24,17 @@ class NeighboursTab extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${context.l10n.optionsFound} ${82}", style: context.typography.bodyTitle),
+                  Text(
+                    "${context.l10n.optionsFound} ${82}",
+                    style: context.typography.bodyTitle,
+                  ),
                   GestureDetector(
                     onTap: () => showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
                       builder: (context) => SortBottomSheet(),
                     ),
-                    child: const AppIcon(AppIcons.sort, width: S.p32),
+                    child: const AppIcon(AppIcons.sort, size: S.p32),
                   ),
                 ],
               ),
@@ -43,7 +46,9 @@ class NeighboursTab extends StatelessWidget {
           sliver: SliverList.separated(
             itemCount: 10,
             itemBuilder: (context, index) {
-              return NeighbourCard(onTap: () => context.router.push(const AboutGroupRoute()));
+              return NeighbourCard(
+                onTap: () => context.router.push(const AboutGroupRoute()),
+              );
             },
             separatorBuilder: (context, index) {
               return const SizedBox(height: S.p12);

@@ -27,13 +27,13 @@ class ApartamentsTab extends StatelessWidget {
                 padding: const P(vertical: S.p4, horizontal: S.p8),
                 children: [
                   FilterCard(
-                    leading: const AppIcon(AppIcons.filter2, width: S.p24),
+                    leading: const AppIcon(AppIcons.filter2, size: S.p24),
                     title: context.l10n.filters,
                     onTap: () => context.pushRoute(const FiltersWrapper()),
                   ),
                   //TODO: INFO: showModalBottomSheet умеет сам просчитывать дочерние размеры и можно не использовать DraggableScrollableSheet,  ГЛАВНОЕ: использовать isScrollControlled: true (ну он по умолчанию true)
                   FilterCard(
-                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24),
+                    trailing: const AppIcon(AppIcons.arrowDown, size: S.p24),
                     title: context.l10n.term,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -42,7 +42,7 @@ class ApartamentsTab extends StatelessWidget {
                     ),
                   ),
                   FilterCard(
-                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24),
+                    trailing: const AppIcon(AppIcons.arrowDown, size: S.p24),
                     title: context.l10n.district,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -63,14 +63,17 @@ class ApartamentsTab extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${context.l10n.optionsFound} ${82}", style: context.typography.bodyTitle),
+                  Text(
+                    "${context.l10n.optionsFound} ${82}",
+                    style: context.typography.bodyTitle,
+                  ),
                   GestureDetector(
                     onTap: () => showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
                       builder: (context) => SortBottomSheet(),
                     ),
-                    child: const AppIcon(AppIcons.sort, width: S.p32),
+                    child: const AppIcon(AppIcons.sort, size: S.p32),
                   ),
                 ],
               ),

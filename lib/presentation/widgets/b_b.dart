@@ -13,7 +13,11 @@ class BB extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: onPressed ?? () => context.pop(),
-      icon: AppIcon(AppIcons.arrowLeft, color: color ?? context.colors.black, width: S.p32, height: S.p32),
+      icon: AppIcon(
+        AppIcons.arrowLeft,
+        color: color ?? context.colors.black,
+        size: S.p24,
+      ),
     );
   }
 }

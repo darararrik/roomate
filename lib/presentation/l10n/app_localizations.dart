@@ -94,6 +94,24 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ru')];
 
+  /// No description provided for @ru.
+  ///
+  /// In ru, this message translates to:
+  /// **'Русский'**
+  String get ru;
+
+  /// No description provided for @ru_number.
+  ///
+  /// In ru, this message translates to:
+  /// **'+7'**
+  String get ru_number;
+
+  /// No description provided for @phone_placeholder.
+  ///
+  /// In ru, this message translates to:
+  /// **'(900) 000-00-00'**
+  String get phone_placeholder;
+
   /// No description provided for @main.
   ///
   /// In ru, this message translates to:
@@ -262,11 +280,11 @@ abstract class AppLocalizations {
   /// **'Введите номер телефона'**
   String get enterYourPhoneNumber;
 
-  /// No description provided for @descriptionSMSCode1.
+  /// No description provided for @descriptionSMSCode.
   ///
   /// In ru, this message translates to:
-  /// **'На ваш номер придет смс с кодом'**
-  String get descriptionSMSCode1;
+  /// **'Мы отправим код подтверждения'**
+  String get descriptionSMSCode;
 
   /// No description provided for @enterPhoneNumber.
   ///

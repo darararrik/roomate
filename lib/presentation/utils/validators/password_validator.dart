@@ -1,22 +1,13 @@
-import 'package:flutter/widgets.dart';
+part of 'app_validators.dart';
 
-//TODO: Заменить
-
-String? shortPasswordValidator(String? value, BuildContext context) {
-  final pass = value?.trim() ?? '';
-  if (pass.length < 5) {
-    return "Заменить"; // return context.l10n.errorPasswordTooShort;
+abstract class _PasswordValidator {
+  static bool isLongEnough(String? value, {int minLength = 5}) {
+    if (value == null) return false;
+    return value.trim().length >= minLength;
   }
-  return null;
-}
 
-String? matchPasswordcValidator(
-  String? value,
-  BuildContext context,
-  TextEditingController firstPasswordController,
-) {
-  if (value?.trim() != firstPasswordController.text.trim()) {
-    return "Заменить"; //context.l10n.errorPasswordsDoNotMatch;
+  static bool isMatch(String? value, String? otherValue) {
+    if (value == null || otherValue == null) return false;
+    return value.trim() == otherValue.trim();
   }
-  return null;
 }
