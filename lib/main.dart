@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/theme/theme.dart';

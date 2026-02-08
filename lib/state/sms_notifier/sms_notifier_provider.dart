@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'sms_notifier_provider.g.dart';
