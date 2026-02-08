@@ -8,6 +8,7 @@ import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/primary_btn.dart';
 
+//TODO: make it hook
 @RoutePage()
 class RegNumberScreen extends StatefulWidget {
   const RegNumberScreen({super.key});

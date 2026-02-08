@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'dart:async';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
@@ -10,77 +11,81 @@ import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/primary_btn.dart';
 
 @RoutePage()
-class SmsCodeScreen extends HookConsumerWidget {
+class SmsCodeScreen extends HookWidget {
   const SmsCodeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // 1. Вместо late TextEditingController и dispose():
-    // Хуки сами создадут и уничтожат эти объекты.
-    final controllers = List.generate(4, (_) => useTextEditingController());
-    final focusNodes = List.generate(4, (_) => useFocusNode());
-
-    // 2. Аналог ValueNotifier для таймера
+  Widget build(BuildContext context) {
     final timerCount = useState(59);
-
-    // 3. Состояние кнопки (вычисляемое на лету)
     final isComplete = useState(false);
 
-    // 4. Таймер через useEffect (запускается один раз)
     useEffect(() {
       final timer = Timer.periodic(const Duration(seconds: 1), (t) {
         if (timerCount.value > 0) timerCount.value--;
       });
-      return timer.cancel; // Dispose произойдет автоматически!
+      return timer.cancel;
     }, []);
-
-    // Функция валидации
-    void validate() {
-      isComplete.value = controllers.every((c) => c.text.isNotEmpty);
-    }
 
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
           slivers: [
-            SliverAppBar(title: Text(context.l10n.confirmation)),
+            SliverAppBar(
+              title: Text(context.l10n.confirmation),
+              centerTitle: false,
+            ),
             SliverFillRemaining(
               hasScrollBody: false,
               child: Padding(
                 padding: const P(horizontal: S.p16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ... Заголовки (как в твоем коде) ...
-
-                    // Поля ввода
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        4,
-                        (index) => SizedBox(
-                          width: S.p56,
-                          child: TextField(
-                            controller: controllers[index],
-                            focusNode: focusNodes[index],
-                            onChanged: (val) {
-                              if (val.isNotEmpty && index < 3) {
-                                focusNodes[index + 1].requestFocus();
-                              }
-                              validate();
-                            },
-                            // ... Стилизация ...
-                          ),
-                        ),
-                      ).separated(const SizedBox(width: S.p12)),
+                    const SizedBox(height: S.p28),
+                    Text(
+                      context.l10n.enterSMSCode,
+                      style: context.typography.headline0.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
                     ),
-
-                    const Spacer(),
-
-                    // Таймер (просто используем timerCount.value, ребилд только тут)
+                    const SizedBox(height: S.p8),
+                    Text(
+                      context.l10n.descriptionSMSCode2,
+                      style: context.typography.headline2.copyWith(
+                        color: context.colors.text400,
+                      ),
+                    ),
+                    const SizedBox(height: S.p40),
+                    PinCodeTextField(
+                      appContext: context,
+                      length: 4,
+                      backgroundColor: context.colors.white,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      pinTheme: PinTheme(
+                        fieldHeight: S.p56,
+                        fieldWidth: S.p56,
+                        shape: PinCodeFieldShape.box,
+                        borderRadius: BorderRadius.circular(S.p12),
+                        activeColor: context.colors.stroke300,
+                        activeFillColor: context.colors.stroke300,
+                        selectedColor: context.colors.orange,
+                        inactiveColor: context.colors.stroke300,
+                        fieldOuterPadding: const P(horizontal: S.p12),
+                      ),
+                    ),
+                    const SizedBox(height: S.p20),
                     Center(
                       child: Column(
                         children: [
-                          Text(context.l10n.didntReceiveTheCode),
+                          Text(
+                            context.l10n.didntReceiveTheCode,
+                            style: context.typography.activesLabel,
+                          ),
+                          const SizedBox(height: S.p4),
                           GestureDetector(
                             onTap: timerCount.value == 0
                                 ? () => timerCount.value = 59
@@ -88,8 +93,8 @@ class SmsCodeScreen extends HookConsumerWidget {
                             child: Text(
                               timerCount.value == 0
                                   ? context.l10n.sendAgain
-                                  : '${context.l10n.sendAgain} (00:${timerCount.value})',
-                              style: TextStyle(
+                                  : '${context.l10n.sendAgain} (00:${timerCount.value.toString().padLeft(2, '0')})',
+                              style: context.typography.activesLabel.copyWith(
                                 color: timerCount.value == 0
                                     ? context.colors.orange
                                     : context.colors.orange100,
@@ -99,13 +104,15 @@ class SmsCodeScreen extends HookConsumerWidget {
                         ],
                       ),
                     ),
-
-                    // Кнопка (используем isComplete.value)
-                    PrimaryButton(
-                      onPressed: isComplete.value
-                          ? () => context.pushRoute(const QuizRoute())
-                          : null,
-                      titleText: Text(context.l10n.next),
+                    const Spacer(),
+                    Padding(
+                      padding: const P(bottom: S.p20),
+                      child: PrimaryButton(
+                        onPressed: isComplete.value
+                            ? () => context.pushRoute(const QuizRoute())
+                            : null,
+                        titleText: Text(context.l10n.next),
+                      ),
                     ),
                   ],
                 ),
