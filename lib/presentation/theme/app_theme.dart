@@ -84,15 +84,15 @@ class AppTheme {
       border: InputBorder.none,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
-        borderSide: BorderSide.none,
+        borderSide: BorderSide(color: _appColors.stroke300),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
-        borderSide: BorderSide(color: _appColors.orange, width: S.p2),
+        borderSide: BorderSide(color: _appColors.orange),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
-        borderSide: const BorderSide(width: S.p1_3),
+        borderSide: const BorderSide(width: S.p2),
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
@@ -100,7 +100,7 @@ class AppTheme {
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
-        borderSide: const BorderSide(width: S.p1_3),
+        borderSide: const BorderSide(width: S.p2),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(

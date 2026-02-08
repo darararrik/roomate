@@ -64,7 +64,7 @@ class WelcomeScreen extends StatelessWidget {
                               titleText: Text(context.l10n.loginByphoneNumber),
                               color: context.colors.white10,
                               onPressed: () =>
-                                  context.router.push(const RegNumberRoute()),
+                                  context.router.push(RegNumberRoute()),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,

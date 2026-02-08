@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
@@ -10,36 +11,22 @@ import 'package:roomate/presentation/widgets/primary_btn.dart';
 
 //TODO: make it hook
 @RoutePage()
-class RegNumberScreen extends StatefulWidget {
+class RegNumberScreen extends HookWidget {
   const RegNumberScreen({super.key});
 
   @override
-  State<RegNumberScreen> createState() => _RegNumberScreenState();
-}
-
-class _RegNumberScreenState extends State<RegNumberScreen> {
-  late TextEditingController _controller;
-  ValueNotifier<bool> isComplete = ValueNotifier<bool>(false);
-  @override
-  void initState() {
-    _controller = TextEditingController();
-    _controller.addListener(_validate);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.removeListener(_validate);
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _validate() {
-    isComplete.value = AppValidators.phone(_controller.text);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final controller = useTextEditingController();
+    final isComplete = useState(false);
+
+    useEffect(() {
+      void listener() {
+        isComplete.value = AppValidators.phone(controller.text);
+      }
+
+      controller.addListener(listener);
+      return () => controller.removeListener(listener);
+    }, [controller]);
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -106,7 +93,7 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
 
                         Expanded(
                           child: TextFormField(
-                            controller: _controller,
+                            controller: controller,
                             autofocus: true,
                             keyboardType: TextInputType.phone,
                             inputFormatters: [
@@ -131,16 +118,14 @@ class _RegNumberScreenState extends State<RegNumberScreen> {
                       ],
                     ),
                     const Spacer(),
-                    ValueListenableBuilder(
-                      valueListenable: isComplete,
-                      builder: (context, value, child) {
-                        return PrimaryButton(
-                          onPressed: value
-                              ? () => context.router.push(const SmsCodeRoute())
-                              : null,
-                          titleText: Text(context.l10n.next),
-                        );
-                      },
+                    Padding(
+                      padding: const P(bottom: S.p20),
+                      child: PrimaryButton(
+                        onPressed: isComplete.value
+                            ? () => context.router.push(const SmsCodeRoute())
+                            : null,
+                        titleText: Text(context.l10n.next),
+                      ),
                     ),
                   ],
                 ),
