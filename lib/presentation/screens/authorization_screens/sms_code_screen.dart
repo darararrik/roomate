@@ -1,30 +1,24 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/primary_btn.dart';
+import 'package:roomate/state/sms_notifier/sms_notifier_provider.dart';
 
 @RoutePage()
-class SmsCodeScreen extends HookWidget {
+class SmsCodeScreen extends HookConsumerWidget {
   const SmsCodeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final timerCount = useState(59);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final timerCount = ref.watch(smsProvider);
     final isComplete = useState(false);
-
-    useEffect(() {
-      final timer = Timer.periodic(const Duration(seconds: 1), (t) {
-        if (timerCount.value > 0) timerCount.value--;
-      });
-      return timer.cancel;
-    }, []);
 
     return Scaffold(
       body: SafeArea(
@@ -59,6 +53,9 @@ class SmsCodeScreen extends HookWidget {
                     ),
                     const SizedBox(height: S.p40),
                     PinCodeTextField(
+                      onChanged: (value) {
+                        isComplete.value = value.length == 4;
+                      },
                       appContext: context,
                       length: 4,
                       backgroundColor: context.colors.white,
@@ -87,15 +84,17 @@ class SmsCodeScreen extends HookWidget {
                           ),
                           const SizedBox(height: S.p4),
                           GestureDetector(
-                            onTap: timerCount.value == 0
-                                ? () => timerCount.value = 59
+                            onTap: timerCount == 0
+                                ? () => ref
+                                      .read(smsProvider.notifier)
+                                      .resetTimer()
                                 : null,
                             child: Text(
-                              timerCount.value == 0
+                              timerCount == 0
                                   ? context.l10n.sendAgain
-                                  : '${context.l10n.sendAgain} (00:${timerCount.value.toString().padLeft(2, '0')})',
+                                  : '${context.l10n.sendAgain} (00:${timerCount.toString().padLeft(2, '0')})',
                               style: context.typography.activesLabel.copyWith(
-                                color: timerCount.value == 0
+                                color: timerCount == 0
                                     ? context.colors.orange
                                     : context.colors.orange100,
                               ),
@@ -109,7 +108,7 @@ class SmsCodeScreen extends HookWidget {
                       padding: const P(bottom: S.p20),
                       child: PrimaryButton(
                         onPressed: isComplete.value
-                            ? () => context.pushRoute(const QuizRoute())
+                            ? () => context.replaceRoute(const NavBarRoute())
                             : null,
                         titleText: Text(context.l10n.next),
                       ),

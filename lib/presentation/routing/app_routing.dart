@@ -19,7 +19,11 @@ class AppRouter extends RootStackRouter {
           path: 'home',
           initial: true,
           children: [
-            AutoRoute(page: ApartamentsTab.page, path: 'apartments', initial: true),
+            AutoRoute(
+              page: ApartamentsTab.page,
+              path: 'apartments',
+              initial: true,
+            ),
             AutoRoute(page: NeighboursTab.page, path: 'neighbours'),
             AutoRoute(page: CoworkingTab.page, path: 'coworking'),
           ],
@@ -50,7 +54,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: WelcomeRoute.page, path: 'welcome', initial: true),
         AutoRoute(page: RegNumberRoute.page, path: 'register/number'),
         AutoRoute(page: SmsCodeRoute.page, path: 'register/code'),
-        AutoRoute(page: QuizRoute.page, path: 'quiz'),
       ],
     ),
     AutoRoute(page: AboutGroupRoute.page, path: '/about-group'),
