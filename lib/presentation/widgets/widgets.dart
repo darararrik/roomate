@@ -1,9 +1,9 @@
 export 'a_b.dart';
 export 'apartment_card.dart';
 export 'app_icon.dart';
-export 'auth_edit_first_page.dart';
-export 'auth_edit_second_page.dart';
-export 'auth_edit_third_page.dart';
+export '../screens/auth_edit_first_page.dart';
+export '../screens/auth_edit_second_page.dart';
+export '../screens/auth_edit_third_page.dart';
 export 'avatar.dart';
 export 'b_b.dart';
 export 'background.dart';

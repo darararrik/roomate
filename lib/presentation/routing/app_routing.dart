@@ -54,6 +54,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: WelcomeRoute.page, path: 'welcome', initial: true),
         AutoRoute(page: RegNumberRoute.page, path: 'register/number'),
         AutoRoute(page: SmsCodeRoute.page, path: 'register/code'),
+        AutoRoute(page: QuizRoute.page, path: 'quiz'),
       ],
     ),
     AutoRoute(page: AboutGroupRoute.page, path: '/about-group'),

@@ -109,7 +109,7 @@ class SmsCodeScreen extends HookConsumerWidget {
                       padding: const P(bottom: S.p20),
                       child: PrimaryButton(
                         onPressed: isComplete.value
-                            ? () => context.replaceRoute(const NavBarRoute())
+                            ? () => context.pushRoute(const QuizRoute())
                             : null,
                         titleText: Text(context.l10n.next),
                       ),

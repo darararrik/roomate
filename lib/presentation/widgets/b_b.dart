@@ -1,9 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
 
 class BB extends StatelessWidget {
   const BB({super.key, this.onPressed, this.color});
@@ -13,8 +13,8 @@ class BB extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: onPressed ?? () => context.pop(),
-      icon: AppIcon(
-        AppIcons.arrowLeft,
+      icon: Icon(
+        Icons.arrow_back_ios_new_rounded,
         color: color ?? context.colors.black,
         size: S.p24,
       ),
