@@ -68,23 +68,23 @@ class RegNumberScreen extends HookWidget {
                             border: Border.all(color: context.colors.stroke300),
                           ),
                           child: Padding(
-                            padding: const P(
-                              horizontal: S.p12,
-                              vertical: S.p14,
-                            ),
-                            child: Row(
-                              children: [
-                                Image.asset(AppIcons.ruFlag, width: S.p20),
-                                const SizedBox(width: S.p8),
-                                Text(
-                                  context.l10n.ru_number,
-                                  style: context.typography.inputTextRegular
-                                      .copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: S.p18,
-                                      ),
-                                ),
-                              ],
+                            padding: const P(horizontal: S.p12),
+                            child: SizedBox(
+                              height: S.p55,
+                              child: Row(
+                                children: [
+                                  Image.asset(AppIcons.ruFlag, width: S.p20),
+                                  const SizedBox(width: S.p8),
+                                  Text(
+                                    context.l10n.ru_number,
+                                    style: context.typography.inputTextRegular
+                                        .copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: S.p18,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

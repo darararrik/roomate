@@ -106,11 +106,11 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         shape: WidgetStatePropertyAll(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.circular(S.p32),
-          ),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p32)),
         ),
-        textStyle: WidgetStatePropertyAll(_appTextStyle.activesButton),
+        textStyle: WidgetStatePropertyAll(
+          _appTextStyle.activesButton.copyWith(fontWeight: FontWeight.w500),
+        ),
         minimumSize: const WidgetStatePropertyAll(Size.fromHeight(S.p48)),
         elevation: const WidgetStatePropertyAll(0),
         foregroundColor: WidgetStateColor.fromMap({
