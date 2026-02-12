@@ -52,4 +52,5 @@ abstract class AppIcons {
   static const String pushAction =
       'lib/presentation/assets/icons/pushAction.svg';
   static const String ruFlag = 'lib/presentation/assets/pics/ru_flag.png';
+  static const String video = 'lib/presentation/assets/icons/video.svg';
 }

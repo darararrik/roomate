@@ -4,7 +4,6 @@ import 'package:group_button/group_button.dart';
 
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/app_check_box.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 class TraitBottomSheet extends StatefulWidget {

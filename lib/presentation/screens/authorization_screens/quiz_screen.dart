@@ -36,7 +36,7 @@ class QuizScreen extends HookConsumerWidget {
 
     ref.listen(quizProvider.select((s) => s.status), (prev, next) {
       if (next == QuizStatus.completed) {
-        context.replaceRoute(const NavBarRoute());
+        context.replaceRoute(const CreateAdRoute());
       }
     });
 

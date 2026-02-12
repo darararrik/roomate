@@ -4,9 +4,6 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/sheets/district_bottom_sheet.dart';
-import 'package:roomate/presentation/widgets/sheets/rent_duration_bottom_sheet.dart';
-import 'package:roomate/presentation/widgets/sheets/sort_bottom_sheet.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()

@@ -19,7 +19,7 @@ class BaseBottomSheet extends StatelessWidget {
           children: [
             const DragHandle(),
             Padding(
-              padding: const P(all: S.p24),
+              padding: const P(top: S.p24, bottom: S.p20),
               child: Text(title, style: context.typography.headline1),
             ),
             const Divider(),

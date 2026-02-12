@@ -48,8 +48,8 @@ class AppRouter extends RootStackRouter {
 
     AutoRoute(
       page: AuthWrapper.page,
-      path: '/',
-      initial: true,
+      // path: '/',
+      // initial: true,
       children: [
         AutoRoute(page: WelcomeRoute.page, path: 'welcome', initial: true),
         AutoRoute(page: RegNumberRoute.page, path: 'register/number'),
@@ -58,5 +58,21 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: AboutGroupRoute.page, path: '/about-group'),
+    AutoRoute(
+      page: CreateAdRoute.page,
+      path: '/create-ad',
+      initial: true,
+      children: [
+        AutoRoute(
+          page: FirstCreateAdStepRoute.page,
+          path: 'first-step',
+          initial: true,
+        ),
+        AutoRoute(page: SecondCreateAdStepRoute.page, path: 'second-step'),
+        AutoRoute(page: ThirdStepRoute.page, path: 'third-step'),
+        AutoRoute(page: FourthStepRoute.page, path: 'fourth-step'),
+        AutoRoute(page: FifthStepRoute.page, path: 'fifth-step'),
+      ],
+    ),
   ];
 }

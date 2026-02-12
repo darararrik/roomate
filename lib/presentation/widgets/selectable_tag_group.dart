@@ -11,8 +11,10 @@ class SelectableTagGroup extends StatelessWidget {
     required this.tags,
     this.isRadio = false,
     this.onTagSelected,
+    this.description,
   });
   final String title;
+  final String? description;
   final List<String> tags;
   final bool isRadio;
   final void Function(String tag, bool selected)? onTagSelected;
@@ -23,35 +25,62 @@ class SelectableTagGroup extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const P(vertical: S.p12),
-          child: Text(title, style: context.typography.headline2),
-        ),
-        GroupButton<String>(
-          isRadio: isRadio,
-          buttons: tags,
-          onSelected: (tag, index, isSelected) => onTagSelected?.call(tag, isSelected),
-          buttonBuilder: (selected, String tag, context) {
-            return Card(
-              elevation: S.p0,
-              color: selected ? context.colors.orange60 : context.colors.light100,
-              shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(S.p12)),
-              child: Padding(
-                padding: const P(horizontal: S.p16, vertical: S.p12),
-                child: Text(
-                  tag,
-                  style: context.typography.activesLabel.copyWith(
-                    color: selected ? context.colors.white : context.colors.text400,
+          padding: const P(vertical: S.p4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: context.typography.headline1),
+              if (description != null) ...[
+                const SizedBox(height: S.p12),
+                Text(
+                  description!,
+                  style: context.typography.bodyDescription.copyWith(
+                    color: context.colors.text400,
                   ),
                 ),
-              ),
-            );
-          },
-          options: const GroupButtonOptions(
-            groupingType: GroupingType.wrap,
-            runSpacing: S.p4,
-            mainGroupAlignment: MainGroupAlignment.start,
-            spacing: S.p12,
-            direction: Axis.horizontal,
+              ],
+            ],
+          ),
+        ),
+
+        Padding(
+          padding: const P(vertical: S.p12),
+          child: GroupButton<String>(
+            isRadio: isRadio,
+            buttons: tags,
+            onSelected: (tag, index, isSelected) =>
+                onTagSelected?.call(tag, isSelected),
+            buttonBuilder: (selected, String tag, context) {
+              return Card(
+                margin: EdgeInsets.zero,
+                elevation: S.p0,
+                color: selected
+                    ? context.colors.orange20
+                    : context.colors.light100,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide.none,
+                  borderRadius: BorderRadius.circular(S.p12),
+                ),
+                child: Padding(
+                  padding: const P(horizontal: S.p16, vertical: S.p12),
+                  child: Text(
+                    tag,
+                    style: context.typography.activesLabel.copyWith(
+                      color: selected
+                          ? context.colors.orange
+                          : context.colors.text400,
+                    ),
+                  ),
+                ),
+              );
+            },
+            options: const GroupButtonOptions(
+              groupingType: GroupingType.wrap,
+              runSpacing: S.p12,
+              mainGroupAlignment: MainGroupAlignment.start,
+              spacing: S.p12,
+              direction: Axis.horizontal,
+            ),
           ),
         ),
       ],

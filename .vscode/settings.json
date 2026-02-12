@@ -1,5 +1,5 @@
 {
-  "dart.flutterSdkPath": "~/fvm/versions/stable",
+  "dart.flutterSdkPath": ".fvm/versions/stable",
   "dart.lineLength": 80,
   "makefile.configureOnOpen": false
 }
