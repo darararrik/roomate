@@ -208,14 +208,14 @@ class _QuizStepContent extends StatelessWidget {
                     final bool isLast = index == currentStep.options.length - 1;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: S.p12),
-                      child: PrimaryButton.filled(
+                      child: PrimaryButton(
                         onPressed: !isLast
                             ? () => onOptionSelected(optionText)
                             : () => context.replaceRoute(const NavBarRoute()),
-                        color: isLast
+                        backgroundColor: isLast
                             ? context.colors.light100
                             : context.colors.orange20,
-                        titleText: Text(
+                        title: Text(
                           optionText,
                           style: context.typography.activesButton.copyWith(
                             color: isLast

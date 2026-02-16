@@ -93,7 +93,7 @@ class CreateAdScreen extends StatelessWidget {
                     ),
                   ),
                   PrimaryButton(
-                    titleText: Text(context.l10n.next),
+                    title: Text(context.l10n.next),
                     onPressed: () {
                       final nextIndex = tabsRouter.activeIndex + 1;
                       if (nextIndex < tabsRouter.pageCount) {

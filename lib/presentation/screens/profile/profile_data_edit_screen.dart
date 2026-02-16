@@ -36,7 +36,9 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
             AB(
               title: Text(
                 context.l10n.updateData,
-                style: context.typography.headline1.copyWith(fontWeight: FontWeight.w500),
+                style: context.typography.headline1.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               centerTitle: false,
             ),
@@ -54,7 +56,9 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                     const SizedBox(height: S.p12),
                     Text(
                       context.l10n.editPhoto,
-                      style: context.typography.bodyDescription.copyWith(color: context.colors.orange100),
+                      style: context.typography.bodyDescription.copyWith(
+                        color: context.colors.orange100,
+                      ),
                     ),
                   ],
                 ),
@@ -71,7 +75,9 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                       padding: const P(horizontal: S.p8, vertical: S.p12),
                       child: Text(
                         context.l10n.whatUname,
-                        style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                        style: context.typography.bodyDescription.copyWith(
+                          color: context.colors.text400,
+                        ),
                       ),
                     ),
                     InputWidget(controller: _nameController),
@@ -84,10 +90,16 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const P(horizontal: S.p8, vertical: S.p12),
+                                  padding: const P(
+                                    horizontal: S.p8,
+                                    vertical: S.p12,
+                                  ),
                                   child: Text(
                                     context.l10n.age,
-                                    style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                                    style: context.typography.bodyDescription
+                                        .copyWith(
+                                          color: context.colors.text400,
+                                        ),
                                   ),
                                 ),
                                 InputWidget(controller: _ageController),
@@ -100,10 +112,16 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const P(horizontal: S.p8, vertical: S.p12),
+                                  padding: const P(
+                                    horizontal: S.p8,
+                                    vertical: S.p12,
+                                  ),
                                   child: Text(
                                     context.l10n.gender,
-                                    style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                                    style: context.typography.bodyDescription
+                                        .copyWith(
+                                          color: context.colors.text400,
+                                        ),
                                   ),
                                 ),
                                 InputWidget(controller: _genderController),
@@ -114,7 +132,10 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                       ),
                     ),
                     const Spacer(),
-                    PrimaryButton(titleText: Text(context.l10n.save), onPressed: () {}),
+                    PrimaryButton(
+                      title: Text(context.l10n.save),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),

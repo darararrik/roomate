@@ -9,11 +9,16 @@ class RentDurationBottomSheet extends StatefulWidget {
   const RentDurationBottomSheet({super.key});
 
   @override
-  State<RentDurationBottomSheet> createState() => _RentDurationBottomSheetState();
+  State<RentDurationBottomSheet> createState() =>
+      _RentDurationBottomSheetState();
 }
 
 class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
-  final Map<String, bool> terms = {"На длительный срок": true, "Посуточно": true, "На неделю": false};
+  final Map<String, bool> terms = {
+    "На длительный срок": true,
+    "Посуточно": true,
+    "На неделю": false,
+  };
 
   late final GroupButtonController _controller;
   @override
@@ -27,7 +32,10 @@ class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
         .map((entry) => entry.key)
         .toList();
 
-    _controller = GroupButtonController(selectedIndexes: selectedIndexes, disabledIndexes: []);
+    _controller = GroupButtonController(
+      selectedIndexes: selectedIndexes,
+      disabledIndexes: [],
+    );
   }
 
   @override
@@ -53,17 +61,28 @@ class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(S.p12),
                       color: context.colors.white,
-                      border: Border.all(color: selected ? context.colors.orange100 : context.colors.stroke300),
+                      border: Border.all(
+                        color: selected
+                            ? context.colors.orange100
+                            : context.colors.stroke300,
+                      ),
                     ),
 
                     child: Padding(
-                      padding: const P(vertical: S.p12, left: S.p32, right: S.p16),
+                      padding: const P(
+                        vertical: S.p12,
+                        left: S.p32,
+                        right: S.p16,
+                      ),
                       child: Row(
                         children: [
                           Expanded(
                             child: Padding(
                               padding: const P(vertical: S.p12),
-                              child: Text(tag, style: context.typography.bodyDescription),
+                              child: Text(
+                                tag,
+                                style: context.typography.bodyDescription,
+                              ),
                             ),
                           ),
                           AppRadioButton(selected: selected),
@@ -80,7 +99,10 @@ class _RentDurationBottomSheetState extends State<RentDurationBottomSheet> {
             ),
             Padding(
               padding: const P(top: S.p16),
-              child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
+              child: PrimaryButton(
+                title: Text(context.l10n.apply),
+                onPressed: () {},
+              ),
             ),
           ],
         ),

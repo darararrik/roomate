@@ -68,16 +68,16 @@ class ApartmentCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: PrimaryButton.rounded(
-                          titleText: Text(context.l10n.write),
+                        child: PrimaryButton(
+                          title: Text(context.l10n.write),
                           onPressed: () {},
-                          radius: S.p16,
+                          borderRadius: S.p16,
                         ),
                       ),
                       Expanded(
-                        child: PrimaryButton.rounded(
-                          titleText: Text(context.l10n.call),
-                          radius: S.p16,
+                        child: PrimaryButton(
+                          title: Text(context.l10n.call),
+                          borderRadius: S.p16,
                         ),
                       ),
                     ].separated(const SizedBox(width: S.p8)),

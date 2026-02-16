@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/utils/extensions.dart';
-import 'package:roomate/presentation/utils/p.dart';
+import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/primary_btn.dart';
 import 'package:roomate/presentation/widgets/sheets/base_bottom_sheet.dart';
 
 @RoutePage()
@@ -34,9 +34,13 @@ class FifthStepScreen extends StatelessWidget {
         ),
         Padding(
           padding: const P(vertical: S.p12),
-          child: PrimaryButtonWithIconAndColor(
-            title: 'Добавить фото',
-            iconPath: AppIcons.camera,
+          child: PrimaryButton(
+            title: const Text('Добавить фото'),
+            icon: AppIcon(
+              AppIcons.camera,
+              size: S.p20,
+              color: context.colors.white,
+            ),
             onPressed: () => showModalBottomSheet(
               context: context,
               builder: (context) => const BaseBottomSheet(
@@ -65,52 +69,17 @@ class FifthStepScreen extends StatelessWidget {
         ),
         Padding(
           padding: const P(vertical: S.p12),
-          child: PrimaryButtonWithIconAndColor(
-            title: 'Добавить видео',
-            iconPath: AppIcons.video,
+          child: PrimaryButton(
+            title: const Text('Добавить видео'),
+            icon: AppIcon(
+              AppIcons.video,
+              size: S.p20,
+              color: context.colors.white,
+            ),
             onPressed: () {},
           ),
         ),
       ],
-    );
-  }
-}
-
-class PrimaryButtonWithIconAndColor extends StatelessWidget {
-  const PrimaryButtonWithIconAndColor({
-    super.key,
-    required this.title,
-    required this.iconPath,
-    required this.onPressed,
-  });
-
-  final String title;
-  final String iconPath;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: context.colors.orange20,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(S.p16),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AppIcon(iconPath, size: 20, color: context.colors.orange),
-          const SizedBox(width: S.p12),
-          Text(
-            title,
-            style: context.typography.activesButton.copyWith(
-              color: context.colors.orange,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

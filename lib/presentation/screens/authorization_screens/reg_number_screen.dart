@@ -123,7 +123,7 @@ class RegNumberScreen extends HookWidget {
                         onPressed: isComplete.value
                             ? () => context.router.push(const SmsCodeRoute())
                             : null,
-                        titleText: Text(context.l10n.next),
+                        title: Text(context.l10n.next),
                       ),
                     ),
                   ],

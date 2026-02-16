@@ -15,7 +15,11 @@ class FillingProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
       physics: const NeverScrollableScrollPhysics(),
-      routes: const [AuthEditFirstRoute(), AuthEditSecondRoute(), AuthEditThirdRoute()],
+      routes: const [
+        AuthEditFirstRoute(),
+        AuthEditSecondRoute(),
+        AuthEditThirdRoute(),
+      ],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
         final totalPages = tabsRouter.pageCount;
@@ -47,7 +51,9 @@ class FillingProfileScreen extends StatelessWidget {
               padding: const P(horizontal: S.p86),
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  final progress = (tabsRouter.activeIndex + 1) / totalPages; // процент заполнения
+                  final progress =
+                      (tabsRouter.activeIndex + 1) /
+                      totalPages; // процент заполнения
                   return Stack(
                     children: [
                       Container(
@@ -78,7 +84,7 @@ class FillingProfileScreen extends StatelessWidget {
               children: [
                 Expanded(child: child),
                 PrimaryButton(
-                  titleText: Text(context.l10n.next),
+                  title: Text(context.l10n.next),
                   onPressed: () {
                     final nextIndex = tabsRouter.activeIndex + 1;
                     if (nextIndex < tabsRouter.pageCount) {
@@ -95,11 +101,16 @@ class FillingProfileScreen extends StatelessWidget {
                     padding: const P(bottom: S.p44, top: S.p12),
                     child: PrimaryButton(
                       style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(context.colors.light100),
-                        foregroundColor: WidgetStatePropertyAll(context.colors.text400),
+                        backgroundColor: WidgetStatePropertyAll(
+                          context.colors.light100,
+                        ),
+                        foregroundColor: WidgetStatePropertyAll(
+                          context.colors.text400,
+                        ),
                       ),
-                      titleText: Text(context.l10n.skip),
-                      onPressed: () => context.replaceRoute(const NavBarRoute()),
+                      title: Text(context.l10n.skip),
+                      onPressed: () =>
+                          context.replaceRoute(const NavBarRoute()),
                     ),
                   ),
                 ),

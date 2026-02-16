@@ -63,7 +63,10 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                     padding: const P(bottom: S.p12),
                     child: InputWidget(
                       controller: _searchController,
-                      prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
+                      prefixIcon: AppIcon(
+                        AppIcons.search,
+                        color: context.colors.icon500,
+                      ),
                       hintText: context.l10n.search,
                     ),
                   ),
@@ -80,7 +83,10 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(S.p12),
-                                    child: Text(value, style: context.typography.bodyDescription),
+                                    child: Text(
+                                      value,
+                                      style: context.typography.bodyDescription,
+                                    ),
                                   ),
                                 ),
                                 AppRadioButton(selected: selected),
@@ -93,7 +99,10 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                   ),
                   Padding(
                     padding: const P(top: S.p16),
-                    child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
+                    child: PrimaryButton(
+                      title: Text(context.l10n.apply),
+                      onPressed: () {},
+                    ),
                   ),
                 ],
               ),

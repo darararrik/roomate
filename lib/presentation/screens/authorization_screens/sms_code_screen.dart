@@ -111,7 +111,7 @@ class SmsCodeScreen extends HookConsumerWidget {
                         onPressed: isComplete.value
                             ? () => context.pushRoute(const QuizRoute())
                             : null,
-                        titleText: Text(context.l10n.next),
+                        title: Text(context.l10n.next),
                       ),
                     ),
                   ],

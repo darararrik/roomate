@@ -14,7 +14,11 @@ class TraitBottomSheet extends StatefulWidget {
 }
 
 class _TraitBottomSheetState extends State<TraitBottomSheet> {
-  final Map<String, bool> traits = {"Алкоголь": true, "Курение": true, "Маты": true};
+  final Map<String, bool> traits = {
+    "Алкоголь": true,
+    "Курение": true,
+    "Маты": true,
+  };
 
   late final GroupButtonController _controller;
   @override
@@ -28,7 +32,10 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
         .map((entry) => entry.key)
         .toList();
 
-    _controller = GroupButtonController(selectedIndexes: selectedIndexes, disabledIndexes: []);
+    _controller = GroupButtonController(
+      selectedIndexes: selectedIndexes,
+      disabledIndexes: [],
+    );
   }
 
   @override
@@ -60,17 +67,28 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(S.p12),
                       color: context.colors.white,
-                      border: Border.all(color: selected ? context.colors.orange100 : context.colors.stroke300),
+                      border: Border.all(
+                        color: selected
+                            ? context.colors.orange100
+                            : context.colors.stroke300,
+                      ),
                     ),
 
                     child: Padding(
-                      padding: const P(vertical: S.p12, left: S.p32, right: S.p16),
+                      padding: const P(
+                        vertical: S.p12,
+                        left: S.p32,
+                        right: S.p16,
+                      ),
                       child: Row(
                         children: [
                           Expanded(
                             child: Padding(
                               padding: const P(vertical: S.p12),
-                              child: Text(tag, style: context.typography.bodyDescription),
+                              child: Text(
+                                tag,
+                                style: context.typography.bodyDescription,
+                              ),
                             ),
                           ),
                           AppCheckBox(selected: selected),
@@ -87,7 +105,10 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
             ),
             Padding(
               padding: const P(top: S.p24),
-              child: PrimaryButton(titleText: Text(context.l10n.apply), onPressed: () {}),
+              child: PrimaryButton(
+                title: Text(context.l10n.apply),
+                onPressed: () {},
+              ),
             ),
           ],
         ),
