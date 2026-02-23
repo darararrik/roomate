@@ -94,23 +94,23 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ru')];
 
-  /// No description provided for @ru.
+  /// No description provided for @russian.
   ///
   /// In ru, this message translates to:
   /// **'Русский'**
-  String get ru;
+  String get russian;
 
-  /// No description provided for @ru_number.
+  /// No description provided for @russiaPhonePrefix.
   ///
   /// In ru, this message translates to:
   /// **'+7'**
-  String get ru_number;
+  String get russiaPhonePrefix;
 
-  /// No description provided for @phone_placeholder.
+  /// No description provided for @phonePlaceholder.
   ///
   /// In ru, this message translates to:
   /// **'(900) 000-00-00'**
-  String get phone_placeholder;
+  String get phonePlaceholder;
 
   /// No description provided for @main.
   ///
@@ -124,11 +124,11 @@ abstract class AppLocalizations {
   /// **'Избранное'**
   String get favorites;
 
-  /// No description provided for @place.
+  /// No description provided for @postAd.
   ///
   /// In ru, this message translates to:
   /// **'Разместить'**
-  String get place;
+  String get postAd;
 
   /// No description provided for @messages.
   ///
@@ -190,17 +190,17 @@ abstract class AppLocalizations {
   /// **'Найдено вариантов'**
   String get optionsFound;
 
-  /// No description provided for @r.
+  /// No description provided for @currencySymbol.
   ///
   /// In ru, this message translates to:
   /// **'₽'**
-  String get r;
+  String get currencySymbol;
 
-  /// No description provided for @r_month.
+  /// No description provided for @currencyPerMonth.
   ///
   /// In ru, this message translates to:
   /// **'₽/мес.'**
-  String get r_month;
+  String get currencyPerMonth;
 
   /// No description provided for @map.
   ///
@@ -262,11 +262,11 @@ abstract class AppLocalizations {
   /// **'Найдите соседа в пару кликов - и забудьте о долгих поисках!'**
   String get aboutServiceDescription;
 
-  /// No description provided for @loginByphoneNumber.
+  /// No description provided for @loginByPhoneNumber.
   ///
   /// In ru, this message translates to:
   /// **'Войти по номеру телефона'**
-  String get loginByphoneNumber;
+  String get loginByPhoneNumber;
 
   /// No description provided for @loginViaSocialNetworks.
   ///
@@ -334,35 +334,35 @@ abstract class AppLocalizations {
   /// **'Пол'**
   String get gender;
 
-  /// No description provided for @tellUsAboutYourself1.
+  /// No description provided for @tellUsAboutYourselfTitle.
   ///
   /// In ru, this message translates to:
   /// **'Расскажите о себе'**
-  String get tellUsAboutYourself1;
+  String get tellUsAboutYourselfTitle;
 
-  /// No description provided for @tellUsAboutYourself2.
+  /// No description provided for @tellUsAboutYourselfSubtitle.
   ///
   /// In ru, this message translates to:
   /// **'Расскажите немного о себе, чтобы помочь потенциальным соседям лучше о вас узнать'**
-  String get tellUsAboutYourself2;
+  String get tellUsAboutYourselfSubtitle;
 
-  /// No description provided for @almostDone1.
+  /// No description provided for @almostDoneTitle.
   ///
   /// In ru, this message translates to:
   /// **'Почти готово!'**
-  String get almostDone1;
+  String get almostDoneTitle;
 
-  /// No description provided for @almostDone2.
+  /// No description provided for @verificationRequired.
   ///
   /// In ru, this message translates to:
   /// **'Осталось пройти верификацию'**
-  String get almostDone2;
+  String get verificationRequired;
 
-  /// No description provided for @almostDone3.
+  /// No description provided for @verificationTip.
   ///
   /// In ru, this message translates to:
   /// **'С проверенным профилем шанс найти соседа выше, рекомендуем пройти'**
-  String get almostDone3;
+  String get verificationTip;
 
   /// No description provided for @uploadDocument.
   ///
@@ -382,17 +382,17 @@ abstract class AppLocalizations {
   /// **'Подтверждение'**
   String get confirmation;
 
-  /// No description provided for @whatUname.
+  /// No description provided for @whatsYourName.
   ///
   /// In ru, this message translates to:
   /// **'Как вас зовут?'**
-  String get whatUname;
+  String get whatsYourName;
 
-  /// No description provided for @whatURealName.
+  /// No description provided for @betterToUseRealName.
   ///
   /// In ru, this message translates to:
   /// **'Лучше написать настоящее имя'**
-  String get whatURealName;
+  String get betterToUseRealName;
 
   /// No description provided for @name.
   ///
@@ -400,59 +400,59 @@ abstract class AppLocalizations {
   /// **'Имя'**
   String get name;
 
-  /// No description provided for @quiz_q1_title.
+  /// No description provided for @quizQ1Title.
   ///
   /// In ru, this message translates to:
   /// **'С чем вам помочь?'**
-  String get quiz_q1_title;
+  String get quizQ1Title;
 
-  /// No description provided for @quiz_q1_subtitle.
+  /// No description provided for @quizQ1Subtitle.
   ///
   /// In ru, this message translates to:
   /// **'Настроим поиск для вашего удобства'**
-  String get quiz_q1_subtitle;
+  String get quizQ1Subtitle;
 
-  /// No description provided for @quiz_q1_opt1.
+  /// No description provided for @quizQ1Opt1.
   ///
   /// In ru, this message translates to:
   /// **'Найти помещение'**
-  String get quiz_q1_opt1;
+  String get quizQ1Opt1;
 
-  /// No description provided for @quiz_q1_opt2.
+  /// No description provided for @quizQ1Opt2.
   ///
   /// In ru, this message translates to:
   /// **'Сдать помещение'**
-  String get quiz_q1_opt2;
+  String get quizQ1Opt2;
 
-  /// No description provided for @quiz_q1_opt3.
+  /// No description provided for @quizQ1Opt3.
   ///
   /// In ru, this message translates to:
   /// **'Я просто посмотреть'**
-  String get quiz_q1_opt3;
+  String get quizQ1Opt3;
 
-  /// No description provided for @quiz_q2_title.
+  /// No description provided for @quizQ2Title.
   ///
   /// In ru, this message translates to:
   /// **'Хотите создать объявление?'**
-  String get quiz_q2_title;
+  String get quizQ2Title;
 
-  /// No description provided for @quiz_q2_subtitle.
+  /// No description provided for @quizQ2Subtitle.
   ///
   /// In ru, this message translates to:
   /// **'Вы можете это сделать позже'**
-  String get quiz_q2_subtitle;
+  String get quizQ2Subtitle;
 
-  /// No description provided for @quiz_q2_opt1.
+  /// No description provided for @quizQ2Opt1.
   ///
   /// In ru, this message translates to:
   /// **'Разместить объявление'**
-  String get quiz_q2_opt1;
+  String get quizQ2Opt1;
 
-  /// No description provided for @quiz_q2_opt2.
+  /// No description provided for @quizQ2Opt2.
   ///
   /// In ru, this message translates to:
   /// **'Пропустить'**
-  String get quiz_q2_opt2;
+  String get quizQ2Opt2;
 
   /// No description provided for @support.
   ///
@@ -472,29 +472,29 @@ abstract class AppLocalizations {
   /// **'Верификация'**
   String get verification;
 
-  /// No description provided for @profile_subtitle.
+  /// No description provided for @profileSubtitle.
   ///
   /// In ru, this message translates to:
   /// **'Изменение ваших данных'**
-  String get profile_subtitle;
+  String get profileSubtitle;
 
-  /// No description provided for @verification_subtitle.
+  /// No description provided for @verificationSubtitle.
   ///
   /// In ru, this message translates to:
   /// **'Подтверждение вашего профиля'**
-  String get verification_subtitle;
+  String get verificationSubtitle;
 
-  /// No description provided for @support_subtitle.
+  /// No description provided for @supportSubtitle.
   ///
   /// In ru, this message translates to:
   /// **'Сообщите о проблеме'**
-  String get support_subtitle;
+  String get supportSubtitle;
 
-  /// No description provided for @settings_subtitle.
+  /// No description provided for @settingsSubtitle.
   ///
   /// In ru, this message translates to:
   /// **'Ваш аккаунт, уведомления'**
-  String get settings_subtitle;
+  String get settingsSubtitle;
 
   /// No description provided for @basicSection.
   ///
@@ -571,7 +571,7 @@ abstract class AppLocalizations {
   /// No description provided for @typeOfProperty.
   ///
   /// In ru, this message translates to:
-  /// **'Тип недвижимости'**
+  /// **'Вид недвижимости'**
   String get typeOfProperty;
 
   /// No description provided for @reset.
@@ -754,11 +754,11 @@ abstract class AppLocalizations {
   /// **'О приложении'**
   String get about;
 
-  /// No description provided for @hintMessage.
+  /// No description provided for @messageHint.
   ///
   /// In ru, this message translates to:
   /// **'Сообщение..'**
-  String get hintMessage;
+  String get messageHint;
 
   /// No description provided for @language.
   ///
@@ -849,6 +849,324 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Показать всё'**
   String get viewAll;
+
+  /// No description provided for @newAdvertisement.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новое объявление'**
+  String get newAdvertisement;
+
+  /// No description provided for @apartmentRent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аренда квартиры'**
+  String get apartmentRent;
+
+  /// No description provided for @advertisement.
+  ///
+  /// In ru, this message translates to:
+  /// **'Объявление'**
+  String get advertisement;
+
+  /// No description provided for @wantToExit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Хотите выйти?'**
+  String get wantToExit;
+
+  /// No description provided for @draftWillBeSaved.
+  ///
+  /// In ru, this message translates to:
+  /// **'Черновик сохранится, можете продолжить заполнение позже'**
+  String get draftWillBeSaved;
+
+  /// No description provided for @stay.
+  ///
+  /// In ru, this message translates to:
+  /// **'Остаться'**
+  String get stay;
+
+  /// No description provided for @exit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти'**
+  String get exit;
+
+  /// No description provided for @rent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аренда'**
+  String get rent;
+
+  /// No description provided for @longTerm.
+  ///
+  /// In ru, this message translates to:
+  /// **'Долгосрочная'**
+  String get longTerm;
+
+  /// No description provided for @daily.
+  ///
+  /// In ru, this message translates to:
+  /// **'Посуточно'**
+  String get daily;
+
+  /// No description provided for @trade.
+  ///
+  /// In ru, this message translates to:
+  /// **'Обмен'**
+  String get trade;
+
+  /// No description provided for @whoReadyToRentTo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кому готов сдавать'**
+  String get whoReadyToRentTo;
+
+  /// No description provided for @toOnePerson.
+  ///
+  /// In ru, this message translates to:
+  /// **'Одному человеку'**
+  String get toOnePerson;
+
+  /// No description provided for @toGroup.
+  ///
+  /// In ru, this message translates to:
+  /// **'Компании'**
+  String get toGroup;
+
+  /// No description provided for @toFamily.
+  ///
+  /// In ru, this message translates to:
+  /// **'Семье'**
+  String get toFamily;
+
+  /// No description provided for @toStudents.
+  ///
+  /// In ru, this message translates to:
+  /// **'Студентам'**
+  String get toStudents;
+
+  /// No description provided for @longTermRent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Долгосрочная аренда'**
+  String get longTermRent;
+
+  /// No description provided for @whatTypeOfRoom.
+  ///
+  /// In ru, this message translates to:
+  /// **'Какое у вас помещение?'**
+  String get whatTypeOfRoom;
+
+  /// No description provided for @residential.
+  ///
+  /// In ru, this message translates to:
+  /// **'Жилое'**
+  String get residential;
+
+  /// No description provided for @commercial.
+  ///
+  /// In ru, this message translates to:
+  /// **'Коммерческое'**
+  String get commercial;
+
+  /// No description provided for @whatIsYourAddress.
+  ///
+  /// In ru, this message translates to:
+  /// **'Какой у вас адрес?'**
+  String get whatIsYourAddress;
+
+  /// No description provided for @moscowCity.
+  ///
+  /// In ru, this message translates to:
+  /// **'г. Москва'**
+  String get moscowCity;
+
+  /// No description provided for @locationDetailsHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Метро, район, адрес, шоссе, ЖК'**
+  String get locationDetailsHint;
+
+  /// No description provided for @apartment.
+  ///
+  /// In ru, this message translates to:
+  /// **'Квартира'**
+  String get apartment;
+
+  /// No description provided for @apartmentsRoom.
+  ///
+  /// In ru, this message translates to:
+  /// **'Апартаменты'**
+  String get apartmentsRoom;
+
+  /// No description provided for @room.
+  ///
+  /// In ru, this message translates to:
+  /// **'Комната'**
+  String get room;
+
+  /// No description provided for @bedPlace.
+  ///
+  /// In ru, this message translates to:
+  /// **'Койко-место'**
+  String get bedPlace;
+
+  /// No description provided for @house.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дом'**
+  String get house;
+
+  /// No description provided for @cottage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Коттедж'**
+  String get cottage;
+
+  /// No description provided for @townhouse.
+  ///
+  /// In ru, this message translates to:
+  /// **'Таунхаус'**
+  String get townhouse;
+
+  /// No description provided for @apartmentNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Номер квартиры'**
+  String get apartmentNumber;
+
+  /// No description provided for @enterApartmentNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите номер квартиры'**
+  String get enterApartmentNumber;
+
+  /// No description provided for @notVisibleInAd.
+  ///
+  /// In ru, this message translates to:
+  /// **'В объявлении видно не будет'**
+  String get notVisibleInAd;
+
+  /// No description provided for @numberOfRooms.
+  ///
+  /// In ru, this message translates to:
+  /// **'Количество комнат'**
+  String get numberOfRooms;
+
+  /// No description provided for @studio.
+  ///
+  /// In ru, this message translates to:
+  /// **'Студия'**
+  String get studio;
+
+  /// No description provided for @openPlan.
+  ///
+  /// In ru, this message translates to:
+  /// **'Свободная планировка'**
+  String get openPlan;
+
+  /// No description provided for @apartmentArea.
+  ///
+  /// In ru, this message translates to:
+  /// **'Площадь квартиры'**
+  String get apartmentArea;
+
+  /// No description provided for @enterApartmentArea.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите площадь квартиры'**
+  String get enterApartmentArea;
+
+  /// No description provided for @layout.
+  ///
+  /// In ru, this message translates to:
+  /// **'Планировка'**
+  String get layout;
+
+  /// No description provided for @adjoining.
+  ///
+  /// In ru, this message translates to:
+  /// **'Смежная'**
+  String get adjoining;
+
+  /// No description provided for @isolated.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изолированная'**
+  String get isolated;
+
+  /// No description provided for @combinedLayout.
+  ///
+  /// In ru, this message translates to:
+  /// **'Смежно-изолированная'**
+  String get combinedLayout;
+
+  /// No description provided for @floor.
+  ///
+  /// In ru, this message translates to:
+  /// **'Этаж'**
+  String get floor;
+
+  /// No description provided for @enterFloor.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите этаж'**
+  String get enterFloor;
+
+  /// No description provided for @floorsInBuilding.
+  ///
+  /// In ru, this message translates to:
+  /// **'Этажей в доме'**
+  String get floorsInBuilding;
+
+  /// No description provided for @numberOfFloors.
+  ///
+  /// In ru, this message translates to:
+  /// **'Количество этажей'**
+  String get numberOfFloors;
+
+  /// No description provided for @addPhotos.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавьте фотографии'**
+  String get addPhotos;
+
+  /// No description provided for @minPhotosCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Количество - минимум 5'**
+  String get minPhotosCount;
+
+  /// No description provided for @addPhoto.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить фото'**
+  String get addPhoto;
+
+  /// No description provided for @addVideos.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавьте видео'**
+  String get addVideos;
+
+  /// No description provided for @oneVideoOnly.
+  ///
+  /// In ru, this message translates to:
+  /// **'Количество - только одно'**
+  String get oneVideoOnly;
+
+  /// No description provided for @addVideo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить видео'**
+  String get addVideo;
+
+  /// No description provided for @squareMeters.
+  ///
+  /// In ru, this message translates to:
+  /// **'м²'**
+  String get squareMeters;
 }
 
 class _AppLocalizationsDelegate

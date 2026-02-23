@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -15,10 +16,11 @@ class CreateAdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
       routes: const [
-        FirstCreateAdStepRoute(),
-        SecondCreateAdStepRoute(),
-        ThirdStepRoute(),
-        FourthStepRoute(),
+        FirstStepRoute(),
+        WhatTypeRoomStepRoute(),
+        TypeOfPropertyStepRoute(),
+        LocationStepRoute(),
+        InputDetailsApStepRoute(),
         FifthStepRoute(),
       ],
       builder: (context, child, pageController) {
@@ -26,15 +28,58 @@ class CreateAdScreen extends StatelessWidget {
         final totalPages = tabsRouter.pageCount;
         final activeIndex = tabsRouter.activeIndex;
         final String title = switch (activeIndex) {
-          0 || 1 => "Новое объявление",
-          2 || 3 || 4 || 5 => "Аренда квартиры",
-          _ => "Объявление",
+          0 || 1 => context.l10n.newAdvertisement,
+          2 || 3 || 4 || 5 => context.l10n.apartmentRent,
+          _ => context.l10n.advertisement,
         };
 
         return Scaffold(
           appBar: AppBar(
             centerTitle: false,
             title: Text(title),
+            actions: [
+              TextButton(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      title: Text(context.l10n.wantToExit),
+                      content: Text(context.l10n.draftWillBeSaved),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text(
+                            context.l10n.stay,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
+                              color: CupertinoColors.systemBlue,
+                            ),
+                          ),
+                          onPressed: () => context.pop(),
+                        ),
+                        CupertinoDialogAction(
+                          child: Text(
+                            context.l10n.exit,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600,
+                              color: CupertinoColors.destructiveRed,
+                            ),
+                          ),
+                          onPressed: () => context.pop(),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                child: Text(
+                  context.l10n.cancel,
+                  style: context.typography.activesButton.copyWith(
+                    color: context.colors.orange100,
+                  ),
+                ),
+              ),
+            ],
             leading: BB(
               onPressed: () {
                 final prevIndex = tabsRouter.activeIndex - 1;
@@ -81,18 +126,19 @@ class CreateAdScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: SafeArea(
-            child: Padding(
-              padding: const P(horizontal: S.p16),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const P(top: S.p20),
-                      child: child,
-                    ),
+          body: Padding(
+            padding: const P(horizontal: S.p16),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const P(top: S.p20),
+                    child: child,
                   ),
-                  PrimaryButton(
+                ),
+                Padding(
+                  padding: const P(bottom: S.p24),
+                  child: PrimaryButton(
                     title: Text(context.l10n.next),
                     onPressed: () {
                       final nextIndex = tabsRouter.activeIndex + 1;
@@ -103,8 +149,8 @@ class CreateAdScreen extends StatelessWidget {
                       }
                     },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

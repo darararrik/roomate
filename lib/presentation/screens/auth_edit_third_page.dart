@@ -20,13 +20,13 @@ class AuthEditThirdPage extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "${context.l10n.almostDone1}\n${context.l10n.almostDone2}",
+                "${context.l10n.almostDoneTitle}\n${context.l10n.verificationRequired}",
                 style: context.typography.headline1,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: S.p8),
               Text(
-                context.l10n.almostDone3,
+                context.l10n.verificationTip,
                 style: context.typography.headline2.copyWith(
                   color: context.colors.text400,
                 ),

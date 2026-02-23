@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/primary_btn.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
 
 @RoutePage()
 class RegNumberScreen extends HookWidget {
@@ -76,7 +76,7 @@ class RegNumberScreen extends HookWidget {
                                   Image.asset(AppIcons.ruFlag, width: S.p20),
                                   const SizedBox(width: S.p8),
                                   Text(
-                                    context.l10n.ru_number,
+                                    context.l10n.russiaPhonePrefix,
                                     style: context.typography.inputTextRegular
                                         .copyWith(
                                           fontWeight: FontWeight.bold,
@@ -105,7 +105,7 @@ class RegNumberScreen extends HookWidget {
                               letterSpacing: 1.2,
                             ),
                             decoration: InputDecoration(
-                              hintText: context.l10n.phone_placeholder,
+                              hintText: context.l10n.phonePlaceholder,
                               hintStyle: context.typography.inputTextRegular
                                   .copyWith(
                                     color: context.colors.text400,

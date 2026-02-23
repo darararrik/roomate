@@ -63,14 +63,20 @@ class AppRouter extends RootStackRouter {
       path: '/create-ad',
       initial: true,
       children: [
+        AutoRoute(page: FirstStepRoute.page, path: 'first-step', initial: true),
         AutoRoute(
-          page: FirstCreateAdStepRoute.page,
-          path: 'first-step',
-          initial: true,
+          page: WhatTypeRoomStepRoute.page,
+          path: 'what-type-room-step',
         ),
-        AutoRoute(page: SecondCreateAdStepRoute.page, path: 'second-step'),
-        AutoRoute(page: ThirdStepRoute.page, path: 'third-step'),
-        AutoRoute(page: FourthStepRoute.page, path: 'fourth-step'),
+        AutoRoute(
+          page: TypeOfPropertyStepRoute.page,
+          path: 'type-of-property-step',
+        ),
+        AutoRoute(page: LocationStepRoute.page, path: 'location-step'),
+        AutoRoute(
+          page: InputDetailsApStepRoute.page,
+          path: 'input-details-ap-step',
+        ),
         AutoRoute(page: FifthStepRoute.page, path: 'fifth-step'),
       ],
     ),

@@ -4,7 +4,7 @@ import 'package:flutter_image_carousel_slider/image_carousel_slider.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/primary_btn.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
 
 class ApartmentCard extends StatelessWidget {
   const ApartmentCard({super.key});
@@ -47,7 +47,7 @@ class ApartmentCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${10000} ${context.l10n.r_month}",
+                          "${10000} ${context.l10n.currencyPerMonth}",
                           style: context.typography.headline1,
                         ),
                         const AppIcon(AppIcons.favourite, size: S.p24),

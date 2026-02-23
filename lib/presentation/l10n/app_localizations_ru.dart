@@ -9,13 +9,13 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get ru => 'Русский';
+  String get russian => 'Русский';
 
   @override
-  String get ru_number => '+7';
+  String get russiaPhonePrefix => '+7';
 
   @override
-  String get phone_placeholder => '(900) 000-00-00';
+  String get phonePlaceholder => '(900) 000-00-00';
 
   @override
   String get main => 'Главная';
@@ -24,7 +24,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get favorites => 'Избранное';
 
   @override
-  String get place => 'Разместить';
+  String get postAd => 'Разместить';
 
   @override
   String get messages => 'Сообщения';
@@ -57,10 +57,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get optionsFound => 'Найдено вариантов';
 
   @override
-  String get r => '₽';
+  String get currencySymbol => '₽';
 
   @override
-  String get r_month => '₽/мес.';
+  String get currencyPerMonth => '₽/мес.';
 
   @override
   String get map => 'Карта';
@@ -94,7 +94,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Найдите соседа в пару кликов - и забудьте о долгих поисках!';
 
   @override
-  String get loginByphoneNumber => 'Войти по номеру телефона';
+  String get loginByPhoneNumber => 'Войти по номеру телефона';
 
   @override
   String get loginViaSocialNetworks => 'Войти через соц.сети';
@@ -130,20 +130,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get gender => 'Пол';
 
   @override
-  String get tellUsAboutYourself1 => 'Расскажите о себе';
+  String get tellUsAboutYourselfTitle => 'Расскажите о себе';
 
   @override
-  String get tellUsAboutYourself2 =>
+  String get tellUsAboutYourselfSubtitle =>
       'Расскажите немного о себе, чтобы помочь потенциальным соседям лучше о вас узнать';
 
   @override
-  String get almostDone1 => 'Почти готово!';
+  String get almostDoneTitle => 'Почти готово!';
 
   @override
-  String get almostDone2 => 'Осталось пройти верификацию';
+  String get verificationRequired => 'Осталось пройти верификацию';
 
   @override
-  String get almostDone3 =>
+  String get verificationTip =>
       'С проверенным профилем шанс найти соседа выше, рекомендуем пройти';
 
   @override
@@ -156,40 +156,40 @@ class AppLocalizationsRu extends AppLocalizations {
   String get confirmation => 'Подтверждение';
 
   @override
-  String get whatUname => 'Как вас зовут?';
+  String get whatsYourName => 'Как вас зовут?';
 
   @override
-  String get whatURealName => 'Лучше написать настоящее имя';
+  String get betterToUseRealName => 'Лучше написать настоящее имя';
 
   @override
   String get name => 'Имя';
 
   @override
-  String get quiz_q1_title => 'С чем вам помочь?';
+  String get quizQ1Title => 'С чем вам помочь?';
 
   @override
-  String get quiz_q1_subtitle => 'Настроим поиск для вашего удобства';
+  String get quizQ1Subtitle => 'Настроим поиск для вашего удобства';
 
   @override
-  String get quiz_q1_opt1 => 'Найти помещение';
+  String get quizQ1Opt1 => 'Найти помещение';
 
   @override
-  String get quiz_q1_opt2 => 'Сдать помещение';
+  String get quizQ1Opt2 => 'Сдать помещение';
 
   @override
-  String get quiz_q1_opt3 => 'Я просто посмотреть';
+  String get quizQ1Opt3 => 'Я просто посмотреть';
 
   @override
-  String get quiz_q2_title => 'Хотите создать объявление?';
+  String get quizQ2Title => 'Хотите создать объявление?';
 
   @override
-  String get quiz_q2_subtitle => 'Вы можете это сделать позже';
+  String get quizQ2Subtitle => 'Вы можете это сделать позже';
 
   @override
-  String get quiz_q2_opt1 => 'Разместить объявление';
+  String get quizQ2Opt1 => 'Разместить объявление';
 
   @override
-  String get quiz_q2_opt2 => 'Пропустить';
+  String get quizQ2Opt2 => 'Пропустить';
 
   @override
   String get support => 'Поддержка';
@@ -201,16 +201,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get verification => 'Верификация';
 
   @override
-  String get profile_subtitle => 'Изменение ваших данных';
+  String get profileSubtitle => 'Изменение ваших данных';
 
   @override
-  String get verification_subtitle => 'Подтверждение вашего профиля';
+  String get verificationSubtitle => 'Подтверждение вашего профиля';
 
   @override
-  String get support_subtitle => 'Сообщите о проблеме';
+  String get supportSubtitle => 'Сообщите о проблеме';
 
   @override
-  String get settings_subtitle => 'Ваш аккаунт, уведомления';
+  String get settingsSubtitle => 'Ваш аккаунт, уведомления';
 
   @override
   String get basicSection => 'Основные';
@@ -249,7 +249,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get apply => 'Применить';
 
   @override
-  String get typeOfProperty => 'Тип недвижимости';
+  String get typeOfProperty => 'Вид недвижимости';
 
   @override
   String get reset => 'Сбросить';
@@ -342,7 +342,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get about => 'О приложении';
 
   @override
-  String get hintMessage => 'Сообщение..';
+  String get messageHint => 'Сообщение..';
 
   @override
   String get language => 'Язык';
@@ -388,4 +388,164 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get viewAll => 'Показать всё';
+
+  @override
+  String get newAdvertisement => 'Новое объявление';
+
+  @override
+  String get apartmentRent => 'Аренда квартиры';
+
+  @override
+  String get advertisement => 'Объявление';
+
+  @override
+  String get wantToExit => 'Хотите выйти?';
+
+  @override
+  String get draftWillBeSaved =>
+      'Черновик сохранится, можете продолжить заполнение позже';
+
+  @override
+  String get stay => 'Остаться';
+
+  @override
+  String get exit => 'Выйти';
+
+  @override
+  String get rent => 'Аренда';
+
+  @override
+  String get longTerm => 'Долгосрочная';
+
+  @override
+  String get daily => 'Посуточно';
+
+  @override
+  String get trade => 'Обмен';
+
+  @override
+  String get whoReadyToRentTo => 'Кому готов сдавать';
+
+  @override
+  String get toOnePerson => 'Одному человеку';
+
+  @override
+  String get toGroup => 'Компании';
+
+  @override
+  String get toFamily => 'Семье';
+
+  @override
+  String get toStudents => 'Студентам';
+
+  @override
+  String get longTermRent => 'Долгосрочная аренда';
+
+  @override
+  String get whatTypeOfRoom => 'Какое у вас помещение?';
+
+  @override
+  String get residential => 'Жилое';
+
+  @override
+  String get commercial => 'Коммерческое';
+
+  @override
+  String get whatIsYourAddress => 'Какой у вас адрес?';
+
+  @override
+  String get moscowCity => 'г. Москва';
+
+  @override
+  String get locationDetailsHint => 'Метро, район, адрес, шоссе, ЖК';
+
+  @override
+  String get apartment => 'Квартира';
+
+  @override
+  String get apartmentsRoom => 'Апартаменты';
+
+  @override
+  String get room => 'Комната';
+
+  @override
+  String get bedPlace => 'Койко-место';
+
+  @override
+  String get house => 'Дом';
+
+  @override
+  String get cottage => 'Коттедж';
+
+  @override
+  String get townhouse => 'Таунхаус';
+
+  @override
+  String get apartmentNumber => 'Номер квартиры';
+
+  @override
+  String get enterApartmentNumber => 'Введите номер квартиры';
+
+  @override
+  String get notVisibleInAd => 'В объявлении видно не будет';
+
+  @override
+  String get numberOfRooms => 'Количество комнат';
+
+  @override
+  String get studio => 'Студия';
+
+  @override
+  String get openPlan => 'Свободная планировка';
+
+  @override
+  String get apartmentArea => 'Площадь квартиры';
+
+  @override
+  String get enterApartmentArea => 'Введите площадь квартиры';
+
+  @override
+  String get layout => 'Планировка';
+
+  @override
+  String get adjoining => 'Смежная';
+
+  @override
+  String get isolated => 'Изолированная';
+
+  @override
+  String get combinedLayout => 'Смежно-изолированная';
+
+  @override
+  String get floor => 'Этаж';
+
+  @override
+  String get enterFloor => 'Введите этаж';
+
+  @override
+  String get floorsInBuilding => 'Этажей в доме';
+
+  @override
+  String get numberOfFloors => 'Количество этажей';
+
+  @override
+  String get addPhotos => 'Добавьте фотографии';
+
+  @override
+  String get minPhotosCount => 'Количество - минимум 5';
+
+  @override
+  String get addPhoto => 'Добавить фото';
+
+  @override
+  String get addVideos => 'Добавьте видео';
+
+  @override
+  String get oneVideoOnly => 'Количество - только одно';
+
+  @override
+  String get addVideo => 'Добавить видео';
+
+  @override
+  String get squareMeters => 'м²';
 }

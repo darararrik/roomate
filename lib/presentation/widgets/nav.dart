@@ -49,7 +49,7 @@ class NavBar extends StatelessWidget {
               ),
               NavigationDestination(
                 icon: const AppIcon(AppIcons.add),
-                label: context.l10n.place,
+                label: context.l10n.postAd,
                 selectedIcon: AppIcon(
                   AppIcons.add,
                   color: context.colors.orange,

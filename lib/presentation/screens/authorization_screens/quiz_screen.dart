@@ -23,14 +23,14 @@ class QuizScreen extends HookConsumerWidget {
 
     final steps = [
       QuizStepModel(
-        question: l10n.quiz_q1_title,
-        subQuestion: l10n.quiz_q1_subtitle,
-        options: [l10n.quiz_q1_opt1, l10n.quiz_q1_opt2, l10n.quiz_q1_opt3],
+        question: l10n.quizQ1Title,
+        subQuestion: l10n.quizQ1Subtitle,
+        options: [l10n.quizQ1Opt1, l10n.quizQ1Opt2, l10n.quizQ1Opt3],
       ),
       QuizStepModel(
-        question: l10n.quiz_q2_title,
-        subQuestion: l10n.quiz_q2_subtitle,
-        options: [l10n.quiz_q2_opt1, l10n.quiz_q2_opt2],
+        question: l10n.quizQ2Title,
+        subQuestion: l10n.quizQ2Subtitle,
+        options: [l10n.quizQ2Opt1, l10n.quizQ2Opt2],
       ),
     ];
 

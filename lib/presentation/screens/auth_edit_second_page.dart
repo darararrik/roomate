@@ -32,11 +32,16 @@ class AuthEditSecondPage extends StatelessWidget {
             padding: const P(vertical: S.p28),
             child: Column(
               children: [
-                Text(context.l10n.tellUsAboutYourself1, style: context.typography.headline1),
+                Text(
+                  context.l10n.tellUsAboutYourselfTitle,
+                  style: context.typography.headline1,
+                ),
                 const SizedBox(height: S.p8),
                 Text(
-                  context.l10n.tellUsAboutYourself2,
-                  style: context.typography.headline2.copyWith(color: context.colors.text400),
+                  context.l10n.tellUsAboutYourselfSubtitle,
+                  style: context.typography.headline2.copyWith(
+                    color: context.colors.text400,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ],

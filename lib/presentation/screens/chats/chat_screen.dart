@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/b_b.dart';
+import 'package:roomate/presentation/widgets/buttons/b_b.dart';
 import 'package:roomate/presentation/widgets/message_cloud.dart';
 
 @RoutePage()
@@ -53,13 +53,16 @@ class _ChatScreenState extends State<ChatScreen> {
   void _measureComposerHeight(BuildContext context) {
     if (!mounted) return;
 
-    final renderBox = _composerKey.currentContext?.findRenderObject() as RenderBox?;
+    final renderBox =
+        _composerKey.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox != null) {
       final height = renderBox.size.height;
       final bottomSafeArea = MediaQuery.of(context).padding.bottom;
 
       try {
-        context.read<ComposerHeightNotifier>().setHeight(height - bottomSafeArea);
+        context.read<ComposerHeightNotifier>().setHeight(
+          height - bottomSafeArea,
+        );
       } catch (e) {
         debugPrint('Ошибка при доступе к ComposerHeightNotifier: $e');
       }
@@ -85,7 +88,9 @@ class _ChatScreenState extends State<ChatScreen> {
     final double bottomSafeArea = MediaQuery.of(context).padding.bottom;
     const EdgeInsets defaultPadding = EdgeInsets.all(S.p8);
 
-    final EdgeInsets finalPadding = defaultPadding.copyWith(bottom: defaultPadding.bottom + bottomSafeArea);
+    final EdgeInsets finalPadding = defaultPadding.copyWith(
+      bottom: defaultPadding.bottom + bottomSafeArea,
+    );
 
     final composerContent = Builder(
       builder: (innerContext) {
@@ -123,8 +128,11 @@ class _ChatScreenState extends State<ChatScreen> {
                           _measureComposerHeight(innerContext);
                         },
                         decoration: InputDecoration(
-                          hintText: context.l10n.hintMessage,
-                          contentPadding: const P(horizontal: S.p16, vertical: S.p10),
+                          hintText: context.l10n.messageHint,
+                          contentPadding: const P(
+                            horizontal: S.p16,
+                            vertical: S.p10,
+                          ),
                         ),
                       ),
                     ),
@@ -132,7 +140,10 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 Padding(
                   padding: const P(left: S.p4),
-                  child: IconButton(icon: const AppIcon(AppIcons.pushAction), onPressed: _handleSend),
+                  child: IconButton(
+                    icon: const AppIcon(AppIcons.pushAction),
+                    onPressed: _handleSend,
+                  ),
                 ),
               ],
             ),
@@ -141,7 +152,12 @@ class _ChatScreenState extends State<ChatScreen> {
       },
     );
 
-    return Positioned(left: S.p0, right: S.p0, bottom: S.p0, child: composerContent);
+    return Positioned(
+      left: S.p0,
+      right: S.p0,
+      bottom: S.p0,
+      child: composerContent,
+    );
   }
 
   @override
@@ -155,7 +171,10 @@ class _ChatScreenState extends State<ChatScreen> {
         centerTitle: true,
       ),
       body: Chat(
-        builders: Builders(textMessageBuilder: buildCustomTextMessage, composerBuilder: _buildCustomComposer),
+        builders: Builders(
+          textMessageBuilder: buildCustomTextMessage,
+          composerBuilder: _buildCustomComposer,
+        ),
         currentUserId: 'user1',
         resolveUser: (UserID id) async {
           return User(id: id, name: 'John Doe $id');

@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             PrimaryButton(
-                              title: Text(context.l10n.loginByphoneNumber),
+                              title: Text(context.l10n.loginByPhoneNumber),
                               backgroundColor: context.colors.white10,
                               onPressed: () =>
                                   context.router.push(const RegNumberRoute()),

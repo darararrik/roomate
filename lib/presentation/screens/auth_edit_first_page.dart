@@ -42,11 +42,16 @@ class _AuthEditFirstPageState extends State<AuthEditFirstPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(context.l10n.whatUname, style: context.typography.headline1),
+              Text(
+                context.l10n.whatsYourName,
+                style: context.typography.headline1,
+              ),
               const SizedBox(height: S.p8),
               Text(
-                context.l10n.whatURealName,
-                style: context.typography.headline2.copyWith(color: context.colors.text400),
+                context.l10n.betterToUseRealName,
+                style: context.typography.headline2.copyWith(
+                  color: context.colors.text400,
+                ),
               ),
             ],
           ),
@@ -55,17 +60,26 @@ class _AuthEditFirstPageState extends State<AuthEditFirstPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InputWidget(hintText: context.l10n.name, controller: _nameController),
+              InputWidget(
+                hintText: context.l10n.name,
+                controller: _nameController,
+              ),
               const SizedBox(height: S.p12),
               Row(
                 children: [
                   Expanded(
-                    child: InputWidget(hintText: context.l10n.age, controller: _ageController),
+                    child: InputWidget(
+                      hintText: context.l10n.age,
+                      controller: _ageController,
+                    ),
                   ),
                   const SizedBox(width: S.p12),
                   //TODO: Заменить на дропдаун
                   Expanded(
-                    child: InputWidget(hintText: context.l10n.gender, controller: _ageController),
+                    child: InputWidget(
+                      hintText: context.l10n.gender,
+                      controller: _ageController,
+                    ),
                   ),
                 ],
               ),

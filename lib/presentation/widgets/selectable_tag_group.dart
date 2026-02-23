@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:group_button/group_button.dart';
 
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/utils/hooks/group_controller_hook.dart';
 
-class SelectableTagGroup extends StatelessWidget {
+class SelectableTagGroup extends HookWidget {
   const SelectableTagGroup({
     super.key,
     required this.title,
@@ -13,6 +14,7 @@ class SelectableTagGroup extends StatelessWidget {
     this.onTagSelected,
     this.description,
   });
+
   final String title;
   final String? description;
   final List<String> tags;
@@ -21,6 +23,7 @@ class SelectableTagGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = useGroupButtonController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -42,10 +45,10 @@ class SelectableTagGroup extends StatelessWidget {
             ],
           ),
         ),
-
         Padding(
           padding: const P(vertical: S.p12),
           child: GroupButton<String>(
+            controller: controller,
             isRadio: isRadio,
             buttons: tags,
             onSelected: (tag, index, isSelected) =>

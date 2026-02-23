@@ -74,7 +74,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                     Padding(
                       padding: const P(horizontal: S.p8, vertical: S.p12),
                       child: Text(
-                        context.l10n.whatUname,
+                        context.l10n.whatsYourName,
                         style: context.typography.bodyDescription.copyWith(
                           color: context.colors.text400,
                         ),

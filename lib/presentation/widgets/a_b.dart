@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:roomate/presentation/widgets/b_b.dart';
+import 'package:roomate/presentation/widgets/buttons/b_b.dart';
 
 class AB extends StatelessWidget {
   const AB({

@@ -9,18 +9,18 @@ import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class ThirdStepScreen extends HookWidget {
-  const ThirdStepScreen({super.key});
+class LocationStepScreen extends HookWidget {
+  const LocationStepScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = useTextEditingController();
     return ListView(
       children: [
-        Text("Расположение", style: context.typography.headline1),
+        Text(context.l10n.location, style: context.typography.headline1),
         const SizedBox(height: S.p8),
         Text(
-          "Какой у вас адрес?",
+          context.l10n.whatIsYourAddress,
           style: context.typography.bodyDescription.copyWith(
             color: context.colors.text400,
           ),
@@ -30,26 +30,19 @@ class ThirdStepScreen extends HookWidget {
           child: RegionListItem(
             iconPath: AppIcons.city,
             onTap: () => context.pushRoute(const LocationRoute()),
-            title: 'г. Москва',
-            subTitle: 'Метро, район, адрес, шоссе, ЖК',
+            title: context.l10n.moscowCity,
+            subTitle: context.l10n.locationDetailsHint,
           ),
         ),
-        SelectableTagGroup(
-          isRadio: true,
-          title: "Тип недвижимости",
-          tags: const ["Квартира", "Апартаменты"],
-          onTagSelected: (tag, selected) {},
-        ),
-        const SizedBox(height: S.p12),
-        TextFieldWithTitle(
-          title: 'Номер квартиры',
-          hintText: 'Введите номер квартиры',
+        TextFieldWithTitle.number(
+          title: context.l10n.apartmentNumber,
+          hintText: context.l10n.enterApartmentNumber,
           controller: controller,
         ),
         Padding(
           padding: const P(vertical: S.p4),
           child: Text(
-            "В объявлении видно не будет",
+            context.l10n.notVisibleInAd,
             style: context.typography.bodyDescription.copyWith(
               color: context.colors.text400,
             ),
