@@ -34,20 +34,18 @@ class FifthStepScreen extends StatelessWidget {
         ),
         Padding(
           padding: const P(vertical: S.p12),
-          child: PrimaryButton(
-            title: Text(context.l10n.addPhoto),
-            icon: AppIcon(
-              AppIcons.camera,
-              size: S.p20,
-              color: context.colors.white,
-            ),
-            onPressed: () => showModalBottomSheet(
-              context: context,
-              builder: (context) => BaseBottomSheet(
-                title: context.l10n.addPhoto,
-                child: const Column(children: [Text("data")]),
-              ),
-            ),
+          child: ElevatedButton(
+            onPressed: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => BaseBottomSheet(
+                  title: context.l10n.addPhoto,
+                  child: const Column(children: [Text("data")]),
+                ),
+              );
+            },
+            child: Text(context.l10n.addPhoto),
           ),
         ),
         const SizedBox(height: S.p12),

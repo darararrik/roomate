@@ -66,7 +66,7 @@ class TextFieldWithTitle extends StatelessWidget {
           padding: const P(vertical: S.p12),
           child: TextFormField(
             controller: controller,
-            onTapOutside: (_) => FocusScope.of(context).unfocus(),
+            onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
             keyboardType: keyboardType,
             inputFormatters: inputFormatters,
             decoration: InputDecoration(

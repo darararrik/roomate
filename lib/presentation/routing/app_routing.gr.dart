@@ -31,18 +31,18 @@ import 'package:roomate/presentation/screens/chats/chat_screen.dart' as _i8;
 import 'package:roomate/presentation/screens/chats/chats_screen.dart' as _i9;
 import 'package:roomate/presentation/screens/create_ad/create_ad_screen.dart'
     as _i11;
-import 'package:roomate/presentation/screens/create_ad/tabs/fifth_step_screen.dart'
-    as _i14;
-import 'package:roomate/presentation/screens/create_ad/tabs/first_step_screen.dart'
+import 'package:roomate/presentation/screens/create_ad/tabs/1_first_step_screen.dart'
     as _i18;
-import 'package:roomate/presentation/screens/create_ad/tabs/input_details_step_screen.dart'
-    as _i20;
-import 'package:roomate/presentation/screens/create_ad/tabs/location_step_screen.dart'
-    as _i22;
-import 'package:roomate/presentation/screens/create_ad/tabs/type_of_property_step_screen.dart'
-    as _i31;
-import 'package:roomate/presentation/screens/create_ad/tabs/what_type_room_step_screen.dart'
+import 'package:roomate/presentation/screens/create_ad/tabs/2_what_type_room_step_screen.dart'
     as _i33;
+import 'package:roomate/presentation/screens/create_ad/tabs/3_type_of_property_step_screen.dart'
+    as _i31;
+import 'package:roomate/presentation/screens/create_ad/tabs/4_location_step_screen.dart'
+    as _i22;
+import 'package:roomate/presentation/screens/create_ad/tabs/5_input_details_step_screen.dart'
+    as _i20;
+import 'package:roomate/presentation/screens/create_ad/tabs/6_media_download_step_screen.dart'
+    as _i14;
 import 'package:roomate/presentation/screens/create_screen.dart' as _i12;
 import 'package:roomate/presentation/screens/favorites_screen.dart' as _i13;
 import 'package:roomate/presentation/screens/filling_profile_screen.dart'
