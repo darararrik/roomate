@@ -7,12 +7,10 @@ import 'package:roomate/presentation/screens/create_ad/widgets/add_media_sheet.d
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 import 'package:roomate/presentation/widgets/buttons/opacity_button.dart';
-import 'package:roomate/presentation/widgets/buttons/secondary_button.dart';
-import 'package:roomate/presentation/widgets/sheets/base_bottom_sheet.dart';
 
 @RoutePage()
-class FifthStepScreen extends StatelessWidget {
-  const FifthStepScreen({super.key});
+class AddMediaStepScreen extends StatelessWidget {
+  const AddMediaStepScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

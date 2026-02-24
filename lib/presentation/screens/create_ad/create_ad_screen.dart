@@ -11,7 +11,7 @@ import 'package:roomate/presentation/widgets/widgets.dart';
 @RoutePage()
 class CreateAdScreen extends StatelessWidget {
   const CreateAdScreen({super.key});
-
+  //TODO в табах удалить текста тегов из l10n они с бэка должны быть
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
@@ -21,16 +21,26 @@ class CreateAdScreen extends StatelessWidget {
         TypeOfPropertyStepRoute(),
         LocationStepRoute(),
         InputDetailsApStepRoute(),
-        FifthStepRoute(),
+        AddMediaStepRoute(),
+        FeautesFirstStepRoute(),
+        FeautesSecondStepRoute(),
+        DealTermsStepRoute(),
+        ContactsStepRoute(),
+        FinishRoute(),
       ],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
         final totalPages = tabsRouter.pageCount;
         final activeIndex = tabsRouter.activeIndex;
         final String title = switch (activeIndex) {
-          0 || 1 => context.l10n.newAdvertisement,
-          2 || 3 || 4 || 5 => context.l10n.apartmentRent,
-          _ => context.l10n.advertisement,
+          0 || 1 || 2 => context.l10n.newAdvertisement,
+          3 || 4 => context.l10n.apartmentRent,
+          5 => "Фото и видео квартиры",
+          6 => "Особенности квартиры",
+          7 => "Условия сделки",
+          8 => "Описание объявления",
+          9 => "Контакты",
+          _ => "Новое объявление",
         };
 
         return Scaffold(

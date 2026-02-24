@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/screens/create_ad/tabs/_6_add_media_step_screen.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -77,7 +78,18 @@ class AppRouter extends RootStackRouter {
           page: InputDetailsApStepRoute.page,
           path: 'input-details-ap-step',
         ),
-        AutoRoute(page: FifthStepRoute.page, path: 'fifth-step'),
+        AutoRoute(page: AddMediaStepRoute.page, path: 'add-media-step'),
+        AutoRoute(
+          page: FeautesFirstStepRoute.page,
+          path: 'features-first-step',
+        ),
+        AutoRoute(
+          page: FeautesSecondStepRoute.page,
+          path: 'features-second-step',
+        ),
+        AutoRoute(page: DealTermsStepRoute.page, path: 'deal-terms-step'),
+        AutoRoute(page: ContactsStepRoute.page, path: 'contacts-step'),
+        AutoRoute(page: FinishRoute.page, path: 'finish-step'),
       ],
     ),
   ];
