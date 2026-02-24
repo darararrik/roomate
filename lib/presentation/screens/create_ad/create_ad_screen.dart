@@ -75,7 +75,7 @@ class CreateAdScreen extends StatelessWidget {
                 child: Text(
                   context.l10n.cancel,
                   style: context.typography.activesButton.copyWith(
-                    color: context.colors.orange100,
+                    color: context.colors.lightOrange100,
                   ),
                 ),
               ),
@@ -139,7 +139,7 @@ class CreateAdScreen extends StatelessWidget {
                 Padding(
                   padding: const P(bottom: S.p24),
                   child: PrimaryButton(
-                    title: Text(context.l10n.next),
+                    text: context.l10n.next,
                     onPressed: () {
                       final nextIndex = tabsRouter.activeIndex + 1;
                       if (nextIndex < tabsRouter.pageCount) {

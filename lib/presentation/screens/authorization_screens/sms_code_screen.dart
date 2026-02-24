@@ -9,7 +9,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_button.dart';
 import 'package:roomate/state/sms_notifier/sms_notifier_provider.dart';
 
 @RoutePage()
@@ -49,7 +49,7 @@ class SmsCodeScreen extends HookConsumerWidget {
                     Text(
                       context.l10n.descriptionSMSCode2,
                       style: context.typography.headline2.copyWith(
-                        color: context.colors.text400,
+                        color: context.colors.graysText400,
                       ),
                     ),
                     const SizedBox(height: S.p40),
@@ -59,7 +59,7 @@ class SmsCodeScreen extends HookConsumerWidget {
                       },
                       appContext: context,
                       length: 4,
-                      backgroundColor: context.colors.white,
+                      backgroundColor: context.colors.graysWhite,
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -68,10 +68,10 @@ class SmsCodeScreen extends HookConsumerWidget {
                         fieldWidth: S.p56,
                         shape: PinCodeFieldShape.box,
                         borderRadius: BorderRadius.circular(S.p12),
-                        activeColor: context.colors.stroke300,
-                        activeFillColor: context.colors.stroke300,
+                        activeColor: context.colors.graysStroke300,
+                        activeFillColor: context.colors.graysStroke300,
                         selectedColor: context.colors.orange,
-                        inactiveColor: context.colors.stroke300,
+                        inactiveColor: context.colors.graysStroke300,
                         fieldOuterPadding: const P(horizontal: S.p12),
                       ),
                     ),
@@ -97,7 +97,7 @@ class SmsCodeScreen extends HookConsumerWidget {
                               style: context.typography.activesLabel.copyWith(
                                 color: timerCount == 0
                                     ? context.colors.orange
-                                    : context.colors.orange100,
+                                    : context.colors.lightOrange100,
                               ),
                             ),
                           ),
@@ -111,7 +111,7 @@ class SmsCodeScreen extends HookConsumerWidget {
                         onPressed: isComplete.value
                             ? () => context.pushRoute(const QuizRoute())
                             : null,
-                        title: Text(context.l10n.next),
+                        text: context.l10n.next,
                       ),
                     ),
                   ],

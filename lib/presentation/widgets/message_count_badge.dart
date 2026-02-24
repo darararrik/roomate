@@ -17,7 +17,9 @@ class MessageCountBadge extends StatelessWidget {
       child: Container(
         width: isCircular ? S.p20 : null,
         height: S.p24,
-        padding: isCircular ? EdgeInsets.zero : const EdgeInsets.symmetric(horizontal: S.p6),
+        padding: isCircular
+            ? EdgeInsets.zero
+            : const EdgeInsets.symmetric(horizontal: S.p6),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: context.colors.orange,
@@ -26,7 +28,9 @@ class MessageCountBadge extends StatelessWidget {
         ),
         child: Text(
           count.toMessagedCount(),
-          style: context.typography.bodySmall.copyWith(color: context.colors.white),
+          style: context.typography.bodySmall.copyWith(
+            color: context.colors.graysWhite,
+          ),
           textAlign: TextAlign.center,
         ),
       ),

@@ -83,37 +83,37 @@ class FillingProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(child: child),
-                PrimaryButton(
-                  title: Text(context.l10n.next),
-                  onPressed: () {
-                    final nextIndex = tabsRouter.activeIndex + 1;
-                    if (nextIndex < tabsRouter.pageCount) {
-                      tabsRouter.setActiveIndex(nextIndex);
-                    } else {
-                      // или переход куда нужно
-                    }
-                  },
-                ),
-                Visibility(
-                  visible: tabsRouter.activeIndex == 2,
-                  replacement: const SizedBox(height: S.p40),
-                  child: Padding(
-                    padding: const P(bottom: S.p44, top: S.p12),
-                    child: PrimaryButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                          context.colors.light100,
-                        ),
-                        foregroundColor: WidgetStatePropertyAll(
-                          context.colors.text400,
-                        ),
-                      ),
-                      title: Text(context.l10n.skip),
-                      onPressed: () =>
-                          context.replaceRoute(const NavBarRoute()),
-                    ),
-                  ),
-                ),
+                // PrimaryButton(
+                //   child: Text(context.l10n.next),
+                //   onPressed: () {
+                //     final nextIndex = tabsRouter.activeIndex + 1;
+                //     if (nextIndex < tabsRouter.pageCount) {
+                //       tabsRouter.setActiveIndex(nextIndex);
+                //     } else {
+                //       // или переход куда нужно
+                //     }
+                //   },
+                // ),
+                // Visibility(
+                //   visible: tabsRouter.activeIndex == 2,
+                //   replacement: const SizedBox(height: S.p40),
+                //   child: Padding(
+                //     padding: const P(bottom: S.p44, top: S.p12),
+                //     child: PrimaryButton(
+                //       style: ButtonStyle(
+                //         backgroundColor: WidgetStatePropertyAll(
+                //           context.colors.light100,
+                //         ),
+                //         foregroundColor: WidgetStatePropertyAll(
+                //           context.colors.text400,
+                //         ),
+                //       ),
+                //       child: Text(context.l10n.skip),
+                //       onPressed: () =>
+                //           context.replaceRoute(const NavBarRoute()),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -48,7 +48,9 @@ class ChatsScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   "18:30",
-                                  style: context.typography.bodySmall.copyWith(color: context.colors.text700),
+                                  style: context.typography.bodySmall.copyWith(
+                                    color: context.colors.graysText700,
+                                  ),
                                 ),
                               ],
                             ),
@@ -64,7 +66,9 @@ class ChatsScreen extends StatelessWidget {
                                         TextSpan(text: '$name: '),
                                         TextSpan(
                                           text: message,
-                                          style: TextStyle(color: context.colors.text700),
+                                          style: TextStyle(
+                                            color: context.colors.graysText700,
+                                          ),
                                         ),
                                       ],
                                     ),

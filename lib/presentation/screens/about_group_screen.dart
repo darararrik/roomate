@@ -27,7 +27,7 @@ class AboutGroupScreen extends StatelessWidget {
                     Text(
                       "4/5 ${context.l10n.participants}",
                       style: context.typography.bodyTitle.copyWith(
-                        color: context.colors.text400,
+                        color: context.colors.graysText400,
                       ),
                     ),
                     Padding(
@@ -43,7 +43,7 @@ class AboutGroupScreen extends StatelessWidget {
                           Text(
                             "Омск, улица Ленина, 12к1",
                             style: context.typography.bodySmall.copyWith(
-                              color: context.colors.text400,
+                              color: context.colors.graysText400,
                             ),
                           ),
                           Row(
@@ -67,10 +67,7 @@ class AboutGroupScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    PrimaryButton(
-                      title: Text(context.l10n.join),
-                      onPressed: () {},
-                    ),
+                    PrimaryButton(text: context.l10n.join, onPressed: () {}),
                   ],
                 ),
               ),

@@ -9,12 +9,17 @@ class ChipMatch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(color: context.colors.green100, borderRadius: BorderRadius.circular(S.p6)),
+      decoration: BoxDecoration(
+        color: context.colors.lightGreen100,
+        borderRadius: BorderRadius.circular(S.p6),
+      ),
       child: Padding(
         padding: const P(all: S.p8),
         child: Text(
           "${95}${context.l10n.percent} ${context.l10n.match}",
-          style: context.typography.bodySmall.copyWith(color: context.colors.green700),
+          style: context.typography.bodySmall.copyWith(
+            color: context.colors.green700,
+          ),
         ),
       ),
     );

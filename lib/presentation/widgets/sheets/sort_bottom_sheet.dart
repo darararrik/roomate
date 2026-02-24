@@ -47,10 +47,7 @@ class SortBottomSheet extends StatelessWidget {
             ),
             Padding(
               padding: const P(top: S.p16),
-              child: PrimaryButton(
-                title: Text(context.l10n.apply),
-                onPressed: () {},
-              ),
+              child: PrimaryButton(text: context.l10n.apply, onPressed: () {}),
             ),
           ],
         ),

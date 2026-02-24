@@ -4,7 +4,6 @@ import 'package:flutter_image_carousel_slider/image_carousel_slider.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
 
 class ApartmentCard extends StatelessWidget {
   const ApartmentCard({super.key});
@@ -16,7 +15,7 @@ class ApartmentCard extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(S.p12)),
-          color: context.colors.white,
+          color: context.colors.graysWhite,
           boxShadow: [context.colors.shadow],
         ),
         child: Column(
@@ -60,28 +59,10 @@ class ApartmentCard extends StatelessWidget {
                     Text(
                       "Омск, улица Красный путь, 101к1",
                       style: context.typography.bodySmall.copyWith(
-                        color: context.colors.text400,
+                        color: context.colors.graysText400,
                       ),
                     ),
                   ].separated(const SizedBox(height: S.p8)),
-                  const SizedBox(height: S.p12),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: PrimaryButton(
-                          title: Text(context.l10n.write),
-                          onPressed: () {},
-                          borderRadius: S.p16,
-                        ),
-                      ),
-                      Expanded(
-                        child: PrimaryButton(
-                          title: Text(context.l10n.call),
-                          borderRadius: S.p16,
-                        ),
-                      ),
-                    ].separated(const SizedBox(width: S.p8)),
-                  ),
                 ],
               ),
             ),

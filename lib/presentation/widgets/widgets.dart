@@ -16,7 +16,7 @@ export 'message_count_badge.dart';
 export 'nav.dart';
 export 'neighbour_card.dart';
 export 'overlapping_avatars.dart';
-export 'buttons/primary_btn.dart';
+export 'buttons/primary_button.dart';
 export 'profile_list_item.dart';
 export 'profile_menu_item.dart';
 export 'region_list_item.dart';

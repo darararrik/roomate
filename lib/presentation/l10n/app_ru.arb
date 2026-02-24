@@ -179,5 +179,8 @@
   "addVideos": "Добавьте видео",
   "oneVideoOnly": "Количество - только одно",
   "addVideo": "Добавить видео",
-  "squareMeters": "м²"
+  "squareMeters": "м²",
+  "createPhoto": "Создать фото",
+  "chooseFromGallery": "Выбрать из галереи",
+  "recordVideo": "Записать видео"
 }

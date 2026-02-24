@@ -14,7 +14,7 @@ class NeighbourCard extends StatelessWidget {
       onTap: onTap,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: context.colors.white,
+          color: context.colors.graysWhite,
           boxShadow: [context.colors.shadow],
           borderRadius: BorderRadius.circular(S.p12),
         ),
@@ -25,7 +25,10 @@ class NeighbourCard extends StatelessWidget {
             children: [
               ...[
                 const ChipMatch(),
-                Text("Тихий уголок в центре", style: context.typography.headline1),
+                Text(
+                  "Тихий уголок в центре",
+                  style: context.typography.headline1,
+                ),
                 Text(
                   "Ищем соседей для уютной квартиры в центре города. Главное для нас — спокойствие, уважение личного пространства и чистота. Гостей приводим редко, любим работать и отдыхать в тишине. Если тебе тоже важен комфортный и размеренный быт — добро пожаловать!",
                   style: context.typography.bodyDescription,
@@ -38,7 +41,9 @@ class NeighbourCard extends StatelessWidget {
               const SizedBox(height: S.p8),
               Text(
                 "4/5 ${context.l10n.participants}",
-                style: context.typography.bodySmall.copyWith(color: context.colors.text400),
+                style: context.typography.bodySmall.copyWith(
+                  color: context.colors.graysText400,
+                ),
               ),
             ],
           ),

@@ -38,7 +38,7 @@ class SelectableTagGroup extends HookWidget {
                 Text(
                   description!,
                   style: context.typography.bodyDescription.copyWith(
-                    color: context.colors.text400,
+                    color: context.colors.graysText400,
                   ),
                 ),
               ],
@@ -58,8 +58,8 @@ class SelectableTagGroup extends HookWidget {
                 margin: EdgeInsets.zero,
                 elevation: S.p0,
                 color: selected
-                    ? context.colors.orange20
-                    : context.colors.light100,
+                    ? context.colors.opacityOrange20
+                    : context.colors.graysLight100,
                 shape: RoundedRectangleBorder(
                   side: BorderSide.none,
                   borderRadius: BorderRadius.circular(S.p12),
@@ -71,7 +71,7 @@ class SelectableTagGroup extends HookWidget {
                     style: context.typography.activesLabel.copyWith(
                       color: selected
                           ? context.colors.orange
-                          : context.colors.text400,
+                          : context.colors.graysText400,
                     ),
                   ),
                 ),

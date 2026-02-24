@@ -66,11 +66,11 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(S.p12),
-                      color: context.colors.white,
+                      color: context.colors.graysWhite,
                       border: Border.all(
                         color: selected
-                            ? context.colors.orange100
-                            : context.colors.stroke300,
+                            ? context.colors.lightOrange100
+                            : context.colors.graysStroke300,
                       ),
                     ),
 
@@ -105,10 +105,7 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
             ),
             Padding(
               padding: const P(top: S.p24),
-              child: PrimaryButton(
-                title: Text(context.l10n.apply),
-                onPressed: () {},
-              ),
+              child: PrimaryButton(text: context.l10n.apply, onPressed: () {}),
             ),
           ],
         ),

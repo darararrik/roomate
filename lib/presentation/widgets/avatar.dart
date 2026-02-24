@@ -28,7 +28,7 @@ class Avatar extends StatelessWidget {
                 bottom: S.p0,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: context.colors.light100,
+                    color: context.colors.graysLight100,
                     borderRadius: BorderRadius.circular(S.p12),
                   ),
                   child: Padding(
@@ -36,7 +36,7 @@ class Avatar extends StatelessWidget {
                     child: AppIcon(
                       AppIcons.edit3,
                       size: S.p24,
-                      color: context.colors.icon500,
+                      color: context.colors.graysIcon500,
                     ),
                   ),
                 ),

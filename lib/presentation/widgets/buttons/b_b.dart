@@ -14,7 +14,7 @@ class BB extends StatelessWidget {
       onPressed: onPressed ?? () => context.pop(),
       icon: Icon(
         Icons.arrow_back_ios_new_rounded,
-        color: color ?? context.colors.black,
+        color: color ?? context.colors.graysBlack,
         size: S.p24,
       ),
     );

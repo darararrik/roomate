@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                   Text(
                     '+7 913 123 12 34',
                     style: context.typography.bodyDescription.copyWith(
-                      color: context.colors.text400,
+                      color: context.colors.graysText400,
                     ),
                   ),
                 ],
@@ -53,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: context.colors.light100,
+                  color: context.colors.graysLight100,
                   borderRadius: BorderRadius.circular(S.p32),
                 ),
                 child: Padding(

@@ -39,12 +39,17 @@ class RegionListItem extends StatelessWidget {
                 children: [
                   Text(title, style: context.typography.bodyDescription),
                   const SizedBox(height: S.p8),
-                  Text(subTitle, style: context.typography.bodySmall.copyWith(color: context.colors.text400)),
+                  Text(
+                    subTitle,
+                    style: context.typography.bodySmall.copyWith(
+                      color: context.colors.graysText400,
+                    ),
+                  ),
                 ],
               ),
             ),
             const SizedBox(width: S.p12),
-            AppIcon(AppIcons.arrowRight, color: context.colors.icon500),
+            AppIcon(AppIcons.arrowRight, color: context.colors.graysIcon500),
           ],
         ),
       ),

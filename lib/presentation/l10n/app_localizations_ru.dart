@@ -548,4 +548,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get squareMeters => 'м²';
+
+  @override
+  String get createPhoto => 'Создать фото';
+
+  @override
+  String get chooseFromGallery => 'Выбрать из галереи';
+
+  @override
+  String get recordVideo => 'Записать видео';
 }

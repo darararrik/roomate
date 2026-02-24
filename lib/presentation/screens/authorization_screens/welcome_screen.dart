@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
+import 'package:roomate/presentation/widgets/buttons/opacity_button.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -41,14 +42,14 @@ class WelcomeScreen extends StatelessWidget {
                             Text(
                               context.l10n.aboutServiceTitle,
                               style: context.typography.headline0.copyWith(
-                                color: context.colors.white,
+                                color: context.colors.graysWhite,
                               ),
                             ),
                             const SizedBox(height: S.p16),
                             Text(
                               context.l10n.aboutServiceDescription,
                               style: context.typography.headline1.copyWith(
-                                color: context.colors.white.withValues(
+                                color: context.colors.graysWhite.withValues(
                                   alpha: 0.59,
                                 ),
                               ),
@@ -60,11 +61,11 @@ class WelcomeScreen extends StatelessWidget {
                         padding: const P(vertical: S.p40),
                         child: Column(
                           children: [
-                            PrimaryButton(
-                              title: Text(context.l10n.loginByPhoneNumber),
-                              backgroundColor: context.colors.white10,
+                            OpacityButton(
+                              bgColor: context.colors.opacityWhite10,
                               onPressed: () =>
                                   context.router.push(const RegNumberRoute()),
+                              child: Text(context.l10n.loginByPhoneNumber),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -72,19 +73,21 @@ class WelcomeScreen extends StatelessWidget {
                                 SizedBox(
                                   width: S.p40,
                                   child: Divider(
-                                    color: context.colors.white,
+                                    color: context.colors.graysWhite,
                                     thickness: S.p1,
                                   ),
                                 ),
                                 Text(
                                   context.l10n.loginViaSocialNetworks,
                                   style: context.typography.activesLabel
-                                      .copyWith(color: context.colors.input200),
+                                      .copyWith(
+                                        color: context.colors.graysInput200,
+                                      ),
                                 ),
                                 SizedBox(
                                   width: S.p40,
                                   child: Divider(
-                                    color: context.colors.white,
+                                    color: context.colors.graysWhite,
                                     thickness: S.p1,
                                   ),
                                 ),

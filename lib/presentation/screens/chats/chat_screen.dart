@@ -100,7 +100,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
         return ColoredBox(
           key: _composerKey,
-          color: context.colors.white,
+          color: context.colors.graysWhite,
           child: Padding(
             padding: finalPadding,
             child: Row(
@@ -116,7 +116,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     padding: const P(left: S.p4),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: context.colors.light100,
+                        color: context.colors.graysLight100,
                         borderRadius: BorderRadius.circular(S.p24),
                       ),
                       child: TextFormField(
@@ -163,7 +163,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colors.light100,
+      backgroundColor: context.colors.graysLight100,
       appBar: AppBar(
         title: const Text("dasads"),
         leading: const BB(),

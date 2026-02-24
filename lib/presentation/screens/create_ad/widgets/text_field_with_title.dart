@@ -88,7 +88,7 @@ class TextFieldWithTitle extends StatelessWidget {
         child: Text(
           context.l10n.squareMeters,
           style: context.typography.inputTextRegular.copyWith(
-            color: context.colors.black,
+            color: context.colors.graysBlack,
           ),
         ),
       ),

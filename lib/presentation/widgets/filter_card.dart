@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:roomate/presentation/presentation.dart';
 
 class FilterCard extends StatelessWidget {
-  const FilterCard({super.key, required this.title, this.leading, this.trailing, this.onTap});
+  const FilterCard({
+    super.key,
+    required this.title,
+    this.leading,
+    this.trailing,
+    this.onTap,
+  });
 
   final String title;
   final Widget? leading;
@@ -20,8 +26,8 @@ class FilterCard extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(S.p12),
-          color: colors.light100,
-          border: Border.all(color: colors.input200),
+          color: colors.graysLight100,
+          border: Border.all(color: colors.graysInput200),
         ),
         child: Padding(
           padding: const P(horizontal: S.p12, vertical: S.p8),

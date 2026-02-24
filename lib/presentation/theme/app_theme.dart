@@ -13,11 +13,11 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         overlayColor: WidgetStateColor.fromMap({
-          WidgetState.pressed: _appColors.light100,
+          WidgetState.pressed: _appColors.graysLight100,
         }),
       ),
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: _appColors.white),
+    colorScheme: ColorScheme.fromSeed(seedColor: _appColors.graysWhite),
 
     // chipTheme: ChipThemeData(
     //   backgroundColor: _appColors.light100,
@@ -33,23 +33,25 @@ class AppTheme {
     primaryColor: _appColors.orange,
     useMaterial3: true,
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
-    scaffoldBackgroundColor: _appColors.white,
-    dividerColor: _appColors.stroke300,
+    scaffoldBackgroundColor: _appColors.graysWhite,
+    dividerColor: _appColors.graysStroke300,
     dividerTheme: DividerThemeData(
       thickness: S.p1,
       space: S.p1,
-      color: _appColors.stroke300,
+      color: _appColors.graysStroke300,
     ),
-    bottomSheetTheme: BottomSheetThemeData(backgroundColor: _appColors.white),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: _appColors.graysWhite,
+    ),
     appBarTheme: AppBarTheme(
-      surfaceTintColor: _appColors.white,
-      backgroundColor: _appColors.white,
-      foregroundColor: _appColors.black,
+      surfaceTintColor: _appColors.graysWhite,
+      backgroundColor: _appColors.graysWhite,
+      foregroundColor: _appColors.graysBlack,
       elevation: 0,
       titleTextStyle: _appTextStyle.headline1,
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: _appColors.white,
+      backgroundColor: _appColors.graysWhite,
       indicatorColor: Colors.transparent,
       labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
       overlayColor: const WidgetStatePropertyAll(Colors.transparent),
@@ -58,7 +60,7 @@ class AppTheme {
         if (states.contains(WidgetState.selected)) {
           return _appTextStyle.bodySmall.copyWith(color: _appColors.orange);
         }
-        return _appTextStyle.bodySmall.copyWith(color: _appColors.black);
+        return _appTextStyle.bodySmall.copyWith(color: _appColors.graysBlack);
       }),
     ),
     tabBarTheme: TabBarThemeData(
@@ -66,12 +68,12 @@ class AppTheme {
       indicatorSize: TabBarIndicatorSize.tab,
       dividerHeight: 0,
       dividerColor: Colors.transparent,
-      labelColor: _appColors.black,
-      unselectedLabelColor: _appColors.black,
+      labelColor: _appColors.graysBlack,
+      unselectedLabelColor: _appColors.graysBlack,
       labelStyle: _appTextStyle.inputTextRegular,
       unselectedLabelStyle: _appTextStyle.inputTextRegular,
       indicator: BoxDecoration(
-        color: _appColors.light100,
+        color: _appColors.graysLight100,
         borderRadius: BorderRadius.circular(S.p20),
       ),
       splashBorderRadius: BorderRadius.circular(S.p20),
@@ -79,12 +81,12 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const P(horizontal: S.p16, vertical: S.p14),
       hintStyle: _appTextStyle.inputTextRegular.copyWith(
-        color: _appColors.text400,
+        color: _appColors.graysText400,
       ),
       border: InputBorder.none,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
-        borderSide: BorderSide(color: _appColors.stroke300),
+        borderSide: BorderSide(color: _appColors.graysStroke300),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
@@ -108,17 +110,15 @@ class AppTheme {
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p32)),
         ),
-        textStyle: WidgetStatePropertyAll(
-          _appTextStyle.activesButton.copyWith(fontWeight: FontWeight.w500),
-        ),
+        textStyle: WidgetStatePropertyAll(_appTextStyle.activesButton),
         minimumSize: const WidgetStatePropertyAll(Size.fromHeight(S.p48)),
         elevation: const WidgetStatePropertyAll(0),
         foregroundColor: WidgetStateColor.fromMap({
-          WidgetState.any: _appColors.white,
-          WidgetState.disabled: _appColors.white,
+          WidgetState.any: _appColors.graysWhite,
+          WidgetState.disabled: _appColors.graysWhite,
         }),
         backgroundColor: WidgetStateProperty.fromMap({
-          WidgetState.disabled: _appColors.orange60,
+          WidgetState.disabled: _appColors.opacityOrange60,
           WidgetState.any: _appColors.orange,
         }),
       ),

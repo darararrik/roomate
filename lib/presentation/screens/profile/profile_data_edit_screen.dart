@@ -57,7 +57,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                     Text(
                       context.l10n.editPhoto,
                       style: context.typography.bodyDescription.copyWith(
-                        color: context.colors.orange100,
+                        color: context.colors.lightOrange100,
                       ),
                     ),
                   ],
@@ -76,7 +76,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                       child: Text(
                         context.l10n.whatsYourName,
                         style: context.typography.bodyDescription.copyWith(
-                          color: context.colors.text400,
+                          color: context.colors.graysText400,
                         ),
                       ),
                     ),
@@ -98,7 +98,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                                     context.l10n.age,
                                     style: context.typography.bodyDescription
                                         .copyWith(
-                                          color: context.colors.text400,
+                                          color: context.colors.graysText400,
                                         ),
                                   ),
                                 ),
@@ -120,7 +120,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                                     context.l10n.gender,
                                     style: context.typography.bodyDescription
                                         .copyWith(
-                                          color: context.colors.text400,
+                                          color: context.colors.graysText400,
                                         ),
                                   ),
                                 ),
@@ -132,10 +132,7 @@ class _ProfileDataEditScreenState extends State<ProfileDataEditScreen> {
                       ),
                     ),
                     const Spacer(),
-                    PrimaryButton(
-                      title: Text(context.l10n.save),
-                      onPressed: () {},
-                    ),
+                    PrimaryButton(text: context.l10n.save, onPressed: () {}),
                   ],
                 ),
               ),

@@ -8,6 +8,7 @@ import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/l10n/app_localizations.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/buttons/opacity_button.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 import 'package:roomate/state/quiz/quiz_provider.dart';
 
@@ -59,7 +60,7 @@ class QuizScreen extends HookConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BB(
-                        color: context.colors.white,
+                        color: context.colors.graysWhite,
                         onPressed: () {
                           if (state.currentIndex > 0) {
                             notifier.stepBack();
@@ -124,7 +125,7 @@ class _QuizStepContent extends StatelessWidget {
       padding: const P(horizontal: S.p12, vertical: S.p24),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: context.colors.white,
+          color: context.colors.graysWhite,
           borderRadius: BorderRadius.circular(S.p32),
           boxShadow: [
             BoxShadow(
@@ -194,7 +195,7 @@ class _QuizStepContent extends StatelessWidget {
                         Text(
                           currentStep.subQuestion,
                           style: context.typography.headline2.copyWith(
-                            color: context.colors.text700,
+                            color: context.colors.graysText700,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -208,18 +209,18 @@ class _QuizStepContent extends StatelessWidget {
                     final bool isLast = index == currentStep.options.length - 1;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: S.p12),
-                      child: PrimaryButton(
+                      child: OpacityButton(
                         onPressed: !isLast
                             ? () => onOptionSelected(optionText)
                             : () => context.replaceRoute(const NavBarRoute()),
-                        backgroundColor: isLast
-                            ? context.colors.light100
-                            : context.colors.orange20,
-                        title: Text(
+                        bgColor: isLast
+                            ? context.colors.graysLight100
+                            : context.colors.opacityOrange20,
+                        child: Text(
                           optionText,
                           style: context.typography.activesButton.copyWith(
                             color: isLast
-                                ? context.colors.text400
+                                ? context.colors.graysText400
                                 : context.colors.orange,
                           ),
                         ),

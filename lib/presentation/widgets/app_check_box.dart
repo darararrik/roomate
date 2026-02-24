@@ -13,18 +13,22 @@ class AppCheckBox extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(S.p4),
           //TODO:Цвет бордера
-          border: Border.all(color: context.colors.stroke300),
+          border: Border.all(color: context.colors.graysStroke300),
         ),
         child: const SizedBox(width: S.p20, height: S.p20),
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: context.colors.orange100,
+          color: context.colors.lightOrange100,
           borderRadius: BorderRadius.circular(S.p4),
-          border: Border.all(color: context.colors.orange100),
+          border: Border.all(color: context.colors.lightOrange100),
         ),
         child: Center(
-          child: Icon(Icons.check_rounded, color: context.colors.white, size: S.p20),
+          child: Icon(
+            Icons.check_rounded,
+            color: context.colors.graysWhite,
+            size: S.p20,
+          ),
         ),
       ),
     );

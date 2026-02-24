@@ -27,15 +27,22 @@ class _LocationScreenState extends State<LocationScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          AB(title: Text(context.l10n.location), centerTitle: false, pinned: true),
+          AB(
+            title: Text(context.l10n.location),
+            centerTitle: false,
+            pinned: true,
+          ),
           PinnedHeaderSliver(
             child: ColoredBox(
-              color: context.colors.white,
+              color: context.colors.graysWhite,
               child: Padding(
                 padding: const P(horizontal: S.p16, bottom: S.p12),
                 child: InputWidget(
                   controller: _searchController,
-                  prefixIcon: AppIcon(AppIcons.search, color: context.colors.icon500),
+                  prefixIcon: AppIcon(
+                    AppIcons.search,
+                    color: context.colors.graysIcon500,
+                  ),
                   hintText: context.l10n.search,
                 ),
               ),
@@ -57,7 +64,11 @@ class _LocationScreenState extends State<LocationScreen> {
                     Expanded(
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide(color: context.colors.stroke300)),
+                          border: Border(
+                            bottom: BorderSide(
+                              color: context.colors.graysStroke300,
+                            ),
+                          ),
                         ),
                         child: Padding(
                           padding: const P(bottom: S.p12),
@@ -65,11 +76,16 @@ class _LocationScreenState extends State<LocationScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("метро Ухтомская", style: context.typography.bodyDescription),
+                              Text(
+                                "метро Ухтомская",
+                                style: context.typography.bodyDescription,
+                              ),
                               const SizedBox(height: S.p8),
                               Text(
                                 "Люберцы, Люберцы (городской округ), Московская область, Москва и МО",
-                                style: context.typography.bodySmall.copyWith(color: context.colors.text400),
+                                style: context.typography.bodySmall.copyWith(
+                                  color: context.colors.graysText400,
+                                ),
                               ),
                             ],
                           ),

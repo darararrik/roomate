@@ -1167,6 +1167,24 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'м²'**
   String get squareMeters;
+
+  /// No description provided for @createPhoto.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать фото'**
+  String get createPhoto;
+
+  /// No description provided for @chooseFromGallery.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать из галереи'**
+  String get chooseFromGallery;
+
+  /// No description provided for @recordVideo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Записать видео'**
+  String get recordVideo;
 }
 
 class _AppLocalizationsDelegate

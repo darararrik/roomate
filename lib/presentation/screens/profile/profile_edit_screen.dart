@@ -16,7 +16,13 @@ class ProfileEditScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          AB(title: Text(context.l10n.profile, style: context.typography.headline1), centerTitle: false),
+          AB(
+            title: Text(
+              context.l10n.profile,
+              style: context.typography.headline1,
+            ),
+            centerTitle: false,
+          ),
           SliverPadding(
             padding: const P(horizontal: S.p16, vertical: S.p24),
             sliver: SliverToBoxAdapter(
@@ -34,21 +40,30 @@ class ProfileEditScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Сергей Иванов', style: context.typography.bodyTitle),
+                          Text(
+                            'Сергей Иванов',
+                            style: context.typography.bodyTitle,
+                          ),
                           const SizedBox(height: S.p8),
                           Text(
                             '+7 913 123 12 34',
-                            style: context.typography.bodyDescription.copyWith(color: context.colors.text400),
+                            style: context.typography.bodyDescription.copyWith(
+                              color: context.colors.graysText400,
+                            ),
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(width: S.p4),
                     InkWell(
-                      onTap: () => context.pushRoute(const ProfileDataEditRoute()),
+                      onTap: () =>
+                          context.pushRoute(const ProfileDataEditRoute()),
                       child: Padding(
                         padding: const P(all: S.p4),
-                        child: AppIcon(AppIcons.edit, color: context.colors.orange100),
+                        child: AppIcon(
+                          AppIcons.edit,
+                          color: context.colors.lightOrange100,
+                        ),
                       ),
                     ),
                   ],
@@ -62,8 +77,14 @@ class ProfileEditScreen extends StatelessWidget {
               delegate: SliverChildListDelegate(
                 [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
-                    child: Text(context.l10n.basicSection, style: context.typography.headline2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: S.p8,
+                      vertical: S.p4,
+                    ),
+                    child: Text(
+                      context.l10n.basicSection,
+                      style: context.typography.headline2,
+                    ),
                   ),
                   ProfileListItem(
                     iconPath: AppIcons.flash,
@@ -113,8 +134,14 @@ class ProfileEditScreen extends StatelessWidget {
               delegate: SliverChildListDelegate(
                 [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
-                    child: Text(context.l10n.roommateSearchSection, style: context.typography.headline2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: S.p8,
+                      vertical: S.p4,
+                    ),
+                    child: Text(
+                      context.l10n.roommateSearchSection,
+                      style: context.typography.headline2,
+                    ),
                   ),
                   ProfileListItem(
                     iconPath: AppIcons.male,

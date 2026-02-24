@@ -50,7 +50,7 @@ class _AuthEditFirstPageState extends State<AuthEditFirstPage> {
               Text(
                 context.l10n.betterToUseRealName,
                 style: context.typography.headline2.copyWith(
-                  color: context.colors.text400,
+                  color: context.colors.graysText400,
                 ),
               ),
             ],

@@ -65,7 +65,7 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                       controller: _searchController,
                       prefixIcon: AppIcon(
                         AppIcons.search,
-                        color: context.colors.icon500,
+                        color: context.colors.graysIcon500,
                       ),
                       hintText: context.l10n.search,
                     ),
@@ -100,7 +100,7 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                   Padding(
                     padding: const P(top: S.p16),
                     child: PrimaryButton(
-                      title: Text(context.l10n.apply),
+                      text: context.l10n.apply,
                       onPressed: () {},
                     ),
                   ),

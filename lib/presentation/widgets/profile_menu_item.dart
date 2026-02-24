@@ -28,7 +28,10 @@ class ProfileMenuItem extends StatelessWidget {
           child: Row(
             children: [
               DecoratedBox(
-                decoration: BoxDecoration(color: context.colors.white, borderRadius: BorderRadius.circular(S.p12)),
+                decoration: BoxDecoration(
+                  color: context.colors.graysWhite,
+                  borderRadius: BorderRadius.circular(S.p12),
+                ),
                 child: Padding(
                   padding: const P(all: S.p10),
                   child: AppIcon(iconPath),
@@ -44,13 +47,18 @@ class ProfileMenuItem extends StatelessWidget {
                     children: [
                       Text(title, style: context.typography.bodyDescription),
                       const SizedBox(height: S.p8),
-                      Text(subtitle, style: context.typography.bodySmall.copyWith(color: context.colors.text400)),
+                      Text(
+                        subtitle,
+                        style: context.typography.bodySmall.copyWith(
+                          color: context.colors.graysText400,
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
               const SizedBox(width: S.p4),
-              AppIcon(AppIcons.arrowRight, color: context.colors.icon500),
+              AppIcon(AppIcons.arrowRight, color: context.colors.graysIcon500),
             ],
           ),
         ),

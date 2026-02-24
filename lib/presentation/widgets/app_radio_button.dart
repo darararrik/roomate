@@ -11,7 +11,7 @@ class AppRadioButton extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: context.colors.orange100),
+        border: Border.all(color: context.colors.lightOrange100),
       ),
       child: Padding(
         padding: const P(all: S.p4),
@@ -19,7 +19,10 @@ class AppRadioButton extends StatelessWidget {
           visible: selected,
           replacement: const SizedBox(width: S.p10, height: S.p10),
           child: DecoratedBox(
-            decoration: BoxDecoration(shape: BoxShape.circle, color: context.colors.orange100),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: context.colors.lightOrange100,
+            ),
             child: const SizedBox(width: S.p10, height: S.p10),
           ),
         ),

@@ -23,12 +23,14 @@ class ProfileListItem extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          AppIcon(iconPath, color: context.colors.orange100),
+          AppIcon(iconPath, color: context.colors.lightOrange100),
           const SizedBox(width: S.p12),
           Expanded(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: context.colors.stroke300)),
+                border: Border(
+                  bottom: BorderSide(color: context.colors.graysStroke300),
+                ),
               ),
               child: Padding(
                 padding: const P(vertical: S.p6),
@@ -38,14 +40,19 @@ class ProfileListItem extends StatelessWidget {
                   children: [
                     Text(title, style: context.typography.bodyTitle),
                     const SizedBox(height: S.p8),
-                    Text(value, style: context.typography.bodyDescription.copyWith(color: context.colors.text400)),
+                    Text(
+                      value,
+                      style: context.typography.bodyDescription.copyWith(
+                        color: context.colors.graysText400,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
           const SizedBox(width: S.p12),
-          AppIcon(AppIcons.arrowRight, color: context.colors.icon500),
+          AppIcon(AppIcons.arrowRight, color: context.colors.graysIcon500),
         ],
       ),
     );

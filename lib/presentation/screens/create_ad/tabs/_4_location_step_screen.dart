@@ -22,7 +22,7 @@ class LocationStepScreen extends HookWidget {
         Text(
           context.l10n.whatIsYourAddress,
           style: context.typography.bodyDescription.copyWith(
-            color: context.colors.text400,
+            color: context.colors.graysText400,
           ),
         ),
         Padding(
@@ -44,7 +44,7 @@ class LocationStepScreen extends HookWidget {
           child: Text(
             context.l10n.notVisibleInAd,
             style: context.typography.bodyDescription.copyWith(
-              color: context.colors.text400,
+              color: context.colors.graysText400,
             ),
           ),
         ),

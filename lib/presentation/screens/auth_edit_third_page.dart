@@ -28,7 +28,7 @@ class AuthEditThirdPage extends StatelessWidget {
               Text(
                 context.l10n.verificationTip,
                 style: context.typography.headline2.copyWith(
-                  color: context.colors.text400,
+                  color: context.colors.graysText400,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -50,7 +50,7 @@ class AuthEditThirdPage extends StatelessWidget {
             child: SizedBox.expand(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: context.colors.light100,
+                  color: context.colors.graysLight100,
                   borderRadius: BorderRadius.circular(S.p12),
                 ),
                 child: const Center(

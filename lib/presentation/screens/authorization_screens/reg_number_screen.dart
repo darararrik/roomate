@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_button.dart';
 
 @RoutePage()
 class RegNumberScreen extends HookWidget {
@@ -54,7 +54,7 @@ class RegNumberScreen extends HookWidget {
                     Text(
                       context.l10n.descriptionSMSCode,
                       style: context.typography.headline2.copyWith(
-                        color: context.colors.text400,
+                        color: context.colors.graysText400,
                       ),
                     ),
                     const SizedBox(height: S.p32),
@@ -63,9 +63,11 @@ class RegNumberScreen extends HookWidget {
                       children: [
                         DecoratedBox(
                           decoration: BoxDecoration(
-                            color: context.colors.input200,
+                            color: context.colors.graysInput200,
                             borderRadius: BorderRadius.circular(S.p16),
-                            border: Border.all(color: context.colors.stroke300),
+                            border: Border.all(
+                              color: context.colors.graysStroke300,
+                            ),
                           ),
                           child: Padding(
                             padding: const P(horizontal: S.p12),
@@ -108,7 +110,7 @@ class RegNumberScreen extends HookWidget {
                               hintText: context.l10n.phonePlaceholder,
                               hintStyle: context.typography.inputTextRegular
                                   .copyWith(
-                                    color: context.colors.text400,
+                                    color: context.colors.graysText400,
                                     fontSize: S.p18,
                                   ),
                             ),
@@ -123,7 +125,7 @@ class RegNumberScreen extends HookWidget {
                         onPressed: isComplete.value
                             ? () => context.router.push(const SmsCodeRoute())
                             : null,
-                        title: Text(context.l10n.next),
+                        text: context.l10n.next,
                       ),
                     ),
                   ],

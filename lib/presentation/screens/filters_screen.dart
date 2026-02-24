@@ -31,7 +31,9 @@ class FiltersScreen extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   context.l10n.reset,
-                  style: context.typography.activesButton.copyWith(color: context.colors.orange100),
+                  style: context.typography.activesButton.copyWith(
+                    color: context.colors.lightOrange100,
+                  ),
                 ),
               ),
             ],
@@ -48,7 +50,9 @@ class FiltersScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(S.p12),
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: selected ? context.colors.orange20 : context.colors.light100,
+                          color: selected
+                              ? context.colors.opacityOrange20
+                              : context.colors.graysLight100,
 
                           borderRadius: BorderRadius.circular(S.p12),
                         ),
@@ -57,7 +61,9 @@ class FiltersScreen extends StatelessWidget {
                           child: Text(
                             tag,
                             style: context.typography.activesLabel.copyWith(
-                              color: selected ? context.colors.orange : context.colors.text400,
+                              color: selected
+                                  ? context.colors.orange
+                                  : context.colors.graysText400,
                             ),
                           ),
                         ),
@@ -75,7 +81,10 @@ class FiltersScreen extends StatelessWidget {
               const SizedBox(height: S.p12),
               Padding(
                 padding: const P(vertical: S.p12, horizontal: S.p16),
-                child: Text(context.l10n.typeOfProperty, style: context.typography.headline2),
+                child: Text(
+                  context.l10n.typeOfProperty,
+                  style: context.typography.headline2,
+                ),
               ),
               Padding(
                 padding: const P(vertical: S.p12, horizontal: S.p16),
@@ -87,7 +96,9 @@ class FiltersScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(S.p12),
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: selected ? context.colors.orange20 : context.colors.light100,
+                          color: selected
+                              ? context.colors.opacityOrange20
+                              : context.colors.graysLight100,
                           borderRadius: BorderRadius.circular(S.p12),
                         ),
                         child: Padding(
@@ -95,7 +106,9 @@ class FiltersScreen extends StatelessWidget {
                           child: Text(
                             tag,
                             style: context.typography.activesLabel.copyWith(
-                              color: selected ? context.colors.orange : context.colors.text400,
+                              color: selected
+                                  ? context.colors.orange
+                                  : context.colors.graysText400,
                             ),
                           ),
                         ),
@@ -113,7 +126,10 @@ class FiltersScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const P(vertical: S.p12, horizontal: S.p16),
-                child: Text(context.l10n.location, style: context.typography.headline2),
+                child: Text(
+                  context.l10n.location,
+                  style: context.typography.headline2,
+                ),
               ),
               Padding(
                 padding: const P(vertical: S.p12),

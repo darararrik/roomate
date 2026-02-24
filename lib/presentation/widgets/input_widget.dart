@@ -57,7 +57,7 @@ class InputWidget extends StatelessWidget {
       builder: (context, value, _) {
         return DecoratedBox(
           decoration: BoxDecoration(
-            color: context.colors.input200,
+            color: context.colors.graysInput200,
             borderRadius: BorderRadius.circular(S.p16),
           ),
           child: SizedBox(

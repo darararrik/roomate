@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/screens/create_ad/widgets/add_media_sheet.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_btn.dart';
+import 'package:roomate/presentation/widgets/buttons/opacity_button.dart';
+import 'package:roomate/presentation/widgets/buttons/secondary_button.dart';
 import 'package:roomate/presentation/widgets/sheets/base_bottom_sheet.dart';
 
 @RoutePage()
@@ -26,7 +28,7 @@ class FifthStepScreen extends StatelessWidget {
               Text(
                 context.l10n.minPhotosCount,
                 style: context.typography.bodyDescription.copyWith(
-                  color: context.colors.text400,
+                  color: context.colors.graysText400,
                 ),
               ),
             ],
@@ -34,15 +36,17 @@ class FifthStepScreen extends StatelessWidget {
         ),
         Padding(
           padding: const P(vertical: S.p12),
-          child: ElevatedButton(
+          child: OpacityButton(
+            icon: AppIcon(AppIcons.camera, color: context.colors.orange),
+            bgColor: context.colors.opacityOrange20,
+            color: context.colors.orange,
+            height: S.p56,
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
+              //TODO: implement camera and photo picker
               showModalBottomSheet(
                 context: context,
-                builder: (context) => BaseBottomSheet(
-                  title: context.l10n.addPhoto,
-                  child: const Column(children: [Text("data")]),
-                ),
+                builder: (context) => const AddMediaSheet(isPhoto: true),
               );
             },
             child: Text(context.l10n.addPhoto),
@@ -59,7 +63,7 @@ class FifthStepScreen extends StatelessWidget {
               Text(
                 context.l10n.oneVideoOnly,
                 style: context.typography.bodyDescription.copyWith(
-                  color: context.colors.text400,
+                  color: context.colors.graysText400,
                 ),
               ),
             ],
@@ -67,14 +71,20 @@ class FifthStepScreen extends StatelessWidget {
         ),
         Padding(
           padding: const P(vertical: S.p12),
-          child: PrimaryButton(
-            title: Text(context.l10n.addVideo),
-            icon: AppIcon(
-              AppIcons.video,
-              size: S.p20,
-              color: context.colors.white,
-            ),
-            onPressed: () {},
+          child: OpacityButton(
+            icon: AppIcon(AppIcons.video, color: context.colors.orange),
+            bgColor: context.colors.opacityOrange20,
+            color: context.colors.orange,
+            height: S.p56,
+            onPressed: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+              //TODO: implement camera and photo picker
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => const AddMediaSheet(isPhoto: false),
+              );
+            },
+            child: Text(context.l10n.addVideo),
           ),
         ),
       ],

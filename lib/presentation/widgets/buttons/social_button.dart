@@ -4,7 +4,11 @@ import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 
 class SocialButton extends StatelessWidget {
-  const SocialButton({super.key, required this.onPressed, required this.iconPath});
+  const SocialButton({
+    super.key,
+    required this.onPressed,
+    required this.iconPath,
+  });
   final VoidCallback onPressed;
   final String iconPath;
   @override
@@ -12,15 +16,18 @@ class SocialButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       borderRadius: BorderRadius.circular(S.p12),
-      overlayColor: WidgetStatePropertyAll(context.colors.white10),
+      overlayColor: WidgetStatePropertyAll(context.colors.opacityWhite10),
       child: SizedBox(
         width: S.p48,
         height: S.p48,
         child: DecoratedBox(
-          decoration: BoxDecoration(color: context.colors.white10, borderRadius: BorderRadius.circular(S.p12)),
+          decoration: BoxDecoration(
+            color: context.colors.opacityWhite10,
+            borderRadius: BorderRadius.circular(S.p12),
+          ),
           child: Padding(
             padding: const P(all: S.p12),
-            child: AppIcon(iconPath, color: context.colors.white),
+            child: AppIcon(iconPath, color: context.colors.graysWhite),
           ),
         ),
       ),

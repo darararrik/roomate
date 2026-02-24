@@ -40,7 +40,7 @@ class AuthEditSecondPage extends StatelessWidget {
                 Text(
                   context.l10n.tellUsAboutYourselfSubtitle,
                   style: context.typography.headline2.copyWith(
-                    color: context.colors.text400,
+                    color: context.colors.graysText400,
                   ),
                   textAlign: TextAlign.center,
                 ),

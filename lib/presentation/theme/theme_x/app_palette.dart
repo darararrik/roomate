@@ -2,64 +2,92 @@ import 'package:flutter/material.dart';
 
 class AppPalette extends ThemeExtension<AppPalette> {
   const AppPalette({
-    required this.white,
-    required this.light100,
-    required this.input200,
-    required this.message,
-    required this.stroke300,
-    required this.text400,
-    required this.text700,
-    required this.icon500,
-    required this.black,
-    required this.white10,
-    required this.red15,
-    required this.orange40,
-    required this.orange60,
+    required this.graysWhite,
+    required this.graysLight100,
+    required this.graysInput200,
+    required this.graysMessage,
+    required this.graysStroke300,
+    required this.graysText400,
+    required this.graysText700,
+    required this.graysIcon500,
+    required this.graysBlack,
+    required this.opacityWhite10,
+    required this.opacityRed15,
+    required this.opacityOrange40,
+    required this.opacityOrange60,
     required this.red,
     required this.orange,
-    required this.orange100,
+    required this.lightOrange100,
     required this.shadow,
-    required this.green100,
+    required this.lightGreen100,
     required this.green700,
-    required this.yellow100,
+    required this.lightYellow100,
     required this.yellow700,
-    required this.red100,
+    required this.lightRed100,
     required this.red700,
     required this.fillsSecondary,
-    required this.orange20,
+    required this.opacityOrange20,
     required this.bottomNavBarShadow,
     required this.grayMessage,
     required this.orangeChat,
+    required this.opacityWhite60,
+    required this.opacityBlack60,
+    required this.lightGray100,
+    required this.redSecond,
+    required this.orangeSecond,
+    required this.labelRed,
+    required this.labelYellow,
+    required this.labelGreen,
   });
+  // Grays Colors
+  final Color graysWhite;
+  final Color graysLight100;
+  final Color graysInput200;
+  final Color graysMessage;
+  final Color graysStroke300;
+  final Color graysText400;
+  final Color graysText700;
+  final Color graysIcon500;
+  final Color graysBlack;
+  // Opacity Colors
+  final Color opacityWhite10;
+  final Color opacityRed15;
+  final Color opacityOrange20;
+  final Color opacityOrange40;
+  final Color opacityOrange60;
+  final Color opacityWhite60;
+  final Color opacityBlack60;
+  // Lights Colors
+  final Color lightOrange100;
+  final Color lightGreen100;
+  final Color lightYellow100;
+  final Color lightRed100;
+  final Color lightGray100;
 
-  final Color white;
-  final Color light100;
-  final Color input200;
-  final Color message;
-  final Color stroke300;
-  final Color text400;
-  final Color text700;
-  final Color icon500;
-  final Color black;
-  final Color white10;
-  final Color red15;
-  final Color orange40;
-  final Color orange60;
+  // Main Colors
   final Color red;
+  final Color redSecond;
   final Color orange;
-  final Color orange100;
-  final BoxShadow shadow;
-  final Color green100;
+  final Color orangeSecond;
+
+  // Labels Color
+  final Color labelRed;
+  final Color labelYellow;
+  final Color labelGreen;
+
+  // Other Colors
+  // TODO: разобраться с цветами они лишние !
   final Color green700;
-  final Color yellow100;
   final Color yellow700;
-  final Color red100;
   final Color red700;
   final Color fillsSecondary;
-  final Color orange20;
-  final BoxShadow bottomNavBarShadow;
   final Color grayMessage;
   final Color orangeChat;
+
+  //Shadows
+  final BoxShadow bottomNavBarShadow;
+  final BoxShadow shadow;
+
   @override
   AppPalette copyWith({
     Color? white,
@@ -90,36 +118,52 @@ class AppPalette extends ThemeExtension<AppPalette> {
     BoxShadow? bottomNavBarShadow,
     Color? grayMessage,
     Color? orangeChat,
+    Color? opacityWhite60,
+    Color? opacityBlack60,
+    Color? lightGray100,
+    Color? lightRed100_2,
+    Color? orangeSecond,
+    Color? labelRed,
+    Color? labelYellow,
+    Color? labelGreen,
   }) {
     return AppPalette(
-      white: white ?? this.white,
-      light100: light100 ?? this.light100,
-      input200: input200 ?? this.input200,
-      message: message ?? this.message,
-      stroke300: stroke300 ?? this.stroke300,
-      text400: text400 ?? this.text400,
-      text700: text700 ?? this.text700,
-      icon500: icon500 ?? this.icon500,
-      black: black ?? this.black,
-      white10: white10 ?? this.white10,
-      red15: red15 ?? this.red15,
-      orange40: orange40 ?? this.orange40,
-      orange60: orange60 ?? this.orange60,
+      graysWhite: white ?? graysWhite,
+      graysLight100: light100 ?? graysLight100,
+      graysInput200: input200 ?? graysInput200,
+      graysMessage: message ?? graysMessage,
+      graysStroke300: stroke300 ?? graysStroke300,
+      graysText400: text400 ?? graysText400,
+      graysText700: text700 ?? graysText700,
+      graysIcon500: icon500 ?? graysIcon500,
+      graysBlack: black ?? graysBlack,
+      opacityWhite10: white10 ?? opacityWhite10,
+      opacityRed15: red15 ?? opacityRed15,
+      opacityOrange40: orange40 ?? opacityOrange40,
+      opacityOrange60: orange60 ?? opacityOrange60,
       red: red ?? this.red,
       orange: orange ?? this.orange,
-      orange100: orange100 ?? this.orange100,
+      lightOrange100: orange100 ?? lightOrange100,
       shadow: shadow ?? this.shadow,
-      green100: green100 ?? this.green100,
+      lightGreen100: green100 ?? lightGreen100,
       green700: green700 ?? this.green700,
-      yellow100: yellow100 ?? this.yellow100,
+      lightYellow100: yellow100 ?? lightYellow100,
       yellow700: yellow700 ?? this.yellow700,
-      red100: red100 ?? this.red100,
+      lightRed100: red100 ?? lightRed100,
       red700: red700 ?? this.red700,
       fillsSecondary: fillsSecondary ?? this.fillsSecondary,
-      orange20: orange20 ?? this.orange20,
+      opacityOrange20: orange20 ?? opacityOrange20,
       bottomNavBarShadow: bottomNavBarShadow ?? this.bottomNavBarShadow,
       grayMessage: grayMessage ?? this.grayMessage,
       orangeChat: orangeChat ?? this.orangeChat,
+      opacityWhite60: opacityWhite60 ?? this.opacityWhite60,
+      opacityBlack60: opacityBlack60 ?? this.opacityBlack60,
+      lightGray100: lightGray100 ?? this.lightGray100,
+      redSecond: lightRed100_2 ?? redSecond,
+      orangeSecond: orangeSecond ?? this.orangeSecond,
+      labelRed: labelRed ?? this.labelRed,
+      labelYellow: labelYellow ?? this.labelYellow,
+      labelGreen: labelGreen ?? this.labelGreen,
     );
   }
 
@@ -127,34 +171,46 @@ class AppPalette extends ThemeExtension<AppPalette> {
   AppPalette lerp(ThemeExtension<AppPalette>? other, double t) {
     if (other is! AppPalette) return this;
     return AppPalette(
-      white: Color.lerp(white, other.white, t)!,
-      light100: Color.lerp(light100, other.light100, t)!,
-      input200: Color.lerp(input200, other.input200, t)!,
-      message: Color.lerp(message, other.message, t)!,
-      stroke300: Color.lerp(stroke300, other.stroke300, t)!,
-      text400: Color.lerp(text400, other.text400, t)!,
-      text700: Color.lerp(text700, other.text700, t)!,
-      icon500: Color.lerp(icon500, other.icon500, t)!,
-      black: Color.lerp(black, other.black, t)!,
-      white10: Color.lerp(white10, other.white10, t)!,
-      red15: Color.lerp(red15, other.red15, t)!,
-      orange40: Color.lerp(orange40, other.orange40, t)!,
-      orange60: Color.lerp(orange60, other.orange60, t)!,
+      graysWhite: Color.lerp(graysWhite, other.graysWhite, t)!,
+      graysLight100: Color.lerp(graysLight100, other.graysLight100, t)!,
+      graysInput200: Color.lerp(graysInput200, other.graysInput200, t)!,
+      graysMessage: Color.lerp(graysMessage, other.graysMessage, t)!,
+      graysStroke300: Color.lerp(graysStroke300, other.graysStroke300, t)!,
+      graysText400: Color.lerp(graysText400, other.graysText400, t)!,
+      graysText700: Color.lerp(graysText700, other.graysText700, t)!,
+      graysIcon500: Color.lerp(graysIcon500, other.graysIcon500, t)!,
+      graysBlack: Color.lerp(graysBlack, other.graysBlack, t)!,
+      opacityWhite10: Color.lerp(opacityWhite10, other.opacityWhite10, t)!,
+      opacityRed15: Color.lerp(opacityRed15, other.opacityRed15, t)!,
+      opacityOrange40: Color.lerp(opacityOrange40, other.opacityOrange40, t)!,
+      opacityOrange60: Color.lerp(opacityOrange60, other.opacityOrange60, t)!,
       red: Color.lerp(red, other.red, t)!,
       orange: Color.lerp(orange, other.orange, t)!,
-      orange100: Color.lerp(orange100, other.orange100, t)!,
+      lightOrange100: Color.lerp(lightOrange100, other.lightOrange100, t)!,
       shadow: BoxShadow.lerp(shadow, other.shadow, t)!,
-      green100: Color.lerp(green100, other.orange, t)!,
-      green700: Color.lerp(green700, other.orange100, t)!,
-      yellow100: Color.lerp(yellow100, other.orange, t)!,
-      yellow700: Color.lerp(yellow700, other.orange100, t)!,
-      red100: Color.lerp(red100, other.orange, t)!,
-      red700: Color.lerp(red700, other.orange100, t)!,
+      lightGreen100: Color.lerp(lightGreen100, other.orange, t)!,
+      green700: Color.lerp(green700, other.lightOrange100, t)!,
+      lightYellow100: Color.lerp(lightYellow100, other.orange, t)!,
+      yellow700: Color.lerp(yellow700, other.lightOrange100, t)!,
+      lightRed100: Color.lerp(lightRed100, other.orange, t)!,
+      red700: Color.lerp(red700, other.lightOrange100, t)!,
       fillsSecondary: Color.lerp(fillsSecondary, other.fillsSecondary, t)!,
-      orange20: Color.lerp(orange20, other.orange20, t)!,
-      bottomNavBarShadow: BoxShadow.lerp(bottomNavBarShadow, other.bottomNavBarShadow, t)!,
+      opacityOrange20: Color.lerp(opacityOrange20, other.opacityOrange20, t)!,
+      bottomNavBarShadow: BoxShadow.lerp(
+        bottomNavBarShadow,
+        other.bottomNavBarShadow,
+        t,
+      )!,
       grayMessage: Color.lerp(grayMessage, other.orange, t)!,
-      orangeChat: Color.lerp(orangeChat, other.orange100, t)!,
+      orangeChat: Color.lerp(orangeChat, other.lightOrange100, t)!,
+      opacityWhite60: Color.lerp(opacityWhite60, other.opacityWhite60, t)!,
+      opacityBlack60: Color.lerp(opacityBlack60, other.opacityBlack60, t)!,
+      lightGray100: Color.lerp(lightGray100, other.lightGray100, t)!,
+      redSecond: Color.lerp(redSecond, other.redSecond, t)!,
+      orangeSecond: Color.lerp(orangeSecond, other.orangeSecond, t)!,
+      labelRed: Color.lerp(labelRed, other.labelRed, t)!,
+      labelYellow: Color.lerp(labelYellow, other.labelYellow, t)!,
+      labelGreen: Color.lerp(labelGreen, other.labelGreen, t)!,
     );
   }
 }
