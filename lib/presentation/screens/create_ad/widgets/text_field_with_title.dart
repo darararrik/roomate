@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/utils/extensions.dart';
+import 'package:roomate/presentation/utils/extensions/extensions.dart';
 import 'package:roomate/presentation/utils/formatters/decimal_formatter.dart';
 import 'package:roomate/presentation/utils/p.dart';
 
@@ -13,8 +13,9 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
-  }) : isSquare = false,
-       keyboardType = TextInputType.text,
+    this.suffix,
+    this.isMultiline = false,
+  }) : keyboardType = TextInputType.text,
        inputFormatters = null;
 
   /// Именованный конструктор для чисел (целых)
@@ -23,17 +24,19 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
-  }) : isSquare = false,
+  }) : isMultiline = false,
+       suffix = null,
        keyboardType = TextInputType.number,
        inputFormatters = [FilteringTextInputFormatter.digitsOnly];
 
-  /// Именованный конструктор для площади (десятичные + м2)
-  TextFieldWithTitle.area({
+  /// Именованный конструктор для иконки (десятичные + м2)
+  TextFieldWithTitle.withSuffix({
     super.key,
     required this.title,
     required this.hintText,
     required this.controller,
-  }) : isSquare = true,
+    required this.suffix,
+  }) : isMultiline = false,
        keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
 
@@ -43,13 +46,25 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
-  }) : isSquare = false,
+  }) : isMultiline = false,
+       suffix = null,
        keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
+
+  const TextFieldWithTitle.multiline({
+    super.key,
+    required this.title,
+    required this.hintText,
+    required this.controller,
+  }) : suffix = null,
+       keyboardType = TextInputType.multiline,
+       inputFormatters = null,
+       isMultiline = true;
+  final bool isMultiline;
   final String title;
   final String hintText;
   final TextEditingController controller;
-  final bool isSquare;
+  final String? suffix;
   final TextInputType keyboardType;
   final List<TextInputFormatter>? inputFormatters;
 
@@ -67,11 +82,21 @@ class TextFieldWithTitle extends StatelessWidget {
           child: TextFormField(
             controller: controller,
             onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+            //TODO: Реализовать минимум 50 симоволов для multiline
+            validator: (value) {
+              if (isMultiline && (value?.length ?? 0) < 50) {
+                return "Минимум 50 символов";
+              }
+              return null;
+            },
             keyboardType: keyboardType,
+            maxLines: isMultiline ? 8 : 1,
             inputFormatters: inputFormatters,
             decoration: InputDecoration(
               hintText: hintText,
-              suffixIcon: isSquare ? _buildSquareSuffix(context) : null,
+              suffixIcon: suffix != null
+                  ? _buildIconSuffix(context, suffix!)
+                  : null,
             ),
           ),
         ),
@@ -79,14 +104,14 @@ class TextFieldWithTitle extends StatelessWidget {
     );
   }
 
-  Widget _buildSquareSuffix(BuildContext context) {
+  Widget _buildIconSuffix(BuildContext context, String suffixPath) {
     return Padding(
       padding: const EdgeInsets.only(right: S.p12),
       child: Align(
         widthFactor: 1,
         alignment: Alignment.centerRight,
         child: Text(
-          context.l10n.squareMeters,
+          suffixPath,
           style: context.typography.inputTextRegular.copyWith(
             color: context.colors.graysBlack,
           ),

@@ -135,7 +135,13 @@ class FiltersScreen extends StatelessWidget {
                 padding: const P(vertical: S.p12),
                 child: RegionListItem(
                   iconPath: AppIcons.city,
-                  onTap: () => context.pushRoute(const LocationRoute()),
+                  onTap: () => context.pushRoute(
+                    LocationRoute(
+                      onSelected: (String address) {
+                        debugPrint(address);
+                      },
+                    ),
+                  ),
                   title: 'г. Москва',
                   subTitle: 'Метро, район, адрес, шоссе, ЖК',
                 ),

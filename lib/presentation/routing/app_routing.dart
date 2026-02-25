@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/screens/create_ad/tabs/_6_add_media_step_screen.dart';
+import 'package:roomate/presentation/routing/create_ad_routes.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -40,10 +39,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: FiltersWrapper.page,
       path: '/filters',
-      children: [
-        AutoRoute(page: FiltersRoute.page, path: '', initial: true),
-        AutoRoute(page: LocationRoute.page, path: 'location'),
-      ],
+      children: [AutoRoute(page: FiltersRoute.page, path: '', initial: true)],
     ),
     AutoRoute(page: ProfileDataEditRoute.page, path: '/profile-data-edit'),
 
@@ -59,38 +55,7 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: AboutGroupRoute.page, path: '/about-group'),
-    AutoRoute(
-      page: CreateAdRoute.page,
-      path: '/create-ad',
-      initial: true,
-      children: [
-        AutoRoute(page: FirstStepRoute.page, path: 'first-step', initial: true),
-        AutoRoute(
-          page: WhatTypeRoomStepRoute.page,
-          path: 'what-type-room-step',
-        ),
-        AutoRoute(
-          page: TypeOfPropertyStepRoute.page,
-          path: 'type-of-property-step',
-        ),
-        AutoRoute(page: LocationStepRoute.page, path: 'location-step'),
-        AutoRoute(
-          page: InputDetailsApStepRoute.page,
-          path: 'input-details-ap-step',
-        ),
-        AutoRoute(page: AddMediaStepRoute.page, path: 'add-media-step'),
-        AutoRoute(
-          page: FeautesFirstStepRoute.page,
-          path: 'features-first-step',
-        ),
-        AutoRoute(
-          page: FeautesSecondStepRoute.page,
-          path: 'features-second-step',
-        ),
-        AutoRoute(page: DealTermsStepRoute.page, path: 'deal-terms-step'),
-        AutoRoute(page: ContactsStepRoute.page, path: 'contacts-step'),
-        AutoRoute(page: FinishRoute.page, path: 'finish-step'),
-      ],
-    ),
+    CreateAdRoutes.routes,
+    AutoRoute(page: LocationRoute.page, path: '/location'),
   ];
 }

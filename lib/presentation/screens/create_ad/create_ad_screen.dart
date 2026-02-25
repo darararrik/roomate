@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -6,6 +5,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/alert_widget.dart';
+import 'package:roomate/presentation/widgets/progress_bar_widget.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -25,6 +26,7 @@ class CreateAdScreen extends StatelessWidget {
         FeautesFirstStepRoute(),
         FeautesSecondStepRoute(),
         DealTermsStepRoute(),
+        DescriptionAdStepRoute(),
         ContactsStepRoute(),
         FinishRoute(),
       ],
@@ -52,33 +54,11 @@ class CreateAdScreen extends StatelessWidget {
                 onPressed: () => showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return CupertinoAlertDialog(
-                      title: Text(context.l10n.wantToExit),
-                      content: Text(context.l10n.draftWillBeSaved),
-                      actions: [
-                        CupertinoDialogAction(
-                          child: Text(
-                            context.l10n.stay,
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500,
-                              color: CupertinoColors.systemBlue,
-                            ),
-                          ),
-                          onPressed: () => context.pop(),
-                        ),
-                        CupertinoDialogAction(
-                          child: Text(
-                            context.l10n.exit,
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                              color: CupertinoColors.destructiveRed,
-                            ),
-                          ),
-                          onPressed: () => context.pop(),
-                        ),
-                      ],
+                    return AlertWidget(
+                      title: context.l10n.exit,
+                      content: context.l10n.draftWillBeSaved,
+                      onConfirm: () => context.pop(),
+                      onCancel: () => context.pop(),
                     );
                   },
                 ),
@@ -105,63 +85,36 @@ class CreateAdScreen extends StatelessWidget {
               preferredSize: const Size.fromHeight(S.p16),
               child: Padding(
                 padding: const P(horizontal: S.p32),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final progress = (tabsRouter.activeIndex + 1) / totalPages;
-                    return Stack(
-                      children: [
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: context.colors.fillsSecondary,
-                            borderRadius: BorderRadius.circular(S.p4),
-                          ),
-                          child: const SizedBox(
-                            height: S.p4,
-                            width: double.infinity,
-                          ),
-                        ),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          height: S.p4,
-                          width: constraints.maxWidth * progress,
-                          decoration: BoxDecoration(
-                            color: context.colors.orange,
-                            borderRadius: BorderRadius.circular(S.p4),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                child: ProgressBarWidget(
+                  tabsRouter: tabsRouter,
+                  totalPages: totalPages,
                 ),
               ),
             ),
           ),
-          body: Padding(
-            padding: const P(horizontal: S.p16),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const P(top: S.p20),
-                    child: child,
-                  ),
+          body: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const P(top: S.p20),
+                  child: child,
                 ),
-                Padding(
-                  padding: const P(bottom: S.p24),
-                  child: PrimaryButton(
-                    text: context.l10n.next,
-                    onPressed: () {
-                      final nextIndex = tabsRouter.activeIndex + 1;
-                      if (nextIndex < tabsRouter.pageCount) {
-                        tabsRouter.setActiveIndex(nextIndex);
-                      } else {
-                        // или переход куда нужно
-                      }
-                    },
-                  ),
+              ),
+              Padding(
+                padding: const P(bottom: S.p24, horizontal: S.p16),
+                child: PrimaryButton(
+                  text: context.l10n.next,
+                  onPressed: () {
+                    final nextIndex = tabsRouter.activeIndex + 1;
+                    if (nextIndex < tabsRouter.pageCount) {
+                      tabsRouter.setActiveIndex(nextIndex);
+                    } else {
+                      // или переход куда нужно
+                    }
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

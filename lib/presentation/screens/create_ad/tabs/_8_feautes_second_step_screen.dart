@@ -1,6 +1,9 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:roomate/presentation/widgets/selectable_tag_group.dart';
+
+import 'package:auto_route/annotations.dart';
+
+import 'package:roomate/domain/enums/selection_step_key_enum.dart';
+import 'package:roomate/presentation/screens/create_ad/widgets/selection_step_content.dart';
 
 @RoutePage()
 class FeautesSecondStepScreen extends StatelessWidget {
@@ -8,32 +11,6 @@ class FeautesSecondStepScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = [
-      {
-        "title": "Мебель",
-        "tags": ["Есть", "Нет", "Частично"],
-      },
-      {
-        "title": "Удобства",
-        "tags": ["Интернет"],
-      },
-    ];
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            final category = categories[index];
-            return SelectableTagGroup(
-              isRadio: true,
-              title: category["title"] as String,
-              tags: List<String>.from(category["tags"] as List),
-              onTagSelected: (tag, selected) {
-                debugPrint("Выбрано: $tag ($selected)");
-              },
-            );
-          }, childCount: categories.length),
-        ),
-      ],
-    );
+    return const SelectionStepContent(stepKey: SelectionStepKey.featuresSecond);
   }
 }

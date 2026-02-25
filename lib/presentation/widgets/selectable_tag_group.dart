@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:group_button/group_button.dart';
 
@@ -10,12 +11,14 @@ class SelectableTagGroup extends HookWidget {
     super.key,
     required this.title,
     required this.tags,
+    this.selectedTags = const [],
     this.isRadio = false,
     this.onTagSelected,
     this.description,
   });
 
   final String title;
+  final List<String> selectedTags;
   final String? description;
   final List<String> tags;
   final bool isRadio;
@@ -23,7 +26,14 @@ class SelectableTagGroup extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useGroupButtonController();
+    final initialIndexes = tags
+        .asMap()
+        .entries
+        .where((entry) => selectedTags.contains(entry.value))
+        .map((entry) => entry.key)
+        .toList();
+    final controller = useGroupButtonController(initialIndexes: initialIndexes);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

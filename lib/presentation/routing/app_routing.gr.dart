@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i40;
+import 'package:flutter/material.dart' as _i41;
 import 'package:roomate/presentation/routing/wrappers/auth_edit_profile_screen.dart'
     as _i5;
 import 'package:roomate/presentation/routing/wrappers/auth_wrapper.dart' as _i8;
@@ -317,17 +318,17 @@ class DealTermsStepRoute extends _i40.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.DescriptionAdStepScreenCopy]
-class DescriptionAdStepRouteCopy extends _i40.PageRouteInfo<void> {
-  const DescriptionAdStepRouteCopy({List<_i40.PageRouteInfo>? children})
-    : super(DescriptionAdStepRouteCopy.name, initialChildren: children);
+/// [_i16.DescriptionAdStepScreen]
+class DescriptionAdStepRoute extends _i40.PageRouteInfo<void> {
+  const DescriptionAdStepRoute({List<_i40.PageRouteInfo>? children})
+    : super(DescriptionAdStepRoute.name, initialChildren: children);
 
-  static const String name = 'DescriptionAdStepRouteCopy';
+  static const String name = 'DescriptionAdStepRoute';
 
   static _i40.PageInfo page = _i40.PageInfo(
     name,
     builder: (data) {
-      return const _i16.DescriptionAdStepScreenCopy();
+      return const _i16.DescriptionAdStepScreen();
     },
   );
 }
@@ -494,18 +495,49 @@ class InputDetailsApStepRoute extends _i40.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i27.LocationScreen]
-class LocationRoute extends _i40.PageRouteInfo<void> {
-  const LocationRoute({List<_i40.PageRouteInfo>? children})
-    : super(LocationRoute.name, initialChildren: children);
+class LocationRoute extends _i40.PageRouteInfo<LocationRouteArgs> {
+  LocationRoute({
+    _i41.Key? key,
+    required void Function(String) onSelected,
+    List<_i40.PageRouteInfo>? children,
+  }) : super(
+         LocationRoute.name,
+         args: LocationRouteArgs(key: key, onSelected: onSelected),
+         initialChildren: children,
+       );
 
   static const String name = 'LocationRoute';
 
   static _i40.PageInfo page = _i40.PageInfo(
     name,
     builder: (data) {
-      return const _i27.LocationScreen();
+      final args = data.argsAs<LocationRouteArgs>();
+      return _i27.LocationScreen(key: args.key, onSelected: args.onSelected);
     },
   );
+}
+
+class LocationRouteArgs {
+  const LocationRouteArgs({this.key, required this.onSelected});
+
+  final _i41.Key? key;
+
+  final void Function(String) onSelected;
+
+  @override
+  String toString() {
+    return 'LocationRouteArgs{key: $key, onSelected: $onSelected}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! LocationRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for

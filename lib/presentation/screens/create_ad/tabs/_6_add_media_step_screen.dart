@@ -15,6 +15,7 @@ class AddMediaStepScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const P(horizontal: S.p16),
       children: [
         Padding(
           padding: const P(top: S.p4, bottom: S.p12),
