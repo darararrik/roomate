@@ -24,7 +24,6 @@ class AppTypography extends ThemeExtension<AppTypography> {
   final TextStyle activesCodeNumber;
   final TextStyle activesButton;
   final TextStyle activesLabel;
-
   @override
   AppTypography copyWith({
     TextStyle? headline0,
