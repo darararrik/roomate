@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/data/datasources/remote/mock.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
-import 'package:roomate/presentation/screens/create_ad/widgets/selection_step_content.dart';
+import 'package:roomate/presentation/screens/create_ad/widgets/dynamic_screen.dart';
+import 'package:roomate/presentation/widgets/loading_state.dart';
+import 'package:roomate/state/createAd/create_ad_notifier.dart';
 
 @RoutePage()
-class TypeOfPropertyStepScreen extends StatelessWidget {
+class TypeOfPropertyStepScreen extends ConsumerWidget {
   const TypeOfPropertyStepScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const SelectionStepContent(stepKey: SelectionStepKey.propertyType);
+  Widget build(BuildContext context, ref) {
+    final fiedls = ref.watch(stepFieldsProvider(SelectionStepKey.propertyType));
+    return fiedls.when(
+      data: (data) => DynamicAdForm(fields: data),
+      error: (error, stackTrace) => Center(child: Text(error.toString())),
+      loading: () => const LoadingState(),
+    );
   }
 }

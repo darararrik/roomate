@@ -13,6 +13,7 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
+    this.onChanged,
     this.suffix,
     this.isMultiline = false,
   }) : keyboardType = TextInputType.text,
@@ -24,6 +25,7 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
+    this.onChanged,
   }) : isMultiline = false,
        suffix = null,
        keyboardType = TextInputType.number,
@@ -36,6 +38,7 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.hintText,
     required this.controller,
     required this.suffix,
+    this.onChanged,
   }) : isMultiline = false,
        keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
@@ -46,6 +49,7 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
+    this.onChanged,
   }) : isMultiline = false,
        suffix = null,
        keyboardType = const TextInputType.numberWithOptions(decimal: true),
@@ -56,6 +60,7 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
+    this.onChanged,
   }) : suffix = null,
        keyboardType = TextInputType.multiline,
        inputFormatters = null,
@@ -67,6 +72,8 @@ class TextFieldWithTitle extends StatelessWidget {
   final String? suffix;
   final TextInputType keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +87,7 @@ class TextFieldWithTitle extends StatelessWidget {
         Padding(
           padding: const P(vertical: S.p12),
           child: TextFormField(
+            onChanged: onChanged,
             controller: controller,
             onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
             //TODO: Реализовать минимум 50 симоволов для multiline

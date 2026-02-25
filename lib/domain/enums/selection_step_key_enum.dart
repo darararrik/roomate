@@ -7,4 +7,6 @@ enum SelectionStepKey {
   featuresSecond,
   dealTerms,
   contactInfo,
+  location,
+  media,
 }

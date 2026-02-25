@@ -1,19 +1,17 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'package:roomate/data/datasources/remote/mock.dart';
 import 'package:roomate/domain/enums/currency_enum.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/domain/models/selection_category.dart';
-import 'package:roomate/state/createAd/create_ad_state.dart';
+import 'package:roomate/state/DI/di.dart';
+import 'package:roomate/state/createAd/create_ad_state.dart'; // Провайдер репозитория
 
 part 'create_ad_notifier.g.dart';
 
+/// Провайдер полей для конкретного шага (типизированный!)
 @riverpod
-Future<List<SelectionCategory>> categories(
-  Ref ref,
-  SelectionStepKey key,
-) async {
-  return MockDataSource().getSelectionCategories(key);
+Future<List<AdFieldConfig>> stepFields(Ref ref, SelectionStepKey key) async {
+  final repo = ref.watch(adRepositoryProvider);
+  return repo.getFields(key);
 }
 
 @riverpod
@@ -30,48 +28,70 @@ class CreateAdNotifier extends _$CreateAdNotifier {
       "Евро" => Currency.eur,
       _ => Currency.rub,
     };
-
     state = state.copyWith(selectedCurrency: currency);
   }
 
-  void updateCost(String cost) {
-    state = state.copyWith(cost: cost);
+  /// Универсальный метод для обновления простых значений (текст, число, адрес)
+  void updateFieldValue(String fieldId, dynamic value) {
+    state = state.copyWith(formValues: {...state.formValues, fieldId: value});
   }
 
-  void updateTags({
-    required SelectionStepKey stepKey,
-    required String categoryTitle,
+  /// Специальный метод для адреса (чтобы обновлялось и в мапе, и в отдельном поле для удобства)
+  void setAddress(String address) {
+    state = state.copyWith(address: address);
+    updateFieldValue('main_address', address);
+  }
+
+  /// Обновление тегов (Checkbox или Radio)
+  void updateDynamicTags({
+    required String fieldId,
     required String tag,
     required bool isSelected,
+    required bool isRadio,
   }) {
-    // 1. Копируем текущую мапу тегов
-    final newTags = Map<SelectionStepKey, Map<String, List<String>>>.from(
-      state.selectedTags,
-    );
+    final currentVal = state.formValues[fieldId];
+    List<String> currentTags = currentVal is List
+        ? List<String>.from(currentVal)
+        : [];
 
-    // 2. Достаем/создаем данные для шага
-    final stepMap = Map<String, List<String>>.from(newTags[stepKey] ?? {});
+    if (isRadio) {
+      currentTags = isSelected ? [tag] : [];
 
-    // 3. Достаем/создаем список тегов в категории
-    final categoryTags = List<String>.from(stepMap[categoryTitle] ?? []);
-
-    if (isSelected) {
-      if (!categoryTags.contains(tag)) categoryTags.add(tag);
+      // Если это поле валюты — обновляем и специальный Enum в стейте
+      if (fieldId == 'currency') {
+        _syncCurrency(tag);
+      }
     } else {
-      categoryTags.remove(tag);
+      if (isSelected) {
+        if (!currentTags.contains(tag)) currentTags.add(tag);
+      } else {
+        currentTags.remove(tag);
+      }
     }
 
-    stepMap[categoryTitle] = categoryTags;
-    newTags[stepKey] = stepMap;
-
-    // 4. Обновляем общий стейт через copyWith
-    state = state.copyWith(selectedTags: newTags);
+    updateFieldValue(fieldId, currentTags);
   }
 
-  // Метод валидации теперь обращается к state.selectedTags
-  bool isStepValueSelected(SelectionStepKey key) {
-    final stepData = state.selectedTags[key];
-    if (stepData == null || stepData.isEmpty) return false;
-    return stepData.values.any((tags) => tags.isNotEmpty);
+  /// Вспомогательный метод для синхронизации Enum валюты
+  void _syncCurrency(String tag) {
+    final currency = switch (tag) {
+      "Доллары" => Currency.usd,
+      "Евро" => Currency.eur,
+      _ => Currency.rub,
+    };
+    state = state.copyWith(selectedCurrency: currency);
+  }
+
+  /// Валидация: проверим, заполнены ли обязательные поля для текущего списка конфигов
+  bool isStepValid(List<AdFieldConfig> stepConfigs) {
+    for (final config in stepConfigs) {
+      final value = state.formValues[config.id];
+
+      // Простая проверка: если значение null или пустой список/строка
+      if (value == null) return false;
+      if (value is String && value.isEmpty) return false;
+      if (value is List && value.isEmpty) return false;
+    }
+    return true;
   }
 }

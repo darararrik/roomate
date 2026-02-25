@@ -14,7 +14,10 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateAdState {
 
- Map<SelectionStepKey, Map<String, List<String>>> get selectedTags; Currency get selectedCurrency; String get cost;
+// Главное хранилище для всех динамических полей
+ Map<String, dynamic> get formValues;// Оставляем высокоуровневые поля для удобства бизнес-логики
+ Currency? get selectedCurrency; String? get address;// Статус загрузки или ошибки (опционально, для UI)
+ bool get isSubmitting;
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +28,16 @@ $CreateAdStateCopyWith<CreateAdState> get copyWith => _$CreateAdStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateAdState&&const DeepCollectionEquality().equals(other.selectedTags, selectedTags)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateAdState&&const DeepCollectionEquality().equals(other.formValues, formValues)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.address, address) || other.address == address)&&(identical(other.isSubmitting, isSubmitting) || other.isSubmitting == isSubmitting));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(selectedTags),selectedCurrency,cost);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(formValues),selectedCurrency,address,isSubmitting);
 
 @override
 String toString() {
-  return 'CreateAdState(selectedTags: $selectedTags, selectedCurrency: $selectedCurrency, cost: $cost)';
+  return 'CreateAdState(formValues: $formValues, selectedCurrency: $selectedCurrency, address: $address, isSubmitting: $isSubmitting)';
 }
 
 
@@ -45,7 +48,7 @@ abstract mixin class $CreateAdStateCopyWith<$Res>  {
   factory $CreateAdStateCopyWith(CreateAdState value, $Res Function(CreateAdState) _then) = _$CreateAdStateCopyWithImpl;
 @useResult
 $Res call({
- Map<SelectionStepKey, Map<String, List<String>>> selectedTags, Currency selectedCurrency, String cost
+ Map<String, dynamic> formValues, Currency? selectedCurrency, String? address, bool isSubmitting
 });
 
 
@@ -62,12 +65,13 @@ class _$CreateAdStateCopyWithImpl<$Res>
 
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? selectedTags = null,Object? selectedCurrency = null,Object? cost = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? formValues = null,Object? selectedCurrency = freezed,Object? address = freezed,Object? isSubmitting = null,}) {
   return _then(_self.copyWith(
-selectedTags: null == selectedTags ? _self.selectedTags : selectedTags // ignore: cast_nullable_to_non_nullable
-as Map<SelectionStepKey, Map<String, List<String>>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
-as Currency,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
-as String,
+formValues: null == formValues ? _self.formValues : formValues // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,selectedCurrency: freezed == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
+as Currency?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,isSubmitting: null == isSubmitting ? _self.isSubmitting : isSubmitting // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -149,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<SelectionStepKey, Map<String, List<String>>> selectedTags,  Currency selectedCurrency,  String cost)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<String, dynamic> formValues,  Currency? selectedCurrency,  String? address,  bool isSubmitting)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateAdState() when $default != null:
-return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
+return $default(_that.formValues,_that.selectedCurrency,_that.address,_that.isSubmitting);case _:
   return orElse();
 
 }
@@ -170,10 +174,10 @@ return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<SelectionStepKey, Map<String, List<String>>> selectedTags,  Currency selectedCurrency,  String cost)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<String, dynamic> formValues,  Currency? selectedCurrency,  String? address,  bool isSubmitting)  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdState():
-return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);}
+return $default(_that.formValues,_that.selectedCurrency,_that.address,_that.isSubmitting);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -187,10 +191,10 @@ return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<SelectionStepKey, Map<String, List<String>>> selectedTags,  Currency selectedCurrency,  String cost)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<String, dynamic> formValues,  Currency? selectedCurrency,  String? address,  bool isSubmitting)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdState() when $default != null:
-return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
+return $default(_that.formValues,_that.selectedCurrency,_that.address,_that.isSubmitting);case _:
   return null;
 
 }
@@ -202,18 +206,23 @@ return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
 
 
 class _CreateAdState implements CreateAdState {
-  const _CreateAdState({final  Map<SelectionStepKey, Map<String, List<String>>> selectedTags = const {}, this.selectedCurrency = Currency.rub, this.cost = ""}): _selectedTags = selectedTags;
+  const _CreateAdState({final  Map<String, dynamic> formValues = const {}, this.selectedCurrency, this.address, this.isSubmitting = false}): _formValues = formValues;
   
 
- final  Map<SelectionStepKey, Map<String, List<String>>> _selectedTags;
-@override@JsonKey() Map<SelectionStepKey, Map<String, List<String>>> get selectedTags {
-  if (_selectedTags is EqualUnmodifiableMapView) return _selectedTags;
+// Главное хранилище для всех динамических полей
+ final  Map<String, dynamic> _formValues;
+// Главное хранилище для всех динамических полей
+@override@JsonKey() Map<String, dynamic> get formValues {
+  if (_formValues is EqualUnmodifiableMapView) return _formValues;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(_selectedTags);
+  return EqualUnmodifiableMapView(_formValues);
 }
 
-@override@JsonKey() final  Currency selectedCurrency;
-@override@JsonKey() final  String cost;
+// Оставляем высокоуровневые поля для удобства бизнес-логики
+@override final  Currency? selectedCurrency;
+@override final  String? address;
+// Статус загрузки или ошибки (опционально, для UI)
+@override@JsonKey() final  bool isSubmitting;
 
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
@@ -225,16 +234,16 @@ _$CreateAdStateCopyWith<_CreateAdState> get copyWith => __$CreateAdStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateAdState&&const DeepCollectionEquality().equals(other._selectedTags, _selectedTags)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateAdState&&const DeepCollectionEquality().equals(other._formValues, _formValues)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.address, address) || other.address == address)&&(identical(other.isSubmitting, isSubmitting) || other.isSubmitting == isSubmitting));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_selectedTags),selectedCurrency,cost);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_formValues),selectedCurrency,address,isSubmitting);
 
 @override
 String toString() {
-  return 'CreateAdState(selectedTags: $selectedTags, selectedCurrency: $selectedCurrency, cost: $cost)';
+  return 'CreateAdState(formValues: $formValues, selectedCurrency: $selectedCurrency, address: $address, isSubmitting: $isSubmitting)';
 }
 
 
@@ -245,7 +254,7 @@ abstract mixin class _$CreateAdStateCopyWith<$Res> implements $CreateAdStateCopy
   factory _$CreateAdStateCopyWith(_CreateAdState value, $Res Function(_CreateAdState) _then) = __$CreateAdStateCopyWithImpl;
 @override @useResult
 $Res call({
- Map<SelectionStepKey, Map<String, List<String>>> selectedTags, Currency selectedCurrency, String cost
+ Map<String, dynamic> formValues, Currency? selectedCurrency, String? address, bool isSubmitting
 });
 
 
@@ -262,12 +271,13 @@ class __$CreateAdStateCopyWithImpl<$Res>
 
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? selectedTags = null,Object? selectedCurrency = null,Object? cost = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? formValues = null,Object? selectedCurrency = freezed,Object? address = freezed,Object? isSubmitting = null,}) {
   return _then(_CreateAdState(
-selectedTags: null == selectedTags ? _self._selectedTags : selectedTags // ignore: cast_nullable_to_non_nullable
-as Map<SelectionStepKey, Map<String, List<String>>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
-as Currency,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
-as String,
+formValues: null == formValues ? _self._formValues : formValues // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,selectedCurrency: freezed == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
+as Currency?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,isSubmitting: null == isSubmitting ? _self.isSubmitting : isSubmitting // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

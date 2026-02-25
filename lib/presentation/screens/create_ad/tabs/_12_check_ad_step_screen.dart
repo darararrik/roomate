@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:roomate/presentation/constants/app_icons.dart';
-import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/utils/extensions/context_x.dart';
-import 'package:roomate/presentation/utils/p.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
 import 'package:roomate/state/createAd/create_ad_notifier.dart';
 
 @RoutePage()
@@ -16,26 +11,26 @@ class CheckAdStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.watch(createAdProvider);
+    final state = ref.watch(createAdProvider);
     return ListView(
       padding: const P(horizontal: S.p16),
-      children: const [
+      children: [
         ItemList(
+          value: state.selectedCurrency?.name ?? '',
+          title: 'Аренда',
+          icon: Icons.watch_later_outlined,
+        ),
+        const ItemList(
           value: 'value',
           title: 'Аренда',
           icon: Icons.watch_later_outlined,
         ),
-        ItemList(
+        const ItemList(
           value: 'value',
           title: 'Аренда',
           icon: Icons.watch_later_outlined,
         ),
-        ItemList(
-          value: 'value',
-          title: 'Аренда',
-          icon: Icons.watch_later_outlined,
-        ),
-        ItemList(
+        const ItemList(
           value: 'value',
           title: 'Аренда',
           icon: Icons.watch_later_outlined,

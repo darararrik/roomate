@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_ad_notifier.dart';
+part of 'di.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -8,12 +8,50 @@ part of 'create_ad_notifier.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Провайдер полей для конкретного шага (типизированный!)
+
+@ProviderFor(adRepository)
+final adRepositoryProvider = AdRepositoryProvider._();
+
+final class AdRepositoryProvider
+    extends $FunctionalProvider<AdRepository, AdRepository, AdRepository>
+    with $Provider<AdRepository> {
+  AdRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'adRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$adRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<AdRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AdRepository create(Ref ref) {
+    return adRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AdRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AdRepository>(value),
+    );
+  }
+}
+
+String _$adRepositoryHash() => r'28f575ce0ee58f105e0d1aca3819f0780e07f283';
 
 @ProviderFor(stepFields)
 final stepFieldsProvider = StepFieldsFamily._();
-
-/// Провайдер полей для конкретного шага (типизированный!)
 
 final class StepFieldsProvider
     extends
@@ -25,7 +63,6 @@ final class StepFieldsProvider
     with
         $FutureModifier<List<AdFieldConfig>>,
         $FutureProvider<List<AdFieldConfig>> {
-  /// Провайдер полей для конкретного шага (типизированный!)
   StepFieldsProvider._({
     required StepFieldsFamily super.from,
     required SelectionStepKey super.argument,
@@ -72,8 +109,6 @@ final class StepFieldsProvider
 
 String _$stepFieldsHash() => r'8eb1ffa45cb2a5b63b1f97b15fa5412ec34a5a91';
 
-/// Провайдер полей для конкретного шага (типизированный!)
-
 final class StepFieldsFamily extends $Family
     with
         $FunctionalFamilyOverride<
@@ -89,63 +124,9 @@ final class StepFieldsFamily extends $Family
         isAutoDispose: true,
       );
 
-  /// Провайдер полей для конкретного шага (типизированный!)
-
   StepFieldsProvider call(SelectionStepKey key) =>
       StepFieldsProvider._(argument: key, from: this);
 
   @override
   String toString() => r'stepFieldsProvider';
-}
-
-@ProviderFor(CreateAdNotifier)
-final createAdProvider = CreateAdNotifierProvider._();
-
-final class CreateAdNotifierProvider
-    extends $NotifierProvider<CreateAdNotifier, CreateAdState> {
-  CreateAdNotifierProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'createAdProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$createAdNotifierHash();
-
-  @$internal
-  @override
-  CreateAdNotifier create() => CreateAdNotifier();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(CreateAdState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<CreateAdState>(value),
-    );
-  }
-}
-
-String _$createAdNotifierHash() => r'1e780fcfa4222d487b174f8baf738e640b0efbf1';
-
-abstract class _$CreateAdNotifier extends $Notifier<CreateAdState> {
-  CreateAdState build();
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final ref = this.ref as $Ref<CreateAdState, CreateAdState>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<CreateAdState, CreateAdState>,
-              CreateAdState,
-              Object?,
-              Object?
-            >;
-    element.handleCreate(ref, build);
-  }
 }
