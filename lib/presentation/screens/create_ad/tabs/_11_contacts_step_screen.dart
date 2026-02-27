@@ -20,7 +20,7 @@ class ContactsStepScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
-    final stateCategories = ref.watch(
+    final stateCategories = ref.read(
       categoriesProvider(SelectionStepKey.contactInfo),
     );
     return stateCategories.when(
@@ -44,8 +44,7 @@ class ContactsStepScreen extends HookConsumerWidget {
           ],
         );
       },
-      error: (Object error, StackTrace stackTrace) =>
-          Center(child: Text(error.toString())),
+      error: (Object error, StackTrace stackTrace) => const LoadingState(),
       loading: () => const LoadingState(),
     );
   }

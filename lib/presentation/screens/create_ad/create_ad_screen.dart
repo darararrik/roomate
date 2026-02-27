@@ -12,6 +12,7 @@ import 'package:roomate/presentation/widgets/widgets.dart';
 @RoutePage()
 class CreateAdScreen extends StatelessWidget {
   const CreateAdScreen({super.key});
+  //TODO в табах удалить текста тегов из l10n они с бэка должны быть
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
@@ -27,7 +28,6 @@ class CreateAdScreen extends StatelessWidget {
         DealTermsStepRoute(),
         DescriptionAdStepRoute(),
         ContactsStepRoute(),
-        CheckAdStepRoute(),
         FinishRoute(),
       ],
       builder: (context, child, pageController) {
@@ -46,21 +46,6 @@ class CreateAdScreen extends StatelessWidget {
         };
 
         return Scaffold(
-          floatingActionButtonLocation: .centerDocked,
-          floatingActionButton: Padding(
-            padding: const P(horizontal: S.p16),
-            child: PrimaryButton(
-              text: context.l10n.next,
-              onPressed: () {
-                final nextIndex = tabsRouter.activeIndex + 1;
-                if (nextIndex < tabsRouter.pageCount) {
-                  tabsRouter.setActiveIndex(nextIndex);
-                } else {
-                  // или переход куда нужно
-                }
-              },
-            ),
-          ),
           appBar: AppBar(
             centerTitle: false,
             title: Text(title),
@@ -113,6 +98,20 @@ class CreateAdScreen extends StatelessWidget {
                 child: Padding(
                   padding: const P(top: S.p20),
                   child: child,
+                ),
+              ),
+              Padding(
+                padding: const P(bottom: S.p24, horizontal: S.p16),
+                child: PrimaryButton(
+                  text: context.l10n.next,
+                  onPressed: () {
+                    final nextIndex = tabsRouter.activeIndex + 1;
+                    if (nextIndex < tabsRouter.pageCount) {
+                      tabsRouter.setActiveIndex(nextIndex);
+                    } else {
+                      // или переход куда нужно
+                    }
+                  },
                 ),
               ),
             ],

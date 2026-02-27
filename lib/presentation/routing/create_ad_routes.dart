@@ -27,7 +27,6 @@ abstract class CreateAdRoutes {
       AutoRoute(page: DealTermsStepRoute.page, path: 'deal-terms-step'),
       AutoRoute(page: DescriptionAdStepRoute.page, path: 'description-step'),
       AutoRoute(page: ContactsStepRoute.page, path: 'contacts-step'),
-      AutoRoute(page: CheckAdStepRoute.page, path: 'check-step'),
       AutoRoute(page: FinishRoute.page, path: 'finish-step'),
     ],
   );
