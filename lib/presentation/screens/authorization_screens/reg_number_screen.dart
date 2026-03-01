@@ -27,15 +27,13 @@ class RegNumberScreen extends HookWidget {
       return () => controller.removeListener(listener);
     }, [controller]);
     return Scaffold(
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const P(horizontal: S.p16),
-          child: PrimaryButton(
-            onPressed: isComplete.value
-                ? () => context.router.push(const SmsCodeRoute())
-                : null,
-            text: context.l10n.next,
-          ),
+      bottomNavigationBar: Padding(
+        padding: const P(horizontal: S.p16, bottom: S.p32),
+        child: PrimaryButton(
+          onPressed: isComplete.value
+              ? () => context.router.push(const SmsCodeRoute())
+              : null,
+          text: context.l10n.next,
         ),
       ),
       body: CustomScrollView(
@@ -55,9 +53,7 @@ class RegNumberScreen extends HookWidget {
                       children: [
                         Text(
                           context.l10n.enterYourPhoneNumber,
-                          style: context.typography.headline0.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: context.typography.headline0,
                         ),
                         const SizedBox(height: S.p8),
                         Text(
@@ -69,6 +65,7 @@ class RegNumberScreen extends HookWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: S.p10),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

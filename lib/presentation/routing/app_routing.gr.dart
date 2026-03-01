@@ -68,7 +68,7 @@ import 'package:roomate/presentation/screens/profile/profile_edit_screen.dart'
     as _i29;
 import 'package:roomate/presentation/screens/profile/profile_screen.dart'
     as _i30;
-import 'package:roomate/presentation/widgets/nav.dart' as _i26;
+import 'package:roomate/presentation/widgets/navigation/nav.dart' as _i26;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]

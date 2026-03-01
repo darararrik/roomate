@@ -66,7 +66,7 @@ final class CategoriesProvider
   }
 }
 
-String _$categoriesHash() => r'5f77f68c80b04cef7c815a1fb4e8e51af54273aa';
+String _$categoriesHash() => r'5cd3058ffe8ec6dbc606cc2ceb99d5272a0429ab';
 
 final class CategoriesFamily extends $Family
     with
