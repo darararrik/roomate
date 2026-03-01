@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/common/common.dart';
 
 class SocialButton extends StatelessWidget {
   const SocialButton({

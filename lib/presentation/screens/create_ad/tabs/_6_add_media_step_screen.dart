@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/screens/create_ad/widgets/add_media_sheet.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/buttons/opacity_button.dart';
+import 'package:roomate/presentation/widgets/sheets/add_media_sheet.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class AddMediaStepScreen extends StatelessWidget {

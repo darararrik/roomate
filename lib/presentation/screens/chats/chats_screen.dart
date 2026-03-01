@@ -5,8 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/a_b.dart';
-import 'package:roomate/presentation/widgets/message_count_badge.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class ChatsScreen extends StatelessWidget {

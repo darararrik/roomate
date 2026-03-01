@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 
+import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/alert_widget.dart';
-import 'package:roomate/presentation/widgets/progress_bar_widget.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()

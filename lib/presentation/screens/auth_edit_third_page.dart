@@ -4,7 +4,7 @@ import 'package:auto_route/annotations.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class AuthEditThirdPage extends StatelessWidget {

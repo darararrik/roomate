@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
+import 'package:roomate/presentation/widgets/common/common.dart';
 
 @RoutePage(name: 'NavBarRoute')
 class NavBar extends StatelessWidget {

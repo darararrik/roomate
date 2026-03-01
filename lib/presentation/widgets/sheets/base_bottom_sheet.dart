@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/extensions/extensions.dart';
 import 'package:roomate/presentation/utils/p.dart';
-import 'package:roomate/presentation/widgets/drag_handle.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 class BaseBottomSheet extends StatelessWidget {
   const BaseBottomSheet({super.key, required this.title, required this.child});

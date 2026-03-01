@@ -6,7 +6,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/adress_item.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()

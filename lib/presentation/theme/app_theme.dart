@@ -79,7 +79,8 @@ class AppTheme {
       splashBorderRadius: BorderRadius.circular(S.p20),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const P(horizontal: S.p16, vertical: S.p14),
+      contentPadding: const P(horizontal: S.p16, vertical: S.p20),
+      fillColor: _appColors.graysInput200,
       hintStyle: _appTextStyle.inputTextRegular.copyWith(
         color: _appColors.graysText400,
       ),

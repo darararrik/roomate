@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/annotations.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/selectable_tag_group.dart';
+import 'package:roomate/presentation/widgets/chips/selectable_tag_group.dart';
 
 @RoutePage()
 class AuthEditSecondPage extends StatelessWidget {

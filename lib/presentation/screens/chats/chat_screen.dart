@@ -8,9 +8,7 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/app_icon.dart';
-import 'package:roomate/presentation/widgets/buttons/b_b.dart';
-import 'package:roomate/presentation/widgets/message_cloud.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class ChatScreen extends StatefulWidget {
