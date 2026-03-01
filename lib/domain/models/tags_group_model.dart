@@ -1,5 +1,5 @@
-class SelectionCategory {
-  const SelectionCategory({
+class TagsGroupModel {
+  const TagsGroupModel({
     required this.title,
     this.description,
     required this.tags,

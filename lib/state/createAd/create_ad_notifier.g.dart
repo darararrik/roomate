@@ -15,13 +15,13 @@ final categoriesProvider = CategoriesFamily._();
 final class CategoriesProvider
     extends
         $FunctionalProvider<
-          AsyncValue<List<SelectionCategory>>,
-          List<SelectionCategory>,
-          FutureOr<List<SelectionCategory>>
+          AsyncValue<List<TagsGroupModel>>,
+          List<TagsGroupModel>,
+          FutureOr<List<TagsGroupModel>>
         >
     with
-        $FutureModifier<List<SelectionCategory>>,
-        $FutureProvider<List<SelectionCategory>> {
+        $FutureModifier<List<TagsGroupModel>>,
+        $FutureProvider<List<TagsGroupModel>> {
   CategoriesProvider._({
     required CategoriesFamily super.from,
     required SelectionStepKey super.argument,
@@ -45,12 +45,12 @@ final class CategoriesProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<SelectionCategory>> $createElement(
+  $FutureProviderElement<List<TagsGroupModel>> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<List<SelectionCategory>> create(Ref ref) {
+  FutureOr<List<TagsGroupModel>> create(Ref ref) {
     final argument = this.argument as SelectionStepKey;
     return categories(ref, argument);
   }
@@ -66,12 +66,12 @@ final class CategoriesProvider
   }
 }
 
-String _$categoriesHash() => r'bb2940235f0eeb91a57b9a60ef97aa0c5dc6babb';
+String _$categoriesHash() => r'5f77f68c80b04cef7c815a1fb4e8e51af54273aa';
 
 final class CategoriesFamily extends $Family
     with
         $FunctionalFamilyOverride<
-          FutureOr<List<SelectionCategory>>,
+          FutureOr<List<TagsGroupModel>>,
           SelectionStepKey
         > {
   CategoriesFamily._()

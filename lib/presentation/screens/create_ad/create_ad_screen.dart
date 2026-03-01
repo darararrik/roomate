@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
@@ -12,23 +13,22 @@ import 'package:roomate/presentation/widgets/widgets.dart';
 @RoutePage()
 class CreateAdScreen extends StatelessWidget {
   const CreateAdScreen({super.key});
-  //TODO в табах удалить текста тегов из l10n они с бэка должны быть
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
-      routes: const [
-        FirstStepRoute(),
-        WhatTypeRoomStepRoute(),
-        TypeOfPropertyStepRoute(),
-        LocationStepRoute(),
-        InputDetailsApStepRoute(),
-        AddMediaStepRoute(),
-        FeautesFirstStepRoute(),
-        FeautesSecondStepRoute(),
-        DealTermsStepRoute(),
-        DescriptionAdStepRoute(),
-        ContactsStepRoute(),
-        FinishRoute(),
+      routes: [
+        TagRoute(stepKey: SelectionStepKey.rentType),
+        TagRoute(stepKey: SelectionStepKey.roomType),
+        TagRoute(stepKey: SelectionStepKey.propertyType),
+        const LocationStepRoute(),
+        const InputDetailsApStepRoute(),
+        const AddMediaStepRoute(),
+        TagRoute(stepKey: SelectionStepKey.featuresFirst),
+        TagRoute(stepKey: SelectionStepKey.featuresSecond),
+        TagRoute(stepKey: SelectionStepKey.dealTerms),
+        const DescriptionAdStepRoute(),
+        const ContactsStepRoute(),
+        const FinishRoute(),
       ],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);

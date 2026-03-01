@@ -20,9 +20,15 @@ class ContactsStepScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
-    final stateCategories = ref.read(
+    final stateCategories = ref.watch(
       categoriesProvider(SelectionStepKey.contactInfo),
     );
+    final selectedTags =
+        ref
+            .watch(createAdProvider)
+            .selectedTags[SelectionStepKey.contactInfo] ??
+        {};
+
     return stateCategories.when(
       data: (data) {
         return ListView(
@@ -40,11 +46,26 @@ class ContactsStepScreen extends HookConsumerWidget {
               controller: descriptionController,
               hintText: '+7 (___) ___-__-__',
             ),
-            SelectableTagGroup(title: data.first.title, tags: data.first.tags),
+            SelectableTagGroup(
+              title: data.first.title,
+              tags: data.first.tags,
+              selectedTags: selectedTags[data.first.title] ?? [],
+              onTagSelected: (tag, isSelected) {
+                ref
+                    .read(createAdProvider.notifier)
+                    .updateTags(
+                      stepKey: SelectionStepKey.contactInfo,
+                      categoryTitle: data.first.title,
+                      tag: tag,
+                      isSelected: isSelected,
+                    );
+              },
+            ),
           ],
         );
       },
-      error: (Object error, StackTrace stackTrace) => const LoadingState(),
+      error: (Object error, StackTrace stackTrace) =>
+          Center(child: Text(error.toString())),
       loading: () => const LoadingState(),
     );
   }

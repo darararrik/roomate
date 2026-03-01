@@ -8,7 +8,6 @@ import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
-import 'package:roomate/state/createAd/create_ad_notifier.dart';
 
 @RoutePage()
 class LocationStepScreen extends HookConsumerWidget {

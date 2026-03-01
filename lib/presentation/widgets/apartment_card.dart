@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_carousel_slider/image_carousel_slider.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/utils/extensions/list_x.dart';
 import 'package:roomate/presentation/widgets/app_icon.dart';
 
 class ApartmentCard extends StatelessWidget {

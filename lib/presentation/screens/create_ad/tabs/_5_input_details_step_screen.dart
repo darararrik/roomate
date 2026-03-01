@@ -7,7 +7,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/screens/create_ad/widgets/text_field_with_title.dart';
-import 'package:roomate/presentation/utils/extensions/list_x.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/loading_state.dart';
 import 'package:roomate/presentation/widgets/selectable_tag_group.dart';

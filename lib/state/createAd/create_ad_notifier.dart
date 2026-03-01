@@ -1,19 +1,19 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:roomate/data/datasources/remote/mock.dart';
+import 'package:roomate/data/dto/tags_group_dto/tags_group_dto.dart';
 import 'package:roomate/domain/enums/currency_enum.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
-import 'package:roomate/domain/models/selection_category.dart';
+import 'package:roomate/domain/models/tags_group_model.dart';
 import 'package:roomate/state/createAd/create_ad_state.dart';
 
 part 'create_ad_notifier.g.dart';
 
 @riverpod
-Future<List<SelectionCategory>> categories(
-  Ref ref,
-  SelectionStepKey key,
-) async {
-  return MockDataSource().getSelectionCategories(key);
+Future<List<TagsGroupModel>> categories(Ref ref, SelectionStepKey key) async {
+  final dtos = await MockDataSource().getSelectionCategories(key);
+  final model = dtos.map((e) => e.toDomain());
+  return model.toList();
 }
 
 @riverpod
