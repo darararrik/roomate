@@ -45,8 +45,8 @@ class AppRouter extends RootStackRouter {
 
     AutoRoute(
       page: AuthWrapper.page,
-      // path: '/',
-      // initial: true,
+      path: '/',
+      initial: true,
       children: [
         AutoRoute(page: WelcomeRoute.page, path: 'welcome', initial: true),
         AutoRoute(page: RegNumberRoute.page, path: 'register/number'),

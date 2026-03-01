@@ -41,7 +41,7 @@ class OpacityButton extends StatelessWidget {
         foregroundColor: color,
         minimumSize: height != null ? Size(double.infinity, height!) : null,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(S.p16),
+          borderRadius: BorderRadius.circular(S.p32),
         ),
       ),
       child: content,

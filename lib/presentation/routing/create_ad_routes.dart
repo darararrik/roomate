@@ -5,7 +5,6 @@ abstract class CreateAdRoutes {
   static final routes = AutoRoute(
     page: CreateAdRoute.page,
     path: '/create-ad',
-    initial: true,
     children: [
       AutoRoute(page: TagRoute.page, path: 'tag-route'),
       AutoRoute(page: LocationStepRoute.page, path: 'location-step'),

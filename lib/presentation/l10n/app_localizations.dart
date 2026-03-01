@@ -253,7 +253,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutServiceTitle.
   ///
   /// In ru, this message translates to:
-  /// **'Сервис по поиску сожителя'**
+  /// **'Сервис по поиску помещений и сожителей'**
   String get aboutServiceTitle;
 
   /// No description provided for @aboutServiceDescription.

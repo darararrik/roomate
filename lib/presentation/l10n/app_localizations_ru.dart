@@ -87,7 +87,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get participants => 'участники';
 
   @override
-  String get aboutServiceTitle => 'Сервис по поиску сожителя';
+  String get aboutServiceTitle => 'Сервис по поиску помещений и сожителей';
 
   @override
   String get aboutServiceDescription =>

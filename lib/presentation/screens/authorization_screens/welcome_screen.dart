@@ -49,9 +49,7 @@ class WelcomeScreen extends StatelessWidget {
                             Text(
                               context.l10n.aboutServiceDescription,
                               style: context.typography.headline1.copyWith(
-                                color: context.colors.graysWhite.withValues(
-                                  alpha: 0.59,
-                                ),
+                                color: context.colors.opacityWhite60,
                               ),
                             ),
                           ],
