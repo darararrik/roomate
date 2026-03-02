@@ -23,10 +23,12 @@ mixin CreateAdMock {
   static const _rentTypeJson = [
     {
       "title": "Аренда",
+      "isRadio": true,
       "tags": ["Долгосрочная", "Посуточно", "Обмен"],
     },
     {
       "title": "Кому готов сдавать",
+      "isRadio": false,
       "tags": ["Одному человеку", "Компании", "Семье", "Студентам"],
     },
   ];
@@ -35,6 +37,7 @@ mixin CreateAdMock {
     {
       "title": "Долгосрочная аренда",
       "description": "Какое у вас помещение?",
+      "isRadio": true,
       "tags": ["Жилое", "Коммерческое"],
     },
   ];
@@ -42,6 +45,7 @@ mixin CreateAdMock {
   static const _propertyTypeJson = [
     {
       "title": "Вид недвижимости",
+      "isRadio": true,
       "tags": [
         "Квартира",
         "Апартаменты",
@@ -57,10 +61,12 @@ mixin CreateAdMock {
   static const _propertiesApartmentJson = [
     {
       "title": "Количество комнат",
+      "isRadio": true,
       "tags": ["Студия", "1", "2", "3", "4", "5", "6+", "Свободная планировка"],
     },
     {
       "title": "Планировка",
+      "isRadio": true,
       "tags": ["Смежная", "Изолированная", "Смежно-изолированная"],
     },
   ];
@@ -68,14 +74,17 @@ mixin CreateAdMock {
   static const _featuresFirstJson = [
     {
       "title": "Ремонт",
+      "isRadio": true,
       "tags": ["Без ремонта", "Евро", "Косметический"],
     },
     {
       "title": "Лифты",
-      "tags": ["Пассажирский", "Грузовой", "Отсутствует"],
+      "isRadio": true,
+      "tags": ["Пассажирский", "Грузовой", "Пассажирский и грузовой"],
     },
     {
       "title": "Балконы",
+      "isRadio": true,
       "tags": ["Балкон", "Нет", "Лоджия", "Балкон и лоджия", "Терраса"],
     },
   ];
@@ -83,10 +92,12 @@ mixin CreateAdMock {
   static const _featuresSecondJson = [
     {
       "title": "Мебель",
+      "isRadio": true,
       "tags": ["Есть", "Нет", "Частично"],
     },
     {
       "title": "Удобства",
+      "isRadio": false,
       "tags": [
         "Интернет",
         "Мусоропровод",
@@ -98,10 +109,12 @@ mixin CreateAdMock {
     },
     {
       "title": "Ванная комната",
+      "isRadio": true,
       "tags": ["Душевая кабина", "Ванна"],
     },
     {
       "title": "Бытовая техника",
+      "isRadio": false,
       "tags": [
         "Холодильник",
         "Телевизор",
@@ -112,6 +125,7 @@ mixin CreateAdMock {
     },
     {
       "title": "Плита",
+      "isRadio": true,
       "tags": ["Газ", "Электрическая"],
     },
   ];
@@ -119,18 +133,22 @@ mixin CreateAdMock {
   static const _dealTermsJson = [
     {
       "title": "Цена",
+      "isRadio": true,
       "tags": ["Рубли", "Евро", "Доллары"],
     },
     {
       "title": "Предоплата",
+      "isRadio": true,
       "tags": ["Без предоплаты", "Месяц", "2", "3", "4+"],
     },
     {
       "title": "Срок аренды",
+      "isRadio": true,
       "tags": ["Несколько месяцев", "От года"],
     },
     {
       "title": "Условия сдачи",
+      "isRadio": false,
       "tags": ["Можно с детьми", "Можно с животными"],
     },
   ];
@@ -138,6 +156,7 @@ mixin CreateAdMock {
   static const _contactInfoJson = [
     {
       "title": "Способ связи",
+      "isRadio": true,
       "tags": ["Телефон", "Соцсети", "Электронная почта", "Все"],
     },
   ];

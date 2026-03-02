@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateAdState {
 
- Map<SelectionStepKey, Map<String, List<String>>> get selectedTags; Currency get selectedCurrency; String get cost;
+ Map<SelectionStepKey, List<TagsGroupModel>> get selectedTags; Currency get selectedCurrency; String get cost;
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $CreateAdStateCopyWith<$Res>  {
   factory $CreateAdStateCopyWith(CreateAdState value, $Res Function(CreateAdState) _then) = _$CreateAdStateCopyWithImpl;
 @useResult
 $Res call({
- Map<SelectionStepKey, Map<String, List<String>>> selectedTags, Currency selectedCurrency, String cost
+ Map<SelectionStepKey, List<TagsGroupModel>> selectedTags, Currency selectedCurrency, String cost
 });
 
 
@@ -65,7 +65,7 @@ class _$CreateAdStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? selectedTags = null,Object? selectedCurrency = null,Object? cost = null,}) {
   return _then(_self.copyWith(
 selectedTags: null == selectedTags ? _self.selectedTags : selectedTags // ignore: cast_nullable_to_non_nullable
-as Map<SelectionStepKey, Map<String, List<String>>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
+as Map<SelectionStepKey, List<TagsGroupModel>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
 as Currency,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -149,7 +149,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<SelectionStepKey, Map<String, List<String>>> selectedTags,  Currency selectedCurrency,  String cost)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<SelectionStepKey, List<TagsGroupModel>> selectedTags,  Currency selectedCurrency,  String cost)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateAdState() when $default != null:
 return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
@@ -170,7 +170,7 @@ return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<SelectionStepKey, Map<String, List<String>>> selectedTags,  Currency selectedCurrency,  String cost)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<SelectionStepKey, List<TagsGroupModel>> selectedTags,  Currency selectedCurrency,  String cost)  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdState():
 return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);}
@@ -187,7 +187,7 @@ return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<SelectionStepKey, Map<String, List<String>>> selectedTags,  Currency selectedCurrency,  String cost)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<SelectionStepKey, List<TagsGroupModel>> selectedTags,  Currency selectedCurrency,  String cost)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdState() when $default != null:
 return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
@@ -202,11 +202,11 @@ return $default(_that.selectedTags,_that.selectedCurrency,_that.cost);case _:
 
 
 class _CreateAdState implements CreateAdState {
-  const _CreateAdState({final  Map<SelectionStepKey, Map<String, List<String>>> selectedTags = const {}, this.selectedCurrency = Currency.rub, this.cost = ""}): _selectedTags = selectedTags;
+  const _CreateAdState({final  Map<SelectionStepKey, List<TagsGroupModel>> selectedTags = const {}, this.selectedCurrency = Currency.rub, this.cost = ""}): _selectedTags = selectedTags;
   
 
- final  Map<SelectionStepKey, Map<String, List<String>>> _selectedTags;
-@override@JsonKey() Map<SelectionStepKey, Map<String, List<String>>> get selectedTags {
+ final  Map<SelectionStepKey, List<TagsGroupModel>> _selectedTags;
+@override@JsonKey() Map<SelectionStepKey, List<TagsGroupModel>> get selectedTags {
   if (_selectedTags is EqualUnmodifiableMapView) return _selectedTags;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableMapView(_selectedTags);
@@ -245,7 +245,7 @@ abstract mixin class _$CreateAdStateCopyWith<$Res> implements $CreateAdStateCopy
   factory _$CreateAdStateCopyWith(_CreateAdState value, $Res Function(_CreateAdState) _then) = __$CreateAdStateCopyWithImpl;
 @override @useResult
 $Res call({
- Map<SelectionStepKey, Map<String, List<String>>> selectedTags, Currency selectedCurrency, String cost
+ Map<SelectionStepKey, List<TagsGroupModel>> selectedTags, Currency selectedCurrency, String cost
 });
 
 
@@ -265,7 +265,7 @@ class __$CreateAdStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? selectedTags = null,Object? selectedCurrency = null,Object? cost = null,}) {
   return _then(_CreateAdState(
 selectedTags: null == selectedTags ? _self._selectedTags : selectedTags // ignore: cast_nullable_to_non_nullable
-as Map<SelectionStepKey, Map<String, List<String>>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
+as Map<SelectionStepKey, List<TagsGroupModel>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
 as Currency,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
 as String,
   ));

@@ -23,6 +23,7 @@ class InputWidget extends StatelessWidget {
     this.autofocus = false,
     this.hintStyle,
     this.decoration,
+    this.maxLines,
   });
   final bool autofocus;
   final bool isSearch;
@@ -41,6 +42,7 @@ class InputWidget extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextStyle? hintStyle;
   final InputDecoration? decoration;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -58,6 +60,7 @@ class InputWidget extends StatelessWidget {
       style: style ?? context.typography.inputTextRegular,
       validator: validator,
       inputFormatters: inputFormatters,
+      maxLines: maxLines,
       decoration: (decoration ?? const InputDecoration()).copyWith(
         hintText: hintText,
         hintStyle: hintStyle,

@@ -8,3 +8,13 @@ class LoadingState extends StatelessWidget {
     return const Center(child: CircularProgressIndicator.adaptive());
   }
 }
+
+class ErrorState extends StatelessWidget {
+  const ErrorState({super.key, required this.error});
+  final Object error;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text("Ошибка ${error.toString()}"));
+  }
+}

@@ -387,6 +387,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get viewAll => 'Показать всё';
 
   @override
+  String get advertisementSuccessfullyCreated => 'Объявление успешно создано!';
+
+  @override
+  String get editOrSupplementAdvertisement =>
+      'Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».';
+
+  @override
   String get newAdvertisement => 'Новое объявление';
 
   @override

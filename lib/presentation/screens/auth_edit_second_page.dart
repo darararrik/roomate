@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/annotations.dart';
+import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/widgets/chips/selectable_tag_group.dart';
@@ -52,8 +53,11 @@ class AuthEditSecondPage extends StatelessWidget {
           delegate: SliverChildBuilderDelegate((context, index) {
             final category = categories[index];
             return SelectableTagGroup(
-              title: category["title"] as String,
-              tags: List<String>.from(category["tags"] as List),
+              tags: TagsGroupModel(
+                title: category["title"] as String,
+                tags: List<String>.from(category["tags"] as List),
+                isRadio: false,
+              ),
               onTagSelected: (tag, selected) {
                 debugPrint("Выбрано: $tag ($selected)");
               },

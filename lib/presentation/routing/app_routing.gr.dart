@@ -9,9 +9,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i36;
-import 'package:flutter/material.dart' as _i37;
-import 'package:roomate/domain/enums/selection_step_key_enum.dart' as _i38;
+import 'package:auto_route/auto_route.dart' as _i37;
+import 'package:flutter/material.dart' as _i38;
+import 'package:roomate/domain/enums/selection_step_key_enum.dart' as _i39;
 import 'package:roomate/presentation/routing/wrappers/auth_edit_profile_screen.dart'
     as _i5;
 import 'package:roomate/presentation/routing/wrappers/auth_wrapper.dart' as _i8;
@@ -26,9 +26,9 @@ import 'package:roomate/presentation/screens/authorization_screens/quiz_screen.d
 import 'package:roomate/presentation/screens/authorization_screens/reg_number_screen.dart'
     as _i32;
 import 'package:roomate/presentation/screens/authorization_screens/sms_code_screen.dart'
-    as _i33;
+    as _i34;
 import 'package:roomate/presentation/screens/authorization_screens/welcome_screen.dart'
-    as _i35;
+    as _i36;
 import 'package:roomate/presentation/screens/chats/chat_screen.dart' as _i9;
 import 'package:roomate/presentation/screens/chats/chats_screen.dart' as _i10;
 import 'package:roomate/presentation/screens/create_ad/create_ad_screen.dart'
@@ -47,8 +47,10 @@ import 'package:roomate/presentation/screens/create_ad/tabs/_6_add_media_step_sc
     as _i2;
 import 'package:roomate/presentation/screens/create_ad/tabs/_9_deal_terms_step_screen.dart'
     as _i15;
+import 'package:roomate/presentation/screens/create_ad/tabs/result_ad_screen.dart'
+    as _i33;
 import 'package:roomate/presentation/screens/create_ad/tabs/tag_screen.dart'
-    as _i34;
+    as _i35;
 import 'package:roomate/presentation/screens/create_screen.dart' as _i14;
 import 'package:roomate/presentation/screens/favorites_screen.dart' as _i17;
 import 'package:roomate/presentation/screens/filling_profile_screen.dart'
@@ -72,13 +74,13 @@ import 'package:roomate/presentation/widgets/navigation/nav.dart' as _i26;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]
-class AboutGroupRoute extends _i36.PageRouteInfo<void> {
-  const AboutGroupRoute({List<_i36.PageRouteInfo>? children})
+class AboutGroupRoute extends _i37.PageRouteInfo<void> {
+  const AboutGroupRoute({List<_i37.PageRouteInfo>? children})
     : super(AboutGroupRoute.name, initialChildren: children);
 
   static const String name = 'AboutGroupRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i1.AboutGroupScreen();
@@ -88,13 +90,13 @@ class AboutGroupRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.AddMediaStepScreen]
-class AddMediaStepRoute extends _i36.PageRouteInfo<void> {
-  const AddMediaStepRoute({List<_i36.PageRouteInfo>? children})
+class AddMediaStepRoute extends _i37.PageRouteInfo<void> {
+  const AddMediaStepRoute({List<_i37.PageRouteInfo>? children})
     : super(AddMediaStepRoute.name, initialChildren: children);
 
   static const String name = 'AddMediaStepRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i2.AddMediaStepScreen();
@@ -104,13 +106,13 @@ class AddMediaStepRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ApartamentsTab]
-class ApartamentsTab extends _i36.PageRouteInfo<void> {
-  const ApartamentsTab({List<_i36.PageRouteInfo>? children})
+class ApartamentsTab extends _i37.PageRouteInfo<void> {
+  const ApartamentsTab({List<_i37.PageRouteInfo>? children})
     : super(ApartamentsTab.name, initialChildren: children);
 
   static const String name = 'ApartamentsTab';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i3.ApartamentsTab();
@@ -120,13 +122,13 @@ class ApartamentsTab extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.AuthEditFirstPage]
-class AuthEditFirstRoute extends _i36.PageRouteInfo<void> {
-  const AuthEditFirstRoute({List<_i36.PageRouteInfo>? children})
+class AuthEditFirstRoute extends _i37.PageRouteInfo<void> {
+  const AuthEditFirstRoute({List<_i37.PageRouteInfo>? children})
     : super(AuthEditFirstRoute.name, initialChildren: children);
 
   static const String name = 'AuthEditFirstRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i4.AuthEditFirstPage();
@@ -136,29 +138,29 @@ class AuthEditFirstRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.AuthEditProfileWrapper]
-class AuthEditProfileWrapper extends _i36.PageRouteInfo<void> {
-  const AuthEditProfileWrapper({List<_i36.PageRouteInfo>? children})
+class AuthEditProfileWrapper extends _i37.PageRouteInfo<void> {
+  const AuthEditProfileWrapper({List<_i37.PageRouteInfo>? children})
     : super(AuthEditProfileWrapper.name, initialChildren: children);
 
   static const String name = 'AuthEditProfileWrapper';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return _i36.WrappedRoute(child: const _i5.AuthEditProfileWrapper());
+      return _i37.WrappedRoute(child: const _i5.AuthEditProfileWrapper());
     },
   );
 }
 
 /// generated route for
 /// [_i6.AuthEditSecondPage]
-class AuthEditSecondRoute extends _i36.PageRouteInfo<void> {
-  const AuthEditSecondRoute({List<_i36.PageRouteInfo>? children})
+class AuthEditSecondRoute extends _i37.PageRouteInfo<void> {
+  const AuthEditSecondRoute({List<_i37.PageRouteInfo>? children})
     : super(AuthEditSecondRoute.name, initialChildren: children);
 
   static const String name = 'AuthEditSecondRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i6.AuthEditSecondPage();
@@ -168,13 +170,13 @@ class AuthEditSecondRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.AuthEditThirdPage]
-class AuthEditThirdRoute extends _i36.PageRouteInfo<void> {
-  const AuthEditThirdRoute({List<_i36.PageRouteInfo>? children})
+class AuthEditThirdRoute extends _i37.PageRouteInfo<void> {
+  const AuthEditThirdRoute({List<_i37.PageRouteInfo>? children})
     : super(AuthEditThirdRoute.name, initialChildren: children);
 
   static const String name = 'AuthEditThirdRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i7.AuthEditThirdPage();
@@ -184,29 +186,29 @@ class AuthEditThirdRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.AuthWrapper]
-class AuthWrapper extends _i36.PageRouteInfo<void> {
-  const AuthWrapper({List<_i36.PageRouteInfo>? children})
+class AuthWrapper extends _i37.PageRouteInfo<void> {
+  const AuthWrapper({List<_i37.PageRouteInfo>? children})
     : super(AuthWrapper.name, initialChildren: children);
 
   static const String name = 'AuthWrapper';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return _i36.WrappedRoute(child: const _i8.AuthWrapper());
+      return _i37.WrappedRoute(child: const _i8.AuthWrapper());
     },
   );
 }
 
 /// generated route for
 /// [_i9.ChatScreen]
-class ChatRoute extends _i36.PageRouteInfo<void> {
-  const ChatRoute({List<_i36.PageRouteInfo>? children})
+class ChatRoute extends _i37.PageRouteInfo<void> {
+  const ChatRoute({List<_i37.PageRouteInfo>? children})
     : super(ChatRoute.name, initialChildren: children);
 
   static const String name = 'ChatRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i9.ChatScreen();
@@ -216,13 +218,13 @@ class ChatRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.ChatsScreen]
-class ChatsRoute extends _i36.PageRouteInfo<void> {
-  const ChatsRoute({List<_i36.PageRouteInfo>? children})
+class ChatsRoute extends _i37.PageRouteInfo<void> {
+  const ChatsRoute({List<_i37.PageRouteInfo>? children})
     : super(ChatsRoute.name, initialChildren: children);
 
   static const String name = 'ChatsRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i10.ChatsScreen();
@@ -232,13 +234,13 @@ class ChatsRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i11.ContactsStepScreen]
-class ContactsStepRoute extends _i36.PageRouteInfo<void> {
-  const ContactsStepRoute({List<_i36.PageRouteInfo>? children})
+class ContactsStepRoute extends _i37.PageRouteInfo<void> {
+  const ContactsStepRoute({List<_i37.PageRouteInfo>? children})
     : super(ContactsStepRoute.name, initialChildren: children);
 
   static const String name = 'ContactsStepRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i11.ContactsStepScreen();
@@ -248,13 +250,13 @@ class ContactsStepRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.CoworkingTab]
-class CoworkingTab extends _i36.PageRouteInfo<void> {
-  const CoworkingTab({List<_i36.PageRouteInfo>? children})
+class CoworkingTab extends _i37.PageRouteInfo<void> {
+  const CoworkingTab({List<_i37.PageRouteInfo>? children})
     : super(CoworkingTab.name, initialChildren: children);
 
   static const String name = 'CoworkingTab';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i12.CoworkingTab();
@@ -264,13 +266,13 @@ class CoworkingTab extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.CreateAdScreen]
-class CreateAdRoute extends _i36.PageRouteInfo<void> {
-  const CreateAdRoute({List<_i36.PageRouteInfo>? children})
+class CreateAdRoute extends _i37.PageRouteInfo<void> {
+  const CreateAdRoute({List<_i37.PageRouteInfo>? children})
     : super(CreateAdRoute.name, initialChildren: children);
 
   static const String name = 'CreateAdRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i13.CreateAdScreen();
@@ -280,13 +282,13 @@ class CreateAdRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.CreateScreen]
-class CreateRoute extends _i36.PageRouteInfo<void> {
-  const CreateRoute({List<_i36.PageRouteInfo>? children})
+class CreateRoute extends _i37.PageRouteInfo<void> {
+  const CreateRoute({List<_i37.PageRouteInfo>? children})
     : super(CreateRoute.name, initialChildren: children);
 
   static const String name = 'CreateRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i14.CreateScreen();
@@ -296,13 +298,13 @@ class CreateRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.DealTermsStepScreen]
-class DealTermsStepRoute extends _i36.PageRouteInfo<void> {
-  const DealTermsStepRoute({List<_i36.PageRouteInfo>? children})
+class DealTermsStepRoute extends _i37.PageRouteInfo<void> {
+  const DealTermsStepRoute({List<_i37.PageRouteInfo>? children})
     : super(DealTermsStepRoute.name, initialChildren: children);
 
   static const String name = 'DealTermsStepRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i15.DealTermsStepScreen();
@@ -312,13 +314,13 @@ class DealTermsStepRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.DescriptionAdStepScreen]
-class DescriptionAdStepRoute extends _i36.PageRouteInfo<void> {
-  const DescriptionAdStepRoute({List<_i36.PageRouteInfo>? children})
+class DescriptionAdStepRoute extends _i37.PageRouteInfo<void> {
+  const DescriptionAdStepRoute({List<_i37.PageRouteInfo>? children})
     : super(DescriptionAdStepRoute.name, initialChildren: children);
 
   static const String name = 'DescriptionAdStepRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i16.DescriptionAdStepScreen();
@@ -328,13 +330,13 @@ class DescriptionAdStepRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i17.FavoritesScreen]
-class FavoritesRoute extends _i36.PageRouteInfo<void> {
-  const FavoritesRoute({List<_i36.PageRouteInfo>? children})
+class FavoritesRoute extends _i37.PageRouteInfo<void> {
+  const FavoritesRoute({List<_i37.PageRouteInfo>? children})
     : super(FavoritesRoute.name, initialChildren: children);
 
   static const String name = 'FavoritesRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i17.FavoritesScreen();
@@ -344,13 +346,13 @@ class FavoritesRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.FillingProfileScreen]
-class FillingProfileRoute extends _i36.PageRouteInfo<void> {
-  const FillingProfileRoute({List<_i36.PageRouteInfo>? children})
+class FillingProfileRoute extends _i37.PageRouteInfo<void> {
+  const FillingProfileRoute({List<_i37.PageRouteInfo>? children})
     : super(FillingProfileRoute.name, initialChildren: children);
 
   static const String name = 'FillingProfileRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i18.FillingProfileScreen();
@@ -360,13 +362,13 @@ class FillingProfileRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i19.FiltersScreen]
-class FiltersRoute extends _i36.PageRouteInfo<void> {
-  const FiltersRoute({List<_i36.PageRouteInfo>? children})
+class FiltersRoute extends _i37.PageRouteInfo<void> {
+  const FiltersRoute({List<_i37.PageRouteInfo>? children})
     : super(FiltersRoute.name, initialChildren: children);
 
   static const String name = 'FiltersRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i19.FiltersScreen();
@@ -376,29 +378,29 @@ class FiltersRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.FiltersWrapper]
-class FiltersWrapper extends _i36.PageRouteInfo<void> {
-  const FiltersWrapper({List<_i36.PageRouteInfo>? children})
+class FiltersWrapper extends _i37.PageRouteInfo<void> {
+  const FiltersWrapper({List<_i37.PageRouteInfo>? children})
     : super(FiltersWrapper.name, initialChildren: children);
 
   static const String name = 'FiltersWrapper';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return _i36.WrappedRoute(child: const _i20.FiltersWrapper());
+      return _i37.WrappedRoute(child: const _i20.FiltersWrapper());
     },
   );
 }
 
 /// generated route for
 /// [_i21.FinishScreen]
-class FinishRoute extends _i36.PageRouteInfo<void> {
-  const FinishRoute({List<_i36.PageRouteInfo>? children})
+class FinishRoute extends _i37.PageRouteInfo<void> {
+  const FinishRoute({List<_i37.PageRouteInfo>? children})
     : super(FinishRoute.name, initialChildren: children);
 
   static const String name = 'FinishRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i21.FinishScreen();
@@ -408,13 +410,13 @@ class FinishRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i22.HomeScreen]
-class HomeRoute extends _i36.PageRouteInfo<void> {
-  const HomeRoute({List<_i36.PageRouteInfo>? children})
+class HomeRoute extends _i37.PageRouteInfo<void> {
+  const HomeRoute({List<_i37.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i22.HomeScreen();
@@ -424,13 +426,13 @@ class HomeRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.InputDetailsApStepScreen]
-class InputDetailsApStepRoute extends _i36.PageRouteInfo<void> {
-  const InputDetailsApStepRoute({List<_i36.PageRouteInfo>? children})
+class InputDetailsApStepRoute extends _i37.PageRouteInfo<void> {
+  const InputDetailsApStepRoute({List<_i37.PageRouteInfo>? children})
     : super(InputDetailsApStepRoute.name, initialChildren: children);
 
   static const String name = 'InputDetailsApStepRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i23.InputDetailsApStepScreen();
@@ -440,11 +442,11 @@ class InputDetailsApStepRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i24.LocationScreen]
-class LocationRoute extends _i36.PageRouteInfo<LocationRouteArgs> {
+class LocationRoute extends _i37.PageRouteInfo<LocationRouteArgs> {
   LocationRoute({
-    _i37.Key? key,
+    _i38.Key? key,
     required void Function(String) onSelected,
-    List<_i36.PageRouteInfo>? children,
+    List<_i37.PageRouteInfo>? children,
   }) : super(
          LocationRoute.name,
          args: LocationRouteArgs(key: key, onSelected: onSelected),
@@ -453,7 +455,7 @@ class LocationRoute extends _i36.PageRouteInfo<LocationRouteArgs> {
 
   static const String name = 'LocationRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LocationRouteArgs>();
@@ -465,7 +467,7 @@ class LocationRoute extends _i36.PageRouteInfo<LocationRouteArgs> {
 class LocationRouteArgs {
   const LocationRouteArgs({this.key, required this.onSelected});
 
-  final _i37.Key? key;
+  final _i38.Key? key;
 
   final void Function(String) onSelected;
 
@@ -487,13 +489,13 @@ class LocationRouteArgs {
 
 /// generated route for
 /// [_i25.LocationStepScreen]
-class LocationStepRoute extends _i36.PageRouteInfo<void> {
-  const LocationStepRoute({List<_i36.PageRouteInfo>? children})
+class LocationStepRoute extends _i37.PageRouteInfo<void> {
+  const LocationStepRoute({List<_i37.PageRouteInfo>? children})
     : super(LocationStepRoute.name, initialChildren: children);
 
   static const String name = 'LocationStepRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i25.LocationStepScreen();
@@ -503,13 +505,13 @@ class LocationStepRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i26.NavBar]
-class NavBarRoute extends _i36.PageRouteInfo<void> {
-  const NavBarRoute({List<_i36.PageRouteInfo>? children})
+class NavBarRoute extends _i37.PageRouteInfo<void> {
+  const NavBarRoute({List<_i37.PageRouteInfo>? children})
     : super(NavBarRoute.name, initialChildren: children);
 
   static const String name = 'NavBarRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i26.NavBar();
@@ -519,13 +521,13 @@ class NavBarRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i27.NeighboursTab]
-class NeighboursTab extends _i36.PageRouteInfo<void> {
-  const NeighboursTab({List<_i36.PageRouteInfo>? children})
+class NeighboursTab extends _i37.PageRouteInfo<void> {
+  const NeighboursTab({List<_i37.PageRouteInfo>? children})
     : super(NeighboursTab.name, initialChildren: children);
 
   static const String name = 'NeighboursTab';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i27.NeighboursTab();
@@ -535,13 +537,13 @@ class NeighboursTab extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i28.ProfileDataEditScreen]
-class ProfileDataEditRoute extends _i36.PageRouteInfo<void> {
-  const ProfileDataEditRoute({List<_i36.PageRouteInfo>? children})
+class ProfileDataEditRoute extends _i37.PageRouteInfo<void> {
+  const ProfileDataEditRoute({List<_i37.PageRouteInfo>? children})
     : super(ProfileDataEditRoute.name, initialChildren: children);
 
   static const String name = 'ProfileDataEditRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i28.ProfileDataEditScreen();
@@ -551,13 +553,13 @@ class ProfileDataEditRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i29.ProfileEditScreen]
-class ProfileEditRoute extends _i36.PageRouteInfo<void> {
-  const ProfileEditRoute({List<_i36.PageRouteInfo>? children})
+class ProfileEditRoute extends _i37.PageRouteInfo<void> {
+  const ProfileEditRoute({List<_i37.PageRouteInfo>? children})
     : super(ProfileEditRoute.name, initialChildren: children);
 
   static const String name = 'ProfileEditRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i29.ProfileEditScreen();
@@ -567,13 +569,13 @@ class ProfileEditRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i30.ProfileScreen]
-class ProfileRoute extends _i36.PageRouteInfo<void> {
-  const ProfileRoute({List<_i36.PageRouteInfo>? children})
+class ProfileRoute extends _i37.PageRouteInfo<void> {
+  const ProfileRoute({List<_i37.PageRouteInfo>? children})
     : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i30.ProfileScreen();
@@ -583,13 +585,13 @@ class ProfileRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i31.QuizScreen]
-class QuizRoute extends _i36.PageRouteInfo<void> {
-  const QuizRoute({List<_i36.PageRouteInfo>? children})
+class QuizRoute extends _i37.PageRouteInfo<void> {
+  const QuizRoute({List<_i37.PageRouteInfo>? children})
     : super(QuizRoute.name, initialChildren: children);
 
   static const String name = 'QuizRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i31.QuizScreen();
@@ -599,13 +601,13 @@ class QuizRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i32.RegNumberScreen]
-class RegNumberRoute extends _i36.PageRouteInfo<void> {
-  const RegNumberRoute({List<_i36.PageRouteInfo>? children})
+class RegNumberRoute extends _i37.PageRouteInfo<void> {
+  const RegNumberRoute({List<_i37.PageRouteInfo>? children})
     : super(RegNumberRoute.name, initialChildren: children);
 
   static const String name = 'RegNumberRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       return const _i32.RegNumberScreen();
@@ -614,28 +616,44 @@ class RegNumberRoute extends _i36.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i33.SmsCodeScreen]
-class SmsCodeRoute extends _i36.PageRouteInfo<void> {
-  const SmsCodeRoute({List<_i36.PageRouteInfo>? children})
-    : super(SmsCodeRoute.name, initialChildren: children);
+/// [_i33.ResultAdScreen]
+class ResultAdRoute extends _i37.PageRouteInfo<void> {
+  const ResultAdRoute({List<_i37.PageRouteInfo>? children})
+    : super(ResultAdRoute.name, initialChildren: children);
 
-  static const String name = 'SmsCodeRoute';
+  static const String name = 'ResultAdRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i33.SmsCodeScreen();
+      return const _i33.ResultAdScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i34.TagScreen]
-class TagRoute extends _i36.PageRouteInfo<TagRouteArgs> {
+/// [_i34.SmsCodeScreen]
+class SmsCodeRoute extends _i37.PageRouteInfo<void> {
+  const SmsCodeRoute({List<_i37.PageRouteInfo>? children})
+    : super(SmsCodeRoute.name, initialChildren: children);
+
+  static const String name = 'SmsCodeRoute';
+
+  static _i37.PageInfo page = _i37.PageInfo(
+    name,
+    builder: (data) {
+      return const _i34.SmsCodeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i35.TagScreen]
+class TagRoute extends _i37.PageRouteInfo<TagRouteArgs> {
   TagRoute({
-    _i37.Key? key,
-    required _i38.SelectionStepKey stepKey,
-    List<_i36.PageRouteInfo>? children,
+    _i38.Key? key,
+    required _i39.SelectionStepKey stepKey,
+    List<_i37.PageRouteInfo>? children,
   }) : super(
          TagRoute.name,
          args: TagRouteArgs(key: key, stepKey: stepKey),
@@ -644,11 +662,11 @@ class TagRoute extends _i36.PageRouteInfo<TagRouteArgs> {
 
   static const String name = 'TagRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<TagRouteArgs>();
-      return _i34.TagScreen(key: args.key, stepKey: args.stepKey);
+      return _i35.TagScreen(key: args.key, stepKey: args.stepKey);
     },
   );
 }
@@ -656,9 +674,9 @@ class TagRoute extends _i36.PageRouteInfo<TagRouteArgs> {
 class TagRouteArgs {
   const TagRouteArgs({this.key, required this.stepKey});
 
-  final _i37.Key? key;
+  final _i38.Key? key;
 
-  final _i38.SelectionStepKey stepKey;
+  final _i39.SelectionStepKey stepKey;
 
   @override
   String toString() {
@@ -677,17 +695,17 @@ class TagRouteArgs {
 }
 
 /// generated route for
-/// [_i35.WelcomeScreen]
-class WelcomeRoute extends _i36.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i36.PageRouteInfo>? children})
+/// [_i36.WelcomeScreen]
+class WelcomeRoute extends _i37.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i37.PageRouteInfo>? children})
     : super(WelcomeRoute.name, initialChildren: children);
 
   static const String name = 'WelcomeRoute';
 
-  static _i36.PageInfo page = _i36.PageInfo(
+  static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i35.WelcomeScreen();
+      return const _i36.WelcomeScreen();
     },
   );
 }

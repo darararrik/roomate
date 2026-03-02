@@ -6,6 +6,7 @@ import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/buttons/cancel_button.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -26,6 +27,7 @@ class CreateAdScreen extends StatelessWidget {
         TagRoute(stepKey: SelectionStepKey.dealTerms),
         const DescriptionAdStepRoute(),
         const ContactsStepRoute(),
+        const ResultAdRoute(),
         const FinishRoute(),
       ],
       builder: (context, child, pageController) {
@@ -37,35 +39,38 @@ class CreateAdScreen extends StatelessWidget {
           3 || 4 => context.l10n.apartmentRent,
           5 => "Фото и видео квартиры",
           6 => "Особенности квартиры",
-          7 => "Условия сделки",
-          8 => "Описание объявления",
-          9 => "Контакты",
+          7 => "Вещи в квартире",
+          8 => "Условия сделки",
+          9 => "Описание объявления",
+          10 => "Контакты",
+          11 => "Проверьте объявление",
           _ => "Новое объявление",
         };
 
         return Scaffold(
+          bottomNavigationBar: DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.colors.graysWhite,
+              boxShadow: [context.colors.bottomNavBarShadow],
+            ),
+            child: BottomButton(
+              onPressed: () {
+                final nextIndex = tabsRouter.activeIndex + 1;
+                if (nextIndex < tabsRouter.pageCount) {
+                  tabsRouter.setActiveIndex(nextIndex);
+                } else {
+                  // или переход куда нужно
+                }
+              },
+            ),
+          ),
           appBar: AppBar(
             centerTitle: false,
             title: Text(title),
             actions: [
-              TextButton(
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertWidget(
-                      title: context.l10n.exit,
-                      content: context.l10n.draftWillBeSaved,
-                      onConfirm: () => context.pop(),
-                      onCancel: () => context.pop(),
-                    );
-                  },
-                ),
-                child: Text(
-                  context.l10n.cancel,
-                  style: context.typography.activesButton.copyWith(
-                    color: context.colors.lightOrange100,
-                  ),
-                ),
+              CancelButton(
+                title: context.l10n.exit,
+                content: context.l10n.draftWillBeSaved,
               ),
             ],
             leading: BB(
@@ -90,29 +95,9 @@ class CreateAdScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const P(top: S.p20),
-                  child: child,
-                ),
-              ),
-              Padding(
-                padding: const P(bottom: S.p24, horizontal: S.p16),
-                child: PrimaryButton(
-                  text: context.l10n.next,
-                  onPressed: () {
-                    final nextIndex = tabsRouter.activeIndex + 1;
-                    if (nextIndex < tabsRouter.pageCount) {
-                      tabsRouter.setActiveIndex(nextIndex);
-                    } else {
-                      // или переход куда нужно
-                    }
-                  },
-                ),
-              ),
-            ],
+          body: Padding(
+            padding: const P(top: S.p20),
+            child: child,
           ),
         );
       },

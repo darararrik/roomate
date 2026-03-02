@@ -29,22 +29,14 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
         child: ListView(
           padding: const P(horizontal: S.p16),
           children: [
-            SelectableTagGroup(
-              isRadio: true,
-              title: data.first.title,
-              tags: data.first.tags,
-            ),
+            SelectableTagGroup(tags: data.first),
             TextFieldWithTitle.withSuffix(
               title: context.l10n.apartmentArea,
               hintText: context.l10n.enterApartmentArea,
               controller: areaController,
               suffix: context.l10n.squareMeters,
             ),
-            SelectableTagGroup(
-              isRadio: true,
-              title: data[1].title,
-              tags: data[1].tags,
-            ),
+            SelectableTagGroup(tags: data[1]),
             TextFieldWithTitle.number(
               title: context.l10n.floor,
               hintText: context.l10n.enterFloor,

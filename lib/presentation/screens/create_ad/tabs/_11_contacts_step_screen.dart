@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
+import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -21,11 +22,11 @@ class ContactsStepScreen extends HookConsumerWidget {
     final stateCategories = ref.watch(
       categoriesProvider(SelectionStepKey.contactInfo),
     );
-    final selectedTags =
+    final List<TagsGroupModel> selectedTags =
         ref
             .watch(createAdProvider)
             .selectedTags[SelectionStepKey.contactInfo] ??
-        {};
+        [];
 
     return stateCategories.when(
       data: (data) {
@@ -45,9 +46,13 @@ class ContactsStepScreen extends HookConsumerWidget {
               hintText: '+7 (___) ___-__-__',
             ),
             SelectableTagGroup(
-              title: data.first.title,
-              tags: data.first.tags,
-              selectedTags: selectedTags[data.first.title] ?? [],
+              tags: data.first,
+              selectedTags: selectedTags
+                  .firstWhere(
+                    (g) => g.title == data.first.title,
+                    orElse: () => data.first.copyWith(tags: []),
+                  )
+                  .tags,
               onTagSelected: (tag, isSelected) {
                 ref
                     .read(createAdProvider.notifier)
@@ -56,6 +61,7 @@ class ContactsStepScreen extends HookConsumerWidget {
                       categoryTitle: data.first.title,
                       tag: tag,
                       isSelected: isSelected,
+                      isRadio: data.first.isRadio,
                     );
               },
             ),

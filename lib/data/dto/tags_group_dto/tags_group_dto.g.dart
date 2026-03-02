@@ -11,6 +11,7 @@ _TagsGroupDto _$TagsGroupDtoFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       description: json['description'] as String?,
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
+      isRadio: json['isRadio'] as bool,
     );
 
 Map<String, dynamic> _$TagsGroupDtoToJson(_TagsGroupDto instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$TagsGroupDtoToJson(_TagsGroupDto instance) =>
       'title': instance.title,
       'description': instance.description,
       'tags': instance.tags,
+      'isRadio': instance.isRadio,
     };

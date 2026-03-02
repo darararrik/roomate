@@ -4,7 +4,7 @@ import 'package:roomate/data/datasources/remote/mock.dart';
 import 'package:roomate/data/dto/tags_group_dto/tags_group_dto.dart';
 import 'package:roomate/domain/enums/currency_enum.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
-import 'package:roomate/domain/models/tags_group_model.dart';
+import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
 import 'package:roomate/state/createAd/create_ad_state.dart';
 
 part 'create_ad_notifier.g.dart';
@@ -43,26 +43,44 @@ class CreateAdNotifier extends _$CreateAdNotifier {
     required String categoryTitle,
     required String tag,
     required bool isSelected,
+    required bool isRadio,
   }) {
     // 1. Копируем текущую мапу тегов
-    final newTags = Map<SelectionStepKey, Map<String, List<String>>>.from(
+    final newTags = Map<SelectionStepKey, List<TagsGroupModel>>.from(
       state.selectedTags,
     );
 
-    // 2. Достаем/создаем данные для шага
-    final stepMap = Map<String, List<String>>.from(newTags[stepKey] ?? {});
+    // 2. Достаем список групп для шага
+    final stepGroups = List<TagsGroupModel>.from(newTags[stepKey] ?? []);
 
-    // 3. Достаем/создаем список тегов в категории
-    final categoryTags = List<String>.from(stepMap[categoryTitle] ?? []);
+    // 3. Находим нужную категорию
+    final index = stepGroups.indexWhere((g) => g.title == categoryTitle);
 
-    if (isSelected) {
-      if (!categoryTags.contains(tag)) categoryTags.add(tag);
+    if (index != -1) {
+      final group = stepGroups[index];
+      final currentTags = List<String>.from(group.tags);
+
+      if (isSelected) {
+        if (isRadio) {
+          currentTags.clear();
+          currentTags.add(tag);
+        } else {
+          if (!currentTags.contains(tag)) currentTags.add(tag);
+        }
+      } else {
+        currentTags.remove(tag);
+      }
+
+      stepGroups[index] = group.copyWith(tags: currentTags);
     } else {
-      categoryTags.remove(tag);
+      if (isSelected) {
+        stepGroups.add(
+          TagsGroupModel(title: categoryTitle, tags: [tag], isRadio: isRadio),
+        );
+      }
     }
 
-    stepMap[categoryTitle] = categoryTags;
-    newTags[stepKey] = stepMap;
+    newTags[stepKey] = stepGroups;
 
     // 4. Обновляем общий стейт через copyWith
     state = state.copyWith(selectedTags: newTags);
@@ -72,6 +90,6 @@ class CreateAdNotifier extends _$CreateAdNotifier {
   bool isStepValueSelected(SelectionStepKey key) {
     final stepData = state.selectedTags[key];
     if (stepData == null || stepData.isEmpty) return false;
-    return stepData.values.any((tags) => tags.isNotEmpty);
+    return stepData.any((group) => group.tags.isNotEmpty);
   }
 }

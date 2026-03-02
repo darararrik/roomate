@@ -844,6 +844,18 @@ abstract class AppLocalizations {
   /// **'Показать всё'**
   String get viewAll;
 
+  /// No description provided for @advertisementSuccessfullyCreated.
+  ///
+  /// In ru, this message translates to:
+  /// **'Объявление успешно создано!'**
+  String get advertisementSuccessfullyCreated;
+
+  /// No description provided for @editOrSupplementAdvertisement.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».'**
+  String get editOrSupplementAdvertisement;
+
   /// No description provided for @newAdvertisement.
   ///
   /// In ru, this message translates to:

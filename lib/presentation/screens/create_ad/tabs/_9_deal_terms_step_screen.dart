@@ -28,9 +28,7 @@ class DealTermsStepScreen extends HookConsumerWidget {
           padding: const P(horizontal: S.p16),
           children: [
             SelectableTagGroup(
-              isRadio: true,
-              title: data[0].title,
-              tags: data[0].tags,
+              tags: data[0],
               onTagSelected: (tag, isSelected) {
                 notifier.updateCurrency(tag);
               },
@@ -42,15 +40,22 @@ class DealTermsStepScreen extends HookConsumerWidget {
               suffix: state.selectedCurrency.symbol,
             ),
             SelectableTagGroup(
-              isRadio: true,
-              title: data[1].title,
-              tags: data[1].tags,
+              tags: data[1],
+              selectedTags:
+                  state.selectedTags[stepKey]
+                      ?.firstWhere(
+                        (g) => g.title == data[1].title,
+                        orElse: () => data[1].copyWith(tags: []),
+                      )
+                      .tags ??
+                  [],
               onTagSelected: (tag, isSelected) {
                 notifier.updateTags(
                   stepKey: stepKey,
                   categoryTitle: data[1].title,
                   tag: tag,
                   isSelected: isSelected,
+                  isRadio: true,
                 );
               },
             ),
@@ -61,28 +66,42 @@ class DealTermsStepScreen extends HookConsumerWidget {
               suffix: state.selectedCurrency.symbol,
             ),
             SelectableTagGroup(
-              isRadio: true,
-              title: data[2].title,
-              tags: data[2].tags,
+              tags: data[2],
+              selectedTags:
+                  state.selectedTags[stepKey]
+                      ?.firstWhere(
+                        (g) => g.title == data[2].title,
+                        orElse: () => data[2].copyWith(tags: []),
+                      )
+                      .tags ??
+                  [],
               onTagSelected: (tag, isSelected) {
                 notifier.updateTags(
                   stepKey: stepKey,
                   categoryTitle: data[2].title,
                   tag: tag,
                   isSelected: isSelected,
+                  isRadio: true,
                 );
               },
             ),
             SelectableTagGroup(
-              isRadio: true,
-              title: data[3].title,
-              tags: data[3].tags,
+              tags: data[3],
+              selectedTags:
+                  state.selectedTags[stepKey]
+                      ?.firstWhere(
+                        (g) => g.title == data[3].title,
+                        orElse: () => data[3].copyWith(tags: []),
+                      )
+                      .tags ??
+                  [],
               onTagSelected: (tag, isSelected) {
                 notifier.updateTags(
                   stepKey: stepKey,
                   categoryTitle: data[3].title,
                   tag: tag,
                   isSelected: isSelected,
+                  isRadio: true,
                 );
               },
             ),

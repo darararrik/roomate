@@ -5,6 +5,7 @@ import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/extensions/extensions.dart';
 import 'package:roomate/presentation/utils/formatters/decimal_formatter.dart';
 import 'package:roomate/presentation/utils/p.dart';
+import 'package:roomate/presentation/widgets/widgets.dart';
 
 class TextFieldWithTitle extends StatelessWidget {
   /// Базовый конструктор (для обычного текста)
@@ -79,9 +80,8 @@ class TextFieldWithTitle extends StatelessWidget {
         ),
         Padding(
           padding: const P(vertical: S.p12),
-          child: TextFormField(
+          child: InputWidget(
             controller: controller,
-            onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
             //TODO: Реализовать минимум 50 симоволов для multiline
             validator: (value) {
               if (isMultiline && (value?.length ?? 0) < 50) {

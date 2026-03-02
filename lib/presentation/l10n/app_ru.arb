@@ -125,6 +125,8 @@
   "remove": "Удалить",
   "update": "Обновить",
   "viewAll": "Показать всё",
+  "advertisementSuccessfullyCreated": "Объявление успешно создано!",
+  "editOrSupplementAdvertisement": "Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».",
 
   "newAdvertisement": "Новое объявление",
   "apartmentRent": "Аренда квартиры",

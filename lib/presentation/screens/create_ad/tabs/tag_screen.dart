@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
+import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -15,37 +16,42 @@ class TagScreen extends HookConsumerWidget {
   final SelectionStepKey stepKey;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categoriesAsync = ref.watch(categoriesProvider(stepKey));
+    final data = ref.watch(categoriesProvider(stepKey));
     final state = ref.watch(createAdProvider);
-    return categoriesAsync.when(
+    return data.when(
       skipLoadingOnRefresh: false,
-      data: (categories) => ListView.builder(
-        itemCount: categories.length,
+      data: (listTagsGroup) => ListView.builder(
+        itemCount: listTagsGroup.length,
         padding: const P(horizontal: S.p16),
         itemBuilder: (context, index) {
-          final category = categories[index];
+          final TagsGroupModel tagsGroup = listTagsGroup[index];
           final selectedTags =
-              state.selectedTags[stepKey]?[category.title] ?? [];
+              state.selectedTags[stepKey]
+                  ?.firstWhere(
+                    (g) => g.title == tagsGroup.title,
+                    orElse: () => tagsGroup.copyWith(tags: []),
+                  )
+                  .tags ??
+              [];
           return SelectableTagGroup(
-            title: category.title,
-            tags: category.tags,
+            tags: tagsGroup,
             selectedTags: selectedTags,
-            description: category.description,
             onTagSelected: (tag, isSelected) {
               ref
                   .read(createAdProvider.notifier)
                   .updateTags(
                     stepKey: stepKey,
-                    categoryTitle: category.title,
+                    categoryTitle: tagsGroup.title,
                     tag: tag,
                     isSelected: isSelected,
+                    isRadio: tagsGroup.isRadio,
                   );
             },
           );
         },
       ),
       loading: () => const LoadingState(),
-      error: (err, stack) => const LoadingState(),
+      error: (err, stack) => ErrorState(error: err),
     );
   }
 }
