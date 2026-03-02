@@ -403,32 +403,26 @@ abstract class AppLocalizations {
   /// No description provided for @quizQ1Title.
   ///
   /// In ru, this message translates to:
-  /// **'С чем вам помочь?'**
+  /// **'Как вы хотите войти?'**
   String get quizQ1Title;
 
   /// No description provided for @quizQ1Subtitle.
   ///
   /// In ru, this message translates to:
-  /// **'Настроим поиск для вашего удобства'**
+  /// **'Выберите свою роль в сервисе'**
   String get quizQ1Subtitle;
 
   /// No description provided for @quizQ1Opt1.
   ///
   /// In ru, this message translates to:
-  /// **'Найти помещение'**
+  /// **'Ищу квартиру'**
   String get quizQ1Opt1;
 
   /// No description provided for @quizQ1Opt2.
   ///
   /// In ru, this message translates to:
-  /// **'Сдать помещение'**
+  /// **'Хочу сдать помещение'**
   String get quizQ1Opt2;
-
-  /// No description provided for @quizQ1Opt3.
-  ///
-  /// In ru, this message translates to:
-  /// **'Я просто посмотреть'**
-  String get quizQ1Opt3;
 
   /// No description provided for @quizQ2Title.
   ///

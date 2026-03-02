@@ -8,7 +8,6 @@ import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/l10n/app_localizations.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/buttons/opacity_button.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 import 'package:roomate/state/quiz/quiz_provider.dart';
 
@@ -26,7 +25,7 @@ class QuizScreen extends HookConsumerWidget {
       QuizStepModel(
         question: l10n.quizQ1Title,
         subQuestion: l10n.quizQ1Subtitle,
-        options: [l10n.quizQ1Opt1, l10n.quizQ1Opt2, l10n.quizQ1Opt3],
+        options: [l10n.quizQ1Opt1, l10n.quizQ1Opt2],
       ),
       QuizStepModel(
         question: l10n.quizQ2Title,
@@ -41,64 +40,58 @@ class QuizScreen extends HookConsumerWidget {
       }
     });
 
-    final isFirstStep = state.currentIndex == 0;
-
-    return PopScope(
-      canPop: isFirstStep,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop) return;
-        notifier.stepBack();
-      },
-      child: Scaffold(
-        body: Background(
-          child: SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const P(horizontal: S.p4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BB(
-                        color: context.colors.graysWhite,
-                        onPressed: () {
-                          if (state.currentIndex > 0) {
-                            notifier.stepBack();
-                          } else {
-                            context.pop();
-                          }
-                        },
-                      ),
-                      IconButton(
-                        onPressed: () =>
-                            context.replaceRoute(const NavBarRoute()),
-                        icon: const AppIcon(AppIcons.xBig, size: S.p32),
-                      ),
-                    ],
+    return Scaffold(
+      body: Background(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Visibility(
+                replacement: const SizedBox(height: S.p56),
+                visible: state.currentIndex > 0,
+                child: AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  leading: BackButton(
+                    color: context.colors.graysWhite,
+                    onPressed: () {
+                      if (state.currentIndex > 0) {
+                        notifier.stepBack();
+                      } else {
+                        context.pop();
+                      }
+                    },
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const P(bottom: S.p325),
-                    child: Center(
-                      child: state.currentIndex >= steps.length
-                          ? const SizedBox()
-                          : _QuizStepContent(
-                              currentIndex: state.currentIndex,
-                              currentStep: steps[state.currentIndex],
-                              totalSteps: steps.length,
-                              onOptionSelected: (answer) {
-                                notifier.selectOption(
-                                  answer: answer,
-                                  totalSteps: steps.length,
-                                );
-                              },
-                            ),
+                  actionsPadding: const P(right: S.p4),
+                  actions: [
+                    IconButton(
+                      onPressed: () =>
+                          context.replaceRoute(const NavBarRoute()),
+                      icon: const AppIcon(AppIcons.xBig, size: S.p32),
                     ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const P(bottom: S.p325),
+                  child: Center(
+                    child: state.currentIndex >= steps.length
+                        ? const SizedBox()
+                        : _QuizStepContent(
+                            currentIndex: state.currentIndex,
+                            currentStep: steps[state.currentIndex],
+                            totalSteps: steps.length,
+                            onOptionSelected: (answer) {
+                              notifier.selectOption(
+                                answer: answer,
+                                totalSteps: steps.length,
+                              );
+                            },
+                          ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -127,13 +120,6 @@ class _QuizStepContent extends StatelessWidget {
         decoration: BoxDecoration(
           color: context.colors.graysWhite,
           borderRadius: BorderRadius.circular(S.p32),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 24,
-              offset: const Offset(0, 8),
-            ),
-          ],
         ),
         child: Padding(
           padding: const P(horizontal: S.p12, bottom: S.p12, top: S.p24),
