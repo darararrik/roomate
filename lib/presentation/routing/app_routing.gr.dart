@@ -12,23 +12,23 @@
 import 'package:auto_route/auto_route.dart' as _i37;
 import 'package:flutter/material.dart' as _i38;
 import 'package:roomate/domain/enums/selection_step_key_enum.dart' as _i39;
+import 'package:roomate/presentation/app/auth/screens/enter_code_screen.dart'
+    as _i17;
+import 'package:roomate/presentation/app/auth/screens/enter_phone_number_screen.dart'
+    as _i18;
+import 'package:roomate/presentation/app/auth/screens/welcome_screen.dart'
+    as _i36;
+import 'package:roomate/presentation/app/on_boarding/on_boarding_screen.dart'
+    as _i30;
 import 'package:roomate/presentation/routing/wrappers/auth_edit_profile_screen.dart'
     as _i5;
 import 'package:roomate/presentation/routing/wrappers/auth_wrapper.dart' as _i8;
 import 'package:roomate/presentation/routing/wrappers/filters_wrapper.dart'
-    as _i20;
+    as _i22;
 import 'package:roomate/presentation/screens/about_group_screen.dart' as _i1;
 import 'package:roomate/presentation/screens/auth_edit_first_page.dart' as _i4;
 import 'package:roomate/presentation/screens/auth_edit_second_page.dart' as _i6;
 import 'package:roomate/presentation/screens/auth_edit_third_page.dart' as _i7;
-import 'package:roomate/presentation/screens/authorization_screens/quiz_screen.dart'
-    as _i31;
-import 'package:roomate/presentation/screens/authorization_screens/reg_number_screen.dart'
-    as _i32;
-import 'package:roomate/presentation/screens/authorization_screens/sms_code_screen.dart'
-    as _i34;
-import 'package:roomate/presentation/screens/authorization_screens/welcome_screen.dart'
-    as _i36;
 import 'package:roomate/presentation/screens/chats/chat_screen.dart' as _i9;
 import 'package:roomate/presentation/screens/chats/chats_screen.dart' as _i10;
 import 'package:roomate/presentation/screens/create_ad/create_ad_screen.dart'
@@ -38,39 +38,39 @@ import 'package:roomate/presentation/screens/create_ad/tabs/_10_description_ad_s
 import 'package:roomate/presentation/screens/create_ad/tabs/_11_contacts_step_screen.dart'
     as _i11;
 import 'package:roomate/presentation/screens/create_ad/tabs/_12_finish_screen.dart'
-    as _i21;
-import 'package:roomate/presentation/screens/create_ad/tabs/_4_location_step_screen.dart'
-    as _i25;
-import 'package:roomate/presentation/screens/create_ad/tabs/_5_input_details_step_screen.dart'
     as _i23;
+import 'package:roomate/presentation/screens/create_ad/tabs/_4_location_step_screen.dart'
+    as _i27;
+import 'package:roomate/presentation/screens/create_ad/tabs/_5_input_details_step_screen.dart'
+    as _i25;
 import 'package:roomate/presentation/screens/create_ad/tabs/_6_add_media_step_screen.dart'
     as _i2;
 import 'package:roomate/presentation/screens/create_ad/tabs/_9_deal_terms_step_screen.dart'
     as _i15;
 import 'package:roomate/presentation/screens/create_ad/tabs/result_ad_screen.dart'
-    as _i33;
+    as _i34;
 import 'package:roomate/presentation/screens/create_ad/tabs/tag_screen.dart'
     as _i35;
 import 'package:roomate/presentation/screens/create_screen.dart' as _i14;
-import 'package:roomate/presentation/screens/favorites_screen.dart' as _i17;
+import 'package:roomate/presentation/screens/favorites_screen.dart' as _i19;
 import 'package:roomate/presentation/screens/filling_profile_screen.dart'
-    as _i18;
-import 'package:roomate/presentation/screens/filters_screen.dart' as _i19;
-import 'package:roomate/presentation/screens/home/home_screen.dart' as _i22;
+    as _i20;
+import 'package:roomate/presentation/screens/filters_screen.dart' as _i21;
+import 'package:roomate/presentation/screens/home/home_screen.dart' as _i24;
 import 'package:roomate/presentation/screens/home/tabs/apartments_tab.dart'
     as _i3;
 import 'package:roomate/presentation/screens/home/tabs/coworking_tab.dart'
     as _i12;
 import 'package:roomate/presentation/screens/home/tabs/neighbours_tab.dart'
-    as _i27;
-import 'package:roomate/presentation/screens/location_screen.dart' as _i24;
-import 'package:roomate/presentation/screens/profile/profile_data_edit_screen.dart'
-    as _i28;
-import 'package:roomate/presentation/screens/profile/profile_edit_screen.dart'
     as _i29;
+import 'package:roomate/presentation/screens/location_screen.dart' as _i26;
+import 'package:roomate/presentation/screens/profile/profile_data_edit_screen.dart'
+    as _i31;
+import 'package:roomate/presentation/screens/profile/profile_edit_screen.dart'
+    as _i32;
 import 'package:roomate/presentation/screens/profile/profile_screen.dart'
-    as _i30;
-import 'package:roomate/presentation/widgets/navigation/nav.dart' as _i26;
+    as _i33;
+import 'package:roomate/presentation/widgets/navigation/nav.dart' as _i28;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]
@@ -329,7 +329,39 @@ class DescriptionAdStepRoute extends _i37.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i17.FavoritesScreen]
+/// [_i17.EnterCodeScreen]
+class EnterCodeRoute extends _i37.PageRouteInfo<void> {
+  const EnterCodeRoute({List<_i37.PageRouteInfo>? children})
+    : super(EnterCodeRoute.name, initialChildren: children);
+
+  static const String name = 'EnterCodeRoute';
+
+  static _i37.PageInfo page = _i37.PageInfo(
+    name,
+    builder: (data) {
+      return const _i17.EnterCodeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i18.EnterPhoneNumberScreen]
+class EnterPhoneNumberRoute extends _i37.PageRouteInfo<void> {
+  const EnterPhoneNumberRoute({List<_i37.PageRouteInfo>? children})
+    : super(EnterPhoneNumberRoute.name, initialChildren: children);
+
+  static const String name = 'EnterPhoneNumberRoute';
+
+  static _i37.PageInfo page = _i37.PageInfo(
+    name,
+    builder: (data) {
+      return const _i18.EnterPhoneNumberScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i19.FavoritesScreen]
 class FavoritesRoute extends _i37.PageRouteInfo<void> {
   const FavoritesRoute({List<_i37.PageRouteInfo>? children})
     : super(FavoritesRoute.name, initialChildren: children);
@@ -339,13 +371,13 @@ class FavoritesRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i17.FavoritesScreen();
+      return const _i19.FavoritesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i18.FillingProfileScreen]
+/// [_i20.FillingProfileScreen]
 class FillingProfileRoute extends _i37.PageRouteInfo<void> {
   const FillingProfileRoute({List<_i37.PageRouteInfo>? children})
     : super(FillingProfileRoute.name, initialChildren: children);
@@ -355,13 +387,13 @@ class FillingProfileRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i18.FillingProfileScreen();
+      return const _i20.FillingProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i19.FiltersScreen]
+/// [_i21.FiltersScreen]
 class FiltersRoute extends _i37.PageRouteInfo<void> {
   const FiltersRoute({List<_i37.PageRouteInfo>? children})
     : super(FiltersRoute.name, initialChildren: children);
@@ -371,13 +403,13 @@ class FiltersRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i19.FiltersScreen();
+      return const _i21.FiltersScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i20.FiltersWrapper]
+/// [_i22.FiltersWrapper]
 class FiltersWrapper extends _i37.PageRouteInfo<void> {
   const FiltersWrapper({List<_i37.PageRouteInfo>? children})
     : super(FiltersWrapper.name, initialChildren: children);
@@ -387,13 +419,13 @@ class FiltersWrapper extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return _i37.WrappedRoute(child: const _i20.FiltersWrapper());
+      return _i37.WrappedRoute(child: const _i22.FiltersWrapper());
     },
   );
 }
 
 /// generated route for
-/// [_i21.FinishScreen]
+/// [_i23.FinishScreen]
 class FinishRoute extends _i37.PageRouteInfo<void> {
   const FinishRoute({List<_i37.PageRouteInfo>? children})
     : super(FinishRoute.name, initialChildren: children);
@@ -403,13 +435,13 @@ class FinishRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i21.FinishScreen();
+      return const _i23.FinishScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i22.HomeScreen]
+/// [_i24.HomeScreen]
 class HomeRoute extends _i37.PageRouteInfo<void> {
   const HomeRoute({List<_i37.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
@@ -419,13 +451,13 @@ class HomeRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i22.HomeScreen();
+      return const _i24.HomeScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i23.InputDetailsApStepScreen]
+/// [_i25.InputDetailsApStepScreen]
 class InputDetailsApStepRoute extends _i37.PageRouteInfo<void> {
   const InputDetailsApStepRoute({List<_i37.PageRouteInfo>? children})
     : super(InputDetailsApStepRoute.name, initialChildren: children);
@@ -435,13 +467,13 @@ class InputDetailsApStepRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i23.InputDetailsApStepScreen();
+      return const _i25.InputDetailsApStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i24.LocationScreen]
+/// [_i26.LocationScreen]
 class LocationRoute extends _i37.PageRouteInfo<LocationRouteArgs> {
   LocationRoute({
     _i38.Key? key,
@@ -459,7 +491,7 @@ class LocationRoute extends _i37.PageRouteInfo<LocationRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<LocationRouteArgs>();
-      return _i24.LocationScreen(key: args.key, onSelected: args.onSelected);
+      return _i26.LocationScreen(key: args.key, onSelected: args.onSelected);
     },
   );
 }
@@ -488,7 +520,7 @@ class LocationRouteArgs {
 }
 
 /// generated route for
-/// [_i25.LocationStepScreen]
+/// [_i27.LocationStepScreen]
 class LocationStepRoute extends _i37.PageRouteInfo<void> {
   const LocationStepRoute({List<_i37.PageRouteInfo>? children})
     : super(LocationStepRoute.name, initialChildren: children);
@@ -498,13 +530,13 @@ class LocationStepRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i25.LocationStepScreen();
+      return const _i27.LocationStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i26.NavBar]
+/// [_i28.NavBar]
 class NavBarRoute extends _i37.PageRouteInfo<void> {
   const NavBarRoute({List<_i37.PageRouteInfo>? children})
     : super(NavBarRoute.name, initialChildren: children);
@@ -514,13 +546,13 @@ class NavBarRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i26.NavBar();
+      return const _i28.NavBar();
     },
   );
 }
 
 /// generated route for
-/// [_i27.NeighboursTab]
+/// [_i29.NeighboursTab]
 class NeighboursTab extends _i37.PageRouteInfo<void> {
   const NeighboursTab({List<_i37.PageRouteInfo>? children})
     : super(NeighboursTab.name, initialChildren: children);
@@ -530,13 +562,29 @@ class NeighboursTab extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i27.NeighboursTab();
+      return const _i29.NeighboursTab();
     },
   );
 }
 
 /// generated route for
-/// [_i28.ProfileDataEditScreen]
+/// [_i30.OnBoardingScreen]
+class OnBoardingRoute extends _i37.PageRouteInfo<void> {
+  const OnBoardingRoute({List<_i37.PageRouteInfo>? children})
+    : super(OnBoardingRoute.name, initialChildren: children);
+
+  static const String name = 'OnBoardingRoute';
+
+  static _i37.PageInfo page = _i37.PageInfo(
+    name,
+    builder: (data) {
+      return const _i30.OnBoardingScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i31.ProfileDataEditScreen]
 class ProfileDataEditRoute extends _i37.PageRouteInfo<void> {
   const ProfileDataEditRoute({List<_i37.PageRouteInfo>? children})
     : super(ProfileDataEditRoute.name, initialChildren: children);
@@ -546,13 +594,13 @@ class ProfileDataEditRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i28.ProfileDataEditScreen();
+      return const _i31.ProfileDataEditScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i29.ProfileEditScreen]
+/// [_i32.ProfileEditScreen]
 class ProfileEditRoute extends _i37.PageRouteInfo<void> {
   const ProfileEditRoute({List<_i37.PageRouteInfo>? children})
     : super(ProfileEditRoute.name, initialChildren: children);
@@ -562,13 +610,13 @@ class ProfileEditRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i29.ProfileEditScreen();
+      return const _i32.ProfileEditScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i30.ProfileScreen]
+/// [_i33.ProfileScreen]
 class ProfileRoute extends _i37.PageRouteInfo<void> {
   const ProfileRoute({List<_i37.PageRouteInfo>? children})
     : super(ProfileRoute.name, initialChildren: children);
@@ -578,45 +626,13 @@ class ProfileRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i30.ProfileScreen();
+      return const _i33.ProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i31.QuizScreen]
-class QuizRoute extends _i37.PageRouteInfo<void> {
-  const QuizRoute({List<_i37.PageRouteInfo>? children})
-    : super(QuizRoute.name, initialChildren: children);
-
-  static const String name = 'QuizRoute';
-
-  static _i37.PageInfo page = _i37.PageInfo(
-    name,
-    builder: (data) {
-      return const _i31.QuizScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i32.RegNumberScreen]
-class RegNumberRoute extends _i37.PageRouteInfo<void> {
-  const RegNumberRoute({List<_i37.PageRouteInfo>? children})
-    : super(RegNumberRoute.name, initialChildren: children);
-
-  static const String name = 'RegNumberRoute';
-
-  static _i37.PageInfo page = _i37.PageInfo(
-    name,
-    builder: (data) {
-      return const _i32.RegNumberScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i33.ResultAdScreen]
+/// [_i34.ResultAdScreen]
 class ResultAdRoute extends _i37.PageRouteInfo<void> {
   const ResultAdRoute({List<_i37.PageRouteInfo>? children})
     : super(ResultAdRoute.name, initialChildren: children);
@@ -626,23 +642,7 @@ class ResultAdRoute extends _i37.PageRouteInfo<void> {
   static _i37.PageInfo page = _i37.PageInfo(
     name,
     builder: (data) {
-      return const _i33.ResultAdScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i34.SmsCodeScreen]
-class SmsCodeRoute extends _i37.PageRouteInfo<void> {
-  const SmsCodeRoute({List<_i37.PageRouteInfo>? children})
-    : super(SmsCodeRoute.name, initialChildren: children);
-
-  static const String name = 'SmsCodeRoute';
-
-  static _i37.PageInfo page = _i37.PageInfo(
-    name,
-    builder: (data) {
-      return const _i34.SmsCodeScreen();
+      return const _i34.ResultAdScreen();
     },
   );
 }

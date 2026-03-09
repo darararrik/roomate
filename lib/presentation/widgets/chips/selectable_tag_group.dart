@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:group_button/group_button.dart';
-import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
 
+import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/utils/hooks/group_controller_hook.dart';
 

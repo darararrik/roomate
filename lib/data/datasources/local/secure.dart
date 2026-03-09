@@ -7,7 +7,8 @@ mixin SecureStorageMixin {
     _storage = const FlutterSecureStorage();
   }
 
-  Future<void> saveToken(String value) => _storage.write(key: _tokenKey, value: value);
+  Future<void> saveToken(String value) =>
+      _storage.write(key: _tokenKey, value: value);
 
   Future<String?> getToken() => _storage.read(key: _tokenKey);
 

@@ -1,99 +1,120 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/domain/models/quiz_step_model.dart';
+import 'package:roomate/presentation/app/on_boarding/state/on_boarding_notifier.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/l10n/app_localizations.dart';
-import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
-import 'package:roomate/state/quiz/quiz_provider.dart';
 
 @RoutePage()
-class QuizScreen extends HookConsumerWidget {
-  const QuizScreen({super.key});
+class OnBoardingScreen extends HookConsumerWidget {
+  const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final state = ref.watch(quizProvider);
-    final notifier = ref.read(quizProvider.notifier);
+    final state = ref.watch(onBoardingProvider);
+    final notifier = ref.read(onBoardingProvider.notifier);
 
-    final steps = [
-      QuizStepModel(
-        question: l10n.quizQ1Title,
-        subQuestion: l10n.quizQ1Subtitle,
-        options: [l10n.quizQ1Opt1, l10n.quizQ1Opt2],
-      ),
-      QuizStepModel(
-        question: l10n.quizQ2Title,
-        subQuestion: l10n.quizQ2Subtitle,
-        options: [l10n.quizQ2Opt1, l10n.quizQ2Opt2],
-      ),
-    ];
-
-    ref.listen(quizProvider.select((s) => s.status), (prev, next) {
-      if (next == QuizStatus.completed) {
-        context.replaceRoute(const CreateAdRoute());
-      }
+    useMemoized(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        notifier.initSteps([
+          QuizStepModel(
+            question: l10n.quizQ1Title,
+            subQuestion: l10n.quizQ1Subtitle,
+            options: [l10n.quizQ1Opt1, l10n.quizQ1Opt2],
+          ),
+          QuizStepModel(
+            question: l10n.quizQ2Title,
+            subQuestion: l10n.quizQ2Subtitle,
+            options: [l10n.quizQ2Opt1],
+            cancel: l10n.quizQ2Opt2,
+          ),
+        ]);
+      });
     });
 
-    return Scaffold(
-      body: Background(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Visibility(
-                replacement: const SizedBox(height: S.p56),
-                visible: state.currentIndex > 0,
-                child: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  leading: BackButton(
-                    color: context.colors.graysWhite,
-                    onPressed: () {
-                      if (state.currentIndex > 0) {
-                        notifier.stepBack();
-                      } else {
-                        context.pop();
-                      }
-                    },
-                  ),
-                  actionsPadding: const P(right: S.p4),
-                  actions: [
-                    IconButton(
-                      onPressed: () =>
-                          context.replaceRoute(const NavBarRoute()),
-                      icon: const AppIcon(AppIcons.xBig, size: S.p32),
+    final currentStep = state.currentStep;
+    if (currentStep == null) return const SizedBox.shrink();
+
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        if (!state.isFirstStep) {
+          notifier.stepBack();
+        } else {
+          context.pop();
+        }
+      },
+      child: Scaffold(
+        body: Background(
+          child: SafeArea(
+            child: Column(
+              children: [
+                _QuizAppBar(
+                  showBackButton: !state.isFirstStep,
+                  onBack: notifier.stepBack,
+                  onClose: notifier.skipQuiz,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const P(bottom: S.p325),
+                    child: Center(
+                      child: _QuizStepContent(
+                        currentIndex: state.currentIndex,
+                        currentStep: currentStep,
+                        onOptionSelected: (answer) =>
+                            notifier.selectOption(answer: answer),
+                        onCancel: notifier.skipQuiz,
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const P(bottom: S.p325),
-                  child: Center(
-                    child: state.currentIndex >= steps.length
-                        ? const SizedBox()
-                        : _QuizStepContent(
-                            currentIndex: state.currentIndex,
-                            currentStep: steps[state.currentIndex],
-                            totalSteps: steps.length,
-                            onOptionSelected: (answer) {
-                              notifier.selectOption(
-                                answer: answer,
-                                totalSteps: steps.length,
-                              );
-                            },
-                          ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _QuizAppBar extends StatelessWidget {
+  const _QuizAppBar({
+    required this.showBackButton,
+    required this.onBack,
+    required this.onClose,
+  });
+
+  final bool showBackButton;
+  final VoidCallback onBack;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    return Visibility(
+      replacement: const SizedBox(height: S.p56),
+      visible: showBackButton,
+      child: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: BackButton(
+          color: context.colors.graysWhite,
+          onPressed: onBack,
+        ),
+        actionsPadding: const P(right: S.p4),
+        actions: [
+          IconButton(
+            onPressed: onClose,
+            icon: const AppIcon(AppIcons.xBig, size: S.p32),
+          ),
+        ],
       ),
     );
   }
@@ -103,14 +124,14 @@ class _QuizStepContent extends StatelessWidget {
   const _QuizStepContent({
     required this.currentIndex,
     required this.currentStep,
-    required this.totalSteps,
     required this.onOptionSelected,
+    required this.onCancel,
   });
 
   final int currentIndex;
   final QuizStepModel currentStep;
-  final int totalSteps;
   final Function(String) onOptionSelected;
+  final VoidCallback onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +140,7 @@ class _QuizStepContent extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.colors.graysWhite,
-          borderRadius: BorderRadius.circular(S.p32),
+          borderRadius: BorderRadius.circular(S.p28),
         ),
         child: Padding(
           padding: const P(horizontal: S.p12, bottom: S.p12, top: S.p24),
@@ -189,30 +210,37 @@ class _QuizStepContent extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: S.p16),
-                  ...currentStep.options.asMap().entries.map((entry) {
-                    final int index = entry.key;
-                    final String optionText = entry.value;
-                    final bool isLast = index == currentStep.options.length - 1;
+                  ...currentStep.options.map((optionText) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: S.p12),
                       child: OpacityButton(
-                        onPressed: !isLast
-                            ? () => onOptionSelected(optionText)
-                            : () => context.replaceRoute(const NavBarRoute()),
-                        bgColor: isLast
-                            ? context.colors.graysLight100
-                            : context.colors.opacityOrange20,
+                        radius: S.p16,
+                        onPressed: () => onOptionSelected(optionText),
+                        bgColor: context.colors.opacityOrange20,
                         child: Text(
                           optionText,
                           style: context.typography.activesButton.copyWith(
-                            color: isLast
-                                ? context.colors.graysText400
-                                : context.colors.orange,
+                            color: context.colors.orange,
                           ),
                         ),
                       ),
                     );
                   }),
+                  if (currentStep.cancel != null)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: S.p12),
+                      child: OpacityButton(
+                        radius: S.p16,
+                        onPressed: onCancel,
+                        bgColor: context.colors.graysLight100,
+                        child: Text(
+                          currentStep.cancel!,
+                          style: context.typography.activesButton.copyWith(
+                            color: context.colors.graysText400,
+                          ),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

@@ -11,6 +11,7 @@ class OpacityButton extends StatelessWidget {
     this.color,
     this.icon,
     this.height,
+    this.radius,
   });
 
   final Widget child;
@@ -19,6 +20,7 @@ class OpacityButton extends StatelessWidget {
   final Color? bgColor;
   final Color? color;
   final Widget? icon;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class OpacityButton extends StatelessWidget {
         foregroundColor: color,
         minimumSize: height != null ? Size(double.infinity, height!) : null,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(S.p32),
+          borderRadius: BorderRadius.circular(radius ?? S.p16),
         ),
       ),
       child: content,

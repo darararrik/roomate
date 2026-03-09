@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:roomate/presentation/constants/spacing.dart';
-import 'package:roomate/presentation/utils/extensions/extensions.dart';
-import 'package:roomate/presentation/utils/p.dart';
+import 'package:roomate/presentation/utils/extensions.dart';
+import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 class BaseBottomSheet extends StatelessWidget {

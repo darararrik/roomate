@@ -11,51 +11,42 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(
       page: NavBarRoute.page,
-      path: '/main',
       children: [
         // Home Tabs (Вкладка 1)
         AutoRoute(
           page: HomeRoute.page,
-          path: 'home',
           initial: true,
           children: [
-            AutoRoute(
-              page: ApartamentsTab.page,
-              path: 'apartments',
-              initial: true,
-            ),
-            AutoRoute(page: NeighboursTab.page, path: 'neighbours'),
-            AutoRoute(page: CoworkingTab.page, path: 'coworking'),
+            AutoRoute(page: ApartamentsTab.page, initial: true),
+            AutoRoute(page: NeighboursTab.page),
+            AutoRoute(page: CoworkingTab.page),
           ],
         ),
-        AutoRoute(page: FavoritesRoute.page, path: 'favorite'),
-        AutoRoute(page: CreateRoute.page, path: 'create'),
-        AutoRoute(page: ChatsRoute.page, path: 'chats'),
-        AutoRoute(page: ProfileRoute.page, path: 'profile'),
+        AutoRoute(page: FavoritesRoute.page),
+        AutoRoute(page: CreateRoute.page),
+        AutoRoute(page: ChatsRoute.page),
+        AutoRoute(page: ProfileRoute.page),
       ],
     ),
-    AutoRoute(page: ChatRoute.page, path: '/chat'),
-    AutoRoute(page: ProfileEditRoute.page, path: '/profile-edit'),
+    AutoRoute(page: ChatRoute.page),
+    AutoRoute(page: ProfileEditRoute.page),
     AutoRoute(
       page: FiltersWrapper.page,
-      path: '/filters',
-      children: [AutoRoute(page: FiltersRoute.page, path: '', initial: true)],
+      children: [AutoRoute(page: FiltersRoute.page, initial: true)],
     ),
-    AutoRoute(page: ProfileDataEditRoute.page, path: '/profile-data-edit'),
-
+    AutoRoute(page: ProfileDataEditRoute.page),
     AutoRoute(
       page: AuthWrapper.page,
-      path: '/',
       initial: true,
       children: [
-        AutoRoute(page: WelcomeRoute.page, path: 'welcome', initial: true),
-        AutoRoute(page: RegNumberRoute.page, path: 'register/number'),
-        AutoRoute(page: SmsCodeRoute.page, path: 'register/code'),
-        AutoRoute(page: QuizRoute.page, path: 'quiz'),
+        AutoRoute(page: WelcomeRoute.page, initial: true),
+        AutoRoute(page: EnterPhoneNumberRoute.page),
+        AutoRoute(page: EnterCodeRoute.page),
       ],
     ),
-    AutoRoute(page: AboutGroupRoute.page, path: '/about-group'),
+    AutoRoute(page: OnBoardingRoute.page),
+    AutoRoute(page: AboutGroupRoute.page),
     CreateAdRoutes.routes,
-    AutoRoute(page: LocationRoute.page, path: '/location'),
+    AutoRoute(page: LocationRoute.page),
   ];
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/theme/theme_x/app_palette.dart';
 import 'package:roomate/presentation/theme/theme_x/app_typography.dart';
-import 'package:roomate/presentation/utils/p.dart';
+import 'package:roomate/presentation/utils/helpers/p.dart';
 
 part 'app_text_style.dart';
 part 'app_colors.dart';
@@ -109,7 +109,7 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         shape: WidgetStatePropertyAll(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p32)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p16)),
         ),
         textStyle: WidgetStatePropertyAll(_appTextStyle.activesButton),
         minimumSize: const WidgetStatePropertyAll(Size.fromHeight(S.p48)),

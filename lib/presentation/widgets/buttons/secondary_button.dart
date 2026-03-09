@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:roomate/presentation/utils/extensions/extensions.dart';
+import 'package:roomate/presentation/utils/extensions.dart';
 
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton({

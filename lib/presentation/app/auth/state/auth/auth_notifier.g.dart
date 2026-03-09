@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'quiz_provider.dart';
+part of 'auth_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,51 +9,51 @@ part of 'quiz_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(QuizNotifier)
-final quizProvider = QuizNotifierProvider._();
+@ProviderFor(AuthNotifier)
+final authProvider = AuthNotifierProvider._();
 
-final class QuizNotifierProvider
-    extends $NotifierProvider<QuizNotifier, QuizState> {
-  QuizNotifierProvider._()
+final class AuthNotifierProvider
+    extends $NotifierProvider<AuthNotifier, AuthState> {
+  AuthNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'quizProvider',
+        name: r'authProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$quizNotifierHash();
+  String debugGetCreateSourceHash() => _$authNotifierHash();
 
   @$internal
   @override
-  QuizNotifier create() => QuizNotifier();
+  AuthNotifier create() => AuthNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(QuizState value) {
+  Override overrideWithValue(AuthState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<QuizState>(value),
+      providerOverride: $SyncValueProvider<AuthState>(value),
     );
   }
 }
 
-String _$quizNotifierHash() => r'1a774ac81418e852341080101a733a46757b37ad';
+String _$authNotifierHash() => r'50320ee1cb17f00daa96cde21d2fec2f166d5e86';
 
-abstract class _$QuizNotifier extends $Notifier<QuizState> {
-  QuizState build();
+abstract class _$AuthNotifier extends $Notifier<AuthState> {
+  AuthState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<QuizState, QuizState>;
+    final ref = this.ref as $Ref<AuthState, AuthState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<QuizState, QuizState>,
-              QuizState,
+              AnyNotifier<AuthState, AuthState>,
+              AuthState,
               Object?,
               Object?
             >;

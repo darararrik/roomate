@@ -1,36 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import 'package:roomate/presentation/app/auth/state/auth/auth_notifier.dart';
+import 'package:roomate/presentation/app/auth/state/sms_notifier/sms_notifier_provider.dart';
+import 'package:roomate/presentation/app/auth/widgets/code_box_input.dart';
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/buttons/primary_button.dart';
-import 'package:roomate/state/sms_notifier/sms_notifier_provider.dart';
+import 'package:roomate/presentation/widgets/buttons/bottom_button.dart';
 
 @RoutePage()
-class SmsCodeScreen extends HookConsumerWidget {
-  const SmsCodeScreen({super.key});
+class EnterCodeScreen extends HookConsumerWidget {
+  const EnterCodeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final timerCount = ref.watch(smsProvider);
-    final isComplete = useState(false);
-
+    final smsState = ref.watch(smsProvider);
+    final smsNotifier = ref.watch(smsProvider.notifier);
+    final authNotifier = ref.read(authProvider.notifier);
+    final authState = ref.watch(authProvider);
+    final pinController = useMemoized(() => PinInputController());
+    useEffect(() {
+      if (authState.isError) {
+        pinController
+            .triggerError(); // Это активирует флаг isError в ячейках и тряску
+      } else {
+        pinController.clearError();
+      }
+      return null;
+    }, [authState.isError]);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        bottomNavigationBar: Padding(
-          padding: const P(horizontal: S.p16, bottom: S.p32),
-          child: PrimaryButton(
-            onPressed: isComplete.value
-                ? () => context.pushRoute(const QuizRoute())
-                : null,
-            text: context.l10n.next,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: BottomButton(
+          onPressed: disableIf(
+            authState.isPinComplete,
+            () => authNotifier.openOnBoardingScreen(),
           ),
         ),
         body: CustomScrollView(
@@ -67,32 +76,30 @@ class SmsCodeScreen extends HookConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: S.p10),
-                    PinCodeTextField(
-                      onChanged: (value) {
-                        isComplete.value = value.length == 4;
-                      },
-                      appContext: context,
-                      autoFocus: true,
+                    PinInput(
+                      pinController: pinController,
                       length: 4,
-                      backgroundColor: context.colors.graysWhite,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      pinTheme: PinTheme(
-                        fieldHeight: S.p56,
-                        fieldWidth: S.p56,
-                        shape: PinCodeFieldShape.box,
-                        borderRadius: BorderRadius.circular(S.p12),
-                        selectedBorderWidth: S.p1,
-                        inactiveBorderWidth: S.p1,
-                        activeBorderWidth: S.p1,
-                        activeColor: context.colors.graysStroke300,
-                        activeFillColor: context.colors.graysStroke300,
-                        selectedColor: context.colors.orange,
-                        inactiveColor: context.colors.graysStroke300,
-                        fieldOuterPadding: const P(horizontal: S.p12),
-                      ),
-                    ),
+                      onChanged: (pin) => authNotifier.updateCode(pin),
+                      builder: (context, cells) => CodeBoxInput(cells: cells),
+                    ), // Блок с текстом ошибки
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: authState.isError && authState.errorMessage != null
+                          ? Padding(
+                              key: const ValueKey('error_text'),
+                              padding: const EdgeInsets.only(top: S.p16),
+                              child: Align(
+                                alignment: .center,
+                                child: Text(
+                                  authState.errorMessage!,
+                                  style: context.typography.bodyTitle.copyWith(
+                                    color: context.colors.red,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ), // Пустое место, если ошибки нет
                     const SizedBox(height: S.p24),
                     Padding(
                       padding: const P(vertical: S.p12),
@@ -105,21 +112,17 @@ class SmsCodeScreen extends HookConsumerWidget {
                             ),
                             const SizedBox(height: S.p12),
                             GestureDetector(
-                              onTap: timerCount == 0
-                                  ? () => ref
-                                        .read(smsProvider.notifier)
-                                        .resetTimer()
+                              onTap: smsState.canResend
+                                  ? smsNotifier.resetTimer
                                   : null,
                               child: Text(
-                                timerCount == 0
-                                    ? context.l10n.sendAgain
-                                    : '${context.l10n.sendAgain} (00:${timerCount.toString().padLeft(2, '0')})',
+                                smsState.resendText(context.l10n),
                                 style: context.typography.activesLabel.copyWith(
                                   decoration: TextDecoration.underline,
-                                  decorationColor: timerCount == 0
+                                  decorationColor: smsState.canResend
                                       ? context.colors.orange
                                       : context.colors.lightOrange100,
-                                  color: timerCount == 0
+                                  color: smsState.canResend
                                       ? context.colors.orange
                                       : context.colors.lightOrange100,
                                 ),

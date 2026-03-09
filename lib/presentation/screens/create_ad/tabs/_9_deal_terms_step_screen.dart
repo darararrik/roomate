@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
-import 'package:roomate/presentation/utils/extensions/currency_x.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 import 'package:roomate/state/createAd/create_ad_notifier.dart';

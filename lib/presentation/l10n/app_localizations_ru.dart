@@ -97,6 +97,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get loginByPhoneNumber => 'Войти по номеру телефона';
 
   @override
+  String get loginByGuest => 'Войти как гость';
+
+  @override
   String get loginViaSocialNetworks => 'Войти через соц.сети';
 
   @override
@@ -392,6 +395,9 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get editOrSupplementAdvertisement =>
       'Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».';
+
+  @override
+  String get wrongCode => 'Некорректный код телефона';
 
   @override
   String get newAdvertisement => 'Новое объявление';

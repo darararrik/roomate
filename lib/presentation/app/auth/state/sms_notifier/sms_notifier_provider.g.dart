@@ -12,7 +12,8 @@ part of 'sms_notifier_provider.dart';
 @ProviderFor(SmsNotifier)
 final smsProvider = SmsNotifierProvider._();
 
-final class SmsNotifierProvider extends $NotifierProvider<SmsNotifier, int> {
+final class SmsNotifierProvider
+    extends $NotifierProvider<SmsNotifier, SmsState> {
   SmsNotifierProvider._()
     : super(
         from: null,
@@ -32,27 +33,27 @@ final class SmsNotifierProvider extends $NotifierProvider<SmsNotifier, int> {
   SmsNotifier create() => SmsNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(int value) {
+  Override overrideWithValue(SmsState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<int>(value),
+      providerOverride: $SyncValueProvider<SmsState>(value),
     );
   }
 }
 
-String _$smsNotifierHash() => r'938f59e9d70ffd01006f234daeb0fcfb419fd218';
+String _$smsNotifierHash() => r'6e4d0708784fc3364e07119482284d7ddd2ea291';
 
-abstract class _$SmsNotifier extends $Notifier<int> {
-  int build();
+abstract class _$SmsNotifier extends $Notifier<SmsState> {
+  SmsState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<int, int>;
+    final ref = this.ref as $Ref<SmsState, SmsState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<int, int>,
-              int,
+              AnyNotifier<SmsState, SmsState>,
+              SmsState,
               Object?,
               Object?
             >;

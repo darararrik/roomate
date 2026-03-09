@@ -4,8 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:roomate/presentation/constants/spacing.dart';
-import 'package:roomate/presentation/utils/extensions/context_x.dart';
-import 'package:roomate/presentation/utils/p.dart';
+import 'package:roomate/presentation/utils/extensions.dart';
+import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()

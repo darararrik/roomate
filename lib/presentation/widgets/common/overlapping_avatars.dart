@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 
 class OverlappingAvatars extends StatelessWidget {
-  const OverlappingAvatars({super.key, required this.avatarSize, this.overlap = 10});
+  const OverlappingAvatars({
+    super.key,
+    required this.avatarSize,
+    this.overlap = 10,
+  });
 
   final double avatarSize;
   final double overlap; // насколько они перекрываются
@@ -18,7 +22,8 @@ class OverlappingAvatars extends StatelessWidget {
       'https://i.pravatar.cc/150?img=4',
     ];
 
-    final totalWidth = avatarSize + (avatars.length - 1) * (avatarSize - overlap);
+    final totalWidth =
+        avatarSize + (avatars.length - 1) * (avatarSize - overlap);
     return SizedBox(
       width: totalWidth,
       height: avatarSize,
@@ -35,7 +40,10 @@ class OverlappingAvatars extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: S.p1_3),
-                    image: DecorationImage(image: NetworkImage(avatars[i]), fit: BoxFit.cover),
+                    image: DecorationImage(
+                      image: NetworkImage(avatars[i]),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),

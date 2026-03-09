@@ -5,19 +5,22 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/theme/theme.dart';
+import 'package:roomate/state/navigation/navigation_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(ProviderScope(child: MainApp()));
+  runApp(const ProviderScope(child: MainApp()));
 }
 
-class MainApp extends StatelessWidget {
-  MainApp({super.key});
-  final appRouter = AppRouter();
+class MainApp extends ConsumerWidget {
+  const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appRouter = ref.watch(appRouterProvider);
+
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: appRouter.config(),
       theme: AppTheme.lightTheme,
       supportedLocales: const [Locale('ru')],

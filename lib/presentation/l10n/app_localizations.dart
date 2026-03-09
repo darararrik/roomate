@@ -268,6 +268,12 @@ abstract class AppLocalizations {
   /// **'Войти по номеру телефона'**
   String get loginByPhoneNumber;
 
+  /// No description provided for @loginByGuest.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти как гость'**
+  String get loginByGuest;
+
   /// No description provided for @loginViaSocialNetworks.
   ///
   /// In ru, this message translates to:
@@ -855,6 +861,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».'**
   String get editOrSupplementAdvertisement;
+
+  /// No description provided for @wrongCode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Некорректный код телефона'**
+  String get wrongCode;
 
   /// No description provided for @newAdvertisement.
   ///

@@ -3,21 +3,43 @@ import 'package:flutter/services.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:roomate/presentation/app/auth/state/auth/auth_notifier.dart';
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class RegNumberScreen extends HookWidget {
-  const RegNumberScreen({super.key});
+class EnterPhoneNumberScreen extends HookConsumerWidget {
+  const EnterPhoneNumberScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController();
     final isComplete = useState(false);
+    final node = useFocusNode();
+    final authNotifier = ref.read(authProvider.notifier);
 
+    final route = ModalRoute.of(context);
+
+    useEffect(() {
+      void handleFocus() async {
+        if (route != null && route.animation != null) {
+          if (route.animation!.status != AnimationStatus.completed) {
+            route.animation!.status.isCompleted;
+          }
+        }
+        await Future.delayed(const Duration(milliseconds: 200));
+
+        if (node.canRequestFocus) {
+          node.requestFocus();
+        }
+      }
+
+      handleFocus();
+      return null;
+    }, [node, route]);
     useEffect(() {
       void listener() {
         isComplete.value = AppValidators.phone(controller.text);
@@ -26,14 +48,15 @@ class RegNumberScreen extends HookWidget {
       controller.addListener(listener);
       return () => controller.removeListener(listener);
     }, [controller]);
+
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: const P(horizontal: S.p16, bottom: S.p32),
-        child: PrimaryButton(
-          onPressed: isComplete.value
-              ? () => context.router.push(const SmsCodeRoute())
-              : null,
-          text: context.l10n.next,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: SafeArea(
+        child: BottomButton(
+          onPressed: disableIf(
+            isComplete.value,
+            () => authNotifier.openEnterCodeScreen(),
+          ),
         ),
       ),
       body: CustomScrollView(
@@ -48,14 +71,14 @@ class RegNumberScreen extends HookWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const P(vertical: S.p28),
+                    padding: const P(vertical: S.p28, bottom: S.p10),
                     child: Column(
+                      spacing: S.p8,
                       children: [
                         Text(
                           context.l10n.enterYourPhoneNumber,
                           style: context.typography.headline0,
                         ),
-                        const SizedBox(height: S.p8),
                         Text(
                           context.l10n.descriptionSMSCode,
                           style: context.typography.headline2.copyWith(
@@ -65,7 +88,6 @@ class RegNumberScreen extends HookWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: S.p10),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -81,9 +103,9 @@ class RegNumberScreen extends HookWidget {
                           padding: const P(horizontal: S.p12, vertical: S.p20),
                           child: Row(
                             mainAxisAlignment: .center,
+                            spacing: S.p8,
                             children: [
                               Image.asset(AppIcons.ruFlag, width: S.p24),
-                              const SizedBox(width: S.p8),
                               Text(
                                 context.l10n.russiaPhonePrefix,
                                 style: context.typography.inputTextRegular
@@ -99,13 +121,15 @@ class RegNumberScreen extends HookWidget {
                       const SizedBox(width: S.p12),
                       Expanded(
                         child: InputWidget(
-                          autofocus: true,
+                          focusNode: node,
                           controller: controller,
                           keyboardType: TextInputType.phone,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
                             RuPhoneFormatter(),
                           ],
+                          onChanged: (value) =>
+                              authNotifier.setPhoneNumber(value),
                           style: context.typography.inputTextRegular.copyWith(
                             fontWeight: FontWeight.w600,
                             fontSize: S.p18,

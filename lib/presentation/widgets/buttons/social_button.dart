@@ -17,9 +17,9 @@ class SocialButton extends StatelessWidget {
       onTap: onPressed,
       borderRadius: BorderRadius.circular(S.p12),
       overlayColor: WidgetStatePropertyAll(context.colors.opacityWhite10),
-      child: SizedBox(
-        width: S.p48,
-        height: S.p48,
+      child: SizedBox.square(
+        dimension: S.p48,
+
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colors.opacityWhite10,

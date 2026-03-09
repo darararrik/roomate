@@ -29,6 +29,7 @@
   "aboutServiceTitle": "Сервис по поиску помещений и сожителей",
   "aboutServiceDescription": "Найдите соседа в пару кликов - и забудьте о долгих поисках!",
   "loginByPhoneNumber": "Войти по номеру телефона",
+  "loginByGuest": "Войти как гость",
   "loginViaSocialNetworks": "Войти через соц.сети",
   "enterYourPhoneNumber": "Введите номер телефона",
   "descriptionSMSCode": "Мы отправим код подтверждения",
@@ -127,6 +128,7 @@
   "viewAll": "Показать всё",
   "advertisementSuccessfullyCreated": "Объявление успешно создано!",
   "editOrSupplementAdvertisement": "Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».",
+  "wrongCode": "Некорректный код телефона",
 
   "newAdvertisement": "Новое объявление",
   "apartmentRent": "Аренда квартиры",

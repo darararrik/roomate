@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:roomate/presentation/app/auth/state/auth/auth_notifier.dart';
 
 @RoutePage()
 class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
@@ -8,11 +10,17 @@ class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return const AutoRouter();
+    return Consumer(
+      builder: (context, ref, child) {
+        ref.watch(authProvider);
+        return child!;
+      },
+      child: this,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return this;
+    return const AutoRouter();
   }
 }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/utils/extensions/extensions.dart';
+import 'package:roomate/presentation/utils/extensions.dart';
 import 'package:roomate/presentation/utils/formatters/decimal_formatter.dart';
-import 'package:roomate/presentation/utils/p.dart';
+import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 class TextFieldWithTitle extends StatelessWidget {
