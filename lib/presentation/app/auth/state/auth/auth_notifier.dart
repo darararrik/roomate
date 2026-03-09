@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/src/core/pin_input_controller.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

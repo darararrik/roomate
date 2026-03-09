@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/routing/create_ad_routes.dart';
+import 'package:roomate/presentation/routing/create_profile_routes.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -37,7 +38,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ProfileDataEditRoute.page),
     AutoRoute(
       page: AuthWrapper.page,
-      initial: true,
       children: [
         AutoRoute(page: WelcomeRoute.page, initial: true),
         AutoRoute(page: EnterPhoneNumberRoute.page),
@@ -46,7 +46,8 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(page: OnBoardingRoute.page),
     AutoRoute(page: AboutGroupRoute.page),
-    CreateAdRoutes.routes,
     AutoRoute(page: LocationRoute.page),
+    CreateAdRoutes.routes,
+    CreateProfile.routes,
   ];
 }

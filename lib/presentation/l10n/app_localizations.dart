@@ -868,6 +868,204 @@ abstract class AppLocalizations {
   /// **'Некорректный код телефона'**
   String get wrongCode;
 
+  /// No description provided for @letsGetToKnowEachOther.
+  ///
+  /// In ru, this message translates to:
+  /// **'Давайте познакомимся'**
+  String get letsGetToKnowEachOther;
+
+  /// No description provided for @pleaseProvideRealData.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите реальные данные для вашего профиля'**
+  String get pleaseProvideRealData;
+
+  /// No description provided for @genderMale.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мужской'**
+  String get genderMale;
+
+  /// No description provided for @genderFemale.
+  ///
+  /// In ru, this message translates to:
+  /// **'Женский'**
+  String get genderFemale;
+
+  /// No description provided for @personalityIntrovert.
+  ///
+  /// In ru, this message translates to:
+  /// **'Интроверт'**
+  String get personalityIntrovert;
+
+  /// No description provided for @personalityAmbivert.
+  ///
+  /// In ru, this message translates to:
+  /// **'Амбиверт'**
+  String get personalityAmbivert;
+
+  /// No description provided for @personalityExtrovert.
+  ///
+  /// In ru, this message translates to:
+  /// **'Экстраверт'**
+  String get personalityExtrovert;
+
+  /// No description provided for @habitSmoking.
+  ///
+  /// In ru, this message translates to:
+  /// **'Курение'**
+  String get habitSmoking;
+
+  /// No description provided for @habitAlcohol.
+  ///
+  /// In ru, this message translates to:
+  /// **'Алкоголь'**
+  String get habitAlcohol;
+
+  /// No description provided for @habitProfanity.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ненормативная лексика'**
+  String get habitProfanity;
+
+  /// No description provided for @frequencyNever.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не привожу'**
+  String get frequencyNever;
+
+  /// No description provided for @frequencySometimes.
+  ///
+  /// In ru, this message translates to:
+  /// **'Иногда'**
+  String get frequencySometimes;
+
+  /// No description provided for @frequencyOften.
+  ///
+  /// In ru, this message translates to:
+  /// **'Часто'**
+  String get frequencyOften;
+
+  /// No description provided for @lifestyleEarlyBird.
+  ///
+  /// In ru, this message translates to:
+  /// **'Жаворонок'**
+  String get lifestyleEarlyBird;
+
+  /// No description provided for @lifestyleNightOwl.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сова'**
+  String get lifestyleNightOwl;
+
+  /// No description provided for @lifestyleNoRoutine.
+  ///
+  /// In ru, this message translates to:
+  /// **'Без режима'**
+  String get lifestyleNoRoutine;
+
+  /// No description provided for @almostDone.
+  ///
+  /// In ru, this message translates to:
+  /// **'Почти готово!'**
+  String get almostDone;
+
+  /// No description provided for @verificationRemaining.
+  ///
+  /// In ru, this message translates to:
+  /// **'Осталось пройти верификацию'**
+  String get verificationRemaining;
+
+  /// No description provided for @gosuslugiVerificationDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтвердите свою учетную запись на портале Госуслуг.'**
+  String get gosuslugiVerificationDescription;
+
+  /// No description provided for @verifyDataCorrectness.
+  ///
+  /// In ru, this message translates to:
+  /// **'Убедитесь в корректности выбранных данных'**
+  String get verifyDataCorrectness;
+
+  /// No description provided for @passportBindingInfo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваш паспорт будет привязан к вашему аккаунту'**
+  String get passportBindingInfo;
+
+  /// No description provided for @checkPassport.
+  ///
+  /// In ru, this message translates to:
+  /// **'Проверьте паспорт'**
+  String get checkPassport;
+
+  /// No description provided for @passportSeriesAndNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Серия и номер'**
+  String get passportSeriesAndNumber;
+
+  /// No description provided for @passportIssueDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дата выдачи'**
+  String get passportIssueDate;
+
+  /// No description provided for @passportDepartmentCode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Код подразделения'**
+  String get passportDepartmentCode;
+
+  /// No description provided for @passportBirthPlace.
+  ///
+  /// In ru, this message translates to:
+  /// **'Место рождения'**
+  String get passportBirthPlace;
+
+  /// No description provided for @passportBirthDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дата рождения'**
+  String get passportBirthDate;
+
+  /// No description provided for @documentsUnderReview.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваши документы на проверке'**
+  String get documentsUnderReview;
+
+  /// No description provided for @verificationWaitTime.
+  ///
+  /// In ru, this message translates to:
+  /// **'Проверка займёт некоторое время. Статус можно отслеживать в профиле.'**
+  String get verificationWaitTime;
+
+  /// No description provided for @verificationSuccess.
+  ///
+  /// In ru, this message translates to:
+  /// **'Верификация пройдена!'**
+  String get verificationSuccess;
+
+  /// No description provided for @verificationSuccessDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваши документы проверены. Продолжайте поиск с преимуществом'**
+  String get verificationSuccessDescription;
+
+  /// No description provided for @verificationFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Верификация не пройдена'**
+  String get verificationFailed;
+
+  /// No description provided for @verificationFailedDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что-то пошло не так. Повторите попытку позже.'**
+  String get verificationFailedDescription;
+
   /// No description provided for @newAdvertisement.
   ///
   /// In ru, this message translates to:

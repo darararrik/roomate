@@ -5,7 +5,7 @@ import 'package:roomate/data/dto/tags_group_dto/tags_group_dto.dart';
 import 'package:roomate/domain/enums/currency_enum.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
-import 'package:roomate/state/createAd/create_ad_state.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_state.dart';
 
 part 'create_ad_notifier.g.dart';
 

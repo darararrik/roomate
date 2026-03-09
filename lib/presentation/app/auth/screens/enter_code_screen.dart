@@ -36,7 +36,7 @@ class EnterCodeScreen extends HookConsumerWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: BottomButton(
+        floatingActionButton: BottomNextButton(
           onPressed: disableIf(
             authState.isPinComplete,
             () => authNotifier.openOnBoardingScreen(),

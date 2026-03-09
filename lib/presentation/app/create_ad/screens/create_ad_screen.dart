@@ -53,7 +53,7 @@ class CreateAdScreen extends StatelessWidget {
               color: context.colors.graysWhite,
               boxShadow: [context.colors.bottomNavBarShadow],
             ),
-            child: BottomButton(
+            child: BottomNextButton(
               onPressed: () {
                 final nextIndex = tabsRouter.activeIndex + 1;
                 if (nextIndex < tabsRouter.pageCount) {

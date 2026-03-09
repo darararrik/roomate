@@ -52,7 +52,7 @@ class EnterPhoneNumberScreen extends HookConsumerWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SafeArea(
-        child: BottomButton(
+        child: BottomNextButton(
           onPressed: disableIf(
             isComplete.value,
             () => authNotifier.openEnterCodeScreen(),

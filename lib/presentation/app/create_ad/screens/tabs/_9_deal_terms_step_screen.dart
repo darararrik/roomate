@@ -8,7 +8,7 @@ import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
-import 'package:roomate/state/createAd/create_ad_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
 
 @RoutePage()
 class DealTermsStepScreen extends HookConsumerWidget {

@@ -400,6 +400,112 @@ class AppLocalizationsRu extends AppLocalizations {
   String get wrongCode => 'Некорректный код телефона';
 
   @override
+  String get letsGetToKnowEachOther => 'Давайте познакомимся';
+
+  @override
+  String get pleaseProvideRealData =>
+      'Укажите реальные данные для вашего профиля';
+
+  @override
+  String get genderMale => 'Мужской';
+
+  @override
+  String get genderFemale => 'Женский';
+
+  @override
+  String get personalityIntrovert => 'Интроверт';
+
+  @override
+  String get personalityAmbivert => 'Амбиверт';
+
+  @override
+  String get personalityExtrovert => 'Экстраверт';
+
+  @override
+  String get habitSmoking => 'Курение';
+
+  @override
+  String get habitAlcohol => 'Алкоголь';
+
+  @override
+  String get habitProfanity => 'Ненормативная лексика';
+
+  @override
+  String get frequencyNever => 'Не привожу';
+
+  @override
+  String get frequencySometimes => 'Иногда';
+
+  @override
+  String get frequencyOften => 'Часто';
+
+  @override
+  String get lifestyleEarlyBird => 'Жаворонок';
+
+  @override
+  String get lifestyleNightOwl => 'Сова';
+
+  @override
+  String get lifestyleNoRoutine => 'Без режима';
+
+  @override
+  String get almostDone => 'Почти готово!';
+
+  @override
+  String get verificationRemaining => 'Осталось пройти верификацию';
+
+  @override
+  String get gosuslugiVerificationDescription =>
+      'Подтвердите свою учетную запись на портале Госуслуг.';
+
+  @override
+  String get verifyDataCorrectness =>
+      'Убедитесь в корректности выбранных данных';
+
+  @override
+  String get passportBindingInfo =>
+      'Ваш паспорт будет привязан к вашему аккаунту';
+
+  @override
+  String get checkPassport => 'Проверьте паспорт';
+
+  @override
+  String get passportSeriesAndNumber => 'Серия и номер';
+
+  @override
+  String get passportIssueDate => 'Дата выдачи';
+
+  @override
+  String get passportDepartmentCode => 'Код подразделения';
+
+  @override
+  String get passportBirthPlace => 'Место рождения';
+
+  @override
+  String get passportBirthDate => 'Дата рождения';
+
+  @override
+  String get documentsUnderReview => 'Ваши документы на проверке';
+
+  @override
+  String get verificationWaitTime =>
+      'Проверка займёт некоторое время. Статус можно отслеживать в профиле.';
+
+  @override
+  String get verificationSuccess => 'Верификация пройдена!';
+
+  @override
+  String get verificationSuccessDescription =>
+      'Ваши документы проверены. Продолжайте поиск с преимуществом';
+
+  @override
+  String get verificationFailed => 'Верификация не пройдена';
+
+  @override
+  String get verificationFailedDescription =>
+      'Что-то пошло не так. Повторите попытку позже.';
+
+  @override
   String get newAdvertisement => 'Новое объявление';
 
   @override

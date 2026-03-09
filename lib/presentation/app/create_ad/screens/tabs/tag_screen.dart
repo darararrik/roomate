@@ -8,7 +8,7 @@ import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
-import 'package:roomate/state/createAd/create_ad_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
 
 @RoutePage()
 class TagScreen extends HookConsumerWidget {
