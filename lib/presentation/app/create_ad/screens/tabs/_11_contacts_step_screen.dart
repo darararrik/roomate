@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
-import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
+import 'package:roomate/domain/models/tags_group_model.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';

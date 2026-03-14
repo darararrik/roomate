@@ -42,7 +42,8 @@ class IconButtonWidget extends StatelessWidget {
             child: Center(
               child: AppIcon(
                 icon,
-                size: iconSize,
+                width: iconSize,
+                height: iconSize,
                 color: iconColor ?? context.colors.graysBlack,
               ),
             ),

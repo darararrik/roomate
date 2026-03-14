@@ -40,4 +40,6 @@ abstract class S {
   static const double p325 = 325.0;
   static const double p163 = 163.0;
   static const double p280 = 280.0;
+
+  static const double p128 = 128;
 }

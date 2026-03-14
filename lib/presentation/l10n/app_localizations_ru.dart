@@ -168,6 +168,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get name => 'Имя';
 
   @override
+  String get lastName => 'Фамилия';
+
+  @override
   String get quizQ1Title => 'Как вы хотите войти?';
 
   @override

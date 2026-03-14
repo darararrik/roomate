@@ -6,9 +6,9 @@ import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/widgets/common/common.dart';
 
-@RoutePage(name: 'NavBarRoute')
-class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+@RoutePage(name: 'MainFlowRoute')
+class MainFlow extends StatelessWidget {
+  const MainFlow({super.key});
 
   @override
   Widget build(BuildContext context) {

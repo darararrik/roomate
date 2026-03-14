@@ -24,16 +24,7 @@ class CreateProfileScreen extends StatelessWidget {
         final totalPages = tabsRouter.pageCount;
         final activeIndex = tabsRouter.activeIndex + 1;
         return Scaffold(
-          bottomNavigationBar: SafeArea(
-            child: BottomNextButton(
-              onPressed: () {
-                final nextIndex = tabsRouter.activeIndex + 1;
-                if (nextIndex < tabsRouter.pageCount) {
-                  tabsRouter.setActiveIndex(nextIndex);
-                }
-              },
-            ),
-          ),
+          bottomNavigationBar: _bottomButtons(context, tabsRouter),
           appBar: AppBar(
             centerTitle: true,
             title: SizedBox(
@@ -67,6 +58,42 @@ class CreateProfileScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  SafeArea _bottomButtons(BuildContext context, TabsRouter tabsRouter) {
+    return SafeArea(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: context.colors.graysWhite,
+          boxShadow: [context.colors.bottomNavBarShadow],
+        ),
+        child: Padding(
+          padding: const P(horizontal: S.p16, vertical: S.p20),
+          child: Column(
+            mainAxisSize: .min,
+            spacing: S.p12,
+            children: [
+              PrimaryButton(
+                onPressed: () {
+                  final nextIndex = tabsRouter.activeIndex + 1;
+                  if (nextIndex < tabsRouter.pageCount) {
+                    tabsRouter.setActiveIndex(nextIndex);
+                  } else {}
+                },
+                text: context.l10n.next,
+              ),
+              if (tabsRouter.activeIndex == tabsRouter.pageCount - 1)
+                SecondaryButton(
+                  onPressed: () {
+                    context.pushRoute(const ProfileSummaryRoute());
+                  },
+                  text: context.l10n.skip,
+                ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:roomate/domain/enums/currency_enum.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
-import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
+import 'package:roomate/domain/models/tags_group_model.dart';
 
 part 'create_ad_state.freezed.dart';
 

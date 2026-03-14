@@ -54,8 +54,12 @@ class AuthEditThirdPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(S.p12),
                 ),
                 child: const Center(
-                  // выравниваем иконку по центру
-                  child: AppIcon(AppIcons.camera, size: S.p100),
+                  //TODO: сменить виджет
+                  child: AppIcon(
+                    AppIcons.camera,
+                    width: S.p100,
+                    height: S.p100,
+                  ),
                 ),
               ),
             ),

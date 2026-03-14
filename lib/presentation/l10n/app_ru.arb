@@ -52,6 +52,7 @@
   "whatsYourName": "Как вас зовут?",
   "betterToUseRealName": "Лучше написать настоящее имя",
   "name": "Имя",
+  "lastName": "Фамилия",
   "quizQ1Title": "Как вы хотите войти?",
   "quizQ1Subtitle": "Выберите свою роль в сервисе",
   "quizQ1Opt1": "Ищу квартиру",

@@ -50,7 +50,13 @@ class ApartmentCard extends StatelessWidget {
                           "${10000} ${context.l10n.currencyPerMonth}",
                           style: context.typography.headline1,
                         ),
-                        const AppIcon(AppIcons.favourite, size: S.p24),
+
+                        //TODO: сменить виджет
+                        const AppIcon(
+                          AppIcons.favourite,
+                          width: S.p24,
+                          height: S.p24,
+                        ),
                       ],
                     ),
                     Text(

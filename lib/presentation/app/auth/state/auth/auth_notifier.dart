@@ -65,7 +65,7 @@ class AuthNotifier extends _$AuthNotifier {
       ref.nav.push(const EnterPhoneNumberRoute());
 
   void openMainScreen() {
-    ref.nav.replace(const NavBarRoute());
+    ref.nav.replace(const MainFlowRoute());
   }
 
   void openEnterCodeScreen() => ref.nav.push(const EnterCodeRoute());

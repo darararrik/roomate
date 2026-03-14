@@ -24,7 +24,7 @@ class FiltersScreen extends StatelessWidget {
             title: Text(context.l10n.filters),
             centerTitle: false,
             onBackButtonPressed: () {
-              context.navigateTo(const NavBarRoute());
+              context.navigateTo(const MainFlowRoute());
             },
             actions: [
               TextButton(

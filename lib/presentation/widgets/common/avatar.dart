@@ -34,8 +34,9 @@ class Avatar extends StatelessWidget {
                   child: Padding(
                     padding: const P(all: S.p6),
                     child: AppIcon(
+                      //TODO: сменить виджет
                       AppIcons.edit3,
-                      size: S.p24,
+                      width: S.p24,
                       color: context.colors.graysIcon500,
                     ),
                   ),

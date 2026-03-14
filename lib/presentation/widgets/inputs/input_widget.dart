@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:roomate/presentation/constants/app_icons.dart';
+import 'package:roomate/presentation/constants/spacing.dart';
 
 import 'package:roomate/presentation/utils/utils.dart';
+import 'package:roomate/presentation/widgets/buttons/icon_button_widget.dart';
 
-class InputWidget extends StatelessWidget {
+class InputWidget extends HookWidget {
   const InputWidget({
     super.key,
     required this.controller,
@@ -45,8 +49,10 @@ class InputWidget extends StatelessWidget {
   final int? maxLines;
   @override
   Widget build(BuildContext context) {
+    useListenable(controller);
     return TextFormField(
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+      scrollPadding: const EdgeInsets.only(bottom: S.p32),
       autofocus: autofocus,
       textAlignVertical: TextAlignVertical.center,
       focusNode: focusNode,
@@ -64,7 +70,19 @@ class InputWidget extends StatelessWidget {
       decoration: (decoration ?? const InputDecoration()).copyWith(
         hintText: hintText,
         hintStyle: hintStyle,
-        prefixIcon: prefixIcon,
+        suffixIcon: controller.text.isNotEmpty
+            ? IconButtonWidget(
+                icon: AppIcons.xSmall,
+                iconSize: S.p16,
+                iconColor: context.colors.graysIcon500,
+                backgroundColor: Colors.transparent,
+                overlayColor: Colors.transparent,
+                onPressed: () {
+                  controller.clear();
+                  onChanged?.call('');
+                },
+              )
+            : null,
       ),
     );
   }

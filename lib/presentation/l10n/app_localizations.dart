@@ -406,6 +406,12 @@ abstract class AppLocalizations {
   /// **'Имя'**
   String get name;
 
+  /// No description provided for @lastName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фамилия'**
+  String get lastName;
+
   /// No description provided for @quizQ1Title.
   ///
   /// In ru, this message translates to:

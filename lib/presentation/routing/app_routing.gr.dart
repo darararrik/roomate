@@ -50,6 +50,7 @@ import 'package:roomate/presentation/app/create_profile/screens/tabs/verificatio
     as _i40;
 import 'package:roomate/presentation/app/create_profile/screens/verification_status.dart'
     as _i41;
+import 'package:roomate/presentation/app/main/main_flow.dart' as _i29;
 import 'package:roomate/presentation/app/on_boarding/on_boarding_screen.dart'
     as _i31;
 import 'package:roomate/presentation/routing/wrappers/auth_edit_profile_screen.dart'
@@ -82,7 +83,6 @@ import 'package:roomate/presentation/screens/profile/profile_edit_screen.dart'
     as _i34;
 import 'package:roomate/presentation/screens/profile/profile_screen.dart'
     as _i35;
-import 'package:roomate/presentation/widgets/navigation/nav.dart' as _i29;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]
@@ -564,17 +564,17 @@ class LocationStepRoute extends _i43.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i29.NavBar]
-class NavBarRoute extends _i43.PageRouteInfo<void> {
-  const NavBarRoute({List<_i43.PageRouteInfo>? children})
-    : super(NavBarRoute.name, initialChildren: children);
+/// [_i29.MainFlow]
+class MainFlowRoute extends _i43.PageRouteInfo<void> {
+  const MainFlowRoute({List<_i43.PageRouteInfo>? children})
+    : super(MainFlowRoute.name, initialChildren: children);
 
-  static const String name = 'NavBarRoute';
+  static const String name = 'MainFlowRoute';
 
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      return const _i29.NavBar();
+      return const _i29.MainFlow();
     },
   );
 }
@@ -787,17 +787,17 @@ class VerificationIntroRoute extends _i43.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i41.VerificationStatus]
-class VerificationStatus extends _i43.PageRouteInfo<void> {
-  const VerificationStatus({List<_i43.PageRouteInfo>? children})
-    : super(VerificationStatus.name, initialChildren: children);
+/// [_i41.VerificationStatusScreen]
+class VerificationStatusRoute extends _i43.PageRouteInfo<void> {
+  const VerificationStatusRoute({List<_i43.PageRouteInfo>? children})
+    : super(VerificationStatusRoute.name, initialChildren: children);
 
-  static const String name = 'VerificationStatus';
+  static const String name = 'VerificationStatusRoute';
 
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      return const _i41.VerificationStatus();
+      return const _i41.VerificationStatusScreen();
     },
   );
 }

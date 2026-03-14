@@ -33,7 +33,13 @@ class NeighboursTab extends StatelessWidget {
                       isScrollControlled: true,
                       builder: (context) => SortBottomSheet(),
                     ),
-                    child: const AppIcon(AppIcons.sort, size: S.p32),
+
+                    //TODO: сменить виджет
+                    child: const AppIcon(
+                      AppIcons.sort,
+                      width: S.p32,
+                      height: S.p32,
+                    ),
                   ),
                 ],
               ),

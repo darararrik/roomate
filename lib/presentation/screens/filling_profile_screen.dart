@@ -110,7 +110,7 @@ class FillingProfileScreen extends StatelessWidget {
                 //       ),
                 //       child: Text(context.l10n.skip),
                 //       onPressed: () =>
-                //           context.replaceRoute(const NavBarRoute()),
+                //           context.replaceRoute(const MainFlowRoute()),
                 //     ),
                 //   ),
                 // ),

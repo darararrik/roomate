@@ -110,9 +110,10 @@ class _QuizAppBar extends StatelessWidget {
         ),
         actionsPadding: const P(right: S.p4),
         actions: [
+          //TODO: сменить виджет
           IconButton(
             onPressed: onClose,
-            icon: const AppIcon(AppIcons.xBig, size: S.p32),
+            icon: const AppIcon(AppIcons.xBig, width: S.p32, height: S.p32),
           ),
         ],
       ),

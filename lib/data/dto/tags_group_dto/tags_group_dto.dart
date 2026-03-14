@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:roomate/domain/models/tags_group/tags_group_model.dart';
+import 'package:roomate/domain/models/tags_group_model.dart';
 
 part 'tags_group_dto.freezed.dart';
 part 'tags_group_dto.g.dart';

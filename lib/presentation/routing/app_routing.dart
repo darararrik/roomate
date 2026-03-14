@@ -11,7 +11,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(
-      page: NavBarRoute.page,
+      page: MainFlowRoute.page,
       children: [
         // Home Tabs (Вкладка 1)
         AutoRoute(
