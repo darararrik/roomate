@@ -30,6 +30,7 @@ class ProfileSetupScreen extends HookConsumerWidget {
           child: Padding(
             padding: const P(vertical: S.p4, horizontal: S.p12),
             child: AvatarWidget(
+              //TODO: implement avatar upload
               onEditPressed: () {},
               image: AssetImage(state.avatarUrl),
             ),

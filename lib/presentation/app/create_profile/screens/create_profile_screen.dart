@@ -25,37 +25,43 @@ class CreateProfileScreen extends ConsumerWidget {
       ],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
-        final totalPages = tabsRouter.pageCount;
-        final activeIndex = tabsRouter.activeIndex + 1;
-        return Scaffold(
-          bottomNavigationBar: _bottomButtons(
-            context,
-            tabsRouter,
-            ref,
-            notifier,
-          ),
-          appBar: AppBar(
-            centerTitle: true,
-            title: SizedBox(
-              width: S.p100,
-              child: ProgressBarWidget(
-                tabsRouter: tabsRouter,
-                totalPages: totalPages,
+
+        return ListenableBuilder(
+          listenable: tabsRouter,
+          builder: (context, _) {
+            final totalPages = tabsRouter.pageCount;
+            final activeIndex = tabsRouter.activeIndex + 1;
+            return Scaffold(
+              bottomNavigationBar: _bottomButtons(
+                context,
+                tabsRouter,
+                ref,
+                notifier,
               ),
-            ),
-            actionsPadding: const P(right: S.p16),
-            actions: [
-              Text(
-                "$activeIndex/$totalPages",
-                style: context.typography.headline2,
+              appBar: AppBar(
+                centerTitle: true,
+                title: SizedBox(
+                  width: S.p100,
+                  child: ProgressBarWidget(
+                    tabsRouter: tabsRouter,
+                    totalPages: totalPages,
+                  ),
+                ),
+                actionsPadding: const P(right: S.p16),
+                actions: [
+                  Text(
+                    "$activeIndex/$totalPages",
+                    style: context.typography.headline2,
+                  ),
+                ],
+                leading: BB(onPressed: () => notifier.onPop(tabsRouter)),
               ),
-            ],
-            leading: BB(onPressed: () => notifier.onPop(tabsRouter)),
-          ),
-          body: Padding(
-            padding: const P(top: S.p20),
-            child: child,
-          ),
+              body: Padding(
+                padding: const P(top: S.p20),
+                child: child,
+              ),
+            );
+          },
         );
       },
     );
