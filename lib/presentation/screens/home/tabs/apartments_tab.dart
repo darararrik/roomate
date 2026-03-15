@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class ApartamentsTab extends StatelessWidget {

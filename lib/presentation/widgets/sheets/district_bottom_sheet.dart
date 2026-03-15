@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
 
 class DistrictBottomSheet extends StatefulWidget {
   const DistrictBottomSheet({super.key});
@@ -117,7 +116,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                                     ),
                                   ),
                                 ),
-                                AppCheckBox(selected: selected),
+                                SelectionButton(isSelected: selected),
                               ],
                             );
                           },

@@ -1,16 +1,23 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:roomate/domain/constants.dart';
+
+import 'package:roomate/domain/enums/gender_enum.dart';
+import 'package:roomate/domain/models/user_tag_model.dart';
+import 'package:roomate/shared/utils/constants.dart';
 
 part 'user_model.freezed.dart';
 
 @freezed
-sealed class User with _$User {
-  const factory User({
-    @Default('') String id,
+sealed class UserModel with _$UserModel {
+  const factory UserModel({
+    @Default(0) int id,
     @Default('') String firstName,
     @Default('') String lastName,
+    //TODO: Мб CityModel будет нужен
+    @Default('') String city,
     @Default(Constants.avatarNull) String avatarUrl,
+    @Default(GenderEnum.male) GenderEnum gender,
     @Default(0) int age,
     @Default(false) bool isVerified,
-  }) = _User;
+    @Default([]) List<UserTagModel> tags,
+  }) = _UserModel;
 }

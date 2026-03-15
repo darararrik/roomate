@@ -91,7 +91,7 @@ class _TraitBottomSheetState extends State<TraitBottomSheet> {
                               ),
                             ),
                           ),
-                          AppCheckBox(selected: selected),
+                          SelectionButton(isSelected: selected),
                         ],
                       ),
                     ),

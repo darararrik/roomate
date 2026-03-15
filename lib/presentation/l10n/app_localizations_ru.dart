@@ -509,6 +509,9 @@ class AppLocalizationsRu extends AppLocalizations {
       'Что-то пошло не так. Повторите попытку позже.';
 
   @override
+  String get yourGender => 'Ваш пол';
+
+  @override
   String get newAdvertisement => 'Новое объявление';
 
   @override

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/presentation/app/auth/state/auth/auth_notifier.dart';
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class WelcomeScreen extends ConsumerWidget {

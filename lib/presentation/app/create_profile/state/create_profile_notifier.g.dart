@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_notifier.dart';
+part of 'create_profile_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,28 +9,28 @@ part of 'user_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(UserNotifier)
-final userProvider = UserNotifierProvider._();
+@ProviderFor(CreateProfileNotifier)
+final createProfileProvider = CreateProfileNotifierProvider._();
 
-final class UserNotifierProvider
-    extends $NotifierProvider<UserNotifier, UserState> {
-  UserNotifierProvider._()
+final class CreateProfileNotifierProvider
+    extends $NotifierProvider<CreateProfileNotifier, UserState> {
+  CreateProfileNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'userProvider',
-        isAutoDispose: false,
+        name: r'createProfileProvider',
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$userNotifierHash();
+  String debugGetCreateSourceHash() => _$createProfileNotifierHash();
 
   @$internal
   @override
-  UserNotifier create() => UserNotifier();
+  CreateProfileNotifier create() => CreateProfileNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(UserState value) {
@@ -41,9 +41,10 @@ final class UserNotifierProvider
   }
 }
 
-String _$userNotifierHash() => r'ecc762743f922cdbfb00e12f643d91f0078f1919';
+String _$createProfileNotifierHash() =>
+    r'1df2e45da6a8ecfae7869a4bfaacd160bddefced';
 
-abstract class _$UserNotifier extends $Notifier<UserState> {
+abstract class _$CreateProfileNotifier extends $Notifier<UserState> {
   UserState build();
   @$mustCallSuper
   @override

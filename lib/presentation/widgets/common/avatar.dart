@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/common/common.dart';
 
 class Avatar extends StatelessWidget {
   const Avatar({super.key});

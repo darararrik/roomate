@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
 
 //TODO: Сделать sortTerms Разными
 class SortBottomSheet extends StatelessWidget {
@@ -40,7 +39,7 @@ class SortBottomSheet extends StatelessWidget {
                         ),
                       ),
                     ),
-                    AppRadioButton(selected: selected),
+                    SelectionButton(isSelected: selected, isRadio: true),
                   ],
                 );
               },

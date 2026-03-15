@@ -12,40 +12,41 @@ part of 'user_model.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$User {
+mixin _$UserModel {
 
- String get id; String get firstName; String get lastName; String get avatarUrl; int get age; bool get isVerified;
-/// Create a copy of User
+ int get id; String get firstName; String get lastName;//TODO: Мб CityModel будет нужен
+ String get city; String get avatarUrl; GenderEnum get gender; int get age; bool get isVerified; List<UserTagModel> get tags;
+/// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$identity);
+$UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>(this as UserModel, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other.tags, tags));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,avatarUrl,age,isVerified);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,age,isVerified,const DeepCollectionEquality().hash(tags));
 
 @override
 String toString() {
-  return 'User(id: $id, firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, age: $age, isVerified: $isVerified)';
+  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, age: $age, isVerified: $isVerified, tags: $tags)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $UserCopyWith<$Res>  {
-  factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
+abstract mixin class $UserModelCopyWith<$Res>  {
+  factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String firstName, String lastName, String avatarUrl, int age, bool isVerified
+ int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, int age, bool isVerified, List<UserTagModel> tags
 });
 
 
@@ -53,32 +54,35 @@ $Res call({
 
 }
 /// @nodoc
-class _$UserCopyWithImpl<$Res>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._self, this._then);
+class _$UserModelCopyWithImpl<$Res>
+    implements $UserModelCopyWith<$Res> {
+  _$UserModelCopyWithImpl(this._self, this._then);
 
-  final User _self;
-  final $Res Function(User) _then;
+  final UserModel _self;
+  final $Res Function(UserModel) _then;
 
-/// Create a copy of User
+/// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? age = null,Object? isVerified = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? age = null,Object? isVerified = null,Object? tags = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as GenderEnum,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as List<UserTagModel>,
   ));
 }
 
 }
 
 
-/// Adds pattern-matching-related methods to [User].
-extension UserPatterns on User {
+/// Adds pattern-matching-related methods to [UserModel].
+extension UserModelPatterns on UserModel {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -91,10 +95,10 @@ extension UserPatterns on User {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _User value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _User() when $default != null:
+case _UserModel() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -113,10 +117,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _User value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _User():
+case _UserModel():
 return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -131,10 +135,10 @@ return $default(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _User value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _User() when $default != null:
+case _UserModel() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -152,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String avatarUrl,  int age,  bool isVerified)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<UserTagModel> tags)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _User() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.avatarUrl,_that.age,_that.isVerified);case _:
+case _UserModel() when $default != null:
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags);case _:
   return orElse();
 
 }
@@ -173,10 +177,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.avatarUrl,_that.ag
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String avatarUrl,  int age,  bool isVerified)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<UserTagModel> tags)  $default,) {final _that = this;
 switch (_that) {
-case _User():
-return $default(_that.id,_that.firstName,_that.lastName,_that.avatarUrl,_that.age,_that.isVerified);}
+case _UserModel():
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,10 +194,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.avatarUrl,_that.ag
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String avatarUrl,  int age,  bool isVerified)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<UserTagModel> tags)?  $default,) {final _that = this;
 switch (_that) {
-case _User() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.avatarUrl,_that.age,_that.isVerified);case _:
+case _UserModel() when $default != null:
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags);case _:
   return null;
 
 }
@@ -204,48 +208,58 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.avatarUrl,_that.ag
 /// @nodoc
 
 
-class _User implements User {
-  const _User({this.id = '', this.firstName = '', this.lastName = '', this.avatarUrl = Constants.avatarNull, this.age = 0, this.isVerified = false});
+class _UserModel implements UserModel {
+  const _UserModel({this.id = 0, this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.avatarNull, this.gender = GenderEnum.male, this.age = 0, this.isVerified = false, final  List<UserTagModel> tags = const []}): _tags = tags;
   
 
-@override@JsonKey() final  String id;
+@override@JsonKey() final  int id;
 @override@JsonKey() final  String firstName;
 @override@JsonKey() final  String lastName;
+//TODO: Мб CityModel будет нужен
+@override@JsonKey() final  String city;
 @override@JsonKey() final  String avatarUrl;
+@override@JsonKey() final  GenderEnum gender;
 @override@JsonKey() final  int age;
 @override@JsonKey() final  bool isVerified;
+ final  List<UserTagModel> _tags;
+@override@JsonKey() List<UserTagModel> get tags {
+  if (_tags is EqualUnmodifiableListView) return _tags;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_tags);
+}
 
-/// Create a copy of User
+
+/// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
+_$UserModelCopyWith<_UserModel> get copyWith => __$UserModelCopyWithImpl<_UserModel>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other._tags, _tags));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,avatarUrl,age,isVerified);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,age,isVerified,const DeepCollectionEquality().hash(_tags));
 
 @override
 String toString() {
-  return 'User(id: $id, firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, age: $age, isVerified: $isVerified)';
+  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, age: $age, isVerified: $isVerified, tags: $tags)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
+abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
+  factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String firstName, String lastName, String avatarUrl, int age, bool isVerified
+ int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, int age, bool isVerified, List<UserTagModel> tags
 });
 
 
@@ -253,24 +267,27 @@ $Res call({
 
 }
 /// @nodoc
-class __$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(this._self, this._then);
+class __$UserModelCopyWithImpl<$Res>
+    implements _$UserModelCopyWith<$Res> {
+  __$UserModelCopyWithImpl(this._self, this._then);
 
-  final _User _self;
-  final $Res Function(_User) _then;
+  final _UserModel _self;
+  final $Res Function(_UserModel) _then;
 
-/// Create a copy of User
+/// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? age = null,Object? isVerified = null,}) {
-  return _then(_User(
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? age = null,Object? isVerified = null,Object? tags = null,}) {
+  return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as GenderEnum,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as List<UserTagModel>,
   ));
 }
 

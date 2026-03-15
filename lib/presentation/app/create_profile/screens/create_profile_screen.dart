@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:roomate/presentation/app/create_profile/state/create_profile_notifier.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class CreateProfileScreen extends StatelessWidget {
+class CreateProfileScreen extends ConsumerWidget {
   const CreateProfileScreen({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(createProfileProvider.notifier);
+    final state = ref.watch(createProfileProvider);
     return AutoTabsRouter.pageView(
       physics: const NeverScrollableScrollPhysics(),
       routes: const [
@@ -24,7 +28,12 @@ class CreateProfileScreen extends StatelessWidget {
         final totalPages = tabsRouter.pageCount;
         final activeIndex = tabsRouter.activeIndex + 1;
         return Scaffold(
-          bottomNavigationBar: _bottomButtons(context, tabsRouter),
+          bottomNavigationBar: _bottomButtons(
+            context,
+            tabsRouter,
+            ref,
+            notifier,
+          ),
           appBar: AppBar(
             centerTitle: true,
             title: SizedBox(
@@ -41,16 +50,7 @@ class CreateProfileScreen extends StatelessWidget {
                 style: context.typography.headline2,
               ),
             ],
-            leading: BB(
-              onPressed: () {
-                final prevIndex = tabsRouter.activeIndex - 1;
-                if (prevIndex >= 0) {
-                  tabsRouter.setActiveIndex(prevIndex);
-                } else {
-                  //TODO: Протестировать потом
-                }
-              },
-            ),
+            leading: BB(onPressed: () => notifier.onPop(tabsRouter)),
           ),
           body: Padding(
             padding: const P(top: S.p20),
@@ -61,7 +61,12 @@ class CreateProfileScreen extends StatelessWidget {
     );
   }
 
-  SafeArea _bottomButtons(BuildContext context, TabsRouter tabsRouter) {
+  SafeArea _bottomButtons(
+    BuildContext context,
+    TabsRouter tabsRouter,
+    WidgetRef ref,
+    CreateProfileNotifier notifier,
+  ) {
     return SafeArea(
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -75,19 +80,12 @@ class CreateProfileScreen extends StatelessWidget {
             spacing: S.p12,
             children: [
               PrimaryButton(
-                onPressed: () {
-                  final nextIndex = tabsRouter.activeIndex + 1;
-                  if (nextIndex < tabsRouter.pageCount) {
-                    tabsRouter.setActiveIndex(nextIndex);
-                  } else {}
-                },
+                onPressed: () => notifier.onNextStep(tabsRouter),
                 text: context.l10n.next,
               ),
               if (tabsRouter.activeIndex == tabsRouter.pageCount - 1)
                 SecondaryButton(
-                  onPressed: () {
-                    context.pushRoute(const ProfileSummaryRoute());
-                  },
+                  onPressed: notifier.onSkip,
                   text: context.l10n.skip,
                 ),
             ],

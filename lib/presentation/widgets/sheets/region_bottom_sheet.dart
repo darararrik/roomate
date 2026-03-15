@@ -89,7 +89,10 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                                     ),
                                   ),
                                 ),
-                                AppRadioButton(selected: selected),
+                                SelectionButton(
+                                  isSelected: selected,
+                                  isRadio: true,
+                                ),
                               ],
                             );
                           },

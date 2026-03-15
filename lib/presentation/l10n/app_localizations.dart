@@ -1072,6 +1072,12 @@ abstract class AppLocalizations {
   /// **'Что-то пошло не так. Повторите попытку позже.'**
   String get verificationFailedDescription;
 
+  /// No description provided for @yourGender.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваш пол'**
+  String get yourGender;
+
   /// No description provided for @newAdvertisement.
   ///
   /// In ru, this message translates to:

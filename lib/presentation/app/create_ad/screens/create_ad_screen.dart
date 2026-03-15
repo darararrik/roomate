@@ -6,7 +6,6 @@ import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/buttons/cancel_button.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
