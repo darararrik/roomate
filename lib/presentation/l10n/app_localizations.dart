@@ -1078,6 +1078,12 @@ abstract class AppLocalizations {
   /// **'Ваш пол'**
   String get yourGender;
 
+  /// No description provided for @confirmThroughGosuslugi.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтвердить через Госуслуги'**
+  String get confirmThroughGosuslugi;
+
   /// No description provided for @newAdvertisement.
   ///
   /// In ru, this message translates to:

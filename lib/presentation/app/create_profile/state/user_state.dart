@@ -15,11 +15,12 @@ sealed class UserState with _$UserState {
     @Default(null) GenderEnum? gender,
     @Default('') String age,
     @Default(false) bool isVerified,
-    @Default([]) List<UserTagModel> tags,
+    @Default([]) List<UserTagsGroupModel> tags,
     @Default('') String firstNameError,
     @Default('') String lastNameError,
     @Default('') String ageError,
     @Default('') String genderError,
     @Default(false) bool isFormValid,
+    @Default(false) bool isLoading,
   }) = _UserState;
 }

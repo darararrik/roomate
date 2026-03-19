@@ -26,84 +26,84 @@ class DealTermsStepScreen extends HookConsumerWidget {
         return ListView(
           padding: const P(horizontal: S.p16),
           children: [
-            SelectableTagGroup(
-              tags: data[0],
-              onTagSelected: (tag, isSelected) {
-                notifier.updateCurrency(tag);
-              },
-            ),
+            // SelectableTagGroup(
+            //   tags: data[0],
+            //   onTagSelected: (tag, isSelected) {
+            //     notifier.updateCurrency(tag);
+            //   },
+            // ),
             TextFieldWithTitle.withSuffix(
               title: "За месяц",
               hintText: "Например: 20000",
               controller: costController,
               suffix: state.selectedCurrency.symbol,
             ),
-            SelectableTagGroup(
-              tags: data[1],
-              selectedTags:
-                  state.selectedTags[stepKey]
-                      ?.firstWhere(
-                        (g) => g.title == data[1].title,
-                        orElse: () => data[1].copyWith(tags: []),
-                      )
-                      .tags ??
-                  [],
-              onTagSelected: (tag, isSelected) {
-                notifier.updateTags(
-                  stepKey: stepKey,
-                  categoryTitle: data[1].title,
-                  tag: tag,
-                  isSelected: isSelected,
-                  isRadio: true,
-                );
-              },
-            ),
+            // SelectableTagGroup(
+            //   tags: data[1],
+            //   selectedTags:
+            //       state.selectedTags[stepKey]
+            //           ?.firstWhere(
+            //             (g) => g.title == data[1].title,
+            //             orElse: () => data[1].copyWith(tags: []),
+            //           )
+            //           .tags ??
+            //       [],
+            //   onTagSelected: (tag, isSelected) {
+            //     notifier.updateTags(
+            //       stepKey: stepKey,
+            //       categoryTitle: data[1].title,
+            //       tag: tag,
+            //       isSelected: isSelected,
+            //       isRadio: true,
+            //     );
+            //   },
+            // ),
             TextFieldWithTitle.withSuffix(
               title: "Залог",
               hintText: "Например: 20000",
               controller: costController,
               suffix: state.selectedCurrency.symbol,
             ),
-            SelectableTagGroup(
-              tags: data[2],
-              selectedTags:
-                  state.selectedTags[stepKey]
-                      ?.firstWhere(
-                        (g) => g.title == data[2].title,
-                        orElse: () => data[2].copyWith(tags: []),
-                      )
-                      .tags ??
-                  [],
-              onTagSelected: (tag, isSelected) {
-                notifier.updateTags(
-                  stepKey: stepKey,
-                  categoryTitle: data[2].title,
-                  tag: tag,
-                  isSelected: isSelected,
-                  isRadio: true,
-                );
-              },
-            ),
-            SelectableTagGroup(
-              tags: data[3],
-              selectedTags:
-                  state.selectedTags[stepKey]
-                      ?.firstWhere(
-                        (g) => g.title == data[3].title,
-                        orElse: () => data[3].copyWith(tags: []),
-                      )
-                      .tags ??
-                  [],
-              onTagSelected: (tag, isSelected) {
-                notifier.updateTags(
-                  stepKey: stepKey,
-                  categoryTitle: data[3].title,
-                  tag: tag,
-                  isSelected: isSelected,
-                  isRadio: true,
-                );
-              },
-            ),
+            // SelectableTagGroup(
+            //   tags: data[2],
+            //   selectedTags:
+            //       state.selectedTags[stepKey]
+            //           ?.firstWhere(
+            //             (g) => g.title == data[2].title,
+            //             orElse: () => data[2].copyWith(tags: []),
+            //           )
+            //           .tags ??
+            //       [],
+            //   onTagSelected: (tag, isSelected) {
+            //     notifier.updateTags(
+            //       stepKey: stepKey,
+            //       categoryTitle: data[2].title,
+            //       tag: tag,
+            //       isSelected: isSelected,
+            //       isRadio: true,
+            //     );
+            //   },
+            // ),
+            // SelectableTagGroup(
+            //   tags: data[3],
+            //   selectedTags:
+            //       state.selectedTags[stepKey]
+            //           ?.firstWhere(
+            //             (g) => g.title == data[3].title,
+            //             orElse: () => data[3].copyWith(tags: []),
+            //           )
+            //           .tags ??
+            //       [],
+            //   onTagSelected: (tag, isSelected) {
+            //     notifier.updateTags(
+            //       stepKey: stepKey,
+            //       categoryTitle: data[3].title,
+            //       tag: tag,
+            //       isSelected: isSelected,
+            //       isRadio: true,
+            //     );
+            //   },
+            // ),
           ].separated(const SizedBox(height: S.p12)),
         );
       },

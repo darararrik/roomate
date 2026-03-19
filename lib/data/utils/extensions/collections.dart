@@ -7,9 +7,9 @@ extension ListContext<T> on List<T> {
   }
 }
 
-extension _ObjectWithDelay<T extends Object> on T {
+extension ObjectWithDelay<T extends Object> on T {
   // ignore: unused_element
-  Future<T> withDelay([int milliseconds = 700]) async {
+  Future<T> withDelay({int milliseconds = 700}) async {
     await Future.delayed(Duration(milliseconds: milliseconds));
     return this;
   }

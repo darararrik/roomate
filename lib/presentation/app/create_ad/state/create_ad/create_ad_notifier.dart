@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:roomate/data/datasources/remote/mock.dart';
+import 'package:roomate/data/datasources/remote/mocks/create_ad_mock_data_source.dart';
 import 'package:roomate/data/dto/tags_group_dto/tags_group_dto.dart';
 import 'package:roomate/domain/enums/currency_enum.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
@@ -11,7 +11,7 @@ part 'create_ad_notifier.g.dart';
 
 @riverpod
 Future<List<TagsGroupModel>> categories(Ref ref, SelectionStepKey key) async {
-  final dtos = await MockDataSource().getSelectionCategories(key);
+  final dtos = await CreateAdMock.getSelectionCategories(key);
   final model = dtos.map((e) => e.toDomain());
   return model.toList();
 }
@@ -46,9 +46,7 @@ class CreateAdNotifier extends _$CreateAdNotifier {
     required bool isRadio,
   }) {
     // 1. Копируем текущую мапу тегов
-    final newTags = Map<SelectionStepKey, List<TagsGroupModel>>.from(
-      state.selectedTags,
-    );
+    final newTags = Map<SelectionStepKey, List<TagsGroupModel>>.from(state.selectedTags);
 
     // 2. Достаем список групп для шага
     final stepGroups = List<TagsGroupModel>.from(newTags[stepKey] ?? []);
@@ -74,9 +72,7 @@ class CreateAdNotifier extends _$CreateAdNotifier {
       stepGroups[index] = group.copyWith(tags: currentTags);
     } else {
       if (isSelected) {
-        stepGroups.add(
-          TagsGroupModel(title: categoryTitle, tags: [tag], isRadio: isRadio),
-        );
+        stepGroups.add(TagsGroupModel(title: categoryTitle, tags: [tag], isRadio: isRadio));
       }
     }
 

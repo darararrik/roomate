@@ -18,11 +18,7 @@ class CreateProfileScreen extends ConsumerWidget {
     final state = ref.watch(createProfileProvider);
     return AutoTabsRouter.pageView(
       physics: const NeverScrollableScrollPhysics(),
-      routes: const [
-        ProfileSetupRoute(),
-        PreferencesRoute(),
-        VerificationIntroRoute(),
-      ],
+      routes: const [ProfileSetupRoute(), PreferencesRoute(), VerificationIntroRoute()],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
 
@@ -32,34 +28,18 @@ class CreateProfileScreen extends ConsumerWidget {
             final totalPages = tabsRouter.pageCount;
             final activeIndex = tabsRouter.activeIndex + 1;
             return Scaffold(
-              bottomNavigationBar: _bottomButtons(
-                context,
-                tabsRouter,
-                ref,
-                notifier,
-              ),
+              bottomNavigationBar: _bottomButtons(context, tabsRouter, ref, notifier),
               appBar: AppBar(
                 centerTitle: true,
                 title: SizedBox(
                   width: S.p100,
-                  child: ProgressBarWidget(
-                    tabsRouter: tabsRouter,
-                    totalPages: totalPages,
-                  ),
+                  child: ProgressBarWidget(tabsRouter: tabsRouter, totalPages: totalPages),
                 ),
                 actionsPadding: const P(right: S.p16),
-                actions: [
-                  Text(
-                    "$activeIndex/$totalPages",
-                    style: context.typography.headline2,
-                  ),
-                ],
+                actions: [Text("$activeIndex/$totalPages", style: context.typography.headline2)],
                 leading: BB(onPressed: () => notifier.onPop(tabsRouter)),
               ),
-              body: Padding(
-                padding: const P(top: S.p20),
-                child: child,
-              ),
+              body: child,
             );
           },
         );
@@ -87,13 +67,10 @@ class CreateProfileScreen extends ConsumerWidget {
             children: [
               PrimaryButton(
                 onPressed: () => notifier.onNextStep(tabsRouter),
-                text: context.l10n.next,
+                text: notifier.titleButton(tabsRouter),
               ),
               if (tabsRouter.activeIndex == tabsRouter.pageCount - 1)
-                SecondaryButton(
-                  onPressed: notifier.onSkip,
-                  text: context.l10n.skip,
-                ),
+                SecondaryButton(onPressed: notifier.onSkip, text: context.l10n.skip),
             ],
           ),
         ),

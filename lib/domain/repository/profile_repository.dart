@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import 'package:roomate/domain/enums/gender_enum.dart';
-import 'package:roomate/domain/models/user_model.dart';
-import 'package:roomate/domain/models/user_tag_model.dart';
+import 'package:roomate/domain/domain.dart';
 import 'package:roomate/shared/exception/RemoteException.dart';
 
 abstract interface class IProfileRepository {
@@ -14,6 +12,7 @@ abstract interface class IProfileRepository {
     int age,
     List<UserTagModel> tags,
   );
+  Future<Either<RemoteException, List<UserTagsGroupModel>>> fetchTagsAboutSelf();
   Future<Either<RemoteException, void>> deleteProfile();
   Future<Either<RemoteException, void>> doVerification();
 }

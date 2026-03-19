@@ -8,6 +8,7 @@ import 'package:roomate/presentation/l10n/app_localizations.dart';
 import 'package:roomate/presentation/services/navigation_service.dart';
 import 'package:roomate/presentation/theme/theme_x/app_palette.dart';
 import 'package:roomate/presentation/theme/theme_x/app_typography.dart';
+import 'package:roomate/state/l10_provider/l10n_provider.dart';
 import 'package:roomate/state/navigation/navigation_provider.dart';
 
 extension BuildContextX on BuildContext {
@@ -74,4 +75,5 @@ extension ListX on List<Widget> {
 
 extension RefX on Ref {
   NavigationService get nav => read(navigationServiceProvider);
+  AppLocalizations get l10n => read(l10nProvider);
 }

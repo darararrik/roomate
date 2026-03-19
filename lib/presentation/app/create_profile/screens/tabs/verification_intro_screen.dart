@@ -19,7 +19,7 @@ class VerificationIntroScreen extends StatelessWidget {
           child: AppIcon(AppIcons.verification1, width: 150, height: 166),
         ),
         Padding(
-          padding: const P(horizontal: S.p32),
+          padding: const P(horizontal: S.p32, top: S.p28),
           child: Column(
             children: [
               Text(locale.almostDone, style: typography.headline1),
@@ -28,9 +28,7 @@ class VerificationIntroScreen extends StatelessWidget {
               Text(
                 locale.gosuslugiVerificationDescription,
                 textAlign: .center,
-                style: typography.headline2.copyWith(
-                  color: context.colors.graysText400,
-                ),
+                style: typography.headline2.copyWith(color: context.colors.graysText400),
               ),
             ],
           ),

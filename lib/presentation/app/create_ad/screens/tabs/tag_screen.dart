@@ -18,40 +18,41 @@ class TagScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(categoriesProvider(stepKey));
     final state = ref.watch(createAdProvider);
-    return data.when(
-      skipLoadingOnRefresh: false,
-      data: (listTagsGroup) => ListView.builder(
-        itemCount: listTagsGroup.length,
-        padding: const P(horizontal: S.p16),
-        itemBuilder: (context, index) {
-          final TagsGroupModel tagsGroup = listTagsGroup[index];
-          final selectedTags =
-              state.selectedTags[stepKey]
-                  ?.firstWhere(
-                    (g) => g.title == tagsGroup.title,
-                    orElse: () => tagsGroup.copyWith(tags: []),
-                  )
-                  .tags ??
-              [];
-          return SelectableTagGroup(
-            tags: tagsGroup,
-            selectedTags: selectedTags,
-            onTagSelected: (tag, isSelected) {
-              ref
-                  .read(createAdProvider.notifier)
-                  .updateTags(
-                    stepKey: stepKey,
-                    categoryTitle: tagsGroup.title,
-                    tag: tag,
-                    isSelected: isSelected,
-                    isRadio: tagsGroup.isRadio,
-                  );
-            },
-          );
-        },
-      ),
-      loading: () => const LoadingState(),
-      error: (err, stack) => ErrorState(error: err),
-    );
+    return const SizedBox();
+    // return data.when(
+    //   skipLoadingOnRefresh: false,
+    //   data: (listTagsGroup) => ListView.builder(
+    //     itemCount: listTagsGroup.length,
+    //     padding: const P(horizontal: S.p16),
+    //     itemBuilder: (context, index) {
+    //       final TagsGroupModel tagsGroup = listTagsGroup[index];
+    //       final selectedTags =
+    //           state.selectedTags[stepKey]
+    //               ?.firstWhere(
+    //                 (g) => g.title == tagsGroup.title,
+    //                 orElse: () => tagsGroup.copyWith(tags: []),
+    //               )
+    //               .tags ??
+    //           [];
+    //       return SelectableTagGroup(
+    //         tags: tagsGroup,
+    //         selectedTags: selectedTags,
+    //         onTagSelected: (tag, isSelected) {
+    //           ref
+    //               .read(createAdProvider.notifier)
+    //               .updateTags(
+    //                 stepKey: stepKey,
+    //                 categoryTitle: tagsGroup.title,
+    //                 tag: tag,
+    //                 isSelected: isSelected,
+    //                 isRadio: tagsGroup.isRadio,
+    //               );
+    //         },
+    //       );
+    //     },
+    //   ),
+    //   loading: () => const LoadingState(),
+    //   error: (err, stack) => ErrorState(error: err),
+    // );
   }
 }

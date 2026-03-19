@@ -19,14 +19,9 @@ class ContactsStepScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
-    final stateCategories = ref.watch(
-      categoriesProvider(SelectionStepKey.contactInfo),
-    );
+    final stateCategories = ref.watch(categoriesProvider(SelectionStepKey.contactInfo));
     final List<TagsGroupModel> selectedTags =
-        ref
-            .watch(createAdProvider)
-            .selectedTags[SelectionStepKey.contactInfo] ??
-        [];
+        ref.watch(createAdProvider).selectedTags[SelectionStepKey.contactInfo] ?? [];
 
     return stateCategories.when(
       data: (data) {
@@ -45,31 +40,30 @@ class ContactsStepScreen extends HookConsumerWidget {
               controller: descriptionController,
               hintText: '+7 (___) ___-__-__',
             ),
-            SelectableTagGroup(
-              tags: data.first,
-              selectedTags: selectedTags
-                  .firstWhere(
-                    (g) => g.title == data.first.title,
-                    orElse: () => data.first.copyWith(tags: []),
-                  )
-                  .tags,
-              onTagSelected: (tag, isSelected) {
-                ref
-                    .read(createAdProvider.notifier)
-                    .updateTags(
-                      stepKey: SelectionStepKey.contactInfo,
-                      categoryTitle: data.first.title,
-                      tag: tag,
-                      isSelected: isSelected,
-                      isRadio: data.first.isRadio,
-                    );
-              },
-            ),
+            // SelectableTagGroup(
+            //   tags: data.first,
+            //   selectedTags: selectedTags
+            //       .firstWhere(
+            //         (g) => g.title == data.first.title,
+            //         orElse: () => data.first.copyWith(tags: []),
+            //       )
+            //       .tags,
+            //   onTagSelected: (tag, isSelected) {
+            //     ref
+            //         .read(createAdProvider.notifier)
+            //         .updateTags(
+            //           stepKey: SelectionStepKey.contactInfo,
+            //           categoryTitle: data.first.title,
+            //           tag: tag,
+            //           isSelected: isSelected,
+            //           isRadio: data.first.isRadio,
+            //         );
+            //   },
+            // ),
           ],
         );
       },
-      error: (Object error, StackTrace stackTrace) =>
-          Center(child: Text(error.toString())),
+      error: (Object error, StackTrace stackTrace) => Center(child: Text(error.toString())),
       loading: () => const LoadingState(),
     );
   }

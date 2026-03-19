@@ -9,6 +9,7 @@ import 'package:roomate/domain/enums/gender_enum.dart';
 import 'package:roomate/presentation/app/create_profile/state/create_profile_notifier.dart';
 import 'package:roomate/presentation/app/create_profile/state/user_state.dart';
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/utils/formatters/text_formatter.dart';
 import 'package:roomate/presentation/utils/hooks/use_clear_error_on_focus.dart';
 import 'package:roomate/presentation/widgets/sheets/gender_bottom_sheet.dart';
 import 'package:roomate/state/state.dart';
@@ -37,20 +38,13 @@ class ProfileSetupScreen extends HookConsumerWidget {
           ),
         ),
         const SizedBox(height: S.p28),
-        Center(
-          child: Text(
-            locale.letsGetToKnowEachOther,
-            style: context.typography.headline1,
-          ),
-        ),
+        Center(child: Text(locale.letsGetToKnowEachOther, style: context.typography.headline1)),
         const SizedBox(height: S.p8),
         Center(
           child: Text(
             locale.pleaseProvideRealData,
             textAlign: TextAlign.center,
-            style: context.typography.headline2.copyWith(
-              color: context.colors.graysText400,
-            ),
+            style: context.typography.headline2.copyWith(color: context.colors.graysText400),
           ),
         ),
         const SizedBox(height: S.p28),
@@ -63,6 +57,9 @@ class ProfileSetupScreen extends HookConsumerWidget {
               onChanged: (val) => notifier.onChangedFirstName(val),
               errorText: state.firstNameError,
               focusNode: hooks.firstNameFocusNode,
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              inputFormatters: [StandartTextFormatter()],
             ),
             InputWidget(
               controller: hooks.lastNameController,
@@ -70,6 +67,9 @@ class ProfileSetupScreen extends HookConsumerWidget {
               onChanged: (val) => notifier.onChangedLastName(val),
               errorText: state.lastNameError,
               focusNode: hooks.lastNameFocusNode,
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              inputFormatters: [StandartTextFormatter()],
             ),
             Row(
               spacing: S.p12,
@@ -84,6 +84,7 @@ class ProfileSetupScreen extends HookConsumerWidget {
                     errorText: state.ageError,
                     focusNode: hooks.ageFocusNode,
                     keyboardType: TextInputType.number,
+                    maxLenght: 2,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   ),
                 ),
@@ -99,8 +100,7 @@ class ProfileSetupScreen extends HookConsumerWidget {
                         .read(navigationServiceProvider)
                         .showBottomSheet(
                           GenderBottomSheet(
-                            onSelected: (gender, index, isSelected) =>
-                                notifier.setGender(gender),
+                            onSelected: (gender, index, isSelected) => notifier.setGender(gender),
                             selectedGender: state.gender,
                           ),
                         ),

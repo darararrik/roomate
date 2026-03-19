@@ -19,9 +19,7 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
     final areaController = useTextEditingController();
     final floorController = useTextEditingController();
     final totalFloorsController = useTextEditingController();
-    final data = ref.watch(
-      categoriesProvider(SelectionStepKey.propertiesApartment),
-    );
+    final data = ref.watch(categoriesProvider(SelectionStepKey.propertiesApartment));
 
     return data.when(
       data: (data) => Padding(
@@ -29,14 +27,14 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
         child: ListView(
           padding: const P(horizontal: S.p16),
           children: [
-            SelectableTagGroup(tags: data.first),
-            TextFieldWithTitle.withSuffix(
-              title: context.l10n.apartmentArea,
-              hintText: context.l10n.enterApartmentArea,
-              controller: areaController,
-              suffix: context.l10n.squareMeters,
-            ),
-            SelectableTagGroup(tags: data[1]),
+            // SelectableTagGroup(tags: data.first),
+            // TextFieldWithTitle.withSuffix(
+            //   title: context.l10n.apartmentArea,
+            //   hintText: context.l10n.enterApartmentArea,
+            //   controller: areaController,
+            //   suffix: context.l10n.squareMeters,
+            // ),
+            // SelectableTagGroup(tags: data[1]),
             TextFieldWithTitle.number(
               title: context.l10n.floor,
               hintText: context.l10n.enterFloor,

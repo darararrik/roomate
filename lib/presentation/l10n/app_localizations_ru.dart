@@ -512,6 +512,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get yourGender => 'Ваш пол';
 
   @override
+  String get confirmThroughGosuslugi => 'Подтвердить через Госуслуги';
+
+  @override
   String get newAdvertisement => 'Новое объявление';
 
   @override

@@ -31,6 +31,7 @@ class InputWidget extends HookWidget {
     this.maxLines,
     this.errorText = '',
     this.needSuffixIcon = true,
+    this.maxLenght,
   });
   final bool autofocus;
   final bool isSearch;
@@ -52,6 +53,7 @@ class InputWidget extends HookWidget {
   final int? maxLines;
   final String errorText;
   final bool needSuffixIcon;
+  final int? maxLenght;
   @override
   Widget build(BuildContext context) {
     final internalFocusNode = useFocusNode();
@@ -65,9 +67,7 @@ class InputWidget extends HookWidget {
 
     final colors = context.colors;
 
-    final borderColor = hasError
-        ? colors.red
-        : (hasFocus ? colors.orange : colors.graysStroke300);
+    final borderColor = hasError ? colors.red : (hasFocus ? colors.orange : colors.graysStroke300);
 
     final textColor = hasError ? colors.red : colors.graysBlack;
 
@@ -84,9 +84,11 @@ class InputWidget extends HookWidget {
           enabled: enabled,
           keyboardType: keyboardType,
           onChanged: onChanged,
-          style: (style ?? context.typography.inputTextRegular).copyWith(
-            color: textColor,
-          ),
+          textInputAction: textInputAction,
+          inputFormatters: [...inputFormatters ?? []],
+          maxLength: maxLenght,
+          buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
+          style: (style ?? context.typography.inputTextRegular).copyWith(color: textColor),
           decoration: (decoration ?? const InputDecoration()).copyWith(
             hintText: hintText,
             hintStyle: hintStyle,
@@ -127,10 +129,7 @@ class InputWidget extends HookWidget {
             padding: const EdgeInsets.only(top: 6, left: 4),
             child: Text(
               errorText,
-              style: context.typography.inputTextRegular.copyWith(
-                color: colors.red,
-                fontSize: 12,
-              ),
+              style: context.typography.inputTextRegular.copyWith(color: colors.red, fontSize: 12),
             ),
           ),
       ],

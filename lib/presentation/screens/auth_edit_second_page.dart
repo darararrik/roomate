@@ -32,16 +32,11 @@ class AuthEditSecondPage extends StatelessWidget {
             padding: const P(vertical: S.p28),
             child: Column(
               children: [
-                Text(
-                  context.l10n.tellUsAboutYourselfTitle,
-                  style: context.typography.headline1,
-                ),
+                Text(context.l10n.tellUsAboutYourselfTitle, style: context.typography.headline1),
                 const SizedBox(height: S.p8),
                 Text(
                   context.l10n.tellUsAboutYourselfSubtitle,
-                  style: context.typography.headline2.copyWith(
-                    color: context.colors.graysText400,
-                  ),
+                  style: context.typography.headline2.copyWith(color: context.colors.graysText400),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -51,16 +46,17 @@ class AuthEditSecondPage extends StatelessWidget {
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
             final category = categories[index];
-            return SelectableTagGroup(
-              tags: TagsGroupModel(
-                title: category["title"] as String,
-                tags: List<String>.from(category["tags"] as List),
-                isRadio: false,
-              ),
-              onTagSelected: (tag, selected) {
-                debugPrint("Выбрано: $tag ($selected)");
-              },
-            );
+            return null;
+            // return SelectableTagGroup(
+            //   tags: TagsGroupModel(
+            //     title: category["title"] as String,
+            //     tags: List<String>.from(category["tags"] as List),
+            //     isRadio: false,
+            //   ),
+            //   onTagSelected: (tag, selected) {
+            //     debugPrint("Выбрано: $tag ($selected)");
+            //   },
+            // );
           }, childCount: categories.length),
         ),
       ],

@@ -2,9 +2,7 @@ import 'package:roomate/data/dto/tags_group_dto/tags_group_dto.dart';
 import 'package:roomate/domain/enums/selection_step_key_enum.dart';
 
 mixin CreateAdMock {
-  Future<List<TagsGroupDto>> getSelectionCategories(
-    SelectionStepKey key,
-  ) async {
+  static Future<List<TagsGroupDto>> getSelectionCategories(SelectionStepKey key) async {
     final List<Map<String, dynamic>> jsonList = switch (key) {
       SelectionStepKey.rentType => _rentTypeJson,
       SelectionStepKey.roomType => _roomTypeJson,
@@ -46,15 +44,7 @@ mixin CreateAdMock {
     {
       "title": "Вид недвижимости",
       "isRadio": true,
-      "tags": [
-        "Квартира",
-        "Апартаменты",
-        "Комната",
-        "Койко-место",
-        "Дом",
-        "Коттедж",
-        "Таунхаус",
-      ],
+      "tags": ["Квартира", "Апартаменты", "Комната", "Койко-место", "Дом", "Коттедж", "Таунхаус"],
     },
   ];
 
@@ -98,14 +88,7 @@ mixin CreateAdMock {
     {
       "title": "Удобства",
       "isRadio": false,
-      "tags": [
-        "Интернет",
-        "Мусоропровод",
-        "Посуда",
-        "Видеодомофон",
-        "Консьерж",
-        "Умный дом",
-      ],
+      "tags": ["Интернет", "Мусоропровод", "Посуда", "Видеодомофон", "Консьерж", "Умный дом"],
     },
     {
       "title": "Ванная комната",
@@ -115,13 +98,7 @@ mixin CreateAdMock {
     {
       "title": "Бытовая техника",
       "isRadio": false,
-      "tags": [
-        "Холодильник",
-        "Телевизор",
-        "Стиральная машина",
-        "Кондиционер",
-        "Посудомоечная машина",
-      ],
+      "tags": ["Холодильник", "Телевизор", "Стиральная машина", "Кондиционер", "Посудомоечная машина"],
     },
     {
       "title": "Плита",

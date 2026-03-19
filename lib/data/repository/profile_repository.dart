@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:roomate/data/datasources/profile_data_source.dart';
 
-import 'package:roomate/data/datasources/remote/profile_remote_datasource.dart';
+import 'package:roomate/data/datasources/static/profile_static_datasource.dart';
 import 'package:roomate/domain/enums/gender_enum.dart';
 import 'package:roomate/domain/models/user_model.dart';
 import 'package:roomate/domain/models/user_tag_model.dart';
@@ -8,9 +9,9 @@ import 'package:roomate/domain/repository/profile_repository.dart';
 import 'package:roomate/shared/exception/RemoteException.dart';
 
 class ProfileRepository implements IProfileRepository {
-  ProfileRepository({required ProfileRemoteDataSource remoteDataSource})
+  ProfileRepository({required ProfileDataSource remoteDataSource})
     : _remoteDataSource = remoteDataSource;
-  final ProfileRemoteDataSource _remoteDataSource;
+  final ProfileDataSource _remoteDataSource;
 
   @override
   Future<Either<RemoteException, UserModel>> createProfile(
@@ -33,12 +34,18 @@ class ProfileRepository implements IProfileRepository {
       final result = await _remoteDataSource.createProfile(userModel);
       return Right(result);
     } catch (e) {
-      return Left(
-        RemoteException(
-          kind: RemoteExceptionKind.serverUndefined,
-          rootException: e,
-        ),
-      );
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
+    }
+  }
+
+  @override
+  Future<Either<RemoteException, List<UserTagsGroupModel>>> fetchTagsAboutSelf() async {
+    try {
+      // Для начала возвращаем статические данные из дизайна
+      final result = ProfileStaticDataSource.getStaticTags();
+      return Right(result);
+    } catch (e) {
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
     }
   }
 
