@@ -36,7 +36,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get searchRegion => 'Регион поиска >';
 
   @override
-  String get apartments => 'Квартиры';
+  String get apartments => 'Помещения';
 
   @override
   String get neighbours => 'Соседи';

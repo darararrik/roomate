@@ -151,7 +151,7 @@ abstract class AppLocalizations {
   /// No description provided for @apartments.
   ///
   /// In ru, this message translates to:
-  /// **'Квартиры'**
+  /// **'Помещения'**
   String get apartments;
 
   /// No description provided for @neighbours.
