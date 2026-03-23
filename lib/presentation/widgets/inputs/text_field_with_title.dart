@@ -14,8 +14,11 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
+    this.onChanged,
     this.suffix,
-    this.isMultiline = false,
+    this.needSuffixIcon = true,
+    this.maxLines,
+    this.minLines,
   }) : keyboardType = TextInputType.text,
        inputFormatters = null;
 
@@ -25,8 +28,11 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
-  }) : isMultiline = false,
-       suffix = null,
+    this.onChanged,
+    this.needSuffixIcon = true,
+    this.maxLines,
+    this.minLines,
+  }) : suffix = null,
        keyboardType = TextInputType.number,
        inputFormatters = [FilteringTextInputFormatter.digitsOnly];
 
@@ -37,8 +43,11 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.hintText,
     required this.controller,
     required this.suffix,
-  }) : isMultiline = false,
-       keyboardType = const TextInputType.numberWithOptions(decimal: true),
+    this.needSuffixIcon = true,
+    this.onChanged,
+    this.maxLines,
+    this.minLines,
+  }) : keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
 
   /// Именованный конструктор для десятичных чисел без м2
@@ -47,8 +56,11 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
-  }) : isMultiline = false,
-       suffix = null,
+    this.onChanged,
+    this.needSuffixIcon = true,
+    this.maxLines,
+    this.minLines,
+  }) : suffix = null,
        keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
 
@@ -57,18 +69,24 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
+    this.onChanged,
   }) : suffix = null,
        keyboardType = TextInputType.multiline,
-       inputFormatters = null,
-       isMultiline = true;
-  final bool isMultiline;
+       maxLines = 10,
+       minLines = 5,
+       needSuffixIcon = false,
+       inputFormatters = null;
+
   final String title;
   final String hintText;
   final TextEditingController controller;
   final String? suffix;
   final TextInputType keyboardType;
   final List<TextInputFormatter>? inputFormatters;
-
+  final void Function(String)? onChanged;
+  final bool needSuffixIcon;
+  final int? maxLines;
+  final int? minLines;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -82,21 +100,15 @@ class TextFieldWithTitle extends StatelessWidget {
           padding: const P(vertical: S.p12),
           child: InputWidget(
             controller: controller,
-            //TODO: Реализовать минимум 50 симоволов для multiline
-            validator: (value) {
-              if (isMultiline && (value?.length ?? 0) < 50) {
-                return "Минимум 50 символов";
-              }
-              return null;
-            },
             keyboardType: keyboardType,
-            maxLines: isMultiline ? 8 : 1,
+            maxLines: maxLines,
+            minLines: minLines,
             inputFormatters: inputFormatters,
+            onChanged: onChanged,
+            needSuffixIcon: needSuffixIcon,
             decoration: InputDecoration(
               hintText: hintText,
-              suffixIcon: suffix != null
-                  ? _buildIconSuffix(context, suffix!)
-                  : null,
+              suffixIcon: suffix != null ? _buildIconSuffix(context, suffix!) : null,
             ),
           ),
         ),
@@ -112,9 +124,7 @@ class TextFieldWithTitle extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: Text(
           suffixPath,
-          style: context.typography.inputTextRegular.copyWith(
-            color: context.colors.graysBlack,
-          ),
+          style: context.typography.inputTextRegular.copyWith(color: context.colors.graysBlack),
         ),
       ),
     );

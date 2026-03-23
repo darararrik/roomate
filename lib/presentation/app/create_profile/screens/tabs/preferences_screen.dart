@@ -37,7 +37,7 @@ class PreferencesScreen extends ConsumerWidget {
         ),
         ...tags.map(
           (group) => SelectableTagGroup(
-            tags: group,
+            tagsGroup: group,
             onTagSelected: (tag, isSelected) => notifier.toggleTagSelection(tag.id),
           ),
         ),

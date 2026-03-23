@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:roomate/domain/enums/gender_enum.dart';
-import 'package:roomate/domain/models/user_tag_model.dart';
+import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/shared/utils/constants.dart';
 
 part 'user_state.freezed.dart';
@@ -15,7 +15,7 @@ sealed class UserState with _$UserState {
     @Default(null) GenderEnum? gender,
     @Default('') String age,
     @Default(false) bool isVerified,
-    @Default([]) List<UserTagsGroupModel> tags,
+    @Default([]) List<TagGroupModel> tags,
     @Default('') String firstNameError,
     @Default('') String lastNameError,
     @Default('') String ageError,

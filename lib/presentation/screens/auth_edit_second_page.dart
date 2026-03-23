@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/annotations.dart';
 
-import 'package:roomate/domain/models/tags_group_model.dart';
 import 'package:roomate/presentation/presentation.dart';
 
 @RoutePage()

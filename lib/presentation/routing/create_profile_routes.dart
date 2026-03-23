@@ -4,7 +4,6 @@ import 'package:roomate/presentation/routing/app_routing.gr.dart';
 abstract class CreateProfile {
   static final routes = AutoRoute(
     page: const EmptyShellRoute("CreateProfileShell").page,
-    initial: true,
     children: [
       AutoRoute(
         page: CreateProfileRoute.page,

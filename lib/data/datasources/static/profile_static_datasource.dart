@@ -1,41 +1,41 @@
-import 'package:roomate/domain/models/user_tag_model.dart';
+import 'package:roomate/domain/models/tag_model.dart';
 
 class ProfileStaticDataSource {
-  static List<UserTagsGroupModel> getStaticTags() {
+  static List<TagGroupModel> getStaticTags() {
     return [
-      const UserTagsGroupModel(
+      const TagGroupModel(
         groupId: 'interests',
         groupTitle: 'Интересы',
         tags: [
-          UserTagModel(id: 1, title: 'Спорт'),
-          UserTagModel(id: 2, title: 'Музыка'),
-          UserTagModel(id: 3, title: 'Кино'),
-          UserTagModel(id: 4, title: 'Путешествия'),
-          UserTagModel(id: 5, title: 'Гейминг'),
-          UserTagModel(id: 6, title: 'Чтение'),
-          UserTagModel(id: 7, title: 'Кулинария'),
-          UserTagModel(id: 8, title: 'Искусство'),
+          TagModel(id: 1, title: 'Спорт'),
+          TagModel(id: 2, title: 'Музыка'),
+          TagModel(id: 3, title: 'Кино'),
+          TagModel(id: 4, title: 'Путешествия'),
+          TagModel(id: 5, title: 'Гейминг'),
+          TagModel(id: 6, title: 'Чтение'),
+          TagModel(id: 7, title: 'Кулинария'),
+          TagModel(id: 8, title: 'Искусство'),
         ],
       ),
-      const UserTagsGroupModel(
+      const TagGroupModel(
         groupId: 'habits',
         groupTitle: 'Привычки',
         tags: [
-          UserTagModel(id: 101, title: 'Не курю'),
-          UserTagModel(id: 102, title: 'Пью кофе'),
-          UserTagModel(id: 103, title: 'Рано встаю'),
-          UserTagModel(id: 104, title: 'Поздно ложусь'),
-          UserTagModel(id: 105, title: 'Люблю чистоту'),
+          TagModel(id: 101, title: 'Не курю'),
+          TagModel(id: 102, title: 'Пью кофе'),
+          TagModel(id: 103, title: 'Рано встаю'),
+          TagModel(id: 104, title: 'Поздно ложусь'),
+          TagModel(id: 105, title: 'Люблю чистоту'),
         ],
       ),
-      const UserTagsGroupModel(
+      const TagGroupModel(
         groupId: 'pets',
         groupTitle: 'Домашние животные',
         tags: [
-          UserTagModel(id: 201, title: 'Есть собака'),
-          UserTagModel(id: 202, title: 'Есть кошка'),
-          UserTagModel(id: 203, title: 'Нет животных'),
-          UserTagModel(id: 204, title: 'Люблю животных'),
+          TagModel(id: 201, title: 'Есть собака'),
+          TagModel(id: 202, title: 'Есть кошка'),
+          TagModel(id: 203, title: 'Нет животных'),
+          TagModel(id: 204, title: 'Люблю животных'),
         ],
       ),
     ];

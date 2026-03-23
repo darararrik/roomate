@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 mixin _$UserModel {
 
  int get id; String get firstName; String get lastName;//TODO: Мб CityModel будет нужен
- String get city; String get avatarUrl; GenderEnum get gender; int get age; bool get isVerified; List<UserTagModel> get tags;
+ String get city; String get avatarUrl; GenderEnum get gender; int get age; bool get isVerified; List<TagModel> get tags;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, int age, bool isVerified, List<UserTagModel> tags
+ int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, int age, bool isVerified, List<TagModel> tags
 });
 
 
@@ -74,7 +74,7 @@ as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullabl
 as GenderEnum,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
-as List<UserTagModel>,
+as List<TagModel>,
   ));
 }
 
@@ -156,7 +156,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<UserTagModel> tags)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<TagModel> tags)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags);case _:
@@ -177,7 +177,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<UserTagModel> tags)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<TagModel> tags)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
 return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags);}
@@ -194,7 +194,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<UserTagModel> tags)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  int age,  bool isVerified,  List<TagModel> tags)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags);case _:
@@ -209,7 +209,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 
 
 class _UserModel implements UserModel {
-  const _UserModel({this.id = 0, this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.avatarNull, this.gender = GenderEnum.male, this.age = 0, this.isVerified = false, final  List<UserTagModel> tags = const []}): _tags = tags;
+  const _UserModel({this.id = 0, this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.avatarNull, this.gender = GenderEnum.male, this.age = 0, this.isVerified = false, final  List<TagModel> tags = const []}): _tags = tags;
   
 
 @override@JsonKey() final  int id;
@@ -221,8 +221,8 @@ class _UserModel implements UserModel {
 @override@JsonKey() final  GenderEnum gender;
 @override@JsonKey() final  int age;
 @override@JsonKey() final  bool isVerified;
- final  List<UserTagModel> _tags;
-@override@JsonKey() List<UserTagModel> get tags {
+ final  List<TagModel> _tags;
+@override@JsonKey() List<TagModel> get tags {
   if (_tags is EqualUnmodifiableListView) return _tags;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_tags);
@@ -259,7 +259,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, int age, bool isVerified, List<UserTagModel> tags
+ int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, int age, bool isVerified, List<TagModel> tags
 });
 
 
@@ -287,7 +287,7 @@ as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullabl
 as GenderEnum,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
-as List<UserTagModel>,
+as List<TagModel>,
   ));
 }
 

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserState {
 
- String get firstName; String get lastName; String get avatarUrl; GenderEnum? get gender; String get age; bool get isVerified; List<UserTagsGroupModel> get tags; String get firstNameError; String get lastNameError; String get ageError; String get genderError; bool get isFormValid; bool get isLoading;
+ String get firstName; String get lastName; String get avatarUrl; GenderEnum? get gender; String get age; bool get isVerified; List<TagGroupModel> get tags; String get firstNameError; String get lastNameError; String get ageError; String get genderError; bool get isFormValid; bool get isLoading;
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $UserStateCopyWith<$Res>  {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) = _$UserStateCopyWithImpl;
 @useResult
 $Res call({
- String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, List<UserTagsGroupModel> tags, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid, bool isLoading
+ String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, List<TagGroupModel> tags, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid, bool isLoading
 });
 
 
@@ -71,7 +71,7 @@ as String,gender: freezed == gender ? _self.gender : gender // ignore: cast_null
 as GenderEnum?,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
-as List<UserTagsGroupModel>,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
+as List<TagGroupModel>,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
 as String,lastNameError: null == lastNameError ? _self.lastNameError : lastNameError // ignore: cast_nullable_to_non_nullable
 as String,ageError: null == ageError ? _self.ageError : ageError // ignore: cast_nullable_to_non_nullable
 as String,genderError: null == genderError ? _self.genderError : genderError // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<UserTagsGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<TagGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
 return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid,_that.isLoading);case _:
@@ -180,7 +180,7 @@ return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<UserTagsGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<TagGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)  $default,) {final _that = this;
 switch (_that) {
 case _UserState():
 return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid,_that.isLoading);}
@@ -197,7 +197,7 @@ return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<UserTagsGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<TagGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)?  $default,) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
 return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid,_that.isLoading);case _:
@@ -212,7 +212,7 @@ return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_tha
 
 
 class _UserState implements UserState {
-   _UserState({this.firstName = '', this.lastName = '', this.avatarUrl = Constants.avatarNull, this.gender = null, this.age = '', this.isVerified = false, final  List<UserTagsGroupModel> tags = const [], this.firstNameError = '', this.lastNameError = '', this.ageError = '', this.genderError = '', this.isFormValid = false, this.isLoading = false}): _tags = tags;
+   _UserState({this.firstName = '', this.lastName = '', this.avatarUrl = Constants.avatarNull, this.gender = null, this.age = '', this.isVerified = false, final  List<TagGroupModel> tags = const [], this.firstNameError = '', this.lastNameError = '', this.ageError = '', this.genderError = '', this.isFormValid = false, this.isLoading = false}): _tags = tags;
   
 
 @override@JsonKey() final  String firstName;
@@ -221,8 +221,8 @@ class _UserState implements UserState {
 @override@JsonKey() final  GenderEnum? gender;
 @override@JsonKey() final  String age;
 @override@JsonKey() final  bool isVerified;
- final  List<UserTagsGroupModel> _tags;
-@override@JsonKey() List<UserTagsGroupModel> get tags {
+ final  List<TagGroupModel> _tags;
+@override@JsonKey() List<TagGroupModel> get tags {
   if (_tags is EqualUnmodifiableListView) return _tags;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_tags);
@@ -265,7 +265,7 @@ abstract mixin class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Re
   factory _$UserStateCopyWith(_UserState value, $Res Function(_UserState) _then) = __$UserStateCopyWithImpl;
 @override @useResult
 $Res call({
- String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, List<UserTagsGroupModel> tags, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid, bool isLoading
+ String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, List<TagGroupModel> tags, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid, bool isLoading
 });
 
 
@@ -291,7 +291,7 @@ as String,gender: freezed == gender ? _self.gender : gender // ignore: cast_null
 as GenderEnum?,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
-as List<UserTagsGroupModel>,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
+as List<TagGroupModel>,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
 as String,lastNameError: null == lastNameError ? _self.lastNameError : lastNameError // ignore: cast_nullable_to_non_nullable
 as String,ageError: null == ageError ? _self.ageError : ageError // ignore: cast_nullable_to_non_nullable
 as String,genderError: null == genderError ? _self.genderError : genderError // ignore: cast_nullable_to_non_nullable

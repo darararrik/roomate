@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:roomate/domain/enums/gender_enum.dart';
-import 'package:roomate/domain/models/user_tag_model.dart';
+import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/shared/utils/constants.dart';
 
 part 'user_model.freezed.dart';
@@ -18,6 +18,6 @@ sealed class UserModel with _$UserModel {
     @Default(GenderEnum.male) GenderEnum gender,
     @Default(0) int age,
     @Default(false) bool isVerified,
-    @Default([]) List<UserTagModel> tags,
+    @Default([]) List<TagModel> tags,
   }) = _UserModel;
 }

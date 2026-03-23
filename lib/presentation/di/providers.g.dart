@@ -144,3 +144,51 @@ final class AuthRepositoryProvider
 }
 
 String _$authRepositoryHash() => r'c230b64fad70ad680e46fc7e0eafdadc55a33d2d';
+
+@ProviderFor(createAdRepository)
+final createAdRepositoryProvider = CreateAdRepositoryProvider._();
+
+final class CreateAdRepositoryProvider
+    extends
+        $FunctionalProvider<
+          ICreateAdRepository,
+          ICreateAdRepository,
+          ICreateAdRepository
+        >
+    with $Provider<ICreateAdRepository> {
+  CreateAdRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'createAdRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$createAdRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<ICreateAdRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ICreateAdRepository create(Ref ref) {
+    return createAdRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ICreateAdRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ICreateAdRepository>(value),
+    );
+  }
+}
+
+String _$createAdRepositoryHash() =>
+    r'02456cfb350c0516e5b721f2b2232b1c856ca214';

@@ -1,7 +1,7 @@
 extension ListContext<T> on List<T> {
   List<T> copy() => List.of(this);
   // ignore: unused_element
-  Future<List<T>> withDelay([int milliseconds = 1200]) async {
+  Future<List<T>> withDelay({int milliseconds = 1200}) async {
     await Future.delayed(Duration(milliseconds: milliseconds));
     return this;
   }

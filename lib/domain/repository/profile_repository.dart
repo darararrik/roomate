@@ -10,9 +10,9 @@ abstract interface class IProfileRepository {
     String avatarUrl,
     GenderEnum gender,
     int age,
-    List<UserTagModel> tags,
+    List<TagModel> tags,
   );
-  Future<Either<RemoteException, List<UserTagsGroupModel>>> fetchTagsAboutSelf();
+  Future<Either<RemoteException, List<TagGroupModel>>> fetchTagsAboutSelf();
   Future<Either<RemoteException, void>> deleteProfile();
   Future<Either<RemoteException, void>> doVerification();
 }

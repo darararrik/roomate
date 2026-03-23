@@ -1,9 +1,13 @@
 export '_10_description_ad_step_screen.dart';
 export '_11_contacts_step_screen.dart';
 export '_12_finish_screen.dart';
+export '_1_rent_type_step_screen.dart';
+export '_2_room_type_step_screen.dart';
+export '_3_property_type_step_screen.dart';
 export '_4_location_step_screen.dart';
 export '_5_input_details_step_screen.dart';
 export '_6_add_media_step_screen.dart';
+export '_7_features_first_step_screen.dart';
+export '_8_features_second_step_screen.dart';
 export '_9_deal_terms_step_screen.dart';
 export 'result_ad_screen.dart';
-export 'tag_screen.dart';

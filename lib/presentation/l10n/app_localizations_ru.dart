@@ -515,10 +515,40 @@ class AppLocalizationsRu extends AppLocalizations {
   String get confirmThroughGosuslugi => 'Подтвердить через Госуслуги';
 
   @override
+  String get photoAndVideo => 'Фото и видео квартиры';
+
+  @override
+  String get apartmentFeatures => 'Особенности квартиры';
+
+  @override
+  String get apartmentItems => 'Вещи в квартире';
+
+  @override
+  String get dealTerms => 'Условия сделки';
+
+  @override
+  String get advertisementDescription => 'Описание объявления';
+
+  @override
+  String get contacts => 'Контакты';
+
+  @override
+  String get checkAdvertisement => 'Проверьте объявление';
+
+  @override
   String get newAdvertisement => 'Новое объявление';
 
   @override
-  String get apartmentRent => 'Аренда квартиры';
+  String get propertyData => 'Параметры недвижимости';
+
+  @override
+  String get apartmentRent => 'Данные недвижимости';
+
+  @override
+  String get deposit => 'Залог';
+
+  @override
+  String get forExampleDeposit => 'Например: 20000';
 
   @override
   String get advertisement => 'Объявление';
@@ -682,4 +712,21 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get recordVideo => 'Записать видео';
+
+  @override
+  String get adTitle => 'Заголовок объявления';
+
+  @override
+  String get adTitleHint => 'Просторная квартира возле метро';
+
+  @override
+  String get adDescription => 'Описание';
+
+  @override
+  String get adDescriptionHint =>
+      'Расскажите, в каком состоянии квартира, для кого сдаёте и какие условия заселения.';
+
+  @override
+  String get minimumCharactersRequired =>
+      'Необходимо ввести минимум 50 символов';
 }

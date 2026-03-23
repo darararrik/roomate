@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -23,9 +24,7 @@ class LocationStepScreen extends HookConsumerWidget {
         const SizedBox(height: S.p8),
         Text(
           context.l10n.whatIsYourAddress,
-          style: context.typography.bodyDescription.copyWith(
-            color: context.colors.graysText400,
-          ),
+          style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
         ),
         Padding(
           padding: const P(vertical: S.p12),
@@ -33,9 +32,7 @@ class LocationStepScreen extends HookConsumerWidget {
             iconPath: AppIcons.city,
             onTap: () => context.pushRoute(
               LocationRoute(
-                onSelected: (address) {
-                  //TODO: Реализовать
-                },
+                onSelected: (address) => ref.read(createAdProvider.notifier).selectAdress(address),
               ),
             ),
             title: context.l10n.moscowCity,
@@ -52,9 +49,7 @@ class LocationStepScreen extends HookConsumerWidget {
           padding: const P(vertical: S.p4),
           child: Text(
             context.l10n.notVisibleInAd,
-            style: context.typography.bodyDescription.copyWith(
-              color: context.colors.graysText400,
-            ),
+            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
           ),
         ),
       ],

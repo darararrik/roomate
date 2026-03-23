@@ -9,87 +9,6 @@ part of 'create_ad_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(categories)
-final categoriesProvider = CategoriesFamily._();
-
-final class CategoriesProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<TagsGroupModel>>,
-          List<TagsGroupModel>,
-          FutureOr<List<TagsGroupModel>>
-        >
-    with
-        $FutureModifier<List<TagsGroupModel>>,
-        $FutureProvider<List<TagsGroupModel>> {
-  CategoriesProvider._({
-    required CategoriesFamily super.from,
-    required SelectionStepKey super.argument,
-  }) : super(
-         retry: null,
-         name: r'categoriesProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
-
-  @override
-  String debugGetCreateSourceHash() => _$categoriesHash();
-
-  @override
-  String toString() {
-    return r'categoriesProvider'
-        ''
-        '($argument)';
-  }
-
-  @$internal
-  @override
-  $FutureProviderElement<List<TagsGroupModel>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<TagsGroupModel>> create(Ref ref) {
-    final argument = this.argument as SelectionStepKey;
-    return categories(ref, argument);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is CategoriesProvider && other.argument == argument;
-  }
-
-  @override
-  int get hashCode {
-    return argument.hashCode;
-  }
-}
-
-String _$categoriesHash() => r'12baa705937e225155fca6b735b7d623a9906453';
-
-final class CategoriesFamily extends $Family
-    with
-        $FunctionalFamilyOverride<
-          FutureOr<List<TagsGroupModel>>,
-          SelectionStepKey
-        > {
-  CategoriesFamily._()
-    : super(
-        retry: null,
-        name: r'categoriesProvider',
-        dependencies: null,
-        $allTransitiveDependencies: null,
-        isAutoDispose: true,
-      );
-
-  CategoriesProvider call(SelectionStepKey key) =>
-      CategoriesProvider._(argument: key, from: this);
-
-  @override
-  String toString() => r'categoriesProvider';
-}
-
 @ProviderFor(CreateAdNotifier)
 final createAdProvider = CreateAdNotifierProvider._();
 
@@ -122,7 +41,7 @@ final class CreateAdNotifierProvider
   }
 }
 
-String _$createAdNotifierHash() => r'1adde47d82197c4d416e8d7cb32d96c7dabcc50e';
+String _$createAdNotifierHash() => r'dfba529f1779e33a0fa655d7be02c632c33d2b90';
 
 abstract class _$CreateAdNotifier extends $Notifier<CreateAdState> {
   CreateAdState build();

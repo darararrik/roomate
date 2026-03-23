@@ -1084,17 +1084,77 @@ abstract class AppLocalizations {
   /// **'Подтвердить через Госуслуги'**
   String get confirmThroughGosuslugi;
 
+  /// No description provided for @photoAndVideo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фото и видео квартиры'**
+  String get photoAndVideo;
+
+  /// No description provided for @apartmentFeatures.
+  ///
+  /// In ru, this message translates to:
+  /// **'Особенности квартиры'**
+  String get apartmentFeatures;
+
+  /// No description provided for @apartmentItems.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вещи в квартире'**
+  String get apartmentItems;
+
+  /// No description provided for @dealTerms.
+  ///
+  /// In ru, this message translates to:
+  /// **'Условия сделки'**
+  String get dealTerms;
+
+  /// No description provided for @advertisementDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Описание объявления'**
+  String get advertisementDescription;
+
+  /// No description provided for @contacts.
+  ///
+  /// In ru, this message translates to:
+  /// **'Контакты'**
+  String get contacts;
+
+  /// No description provided for @checkAdvertisement.
+  ///
+  /// In ru, this message translates to:
+  /// **'Проверьте объявление'**
+  String get checkAdvertisement;
+
   /// No description provided for @newAdvertisement.
   ///
   /// In ru, this message translates to:
   /// **'Новое объявление'**
   String get newAdvertisement;
 
+  /// No description provided for @propertyData.
+  ///
+  /// In ru, this message translates to:
+  /// **'Параметры недвижимости'**
+  String get propertyData;
+
   /// No description provided for @apartmentRent.
   ///
   /// In ru, this message translates to:
-  /// **'Аренда квартиры'**
+  /// **'Данные недвижимости'**
   String get apartmentRent;
+
+  /// No description provided for @deposit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Залог'**
+  String get deposit;
+
+  /// No description provided for @forExampleDeposit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Например: 20000'**
+  String get forExampleDeposit;
 
   /// No description provided for @advertisement.
   ///
@@ -1419,6 +1479,36 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Записать видео'**
   String get recordVideo;
+
+  /// No description provided for @adTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заголовок объявления'**
+  String get adTitle;
+
+  /// No description provided for @adTitleHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Просторная квартира возле метро'**
+  String get adTitleHint;
+
+  /// No description provided for @adDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Описание'**
+  String get adDescription;
+
+  /// No description provided for @adDescriptionHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Расскажите, в каком состоянии квартира, для кого сдаёте и какие условия заселения.'**
+  String get adDescriptionHint;
+
+  /// No description provided for @minimumCharactersRequired.
+  ///
+  /// In ru, this message translates to:
+  /// **'Необходимо ввести минимум 50 символов'**
+  String get minimumCharactersRequired;
 }
 
 class _AppLocalizationsDelegate

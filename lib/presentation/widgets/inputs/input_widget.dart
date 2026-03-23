@@ -32,6 +32,7 @@ class InputWidget extends HookWidget {
     this.errorText = '',
     this.needSuffixIcon = true,
     this.maxLenght,
+    this.minLines,
   });
   final bool autofocus;
   final bool isSearch;
@@ -54,6 +55,7 @@ class InputWidget extends HookWidget {
   final String errorText;
   final bool needSuffixIcon;
   final int? maxLenght;
+  final int? minLines;
   @override
   Widget build(BuildContext context) {
     final internalFocusNode = useFocusNode();
@@ -66,9 +68,7 @@ class InputWidget extends HookWidget {
     final hasError = errorText.isNotEmpty;
 
     final colors = context.colors;
-
     final borderColor = hasError ? colors.red : (hasFocus ? colors.orange : colors.graysStroke300);
-
     final textColor = hasError ? colors.red : colors.graysBlack;
 
     return Column(
@@ -78,6 +78,8 @@ class InputWidget extends HookWidget {
           readOnly: readOnly,
           onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
           onTap: onTap,
+          minLines: minLines,
+          maxLines: maxLines,
           autofocus: autofocus,
           focusNode: node,
           controller: controller,

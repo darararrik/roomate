@@ -4,11 +4,16 @@ import 'package:roomate/presentation/routing/app_routing.gr.dart';
 abstract class CreateAdRoutes {
   static final routes = AutoRoute(
     page: CreateAdRoute.page,
+    initial: true,
     children: [
-      AutoRoute(page: TagRoute.page),
+      AutoRoute(page: RentTypeStepRoute.page),
+      AutoRoute(page: RoomTypeStepRoute.page),
+      AutoRoute(page: PropertyTypeStepRoute.page),
       AutoRoute(page: LocationStepRoute.page),
       AutoRoute(page: InputDetailsApStepRoute.page),
       AutoRoute(page: AddMediaStepRoute.page),
+      AutoRoute(page: FeaturesFirstStepRoute.page),
+      AutoRoute(page: FeaturesSecondStepRoute.page),
       AutoRoute(page: DealTermsStepRoute.page),
       AutoRoute(page: DescriptionAdStepRoute.page),
       AutoRoute(page: ContactsStepRoute.page),

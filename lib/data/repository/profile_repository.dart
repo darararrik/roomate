@@ -4,7 +4,7 @@ import 'package:roomate/data/datasources/profile_data_source.dart';
 import 'package:roomate/data/datasources/static/profile_static_datasource.dart';
 import 'package:roomate/domain/enums/gender_enum.dart';
 import 'package:roomate/domain/models/user_model.dart';
-import 'package:roomate/domain/models/user_tag_model.dart';
+import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/domain/repository/profile_repository.dart';
 import 'package:roomate/shared/exception/RemoteException.dart';
 
@@ -20,7 +20,7 @@ class ProfileRepository implements IProfileRepository {
     String avatarUrl,
     GenderEnum gender,
     int age,
-    List<UserTagModel> tags,
+    List<TagModel> tags,
   ) async {
     try {
       final userModel = UserModel(
@@ -39,7 +39,7 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<RemoteException, List<UserTagsGroupModel>>> fetchTagsAboutSelf() async {
+  Future<Either<RemoteException, List<TagGroupModel>>> fetchTagsAboutSelf() async {
     try {
       // Для начала возвращаем статические данные из дизайна
       final result = ProfileStaticDataSource.getStaticTags();

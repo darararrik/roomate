@@ -165,12 +165,18 @@
   "verificationFailedDescription": "Что-то пошло не так. Повторите попытку позже.",
   "yourGender": "Ваш пол",
   "confirmThroughGosuslugi":"Подтвердить через Госуслуги",
-
-
-
-
+  "photoAndVideo":"Фото и видео квартиры",
+  "apartmentFeatures":"Особенности квартиры",
+  "apartmentItems":"Вещи в квартире",
+  "dealTerms":"Условия сделки",
+  "advertisementDescription":"Описание объявления",
+  "contacts":"Контакты",
+  "checkAdvertisement":"Проверьте объявление",
   "newAdvertisement": "Новое объявление",
-  "apartmentRent": "Аренда квартиры",
+  "propertyData": "Параметры недвижимости",
+  "apartmentRent": "Данные недвижимости",
+  "deposit":"Залог",
+  "forExampleDeposit":"Например: 20000",
   "advertisement": "Объявление",
   "wantToExit": "Хотите выйти?",
   "draftWillBeSaved": "Черновик сохранится, можете продолжить заполнение позже",
@@ -224,5 +230,10 @@
   "squareMeters": "м²",
   "createPhoto": "Создать фото",
   "chooseFromGallery": "Выбрать из галереи",
-  "recordVideo": "Записать видео"
+  "recordVideo": "Записать видео",
+  "adTitle": "Заголовок объявления",
+  "adTitleHint": "Просторная квартира возле метро",
+  "adDescription": "Описание",
+  "adDescriptionHint": "Расскажите, в каком состоянии квартира, для кого сдаёте и какие условия заселения.",
+  "minimumCharactersRequired": "Необходимо ввести минимум 50 символов"
 }
