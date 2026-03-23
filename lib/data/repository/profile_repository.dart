@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:roomate/data/datasources/profile_data_source.dart';
 
+import 'package:roomate/data/datasources/profile_data_source.dart';
 import 'package:roomate/data/datasources/static/profile_static_datasource.dart';
 import 'package:roomate/domain/enums/gender_enum.dart';
-import 'package:roomate/domain/models/user_model.dart';
 import 'package:roomate/domain/models/tag_model.dart';
+import 'package:roomate/domain/models/user_model.dart';
 import 'package:roomate/domain/repository/profile_repository.dart';
 import 'package:roomate/shared/exception/RemoteException.dart';
 

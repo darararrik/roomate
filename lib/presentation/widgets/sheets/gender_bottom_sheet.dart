@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:group_button/group_button.dart';
 
 import 'package:roomate/domain/enums/gender_enum.dart';
