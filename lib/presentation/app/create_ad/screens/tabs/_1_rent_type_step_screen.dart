@@ -9,30 +9,44 @@ import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class RentTypeStepScreen extends HookConsumerWidget {
+class RentTypeStepScreen extends ConsumerWidget {
   const RentTypeStepScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(createAdProvider.select((s) => s.rentTypeTags));
+    final state = ref.watch(createAdProvider);
+    final notifier = ref.read(createAdProvider.notifier);
+    final tags = state.rentTypeGroups;
+    final goalTags = tags[0];
+    final termTags = tags[1];
+    final whoToRentTags = tags[2];
 
-    return ListView.builder(
-      itemCount: data.length,
+    return Padding(
       padding: const P(horizontal: S.p16),
-      itemBuilder: (context, index) {
-        final tagsGroup = data[index];
-        return SelectableTagGroup(
-          tagsGroup: tagsGroup,
-          isRadio: true,
-          onTagSelected: (tag, isSelected) {
-            ref.read(createAdProvider.notifier).updateRentTypeTags(
-                  categoryTitle: tagsGroup.groupTitle,
-                  tag: tag.title,
-                  isSelected: isSelected,
-                );
-          },
-        );
-      },
+      child: Column(
+        crossAxisAlignment: .start,
+        spacing: S.p12,
+        children: [
+          SelectableTagGroup(
+            tagsGroup: goalTags,
+            onTagSelected: (tag, isSelected) {
+              notifier.updateTag(goalTags.groupId, tag.title);
+            },
+          ),
+          SelectableTagGroup(
+            tagsGroup: termTags,
+            onTagSelected: (tag, isSelected) {
+              notifier.updateTag(termTags.groupId, tag.title);
+            },
+          ),
+          SelectableTagGroup(
+            tagsGroup: whoToRentTags,
+            onTagSelected: (tag, isSelected) {
+              notifier.updateTag(whoToRentTags.groupId, tag.title);
+            },
+          ),
+        ],
+      ),
     );
   }
 }

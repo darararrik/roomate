@@ -1509,6 +1509,24 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Необходимо ввести минимум 50 символов'**
   String get minimumCharactersRequired;
+
+  /// No description provided for @phone.
+  ///
+  /// In ru, this message translates to:
+  /// **'Телефон'**
+  String get phone;
+
+  /// No description provided for @additionalPhone.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дополнительный телефон'**
+  String get additionalPhone;
+
+  /// No description provided for @phonePlaceholder2.
+  ///
+  /// In ru, this message translates to:
+  /// **'+7 (___) ___-__-__'**
+  String get phonePlaceholder2;
 }
 
 class _AppLocalizationsDelegate

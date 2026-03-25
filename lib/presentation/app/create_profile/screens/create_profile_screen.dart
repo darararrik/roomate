@@ -15,7 +15,7 @@ class CreateProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(createProfileProvider.notifier);
-    final state = ref.watch(createProfileProvider);
+    final _ = ref.watch(createProfileProvider);
     return AutoTabsRouter.pageView(
       physics: const NeverScrollableScrollPhysics(),
       routes: const [ProfileSetupRoute(), PreferencesRoute(), VerificationIntroRoute()],

@@ -9,33 +9,31 @@ import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class FeaturesFirstStepScreen extends HookConsumerWidget {
+class FeaturesFirstStepScreen extends ConsumerWidget {
   const FeaturesFirstStepScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(createAdProvider.select((s) => s.featuresFirstTags));
+    final state = ref.watch(createAdProvider);
+    final notifier = ref.read(createAdProvider.notifier);
+    final data = state.featuresGroups;
 
-    return ListView.builder(
-      itemCount: data.length,
+    return ListView(
       padding: const P(horizontal: S.p16),
-      itemBuilder: (context, index) {
-        final tagsGroup = data[index];
-        // Для анимитис и аплаянсис мультивыбор (isRadio: false)
-        final isRadio = !['amenities', 'appliances'].contains(tagsGroup.groupId);
-        return SelectableTagGroup(
-          tagsGroup: tagsGroup,
-          isRadio: isRadio,
-          onTagSelected: (tag, isSelected) {
-            ref.read(createAdProvider.notifier).updateFeaturesFirstTags(
-                  categoryTitle: tagsGroup.groupTitle,
-                  tag: tag.title,
-                  isSelected: isSelected,
-                  isRadio: isRadio,
-                );
-          },
-        );
-      },
+      children: [
+        SelectableTagGroup(
+          tagsGroup: data.first,
+          onTagSelected: (tag, isSelected) => notifier.updateTag(data.first.groupId, tag.title),
+        ),
+        SelectableTagGroup(
+          tagsGroup: data[1],
+          onTagSelected: (tag, isSelected) => notifier.updateTag(data[1].groupId, tag.title),
+        ),
+        SelectableTagGroup(
+          tagsGroup: data.last,
+          onTagSelected: (tag, isSelected) => notifier.updateTag(data.last.groupId, tag.title),
+        ),
+      ],
     );
   }
 }

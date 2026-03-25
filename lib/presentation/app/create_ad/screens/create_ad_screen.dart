@@ -18,6 +18,7 @@ class CreateAdScreen extends ConsumerWidget {
   const CreateAdScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(createAdProvider.notifier);
     return AutoTabsRouter.pageView(
       routes: const [
         RentTypeStepRoute(),
@@ -31,11 +32,10 @@ class CreateAdScreen extends ConsumerWidget {
         DealTermsStepRoute(),
         DescriptionAdStepRoute(),
         ContactsStepRoute(),
-        ResultAdRoute(),
+        AdConfirmationRoute(),
         FinishRoute(),
       ],
       builder: (context, child, pageController) {
-        final notifier = ref.read(createAdProvider.notifier);
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
           bottomNavigationBar: SafeArea(

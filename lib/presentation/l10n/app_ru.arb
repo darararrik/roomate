@@ -235,5 +235,8 @@
   "adTitleHint": "Просторная квартира возле метро",
   "adDescription": "Описание",
   "adDescriptionHint": "Расскажите, в каком состоянии квартира, для кого сдаёте и какие условия заселения.",
-  "minimumCharactersRequired": "Необходимо ввести минимум 50 символов"
+  "minimumCharactersRequired": "Необходимо ввести минимум 50 символов",
+  "phone": "Телефон",
+  "additionalPhone": "Дополнительный телефон",
+  "phonePlaceholder2": "+7 (___) ___-__-__"
 }

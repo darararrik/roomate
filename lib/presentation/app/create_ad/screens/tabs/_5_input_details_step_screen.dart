@@ -18,20 +18,17 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
     final areaController = useTextEditingController();
     final floorController = useTextEditingController();
     final totalFloorsController = useTextEditingController();
+
     final notifier = ref.read(createAdProvider.notifier);
-    final data = ref.watch(createAdProvider.select((s) => s.propertiesApartmentTags));
+    final state = ref.watch(createAdProvider);
+    final data = state.apartmentPropertiesGroups;
 
     return ListView(
       padding: const P(horizontal: S.p16),
       children: [
         SelectableTagGroup(
           tagsGroup: data.first,
-          isRadio: true,
-          onTagSelected: (tag, isSelected) => notifier.updatePropertiesApartmentTags(
-            categoryTitle: data.first.groupTitle,
-            tag: tag.title,
-            isSelected: isSelected,
-          ),
+          onTagSelected: (tag, isSelected) => notifier.updateTag(data.first.groupId, tag.title),
         ),
         TextFieldWithTitle.withSuffix(
           title: context.l10n.apartmentArea,
@@ -43,12 +40,7 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
         ),
         SelectableTagGroup(
           tagsGroup: data[1],
-          isRadio: true,
-          onTagSelected: (tag, isSelected) => notifier.updatePropertiesApartmentTags(
-            categoryTitle: data[1].groupTitle,
-            tag: tag.title,
-            isSelected: isSelected,
-          ),
+          onTagSelected: (tag, isSelected) => notifier.updateTag(data[1].groupId, tag.title),
         ),
         TextFieldWithTitle.number(
           title: context.l10n.floor,

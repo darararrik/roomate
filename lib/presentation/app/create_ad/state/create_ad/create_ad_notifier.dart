@@ -6,211 +6,31 @@ import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/domain/repository/create_ad_repository.dart';
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_state.dart';
 import 'package:roomate/presentation/di/providers.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
 
 part 'create_ad_notifier.g.dart';
 
-// TODO: ГДЕ ТО В БУДУЩЕМ ПЕРЕПИСАТЬ
-// Я заманался переписывать это по кд
-// потому что дизайн все время меняется + не понятно как вообще такое реализовывать + с точки зрения данныхА
 @riverpod
 class CreateAdNotifier extends _$CreateAdNotifier {
+  late final ICreateAdRepository _repository;
+
   @override
   CreateAdState build() {
     _repository = ref.read(createAdRepositoryProvider);
-
     return CreateAdState(
-      rentTypeTags: _repository.getRentTypeTags(),
-      roomTypeTags: _repository.getRoomTypeTags(),
-      propertyTypeTags: _repository.getPropertyTypeTags(),
-      propertiesApartmentTags: _repository.getPropertiesApartmentTags(),
-      featuresFirstTags: _repository.getFeaturesFirstTags(),
-      featuresSecondTags: _repository.getFeaturesSecondTags(),
-      dealTermsTags: _repository.getDealTermsTags(),
-      contactInfoTags: _repository.getContactInfoTags(),
+      rentTypeGroups: _repository.getRentTypeTags(),
+      premisesTypeGroup: _repository.getPremisesTypeTags(),
+      propertyTypeGroup: _repository.getPropertyTypeTags(),
+      apartmentPropertiesGroups: _repository.getPropertiesApartmentTags(),
+      featuresGroups: _repository.getFeatures(),
+      thingsGroups: _repository.getThings(),
+      dealTermsGroups: _repository.getDealTermsTags(),
+      contactInfoGroup: _repository.getContactInfoTags(),
     );
   }
 
-  late final ICreateAdRepository _repository;
-
-  void updateRentTypeTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-  }) {
-    _updateTags(
-      currentTags: state.rentTypeTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: true,
-      onUpdate: (newTags) => state = state.copyWith(rentTypeTags: newTags),
-    );
-  }
-
-  void updateRoomTypeTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-  }) {
-    _updateTags(
-      currentTags: state.roomTypeTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: true,
-      onUpdate: (newTags) => state = state.copyWith(roomTypeTags: newTags),
-    );
-  }
-
-  void updatePropertyTypeTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-  }) {
-    _updateTags(
-      currentTags: state.propertyTypeTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: true,
-      onUpdate: (newTags) => state = state.copyWith(propertyTypeTags: newTags),
-    );
-  }
-
-  void updatePropertiesApartmentTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-  }) {
-    _updateTags(
-      currentTags: state.propertiesApartmentTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: true,
-      onUpdate: (newTags) => state = state.copyWith(propertiesApartmentTags: newTags),
-    );
-  }
-
-  void updateFeaturesFirstTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-    bool isRadio = true,
-  }) {
-    _updateTags(
-      currentTags: state.featuresFirstTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: isRadio,
-      onUpdate: (newTags) => state = state.copyWith(featuresFirstTags: newTags),
-    );
-  }
-
-  void updateFeaturesSecondTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-    bool isRadio = true,
-  }) {
-    _updateTags(
-      currentTags: state.featuresSecondTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: isRadio,
-      onUpdate: (newTags) => state = state.copyWith(featuresSecondTags: newTags),
-    );
-  }
-
-  void updateDealTermsTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-    bool isRadio = true,
-  }) {
-    _updateTags(
-      currentTags: state.dealTermsTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: isRadio,
-      onUpdate: (newTags) => state = state.copyWith(dealTermsTags: newTags),
-    );
-  }
-
-  void updateContactInfoTags({
-    required String categoryTitle,
-    required String tag,
-    required bool isSelected,
-    bool isRadio = true,
-  }) {
-    _updateTags(
-      currentTags: state.contactInfoTags,
-      categoryTitle: categoryTitle,
-      tagTitle: tag,
-      isSelected: isSelected,
-      isRadio: isRadio,
-      onUpdate: (newTags) => state = state.copyWith(contactInfoTags: newTags),
-    );
-  }
-
-  void _updateTags({
-    required List<TagGroupModel> currentTags,
-    required String categoryTitle,
-    required String tagTitle,
-    required bool isSelected,
-    required bool isRadio,
-    required void Function(List<TagGroupModel>) onUpdate,
-  }) {
-    final stepTags = List<TagGroupModel>.from(currentTags);
-    final categoryIndex = stepTags.indexWhere((element) => element.groupTitle == categoryTitle);
-
-    if (categoryIndex == -1) return;
-
-    final category = stepTags[categoryIndex];
-    final List<TagModel> tags = List.from(category.tags);
-    final tagIndex = tags.indexWhere((element) => element.title == tagTitle);
-
-    if (tagIndex == -1) return;
-
-    if (isRadio) {
-      if (isSelected) {
-        for (int i = 0; i < tags.length; i++) {
-          tags[i] = tags[i].copyWith(isSelected: i == tagIndex);
-        }
-      } else {
-        tags[tagIndex] = tags[tagIndex].copyWith(isSelected: false);
-      }
-    } else {
-      tags[tagIndex] = tags[tagIndex].copyWith(isSelected: isSelected);
-    }
-
-    stepTags[categoryIndex] = category.copyWith(tags: tags);
-    onUpdate(stepTags);
-  }
-
-  void updateCurrency(String currencyTitle) {
-    state = state.copyWith(selectedCurrency: Currency.fromTitle(currencyTitle));
-  }
-
-  void updateCost(String cost) {
-    final costValue = double.tryParse(cost);
-    if (costValue == null) return;
-    state = state.copyWith(cost: costValue);
-  }
-
-  void updateDeposit(String deposit) {
-    final depositValue = double.tryParse(deposit);
-    if (depositValue == null) return;
-    state = state.copyWith(deposit: depositValue);
-  }
-
-  bool isStepValueSelected(List<TagGroupModel> tags) {
-    return tags.any((group) => group.tags.any((tag) => tag.isSelected));
-  }
+  // --- Навигация ---
 
   String getStepTitle(int index) {
     return switch (index) {
@@ -228,51 +48,155 @@ class CreateAdNotifier extends _$CreateAdNotifier {
     };
   }
 
-  // Метод для перехода вперед
   void nextStep(TabsRouter tabsRouter) {
     final nextIndex = tabsRouter.activeIndex + 1;
     if (nextIndex < tabsRouter.pageCount) {
       tabsRouter.setActiveIndex(nextIndex);
     } else {
-      // TODO: Реализовать переход куда то
+      ref.nav.replace(const MainFlowRoute());
     }
   }
 
-  // Метод для перехода назад
   void previousStep(TabsRouter tabsRouter) {
     final prevIndex = tabsRouter.activeIndex - 1;
     if (prevIndex >= 0) {
       tabsRouter.setActiveIndex(prevIndex);
-    } else {
-      if (ref.nav.canPop()) {
-        ref.nav.pop();
-      }
+    } else if (ref.nav.canPop()) {
+      ref.nav.pop();
     }
   }
 
+  void updateTag(String groupId, String tagTitle) {
+    final isMulti = _multiSelectGroups.contains(groupId);
+
+    state = state.copyWith(
+      rentTypeGroups: _updateInList(state.rentTypeGroups, groupId, tagTitle, isMulti),
+      premisesTypeGroup: _updateSingle(state.premisesTypeGroup, groupId, tagTitle, isMulti),
+      propertyTypeGroup: _updateSingle(state.propertyTypeGroup, groupId, tagTitle, isMulti),
+      apartmentPropertiesGroups: _updateInList(
+        state.apartmentPropertiesGroups,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
+      featuresGroups: _updateInList(state.featuresGroups, groupId, tagTitle, isMulti),
+      thingsGroups: _updateInList(state.thingsGroups, groupId, tagTitle, isMulti),
+      dealTermsGroups: _updateInList(state.dealTermsGroups, groupId, tagTitle, isMulti),
+      contactInfoGroup: _updateSingle(state.contactInfoGroup, groupId, tagTitle, isMulti),
+    );
+
+    _syncWithFields(groupId, tagTitle, isMulti);
+  }
+
+  void _syncWithFields(String groupId, String title, bool isMulti) {
+    if (isMulti) {
+      final currentList = _getMultiListByGroupId(groupId);
+      final newList = currentList.contains(title)
+          ? currentList.where((t) => t != title).toList()
+          : [...currentList, title];
+      _updateFieldByGroupId(groupId, newList);
+    } else {
+      _updateFieldByGroupId(groupId, title);
+    }
+  }
+
+  void _updateFieldByGroupId(String groupId, dynamic value) {
+    state = switch (groupId) {
+      'goal' => state.copyWith(goal: value as String),
+      'term' => state.copyWith(term: value as String),
+      'who_to_rent' => state.copyWith(whoReadyRent: value as List<String>),
+      'property_type' => state.copyWith(propertyType: value as String),
+      'premises_type' => state.copyWith(premisesType: value as String),
+      'room_count' => state.copyWith(roomCount: value as String),
+      'layout' => state.copyWith(layout: value as String),
+      'renovation' => state.copyWith(renovation: value as String),
+      'amenities' => state.copyWith(amenities: value as List<String>),
+      'bathroom' => state.copyWith(bathroom: value as List<String>),
+      'appliances' => state.copyWith(appliances: value as List<String>),
+      'prepayment' => state.copyWith(prepayment: value as String),
+      'rental_period' => state.copyWith(rentalPeriod: value as String),
+      'rental_conditions' => state.copyWith(rentalConditions: value as List<String>),
+      'contact_method' => state.copyWith(contactMethod: value as String),
+      _ => state,
+    };
+  }
+
+  /// Получение текущего списка для мульти-выбора по ID группы
+  List<String> _getMultiListByGroupId(String groupId) {
+    return switch (groupId) {
+      'who_to_rent' => state.whoReadyRent,
+      'amenities' => state.amenities,
+      'bathroom' => state.bathroom,
+      'appliances' => state.appliances,
+      'rental_conditions' => state.rentalConditions,
+      _ => [],
+    };
+  }
+
+  // --- Вспомогательные методы обновления моделей TagGroupModel ---
+
+  TagGroupModel _updateSingle(TagGroupModel group, String targetId, String title, bool isMulti) {
+    if (group.groupId != targetId) return group;
+
+    return group.copyWith(
+      tags: group.tags.map((t) {
+        if (t.title == title) {
+          return t.copyWith(isSelected: isMulti ? !t.isSelected : true);
+        }
+        return isMulti ? t : t.copyWith(isSelected: false);
+      }).toList(),
+    );
+  }
+
+  List<TagGroupModel> _updateInList(
+    List<TagGroupModel> list,
+    String targetId,
+    String title,
+    bool isMulti,
+  ) {
+    return list.map((g) => _updateSingle(g, targetId, title, isMulti)).toList();
+  }
+
+  // --- Прямые обновления полей (текст, числа) ---
+
+  void updateCurrency(String currencyTitle) {
+    state = state.copyWith(selectedCurrency: Currency.fromTitle(currencyTitle));
+  }
+
+  void updateCost(String cost) {
+    state = state.copyWith(cost: double.tryParse(cost) ?? 0);
+  }
+
+  void updateDeposit(String deposit) {
+    state = state.copyWith(deposit: double.tryParse(deposit) ?? 0);
+  }
+
   void updateApartmentArea(String value) {
-    final area = double.tryParse(value);
-    if (area == null || area <= 0) return;
-    state = state.copyWith(apartmentArea: area);
+    state = state.copyWith(apartmentArea: double.tryParse(value) ?? 0);
   }
 
   void updateFloor(String value) {
-    final floor = int.tryParse(value);
-    if (floor == null || floor <= 0) return;
-    state = state.copyWith(floor: floor);
+    state = state.copyWith(floor: int.tryParse(value) ?? 0);
   }
 
   void updateTotalFloors(String value) {
-    final totalFloors = int.tryParse(value);
-    if (totalFloors == null || totalFloors <= 0) return;
-    state = state.copyWith(totalFloors: totalFloors);
+    state = state.copyWith(totalFloors: int.tryParse(value) ?? 0);
   }
 
-  void selectAdress(String address) {
-    state = state.copyWith(address: address);
-  }
+  void selectAdress(String address) => state = state.copyWith(address: address);
 
-  void setTitle(String value) {}
+  void setTitle(String value) => state = state.copyWith(title: value);
 
-  void setDescription(String value) {}
+  void setDescription(String value) => state = state.copyWith(description: value);
+
+  void updateAdditionalNumber(String value) => state = state.copyWith(additionalNumber: value);
+
+  // Константа для определения типа выбора (Multi vs Radio)
+  static const _multiSelectGroups = {
+    'who_to_rent',
+    'amenities',
+    'bathroom',
+    'appliances',
+    'rental_conditions',
+  };
 }

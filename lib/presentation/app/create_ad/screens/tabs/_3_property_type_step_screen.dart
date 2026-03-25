@@ -14,20 +14,15 @@ class PropertyTypeStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(createAdProvider.select((s) => s.propertyTypeTags));
+    final state = ref.watch(createAdProvider);
+    final notifier = ref.read(createAdProvider.notifier);
+    final tags = state.propertyTypeGroup;
     return Padding(
       padding: const P(horizontal: S.p16),
       child: SelectableTagGroup(
-        tagsGroup: data[0],
-        isRadio: true,
+        tagsGroup: tags,
         onTagSelected: (tag, isSelected) {
-          ref
-              .read(createAdProvider.notifier)
-              .updatePropertyTypeTags(
-                categoryTitle: data[0].groupTitle,
-                tag: tag.title,
-                isSelected: isSelected,
-              );
+          notifier.updateTag(tags.groupId, tag.title);
         },
       ),
     );

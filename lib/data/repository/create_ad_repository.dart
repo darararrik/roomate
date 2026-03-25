@@ -7,22 +7,22 @@ class CreateAdRepository implements ICreateAdRepository {
   List<TagGroupModel> getRentTypeTags() => CreateAdStaticDataSource.rentType;
 
   @override
-  List<TagGroupModel> getRoomTypeTags() => CreateAdStaticDataSource.roomType;
+  TagGroupModel getPremisesTypeTags() => CreateAdStaticDataSource.premisesType;
 
   @override
-  List<TagGroupModel> getPropertyTypeTags() => CreateAdStaticDataSource.propertyType;
+  TagGroupModel getPropertyTypeTags() => CreateAdStaticDataSource.propertyType;
 
   @override
-  List<TagGroupModel> getFeaturesFirstTags() => CreateAdStaticDataSource.featuresFirst;
+  List<TagGroupModel> getFeatures() => CreateAdStaticDataSource.featuresFirst;
 
   @override
-  List<TagGroupModel> getFeaturesSecondTags() => CreateAdStaticDataSource.featuresSecond;
+  List<TagGroupModel> getThings() => CreateAdStaticDataSource.featuresSecond;
 
   @override
   List<TagGroupModel> getDealTermsTags() => CreateAdStaticDataSource.dealTerms;
 
   @override
-  List<TagGroupModel> getContactInfoTags() => CreateAdStaticDataSource.contactInfo;
+  TagGroupModel getContactInfoTags() => CreateAdStaticDataSource.contactInfo;
 
   @override
   List<TagGroupModel> getPropertiesApartmentTags() => CreateAdStaticDataSource.propertiesApartment;

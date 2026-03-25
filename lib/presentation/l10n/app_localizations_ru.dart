@@ -729,4 +729,13 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get minimumCharactersRequired =>
       'Необходимо ввести минимум 50 символов';
+
+  @override
+  String get phone => 'Телефон';
+
+  @override
+  String get additionalPhone => 'Дополнительный телефон';
+
+  @override
+  String get phonePlaceholder2 => '+7 (___) ___-__-__';
 }

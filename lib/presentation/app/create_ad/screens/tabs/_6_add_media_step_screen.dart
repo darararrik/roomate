@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class AddMediaStepScreen extends StatelessWidget {
+class AddMediaStepScreen extends ConsumerWidget {
   const AddMediaStepScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _ = ref.watch(createAdProvider);
+
     return ListView(
       padding: const P(horizontal: S.p16),
       children: [

@@ -16,6 +16,8 @@ class DescriptionAdStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _ = ref.watch(createAdProvider);
+
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
     final notifer = ref.read(createAdProvider.notifier);

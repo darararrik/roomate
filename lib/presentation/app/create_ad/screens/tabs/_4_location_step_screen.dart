@@ -16,6 +16,8 @@ class LocationStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _ = ref.watch(createAdProvider);
+
     final controller = useTextEditingController();
     return ListView(
       padding: const P(horizontal: S.p16),

@@ -10,26 +10,21 @@ import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class RoomTypeStepScreen extends HookConsumerWidget {
+class RoomTypeStepScreen extends ConsumerWidget {
   const RoomTypeStepScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(createAdProvider.select((s) => s.roomTypeTags));
+    final state = ref.watch(createAdProvider);
+    final notifier = ref.read(createAdProvider.notifier);
+    final tags = state.premisesTypeGroup;
     return Padding(
       padding: const P(horizontal: S.p16),
       child: SelectableTagGroup(
-        tagsGroup: data[0],
+        tagsGroup: tags,
         description: context.l10n.whatTypeOfRoom,
-        isRadio: true,
         onTagSelected: (tag, isSelected) {
-          ref
-              .read(createAdProvider.notifier)
-              .updateRoomTypeTags(
-                categoryTitle: data[0].groupTitle,
-                tag: tag.title,
-                isSelected: isSelected,
-              );
+          notifier.updateTag(tags.groupId, tag.title);
         },
       ),
     );

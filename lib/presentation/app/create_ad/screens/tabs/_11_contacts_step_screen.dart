@@ -4,10 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
-import 'package:roomate/presentation/constants/spacing.dart';
-import 'package:roomate/presentation/utils/helpers/p.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
+import 'package:roomate/presentation/presentation.dart';
 
 @RoutePage()
 class ContactsStepScreen extends HookConsumerWidget {
@@ -15,33 +12,35 @@ class ContactsStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(createAdProvider);
+
     final titleController = useTextEditingController();
     final descriptionController = useTextEditingController();
-    final data = ref.watch(createAdProvider.select((s) => s.contactInfoTags));
+    final contactTags = state.contactInfoGroup;
+    final showAdditionNumber = contactTags.tags.firstOrNull?.isSelected ?? false;
 
     return ListView(
       padding: const P(horizontal: S.p16),
       children: [
         TextFieldWithTitle(
-          title: "Телефон",
+          title: context.l10n.phone,
           //TODO: реализовать
           hintText: "Номер из акка!!",
           controller: titleController,
         ),
-        TextFieldWithTitle(
-          title: "Описание",
-          controller: descriptionController,
-          hintText: '+7 (___) ___-__-__',
+        Visibility(
+          visible: showAdditionNumber,
+          child: TextFieldWithTitle(
+            title: context.l10n.additionalPhone,
+            controller: descriptionController,
+            hintText: context.l10n.phonePlaceholder2,
+            onChanged: (value) => ref.read(createAdProvider.notifier).updateAdditionalNumber(value),
+          ),
         ),
         SelectableTagGroup(
-          tagsGroup: data.first,
+          tagsGroup: contactTags,
           onTagSelected: (tag, isSelected) {
-            ref.read(createAdProvider.notifier).updateContactInfoTags(
-                  categoryTitle: data.first.groupTitle,
-                  tag: tag.title,
-                  isSelected: isSelected,
-                  isRadio: true,
-                );
+            ref.read(createAdProvider.notifier).updateTag(contactTags.groupId, tag.title);
           },
         ),
       ],

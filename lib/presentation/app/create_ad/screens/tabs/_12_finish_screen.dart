@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
 
 @RoutePage()
-class FinishScreen extends StatelessWidget {
+class FinishScreen extends ConsumerWidget {
   const FinishScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _ = ref.watch(createAdProvider);
+
     return Padding(
       padding: const P(horizontal: S.p16, top: S.p10),
       child: Column(

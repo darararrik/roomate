@@ -2,13 +2,13 @@ import 'package:roomate/domain/models/tag_model.dart';
 
 class CreateAdStaticDataSource {
   static List<TagGroupModel> get rentType => _rentType;
-  static List<TagGroupModel> get roomType => _roomType;
-  static List<TagGroupModel> get propertyType => _propertyType;
+  static TagGroupModel get premisesType => _premisesType;
+  static TagGroupModel get propertyType => _propertyType;
   static List<TagGroupModel> get propertiesApartment => _propertiesApartment;
   static List<TagGroupModel> get featuresFirst => _featuresFirst;
   static List<TagGroupModel> get featuresSecond => _featuresSecond;
   static List<TagGroupModel> get dealTerms => _dealTerms;
-  static List<TagGroupModel> get contactInfo => _contactInfo;
+  static TagGroupModel get contactInfo => _contactInfo;
 
   static const _rentType = [
     TagGroupModel(
@@ -39,32 +39,28 @@ class CreateAdStaticDataSource {
     ),
   ];
 
-  static const _roomType = [
-    TagGroupModel(
-      groupId: 'room_type',
-      groupTitle: 'Долгосрочная аренда',
-      tags: [
-        TagModel(id: 20, title: 'Жилое'),
-        TagModel(id: 21, title: 'Коммерческое'),
-      ],
-    ),
-  ];
+  static const _premisesType = TagGroupModel(
+    groupId: 'premises_type',
+    groupTitle: 'Тип помещения',
+    tags: [
+      TagModel(id: 20, title: 'Жилое'),
+      TagModel(id: 21, title: 'Коммерческое'),
+    ],
+  );
 
-  static const _propertyType = [
-    TagGroupModel(
-      groupId: 'property_type',
-      groupTitle: 'Вид недвижимости',
-      tags: [
-        TagModel(id: 30, title: 'Квартира'),
-        TagModel(id: 31, title: 'Апартаменты'),
-        TagModel(id: 32, title: 'Комната'),
-        TagModel(id: 33, title: 'Койко-место'),
-        TagModel(id: 34, title: 'Дом'),
-        TagModel(id: 35, title: 'Коттедж'),
-        TagModel(id: 36, title: 'Таунхаус'),
-      ],
-    ),
-  ];
+  static const _propertyType = TagGroupModel(
+    groupId: 'property_type',
+    groupTitle: 'Вид недвижимости',
+    tags: [
+      TagModel(id: 30, title: 'Квартира'),
+      TagModel(id: 31, title: 'Апартаменты'),
+      TagModel(id: 32, title: 'Комната'),
+      TagModel(id: 33, title: 'Койко-место'),
+      TagModel(id: 34, title: 'Дом'),
+      TagModel(id: 35, title: 'Коттедж'),
+      TagModel(id: 36, title: 'Таунхаус'),
+    ],
+  );
 
   static const _propertiesApartment = [
     TagGroupModel(
@@ -214,16 +210,13 @@ class CreateAdStaticDataSource {
     ),
   ];
 
-  static const _contactInfo = [
-    TagGroupModel(
-      groupId: 'contact_method',
-      groupTitle: 'Способ связи',
-      tags: [
-        TagModel(id: 180, title: 'Телефон'),
-        TagModel(id: 181, title: 'Соцсети'),
-        TagModel(id: 182, title: 'Электронная почта'),
-        TagModel(id: 183, title: 'Все'),
-      ],
-    ),
-  ];
+  static const _contactInfo = TagGroupModel(
+    groupId: 'contact_method',
+    groupTitle: 'Способ связи',
+    tags: [
+      TagModel(id: 180, title: 'Оба способа'),
+      TagModel(id: 181, title: 'Звонки'),
+      TagModel(id: 182, title: 'Сообщения'),
+    ],
+  );
 }

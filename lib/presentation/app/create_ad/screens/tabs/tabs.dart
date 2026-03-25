@@ -10,4 +10,4 @@ export '_6_add_media_step_screen.dart';
 export '_7_features_first_step_screen.dart';
 export '_8_features_second_step_screen.dart';
 export '_9_deal_terms_step_screen.dart';
-export 'result_ad_screen.dart';
+export 'ad_confirmation_screen.dart';

@@ -3,12 +3,9 @@ abstract class AppIcons {
   static const String edit2 = 'lib/presentation/assets/icons/Edit2.svg';
   static const String edit3 = 'lib/presentation/assets/icons/Edit3.svg';
   static const String animal = 'lib/presentation/assets/icons/animal.svg';
-  static const String arrowDown =
-      'lib/presentation/assets/icons/arrow_down.svg';
-  static const String arrowLeft =
-      'lib/presentation/assets/icons/arrow_left.svg';
-  static const String arrowRight =
-      'lib/presentation/assets/icons/arrow_right.svg';
+  static const String arrowDown = 'lib/presentation/assets/icons/arrow_down.svg';
+  static const String arrowLeft = 'lib/presentation/assets/icons/arrow_left.svg';
+  static const String arrowRight = 'lib/presentation/assets/icons/arrow_right.svg';
   static const String build = 'lib/presentation/assets/icons/build.svg';
   static const String cake = 'lib/presentation/assets/icons/cake.svg';
   static const String chats = 'lib/presentation/assets/icons/chats.svg';
@@ -23,11 +20,9 @@ abstract class AppIcons {
   static const String internet = 'lib/presentation/assets/icons/internet.svg';
   static const String male = 'lib/presentation/assets/icons/male.svg';
   static const String map = 'lib/presentation/assets/icons/map.svg';
-  static const String notification =
-      'lib/presentation/assets/icons/notification.svg';
+  static const String notification = 'lib/presentation/assets/icons/notification.svg';
   static const String people = 'lib/presentation/assets/icons/people.svg';
-  static const String personSettings =
-      'lib/presentation/assets/icons/person_settings.svg';
+  static const String personSettings = 'lib/presentation/assets/icons/person_settings.svg';
   static const String profile = 'lib/presentation/assets/icons/profile.svg';
   static const String sber = 'lib/presentation/assets/icons/sber.svg';
   static const String search = 'lib/presentation/assets/icons/search.svg';
@@ -49,16 +44,18 @@ abstract class AppIcons {
   static const String building = 'lib/presentation/assets/icons/building.svg';
   static const String city = 'lib/presentation/assets/icons/city.svg';
   static const String addAction = 'lib/presentation/assets/icons/addAction.svg';
-  static const String pushAction =
-      'lib/presentation/assets/icons/pushAction.svg';
+  static const String pushAction = 'lib/presentation/assets/icons/pushAction.svg';
   static const String ruFlag = 'lib/presentation/assets/pics/ru_flag.png';
   static const String video = 'lib/presentation/assets/icons/video.svg';
-  static const String verification1 =
-      'lib/presentation/assets/icons/verification1.svg';
-  static const String verificationWait =
-      'lib/presentation/assets/icons/verificationWait.svg';
+  static const String verification1 = 'lib/presentation/assets/icons/verification1.svg';
+  static const String verificationWait = 'lib/presentation/assets/icons/verificationWait.svg';
   static const String verificationComplete =
       'lib/presentation/assets/icons/verificationComplete.svg';
   static const String verificationUnsuccess =
       'lib/presentation/assets/icons/verificationUnsuccess.svg';
+  static const String coins = 'lib/presentation/assets/icons/la_coins.svg';
+  static const String building2 = 'lib/presentation/assets/icons/mingcute_building-2-line.svg';
+  static const String phone = 'lib/presentation/assets/icons/mingcute_phone-line.svg';
+  static const String clock = 'lib/presentation/assets/icons/tabler_clock.svg';
+  static const String location = 'lib/presentation/assets/icons/tdesign_location.svg';
 }
