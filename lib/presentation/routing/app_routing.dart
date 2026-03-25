@@ -37,6 +37,7 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(page: ProfileDataEditRoute.page),
     AutoRoute(
+      initial: true,
       page: AuthWrapper.page,
       children: [
         AutoRoute(page: WelcomeRoute.page, initial: true),

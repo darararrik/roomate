@@ -14,7 +14,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateAdState {
 
- List<TagGroupModel> get rentTypeGroups; TagGroupModel get premisesTypeGroup; TagGroupModel get propertyTypeGroup; List<TagGroupModel> get apartmentPropertiesGroups; List<TagGroupModel> get featuresGroups; List<TagGroupModel> get thingsGroups; List<TagGroupModel> get dealTermsGroups; TagGroupModel get contactInfoGroup;// Выбранные значения (Radio - String, Multi - List<String>)
+/// Данные для UI
+ List<TagGroupModel> get rentTypeGroups; TagGroupModel get premisesTypeGroup; TagGroupModel get propertyTypeGroup; List<TagGroupModel> get apartmentPropertiesGroups; List<TagGroupModel> get featuresGroups; List<TagGroupModel> get thingsGroups; List<TagGroupModel> get dealTermsGroups; TagGroupModel get contactInfoGroup;// Выбранные значения
  String get goal;// Цель (Съем/Обмен)
  String get term;// Срок (Долгосрочная/Посуточно)
  List<String> get whoReadyRent;// Кому сдавать (Multi)
@@ -34,7 +35,6 @@ mixin _$CreateAdState {
  String get rentalPeriod;// Срок аренды (Radio)
  List<String> get rentalConditions;// Условия (дети/животные) (Multi)
  String get contactMethod;// Способ связи (Radio)
-// Остальные поля
  double get cost; double get deposit; double get apartmentArea; int get floor; int get totalFloors; String get address; int get apartmentNumber; String get title; String get description; String get additionalNumber;
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
@@ -288,7 +288,9 @@ class _CreateAdState implements CreateAdState {
   const _CreateAdState({required final  List<TagGroupModel> rentTypeGroups, required this.premisesTypeGroup, required this.propertyTypeGroup, required final  List<TagGroupModel> apartmentPropertiesGroups, required final  List<TagGroupModel> featuresGroups, required final  List<TagGroupModel> thingsGroups, required final  List<TagGroupModel> dealTermsGroups, required this.contactInfoGroup, this.goal = "", this.term = "", final  List<String> whoReadyRent = const [], this.propertyType = "", this.premisesType = "", this.roomCount = "", this.layout = "", this.renovation = "", this.elevators = "", this.balconies = "", this.furniture = "", final  List<String> amenities = const [], final  List<String> bathroom = const [], final  List<String> appliances = const [], this.stove = "", this.selectedCurrency = Currency.rub, this.prepayment = "", this.rentalPeriod = "", final  List<String> rentalConditions = const [], this.contactMethod = "", this.cost = 0, this.deposit = 0, this.apartmentArea = 0, this.floor = 0, this.totalFloors = 0, this.address = "", this.apartmentNumber = 0, this.title = "", this.description = "", this.additionalNumber = ""}): _rentTypeGroups = rentTypeGroups,_apartmentPropertiesGroups = apartmentPropertiesGroups,_featuresGroups = featuresGroups,_thingsGroups = thingsGroups,_dealTermsGroups = dealTermsGroups,_whoReadyRent = whoReadyRent,_amenities = amenities,_bathroom = bathroom,_appliances = appliances,_rentalConditions = rentalConditions;
   
 
+/// Данные для UI
  final  List<TagGroupModel> _rentTypeGroups;
+/// Данные для UI
 @override List<TagGroupModel> get rentTypeGroups {
   if (_rentTypeGroups is EqualUnmodifiableListView) return _rentTypeGroups;
   // ignore: implicit_dynamic_type
@@ -326,7 +328,7 @@ class _CreateAdState implements CreateAdState {
 }
 
 @override final  TagGroupModel contactInfoGroup;
-// Выбранные значения (Radio - String, Multi - List<String>)
+// Выбранные значения
 @override@JsonKey() final  String goal;
 // Цель (Съем/Обмен)
 @override@JsonKey() final  String term;
@@ -401,7 +403,6 @@ class _CreateAdState implements CreateAdState {
 // Условия (дети/животные) (Multi)
 @override@JsonKey() final  String contactMethod;
 // Способ связи (Radio)
-// Остальные поля
 @override@JsonKey() final  double cost;
 @override@JsonKey() final  double deposit;
 @override@JsonKey() final  double apartmentArea;

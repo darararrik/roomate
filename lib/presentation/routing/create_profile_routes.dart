@@ -7,7 +7,6 @@ abstract class CreateProfile {
     children: [
       AutoRoute(
         page: CreateProfileRoute.page,
-        initial: true,
         children: [
           AutoRoute(page: ProfileSetupRoute.page),
           AutoRoute(page: PreferencesRoute.page),

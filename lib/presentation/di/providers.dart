@@ -9,19 +9,17 @@ import 'package:roomate/domain/repository/profile_repository.dart';
 
 part 'providers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 ProfileRemoteDataSource profileRemoteDataSource(Ref ref) {
   return ProfileRemoteDataSource();
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 IProfileRepository profileRepository(Ref ref) {
-  return ProfileRepository(
-    remoteDataSource: ref.watch(profileRemoteDataSourceProvider),
-  );
+  return ProfileRepository(remoteDataSource: ref.watch(profileRemoteDataSourceProvider));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 AuthRepository authRepository(Ref ref) {
   // TODO: implement and return actual AuthRepository
   throw UnimplementedError('AuthRepository is not implemented yet');

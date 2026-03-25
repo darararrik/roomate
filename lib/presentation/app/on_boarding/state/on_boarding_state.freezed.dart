@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OnBoardingState {
 
- int get currentIndex; OnBoardingStatusEnum get status; List<String> get answers; List<QuizStepModel> get steps;
+ int get currentIndex; List<String> get answers; List<QuizStepModel> get steps;
 /// Create a copy of OnBoardingState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $OnBoardingStateCopyWith<OnBoardingState> get copyWith => _$OnBoardingStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnBoardingState&&(identical(other.currentIndex, currentIndex) || other.currentIndex == currentIndex)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.answers, answers)&&const DeepCollectionEquality().equals(other.steps, steps));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnBoardingState&&(identical(other.currentIndex, currentIndex) || other.currentIndex == currentIndex)&&const DeepCollectionEquality().equals(other.answers, answers)&&const DeepCollectionEquality().equals(other.steps, steps));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,currentIndex,status,const DeepCollectionEquality().hash(answers),const DeepCollectionEquality().hash(steps));
+int get hashCode => Object.hash(runtimeType,currentIndex,const DeepCollectionEquality().hash(answers),const DeepCollectionEquality().hash(steps));
 
 @override
 String toString() {
-  return 'OnBoardingState(currentIndex: $currentIndex, status: $status, answers: $answers, steps: $steps)';
+  return 'OnBoardingState(currentIndex: $currentIndex, answers: $answers, steps: $steps)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $OnBoardingStateCopyWith<$Res>  {
   factory $OnBoardingStateCopyWith(OnBoardingState value, $Res Function(OnBoardingState) _then) = _$OnBoardingStateCopyWithImpl;
 @useResult
 $Res call({
- int currentIndex, OnBoardingStatusEnum status, List<String> answers, List<QuizStepModel> steps
+ int currentIndex, List<String> answers, List<QuizStepModel> steps
 });
 
 
@@ -62,11 +62,10 @@ class _$OnBoardingStateCopyWithImpl<$Res>
 
 /// Create a copy of OnBoardingState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentIndex = null,Object? status = null,Object? answers = null,Object? steps = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? currentIndex = null,Object? answers = null,Object? steps = null,}) {
   return _then(_self.copyWith(
 currentIndex: null == currentIndex ? _self.currentIndex : currentIndex // ignore: cast_nullable_to_non_nullable
-as int,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as OnBoardingStatusEnum,answers: null == answers ? _self.answers : answers // ignore: cast_nullable_to_non_nullable
+as int,answers: null == answers ? _self.answers : answers // ignore: cast_nullable_to_non_nullable
 as List<String>,steps: null == steps ? _self.steps : steps // ignore: cast_nullable_to_non_nullable
 as List<QuizStepModel>,
   ));
@@ -150,10 +149,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int currentIndex,  OnBoardingStatusEnum status,  List<String> answers,  List<QuizStepModel> steps)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int currentIndex,  List<String> answers,  List<QuizStepModel> steps)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OnBoardingState() when $default != null:
-return $default(_that.currentIndex,_that.status,_that.answers,_that.steps);case _:
+return $default(_that.currentIndex,_that.answers,_that.steps);case _:
   return orElse();
 
 }
@@ -171,10 +170,10 @@ return $default(_that.currentIndex,_that.status,_that.answers,_that.steps);case 
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int currentIndex,  OnBoardingStatusEnum status,  List<String> answers,  List<QuizStepModel> steps)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int currentIndex,  List<String> answers,  List<QuizStepModel> steps)  $default,) {final _that = this;
 switch (_that) {
 case _OnBoardingState():
-return $default(_that.currentIndex,_that.status,_that.answers,_that.steps);}
+return $default(_that.currentIndex,_that.answers,_that.steps);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -188,10 +187,10 @@ return $default(_that.currentIndex,_that.status,_that.answers,_that.steps);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int currentIndex,  OnBoardingStatusEnum status,  List<String> answers,  List<QuizStepModel> steps)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int currentIndex,  List<String> answers,  List<QuizStepModel> steps)?  $default,) {final _that = this;
 switch (_that) {
 case _OnBoardingState() when $default != null:
-return $default(_that.currentIndex,_that.status,_that.answers,_that.steps);case _:
+return $default(_that.currentIndex,_that.answers,_that.steps);case _:
   return null;
 
 }
@@ -203,11 +202,10 @@ return $default(_that.currentIndex,_that.status,_that.answers,_that.steps);case 
 
 
 class _OnBoardingState extends OnBoardingState {
-  const _OnBoardingState({this.currentIndex = 0, this.status = OnBoardingStatusEnum.initial, final  List<String> answers = const [], final  List<QuizStepModel> steps = const []}): _answers = answers,_steps = steps,super._();
+  const _OnBoardingState({this.currentIndex = 0, final  List<String> answers = const [], required final  List<QuizStepModel> steps}): _answers = answers,_steps = steps,super._();
   
 
 @override@JsonKey() final  int currentIndex;
-@override@JsonKey() final  OnBoardingStatusEnum status;
  final  List<String> _answers;
 @override@JsonKey() List<String> get answers {
   if (_answers is EqualUnmodifiableListView) return _answers;
@@ -216,7 +214,7 @@ class _OnBoardingState extends OnBoardingState {
 }
 
  final  List<QuizStepModel> _steps;
-@override@JsonKey() List<QuizStepModel> get steps {
+@override List<QuizStepModel> get steps {
   if (_steps is EqualUnmodifiableListView) return _steps;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_steps);
@@ -233,16 +231,16 @@ _$OnBoardingStateCopyWith<_OnBoardingState> get copyWith => __$OnBoardingStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OnBoardingState&&(identical(other.currentIndex, currentIndex) || other.currentIndex == currentIndex)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._answers, _answers)&&const DeepCollectionEquality().equals(other._steps, _steps));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OnBoardingState&&(identical(other.currentIndex, currentIndex) || other.currentIndex == currentIndex)&&const DeepCollectionEquality().equals(other._answers, _answers)&&const DeepCollectionEquality().equals(other._steps, _steps));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,currentIndex,status,const DeepCollectionEquality().hash(_answers),const DeepCollectionEquality().hash(_steps));
+int get hashCode => Object.hash(runtimeType,currentIndex,const DeepCollectionEquality().hash(_answers),const DeepCollectionEquality().hash(_steps));
 
 @override
 String toString() {
-  return 'OnBoardingState(currentIndex: $currentIndex, status: $status, answers: $answers, steps: $steps)';
+  return 'OnBoardingState(currentIndex: $currentIndex, answers: $answers, steps: $steps)';
 }
 
 
@@ -253,7 +251,7 @@ abstract mixin class _$OnBoardingStateCopyWith<$Res> implements $OnBoardingState
   factory _$OnBoardingStateCopyWith(_OnBoardingState value, $Res Function(_OnBoardingState) _then) = __$OnBoardingStateCopyWithImpl;
 @override @useResult
 $Res call({
- int currentIndex, OnBoardingStatusEnum status, List<String> answers, List<QuizStepModel> steps
+ int currentIndex, List<String> answers, List<QuizStepModel> steps
 });
 
 
@@ -270,11 +268,10 @@ class __$OnBoardingStateCopyWithImpl<$Res>
 
 /// Create a copy of OnBoardingState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentIndex = null,Object? status = null,Object? answers = null,Object? steps = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? currentIndex = null,Object? answers = null,Object? steps = null,}) {
   return _then(_OnBoardingState(
 currentIndex: null == currentIndex ? _self.currentIndex : currentIndex // ignore: cast_nullable_to_non_nullable
-as int,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as OnBoardingStatusEnum,answers: null == answers ? _self._answers : answers // ignore: cast_nullable_to_non_nullable
+as int,answers: null == answers ? _self._answers : answers // ignore: cast_nullable_to_non_nullable
 as List<String>,steps: null == steps ? _self._steps : steps // ignore: cast_nullable_to_non_nullable
 as List<QuizStepModel>,
   ));

@@ -50,6 +50,16 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
+  Future<Either<RemoteException, UserModel>> fetchProfile() async {
+    try {
+      final result = await _remoteDataSource.fetchProfile();
+      return Right(result);
+    } catch (e) {
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
+    }
+  }
+
+  @override
   Future<Either<RemoteException, void>> deleteProfile() {
     // TODO: implement deleteProfile
     throw UnimplementedError();

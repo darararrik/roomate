@@ -26,7 +26,7 @@ final class ProfileRemoteDataSourceProvider
         argument: null,
         retry: null,
         name: r'profileRemoteDataSourceProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -55,7 +55,7 @@ final class ProfileRemoteDataSourceProvider
 }
 
 String _$profileRemoteDataSourceHash() =>
-    r'5fd12ecca01ead418aa8975227038fa9638189e6';
+    r'8d3ab2b512d64014a20509cb5458ee4110385336';
 
 @ProviderFor(profileRepository)
 final profileRepositoryProvider = ProfileRepositoryProvider._();
@@ -74,7 +74,7 @@ final class ProfileRepositoryProvider
         argument: null,
         retry: null,
         name: r'profileRepositoryProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -102,7 +102,7 @@ final class ProfileRepositoryProvider
   }
 }
 
-String _$profileRepositoryHash() => r'd8f083dfb33371d68eb823a16eae41ee88aea4f2';
+String _$profileRepositoryHash() => r'e718f47361b2aab368b907185549356049bf0c4a';
 
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
@@ -116,7 +116,7 @@ final class AuthRepositoryProvider
         argument: null,
         retry: null,
         name: r'authRepositoryProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -143,7 +143,7 @@ final class AuthRepositoryProvider
   }
 }
 
-String _$authRepositoryHash() => r'c230b64fad70ad680e46fc7e0eafdadc55a33d2d';
+String _$authRepositoryHash() => r'6300b397a3e060411d2834272246e3b7820c14d2';
 
 @ProviderFor(createAdRepository)
 final createAdRepositoryProvider = CreateAdRepositoryProvider._();

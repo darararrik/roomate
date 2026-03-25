@@ -12,6 +12,7 @@ abstract interface class IProfileRepository {
     int age,
     List<TagModel> tags,
   );
+  Future<Either<RemoteException, UserModel>> fetchProfile();
   Future<Either<RemoteException, List<TagGroupModel>>> fetchTagsAboutSelf();
   Future<Either<RemoteException, void>> deleteProfile();
   Future<Either<RemoteException, void>> doVerification();

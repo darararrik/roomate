@@ -10,7 +10,7 @@ import 'package:roomate/presentation/app/auth/state/sms_notifier/sms_notifier_pr
 import 'package:roomate/presentation/app/auth/widgets/code_box_input.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/buttons/bottom_button.dart';
+import 'package:roomate/presentation/widgets/buttons/primary_button.dart';
 
 @RoutePage()
 class EnterCodeScreen extends HookConsumerWidget {
@@ -25,8 +25,7 @@ class EnterCodeScreen extends HookConsumerWidget {
     final pinController = useMemoized(() => PinInputController());
     useEffect(() {
       if (authState.isError) {
-        pinController
-            .triggerError(); // Это активирует флаг isError в ячейках и тряску
+        pinController.triggerError(); // Это активирует флаг isError в ячейках и тряску
       } else {
         pinController.clearError();
       }
@@ -36,19 +35,22 @@ class EnterCodeScreen extends HookConsumerWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: BottomNextButton(
-          onPressed: disableIf(
-            authState.isPinComplete,
-            () => authNotifier.openOnBoardingScreen(),
+        floatingActionButton: SafeArea(
+          child: Padding(
+            padding: const P(horizontal: S.p16, vertical: S.p8),
+            child: PrimaryButton(
+              onPressed: disableIf(
+                authState.isPinComplete,
+                () => authNotifier.openOnBoardingScreen(),
+              ),
+              text: context.l10n.next,
+            ),
           ),
         ),
         body: CustomScrollView(
           physics: const ClampingScrollPhysics(),
           slivers: [
-            SliverAppBar(
-              title: Text(context.l10n.confirmation),
-              centerTitle: false,
-            ),
+            SliverAppBar(title: Text(context.l10n.confirmation), centerTitle: false),
             SliverFillRemaining(
               hasScrollBody: false,
               child: Padding(
@@ -61,10 +63,7 @@ class EnterCodeScreen extends HookConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            context.l10n.enterSMSCode,
-                            style: context.typography.headline0,
-                          ),
+                          Text(context.l10n.enterSMSCode, style: context.typography.headline0),
                           const SizedBox(height: S.p8),
                           Text(
                             context.l10n.descriptionSMSCode2,
@@ -112,9 +111,7 @@ class EnterCodeScreen extends HookConsumerWidget {
                             ),
                             const SizedBox(height: S.p12),
                             GestureDetector(
-                              onTap: smsState.canResend
-                                  ? smsNotifier.resetTimer
-                                  : null,
+                              onTap: smsState.canResend ? smsNotifier.resetTimer : null,
                               child: Text(
                                 smsState.resendText(context.l10n),
                                 style: context.typography.activesLabel.copyWith(

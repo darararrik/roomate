@@ -16,6 +16,7 @@ sealed class UserModel with _$UserModel {
     @Default('') String city,
     @Default(Constants.avatarNull) String avatarUrl,
     @Default(GenderEnum.male) GenderEnum gender,
+    @Default('') String phone,
     @Default(0) int age,
     @Default(false) bool isVerified,
     @Default([]) List<TagModel> tags,

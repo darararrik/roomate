@@ -1,50 +1,25 @@
 import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/domain/models/quiz_step_model.dart';
 import 'package:roomate/presentation/app/on_boarding/state/on_boarding_notifier.dart';
+import 'package:roomate/presentation/app/on_boarding/state/on_boarding_state.dart';
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/l10n/app_localizations.dart';
+import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
-class OnBoardingScreen extends HookConsumerWidget {
+class OnBoardingScreen extends ConsumerWidget {
   const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
     final state = ref.watch(onBoardingProvider);
     final notifier = ref.read(onBoardingProvider.notifier);
 
-    useMemoized(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        notifier.initSteps([
-          QuizStepModel(
-            question: l10n.quizQ1Title,
-            subQuestion: l10n.quizQ1Subtitle,
-            options: [l10n.quizQ1Opt1, l10n.quizQ1Opt2],
-          ),
-          QuizStepModel(
-            question: l10n.quizQ2Title,
-            subQuestion: l10n.quizQ2Subtitle,
-            options: [l10n.quizQ2Opt1],
-            cancel: l10n.quizQ2Opt2,
-          ),
-        ]);
-      });
-    });
-
-    final currentStep = state.currentStep;
-    if (currentStep == null) return const SizedBox.shrink();
-
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
+      onPopInvokedWithResult: (didPop, _) {
         if (didPop) return;
         if (!state.isFirstStep) {
           notifier.stepBack();
@@ -57,21 +32,14 @@ class OnBoardingScreen extends HookConsumerWidget {
           child: SafeArea(
             child: Column(
               children: [
-                _QuizAppBar(
-                  showBackButton: !state.isFirstStep,
-                  onBack: notifier.stepBack,
-                  onClose: notifier.skipQuiz,
-                ),
+                _QuizAppBar(showBackButton: !state.isFirstStep, onBack: notifier.stepBack),
                 Expanded(
                   child: Padding(
-                    padding: const P(bottom: S.p325),
+                    padding: const EdgeInsets.only(bottom: S.p64),
                     child: Center(
                       child: _QuizStepContent(
-                        currentIndex: state.currentIndex,
-                        currentStep: currentStep,
-                        onOptionSelected: (answer) =>
-                            notifier.selectOption(answer: answer),
-                        onCancel: notifier.skipQuiz,
+                        state: state,
+                        onOptionSelected: (index) => notifier.handleSelection(optionIndex: index),
                       ),
                     ),
                   ),
@@ -86,34 +54,34 @@ class OnBoardingScreen extends HookConsumerWidget {
 }
 
 class _QuizAppBar extends StatelessWidget {
-  const _QuizAppBar({
-    required this.showBackButton,
-    required this.onBack,
-    required this.onClose,
-  });
-
+  const _QuizAppBar({required this.showBackButton, required this.onBack});
   final bool showBackButton;
   final VoidCallback onBack;
-  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      replacement: const SizedBox(height: S.p56),
-      visible: showBackButton,
-      child: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: BackButton(
-          color: context.colors.graysWhite,
-          onPressed: onBack,
-        ),
-        actionsPadding: const P(right: S.p4),
-        actions: [
-          //TODO: сменить виджет
-          IconButton(
-            onPressed: onClose,
-            icon: const AppIcon(AppIcons.xBig, width: S.p32, height: S.p32),
+    return Container(
+      height: S.p56,
+      padding: const P(horizontal: S.p4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (showBackButton)
+            BackButton(color: context.colors.graysWhite, onPressed: onBack)
+          else
+            const SizedBox(width: S.p48),
+          Consumer(
+            builder: (context, ref, child) {
+              return IconButton(
+                onPressed: () => ref.read(onBoardingProvider.notifier).skip(),
+                icon: AppIcon(
+                  AppIcons.xBig,
+                  width: S.p32,
+                  height: S.p32,
+                  color: context.colors.graysWhite,
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -122,104 +90,62 @@ class _QuizAppBar extends StatelessWidget {
 }
 
 class _QuizStepContent extends StatelessWidget {
-  const _QuizStepContent({
-    required this.currentIndex,
-    required this.currentStep,
-    required this.onOptionSelected,
-    required this.onCancel,
-  });
-
-  final int currentIndex;
-  final QuizStepModel currentStep;
-  final Function(String) onOptionSelected;
-  final VoidCallback onCancel;
+  const _QuizStepContent({required this.state, required this.onOptionSelected});
+  final OnBoardingState state;
+  final Function(int) onOptionSelected;
 
   @override
   Widget build(BuildContext context) {
+    final step = state.currentStep;
+
     return Padding(
-      padding: const P(horizontal: S.p12, vertical: S.p24),
+      padding: const P(horizontal: S.p12),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.colors.graysWhite,
           borderRadius: BorderRadius.circular(S.p28),
         ),
-        child: Padding(
-          padding: const P(horizontal: S.p12, bottom: S.p12, top: S.p24),
-          child: AnimatedSize(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOutCubic,
-            alignment: Alignment.topCenter,
+        child: AnimatedSize(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+          child: Padding(
+            padding: const P(horizontal: S.p16, bottom: S.p16, top: S.p24),
             child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 400),
-              switchInCurve: Curves.easeInOutCubic,
-              switchOutCurve: Curves.easeOutCubic,
+              duration: const Duration(milliseconds: 300),
               layoutBuilder: (currentChild, previousChildren) {
                 return Stack(
                   alignment: Alignment.topCenter,
                   children: [...previousChildren, ?currentChild],
                 );
               },
-              transitionBuilder: (child, animation) {
-                return FadeTransition(
-                  opacity: CurvedAnimation(
-                    parent: animation,
-                    curve: const Interval(0.2, 1.0, curve: Curves.easeIn),
-                  ),
-                  child: ScaleTransition(
-                    scale: Tween<double>(begin: 0.95, end: 1.0).animate(
-                      CurvedAnimation(parent: animation, curve: Curves.easeOut),
-                    ),
-                    child: SlideTransition(
-                      position:
-                          Tween<Offset>(
-                            begin: const Offset(0.0, 0.05),
-                            end: Offset.zero,
-                          ).animate(
-                            CurvedAnimation(
-                              parent: animation,
-                              curve: Curves.easeOutCubic,
-                            ),
-                          ),
-                      child: child,
-                    ),
-                  ),
-                );
-              },
               child: Column(
-                key: ValueKey<int>(currentIndex),
+                key: ValueKey<int>(state.currentIndex),
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: const P(vertical: S.p12),
-                    child: Column(
-                      children: [
-                        Text(
-                          currentStep.question,
-                          style: context.typography.headline0,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: S.p16),
-                        Text(
-                          currentStep.subQuestion,
-                          style: context.typography.headline2.copyWith(
-                            color: context.colors.graysText700,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                  Text(
+                    step.question,
+                    style: context.typography.headline0,
+                    textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: S.p16),
-                  ...currentStep.options.map((optionText) {
+                  const SizedBox(height: S.p12),
+                  Text(
+                    step.subQuestion,
+                    style: context.typography.headline2.copyWith(
+                      color: context.colors.graysText700,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: S.p24),
+                  ...List.generate(step.options.length, (index) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: S.p12),
                       child: OpacityButton(
                         radius: S.p16,
-                        onPressed: () => onOptionSelected(optionText),
+                        onPressed: () => onOptionSelected(index),
                         bgColor: context.colors.opacityOrange20,
                         child: Text(
-                          optionText,
+                          step.options[index],
                           style: context.typography.activesButton.copyWith(
                             color: context.colors.orange,
                           ),
@@ -227,20 +153,21 @@ class _QuizStepContent extends StatelessWidget {
                       ),
                     );
                   }),
-                  if (currentStep.cancel != null)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: S.p12),
-                      child: OpacityButton(
-                        radius: S.p16,
-                        onPressed: onCancel,
-                        bgColor: context.colors.graysLight100,
-                        child: Text(
-                          currentStep.cancel!,
-                          style: context.typography.activesButton.copyWith(
-                            color: context.colors.graysText400,
+                  if (step.cancel != null)
+                    Consumer(
+                      builder: (context, ref, child) {
+                        return OpacityButton(
+                          radius: S.p16,
+                          onPressed: () => ref.read(onBoardingProvider.notifier).skip(),
+                          bgColor: context.colors.graysLight100,
+                          child: Text(
+                            step.cancel!,
+                            style: context.typography.activesButton.copyWith(
+                              color: context.colors.graysText400,
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                 ],
               ),

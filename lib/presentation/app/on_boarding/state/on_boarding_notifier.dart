@@ -1,5 +1,6 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'dart:ui';
 
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/domain/models/quiz_step_model.dart';
 import 'package:roomate/presentation/app/on_boarding/state/on_boarding_state.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
@@ -11,59 +12,55 @@ part 'on_boarding_notifier.g.dart';
 class OnBoardingNotifier extends _$OnBoardingNotifier {
   @override
   OnBoardingState build() {
-    return const OnBoardingState();
+    return OnBoardingState(
+      steps: [
+        QuizStepModel(
+          question: ref.l10n.quizQ1Title, // "Кто вы?"
+          subQuestion: ref.l10n.quizQ1Subtitle,
+          options: [
+            ref.l10n.quizQ1Opt2, // "Ищу жилье" (Index 0)
+            ref.l10n.quizQ1Opt1, // "Хочу сдать" (Index 1)
+          ],
+        ),
+        QuizStepModel(
+          question: ref.l10n.quizQ2Title,
+          subQuestion: ref.l10n.quizQ2Subtitle,
+          options: [ref.l10n.quizQ2Opt1],
+          cancel: ref.l10n.quizQ2Opt2,
+        ),
+      ],
+    );
   }
 
-  void initSteps(List<QuizStepModel> steps) {
-    if (state.steps.isEmpty) {
-      state = state.copyWith(steps: steps);
-    }
-  }
-
-  void selectOption({required String answer}) {
-    final currentStep = state.currentStep;
-    if (currentStep == null) return;
-
-    final optionIndex = currentStep.options.indexOf(answer);
-    final nextIndex = state.currentIndex + 1;
-    final newAnswers = [...state.answers, answer];
-
-    // logic for role selection on the FIRST step
-    if (state.currentIndex == 0) {
-      final isOwner = optionIndex == 1; // "Хочу сдать помещение"
-
-      if (isOwner) {
-        state = state.copyWith(
-          status: OnBoardingStatusEnum.owner,
-          answers: newAnswers,
-        );
-        //     ref.nav.goToNavBar();
-        return; // Break here, owners don't need more questions
+  /// Обработка выбора опции с разными исходами
+  void handleSelection({required int optionIndex}) {
+    // 1. Логика первого шага (Роль)
+    if (state.isFirstStep) {
+      if (optionIndex == 1) {
+        // Выбрал "Ищу квартиру" -> Сразу на создагние профиля
+        toCreateProfile();
+        return;
       }
-
-      // If tenant, just update status and let it fall through to next index logic
-      state = state.copyWith(status: OnBoardingStatusEnum.tenant);
+      // Иначе (Сдать помещение) -> Идем на следующий шаг квиза
+      state = state.copyWith(currentIndex: state.currentIndex + 1);
+      return;
     }
 
-    // Checking for the end of the quiz for tenants
-    if (nextIndex >= state.steps.length) {
-      ref.nav.replace(const CreateAdRoute());
+    // 2. Логика последнего шага (для тех, кто сдает)
+    if (state.isLastStep) {
+      toCreateAd();
     } else {
-      state = state.copyWith(currentIndex: nextIndex, answers: newAnswers);
+      state = state.copyWith(currentIndex: state.currentIndex + 1);
     }
   }
-
-  void skipQuiz() => {};
 
   void stepBack() {
     if (!state.isFirstStep) {
-      final newAnswers = state.answers.isNotEmpty
-          ? state.answers.sublist(0, state.answers.length - 1)
-          : state.answers;
-      state = state.copyWith(
-        currentIndex: state.currentIndex - 1,
-        answers: newAnswers,
-      );
+      state = state.copyWith(currentIndex: state.currentIndex - 1);
     }
   }
+
+  void skip() => ref.nav.replace(const MainFlowRoute());
+  void toCreateProfile() => ref.nav.push(const CreateProfileRoute());
+  void toCreateAd() => ref.nav.push(const CreateAdRoute());
 }
