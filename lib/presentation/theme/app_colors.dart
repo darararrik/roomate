@@ -47,4 +47,7 @@ final AppPalette _appColors = AppPalette(
   labelGreen: const Color(0xFF538D36),
   opacityWhite60: Colors.white.withValues(alpha: 0.6),
   opacityBlack60: Colors.black.withValues(alpha: 0.6),
+  labelBlue: const Color(0xFF36638D),
+  lightBlue100: const Color(0xFFD8F5FF),
+  graysLight50: const Color(0xFFF4F4F4),
 );

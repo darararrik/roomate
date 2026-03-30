@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:roomate/domain/enums/gender_enum.dart';
+import 'package:roomate/lib.dart';
 import 'package:roomate/presentation/app/create_profile/state/user_state.dart';
 import 'package:roomate/presentation/di/providers.dart';
-import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/utils/utils.dart';
 
 part 'create_profile_notifier.g.dart';
 
@@ -44,45 +42,34 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
         fetchTagsAboutSelf();
         break;
       case 1:
-        final result = await _saveProfile();
-        if (result) {
+        state = state.copyWith(isLoading: true);
+        final selectedTags = state.tags
+            .expand((group) => group.tags)
+            .where((tag) => tag.isSelected)
+            .toList();
+
+        final success = await ref
+            .read(globalProfileProvider.notifier)
+            .updateProfile(
+              firstName: state.firstName,
+              lastName: state.lastName,
+              age: int.tryParse(state.age),
+              gender: state.gender,
+              tags: selectedTags,
+            );
+
+        state = state.copyWith(isLoading: false);
+
+        if (success) {
           tabsRouter.setActiveIndex(2);
+        } else {
+          //TODO: Показать ошибку (через state или через event/scaffold)
         }
         break;
       case 2:
         ref.nav.push(const ProfileSummaryRoute());
         break;
     }
-  }
-
-  Future<bool> _saveProfile() async {
-    state = state.copyWith(isLoading: true);
-
-    final selectedTags = state.tags
-        .expand((group) => group.tags)
-        .where((tag) => tag.isSelected)
-        .toList();
-
-    final result = await ref.read(profileRepositoryProvider).createProfile(
-          state.firstName,
-          state.lastName,
-          state.avatarUrl,
-          state.gender!,
-          int.parse(state.age),
-          selectedTags,
-        );
-
-    return result.fold(
-      (l) {
-        state = state.copyWith(isLoading: false);
-        // TODO: Показать ошибку
-        return false;
-      },
-      (r) {
-        state = state.copyWith(isLoading: false, isVerified: true);
-        return true;
-      },
-    );
   }
 
   void onPop(TabsRouter tabsRouter) {

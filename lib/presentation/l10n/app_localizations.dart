@@ -1527,6 +1527,138 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'+7 (___) ___-__-__'**
   String get phonePlaceholder2;
+
+  /// No description provided for @apartmentVerified.
+  ///
+  /// In ru, this message translates to:
+  /// **'Верифицирован'**
+  String get apartmentVerified;
+
+  /// No description provided for @apartmentNotVerified.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не верифицирован'**
+  String get apartmentNotVerified;
+
+  /// No description provided for @apartmentCompanyAllowed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Можно с компанией'**
+  String get apartmentCompanyAllowed;
+
+  /// No description provided for @apartmentCompanyNotAllowed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нельзя c компанией'**
+  String get apartmentCompanyNotAllowed;
+
+  /// No description provided for @apartmentRoomsShort.
+  ///
+  /// In ru, this message translates to:
+  /// **'комн.'**
+  String get apartmentRoomsShort;
+
+  /// No description provided for @aboutHouse.
+  ///
+  /// In ru, this message translates to:
+  /// **'О доме'**
+  String get aboutHouse;
+
+  /// No description provided for @renovationLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ремонт'**
+  String get renovationLabel;
+
+  /// No description provided for @elevator.
+  ///
+  /// In ru, this message translates to:
+  /// **'Лифт'**
+  String get elevator;
+
+  /// No description provided for @balconies.
+  ///
+  /// In ru, this message translates to:
+  /// **'Балконы'**
+  String get balconies;
+
+  /// No description provided for @furniture.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мебель'**
+  String get furniture;
+
+  /// No description provided for @stove.
+  ///
+  /// In ru, this message translates to:
+  /// **'Плита'**
+  String get stove;
+
+  /// No description provided for @notSpecified.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не указано'**
+  String get notSpecified;
+
+  /// No description provided for @bathroomRoom.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ванная комната'**
+  String get bathroomRoom;
+
+  /// No description provided for @householdAppliances.
+  ///
+  /// In ru, this message translates to:
+  /// **'Бытовая техника'**
+  String get householdAppliances;
+
+  /// No description provided for @rentalConditionsTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Условия аренды'**
+  String get rentalConditionsTitle;
+
+  /// No description provided for @contactTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Контакт'**
+  String get contactTitle;
+
+  /// No description provided for @viewsCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'{count} просмотров'**
+  String viewsCount(Object count);
+
+  /// No description provided for @amenities.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удобства'**
+  String get amenities;
+
+  /// No description provided for @prepayment.
+  ///
+  /// In ru, this message translates to:
+  /// **'Предоплата'**
+  String get prepayment;
+
+  /// No description provided for @rentalPeriod.
+  ///
+  /// In ru, this message translates to:
+  /// **'Срок аренды'**
+  String get rentalPeriod;
+
+  /// No description provided for @whoToRent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кому сдавать'**
+  String get whoToRent;
+
+  /// No description provided for @price.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цена'**
+  String get price;
 }
 
 class _AppLocalizationsDelegate

@@ -15,8 +15,6 @@ class AuthNotifier extends _$AuthNotifier {
     return const AuthState();
   }
 
-  void updatePhone(String phone) => state = state.copyWith(phone: phone, errorMessage: '');
-
   void updateCode(String code) {
     state = state.copyWith(code: code, isError: false);
   }
@@ -54,17 +52,23 @@ class AuthNotifier extends _$AuthNotifier {
 
   void openEnterCodeScreen() => ref.nav.push(const EnterCodeRoute());
 
-  void openOnBoardingScreen() {
+  void openOnBoardingScreen() async {
     if (!state.isPinComplete) return;
-    // Если код верный (тут обычно еще проверка на валидность через API)
-    checkCode();
-    if (state.isCodeVerified) {
-      ref.nav.replace(const OnBoardingRoute());
-      savePhoneNumber();
-    }
-  }
 
-  void savePhoneNumber() {
-    ref.read(globalProfileProvider.notifier).savePhoneNumber(state.phone);
+    checkCode();
+
+    if (state.isCodeVerified) {
+      // 1. Гарантируем наличие профиля (берем существующий или создаем новый)
+      final success = await ref.read(globalProfileProvider.notifier).ensureProfileByPhone(state.phone);
+
+      // 2. Проверяем, нет ли ошибки после создания
+      if (!success) {
+        setError("Ошибка при создании профиля");
+        return;
+      }
+
+      // 3. Только если профиль создан успешно — переходим
+      ref.nav.replace(const OnBoardingRoute());
+    }
   }
 }

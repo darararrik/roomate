@@ -738,4 +738,72 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get phonePlaceholder2 => '+7 (___) ___-__-__';
+
+  @override
+  String get apartmentVerified => 'Верифицирован';
+
+  @override
+  String get apartmentNotVerified => 'Не верифицирован';
+
+  @override
+  String get apartmentCompanyAllowed => 'Можно с компанией';
+
+  @override
+  String get apartmentCompanyNotAllowed => 'Нельзя c компанией';
+
+  @override
+  String get apartmentRoomsShort => 'комн.';
+
+  @override
+  String get aboutHouse => 'О доме';
+
+  @override
+  String get renovationLabel => 'Ремонт';
+
+  @override
+  String get elevator => 'Лифт';
+
+  @override
+  String get balconies => 'Балконы';
+
+  @override
+  String get furniture => 'Мебель';
+
+  @override
+  String get stove => 'Плита';
+
+  @override
+  String get notSpecified => 'Не указано';
+
+  @override
+  String get bathroomRoom => 'Ванная комната';
+
+  @override
+  String get householdAppliances => 'Бытовая техника';
+
+  @override
+  String get rentalConditionsTitle => 'Условия аренды';
+
+  @override
+  String get contactTitle => 'Контакт';
+
+  @override
+  String viewsCount(Object count) {
+    return '$count просмотров';
+  }
+
+  @override
+  String get amenities => 'Удобства';
+
+  @override
+  String get prepayment => 'Предоплата';
+
+  @override
+  String get rentalPeriod => 'Срок аренды';
+
+  @override
+  String get whoToRent => 'Кому сдавать';
+
+  @override
+  String get price => 'Цена';
 }

@@ -70,19 +70,54 @@ class CreateAdNotifier extends _$CreateAdNotifier {
     final isMulti = _multiSelectGroups.contains(groupId);
 
     state = state.copyWith(
-      rentTypeGroups: _updateInList(state.rentTypeGroups, groupId, tagTitle, isMulti),
-      premisesTypeGroup: _updateSingle(state.premisesTypeGroup, groupId, tagTitle, isMulti),
-      propertyTypeGroup: _updateSingle(state.propertyTypeGroup, groupId, tagTitle, isMulti),
+      rentTypeGroups: _updateInList(
+        state.rentTypeGroups,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
+      premisesTypeGroup: _updateSingle(
+        state.premisesTypeGroup,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
+      propertyTypeGroup: _updateSingle(
+        state.propertyTypeGroup,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
       apartmentPropertiesGroups: _updateInList(
         state.apartmentPropertiesGroups,
         groupId,
         tagTitle,
         isMulti,
       ),
-      featuresGroups: _updateInList(state.featuresGroups, groupId, tagTitle, isMulti),
-      thingsGroups: _updateInList(state.thingsGroups, groupId, tagTitle, isMulti),
-      dealTermsGroups: _updateInList(state.dealTermsGroups, groupId, tagTitle, isMulti),
-      contactInfoGroup: _updateSingle(state.contactInfoGroup, groupId, tagTitle, isMulti),
+      featuresGroups: _updateInList(
+        state.featuresGroups,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
+      thingsGroups: _updateInList(
+        state.thingsGroups,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
+      dealTermsGroups: _updateInList(
+        state.dealTermsGroups,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
+      contactInfoGroup: _updateSingle(
+        state.contactInfoGroup,
+        groupId,
+        tagTitle,
+        isMulti,
+      ),
     );
 
     _syncWithFields(groupId, tagTitle, isMulti);
@@ -110,12 +145,18 @@ class CreateAdNotifier extends _$CreateAdNotifier {
       'room_count' => state.copyWith(roomCount: value as String),
       'layout' => state.copyWith(layout: value as String),
       'renovation' => state.copyWith(renovation: value as String),
+      'elevators' => state.copyWith(elevators: value as String),
+      'balconies' => state.copyWith(balconies: value as String),
+      'furniture' => state.copyWith(furniture: value as String),
       'amenities' => state.copyWith(amenities: value as List<String>),
       'bathroom' => state.copyWith(bathroom: value as List<String>),
       'appliances' => state.copyWith(appliances: value as List<String>),
+      'stove' => state.copyWith(stove: value as String),
       'prepayment' => state.copyWith(prepayment: value as String),
       'rental_period' => state.copyWith(rentalPeriod: value as String),
-      'rental_conditions' => state.copyWith(rentalConditions: value as List<String>),
+      'rental_conditions' => state.copyWith(
+        rentalConditions: value as List<String>,
+      ),
       'contact_method' => state.copyWith(contactMethod: value as String),
       _ => state,
     };
@@ -135,7 +176,12 @@ class CreateAdNotifier extends _$CreateAdNotifier {
 
   // --- Вспомогательные методы обновления моделей TagGroupModel ---
 
-  TagGroupModel _updateSingle(TagGroupModel group, String targetId, String title, bool isMulti) {
+  TagGroupModel _updateSingle(
+    TagGroupModel group,
+    String targetId,
+    String title,
+    bool isMulti,
+  ) {
     if (group.groupId != targetId) return group;
 
     return group.copyWith(
@@ -187,9 +233,11 @@ class CreateAdNotifier extends _$CreateAdNotifier {
 
   void setTitle(String value) => state = state.copyWith(title: value);
 
-  void setDescription(String value) => state = state.copyWith(description: value);
+  void setDescription(String value) =>
+      state = state.copyWith(description: value);
 
-  void updateAdditionalNumber(String value) => state = state.copyWith(additionalNumber: value);
+  void updateAdditionalNumber(String value) =>
+      state = state.copyWith(additionalNumber: value);
 
   // Константа для определения типа выбора (Multi vs Radio)
   static const _multiSelectGroups = {

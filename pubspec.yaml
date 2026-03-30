@@ -18,7 +18,6 @@ dependencies:
   flutter_svg: ^2.2.3
   import_sorter: ^4.6.0
   intl: ^0.20.2
-  flutter_image_carousel_slider: ^2.0.1
   dropdown_button2: ^3.0.0
   group_button: ^5.3.4
   freezed_annotation: ^3.1.0

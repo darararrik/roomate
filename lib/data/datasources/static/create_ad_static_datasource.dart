@@ -1,3 +1,4 @@
+import 'package:roomate/domain/enums/enums.dart';
 import 'package:roomate/domain/models/tag_model.dart';
 
 class CreateAdStaticDataSource {
@@ -10,33 +11,10 @@ class CreateAdStaticDataSource {
   static List<TagGroupModel> get dealTerms => _dealTerms;
   static TagGroupModel get contactInfo => _contactInfo;
 
-  static const _rentType = [
-    TagGroupModel(
-      groupId: 'your_goal',
-      groupTitle: 'Ваша цель',
-      tags: [
-        TagModel(id: 1, title: 'Съем'),
-        TagModel(id: 2, title: 'Обмен'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'term',
-      groupTitle: 'Срок',
-      tags: [
-        TagModel(id: 3, title: 'Долгосрочная'),
-        TagModel(id: 4, title: 'Посуточно'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'who_to_rent',
-      groupTitle: 'Кому готов сдавать',
-      tags: [
-        TagModel(id: 10, title: 'Одному человеку'),
-        TagModel(id: 11, title: 'Компании'),
-        TagModel(id: 12, title: 'Семье'),
-        TagModel(id: 13, title: 'Студентам'),
-      ],
-    ),
+  static final _rentType = [
+    _goalGroup,
+    _termGroup,
+    _whoToRentGroup,
   ];
 
   static const _premisesType = TagGroupModel(
@@ -62,8 +40,8 @@ class CreateAdStaticDataSource {
     ],
   );
 
-  static const _propertiesApartment = [
-    TagGroupModel(
+  static final _propertiesApartment = [
+    const TagGroupModel(
       groupId: 'room_count',
       groupTitle: 'Количество комнат',
       tags: [
@@ -77,102 +55,21 @@ class CreateAdStaticDataSource {
         TagModel(id: 47, title: 'Свободная планировка'),
       ],
     ),
-    TagGroupModel(
-      groupId: 'layout',
-      groupTitle: 'Планировка',
-      tags: [
-        TagModel(id: 50, title: 'Смежная'),
-        TagModel(id: 51, title: 'Изолированная'),
-        TagModel(id: 52, title: 'Смежно-изолированная'),
-      ],
-    ),
+    _layoutGroup,
   ];
 
-  static const _featuresFirst = [
-    TagGroupModel(
-      groupId: 'renovation',
-      groupTitle: 'Ремонт',
-      tags: [
-        TagModel(id: 60, title: 'Без ремонта'),
-        TagModel(id: 61, title: 'Евро'),
-        TagModel(id: 62, title: 'Косметический'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'elevators',
-      groupTitle: 'Лифты',
-      tags: [
-        TagModel(id: 70, title: 'Пассажирский'),
-        TagModel(id: 71, title: 'Грузовой'),
-        TagModel(id: 72, title: 'Пассажирский и грузовой'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'balconies',
-      groupTitle: 'Балконы',
-      tags: [
-        TagModel(id: 80, title: 'Балкон'),
-        TagModel(id: 81, title: 'Нет'),
-        TagModel(id: 82, title: 'Лоджия'),
-        TagModel(id: 83, title: 'Балкон и лоджия'),
-        TagModel(id: 84, title: 'Терраса'),
-      ],
-    ),
+  static final _featuresFirst = [_renovationGroup, _elevatorsGroup, _balconiesGroup];
+
+  static final _featuresSecond = [
+    _furnitureGroup,
+    _amenitiesGroup,
+    _bathroomGroup,
+    _appliancesGroup,
+    _stoveGroup,
   ];
 
-  static const _featuresSecond = [
-    TagGroupModel(
-      groupId: 'furniture',
-      groupTitle: 'Мебель',
-      tags: [
-        TagModel(id: 90, title: 'Есть'),
-        TagModel(id: 91, title: 'Нет'),
-        TagModel(id: 92, title: 'Частично'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'amenities',
-      groupTitle: 'Удобства',
-      tags: [
-        TagModel(id: 100, title: 'Интернет'),
-        TagModel(id: 101, title: 'Мусоропровод'),
-        TagModel(id: 102, title: 'Посуда'),
-        TagModel(id: 103, title: 'Видеодомофон'),
-        TagModel(id: 104, title: 'Консьерж'),
-        TagModel(id: 105, title: 'Умный дом'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'bathroom',
-      groupTitle: 'Ванная комната',
-      tags: [
-        TagModel(id: 110, title: 'Душевая кабина'),
-        TagModel(id: 111, title: 'Ванна'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'appliances',
-      groupTitle: 'Бытовая техника',
-      tags: [
-        TagModel(id: 120, title: 'Холодильник'),
-        TagModel(id: 121, title: 'Телевизор'),
-        TagModel(id: 122, title: 'Стиральная машина'),
-        TagModel(id: 123, title: 'Кондиционер'),
-        TagModel(id: 124, title: 'Посудомоечная машина'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'stove',
-      groupTitle: 'Плита',
-      tags: [
-        TagModel(id: 130, title: 'Газ'),
-        TagModel(id: 131, title: 'Электрическая'),
-      ],
-    ),
-  ];
-
-  static const _dealTerms = [
-    TagGroupModel(
+  static final _dealTerms = [
+    const TagGroupModel(
       groupId: 'currency',
       groupTitle: 'Цена',
       tags: [
@@ -181,33 +78,8 @@ class CreateAdStaticDataSource {
         TagModel(id: 142, title: 'Доллары'),
       ],
     ),
-    TagGroupModel(
-      groupId: 'prepayment',
-      groupTitle: 'Предоплата',
-      tags: [
-        TagModel(id: 150, title: 'Без предоплаты'),
-        TagModel(id: 151, title: 'Месяц'),
-        TagModel(id: 152, title: '2'),
-        TagModel(id: 153, title: '3'),
-        TagModel(id: 154, title: '4+'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'rental_period',
-      groupTitle: 'Срок аренды',
-      tags: [
-        TagModel(id: 160, title: 'Несколько месяцев'),
-        TagModel(id: 161, title: 'От года'),
-      ],
-    ),
-    TagGroupModel(
-      groupId: 'rental_conditions',
-      groupTitle: 'Условия сдачи',
-      tags: [
-        TagModel(id: 170, title: 'Можно с детьми'),
-        TagModel(id: 171, title: 'Можно с животными'),
-      ],
-    ),
+    _prepaymentGroup,
+    _rentalPeriodGroup,
   ];
 
   static const _contactInfo = TagGroupModel(
@@ -219,4 +91,134 @@ class CreateAdStaticDataSource {
       TagModel(id: 182, title: 'Сообщения'),
     ],
   );
+
+  static final TagGroupModel _layoutGroup = _buildGroup(
+    groupId: 'layout',
+    groupTitle: 'Планировка',
+    titles: ApartmentLayout.values.map((item) => item.title).toList(),
+    startId: 50,
+  );
+
+  static final TagGroupModel _renovationGroup = _buildGroup(
+    groupId: 'renovation',
+    groupTitle: 'Ремонт',
+    titles: RenovationType.values.map((item) => item.title).toList(),
+    startId: 60,
+  );
+
+  static final TagGroupModel _elevatorsGroup = _buildGroup(
+    groupId: 'elevators',
+    groupTitle: 'Лифты',
+    titles: ElevatorType.values.map((item) => item.title).toList(),
+    startId: 70,
+  );
+
+  static final TagGroupModel _balconiesGroup = _buildGroup(
+    groupId: 'balconies',
+    groupTitle: 'Балконы',
+    titles: BalconyType.values.map((item) => item.title).toList(),
+    startId: 80,
+  );
+
+  static final TagGroupModel _furnitureGroup = _buildGroup(
+    groupId: 'furniture',
+    groupTitle: 'Мебель',
+    titles: FurnitureType.values.map((item) => item.title).toList(),
+    startId: 90,
+  );
+
+  static final TagGroupModel _amenitiesGroup = _buildGroup(
+    groupId: 'amenities',
+    groupTitle: 'Удобства',
+    titles: const [
+      ApartmentAmenity.internet,
+      ApartmentAmenity.trashChute,
+      ApartmentAmenity.dishes,
+      ApartmentAmenity.videoIntercom,
+      ApartmentAmenity.concierge,
+      ApartmentAmenity.smartHome,
+    ].map((item) => item.title).toList(),
+    startId: 100,
+  );
+
+  static final TagGroupModel _bathroomGroup = _buildGroup(
+    groupId: 'bathroom',
+    groupTitle: 'Ванная комната',
+    titles: const [
+      ApartmentAmenity.shower,
+      ApartmentAmenity.bath,
+    ].map((item) => item.title).toList(),
+    startId: 110,
+  );
+
+  static final TagGroupModel _appliancesGroup = _buildGroup(
+    groupId: 'appliances',
+    groupTitle: 'Бытовая техника',
+    titles: const [
+      ApartmentAmenity.fridge,
+      ApartmentAmenity.tv,
+      ApartmentAmenity.washingMachine,
+      ApartmentAmenity.airConditioner,
+      ApartmentAmenity.dishwasher,
+    ].map((item) => item.title).toList(),
+    startId: 120,
+  );
+
+  static final TagGroupModel _stoveGroup = _buildGroup(
+    groupId: 'stove',
+    groupTitle: 'Плита',
+    titles: StoveType.values.map((item) => item.title).toList(),
+    startId: 130,
+  );
+
+  static final TagGroupModel _goalGroup = _buildGroup(
+    groupId: 'goal',
+    groupTitle: 'Ваша цель',
+    titles: DealGoal.values.map((item) => item.title).toList(),
+    startId: 1,
+  );
+
+  static final TagGroupModel _termGroup = _buildGroup(
+    groupId: 'term',
+    groupTitle: 'Срок',
+    titles: RentalConditions.values.map((item) => item.title).toList(),
+    startId: 3,
+  );
+
+  static final TagGroupModel _whoToRentGroup = _buildGroup(
+    groupId: 'who_to_rent',
+    groupTitle: 'Кому готов сдавать',
+    titles: WhoToRent.values.map((item) => item.title).toList(),
+    startId: 10,
+  );
+
+  static final TagGroupModel _prepaymentGroup = _buildGroup(
+    groupId: 'prepayment',
+    groupTitle: 'Предоплата',
+    titles: PrepaymentType.values.map((item) => item.title).toList(),
+    startId: 150,
+  );
+
+  static final TagGroupModel _rentalPeriodGroup = _buildGroup(
+    groupId: 'rental_period',
+    groupTitle: 'Срок аренды',
+    titles: RentalPeriod.values.map((item) => item.title).toList(),
+    startId: 160,
+  );
+
+  static TagGroupModel _buildGroup({
+    required String groupId,
+    required String groupTitle,
+    required List<String> titles,
+    required int startId,
+  }) {
+    return TagGroupModel(
+      groupId: groupId,
+      groupTitle: groupTitle,
+      tags: List.generate(
+        titles.length,
+        (index) => TagModel(id: startId + index, title: titles[index]),
+      ),
+    );
+  }
 }

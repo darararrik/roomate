@@ -38,9 +38,13 @@ class AppPalette extends ThemeExtension<AppPalette> {
     required this.labelRed,
     required this.labelYellow,
     required this.labelGreen,
+    required this.labelBlue,
+    required this.lightBlue100,
+    required this.graysLight50,
   });
   // Grays Colors
   final Color graysWhite;
+  final Color graysLight50;
   final Color graysLight100;
   final Color graysInput200;
   final Color graysMessage;
@@ -63,6 +67,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color lightYellow100;
   final Color lightRed100;
   final Color lightGray100;
+  final Color lightBlue100;
 
   // Main Colors
   final Color red;
@@ -74,6 +79,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color labelRed;
   final Color labelYellow;
   final Color labelGreen;
+  final Color labelBlue;
 
   // Other Colors
   // TODO: разобраться с цветами они лишние !
@@ -126,6 +132,9 @@ class AppPalette extends ThemeExtension<AppPalette> {
     Color? labelRed,
     Color? labelYellow,
     Color? labelGreen,
+    Color? labelBlue,
+    Color? lightBlue100,
+    Color? graysLight50,
   }) {
     return AppPalette(
       graysWhite: white ?? graysWhite,
@@ -164,6 +173,9 @@ class AppPalette extends ThemeExtension<AppPalette> {
       labelRed: labelRed ?? this.labelRed,
       labelYellow: labelYellow ?? this.labelYellow,
       labelGreen: labelGreen ?? this.labelGreen,
+      labelBlue: labelBlue ?? this.labelBlue,
+      lightBlue100: lightBlue100 ?? this.lightBlue100,
+      graysLight50: graysLight50 ?? this.graysLight50,
     );
   }
 
@@ -196,11 +208,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
       red700: Color.lerp(red700, other.lightOrange100, t)!,
       fillsSecondary: Color.lerp(fillsSecondary, other.fillsSecondary, t)!,
       opacityOrange20: Color.lerp(opacityOrange20, other.opacityOrange20, t)!,
-      bottomNavBarShadow: BoxShadow.lerp(
-        bottomNavBarShadow,
-        other.bottomNavBarShadow,
-        t,
-      )!,
+      bottomNavBarShadow: BoxShadow.lerp(bottomNavBarShadow, other.bottomNavBarShadow, t)!,
       grayMessage: Color.lerp(grayMessage, other.orange, t)!,
       orangeChat: Color.lerp(orangeChat, other.lightOrange100, t)!,
       opacityWhite60: Color.lerp(opacityWhite60, other.opacityWhite60, t)!,
@@ -211,6 +219,9 @@ class AppPalette extends ThemeExtension<AppPalette> {
       labelRed: Color.lerp(labelRed, other.labelRed, t)!,
       labelYellow: Color.lerp(labelYellow, other.labelYellow, t)!,
       labelGreen: Color.lerp(labelGreen, other.labelGreen, t)!,
+      labelBlue: Color.lerp(labelBlue, other.labelBlue, t)!,
+      lightBlue100: Color.lerp(lightBlue100, other.lightBlue100, t)!,
+      graysLight50: Color.lerp(graysLight50, other.graysLight50, t)!,
     );
   }
 }

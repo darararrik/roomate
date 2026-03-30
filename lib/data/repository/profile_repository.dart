@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 
 import 'package:roomate/data/datasources/profile_data_source.dart';
 import 'package:roomate/data/datasources/static/profile_static_datasource.dart';
-import 'package:roomate/domain/enums/gender_enum.dart';
 import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/domain/models/user_model.dart';
 import 'package:roomate/domain/repository/profile_repository.dart';
@@ -14,24 +13,9 @@ class ProfileRepository implements IProfileRepository {
   final ProfileDataSource _remoteDataSource;
 
   @override
-  Future<Either<RemoteException, UserModel>> createProfile(
-    String firstName,
-    String lastName,
-    String avatarUrl,
-    GenderEnum gender,
-    int age,
-    List<TagModel> tags,
-  ) async {
+  Future<Either<RemoteException, UserModel>> createProfile(UserModel user) async {
     try {
-      final userModel = UserModel(
-        firstName: firstName,
-        lastName: lastName,
-        avatarUrl: avatarUrl,
-        gender: gender,
-        age: age,
-        tags: tags,
-      );
-      final result = await _remoteDataSource.createProfile(userModel);
+      final result = await _remoteDataSource.createProfile(user);
       return Right(result);
     } catch (e) {
       return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
@@ -69,5 +53,15 @@ class ProfileRepository implements IProfileRepository {
   Future<Either<RemoteException, void>> doVerification() {
     // TODO: implement doVerification
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<RemoteException, UserModel>> updateProfile(UserModel user) async {
+    try {
+      final result = await _remoteDataSource.updateProfile(user);
+      return Right(result);
+    } catch (e) {
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
+    }
   }
 }

@@ -18,4 +18,11 @@ mixin ProfileMockDataSource implements ProfileDataSource {
     }
     return UserMapper.toModel(UserData.fromJson(json)).withDelay();
   }
+
+  @override
+  Future<UserModel> updateProfile(UserModel user) async {
+    final json = UserMapper.toData(user).toJson();
+    MockStorage.userProfile = json;
+    return user.withDelay();
+  }
 }

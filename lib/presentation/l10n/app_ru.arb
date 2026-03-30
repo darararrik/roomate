@@ -238,5 +238,32 @@
   "minimumCharactersRequired": "Необходимо ввести минимум 50 символов",
   "phone": "Телефон",
   "additionalPhone": "Дополнительный телефон",
-  "phonePlaceholder2": "+7 (___) ___-__-__"
+  "phonePlaceholder2": "+7 (___) ___-__-__",
+  "apartmentVerified": "Верифицирован",
+  "apartmentNotVerified": "Не верифицирован",
+  "apartmentCompanyAllowed": "Можно с компанией",
+  "apartmentCompanyNotAllowed": "Нельзя c компанией",
+  "apartmentRoomsShort": "комн.",
+  "aboutHouse": "О доме",
+  "renovationLabel": "Ремонт",
+  "elevator": "Лифт",
+  "balconies": "Балконы",
+  "furniture": "Мебель",
+  "stove": "Плита",
+  "notSpecified": "Не указано",
+  "bathroomRoom": "Ванная комната",
+  "householdAppliances": "Бытовая техника",
+  "rentalConditionsTitle": "Условия аренды",
+  "contactTitle": "Контакт",
+  "viewsCount": "{count} просмотров",
+  "@viewsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "amenities": "Удобства",
+  "prepayment": "Предоплата",
+  "rentalPeriod": "Срок аренды",
+  "whoToRent": "Кому сдавать",
+  "price": "Цена"
 }

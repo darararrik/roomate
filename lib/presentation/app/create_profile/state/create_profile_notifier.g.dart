@@ -42,7 +42,7 @@ final class CreateProfileNotifierProvider
 }
 
 String _$createProfileNotifierHash() =>
-    r'4a8cd4815f77ebb0118730ff6f220693093f98d6';
+    r'06a0bcbdb248b5b84d0070771b309047917f6efa';
 
 abstract class _$CreateProfileNotifier extends $Notifier<UserState> {
   UserState build();

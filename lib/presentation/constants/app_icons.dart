@@ -58,4 +58,22 @@ abstract class AppIcons {
   static const String phone = 'lib/presentation/assets/icons/mingcute_phone-line.svg';
   static const String clock = 'lib/presentation/assets/icons/tabler_clock.svg';
   static const String location = 'lib/presentation/assets/icons/tdesign_location.svg';
+  static const String verified = 'lib/presentation/assets/icons/verified.svg';
+  static const String company = 'lib/presentation/assets/icons/company.svg';
+  static const String defaultAvatar = 'lib/presentation/assets/icons/defaultAvatar.svg';
+
+  static const String airConditioner = 'lib/presentation/assets/icons/air-conditioner.svg';
+  static const String animals = 'lib/presentation/assets/icons/animals.svg';
+  static const String bathroom = 'lib/presentation/assets/icons/bathroom.svg';
+  static const String children = 'lib/presentation/assets/icons/children.svg';
+  static const String concierge = 'lib/presentation/assets/icons/concierge.svg';
+  static const String dishes = 'lib/presentation/assets/icons/dishes.svg';
+  static const String dishwasher = 'lib/presentation/assets/icons/dishwasher.svg';
+  static const String fridge = 'lib/presentation/assets/icons/fridge.svg';
+  static const String smartHome = 'lib/presentation/assets/icons/smart-home.svg';
+  static const String trash = 'lib/presentation/assets/icons/trash.svg';
+  static const String tv = 'lib/presentation/assets/icons/tv.svg';
+  static const String videoIntercom = 'lib/presentation/assets/icons/video_intercom.svg';
+  static const String washingMachine = 'lib/presentation/assets/icons/washing-machine.svg';
+  static const String wifi = 'lib/presentation/assets/icons/wifi.svg';
 }

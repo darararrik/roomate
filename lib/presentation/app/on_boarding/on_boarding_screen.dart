@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:roomate/presentation/app/on_boarding/state/on_boarding_notifier.dart';
 import 'package:roomate/presentation/app/on_boarding/state/on_boarding_state.dart';
 import 'package:roomate/presentation/constants/constants.dart';
-import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 

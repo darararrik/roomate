@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/app/home/state/apartaments_notifier.dart';
 
 @RoutePage()
-class ApartamentsTab extends StatelessWidget {
+class ApartamentsTab extends ConsumerWidget {
   const ApartamentsTab({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final apartaments = ref.watch(apartamentsProvider).apartaments;
+
     return CustomScrollView(
       slivers: [
         SliverPadding(
@@ -21,7 +25,6 @@ class ApartamentsTab extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 padding: const P(vertical: S.p4, horizontal: S.p8),
                 children: [
-                  //TODO: сменить виджет
                   FilterCard(
                     leading: const AppIcon(
                       AppIcons.filter2,
@@ -31,7 +34,6 @@ class ApartamentsTab extends StatelessWidget {
                     title: context.l10n.filters,
                     onTap: () => context.pushRoute(const FiltersWrapper()),
                   ),
-                  //TODO: INFO: showModalBottomSheet умеет сам просчитывать дочерние размеры и можно не использовать DraggableScrollableSheet,  ГЛАВНОЕ: использовать isScrollControlled: true (ну он по умолчанию true)
                   FilterCard(
                     trailing: const AppIcon(
                       AppIcons.arrowDown,
@@ -72,7 +74,7 @@ class ApartamentsTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${context.l10n.optionsFound} ${82}",
+                    "${context.l10n.optionsFound} ${apartaments.length}",
                     style: context.typography.bodyTitle,
                   ),
                   GestureDetector(
@@ -95,9 +97,15 @@ class ApartamentsTab extends StatelessWidget {
           ),
         ),
         SliverList.separated(
-          itemCount: 10,
+          itemCount: apartaments.length,
           itemBuilder: (context, index) {
-            return const ApartmentCard();
+            final apartment = apartaments[index];
+
+            return ApartmentCard(
+              apartment: apartment,
+              onTap: () =>
+                  context.pushRoute(ApartamnetRoute(apartment: apartment)),
+            );
           },
           separatorBuilder: (context, index) {
             return const SizedBox(height: S.p12);

@@ -57,6 +57,102 @@ final class ProfileRemoteDataSourceProvider
 String _$profileRemoteDataSourceHash() =>
     r'8d3ab2b512d64014a20509cb5458ee4110385336';
 
+@ProviderFor(apartamentsMockDataSource)
+final apartamentsMockDataSourceProvider = ApartamentsMockDataSourceProvider._();
+
+final class ApartamentsMockDataSourceProvider
+    extends
+        $FunctionalProvider<
+          ApartamentsMockDataSource,
+          ApartamentsMockDataSource,
+          ApartamentsMockDataSource
+        >
+    with $Provider<ApartamentsMockDataSource> {
+  ApartamentsMockDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'apartamentsMockDataSourceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$apartamentsMockDataSourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ApartamentsMockDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ApartamentsMockDataSource create(Ref ref) {
+    return apartamentsMockDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ApartamentsMockDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ApartamentsMockDataSource>(value),
+    );
+  }
+}
+
+String _$apartamentsMockDataSourceHash() =>
+    r'5f852b2b0e3c534620fc89f682dac39e6411853b';
+
+@ProviderFor(apartamentsRepository)
+final apartamentsRepositoryProvider = ApartamentsRepositoryProvider._();
+
+final class ApartamentsRepositoryProvider
+    extends
+        $FunctionalProvider<
+          IApartamentsRepository,
+          IApartamentsRepository,
+          IApartamentsRepository
+        >
+    with $Provider<IApartamentsRepository> {
+  ApartamentsRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'apartamentsRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$apartamentsRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<IApartamentsRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  IApartamentsRepository create(Ref ref) {
+    return apartamentsRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(IApartamentsRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<IApartamentsRepository>(value),
+    );
+  }
+}
+
+String _$apartamentsRepositoryHash() =>
+    r'9c67bb1f479cd627156999a693ed63aef4775e31';
+
 @ProviderFor(profileRepository)
 final profileRepositoryProvider = ProfileRepositoryProvider._();
 

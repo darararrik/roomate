@@ -30,6 +30,7 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: ChatRoute.page),
+    AutoRoute(page: ApartamnetRoute.page),
     AutoRoute(page: ProfileEditRoute.page),
     AutoRoute(
       page: FiltersWrapper.page,
