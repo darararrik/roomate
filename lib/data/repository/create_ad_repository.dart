@@ -1,29 +1,46 @@
-import 'package:roomate/data/datasources/static/create_ad_static_datasource.dart';
+import 'package:roomate/data/datasources/remote/mocks/create_ad_mock_datasource.dart';
+import 'package:roomate/domain/models/create_ad_request.dart';
 import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/domain/repository/create_ad_repository.dart';
 
 class CreateAdRepository implements ICreateAdRepository {
-  @override
-  List<TagGroupModel> getRentTypeTags() => CreateAdStaticDataSource.rentType;
+  CreateAdRepository({required CreateAdMockDataSource mockDataSource})
+    : _mockDataSource = mockDataSource;
+
+  final CreateAdMockDataSource _mockDataSource;
 
   @override
-  TagGroupModel getPremisesTypeTags() => CreateAdStaticDataSource.premisesType;
+  Map<String, List<TagGroupModel>> getAllTags() =>
+      _mockDataSource.fetchAllTags();
 
   @override
-  TagGroupModel getPropertyTypeTags() => CreateAdStaticDataSource.propertyType;
+  List<TagGroupModel> getRentTypeTags() => _mockDataSource.fetchRentTypeTags();
 
   @override
-  List<TagGroupModel> getFeatures() => CreateAdStaticDataSource.featuresFirst;
+  TagGroupModel getPremisesTypeTags() =>
+      _mockDataSource.fetchPremisesTypeTags();
 
   @override
-  List<TagGroupModel> getThings() => CreateAdStaticDataSource.featuresSecond;
+  TagGroupModel getPropertyTypeTags() =>
+      _mockDataSource.fetchPropertyTypeTags();
 
   @override
-  List<TagGroupModel> getDealTermsTags() => CreateAdStaticDataSource.dealTerms;
+  List<TagGroupModel> getFeatures() => _mockDataSource.fetchFeaturesTags();
 
   @override
-  TagGroupModel getContactInfoTags() => CreateAdStaticDataSource.contactInfo;
+  List<TagGroupModel> getThings() => _mockDataSource.fetchThingsTags();
 
   @override
-  List<TagGroupModel> getPropertiesApartmentTags() => CreateAdStaticDataSource.propertiesApartment;
+  List<TagGroupModel> getDealTermsTags() =>
+      _mockDataSource.fetchDealTermsTags();
+
+  @override
+  TagGroupModel getContactInfoTags() => _mockDataSource.fetchContactInfoTags();
+
+  @override
+  List<TagGroupModel> getPropertiesApartmentTags() =>
+      _mockDataSource.fetchPropertiesApartmentTags();
+
+  @override
+  void createAd(CreateAdRequest request) => _mockDataSource.createAd(request);
 }

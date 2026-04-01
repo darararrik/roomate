@@ -1,6 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:roomate/data/datasources/remote/mocks/apartaments_mock_datasource.dart';
+import 'package:roomate/data/datasources/remote/mocks/create_ad_mock_datasource.dart';
+import 'package:roomate/data/datasources/remote/mocks/profile_tags_mock_datasource.dart';
 import 'package:roomate/data/repository/apartaments_repository.dart';
 import 'package:roomate/data/datasources/remote/profile_remote_datasource.dart';
 import 'package:roomate/data/repository/create_ad_repository.dart';
@@ -22,6 +24,16 @@ ApartamentsMockDataSource apartamentsMockDataSource(Ref ref) {
   return ApartamentsMockDataSource();
 }
 
+@Riverpod(keepAlive: true)
+CreateAdMockDataSource createAdMockDataSource(Ref ref) {
+  return CreateAdMockDataSource();
+}
+
+@Riverpod(keepAlive: true)
+ProfileTagsMockDataSource profileTagsMockDataSource(Ref ref) {
+  return ProfileTagsMockDataSource();
+}
+
 @riverpod
 IApartamentsRepository apartamentsRepository(Ref ref) {
   return ApartamentsRepository(
@@ -33,6 +45,7 @@ IApartamentsRepository apartamentsRepository(Ref ref) {
 IProfileRepository profileRepository(Ref ref) {
   return ProfileRepository(
     remoteDataSource: ref.watch(profileRemoteDataSourceProvider),
+    tagsMockDataSource: ref.watch(profileTagsMockDataSourceProvider),
   );
 }
 
@@ -44,5 +57,7 @@ AuthRepository authRepository(Ref ref) {
 
 @riverpod
 ICreateAdRepository createAdRepository(Ref ref) {
-  return CreateAdRepository();
+  return CreateAdRepository(
+    mockDataSource: ref.watch(createAdMockDataSourceProvider),
+  );
 }

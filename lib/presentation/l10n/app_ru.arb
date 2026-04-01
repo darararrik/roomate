@@ -265,5 +265,6 @@
   "prepayment": "Предоплата",
   "rentalPeriod": "Срок аренды",
   "whoToRent": "Кому сдавать",
-  "price": "Цена"
+  "price": "Цена",
+  "inFavorites":"В избранном"
 }

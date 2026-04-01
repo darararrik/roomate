@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:roomate/presentation/routing/app_routing.dart';
 
 class NavigationService {
   NavigationService(this.router);
   final AppRouter router;
+  final FToast _fToast = FToast();
 
   BuildContext? get context => router.navigatorKey.currentContext;
+
+  void _ensureToastInit() {
+    if (context != null) {
+      _fToast.init(context!);
+    }
+  }
 
   // --- Typed Navigation ---
 
@@ -47,9 +55,7 @@ class NavigationService {
       isScrollControlled: isScrollControlled,
       context: effectiveContext,
       builder: (context) => Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-        ),
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Wrap(children: [bottomSheet]),
       ),
     );
@@ -60,11 +66,7 @@ class NavigationService {
     bool barrierDismissible = true,
   }) async {
     if (context == null) return;
-    await showDialog(
-      context: context!,
-      barrierDismissible: barrierDismissible,
-      builder: builder,
-    );
+    await showDialog(context: context!, barrierDismissible: barrierDismissible, builder: builder);
   }
 
   void showSnackBar({required String message, int durationInSeconds = 3}) {
@@ -78,5 +80,17 @@ class NavigationService {
         );
       });
     }
+  }
+
+  void showCustomToast(Widget child) {
+    _ensureToastInit();
+    if (context == null) return;
+
+    _fToast.removeCustomToast();
+    _fToast.showToast(
+      child: child,
+      gravity: ToastGravity.TOP,
+      toastDuration: const Duration(seconds: 2),
+    );
   }
 }

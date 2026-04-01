@@ -4,7 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/presentation.dart';
+import 'package:roomate/presentation/app/favorites/state/favorites_notifier.dart';
 import 'package:roomate/presentation/app/home/state/apartaments_notifier.dart';
+import 'package:roomate/state/navigation/navigation_provider.dart';
 
 @RoutePage()
 class ApartamentsTab extends ConsumerWidget {
@@ -13,6 +15,8 @@ class ApartamentsTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final apartaments = ref.watch(apartamentsProvider).apartaments;
+    final favorites = ref.watch(favoriteApartmentIdsProvider);
+    final favoritesNotifier = ref.read(favoriteApartmentIdsProvider.notifier);
 
     return CustomScrollView(
       slivers: [
@@ -26,20 +30,12 @@ class ApartamentsTab extends ConsumerWidget {
                 padding: const P(vertical: S.p4, horizontal: S.p8),
                 children: [
                   FilterCard(
-                    leading: const AppIcon(
-                      AppIcons.filter2,
-                      width: S.p24,
-                      height: S.p24,
-                    ),
+                    leading: const AppIcon(AppIcons.filter2, width: S.p24, height: S.p24),
                     title: context.l10n.filters,
                     onTap: () => context.pushRoute(const FiltersWrapper()),
                   ),
                   FilterCard(
-                    trailing: const AppIcon(
-                      AppIcons.arrowDown,
-                      width: S.p24,
-                      height: S.p24,
-                    ),
+                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
                     title: context.l10n.term,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -48,11 +44,7 @@ class ApartamentsTab extends ConsumerWidget {
                     ),
                   ),
                   FilterCard(
-                    trailing: const AppIcon(
-                      AppIcons.arrowDown,
-                      width: S.p24,
-                      height: S.p24,
-                    ),
+                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
                     title: context.l10n.district,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -85,11 +77,7 @@ class ApartamentsTab extends ConsumerWidget {
                     ),
 
                     //TODO: сменить виджет
-                    child: const AppIcon(
-                      AppIcons.sort,
-                      width: S.p32,
-                      height: S.p32,
-                    ),
+                    child: const AppIcon(AppIcons.sort, width: S.p32, height: S.p32),
                   ),
                 ],
               ),
@@ -103,8 +91,16 @@ class ApartamentsTab extends ConsumerWidget {
 
             return ApartmentCard(
               apartment: apartment,
-              onTap: () =>
-                  context.pushRoute(ApartamnetRoute(apartment: apartment)),
+              isFavorite: favorites.contains(apartment.id),
+              onFavoriteTap: () {
+                final isAdded = favoritesNotifier.toggle(apartment.id);
+                if (isAdded) {
+                  ref
+                      .read(navigationServiceProvider)
+                      .showSnackBar(message: "Добавлено в избранное", durationInSeconds: 5);
+                }
+              },
+              onTap: () => context.pushRoute(ApartamnetRoute(apartment: apartment)),
             );
           },
           separatorBuilder: (context, index) {

@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -14,9 +15,10 @@ class RentTypeStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(createAdProvider);
+    final _ = ref.watch(createAdProvider);
+    final taxonomy = ref.watch(createAdTaxonomyProvider);
     final notifier = ref.read(createAdProvider.notifier);
-    final tags = state.rentTypeGroups;
+    final tags = taxonomy.rentTypeGroups;
     final goalTags = tags[0];
     final termTags = tags[1];
     final whoToRentTags = tags[2];
@@ -29,20 +31,24 @@ class RentTypeStepScreen extends ConsumerWidget {
         children: [
           SelectableTagGroup(
             tagsGroup: goalTags,
+            selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.goal),
             onTagSelected: (tag, isSelected) {
-              notifier.updateTag(goalTags.groupId, tag.title);
+              notifier.updateTag(CreateAdTagTypeIds.goal, tag.id);
             },
           ),
           SelectableTagGroup(
             tagsGroup: termTags,
+            selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.term),
             onTagSelected: (tag, isSelected) {
-              notifier.updateTag(termTags.groupId, tag.title);
+              notifier.updateTag(CreateAdTagTypeIds.term, tag.id);
             },
           ),
           SelectableTagGroup(
             tagsGroup: whoToRentTags,
+            selectionStyle: TagSelectionStyle.checkboxChips,
+            selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.whoToRent),
             onTagSelected: (tag, isSelected) {
-              notifier.updateTag(whoToRentTags.groupId, tag.title);
+              notifier.updateTag(CreateAdTagTypeIds.whoToRent, tag.id);
             },
           ),
         ],

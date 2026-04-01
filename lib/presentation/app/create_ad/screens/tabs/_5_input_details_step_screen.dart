@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -20,15 +21,18 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
     final totalFloorsController = useTextEditingController();
 
     final notifier = ref.read(createAdProvider.notifier);
-    final state = ref.watch(createAdProvider);
-    final data = state.apartmentPropertiesGroups;
+    final _ = ref.watch(createAdProvider);
+    final taxonomy = ref.watch(createAdTaxonomyProvider);
+    final data = taxonomy.apartmentPropertiesGroups;
 
     return ListView(
       padding: const P(horizontal: S.p16),
       children: [
         SelectableTagGroup(
           tagsGroup: data.first,
-          onTagSelected: (tag, isSelected) => notifier.updateTag(data.first.groupId, tag.title),
+          selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.roomCount),
+          onTagSelected: (tag, isSelected) =>
+              notifier.updateTag(CreateAdTagTypeIds.roomCount, tag.id),
         ),
         TextFieldWithTitle.withSuffix(
           title: context.l10n.apartmentArea,
@@ -40,7 +44,9 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
         ),
         SelectableTagGroup(
           tagsGroup: data[1],
-          onTagSelected: (tag, isSelected) => notifier.updateTag(data[1].groupId, tag.title),
+          selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.layout),
+          onTagSelected: (tag, isSelected) =>
+              notifier.updateTag(CreateAdTagTypeIds.layout, tag.id),
         ),
         TextFieldWithTitle.number(
           title: context.l10n.floor,

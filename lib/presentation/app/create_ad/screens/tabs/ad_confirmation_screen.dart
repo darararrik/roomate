@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
 import 'package:roomate/presentation/constants/app_icons.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
@@ -17,6 +18,11 @@ class AdConfirmationScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(createAdProvider);
+    final notifier = ref.read(createAdProvider.notifier);
+    final selectedTerm = notifier.selectedSingleTitle(CreateAdTagTypeIds.term);
+    final selectedPropertyType = notifier.selectedSingleTitle(
+      CreateAdTagTypeIds.propertyType,
+    );
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -25,11 +31,15 @@ class AdConfirmationScreen extends ConsumerWidget {
         child: Column(
           spacing: S.p28,
           children: [
-            _InfoRow(iconPath: AppIcons.clock, title: 'Аренда', subtitle: state.term),
+            _InfoRow(
+              iconPath: AppIcons.clock,
+              title: 'Аренда',
+              subtitle: selectedTerm,
+            ),
             _InfoRow(
               iconPath: AppIcons.building2,
               title: 'Вид недвижимости',
-              subtitle: state.propertyType,
+              subtitle: selectedPropertyType,
             ),
             const _InfoRow(
               iconPath: AppIcons.location,

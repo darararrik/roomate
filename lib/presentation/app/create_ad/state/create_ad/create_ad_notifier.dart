@@ -2,35 +2,79 @@ import 'package:auto_route/auto_route.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:roomate/domain/enums/currency_enum.dart';
+import 'package:roomate/domain/models/create_ad_request.dart';
+import 'package:roomate/domain/models/create_ad_tag_sections.dart';
 import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/domain/repository/create_ad_repository.dart';
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_state.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_taxonomy_state.dart';
 import 'package:roomate/presentation/di/providers.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
 
 part 'create_ad_notifier.g.dart';
 
+enum _TagSelectionMode { single, multi }
+
+@riverpod
+class CreateAdTaxonomy extends _$CreateAdTaxonomy {
+  @override
+  CreateAdTaxonomyState build() {
+    final repository = ref.read(createAdRepositoryProvider);
+    final allTags = repository.getAllTags();
+
+    TagGroupModel firstOrEmpty(String key) {
+      final list = allTags[key] ?? const <TagGroupModel>[];
+      return list.isNotEmpty ? list.first : const TagGroupModel();
+    }
+
+    return CreateAdTaxonomyState(
+      rentTypeGroups: allTags[CreateAdTagSections.rentType] ?? const <TagGroupModel>[],
+      premisesTypeGroup: firstOrEmpty(CreateAdTagSections.premisesType),
+      propertyTypeGroup: firstOrEmpty(CreateAdTagSections.propertyType),
+      apartmentPropertiesGroups:
+          allTags[CreateAdTagSections.apartmentProperties] ?? const <TagGroupModel>[],
+      featuresGroups: allTags[CreateAdTagSections.features] ?? const <TagGroupModel>[],
+      thingsGroups: allTags[CreateAdTagSections.things] ?? const <TagGroupModel>[],
+      dealTermsGroups: allTags[CreateAdTagSections.dealTerms] ?? const <TagGroupModel>[],
+      contactInfoGroup: firstOrEmpty(CreateAdTagSections.contactInfo),
+    );
+  }
+}
+
 @riverpod
 class CreateAdNotifier extends _$CreateAdNotifier {
   late final ICreateAdRepository _repository;
 
+  static const Map<int, _TagSelectionMode> _modeByType = <int, _TagSelectionMode>{
+    CreateAdTagTypeIds.goal: _TagSelectionMode.single,
+    CreateAdTagTypeIds.term: _TagSelectionMode.single,
+    CreateAdTagTypeIds.whoToRent: _TagSelectionMode.multi,
+    CreateAdTagTypeIds.premisesType: _TagSelectionMode.single,
+    CreateAdTagTypeIds.propertyType: _TagSelectionMode.single,
+    CreateAdTagTypeIds.roomCount: _TagSelectionMode.single,
+    CreateAdTagTypeIds.layout: _TagSelectionMode.single,
+    CreateAdTagTypeIds.renovation: _TagSelectionMode.single,
+    CreateAdTagTypeIds.elevators: _TagSelectionMode.single,
+    CreateAdTagTypeIds.balconies: _TagSelectionMode.single,
+    CreateAdTagTypeIds.furniture: _TagSelectionMode.single,
+    CreateAdTagTypeIds.amenities: _TagSelectionMode.multi,
+    CreateAdTagTypeIds.bathroom: _TagSelectionMode.multi,
+    CreateAdTagTypeIds.appliances: _TagSelectionMode.multi,
+    CreateAdTagTypeIds.stove: _TagSelectionMode.single,
+    CreateAdTagTypeIds.currency: _TagSelectionMode.single,
+    CreateAdTagTypeIds.prepayment: _TagSelectionMode.single,
+    CreateAdTagTypeIds.rentalPeriod: _TagSelectionMode.single,
+    CreateAdTagTypeIds.rentalConditions: _TagSelectionMode.multi,
+    CreateAdTagTypeIds.contactMethod: _TagSelectionMode.single,
+  };
+
   @override
   CreateAdState build() {
     _repository = ref.read(createAdRepositoryProvider);
-    return CreateAdState(
-      rentTypeGroups: _repository.getRentTypeTags(),
-      premisesTypeGroup: _repository.getPremisesTypeTags(),
-      propertyTypeGroup: _repository.getPropertyTypeTags(),
-      apartmentPropertiesGroups: _repository.getPropertiesApartmentTags(),
-      featuresGroups: _repository.getFeatures(),
-      thingsGroups: _repository.getThings(),
-      dealTermsGroups: _repository.getDealTermsTags(),
-      contactInfoGroup: _repository.getContactInfoTags(),
-    );
+    return const CreateAdState();
   }
-
-  // --- Навигация ---
 
   String getStepTitle(int index) {
     return switch (index) {
@@ -50,6 +94,9 @@ class CreateAdNotifier extends _$CreateAdNotifier {
 
   void nextStep(TabsRouter tabsRouter) {
     final nextIndex = tabsRouter.activeIndex + 1;
+    if (tabsRouter.activeIndex == 11) {
+      _repository.createAd(_toCreateAdRequest());
+    }
     if (nextIndex < tabsRouter.pageCount) {
       tabsRouter.setActiveIndex(nextIndex);
     } else {
@@ -66,144 +113,77 @@ class CreateAdNotifier extends _$CreateAdNotifier {
     }
   }
 
-  void updateTag(String groupId, String tagTitle) {
-    final isMulti = _multiSelectGroups.contains(groupId);
+  Set<int> selectedIdsForType(int typeId) {
+    return (state.selectedTagIdsByType[typeId] ?? const <int>[]).toSet();
+  }
+
+  String selectedSingleTitle(int typeId) {
+    final selected = state.selectedTagIdsByType[typeId] ?? const <int>[];
+    if (selected.isEmpty) {
+      return '';
+    }
+
+    final taxonomy = ref.read(createAdTaxonomyProvider);
+    return _tagTitleById(typeId, selected.first, taxonomy) ?? '';
+  }
+
+  List<String> selectedMultiTitles(int typeId) {
+    final selected = state.selectedTagIdsByType[typeId] ?? const <int>[];
+    if (selected.isEmpty) {
+      return const <String>[];
+    }
+
+    final taxonomy = ref.read(createAdTaxonomyProvider);
+    return selected
+        .map((id) => _tagTitleById(typeId, id, taxonomy))
+        .whereType<String>()
+        .toList(growable: false);
+  }
+
+  void updateTag(int typeId, int tagId) {
+    final taxonomy = ref.read(createAdTaxonomyProvider);
+    if (_tagTitleById(typeId, tagId, taxonomy) == null) {
+      return;
+    }
+
+    final mode = _modeByType[typeId] ?? _TagSelectionMode.single;
+    final current = selectedIdsForType(typeId);
+
+    switch (mode) {
+      case _TagSelectionMode.single:
+        current
+          ..clear()
+          ..add(tagId);
+        break;
+      case _TagSelectionMode.multi:
+        if (current.contains(tagId)) {
+          current.remove(tagId);
+        } else {
+          current.add(tagId);
+        }
+        break;
+    }
+
+    final nextSelected = Map<int, List<int>>.from(state.selectedTagIdsByType);
+    if (current.isEmpty) {
+      nextSelected.remove(typeId);
+    } else {
+      nextSelected[typeId] = current.toList(growable: false);
+    }
+
+    var nextCurrency = state.selectedCurrency;
+    if (typeId == CreateAdTagTypeIds.currency) {
+      final selectedTitle = _selectedSingleTitleFrom(nextSelected, typeId, taxonomy);
+      if (selectedTitle.isNotEmpty) {
+        nextCurrency = Currency.fromTitle(selectedTitle);
+      }
+    }
 
     state = state.copyWith(
-      rentTypeGroups: _updateInList(
-        state.rentTypeGroups,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-      premisesTypeGroup: _updateSingle(
-        state.premisesTypeGroup,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-      propertyTypeGroup: _updateSingle(
-        state.propertyTypeGroup,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-      apartmentPropertiesGroups: _updateInList(
-        state.apartmentPropertiesGroups,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-      featuresGroups: _updateInList(
-        state.featuresGroups,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-      thingsGroups: _updateInList(
-        state.thingsGroups,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-      dealTermsGroups: _updateInList(
-        state.dealTermsGroups,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-      contactInfoGroup: _updateSingle(
-        state.contactInfoGroup,
-        groupId,
-        tagTitle,
-        isMulti,
-      ),
-    );
-
-    _syncWithFields(groupId, tagTitle, isMulti);
-  }
-
-  void _syncWithFields(String groupId, String title, bool isMulti) {
-    if (isMulti) {
-      final currentList = _getMultiListByGroupId(groupId);
-      final newList = currentList.contains(title)
-          ? currentList.where((t) => t != title).toList()
-          : [...currentList, title];
-      _updateFieldByGroupId(groupId, newList);
-    } else {
-      _updateFieldByGroupId(groupId, title);
-    }
-  }
-
-  void _updateFieldByGroupId(String groupId, dynamic value) {
-    state = switch (groupId) {
-      'goal' => state.copyWith(goal: value as String),
-      'term' => state.copyWith(term: value as String),
-      'who_to_rent' => state.copyWith(whoReadyRent: value as List<String>),
-      'property_type' => state.copyWith(propertyType: value as String),
-      'premises_type' => state.copyWith(premisesType: value as String),
-      'room_count' => state.copyWith(roomCount: value as String),
-      'layout' => state.copyWith(layout: value as String),
-      'renovation' => state.copyWith(renovation: value as String),
-      'elevators' => state.copyWith(elevators: value as String),
-      'balconies' => state.copyWith(balconies: value as String),
-      'furniture' => state.copyWith(furniture: value as String),
-      'amenities' => state.copyWith(amenities: value as List<String>),
-      'bathroom' => state.copyWith(bathroom: value as List<String>),
-      'appliances' => state.copyWith(appliances: value as List<String>),
-      'stove' => state.copyWith(stove: value as String),
-      'prepayment' => state.copyWith(prepayment: value as String),
-      'rental_period' => state.copyWith(rentalPeriod: value as String),
-      'rental_conditions' => state.copyWith(
-        rentalConditions: value as List<String>,
-      ),
-      'contact_method' => state.copyWith(contactMethod: value as String),
-      _ => state,
-    };
-  }
-
-  /// Получение текущего списка для мульти-выбора по ID группы
-  List<String> _getMultiListByGroupId(String groupId) {
-    return switch (groupId) {
-      'who_to_rent' => state.whoReadyRent,
-      'amenities' => state.amenities,
-      'bathroom' => state.bathroom,
-      'appliances' => state.appliances,
-      'rental_conditions' => state.rentalConditions,
-      _ => [],
-    };
-  }
-
-  // --- Вспомогательные методы обновления моделей TagGroupModel ---
-
-  TagGroupModel _updateSingle(
-    TagGroupModel group,
-    String targetId,
-    String title,
-    bool isMulti,
-  ) {
-    if (group.groupId != targetId) return group;
-
-    return group.copyWith(
-      tags: group.tags.map((t) {
-        if (t.title == title) {
-          return t.copyWith(isSelected: isMulti ? !t.isSelected : true);
-        }
-        return isMulti ? t : t.copyWith(isSelected: false);
-      }).toList(),
+      selectedTagIdsByType: nextSelected,
+      selectedCurrency: nextCurrency,
     );
   }
-
-  List<TagGroupModel> _updateInList(
-    List<TagGroupModel> list,
-    String targetId,
-    String title,
-    bool isMulti,
-  ) {
-    return list.map((g) => _updateSingle(g, targetId, title, isMulti)).toList();
-  }
-
-  // --- Прямые обновления полей (текст, числа) ---
 
   void updateCurrency(String currencyTitle) {
     state = state.copyWith(selectedCurrency: Currency.fromTitle(currencyTitle));
@@ -233,18 +213,72 @@ class CreateAdNotifier extends _$CreateAdNotifier {
 
   void setTitle(String value) => state = state.copyWith(title: value);
 
-  void setDescription(String value) =>
-      state = state.copyWith(description: value);
+  void setDescription(String value) => state = state.copyWith(description: value);
 
-  void updateAdditionalNumber(String value) =>
-      state = state.copyWith(additionalNumber: value);
+  void updateAdditionalNumber(String value) => state = state.copyWith(additionalNumber: value);
 
-  // Константа для определения типа выбора (Multi vs Radio)
-  static const _multiSelectGroups = {
-    'who_to_rent',
-    'amenities',
-    'bathroom',
-    'appliances',
-    'rental_conditions',
-  };
+  CreateAdRequest _toCreateAdRequest() {
+    return CreateAdRequest(
+      title: state.title,
+      description: state.description,
+      address: state.address,
+      additionalNumber: state.additionalNumber,
+      currency: state.selectedCurrency.name,
+      cost: state.cost,
+      deposit: state.deposit,
+      apartmentArea: state.apartmentArea,
+      floor: state.floor,
+      totalFloors: state.totalFloors,
+      selectedTagsByType: state.selectedTagIdsByType,
+    );
+  }
+
+  String _selectedSingleTitleFrom(
+    Map<int, List<int>> selectedByType,
+    int typeId,
+    CreateAdTaxonomyState taxonomy,
+  ) {
+    final selected = selectedByType[typeId] ?? const <int>[];
+    if (selected.isEmpty) {
+      return '';
+    }
+
+    return _tagTitleById(typeId, selected.first, taxonomy) ?? '';
+  }
+
+  String? _tagTitleById(int typeId, int tagId, CreateAdTaxonomyState taxonomy) {
+    final group = _groupByTypeId(typeId, taxonomy);
+    if (group == null) {
+      return null;
+    }
+
+    for (final tag in group.tags) {
+      if (tag.id == tagId) {
+        return tag.title;
+      }
+    }
+
+    return null;
+  }
+
+  TagGroupModel? _groupByTypeId(int typeId, CreateAdTaxonomyState taxonomy) {
+    for (final group in _allGroups(taxonomy)) {
+      if (int.tryParse(group.groupId) == typeId) {
+        return group;
+      }
+    }
+
+    return null;
+  }
+
+  Iterable<TagGroupModel> _allGroups(CreateAdTaxonomyState taxonomy) sync* {
+    yield* taxonomy.rentTypeGroups;
+    yield taxonomy.premisesTypeGroup;
+    yield taxonomy.propertyTypeGroup;
+    yield* taxonomy.apartmentPropertiesGroups;
+    yield* taxonomy.featuresGroups;
+    yield* taxonomy.thingsGroups;
+    yield* taxonomy.dealTermsGroups;
+    yield taxonomy.contactInfoGroup;
+  }
 }

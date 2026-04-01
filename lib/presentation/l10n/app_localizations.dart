@@ -1659,6 +1659,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Цена'**
   String get price;
+
+  /// No description provided for @inFavorites.
+  ///
+  /// In ru, this message translates to:
+  /// **'В избранном'**
+  String get inFavorites;
 }
 
 class _AppLocalizationsDelegate

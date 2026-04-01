@@ -806,4 +806,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get price => 'Цена';
+
+  @override
+  String get inFavorites => 'В избранном';
 }

@@ -105,6 +105,102 @@ final class ApartamentsMockDataSourceProvider
 String _$apartamentsMockDataSourceHash() =>
     r'5f852b2b0e3c534620fc89f682dac39e6411853b';
 
+@ProviderFor(createAdMockDataSource)
+final createAdMockDataSourceProvider = CreateAdMockDataSourceProvider._();
+
+final class CreateAdMockDataSourceProvider
+    extends
+        $FunctionalProvider<
+          CreateAdMockDataSource,
+          CreateAdMockDataSource,
+          CreateAdMockDataSource
+        >
+    with $Provider<CreateAdMockDataSource> {
+  CreateAdMockDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'createAdMockDataSourceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$createAdMockDataSourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<CreateAdMockDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  CreateAdMockDataSource create(Ref ref) {
+    return createAdMockDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CreateAdMockDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CreateAdMockDataSource>(value),
+    );
+  }
+}
+
+String _$createAdMockDataSourceHash() =>
+    r'2e3e2f0f2b77a982ff2fc8d17c4529a6c195b1e9';
+
+@ProviderFor(profileTagsMockDataSource)
+final profileTagsMockDataSourceProvider = ProfileTagsMockDataSourceProvider._();
+
+final class ProfileTagsMockDataSourceProvider
+    extends
+        $FunctionalProvider<
+          ProfileTagsMockDataSource,
+          ProfileTagsMockDataSource,
+          ProfileTagsMockDataSource
+        >
+    with $Provider<ProfileTagsMockDataSource> {
+  ProfileTagsMockDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'profileTagsMockDataSourceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$profileTagsMockDataSourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ProfileTagsMockDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ProfileTagsMockDataSource create(Ref ref) {
+    return profileTagsMockDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProfileTagsMockDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProfileTagsMockDataSource>(value),
+    );
+  }
+}
+
+String _$profileTagsMockDataSourceHash() =>
+    r'33941b74ca955549128dfd40d049921924e24570';
+
 @ProviderFor(apartamentsRepository)
 final apartamentsRepositoryProvider = ApartamentsRepositoryProvider._();
 
@@ -198,7 +294,7 @@ final class ProfileRepositoryProvider
   }
 }
 
-String _$profileRepositoryHash() => r'e718f47361b2aab368b907185549356049bf0c4a';
+String _$profileRepositoryHash() => r'dd9892892a1ad08b93f4bd6b1b68352b6450dfcb';
 
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
@@ -287,4 +383,4 @@ final class CreateAdRepositoryProvider
 }
 
 String _$createAdRepositoryHash() =>
-    r'02456cfb350c0516e5b721f2b2232b1c856ca214';
+    r'6633f14e80de1877faee41de0251303540a1d896';
