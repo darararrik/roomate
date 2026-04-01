@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 mixin _$CreateAdState {
 
 /// Выбранные теги: ключ = typeId, значение = список tagId
- Map<int, List<int>> get selectedTagIdsByType; Currency get selectedCurrency; double get cost; double get deposit; double get apartmentArea; int get floor; int get totalFloors; String get address; int get apartmentNumber; String get title; String get description; String get additionalNumber;
+ Map<int, List<int>> get selectedTagIdsByType; Currency get selectedCurrency; double get cost; double get deposit; double get apartmentArea; int get floor; int get totalFloors; String get address; int get apartmentNumber; String get title; String get description; String get mainPhone; String get additionalNumber;
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $CreateAdStateCopyWith<CreateAdState> get copyWith => _$CreateAdStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateAdState&&const DeepCollectionEquality().equals(other.selectedTagIdsByType, selectedTagIdsByType)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateAdState&&const DeepCollectionEquality().equals(other.selectedTagIdsByType, selectedTagIdsByType)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.mainPhone, mainPhone) || other.mainPhone == mainPhone)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(selectedTagIdsByType),selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,apartmentNumber,title,description,additionalNumber);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(selectedTagIdsByType),selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,apartmentNumber,title,description,mainPhone,additionalNumber);
 
 @override
 String toString() {
-  return 'CreateAdState(selectedTagIdsByType: $selectedTagIdsByType, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, apartmentNumber: $apartmentNumber, title: $title, description: $description, additionalNumber: $additionalNumber)';
+  return 'CreateAdState(selectedTagIdsByType: $selectedTagIdsByType, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, apartmentNumber: $apartmentNumber, title: $title, description: $description, mainPhone: $mainPhone, additionalNumber: $additionalNumber)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $CreateAdStateCopyWith<$Res>  {
   factory $CreateAdStateCopyWith(CreateAdState value, $Res Function(CreateAdState) _then) = _$CreateAdStateCopyWithImpl;
 @useResult
 $Res call({
- Map<int, List<int>> selectedTagIdsByType, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, int apartmentNumber, String title, String description, String additionalNumber
+ Map<int, List<int>> selectedTagIdsByType, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, int apartmentNumber, String title, String description, String mainPhone, String additionalNumber
 });
 
 
@@ -63,7 +63,7 @@ class _$CreateAdStateCopyWithImpl<$Res>
 
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? selectedTagIdsByType = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? additionalNumber = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? selectedTagIdsByType = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? mainPhone = null,Object? additionalNumber = null,}) {
   return _then(_self.copyWith(
 selectedTagIdsByType: null == selectedTagIdsByType ? _self.selectedTagIdsByType : selectedTagIdsByType // ignore: cast_nullable_to_non_nullable
 as Map<int, List<int>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
@@ -76,6 +76,7 @@ as int,address: null == address ? _self.address : address // ignore: cast_nullab
 as String,apartmentNumber: null == apartmentNumber ? _self.apartmentNumber : apartmentNumber // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,mainPhone: null == mainPhone ? _self.mainPhone : mainPhone // ignore: cast_nullable_to_non_nullable
 as String,additionalNumber: null == additionalNumber ? _self.additionalNumber : additionalNumber // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -159,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<int, List<int>> selectedTagIdsByType,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int apartmentNumber,  String title,  String description,  String additionalNumber)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<int, List<int>> selectedTagIdsByType,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateAdState() when $default != null:
-return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.apartmentNumber,_that.title,_that.description,_that.additionalNumber);case _:
+return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);case _:
   return orElse();
 
 }
@@ -180,10 +181,10 @@ return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<int, List<int>> selectedTagIdsByType,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int apartmentNumber,  String title,  String description,  String additionalNumber)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<int, List<int>> selectedTagIdsByType,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdState():
-return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.apartmentNumber,_that.title,_that.description,_that.additionalNumber);}
+return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +198,10 @@ return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<int, List<int>> selectedTagIdsByType,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int apartmentNumber,  String title,  String description,  String additionalNumber)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<int, List<int>> selectedTagIdsByType,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdState() when $default != null:
-return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.apartmentNumber,_that.title,_that.description,_that.additionalNumber);case _:
+return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);case _:
   return null;
 
 }
@@ -212,7 +213,7 @@ return $default(_that.selectedTagIdsByType,_that.selectedCurrency,_that.cost,_th
 
 
 class _CreateAdState implements CreateAdState {
-  const _CreateAdState({final  Map<int, List<int>> selectedTagIdsByType = const {}, this.selectedCurrency = Currency.rub, this.cost = 0, this.deposit = 0, this.apartmentArea = 0, this.floor = 0, this.totalFloors = 0, this.address = "", this.apartmentNumber = 0, this.title = "", this.description = "", this.additionalNumber = ""}): _selectedTagIdsByType = selectedTagIdsByType;
+  const _CreateAdState({final  Map<int, List<int>> selectedTagIdsByType = const {}, this.selectedCurrency = Currency.rub, this.cost = 0, this.deposit = 0, this.apartmentArea = 0, this.floor = 0, this.totalFloors = 0, this.address = "", this.apartmentNumber = 0, this.title = "", this.description = "", this.mainPhone = "", this.additionalNumber = ""}): _selectedTagIdsByType = selectedTagIdsByType;
   
 
 /// Выбранные теги: ключ = typeId, значение = список tagId
@@ -234,6 +235,7 @@ class _CreateAdState implements CreateAdState {
 @override@JsonKey() final  int apartmentNumber;
 @override@JsonKey() final  String title;
 @override@JsonKey() final  String description;
+@override@JsonKey() final  String mainPhone;
 @override@JsonKey() final  String additionalNumber;
 
 /// Create a copy of CreateAdState
@@ -246,16 +248,16 @@ _$CreateAdStateCopyWith<_CreateAdState> get copyWith => __$CreateAdStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateAdState&&const DeepCollectionEquality().equals(other._selectedTagIdsByType, _selectedTagIdsByType)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateAdState&&const DeepCollectionEquality().equals(other._selectedTagIdsByType, _selectedTagIdsByType)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.mainPhone, mainPhone) || other.mainPhone == mainPhone)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_selectedTagIdsByType),selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,apartmentNumber,title,description,additionalNumber);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_selectedTagIdsByType),selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,apartmentNumber,title,description,mainPhone,additionalNumber);
 
 @override
 String toString() {
-  return 'CreateAdState(selectedTagIdsByType: $selectedTagIdsByType, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, apartmentNumber: $apartmentNumber, title: $title, description: $description, additionalNumber: $additionalNumber)';
+  return 'CreateAdState(selectedTagIdsByType: $selectedTagIdsByType, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, apartmentNumber: $apartmentNumber, title: $title, description: $description, mainPhone: $mainPhone, additionalNumber: $additionalNumber)';
 }
 
 
@@ -266,7 +268,7 @@ abstract mixin class _$CreateAdStateCopyWith<$Res> implements $CreateAdStateCopy
   factory _$CreateAdStateCopyWith(_CreateAdState value, $Res Function(_CreateAdState) _then) = __$CreateAdStateCopyWithImpl;
 @override @useResult
 $Res call({
- Map<int, List<int>> selectedTagIdsByType, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, int apartmentNumber, String title, String description, String additionalNumber
+ Map<int, List<int>> selectedTagIdsByType, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, int apartmentNumber, String title, String description, String mainPhone, String additionalNumber
 });
 
 
@@ -283,7 +285,7 @@ class __$CreateAdStateCopyWithImpl<$Res>
 
 /// Create a copy of CreateAdState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? selectedTagIdsByType = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? additionalNumber = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? selectedTagIdsByType = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? mainPhone = null,Object? additionalNumber = null,}) {
   return _then(_CreateAdState(
 selectedTagIdsByType: null == selectedTagIdsByType ? _self._selectedTagIdsByType : selectedTagIdsByType // ignore: cast_nullable_to_non_nullable
 as Map<int, List<int>>,selectedCurrency: null == selectedCurrency ? _self.selectedCurrency : selectedCurrency // ignore: cast_nullable_to_non_nullable
@@ -296,6 +298,7 @@ as int,address: null == address ? _self.address : address // ignore: cast_nullab
 as String,apartmentNumber: null == apartmentNumber ? _self.apartmentNumber : apartmentNumber // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,mainPhone: null == mainPhone ? _self.mainPhone : mainPhone // ignore: cast_nullable_to_non_nullable
 as String,additionalNumber: null == additionalNumber ? _self.additionalNumber : additionalNumber // ignore: cast_nullable_to_non_nullable
 as String,
   ));

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/presentation/app/favorites/state/favorites_notifier.dart';
 import 'package:roomate/presentation/app/home/state/apartaments_notifier.dart';
+import 'package:roomate/presentation/presentation.dart';
 import 'package:roomate/state/navigation/navigation_provider.dart';
 
 @RoutePage()

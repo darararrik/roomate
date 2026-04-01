@@ -15,7 +15,7 @@ class VerificationStatusScreen extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: SafeArea(
         child: BottomNextButton(
-          onPressed: () => context.replaceRoute(const MainFlowRoute()),
+          onPressed: () => context.router.replaceAll([const MainFlowRoute()]),
         ),
       ),
       appBar: AppBar(title: Text(locale.verification), centerTitle: false),
@@ -27,28 +27,17 @@ class VerificationStatusScreen extends StatelessWidget {
               padding: const P(horizontal: S.p32, top: S.p60),
               child: Column(
                 children: [
-                  Text(
-                    locale.documentsUnderReview,
-                    style: typography.headline1,
-                  ),
+                  Text(locale.documentsUnderReview, style: typography.headline1),
                   const SizedBox(height: S.p8),
                   Text(
                     locale.verificationWaitTime,
                     textAlign: .center,
-                    style: typography.headline2.copyWith(
-                      color: context.colors.graysText400,
-                    ),
+                    style: typography.headline2.copyWith(color: context.colors.graysText400),
                   ),
                 ],
               ),
             ),
-            const Expanded(
-              child: AppIcon(
-                AppIcons.verificationWait,
-                width: 200,
-                height: 200,
-              ),
-            ),
+            const Expanded(child: AppIcon(AppIcons.verificationWait, width: 200, height: 200)),
           ],
         ),
       ),

@@ -14,7 +14,7 @@ class FinishScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _ = ref.watch(createAdProvider);
+    ref.watch(createAdProvider);
 
     return Padding(
       padding: const P(horizontal: S.p16, top: S.p10),

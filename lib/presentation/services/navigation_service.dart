@@ -26,6 +26,9 @@ class NavigationService {
   /// Универсальный replace
   Future<void> replace(PageRouteInfo route) => router.replace(route);
 
+  /// Очистка стека и переход на новые роуты
+  Future<void> replaceAll(List<PageRouteInfo> routes) => router.replaceAll(routes);
+
   /// Универсальный navigate (используется для TabBar или возврата в стек)
   Future<void> navigate(PageRouteInfo route) => router.navigate(route);
 

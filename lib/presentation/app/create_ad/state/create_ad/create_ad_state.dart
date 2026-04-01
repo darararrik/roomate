@@ -20,6 +20,7 @@ sealed class CreateAdState with _$CreateAdState {
     @Default(0) int apartmentNumber,
     @Default("") String title,
     @Default("") String description,
+    @Default("") String mainPhone,
     @Default("") String additionalNumber,
   }) = _CreateAdState;
 }

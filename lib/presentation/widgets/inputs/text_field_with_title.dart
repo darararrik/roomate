@@ -19,6 +19,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.needSuffixIcon = true,
     this.maxLines,
     this.minLines,
+    this.readOnly = false,
   }) : keyboardType = TextInputType.text,
        inputFormatters = null;
 
@@ -32,6 +33,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.needSuffixIcon = true,
     this.maxLines,
     this.minLines,
+    this.readOnly = false,
   }) : suffix = null,
        keyboardType = TextInputType.number,
        inputFormatters = [FilteringTextInputFormatter.digitsOnly];
@@ -47,6 +49,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.onChanged,
     this.maxLines,
     this.minLines,
+    this.readOnly = false,
   }) : keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
 
@@ -59,6 +62,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.onChanged,
     this.needSuffixIcon = true,
     this.maxLines,
+    this.readOnly = false,
     this.minLines,
   }) : suffix = null,
        keyboardType = const TextInputType.numberWithOptions(decimal: true),
@@ -69,6 +73,7 @@ class TextFieldWithTitle extends StatelessWidget {
     required this.title,
     required this.hintText,
     required this.controller,
+    this.readOnly = false,
     this.onChanged,
   }) : suffix = null,
        keyboardType = TextInputType.multiline,
@@ -87,6 +92,7 @@ class TextFieldWithTitle extends StatelessWidget {
   final bool needSuffixIcon;
   final int? maxLines;
   final int? minLines;
+  final bool readOnly;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -106,6 +112,7 @@ class TextFieldWithTitle extends StatelessWidget {
             inputFormatters: inputFormatters,
             onChanged: onChanged,
             needSuffixIcon: needSuffixIcon,
+            readOnly: readOnly,
             decoration: InputDecoration(
               hintText: hintText,
               suffixIcon: suffix != null ? _buildIconSuffix(context, suffix!) : null,

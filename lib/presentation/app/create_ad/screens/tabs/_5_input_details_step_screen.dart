@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_taxonomy_notifier.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -45,8 +46,7 @@ class InputDetailsApStepScreen extends HookConsumerWidget {
         SelectableTagGroup(
           tagsGroup: data[1],
           selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.layout),
-          onTagSelected: (tag, isSelected) =>
-              notifier.updateTag(CreateAdTagTypeIds.layout, tag.id),
+          onTagSelected: (tag, isSelected) => notifier.updateTag(CreateAdTagTypeIds.layout, tag.id),
         ),
         TextFieldWithTitle.number(
           title: context.l10n.floor,

@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/domain/models/quiz_step_model.dart';
 import 'package:roomate/presentation/app/on_boarding/state/on_boarding_state.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
@@ -58,7 +59,7 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
     }
   }
 
-  void skip() => ref.nav.replace(const MainFlowRoute());
+  void skip() => ref.nav.replaceAll([const MainFlowRoute()]);
   void toCreateProfile() => ref.nav.push(const CreateProfileRoute());
   void toCreateAd() => ref.nav.push(const CreateAdRoute());
 }

@@ -3,6 +3,7 @@ class CreateAdRequest {
     required this.title,
     required this.description,
     required this.address,
+    required this.mainPhone,
     required this.additionalNumber,
     required this.currency,
     required this.cost,
@@ -16,6 +17,7 @@ class CreateAdRequest {
   final String title;
   final String description;
   final String address;
+  final String mainPhone;
   final String additionalNumber;
   final String currency;
   final double cost;
@@ -30,6 +32,7 @@ class CreateAdRequest {
       "title": title,
       "description": description,
       "address": address,
+      "main_phone": mainPhone,
       "additional_number": additionalNumber,
       "currency": currency,
       "cost": cost,

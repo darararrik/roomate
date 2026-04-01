@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/domain/enums/gender_enum.dart';
 import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/domain/models/user_model.dart';

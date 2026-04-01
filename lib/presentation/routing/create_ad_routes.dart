@@ -4,7 +4,6 @@ import 'package:roomate/presentation/routing/app_routing.gr.dart';
 abstract class CreateAdRoutes {
   static final routes = AutoRoute(
     page: CreateAdRoute.page,
-    initial: true,
     children: [
       AutoRoute(page: RentTypeStepRoute.page, initial: true),
       AutoRoute(page: RoomTypeStepRoute.page),

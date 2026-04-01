@@ -107,7 +107,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
     );
   }
 
-  void onSkip() => ref.nav.replace(const MainFlowRoute());
+  void onSkip() => ref.nav.replaceAll([const MainFlowRoute()]);
 
   String titleButton(TabsRouter tabsRouter) {
     return tabsRouter.activeIndex == 2 ? ref.l10n.confirmThroughGosuslugi : ref.l10n.next;

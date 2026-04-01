@@ -8,40 +8,16 @@ import 'package:roomate/domain/models/tag_model.dart';
 import 'package:roomate/domain/repository/create_ad_repository.dart';
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_state.dart';
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_taxonomy_notifier.dart';
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_taxonomy_state.dart';
 import 'package:roomate/presentation/di/providers.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
+import 'package:roomate/state/global_profile/global_profile_notifier.dart';
 
 part 'create_ad_notifier.g.dart';
 
 enum _TagSelectionMode { single, multi }
-
-@riverpod
-class CreateAdTaxonomy extends _$CreateAdTaxonomy {
-  @override
-  CreateAdTaxonomyState build() {
-    final repository = ref.read(createAdRepositoryProvider);
-    final allTags = repository.getAllTags();
-
-    TagGroupModel firstOrEmpty(String key) {
-      final list = allTags[key] ?? const <TagGroupModel>[];
-      return list.isNotEmpty ? list.first : const TagGroupModel();
-    }
-
-    return CreateAdTaxonomyState(
-      rentTypeGroups: allTags[CreateAdTagSections.rentType] ?? const <TagGroupModel>[],
-      premisesTypeGroup: firstOrEmpty(CreateAdTagSections.premisesType),
-      propertyTypeGroup: firstOrEmpty(CreateAdTagSections.propertyType),
-      apartmentPropertiesGroups:
-          allTags[CreateAdTagSections.apartmentProperties] ?? const <TagGroupModel>[],
-      featuresGroups: allTags[CreateAdTagSections.features] ?? const <TagGroupModel>[],
-      thingsGroups: allTags[CreateAdTagSections.things] ?? const <TagGroupModel>[],
-      dealTermsGroups: allTags[CreateAdTagSections.dealTerms] ?? const <TagGroupModel>[],
-      contactInfoGroup: firstOrEmpty(CreateAdTagSections.contactInfo),
-    );
-  }
-}
 
 @riverpod
 class CreateAdNotifier extends _$CreateAdNotifier {
@@ -73,7 +49,14 @@ class CreateAdNotifier extends _$CreateAdNotifier {
   @override
   CreateAdState build() {
     _repository = ref.read(createAdRepositoryProvider);
-    return const CreateAdState();
+    ref.listen(globalProfileProvider, (prev, next) {
+      final newPhone = next.value?.phone;
+      if (newPhone != null && newPhone.isNotEmpty) {
+        state = state.copyWith(mainPhone: newPhone);
+      }
+    });
+    final initialPhone = ref.read(globalProfileProvider).value?.phone ?? '';
+    return CreateAdState(mainPhone: initialPhone);
   }
 
   String getStepTitle(int index) {
@@ -100,7 +83,7 @@ class CreateAdNotifier extends _$CreateAdNotifier {
     if (nextIndex < tabsRouter.pageCount) {
       tabsRouter.setActiveIndex(nextIndex);
     } else {
-      ref.nav.replace(const MainFlowRoute());
+      ref.nav.replaceAll([const MainFlowRoute()]);
     }
   }
 
@@ -179,10 +162,7 @@ class CreateAdNotifier extends _$CreateAdNotifier {
       }
     }
 
-    state = state.copyWith(
-      selectedTagIdsByType: nextSelected,
-      selectedCurrency: nextCurrency,
-    );
+    state = state.copyWith(selectedTagIdsByType: nextSelected, selectedCurrency: nextCurrency);
   }
 
   void updateCurrency(String currencyTitle) {
@@ -222,6 +202,7 @@ class CreateAdNotifier extends _$CreateAdNotifier {
       title: state.title,
       description: state.description,
       address: state.address,
+      mainPhone: state.mainPhone,
       additionalNumber: state.additionalNumber,
       currency: state.selectedCurrency.name,
       cost: state.cost,

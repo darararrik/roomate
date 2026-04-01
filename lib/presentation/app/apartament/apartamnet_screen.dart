@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/domain/enums/enums.dart';
@@ -15,7 +15,6 @@ import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/l10n/app_localizations.dart';
 import 'package:roomate/presentation/theme/theme_x/app_palette.dart';
 import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/common/toast_widget.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()

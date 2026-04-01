@@ -20,9 +20,7 @@ class AdConfirmationScreen extends ConsumerWidget {
     final state = ref.watch(createAdProvider);
     final notifier = ref.read(createAdProvider.notifier);
     final selectedTerm = notifier.selectedSingleTitle(CreateAdTagTypeIds.term);
-    final selectedPropertyType = notifier.selectedSingleTitle(
-      CreateAdTagTypeIds.propertyType,
-    );
+    final selectedPropertyType = notifier.selectedSingleTitle(CreateAdTagTypeIds.propertyType);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -31,11 +29,7 @@ class AdConfirmationScreen extends ConsumerWidget {
         child: Column(
           spacing: S.p28,
           children: [
-            _InfoRow(
-              iconPath: AppIcons.clock,
-              title: 'Аренда',
-              subtitle: selectedTerm,
-            ),
+            _InfoRow(iconPath: AppIcons.clock, title: 'Аренда', subtitle: selectedTerm),
             _InfoRow(
               iconPath: AppIcons.building2,
               title: 'Вид недвижимости',
@@ -46,11 +40,7 @@ class AdConfirmationScreen extends ConsumerWidget {
               title: 'Расположение',
               subtitle: 'Омск, улица Красный путь, 101к1',
             ),
-            _InfoRow(
-              iconPath: AppIcons.phone,
-              title: 'Номер телефона',
-              subtitle: state.additionalNumber,
-            ),
+            _InfoRow(iconPath: AppIcons.phone, title: 'Номер телефона', subtitle: state.mainPhone),
             _InfoRow(
               iconPath: AppIcons.coins,
               title: 'Цена аренды',

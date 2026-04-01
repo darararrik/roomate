@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
 import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
+import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_taxonomy_notifier.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
