@@ -1708,11 +1708,11 @@ abstract class AppLocalizations {
   /// **'Выберите способ связи'**
   String get validationContactMethod;
 
-  /// No description provided for @validationPhoneMissing.
+  /// No description provided for @validationAdditionalPhone.
   ///
   /// In ru, this message translates to:
-  /// **'В профиле не указан телефон'**
-  String get validationPhoneMissing;
+  /// **'Укажите дополнительный телефон'**
+  String get validationAdditionalPhone;
 
   /// No description provided for @searchNoResults.
   ///
@@ -1827,6 +1827,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Укажите цену'**
   String get validationEnterPrice;
+
+  /// No description provided for @validationEnterDeposit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите залог'**
+  String get validationEnterDeposit;
+
+  /// No description provided for @validationFloorMustBeLessThenTotalFloors.
+  ///
+  /// In ru, this message translates to:
+  /// **'Этаж должен быть меньше количества этажей в доме'**
+  String get validationFloorMustBeLessThenTotalFloors;
 
   /// No description provided for @errorGeneric.
   ///

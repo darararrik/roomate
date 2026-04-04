@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -12,55 +10,64 @@ class ContactsStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // ref.watch заставляет виджет перерисовываться при изменении draft
     final draft = ref.watch(adFormProvider);
     final flow = ref.watch(createAdFlowProvider);
     final notifier = ref.read(adFormProvider.notifier);
     final optionsAsync = ref.watch(getAdFormOptionsProvider);
 
-    final phoneController = useTextEditingController();
+    // Инициализируем контроллеры.
+    // Внимание: аргумент 'text' работает только при первом создании!
+    final phoneController = useTextEditingController(text: draft.mainPhone);
+    final additionalPhoneController = useTextEditingController();
+
+    // Чтобы контроллер "увидел" изменения в draft.mainPhone (например, после загрузки профиля),
+    // используем useEffect, который следит за конкретным полем.
     useEffect(() {
       if (phoneController.text != draft.mainPhone) {
         phoneController.text = draft.mainPhone;
       }
       return null;
-    }, [draft.mainPhone]);
-
-    final additionalPhoneController = useTextEditingController(
-      text: draft.additionalNumber,
-    );
+    }, [draft.mainPhone, draft.additionalNumber]);
 
     return optionsAsync.when(
       loading: () => const LoadingWidget(),
       error: (_, _) => const ErrorView(),
       data: (options) {
+        // Логика определения первого варианта
+        final firstOptionId = options.contactMethod.isNotEmpty
+            ? options.contactMethod.first.id
+            : null;
+        final isFirstSelected = firstOptionId != null && draft.contactMethodId == firstOptionId;
+
         return ListView(
           padding: const P(horizontal: S.p16),
           children: [
+            // Поле основного телефона (Read Only)
             TextFieldWithTitle(
               title: context.l10n.phone,
               controller: phoneController,
               readOnly: true,
               hintText: context.l10n.phonePlaceholder,
               needSuffixIcon: false,
-              errorText: flow.phoneError,
             ),
+            if (isFirstSelected)
+              TextFieldWithTitle.number(
+                title: context.l10n.additionalPhone,
+                controller: additionalPhoneController,
+                onChanged: notifier.updateAdditionalPhone,
+                hintText: context.l10n.phonePlaceholder2,
+                errorText: flow.additionalPhoneError,
+              ),
             ChipWrap(
               title: context.l10n.contactTitle,
               options: options.contactMethod,
-              selectedIds: draft.contactMethodId != 0
-                  ? {draft.contactMethodId}
-                  : {},
+              selectedIds: draft.contactMethodId != 0 ? {draft.contactMethodId} : {},
               onSelectionChanged: (ids) {
                 notifier.setContactMethod(ids.isNotEmpty ? ids.first : 0);
               },
               singleSelection: true,
               errorText: flow.contactMethodError,
-            ),
-            TextFieldWithTitle(
-              title: context.l10n.additionalPhone,
-              controller: additionalPhoneController,
-              onChanged: notifier.updateAdditionalPhone,
-              hintText: context.l10n.phonePlaceholder2,
             ),
           ].separated(const SizedBox(height: S.p12)),
         );

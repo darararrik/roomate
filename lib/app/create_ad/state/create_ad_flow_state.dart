@@ -28,32 +28,34 @@ sealed class CreateAdFlowState with _$CreateAdFlowState {
     @Default('') String layoutError,
     @Default('') String areaError,
     @Default('') String floorError,
+    @Default('') String totalFloorsError,
 
-    /// step 6
+    /// step 5
     @Default('') String renovationError,
     @Default('') String elevatorsError,
     @Default('') String balconiesError,
 
-    /// step 7
+    /// step 6
     @Default('') String furnitureError,
     @Default('') String amenitiesError,
     @Default('') String bathroomError,
     @Default('') String appliancesError,
     @Default('') String stoveError,
 
-    /// step 8
+    /// step 7
     @Default('') String currencyError,
     @Default('') String priceError,
+    @Default('') String depositError,
     @Default('') String prepaymentError,
     @Default('') String rentDurationError,
     @Default('') String rentConditionsError,
 
-    /// step 9
+    /// step 8
     @Default('') String titleError,
     @Default('') String descriptionError,
 
-    /// step 10
-    @Default('') String phoneError,
+    /// step 9
+    @Default('') String additionalPhoneError,
     @Default('') String contactMethodError,
   }) = _CreateAdFlowState;
 }

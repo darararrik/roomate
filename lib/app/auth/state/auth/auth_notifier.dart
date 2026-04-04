@@ -1,10 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'package:roomate/app/auth/state/auth/auth_state.dart';
+import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
-import 'package:roomate/state/global_profile/global_profile_notifier.dart';
-import 'package:roomate/state/l10_provider/l10n_provider.dart';
-import 'package:roomate/utils/extensions.dart';
 
 part 'auth_notifier.g.dart';
 
@@ -28,11 +24,7 @@ class AuthNotifier extends _$AuthNotifier {
   }
 
   void setError(String message) {
-    state = state.copyWith(
-      isError: true,
-      errorMessage: message,
-      isCodeVerified: false,
-    );
+    state = state.copyWith(isError: true, errorMessage: message, isCodeVerified: false);
   }
 
   void checkCode() {
@@ -40,11 +32,7 @@ class AuthNotifier extends _$AuthNotifier {
     if (state.code == "0000") {
       state = state.copyWith(isCodeVerified: true);
     } else {
-      state = state.copyWith(
-        isCodeVerified: false,
-        isError: true,
-        errorMessage: l10n.wrongCode,
-      );
+      state = state.copyWith(isCodeVerified: false, isError: true, errorMessage: l10n.wrongCode);
     }
   }
 
@@ -52,8 +40,7 @@ class AuthNotifier extends _$AuthNotifier {
     state = state.copyWith(isCodeVerified: true, isError: false);
   }
 
-  void openEnterPhoneNumberScreen() =>
-      ref.nav.push(const EnterPhoneNumberRoute());
+  void openEnterPhoneNumberScreen() => ref.nav.push(const EnterPhoneNumberRoute());
 
   void openMainScreen() {
     ref.nav.replace(const MainFlowRoute());

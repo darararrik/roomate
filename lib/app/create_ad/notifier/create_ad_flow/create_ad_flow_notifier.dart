@@ -180,6 +180,13 @@ class CreateAdFlow extends _$CreateAdFlow {
     if (_formState.floor <= 0) {
       state = state.copyWith(floorError: _locale.validationEnterFloor);
     }
+
+    if (_formState.totalFloors <= 0) {
+      state = state.copyWith(totalFloorsError: _locale.validationEnterFloor);
+    }
+    if (_formState.floor > _formState.totalFloors) {
+      state = state.copyWith(floorError: _locale.validationFloorMustBeLessThenTotalFloors);
+    }
   }
 
   void _validateFeatures() {
@@ -227,6 +234,10 @@ class CreateAdFlow extends _$CreateAdFlow {
       state = state.copyWith(priceError: _locale.validationEnterPrice);
     }
 
+    if (_formState.deposit <= 0) {
+      state = state.copyWith(depositError: _locale.validationEnterDeposit);
+    }
+
     if (_formState.prepaymentId == 0) {
       state = state.copyWith(prepaymentError: _locale.validationSelectOption);
     }
@@ -251,12 +262,23 @@ class CreateAdFlow extends _$CreateAdFlow {
   }
 
   void _validateContacts() {
-    if (_formState.mainPhone.trim().isEmpty) {
-      state = state.copyWith(phoneError: _locale.validationPhoneMissing);
+    final contactMethodId = _formState.contactMethodId;
+
+    final options = ref.read(getAdFormOptionsProvider);
+    final firstOptionId = options.maybeWhen(
+      data: (data) => data.contactMethod.isNotEmpty ? data.contactMethod.first.id : null,
+      orElse: () => null,
+    );
+
+    if (contactMethodId == 0) {
+      state = state.copyWith(contactMethodError: _locale.validationContactMethod);
+      return;
     }
 
-    if (_formState.contactMethodId == 0) {
-      state = state.copyWith(contactMethodError: _locale.validationContactMethod);
+    if (contactMethodId == firstOptionId) {
+      if (_formState.additionalNumber.trim().isEmpty) {
+        state = state.copyWith(additionalPhoneError: _locale.validationAdditionalPhone);
+      }
     }
   }
 
@@ -280,7 +302,8 @@ class CreateAdFlow extends _$CreateAdFlow {
         return state.roomsError.isEmpty &&
             state.layoutError.isEmpty &&
             state.areaError.isEmpty &&
-            state.floorError.isEmpty;
+            state.floorError.isEmpty &&
+            state.totalFloorsError.isEmpty;
 
       case 6:
         return state.renovationError.isEmpty &&
@@ -305,7 +328,7 @@ class CreateAdFlow extends _$CreateAdFlow {
         return state.titleError.isEmpty && state.descriptionError.isEmpty;
 
       case 10:
-        return state.phoneError.isEmpty && state.contactMethodError.isEmpty;
+        return state.contactMethodError.isEmpty && state.additionalPhoneError.isEmpty;
     }
 
     return true;

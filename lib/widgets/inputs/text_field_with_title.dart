@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/extensions.dart';
 import 'package:roomate/utils/formatters/decimal_formatter.dart';
+import 'package:roomate/utils/formatters/ru_phone_formatter.dart';
 import 'package:roomate/utils/helpers/p.dart';
 import 'package:roomate/widgets/widgets.dart';
 
@@ -37,7 +38,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.errorText = '',
   }) : suffix = null,
        keyboardType = TextInputType.number,
-       inputFormatters = [FilteringTextInputFormatter.digitsOnly];
+       inputFormatters = [RuPhoneWithPrefixFormatter()];
 
   /// Именованный конструктор для иконки (десятичные + м2)
   TextFieldWithTitle.withSuffix({
@@ -125,6 +126,7 @@ class TextFieldWithTitle extends StatelessWidget {
             ),
           ),
         ),
+        FieldErrorText(text: errorText),
       ],
     );
   }

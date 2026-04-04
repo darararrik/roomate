@@ -101,8 +101,6 @@ export 'screens/screens.dart';
 export 'services/navigation_service.dart';
 export 'services/services.dart';
 export 'state/global_profile/global_profile_notifier.dart';
-export 'state/l10_provider/l10_provider.dart';
-export 'state/l10_provider/l10n_provider.dart';
 export 'state/navigation/navigation.dart';
 export 'state/navigation/navigation_provider.dart';
 export 'state/state.dart';

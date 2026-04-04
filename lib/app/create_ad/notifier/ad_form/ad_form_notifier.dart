@@ -136,6 +136,9 @@ class AdFormNotifier extends _$AdFormNotifier {
   void updateTitle(String val) => state = state.copyWith(title: val);
   void updateDescription(String val) => state = state.copyWith(description: val);
 
-  void setContactMethod(int id) => state = state.copyWith(contactMethodId: id);
+  void setContactMethod(int id) {
+    state = state.copyWith(contactMethodId: id);
+  }
+
   void updateAdditionalPhone(String val) => state = state.copyWith(additionalNumber: val);
 }

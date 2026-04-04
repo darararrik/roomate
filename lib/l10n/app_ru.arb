@@ -274,7 +274,7 @@
   "validationDealTerms": "Укажите валюту, цену, предоплату, срок и условия аренды",
   "validationDescription": "Заполните заголовок и описание (минимум 10 символов в описании)",
   "validationContactMethod": "Выберите способ связи",
-  "validationPhoneMissing": "В профиле не указан телефон",
+  "validationAdditionalPhone": "Укажите дополнительный телефон",
   "searchNoResults": "Ничего не найдено",
   "createAdRentGoalTitle": "Цель аренды",
   "createAdWhoCanRentTitle": "Кто может снимать",
@@ -294,5 +294,7 @@
   "validationEnterApartmentNumber": "Укажите номер квартиры",
   "validationEnterDescription": "Описание не короче 10 символов",
   "validationEnterPrice": "Укажите цену",
+  "validationEnterDeposit": "Укажите залог",
+  "validationFloorMustBeLessThenTotalFloors": "Этаж должен быть меньше количества этажей в доме",
   "errorGeneric": "Ошибка загрузки"
 }

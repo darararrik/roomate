@@ -1,6 +1,8 @@
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:roomate/lib.dart';
 
 part 'providers.g.dart';
 
@@ -52,4 +54,9 @@ IProfileRepository profileRepository(Ref ref) {
 AuthRepository authRepository(Ref ref) {
   // TODO: implement and return actual AuthRepository
   throw UnimplementedError('AuthRepository is not implemented yet');
+}
+
+@riverpod
+AppLocalizations l10n(Ref ref) {
+  return lookupAppLocalizations(WidgetsBinding.instance.platformDispatcher.locale);
 }

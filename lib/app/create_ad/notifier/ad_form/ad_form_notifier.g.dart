@@ -90,7 +90,7 @@ final class SelectedStreetNameProvider
 }
 
 String _$selectedStreetNameHash() =>
-    r'ad25aae4a2df3acd3770aa21d0d2dd360f85988d';
+    r'65da2f3bcce793795c9e77222fb2b56d89e6b43e';
 
 @ProviderFor(AdFormNotifier)
 final adFormProvider = AdFormNotifierProvider._();
@@ -124,7 +124,7 @@ final class AdFormNotifierProvider
   }
 }
 
-String _$adFormNotifierHash() => r'b7d72dc8a433c4ab280cdf02bea32b2e6ee61bd4';
+String _$adFormNotifierHash() => r'584cf8c977c35e673ca27295643f0679cc7a0b03';
 
 abstract class _$AdFormNotifier extends $Notifier<CreateAdFormModel> {
   CreateAdFormModel build();

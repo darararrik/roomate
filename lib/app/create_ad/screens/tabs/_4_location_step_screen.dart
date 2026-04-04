@@ -47,7 +47,6 @@ class LocationStepScreen extends HookConsumerWidget {
           hintText: context.l10n.enterApartmentNumber,
           controller: apartmentController,
           onChanged: notifier.updateApartmentNumber,
-          errorText: flow.apartmentNumberError,
         ),
         Padding(
           padding: const P(vertical: S.p4),

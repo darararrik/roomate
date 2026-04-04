@@ -835,7 +835,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get validationContactMethod => 'Выберите способ связи';
 
   @override
-  String get validationPhoneMissing => 'В профиле не указан телефон';
+  String get validationAdditionalPhone => 'Укажите дополнительный телефон';
 
   @override
   String get searchNoResults => 'Ничего не найдено';
@@ -893,6 +893,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get validationEnterPrice => 'Укажите цену';
+
+  @override
+  String get validationEnterDeposit => 'Укажите залог';
+
+  @override
+  String get validationFloorMustBeLessThenTotalFloors =>
+      'Этаж должен быть меньше количества этажей в доме';
 
   @override
   String get errorGeneric => 'Ошибка загрузки';
