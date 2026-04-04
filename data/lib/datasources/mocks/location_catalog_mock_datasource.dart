@@ -1,12 +1,8 @@
-import 'dart:convert';
-
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter/services.dart';
+import 'package:shared/shared.dart';
 
 class LocationCatalogMockDataSource implements LocationCatalogDataSource {
-  static const _assetPath = 'shared/mocks/omsk_streets.json';
-
   List<StreetModel>? _cache;
 
   @override
@@ -19,20 +15,8 @@ class LocationCatalogMockDataSource implements LocationCatalogDataSource {
   }
 
   Future<List<StreetModel>> _loadOmsk() async {
-    final raw = await rootBundle.loadString(_assetPath);
-    final map = jsonDecode(raw) as Map<String, dynamic>;
-    final city = map['city'] as String? ?? 'Омск';
-    final region = map['region'] as String?;
-    final list = map['streets'] as List<dynamic>? ?? [];
-    return list.map((e) {
-      final o = e as Map<String, dynamic>;
-      return StreetModel(
-        id: (o['id'] as num).toInt(),
-        name: o['name'] as String,
-        city: city,
-        district: o['district'] as String?,
-        regionLine: region,
-      );
-    }).toList();
+    final json = OmskStreetsMockJson.fetchStreets;
+    final data = json.map((e) => StreetDto.fromJson(e)).toList();
+    return data.map((e) => e.toModel()).toList();
   }
 }

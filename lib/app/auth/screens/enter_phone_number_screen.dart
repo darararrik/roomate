@@ -1,10 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/auth/state/auth/auth_notifier.dart';
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
@@ -55,10 +53,7 @@ class EnterPhoneNumberScreen extends HookConsumerWidget {
         child: Padding(
           padding: const P(horizontal: S.p16, vertical: S.p8),
           child: PrimaryButton(
-            onPressed: disableIf(
-              isComplete.value,
-              () => authNotifier.openEnterCodeScreen(),
-            ),
+            onPressed: disableIf(isComplete.value, () => authNotifier.openEnterCodeScreen()),
             text: context.l10n.next,
           ),
         ),
@@ -99,9 +94,7 @@ class EnterPhoneNumberScreen extends HookConsumerWidget {
                         decoration: BoxDecoration(
                           color: context.colors.graysInput200,
                           borderRadius: BorderRadius.circular(S.p16),
-                          border: Border.all(
-                            color: context.colors.graysStroke300,
-                          ),
+                          border: Border.all(color: context.colors.graysStroke300),
                         ),
                         child: Padding(
                           padding: const P(horizontal: S.p12, vertical: S.p20),
@@ -112,11 +105,10 @@ class EnterPhoneNumberScreen extends HookConsumerWidget {
                               Image.asset(AppIcons.ruFlag, width: S.p24),
                               Text(
                                 context.l10n.russiaPhonePrefix,
-                                style: context.typography.inputTextRegular
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: S.p18,
-                                    ),
+                                style: context.typography.inputRegular.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: S.p18,
+                                ),
                               ),
                             ],
                           ),
@@ -132,20 +124,17 @@ class EnterPhoneNumberScreen extends HookConsumerWidget {
                             FilteringTextInputFormatter.digitsOnly,
                             RuPhoneFormatter(),
                           ],
-                          onChanged: (value) =>
-                              authNotifier.setPhoneNumber(value),
-                          style: context.typography.inputTextRegular.copyWith(
+                          onChanged: (value) => authNotifier.setPhoneNumber(value),
+                          style: context.typography.inputRegular.copyWith(
                             fontWeight: FontWeight.w600,
                             fontSize: S.p18,
                             letterSpacing: 1.2,
                           ),
                           decoration: InputDecoration(
                             hintText: context.l10n.phonePlaceholder,
-                            hintStyle: context
-                                .appTheme
-                                .inputDecorationTheme
-                                .hintStyle
-                                ?.copyWith(fontSize: S.p18),
+                            hintStyle: context.appTheme.inputDecorationTheme.hintStyle?.copyWith(
+                              fontSize: S.p18,
+                            ),
                           ),
                         ),
                       ),

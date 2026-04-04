@@ -21,9 +21,7 @@ ProfileTagsMockDataSource profileTagsMockDataSource(Ref ref) {
 
 @Riverpod(keepAlive: true)
 IApartamentsRepository apartamentsRepository(Ref ref) {
-  return ApartamentsRepositoryImpl(
-    ref.watch(apartamentsRemoteDataSourceProvider),
-  );
+  return ApartamentsRepositoryImpl(ref.watch(apartamentsRemoteDataSourceProvider));
 }
 
 @Riverpod(keepAlive: true)
@@ -33,16 +31,13 @@ LocationCatalogDataSource locationCatalogDataSource(Ref ref) {
 
 @Riverpod(keepAlive: true)
 ILocationCatalogRepository locationCatalogRepository(Ref ref) {
-  return LocationCatalogRepositoryImpl(
-    ref.watch(locationCatalogDataSourceProvider),
-  );
+  return LocationCatalogRepositoryImpl(ref.watch(locationCatalogDataSourceProvider));
 }
 
+//TODO: убрать хардкод где в далеком будущем
 @riverpod
 Future<List<StreetModel>> cityStreets(Ref ref, String cityKey) {
-  return ref
-      .watch(locationCatalogRepositoryProvider)
-      .getStreetsForCity(cityKey);
+  return ref.watch(locationCatalogRepositoryProvider).getStreetsForCity('omsk');
 }
 
 @Riverpod(keepAlive: true)

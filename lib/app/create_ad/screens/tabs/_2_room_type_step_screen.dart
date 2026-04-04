@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -26,15 +24,12 @@ class RoomTypeStepScreen extends ConsumerWidget {
             ChipWrap(
               title: context.l10n.typeOfProperty,
               options: options.premisesType,
-              selectedIds: state.premisesTypeId != 0
-                  ? {state.premisesTypeId}
-                  : {},
+              selectedIds: state.premisesTypeId != 0 ? {state.premisesTypeId} : {},
               onSelectionChanged: (ids) {
                 notifier.setPremisesType(ids.isNotEmpty ? ids.first : 0);
               },
               singleSelection: true,
-              //TODO: разобраться
-              errorText: flow.amenitiesError,
+              errorText: flow.premisesError,
             ),
           ].separated(const SizedBox(height: S.p12)),
         );

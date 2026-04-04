@@ -50,6 +50,48 @@ final class GetAdFormOptionsProvider
 
 String _$getAdFormOptionsHash() => r'd2a1c6aa8e46d1ccb25efd474b4c13e49e5b46be';
 
+@ProviderFor(selectedStreetName)
+final selectedStreetNameProvider = SelectedStreetNameProvider._();
+
+final class SelectedStreetNameProvider
+    extends $FunctionalProvider<String, String, String>
+    with $Provider<String> {
+  SelectedStreetNameProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'selectedStreetNameProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedStreetNameHash();
+
+  @$internal
+  @override
+  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  String create(Ref ref) {
+    return selectedStreetName(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String>(value),
+    );
+  }
+}
+
+String _$selectedStreetNameHash() =>
+    r'ad25aae4a2df3acd3770aa21d0d2dd360f85988d';
+
 @ProviderFor(AdFormNotifier)
 final adFormProvider = AdFormNotifierProvider._();
 
@@ -82,7 +124,7 @@ final class AdFormNotifierProvider
   }
 }
 
-String _$adFormNotifierHash() => r'60ea5be27d35111ca7a1a5c59a952178eb0a9d40';
+String _$adFormNotifierHash() => r'b7d72dc8a433c4ab280cdf02bea32b2e6ee61bd4';
 
 abstract class _$AdFormNotifier extends $Notifier<CreateAdFormModel> {
   CreateAdFormModel build();

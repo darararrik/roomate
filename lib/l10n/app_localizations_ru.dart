@@ -817,7 +817,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get validationSelectAtLeastOne => 'Выберите хотя бы один вариант';
 
   @override
-  String get validationPickStreet => 'Выберите улицу из списка';
+  String get validationPickStreet => 'Выберите адрес';
 
   @override
   String get validationHousingDetails =>
@@ -884,6 +884,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get validationEnterTitle => 'Укажите заголовок';
+
+  @override
+  String get validationEnterApartmentNumber => 'Укажите номер квартиры';
 
   @override
   String get validationEnterDescription => 'Описание не короче 10 символов';

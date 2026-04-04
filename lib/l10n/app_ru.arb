@@ -269,7 +269,7 @@
   "inFavorites":"В избранном",
   "validationSelectOption": "Выберите значение",
   "validationSelectAtLeastOne": "Выберите хотя бы один вариант",
-  "validationPickStreet": "Выберите улицу из списка",
+  "validationPickStreet": "Выберите адрес",
   "validationHousingDetails": "Укажите комнатность, планировку, площадь и этаж",
   "validationDealTerms": "Укажите валюту, цену, предоплату, срок и условия аренды",
   "validationDescription": "Заполните заголовок и описание (минимум 10 символов в описании)",
@@ -291,6 +291,7 @@
   "validationEnterArea": "Укажите площадь",
   "validationEnterFloor": "Укажите этаж",
   "validationEnterTitle": "Укажите заголовок",
+  "validationEnterApartmentNumber": "Укажите номер квартиры",
   "validationEnterDescription": "Описание не короче 10 символов",
   "validationEnterPrice": "Укажите цену",
   "errorGeneric": "Ошибка загрузки"

@@ -21,6 +21,7 @@ sealed class CreateAdFlowState with _$CreateAdFlowState {
 
     /// step 3
     @Default('') String streetError,
+    @Default('') String apartmentNumberError,
 
     /// step 4
     @Default('') String roomsError,

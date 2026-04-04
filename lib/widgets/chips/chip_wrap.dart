@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
-
+import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class ChipWrap<T extends ChipModel> extends StatelessWidget {
@@ -12,8 +10,8 @@ class ChipWrap<T extends ChipModel> extends StatelessWidget {
     required this.selectedIds,
     required this.onSelectionChanged,
     this.singleSelection = false,
-    this.spacing = S.p8,
-    this.runSpacing = S.p8,
+    this.spacing = S.p12,
+    this.runSpacing = S.p12,
     this.errorText = '',
   });
 

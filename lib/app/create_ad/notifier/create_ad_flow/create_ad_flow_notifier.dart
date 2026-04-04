@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
+import 'package:roomate/routing/app_routing.gr.dart';
 
 part 'create_ad_flow_notifier.g.dart';
 
@@ -31,6 +31,15 @@ class CreateAdFlow extends _$CreateAdFlow {
       _ => _locale.newAdvertisement,
     };
   }
+
+  void openStreetPickerScreen() => ref.nav.push(
+    LocationRoute(
+      onSelected: (street) {
+        ref.read(adFormProvider.notifier).selectStreet(street);
+        ref.nav.pop();
+      },
+    ),
+  );
 
   void nextStep(TabsRouter tabsRouter) {
     _formState = ref.read(adFormProvider);
@@ -81,7 +90,7 @@ class CreateAdFlow extends _$CreateAdFlow {
         break;
 
       case 1:
-        _validateRoomType();
+        _validatePremisesType();
         break;
 
       case 2:
@@ -120,24 +129,21 @@ class CreateAdFlow extends _$CreateAdFlow {
 
   void _validateRentType() {
     final rentType = _formState.rentGoalId;
-    final rentPeriod = _formState.rentDurationId;
+    final rentPeriod = _formState.rentPeriodId;
     final whoCanRent = _formState.whoCanRentIds;
 
     if (rentType == 0) {
       state = state.copyWith(rentGoalError: _locale.validationSelectOption);
     }
-
     if (rentPeriod == 0) {
       state = state.copyWith(rentPeriodError: _locale.validationSelectOption);
     }
     if (whoCanRent.isEmpty) {
-      state = state.copyWith(
-        whoCanRentError: _locale.validationSelectAtLeastOne,
-      );
+      state = state.copyWith(whoCanRentError: _locale.validationSelectAtLeastOne);
     }
   }
 
-  void _validateRoomType() {
+  void _validatePremisesType() {
     if (_formState.premisesTypeId == 0) {
       state = state.copyWith(premisesError: _locale.validationSelectOption);
     }
@@ -152,6 +158,9 @@ class CreateAdFlow extends _$CreateAdFlow {
   void _validateLocation() {
     if (_formState.selectedStreetId == 0) {
       state = state.copyWith(streetError: _locale.validationPickStreet);
+    }
+    if (_formState.apartmentNumber == 0) {
+      state = state.copyWith(apartmentNumberError: _locale.validationEnterApartmentNumber);
     }
   }
 
@@ -193,9 +202,7 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.amenitiesIds.isEmpty) {
-      state = state.copyWith(
-        amenitiesError: _locale.validationSelectAtLeastOne,
-      );
+      state = state.copyWith(amenitiesError: _locale.validationSelectAtLeastOne);
     }
 
     if (_formState.bathroomIds.isEmpty) {
@@ -203,9 +210,7 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.appliancesIds.isEmpty) {
-      state = state.copyWith(
-        appliancesError: _locale.validationSelectAtLeastOne,
-      );
+      state = state.copyWith(appliancesError: _locale.validationSelectAtLeastOne);
     }
 
     if (_formState.stoveId == 0) {
@@ -231,9 +236,7 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.rentConditionsIds.isEmpty) {
-      state = state.copyWith(
-        rentConditionsError: _locale.validationSelectAtLeastOne,
-      );
+      state = state.copyWith(rentConditionsError: _locale.validationSelectAtLeastOne);
     }
   }
 
@@ -243,9 +246,7 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.description.trim().length < 10) {
-      state = state.copyWith(
-        descriptionError: _locale.validationEnterDescription,
-      );
+      state = state.copyWith(descriptionError: _locale.validationEnterDescription);
     }
   }
 
@@ -255,9 +256,7 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.contactMethodId == 0) {
-      state = state.copyWith(
-        contactMethodError: _locale.validationContactMethod,
-      );
+      state = state.copyWith(contactMethodError: _locale.validationContactMethod);
     }
   }
 

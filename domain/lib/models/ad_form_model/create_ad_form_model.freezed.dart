@@ -14,8 +14,48 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateAdFormModel {
 
- int get rentGoalId; int get rentPeriodId; Set<int> get whoCanRentIds; int get premisesTypeId; int get propertyTypeId; int get roomsCountId; int get layoutId; int get renovationId; int get elevatorsId; int get balconiesId; int get furnitureId; Set<int> get amenitiesIds; Set<int> get bathroomIds; Set<int> get appliancesIds; int get stoveId; int get currencyId; int get prepaymentId; int get rentDurationId; Set<int> get rentConditionsIds; int get contactMethodId; Currency get selectedCurrency; double get cost; double get deposit; double get apartmentArea; int get floor; int get totalFloors; String get address;/// Выбранная из справочника улица (0 — не выбрана).
- int get selectedStreetId; int get apartmentNumber; String get title; String get description; String get mainPhone; String get additionalNumber;
+// --- Основные параметры аренды ---
+/// Цель аренды (например: снять, сдать)
+ int get rentGoalId;/// Период аренды (посуточно, длительно)
+ int get rentPeriodId;/// Кто может снимать (студенты, пары, с животными и т.д.)
+ Set<int> get whoCanRentIds;// --- Тип недвижимости ---
+/// Вид помещения (жилое, нежилое)
+ int get premisesTypeId;/// Тип собственности (квартира, комната, дом)
+ int get propertyTypeId;// --- Параметры жилья ---
+/// Количество комнат
+ int get roomsCountId;/// Планировка (смежная, изолированная)
+ int get layoutId;// --- Здание и ремонт ---
+/// Тип ремонта (косметический, евро, дизайнерский)
+ int get renovationId;/// Наличие лифтов (пассажирский, грузовой)
+ int get elevatorsId;/// Наличие балконов/лоджий
+ int get balconiesId;// --- Удобства и наполнение ---
+/// Мебель (есть, нет, частично)
+ int get furnitureId;/// Общие удобства (интернет, парковка, кондиционер)
+ Set<int> get amenitiesIds;/// Тип санузла (совмещенный, раздельный)
+ Set<int> get bathroomIds;/// Бытовая техника (холодильник, стиралка, плита)
+ Set<int> get appliancesIds;/// Тип плиты (газовая, электрическая)
+ int get stoveId;// --- Финансы и условия ---
+/// ID валюты из справочника
+ int get currencyId;/// Условия предоплаты (за 1 месяц, за 2 месяца)
+ int get prepaymentId;/// Срок аренды (минимальный срок)
+ int get rentDurationId;/// Дополнительные условия аренды
+ Set<int> get rentConditionsIds;// --- Связь ---
+/// Предпочтительный способ связи (звонок, сообщение)
+ int get contactMethodId;// --- Числовые данные и текст ---
+/// Выбранная валюта (объект Enum для UI)
+ Currency get selectedCurrency;/// Стоимость аренды
+ double get cost;/// Размер залога
+ double get deposit;/// Площадь квартиры (кв. м.)
+ double get apartmentArea;/// Текущий этаж
+ int get floor;/// Всего этажей в здании
+ int get totalFloors;/// Полный адрес строкой
+ String get address;/// Выбранная из справочника улица (0 — не выбрана)
+ int get selectedStreetId;/// Номер квартиры
+ int get apartmentNumber;/// Заголовок объявления
+ String get title;/// Подробное описание
+ String get description;/// Основной номер телефона
+ String get mainPhone;/// Дополнительный номер телефона
+ String get additionalNumber;
 /// Create a copy of CreateAdFormModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -236,69 +276,114 @@ class _CreateAdFormModel implements CreateAdFormModel {
   const _CreateAdFormModel({this.rentGoalId = 0, this.rentPeriodId = 0, final  Set<int> whoCanRentIds = const <int>{}, this.premisesTypeId = 0, this.propertyTypeId = 0, this.roomsCountId = 0, this.layoutId = 0, this.renovationId = 0, this.elevatorsId = 0, this.balconiesId = 0, this.furnitureId = 0, final  Set<int> amenitiesIds = const <int>{}, final  Set<int> bathroomIds = const <int>{}, final  Set<int> appliancesIds = const <int>{}, this.stoveId = 0, this.currencyId = 0, this.prepaymentId = 0, this.rentDurationId = 0, final  Set<int> rentConditionsIds = const <int>{}, this.contactMethodId = 0, this.selectedCurrency = Currency.rub, this.cost = 0, this.deposit = 0, this.apartmentArea = 0, this.floor = 0, this.totalFloors = 0, this.address = "", this.selectedStreetId = 0, this.apartmentNumber = 0, this.title = "", this.description = "", this.mainPhone = "", this.additionalNumber = ""}): _whoCanRentIds = whoCanRentIds,_amenitiesIds = amenitiesIds,_bathroomIds = bathroomIds,_appliancesIds = appliancesIds,_rentConditionsIds = rentConditionsIds;
   
 
+// --- Основные параметры аренды ---
+/// Цель аренды (например: снять, сдать)
 @override@JsonKey() final  int rentGoalId;
+/// Период аренды (посуточно, длительно)
 @override@JsonKey() final  int rentPeriodId;
+/// Кто может снимать (студенты, пары, с животными и т.д.)
  final  Set<int> _whoCanRentIds;
+/// Кто может снимать (студенты, пары, с животными и т.д.)
 @override@JsonKey() Set<int> get whoCanRentIds {
   if (_whoCanRentIds is EqualUnmodifiableSetView) return _whoCanRentIds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableSetView(_whoCanRentIds);
 }
 
+// --- Тип недвижимости ---
+/// Вид помещения (жилое, нежилое)
 @override@JsonKey() final  int premisesTypeId;
+/// Тип собственности (квартира, комната, дом)
 @override@JsonKey() final  int propertyTypeId;
+// --- Параметры жилья ---
+/// Количество комнат
 @override@JsonKey() final  int roomsCountId;
+/// Планировка (смежная, изолированная)
 @override@JsonKey() final  int layoutId;
+// --- Здание и ремонт ---
+/// Тип ремонта (косметический, евро, дизайнерский)
 @override@JsonKey() final  int renovationId;
+/// Наличие лифтов (пассажирский, грузовой)
 @override@JsonKey() final  int elevatorsId;
+/// Наличие балконов/лоджий
 @override@JsonKey() final  int balconiesId;
+// --- Удобства и наполнение ---
+/// Мебель (есть, нет, частично)
 @override@JsonKey() final  int furnitureId;
+/// Общие удобства (интернет, парковка, кондиционер)
  final  Set<int> _amenitiesIds;
+/// Общие удобства (интернет, парковка, кондиционер)
 @override@JsonKey() Set<int> get amenitiesIds {
   if (_amenitiesIds is EqualUnmodifiableSetView) return _amenitiesIds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableSetView(_amenitiesIds);
 }
 
+/// Тип санузла (совмещенный, раздельный)
  final  Set<int> _bathroomIds;
+/// Тип санузла (совмещенный, раздельный)
 @override@JsonKey() Set<int> get bathroomIds {
   if (_bathroomIds is EqualUnmodifiableSetView) return _bathroomIds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableSetView(_bathroomIds);
 }
 
+/// Бытовая техника (холодильник, стиралка, плита)
  final  Set<int> _appliancesIds;
+/// Бытовая техника (холодильник, стиралка, плита)
 @override@JsonKey() Set<int> get appliancesIds {
   if (_appliancesIds is EqualUnmodifiableSetView) return _appliancesIds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableSetView(_appliancesIds);
 }
 
+/// Тип плиты (газовая, электрическая)
 @override@JsonKey() final  int stoveId;
+// --- Финансы и условия ---
+/// ID валюты из справочника
 @override@JsonKey() final  int currencyId;
+/// Условия предоплаты (за 1 месяц, за 2 месяца)
 @override@JsonKey() final  int prepaymentId;
+/// Срок аренды (минимальный срок)
 @override@JsonKey() final  int rentDurationId;
+/// Дополнительные условия аренды
  final  Set<int> _rentConditionsIds;
+/// Дополнительные условия аренды
 @override@JsonKey() Set<int> get rentConditionsIds {
   if (_rentConditionsIds is EqualUnmodifiableSetView) return _rentConditionsIds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableSetView(_rentConditionsIds);
 }
 
+// --- Связь ---
+/// Предпочтительный способ связи (звонок, сообщение)
 @override@JsonKey() final  int contactMethodId;
+// --- Числовые данные и текст ---
+/// Выбранная валюта (объект Enum для UI)
 @override@JsonKey() final  Currency selectedCurrency;
+/// Стоимость аренды
 @override@JsonKey() final  double cost;
+/// Размер залога
 @override@JsonKey() final  double deposit;
+/// Площадь квартиры (кв. м.)
 @override@JsonKey() final  double apartmentArea;
+/// Текущий этаж
 @override@JsonKey() final  int floor;
+/// Всего этажей в здании
 @override@JsonKey() final  int totalFloors;
+/// Полный адрес строкой
 @override@JsonKey() final  String address;
-/// Выбранная из справочника улица (0 — не выбрана).
+/// Выбранная из справочника улица (0 — не выбрана)
 @override@JsonKey() final  int selectedStreetId;
+/// Номер квартиры
 @override@JsonKey() final  int apartmentNumber;
+/// Заголовок объявления
 @override@JsonKey() final  String title;
+/// Подробное описание
 @override@JsonKey() final  String description;
+/// Основной номер телефона
 @override@JsonKey() final  String mainPhone;
+/// Дополнительный номер телефона
 @override@JsonKey() final  String additionalNumber;
 
 /// Create a copy of CreateAdFormModel

@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/theme/theme_x/app_palette.dart';
 import 'package:roomate/theme/theme_x/app_typography.dart';
 import 'package:roomate/utils/helpers/p.dart';
 
-part 'app_text_style.dart';
 part 'app_colors.dart';
+part 'app_text_style.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
-        overlayColor: WidgetStateColor.fromMap({
-          WidgetState.pressed: _appColors.graysLight100,
-        }),
+        overlayColor: WidgetStateColor.fromMap({WidgetState.pressed: _appColors.graysLight100}),
       ),
     ),
     colorScheme: ColorScheme.fromSeed(seedColor: _appColors.graysWhite),
@@ -35,14 +32,8 @@ class AppTheme {
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
     scaffoldBackgroundColor: _appColors.graysWhite,
     dividerColor: _appColors.graysStroke300,
-    dividerTheme: DividerThemeData(
-      thickness: S.p1,
-      space: S.p1,
-      color: _appColors.graysStroke300,
-    ),
-    bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: _appColors.graysWhite,
-    ),
+    dividerTheme: DividerThemeData(thickness: S.p1, space: S.p1, color: _appColors.graysStroke300),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: _appColors.graysWhite),
     appBarTheme: AppBarTheme(
       surfaceTintColor: _appColors.graysWhite,
       backgroundColor: _appColors.graysWhite,
@@ -70,8 +61,8 @@ class AppTheme {
       dividerColor: Colors.transparent,
       labelColor: _appColors.graysBlack,
       unselectedLabelColor: _appColors.graysBlack,
-      labelStyle: _appTextStyle.inputTextRegular,
-      unselectedLabelStyle: _appTextStyle.inputTextRegular,
+      labelStyle: _appTextStyle.inputRegular,
+      unselectedLabelStyle: _appTextStyle.inputRegular,
       indicator: BoxDecoration(
         color: _appColors.graysLight100,
         borderRadius: BorderRadius.circular(S.p20),
@@ -81,9 +72,7 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const P(horizontal: S.p16, vertical: S.p20),
       fillColor: _appColors.graysInput200,
-      hintStyle: _appTextStyle.inputTextRegular.copyWith(
-        color: _appColors.graysText400,
-      ),
+      hintStyle: _appTextStyle.inputRegular.copyWith(color: _appColors.graysText400),
       border: InputBorder.none,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),

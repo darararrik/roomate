@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/extensions.dart';
 import 'package:roomate/utils/formatters/decimal_formatter.dart';
@@ -120,12 +119,9 @@ class TextFieldWithTitle extends StatelessWidget {
             onChanged: onChanged,
             needSuffixIcon: needSuffixIcon,
             readOnly: readOnly,
-            errorText: errorText,
             decoration: InputDecoration(
               hintText: hintText,
-              suffixIcon: suffix != null
-                  ? _buildIconSuffix(context, suffix!)
-                  : null,
+              suffixIcon: suffix != null ? _buildIconSuffix(context, suffix!) : null,
             ),
           ),
         ),
@@ -141,9 +137,7 @@ class TextFieldWithTitle extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: Text(
           suffixPath,
-          style: context.typography.inputTextRegular.copyWith(
-            color: context.colors.graysBlack,
-          ),
+          style: context.typography.inputRegular.copyWith(color: context.colors.graysBlack),
         ),
       ),
     );

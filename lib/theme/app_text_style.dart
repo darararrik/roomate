@@ -43,7 +43,7 @@ final AppTypography _appTextStyle = AppTypography(
     color: _appColors.graysBlack,
     height: 1,
   ),
-  inputTextRegular: TextStyle(
+  inputRegular: TextStyle(
     fontFamily: const String.fromEnvironment("FONT_FAMILY"),
     fontSize: 14,
     fontWeight: FontWeight.w400,

@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -13,91 +11,105 @@ class LocationScreen extends HookConsumerWidget {
 
   final void Function(StreetModel street) onSelected;
 
-  static const _omskCityKey = 'omsk';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchController = useTextEditingController();
-    final streetsAsync = ref.watch(cityStreetsProvider(_omskCityKey));
+
+    // Получаем текст из контроллера
+    // final searchQuery = useValueListenable(searchController).text.trim();
+
+    // Теперь провайдер сам должен обрабатывать searchQuery (делать запрос на бэк)
+    // Убедись, что cityStreetsProvider принимает query или используй семейство (family)
+    final streetsAsync = ref.watch(cityStreetsProvider('omsk'));
 
     return Scaffold(
-      body: streetsAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, _) => Center(child: Text('$err')),
-        data: (streets) {
-          return AnimatedBuilder(
-            animation: searchController,
-            builder: (context, _) {
-              final q = searchController.text.trim().toLowerCase();
-              final filtered = q.isEmpty
-                  ? streets
-                  : streets
-                        .where(
-                          (e) =>
-                              e.name.toLowerCase().contains(q) ||
-                              (e.district?.toLowerCase().contains(q) ?? false),
-                        )
-                        .toList();
-
-              return CustomScrollView(
-                slivers: [
-                  SliverAppBar(
-                    title: Text(context.l10n.location),
-                    centerTitle: false,
-                    pinned: true,
-                  ),
-                  PinnedHeaderSliver(
+      backgroundColor: context.colors.graysWhite,
+      body: SafeArea(
+        bottom: false, // Чтобы список уходил под системную панель снизу
+        child: streetsAsync.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (err, _) => Center(child: Text('$err')),
+          data: (streets) {
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  title: Text(context.l10n.location),
+                  centerTitle: false,
+                  pinned: true,
+                  floating: true,
+                  backgroundColor: context.colors.graysWhite,
+                  surfaceTintColor: Colors.transparent,
+                ),
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _SliverSearchDelegate(
                     child: ColoredBox(
                       color: context.colors.graysWhite,
                       child: Padding(
-                        padding: const P(horizontal: S.p16, bottom: S.p12),
+                        padding: const P(horizontal: S.p16),
                         child: InputWidget(
                           controller: searchController,
-                          prefixIcon: AppIcon(
-                            AppIcons.search,
-                            color: context.colors.graysIcon500,
-                          ),
+                          //TODO: добавить иконку, посмотреть в рестике
+                          // prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
                           hintText: context.l10n.search,
                         ),
                       ),
                     ),
                   ),
-                  if (filtered.isEmpty)
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Center(child: Text(context.l10n.searchNoResults)),
-                    )
-                  else
-                    SliverList.separated(
-                      itemCount: filtered.length,
+                ),
+
+                if (streets.isEmpty)
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Center(
+                      child: Text(
+                        context.l10n.searchNoResults,
+                        style: context.typography.bodyDescription.copyWith(
+                          color: context.colors.graysIcon500,
+                        ),
+                      ),
+                    ),
+                  )
+                else
+                  SliverPadding(
+                    padding: const P(horizontal: S.p16, top: S.p12),
+                    sliver: SliverList.separated(
+                      itemCount: streets.length,
                       itemBuilder: (context, index) {
-                        final st = filtered[index];
-                        final sub = [
-                          st.city,
-                          if (st.district != null && st.district!.isNotEmpty)
-                            st.district!,
-                          if (st.regionLine != null &&
-                              st.regionLine!.isNotEmpty)
-                            st.regionLine!,
-                        ].join(', ');
+                        final street = streets[index];
                         return AdressItem(
-                          title: st.name,
-                          subtitle: sub,
-                          onTap: () {
-                            onSelected(st);
-                            context.pop();
-                          },
+                          title: street.name,
+                          subtitle: street.district,
+                          onTap: () => onSelected(street),
                         );
                       },
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: S.p12),
+                      separatorBuilder: (_, _) => const SizedBox(height: S.p20),
                     ),
-                ],
-              );
-            },
-          );
-        },
+                  ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
+}
+
+class _SliverSearchDelegate extends SliverPersistentHeaderDelegate {
+  _SliverSearchDelegate({required this.child});
+  final Widget child;
+
+  // Увеличили высоту, чтобы RenderFlex перестал выходить за границы (54 контент + паддинги)
+  @override
+  double get minExtent => 60;
+  @override
+  double get maxExtent => 60;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  @override
+  bool shouldRebuild(covariant _SliverSearchDelegate oldDelegate) => false;
 }

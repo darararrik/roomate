@@ -355,7 +355,7 @@ final class CityStreetsProvider
   }
 }
 
-String _$cityStreetsHash() => r'592e57e77381eb082cb6068ee324f1258266b563';
+String _$cityStreetsHash() => r'17fc6621b7df9d55b1ed15f01238d66a2973ab61';
 
 final class CityStreetsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<List<StreetModel>>, String> {

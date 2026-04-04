@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
@@ -19,37 +18,49 @@ class RegionListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    final hasSubTitle = subTitle.trim().isNotEmpty;
+    return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const P(horizontal: S.p12),
+        padding: const P(horizontal: S.p12, vertical: S.p12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const P(all: S.p10),
+              padding: const P(all: S.p12),
               child: AppIcon(iconPath),
             ),
-            const SizedBox(width: S.p12),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(title, style: context.typography.bodyDescription),
-                  const SizedBox(height: S.p8),
-                  Text(
-                    subTitle,
-                    style: context.typography.bodySmall.copyWith(
-                      color: context.colors.graysText400,
-                    ),
-                  ),
-                ],
+              child: Padding(
+                padding: const P(horizontal: S.p12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(title, style: context.typography.headline2),
+                    if (hasSubTitle) ...[
+                      const SizedBox(height: S.p8),
+                      Text(
+                        subTitle,
+                        style: context.typography.bodyDescription.copyWith(
+                          color: context.colors.graysText400,
+                          height: 17 / 14,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(width: S.p12),
-            AppIcon(AppIcons.arrowRight, color: context.colors.graysIcon500),
+            AppIcon(
+              AppIcons.arrowRight,
+              color: context.colors.graysIcon500,
+              width: S.p32,
+              height: S.p32,
+            ),
           ],
         ),
       ),

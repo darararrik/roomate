@@ -8,7 +8,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
     required this.bodyTitle,
     required this.bodyDescription,
     required this.bodySmall,
-    required this.inputTextRegular,
+    required this.inputRegular,
     required this.activesCodeNumber,
     required this.activesButton,
     required this.activesLabel,
@@ -20,7 +20,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
   final TextStyle bodyTitle;
   final TextStyle bodyDescription;
   final TextStyle bodySmall;
-  final TextStyle inputTextRegular;
+  final TextStyle inputRegular;
   final TextStyle activesCodeNumber;
   final TextStyle activesButton;
   final TextStyle activesLabel;
@@ -45,7 +45,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
       bodyTitle: bodyTitle ?? this.bodyTitle,
       bodyDescription: bodyDescription ?? this.bodyDescription,
       bodySmall: bodySmall ?? this.bodySmall,
-      inputTextRegular: inputTextRegular ?? this.inputTextRegular,
+      inputRegular: inputTextRegular ?? this.inputRegular,
       activesCodeNumber: activesCodeNumber ?? this.activesCodeNumber,
       activesButton: activesButton ?? this.activesButton,
       activesLabel: activesLabel ?? this.activesLabel,
@@ -60,22 +60,10 @@ class AppTypography extends ThemeExtension<AppTypography> {
       headline1: TextStyle.lerp(headline1, other.headline1, t)!,
       headline2: TextStyle.lerp(headline2, other.headline2, t)!,
       bodyTitle: TextStyle.lerp(bodyTitle, other.bodyTitle, t)!,
-      bodyDescription: TextStyle.lerp(
-        bodyDescription,
-        other.bodyDescription,
-        t,
-      )!,
+      bodyDescription: TextStyle.lerp(bodyDescription, other.bodyDescription, t)!,
       bodySmall: TextStyle.lerp(bodySmall, other.bodySmall, t)!,
-      inputTextRegular: TextStyle.lerp(
-        inputTextRegular,
-        other.inputTextRegular,
-        t,
-      )!,
-      activesCodeNumber: TextStyle.lerp(
-        activesCodeNumber,
-        other.activesCodeNumber,
-        t,
-      )!,
+      inputRegular: TextStyle.lerp(inputRegular, other.inputRegular, t)!,
+      activesCodeNumber: TextStyle.lerp(activesCodeNumber, other.activesCodeNumber, t)!,
       activesButton: TextStyle.lerp(activesButton, other.activesButton, t)!,
       activesLabel: TextStyle.lerp(activesLabel, other.activesLabel, t)!,
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:roomate/utils/extensions.dart';
+import 'package:roomate/lib.dart';
 
 /// Текст ошибки в стиле [InputWidget] (под полем).
 class FieldErrorText extends StatelessWidget {
@@ -14,13 +13,10 @@ class FieldErrorText extends StatelessWidget {
       return const SizedBox.shrink();
     }
     return Padding(
-      padding: const EdgeInsets.only(top: 6, left: 4),
+      padding: const P(vertical: S.p4),
       child: Text(
         text,
-        style: context.typography.inputTextRegular.copyWith(
-          color: context.colors.red,
-          fontSize: 12,
-        ),
+        style: context.typography.bodyDescription.copyWith(color: context.colors.red),
       ),
     );
   }

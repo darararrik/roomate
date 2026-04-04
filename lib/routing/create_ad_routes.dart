@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:roomate/routing/app_routing.gr.dart';
 
 abstract class CreateAdRoutes {
@@ -7,10 +6,10 @@ abstract class CreateAdRoutes {
     page: CreateAdRoute.page,
     initial: true,
     children: [
-      AutoRoute(page: RentTypeStepRoute.page, initial: true),
+      AutoRoute(page: RentTypeStepRoute.page),
       AutoRoute(page: RoomTypeStepRoute.page),
       AutoRoute(page: PropertyTypeStepRoute.page),
-      AutoRoute(page: LocationStepRoute.page),
+      AutoRoute(page: LocationStepRoute.page, initial: true),
       AutoRoute(page: InputDetailsApStepRoute.page),
       AutoRoute(page: AddMediaStepRoute.page),
       AutoRoute(page: FeaturesFirstStepRoute.page),

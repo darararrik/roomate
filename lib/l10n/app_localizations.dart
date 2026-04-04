@@ -1681,7 +1681,7 @@ abstract class AppLocalizations {
   /// No description provided for @validationPickStreet.
   ///
   /// In ru, this message translates to:
-  /// **'Выберите улицу из списка'**
+  /// **'Выберите адрес'**
   String get validationPickStreet;
 
   /// No description provided for @validationHousingDetails.
@@ -1809,6 +1809,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Укажите заголовок'**
   String get validationEnterTitle;
+
+  /// No description provided for @validationEnterApartmentNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите номер квартиры'**
+  String get validationEnterApartmentNumber;
 
   /// No description provided for @validationEnterDescription.
   ///

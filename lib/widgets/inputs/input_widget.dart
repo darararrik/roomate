@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_hooks/flutter_hooks.dart';
-
 import 'package:roomate/constants/app_icons.dart';
 import 'package:roomate/constants/spacing.dart';
 import 'package:roomate/utils/utils.dart';
@@ -68,81 +66,75 @@ class InputWidget extends HookWidget {
     final hasError = errorText.isNotEmpty;
 
     final colors = context.colors;
-    final borderColor = hasError
-        ? colors.red
-        : (hasFocus ? colors.orange : colors.graysStroke300);
+    final borderColor = hasError ? colors.red : (hasFocus ? colors.orange : colors.graysStroke300);
     final textColor = hasError ? colors.red : colors.graysBlack;
+    final textField = TextField(
+      readOnly: readOnly,
+      onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: onTap,
+      minLines: minLines,
+      maxLines: maxLines,
+      autofocus: autofocus,
+      focusNode: node,
+      controller: controller,
+      enabled: enabled,
+      keyboardType: keyboardType,
+      onChanged: onChanged,
+      textInputAction: textInputAction,
+      inputFormatters: [...inputFormatters ?? []],
+      maxLength: maxLenght,
+      buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
+      style: (style ?? context.typography.inputRegular).copyWith(color: textColor),
+      decoration: (decoration ?? const InputDecoration()).copyWith(
+        prefixIcon: prefixIcon,
 
+        hintText: hintText,
+        hintStyle: hintStyle,
+        suffixIcon: needSuffixIcon
+            ? controller.text.isNotEmpty
+                  ? IconButtonWidget(
+                      icon: AppIcons.xSmall,
+                      iconSize: S.p16,
+                      size: S.p24,
+                      iconColor: context.colors.graysIcon500,
+                      onPressed: () {
+                        controller.clear();
+                        onChanged?.call('');
+                      },
+                    )
+                  : null
+            : null,
+        // 4. Динамические границы
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: borderColor),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: borderColor, width: 1),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: colors.red, width: 1),
+        ),
+      ),
+    );
+    if (!hasError) return textField;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
-          readOnly: readOnly,
-          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-          onTap: onTap,
-          minLines: minLines,
-          maxLines: maxLines,
-          autofocus: autofocus,
-          focusNode: node,
-          controller: controller,
-          enabled: enabled,
-          keyboardType: keyboardType,
-          onChanged: onChanged,
-          textInputAction: textInputAction,
-          inputFormatters: [...inputFormatters ?? []],
-          maxLength: maxLenght,
-          buildCounter:
-              (_, {required currentLength, required isFocused, maxLength}) =>
-                  null,
-          style: (style ?? context.typography.inputTextRegular).copyWith(
-            color: textColor,
-          ),
-          decoration: (decoration ?? const InputDecoration()).copyWith(
-            hintText: hintText,
-            hintStyle: hintStyle,
-            suffixIcon: needSuffixIcon
-                ? controller.text.isNotEmpty
-                      ? IconButtonWidget(
-                          icon: AppIcons.xSmall,
-                          iconSize: S.p16,
-                          iconColor: context.colors.graysIcon500,
-                          onPressed: () {
-                            controller.clear();
-                            onChanged?.call('');
-                          },
-                        )
-                      : null
-                : null,
-            // 4. Динамические границы
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: borderColor),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: borderColor, width: 1),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: colors.red),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: colors.red, width: 1),
-            ),
+        textField,
+        Padding(
+          padding: const EdgeInsets.only(top: 6, left: 4),
+          child: Text(
+            errorText,
+            style: context.typography.inputRegular.copyWith(color: colors.red, fontSize: 12),
           ),
         ),
-        if (hasError)
-          Padding(
-            padding: const EdgeInsets.only(top: 6, left: 4),
-            child: Text(
-              errorText,
-              style: context.typography.inputTextRegular.copyWith(
-                color: colors.red,
-                fontSize: 12,
-              ),
-            ),
-          ),
       ],
     );
   }
