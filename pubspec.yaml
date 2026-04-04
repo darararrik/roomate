@@ -1,5 +1,5 @@
 name: roomate
-description: "A new Flutter project."
+description: "Roomate"
 publish_to: "none"
 version: 0.1.0
 
@@ -7,15 +7,21 @@ environment:
   sdk: ">=3.10.0"
 
 dependencies:
-  auto_route: ^11.1.0
-  cached_network_image: ^3.4.1
-  dio: ^5.9.1
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  data:
+    path: data
+  domain:
+    path: domain
+  shared:
+    path: shared
+  auto_route: ^11.1.0
+  cached_network_image: ^3.4.1
+  dio: ^5.9.2
   flutter_secure_storage: ^10.0.0
-  flutter_svg: ^2.2.3
+  flutter_svg: ^2.2.4
   import_sorter: ^4.6.0
   intl: ^0.20.2
   dropdown_button2: ^3.0.0
@@ -24,38 +30,37 @@ dependencies:
   freezed: ^3.2.5
   flutter_chat_core: ^2.9.0
   flutter_chat_ui: ^2.11.1
-  provider: ^6.1.5+1
-  hooks_riverpod: ^3.2.1
-  flutter_hooks: ^0.21.3+1
+  provider: ^6.1.5
+  hooks_riverpod: ^3.3.1
+  flutter_hooks: ^0.21.3
   riverpod_annotation: ^4.0.2
-  pin_code_fields: ^9.1.0
+  pin_code_fields: ^9.3.0
   riverpod_lint: ^3.1.3
-  json_serializable: ^6.13.0
-  json_annotation: ^4.11.0
   dartz: ^0.10.1
   fluttertoast: ^9.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  build_runner: ^2.11.0
-  auto_route_generator: 10.4.0
+  build_runner: ^2.13.1
+  auto_route_generator: ^10.4.0
   riverpod_generator: ^4.0.3
 
 flutter:
   generate: true
   uses-material-design: true
   assets:
-    - lib/presentation/assets/icons/
-    - lib/presentation/assets/pics/
+    - lib/assets/icons/
+    - lib/assets/pics/
+    - shared/lib/mocks/omsk_streets.json
   fonts:
     - family: Helvetica
       fonts:
-        - asset: lib/presentation/assets/fonts/helvetica-neue-bold.ttf
+        - asset: lib/assets/fonts/helvetica-neue-bold.ttf
           weight: 700
-        - asset: lib/presentation/assets/fonts/helvetica-neue-regular.ttf
+        - asset: lib/assets/fonts/helvetica-neue-regular.ttf
           weight: 400
-        - asset: lib/presentation/assets/fonts/helvetica-neue-medium.ttf
+        - asset: lib/assets/fonts/helvetica-neue-medium.ttf
           weight: 500
 
 import_sorter:

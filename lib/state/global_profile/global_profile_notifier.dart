@@ -1,11 +1,8 @@
+import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared/shared.dart';
 
-import 'package:roomate/domain/enums/gender_enum.dart';
-import 'package:roomate/domain/models/tag_model.dart';
-import 'package:roomate/domain/models/user_model.dart';
-import 'package:roomate/domain/repository/profile_repository.dart';
-import 'package:roomate/presentation/di/providers.dart';
-import 'package:roomate/shared/exception/RemoteException.dart';
+import 'package:roomate/lib.dart';
 
 part 'global_profile_notifier.g.dart';
 

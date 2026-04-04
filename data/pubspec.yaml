@@ -1,0 +1,25 @@
+name: data
+description: "Data layer for Roomate"
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  domain:
+    path: ../domain/
+  shared:
+    path: ../shared/
+  freezed_annotation: ^3.1.0
+  freezed: ^3.2.5
+  json_serializable: ^6.8.0
+  json_annotation: ^4.11.0
+  dartz: ^0.10.1
+  flutter_secure_storage: ^10.0.0
+
+dev_dependencies:
+  build_runner: ^2.13.1
+  flutter_lints: ^6.0.0

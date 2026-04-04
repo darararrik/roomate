@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:roomate/presentation/routing/app_routing.dart';
-import 'package:roomate/presentation/services/navigation_service.dart';
+import 'package:roomate/routing/app_routing.dart';
+import 'package:roomate/services/navigation_service.dart';
 
 part 'navigation_provider.g.dart';
 

@@ -1,58 +1,93 @@
 # Пути
 PUB_BIN := $(HOME)/.pub-cache/bin
+# Список твоих пакетов (папки в корне)
+MODULES := domain data shared
 
 default: help
 
-## Установка зависимостей
+## Установка зависимостей во всех модулях и корне
 get:
+	@echo "--- Running pub get in all modules ---"
+	@for dir in $(MODULES); do \
+		if [ -d "$$dir" ]; then \
+			echo "In $$dir:"; \
+			cd $$dir && fvm flutter pub get && cd ..; \
+		fi \
+	done
 	fvm flutter pub get
 
-## Очистка проекта
+## Полная очистка всего проекта
 clean:
+	@echo "--- Cleaning everything ---"
+	@for dir in $(MODULES); do \
+		if [ -d "$$dir" ]; then \
+			echo "Cleaning $$dir:"; \
+			cd $$dir && fvm flutter clean && cd ..; \
+		fi \
+	done
 	fvm flutter clean
-	fvm flutter pub get
+	$(MAKE) get
+
+## Генерация кода (build_runner)
+# Запускаем в data (для моделей) и в корне (для роутов/riverpod)
+runner:
+	@echo "--- Running build_runner in data layer ---"
+	@if [ -d "data" ]; then \
+		cd data && fvm dart run build_runner build --delete-conflicting-outputs; \
+	fi
+	@echo "--- Running build_runner in root project ---"
+	fvm dart run build_runner build --delete-conflicting-outputs
+
+r:
+	fvm dart run build_runner build --delete-conflicting-outputs
+
+da:
+	cd data && fvm dart run build_runner build --delete-conflicting-outputs
+
+do:
+	cd domain && fvm dart run build_runner build --delete-conflicting-outputs
+
+s:
+	cd shared && fvm dart run build_runner build --delete-conflicting-outputs
 
 ## Сборка apk
 apk:
 	fvm flutter build apk --release
 
-## Spider (генерация констант)
-spider:
-	fvm spider build
-
-## Сортировка импортов
+## Сортировка импортов везде
 imports:
+	@echo "--- Sorting imports ---"
+	@for dir in $(MODULES); do \
+		if [ -d "$$dir" ]; then \
+			cd $$dir && fvm dart run import_sorter:main && cd ..; \
+		fi \
+	done
 	fvm dart run import_sorter:main
 
 ## Генерация локализации
 locale:
 	fvm flutter gen-l10n
 
-## Генерация кода build_runner
-runner:
-	fvm dart run build_runner build --delete-conflicting-outputs
-
-## Запуск форматирования кода
+## Форматирование кода
 format:
+	@echo "--- Formatting code ---"
 	fvm dart format .
+	@for dir in $(MODULES); do \
+		if [ -d "$$dir" ]; then \
+			fvm dart format $$dir; \
+		fi \
+	done
 
-## Запуск анализа
+## Анализ кода
 analyze:
 	fvm flutter analyze
 
-## Обновление Pods
-pods:
-	cd ios && pod install --repo-update
 ## Помощь
 help:
-	@echo "Доступные команды:"
-	@echo "  make get            - flutter pub get"
-	@echo "  make clean          - flutter clean + pub get"
-	@echo "  make apk            - собрать apk"
-	@echo "  make spider         - spider build (генерация констант)"
-	@echo "  make imports   	 - сортировка импортов"
-	@echo "  make locale         - генерация локализации"
-	@echo "  make runner  		 - build_runner build --delete-conflicting-outputs"
-	@echo "  make fix-path       - добавить pub-cache/bin в PATH"
-	@echo "  make format         - dart format ."
-	@echo "  make analyze        - flutter analyze"
+	@echo "Команды для проекта Roomate (Flat Structure):"
+	@echo "  make get     - flutter pub get в корне и модулях (data, domain, shared)"
+	@echo "  make clean   - полная очистка всего проекта"
+	@echo "  make runner  - запуск генерации кода (data + root)"
+	@echo "  make locale  - генерация l10n"
+	@echo "  make imports - сортировка импортов везде"
+	@echo "  make format  - форматирование кода"
