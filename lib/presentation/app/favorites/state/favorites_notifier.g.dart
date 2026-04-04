@@ -95,7 +95,7 @@ final class FavoritesScreenNotifierProvider
 }
 
 String _$favoritesScreenNotifierHash() =>
-    r'6e95753f0bd42351b8846bc5172342ba1b35b69f';
+    r'84def311be02d1cae97a0d938d3285abf0da2b1a';
 
 abstract class _$FavoritesScreenNotifier
     extends $Notifier<List<ApartamentModel>> {

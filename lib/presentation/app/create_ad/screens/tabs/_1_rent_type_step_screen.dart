@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_taxonomy_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/notifier/create_ad/ad_form_notifier.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
+import 'package:roomate/presentation/widgets/chips/chip_wrap.dart';
+import 'package:roomate/presentation/widgets/common/error_view.dart';
+import 'package:roomate/presentation/widgets/common/loading_widget.dart';
 
 @RoutePage()
 class RentTypeStepScreen extends ConsumerWidget {
@@ -16,44 +14,55 @@ class RentTypeStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _ = ref.watch(createAdProvider);
-    final taxonomy = ref.watch(createAdTaxonomyProvider);
-    final notifier = ref.read(createAdProvider.notifier);
-    final tags = taxonomy.rentTypeGroups;
-    final goalTags = tags[0];
-    final termTags = tags[1];
-    final whoToRentTags = tags[2];
+    final state = ref.watch(adFormProvider);
+    final notifier = ref.read(adFormProvider.notifier);
+    final optionsAsync = ref.watch(getAdFormOptionsProvider);
 
-    return Padding(
-      padding: const P(horizontal: S.p16),
-      child: Column(
-        crossAxisAlignment: .start,
-        spacing: S.p12,
-        children: [
-          SelectableTagGroup(
-            tagsGroup: goalTags,
-            selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.goal),
-            onTagSelected: (tag, isSelected) {
-              notifier.updateTag(CreateAdTagTypeIds.goal, tag.id);
-            },
+    return optionsAsync.when(
+      loading: () => const LoadingWidget(),
+      error: (_, _) => const ErrorView(),
+      data: (options) {
+        return SingleChildScrollView(
+          padding: const P(horizontal: S.p16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: S.p12),
+              if (options.rentGoal.isNotEmpty)
+                ChipWrap(
+                  title: 'Цель аренды',
+                  options: options.rentGoal,
+                  selectedIds: state.rentGoalId != 0 ? {state.rentGoalId} : {},
+                  onSelectionChanged: (ids) {
+                    notifier.setRentGoal(ids.isNotEmpty ? ids.first : 0);
+                  },
+                  singleSelection: true,
+                ),
+              const SizedBox(height: S.p12),
+              if (options.rentPeriod.isNotEmpty)
+                ChipWrap(
+                  title: 'Срок аренды',
+                  options: options.rentPeriod,
+                  selectedIds: state.rentPeriodId != 0 ? {state.rentPeriodId} : {},
+                  onSelectionChanged: (ids) {
+                    notifier.setRentPeriod(ids.isNotEmpty ? ids.first : 0);
+                  },
+                  singleSelection: true,
+                ),
+              const SizedBox(height: S.p12),
+              if (options.whoCanRent.isNotEmpty)
+                ChipWrap(
+                  title: 'Кто может снимать',
+                  options: options.whoCanRent,
+                  selectedIds: state.whoCanRentIds,
+                  onSelectionChanged: notifier.setWhoCanRentIds,
+                  singleSelection: false,
+                ),
+              const SizedBox(height: S.p32),
+            ],
           ),
-          SelectableTagGroup(
-            tagsGroup: termTags,
-            selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.term),
-            onTagSelected: (tag, isSelected) {
-              notifier.updateTag(CreateAdTagTypeIds.term, tag.id);
-            },
-          ),
-          SelectableTagGroup(
-            tagsGroup: whoToRentTags,
-            selectionStyle: TagSelectionStyle.checkboxChips,
-            selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.whoToRent),
-            onTagSelected: (tag, isSelected) {
-              notifier.updateTag(CreateAdTagTypeIds.whoToRent, tag.id);
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad.dart';
+import 'package:roomate/presentation/app/create_ad/notifier/create_ad/ad_form_notifier.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/routing/app_routing.gr.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
@@ -18,7 +18,7 @@ class CreateAdScreen extends ConsumerWidget {
   const CreateAdScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.read(createAdProvider.notifier);
+    final notifier = ref.read(adFormProvider.notifier);
     return AutoTabsRouter.pageView(
       routes: const [
         RentTypeStepRoute(),

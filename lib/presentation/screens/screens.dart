@@ -6,7 +6,7 @@ export 'chats/chats.dart';
 export 'create_screen.dart';
 export 'favorites_screen.dart';
 export 'filling_profile_screen.dart';
-export 'filters_screen.dart';
+export '../app/home/screens/filters_screen.dart';
 export '../app/home/home.dart';
 export 'location_screen.dart';
 export 'profile/profile.dart';

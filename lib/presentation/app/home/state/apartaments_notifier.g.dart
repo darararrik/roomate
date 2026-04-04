@@ -13,7 +13,7 @@ part of 'apartaments_notifier.dart';
 final apartamentsProvider = ApartamentsNotifierProvider._();
 
 final class ApartamentsNotifierProvider
-    extends $NotifierProvider<ApartamentsNotifier, ApartamentsState> {
+    extends $AsyncNotifierProvider<ApartamentsNotifier, ApartamentsState> {
   ApartamentsNotifierProvider._()
     : super(
         from: null,
@@ -31,30 +31,23 @@ final class ApartamentsNotifierProvider
   @$internal
   @override
   ApartamentsNotifier create() => ApartamentsNotifier();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ApartamentsState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ApartamentsState>(value),
-    );
-  }
 }
 
 String _$apartamentsNotifierHash() =>
-    r'ca290661cb9c568531f4e8f4a95a0e7a30479b53';
+    r'456c66b3a7094dbd29790c3a04e222c48039af05';
 
-abstract class _$ApartamentsNotifier extends $Notifier<ApartamentsState> {
-  ApartamentsState build();
+abstract class _$ApartamentsNotifier extends $AsyncNotifier<ApartamentsState> {
+  FutureOr<ApartamentsState> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<ApartamentsState, ApartamentsState>;
+    final ref =
+        this.ref as $Ref<AsyncValue<ApartamentsState>, ApartamentsState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<ApartamentsState, ApartamentsState>,
-              ApartamentsState,
+              AnyNotifier<AsyncValue<ApartamentsState>, ApartamentsState>,
+              AsyncValue<ApartamentsState>,
               Object?,
               Object?
             >;

@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/notifier/create_ad/ad_form_notifier.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/extensions.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
@@ -14,7 +12,7 @@ class FinishScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(createAdProvider);
+    ref.watch(adFormProvider);
 
     return Padding(
       padding: const P(horizontal: S.p16, top: S.p10),

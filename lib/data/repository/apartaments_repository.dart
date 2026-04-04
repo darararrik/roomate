@@ -1,15 +1,24 @@
-import 'package:roomate/data/datasources/remote/mocks/apartaments_mock_datasource.dart';
+import 'package:roomate/data/datasources/apartaments_data_source.dart';
+import 'package:roomate/data/mappers/apartament_mapper.dart';
+import 'package:roomate/domain/models/ad_form/ad_form_options_model.dart';
 import 'package:roomate/domain/models/apartaments/apartament_model.dart';
+import 'package:roomate/domain/models/apartaments/apartament_filter.dart';
+import 'package:roomate/domain/models/filter/filter_model.dart';
 import 'package:roomate/domain/repository/apartaments_repository.dart';
 
-class ApartamentsRepository implements IApartamentsRepository {
-  ApartamentsRepository({required ApartamentsMockDataSource mockDataSource})
-    : _mockDataSource = mockDataSource;
-
-  final ApartamentsMockDataSource _mockDataSource;
+class ApartamentsRepositoryImpl implements IApartamentsRepository {
+  ApartamentsRepositoryImpl(this._dataSource);
+  final ApartamentsDataSource _dataSource;
 
   @override
-  List<ApartamentModel> getApartaments() {
-    return _mockDataSource.fetchApartaments();
+  Future<List<ApartamentModel>> fetchApartaments(ApartamentFilter filter) async {
+    final dtos = await _dataSource.fetchApartaments(filter);
+    return dtos.map((dto) => ApartamentMapper.toModel(dto)).toList();
   }
+
+  @override
+  Future<FilterModel> fetchFilters() => _dataSource.fetchFilterTags();
+
+  @override
+  Future<AdFormOptionsModel> fetchAdFormOptions() => _dataSource.fetchAdFormOptions();
 }

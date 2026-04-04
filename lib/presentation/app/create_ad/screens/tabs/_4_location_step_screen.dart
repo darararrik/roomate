@@ -1,14 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/presentation/constants/constants.dart';
+import 'package:roomate/presentation/app/create_ad/notifier/create_ad/ad_form_notifier.dart';
 import 'package:roomate/presentation/presentation.dart';
-import 'package:roomate/presentation/routing/app_routing.gr.dart';
-import 'package:roomate/presentation/utils/utils.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class LocationStepScreen extends HookConsumerWidget {
@@ -16,9 +11,19 @@ class LocationStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _ = ref.watch(createAdProvider);
+    final state = ref.watch(adFormProvider);
+    final notifier = ref.read(adFormProvider.notifier);
 
-    final controller = useTextEditingController();
+    final apartmentController = useTextEditingController();
+    useEffect(() {
+      final t = state.apartmentNumber != 0 ? '${state.apartmentNumber}' : '';
+      if (apartmentController.text != t) {
+        apartmentController.text = t;
+        apartmentController.selection = TextSelection.collapsed(offset: t.length);
+      }
+      return null;
+    }, [state.apartmentNumber]);
+
     return ListView(
       padding: const P(horizontal: S.p16),
       children: [
@@ -34,7 +39,7 @@ class LocationStepScreen extends HookConsumerWidget {
             iconPath: AppIcons.city,
             onTap: () => context.pushRoute(
               LocationRoute(
-                onSelected: (address) => ref.read(createAdProvider.notifier).selectAdress(address),
+                onSelected: (address) => notifier.updateAddress(address),
               ),
             ),
             title: context.l10n.moscowCity,
@@ -45,7 +50,8 @@ class LocationStepScreen extends HookConsumerWidget {
         TextFieldWithTitle.number(
           title: context.l10n.apartmentNumber,
           hintText: context.l10n.enterApartmentNumber,
-          controller: controller,
+          controller: apartmentController,
+          onChanged: notifier.updateApartmentNumber,
         ),
         Padding(
           padding: const P(vertical: S.p4),

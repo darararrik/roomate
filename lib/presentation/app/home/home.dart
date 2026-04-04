@@ -1,2 +1,1 @@
-export 'home_screen.dart';
-export 'tabs/tabs.dart';
+export 'screens/home_screen.dart';

@@ -1,34 +1,43 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_tag_type_ids.dart';
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_taxonomy_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/notifier/create_ad/ad_form_notifier.dart';
 import 'package:roomate/presentation/constants/spacing.dart';
 import 'package:roomate/presentation/utils/helpers/p.dart';
-import 'package:roomate/presentation/widgets/widgets.dart';
+import 'package:roomate/presentation/widgets/chips/chip_wrap.dart';
+import 'package:roomate/presentation/widgets/common/error_view.dart';
+import 'package:roomate/presentation/widgets/common/loading_widget.dart';
 
 @RoutePage()
-class PropertyTypeStepScreen extends HookConsumerWidget {
+class PropertyTypeStepScreen extends ConsumerWidget {
   const PropertyTypeStepScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _ = ref.watch(createAdProvider);
-    final taxonomy = ref.watch(createAdTaxonomyProvider);
-    final notifier = ref.read(createAdProvider.notifier);
-    final tags = taxonomy.propertyTypeGroup;
-    return Padding(
-      padding: const P(horizontal: S.p16),
-      child: SelectableTagGroup(
-        tagsGroup: tags,
-        selectedIds: notifier.selectedIdsForType(CreateAdTagTypeIds.propertyType),
-        onTagSelected: (tag, isSelected) {
-          notifier.updateTag(CreateAdTagTypeIds.propertyType, tag.id);
-        },
-      ),
+    final state = ref.watch(adFormProvider);
+    final notifier = ref.read(adFormProvider.notifier);
+    final optionsAsync = ref.watch(getAdFormOptionsProvider);
+
+    return optionsAsync.when(
+      loading: () => const LoadingWidget(),
+      error: (_, _) => const ErrorView(),
+      data: (options) {
+        if (options.propertyType.isEmpty) {
+          return const SizedBox.shrink();
+        }
+        return SingleChildScrollView(
+          padding: const P(horizontal: S.p16),
+          child: ChipWrap(
+            title: 'Тип жилья',
+            options: options.propertyType,
+            selectedIds: state.propertyTypeId != 0 ? {state.propertyTypeId} : {},
+            onSelectionChanged: (ids) {
+              notifier.setPropertyType(ids.isNotEmpty ? ids.first : 0);
+            },
+            singleSelection: true,
+          ),
+        );
+      },
     );
   }
 }

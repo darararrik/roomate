@@ -1,107 +1,79 @@
-import 'package:roomate/domain/enums/enums.dart';
-import 'package:roomate/domain/models/apartaments/apartament_model.dart';
+import 'package:roomate/data/datasources/apartaments_data_source.dart';
+import 'package:roomate/data/dto/ad_form_options/ad_form_options_dto.dart';
+import 'package:roomate/data/dto/apartaments/apartament_dto.dart';
+import 'package:roomate/data/dto/apartaments/filter_dto.dart';
+import 'package:roomate/data/mappers/ad_form_mapper.dart';
+import 'package:roomate/data/mappers/filter_mapper.dart';
+import 'package:roomate/domain/models/ad_form/ad_form_options_model.dart';
+import 'package:roomate/domain/models/apartaments/apartament_filter.dart';
+import 'package:roomate/domain/models/filter/filter_model.dart';
+import 'package:roomate/shared/mocks/apartament_filters_mock.dart';
+import 'package:roomate/shared/mocks/apartaments_mock.dart';
+import 'package:roomate/shared/mocks/create_ad.mock.dart';
 
-class ApartamentsMockDataSource {
-  List<ApartamentModel> fetchApartaments() {
-    return const [
-      ApartamentModel(
-        id: 1,
-        title: 'Светлая квартира у центра',
-        description:
-            'Уютная однокомнатная квартира с большими окнами, спокойным двором и свежим ремонтом. Подойдет для одного человека или пары.',
-        imageUrls: [
-          'https://60.img.avito.st/image/1/1.0spXDba5fiNhuvwufzLFzwGsfCXprPw1YaF8IeW4eiE.LkM4M1pgzThWpbCB7fAiDuXKsdw5CutMHSi16j7fLy0',
-          'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80',
-        ],
-        isVerification: true,
-        withCompany: false,
-        price: '100 000',
-        roomsCount: '1',
-        area: '39',
-        floor: 3,
-        totalFloor: 17,
-        address: 'Омск, улица Красный путь, 101к1',
-        name: 'Алина',
-        role: 'Собственник',
-        publishDate: 'Сегодня',
-        totalViewers: '148',
-        layout: ApartmentLayout.adjacent,
-        renovation: RenovationType.none,
-        elevatorType: ElevatorType.passenger,
-        furnitureType: FurnitureType.available,
-        balconyType: BalconyType.balcony,
-        stoveType: StoveType.gas,
-        amenities: [
-          ApartmentAmenity.internet,
-          ApartmentAmenity.concierge,
-          ApartmentAmenity.smartHome,
-          ApartmentAmenity.videoIntercom,
-          ApartmentAmenity.fridge,
-          ApartmentAmenity.tv,
-          ApartmentAmenity.washingMachine,
-          ApartmentAmenity.airConditioner,
-          ApartmentAmenity.shower,
-          ApartmentAmenity.bath,
-          ApartmentAmenity.childrenAllowed,
-        ],
-        dealGoal: DealGoal.rent,
-        rentTerm: RentalConditions.longTerm,
-        whoToRent: [WhoToRent.onePerson, WhoToRent.family],
-        prepaymentType: PrepaymentType.none,
-        rentalPeriod: RentalPeriod.severalMonths,
-        deposit: '10 000 Р',
-      ),
-      ApartamentModel(
-        id: 2,
-        title: 'Апартаменты с панорамными окнами',
-        description:
-            'Просторные апартаменты в современном доме. Много света, изолированная планировка и техника для комфортного проживания.',
-        imageUrls: [
-          'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
-        ],
-        isVerification: false,
-        withCompany: true,
-        price: '145 000',
-        roomsCount: '2',
-        area: '58',
-        floor: 9,
-        totalFloor: 12,
-        address: 'Омск, улица Гагарина, 22',
-        name: 'Roomate',
-        role: 'Агентство',
-        publishDate: 'Вчера',
-        totalViewers: '312',
-        layout: ApartmentLayout.isolated,
-        renovation: RenovationType.euro,
-        elevatorType: ElevatorType.both,
-        furnitureType: FurnitureType.partial,
-        balconyType: BalconyType.loggia,
-        stoveType: StoveType.electric,
-        amenities: [
-          ApartmentAmenity.internet,
-          ApartmentAmenity.trashChute,
-          ApartmentAmenity.dishes,
-          ApartmentAmenity.concierge,
-          ApartmentAmenity.smartHome,
-          ApartmentAmenity.videoIntercom,
-          ApartmentAmenity.fridge,
-          ApartmentAmenity.tv,
-          ApartmentAmenity.washingMachine,
-          ApartmentAmenity.airConditioner,
-          ApartmentAmenity.shower,
-          ApartmentAmenity.bath,
-          ApartmentAmenity.childrenAllowed,
-        ],
-        dealGoal: DealGoal.rent,
-        rentTerm: RentalConditions.longTerm,
-        whoToRent: [WhoToRent.students],
-        prepaymentType: PrepaymentType.oneMonth,
-        rentalPeriod: RentalPeriod.fromYear,
-        deposit: '15 000 Р',
-      ),
-    ];
+mixin ApartamentsMockDataSource implements ApartamentsDataSource {
+  @override
+  Future<List<ApartamentDto>> fetchApartaments(ApartamentFilter filter) async {
+    // Имитируем задержку сети
+    await Future.delayed(const Duration(milliseconds: 300));
+
+    final allApartments = ApartmentsMockJson.fetchApartments
+        .map((json) => ApartamentDto.fromJson(json))
+        .toList();
+
+    // Маппинг ID для фильтрации (согласно ApartmentFiltersMockJson)
+    final categoryMap = {1: "Снять", 2: "Обменять"};
+    final roomsCountMap = {21: "Студия", 22: "1", 23: "2", 24: "3", 25: "4+"};
+
+    // Фильтрация
+    return allApartments.where((apt) {
+      // Фильтр по городу
+      if (!apt.address.toLowerCase().contains(filter.city.toLowerCase())) {
+        return false;
+      }
+
+      // Фильтр по категории
+      if (filter.categoryId != null) {
+        final categoryTitle = categoryMap[filter.categoryId];
+        if (categoryTitle == "Снять" && apt.dealGoal != "rent") return false;
+        if (categoryTitle == "Обменять" && apt.dealGoal != "exchange") return false;
+      }
+
+      // Фильтр по виду недвижимости
+      if (filter.propertyTypeIds.isNotEmpty) {
+        // В нашем моке тип недвижимости неявно задан через заголовок или другие поля
+        // Для простоты пока оставим как есть, так как в DTO нет явного поля propertyType
+      }
+
+      // Фильтр по количеству комнат
+      if (filter.roomsCountIds.isNotEmpty) {
+        final selectedRoomsTitles = filter.roomsCountIds
+            .map((id) => roomsCountMap[id])
+            .whereType<String>()
+            .toList();
+        if (!selectedRoomsTitles.contains(apt.roomsCount)) return false;
+      }
+
+      // Фильтр по цене
+      final price = int.tryParse(apt.price.replaceAll(' ', '')) ?? 0;
+      if (filter.minPrice != null && price < filter.minPrice!) return false;
+      if (filter.maxPrice != null && price > filter.maxPrice!) return false;
+
+      return true;
+    }).toList();
+  }
+
+  @override
+  Future<FilterModel> fetchFilterTags() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    final json = ApartmentFiltersMockJson.fetchFilterTags;
+    return FilterDto.fromJson(json).toModel();
+  }
+
+  @override
+  Future<AdFormOptionsModel> fetchAdFormOptions() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    final json = CreateAdMockJson.fetchTagsResponse;
+    return AdFormOptionsDto.fromJson(json).toModel();
   }
 }

@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/presentation/app/create_ad/state/create_ad/create_ad_notifier.dart';
+import 'package:roomate/presentation/app/create_ad/notifier/create_ad/ad_form_notifier.dart';
 import 'package:roomate/presentation/constants/constants.dart';
 import 'package:roomate/presentation/utils/utils.dart';
 import 'package:roomate/presentation/widgets/widgets.dart';
@@ -14,7 +12,7 @@ class AddMediaStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _ = ref.watch(createAdProvider);
+    ref.watch(adFormProvider);
 
     return ListView(
       padding: const P(horizontal: S.p16),
@@ -44,7 +42,6 @@ class AddMediaStepScreen extends ConsumerWidget {
             height: S.p56,
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
-              //TODO: implement camera and photo picker
               showModalBottomSheet(
                 context: context,
                 builder: (context) => const AddMediaSheet(isPhoto: true),
@@ -79,7 +76,6 @@ class AddMediaStepScreen extends ConsumerWidget {
             height: S.p56,
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
-              //TODO: implement camera and photo picker
               showModalBottomSheet(
                 context: context,
                 builder: (context) => const AddMediaSheet(isPhoto: false),

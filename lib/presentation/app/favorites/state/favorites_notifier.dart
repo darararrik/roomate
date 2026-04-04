@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:roomate/domain/models/apartaments/apartament_model.dart';
@@ -33,7 +31,7 @@ class FavoritesScreenNotifier extends _$FavoritesScreenNotifier {
   @override
   List<ApartamentModel> build() {
     final favoriteIds = ref.watch(favoriteApartmentIdsProvider);
-    final apartaments = ref.watch(apartamentsProvider).apartaments;
+    final apartaments = ref.watch(apartamentsProvider).value?.apartaments ?? [];
 
     return apartaments
         .where((apartament) => favoriteIds.contains(apartament.id))

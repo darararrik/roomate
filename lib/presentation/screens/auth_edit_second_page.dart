@@ -44,6 +44,7 @@ class AuthEditSecondPage extends StatelessWidget {
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
+            // ignore: unused_local_variable
             final category = categories[index];
             return null;
             // return SelectableTagGroup(

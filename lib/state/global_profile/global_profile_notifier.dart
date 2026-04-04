@@ -33,9 +33,27 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     if (currentUser != null && currentUser.phone.isNotEmpty) return true;
 
     final existing = await _repository.fetchProfile();
-    return existing.fold((_) => createProfileWithPhone(phone), (user) {
-      state = AsyncData(user);
-      return Future.value(true);
+    return existing.fold((_) => createProfileWithPhone(phone), (user) async {
+      if (user.phone.isNotEmpty) {
+        state = AsyncData(user);
+        return true;
+      }
+
+      final fullPhone = '+7$phone';
+      final patched = user.copyWith(phone: fullPhone);
+      final update = await _repository.updateProfile(patched);
+
+      return update.fold(
+        (e) {
+          state = AsyncError(e, StackTrace.current);
+          _handleRemoteException(e);
+          return false;
+        },
+        (saved) {
+          state = AsyncData(saved);
+          return true;
+        },
+      );
     });
   }
 
@@ -64,7 +82,10 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     int? age,
     List<TagModel>? tags,
   }) async {
-    final current = state.maybeWhen(data: (u) => u, orElse: () => const UserModel());
+    final current = state.maybeWhen(
+      data: (u) => u,
+      orElse: () => const UserModel(),
+    );
 
     final updated = current.copyWith(
       firstName: firstName ?? current.firstName,

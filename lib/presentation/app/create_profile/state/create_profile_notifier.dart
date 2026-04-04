@@ -43,21 +43,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
         break;
       case 1:
         state = state.copyWith(isLoading: true);
-        final selectedTags = state.tags
-            .expand((group) => group.tags)
-            .where((tag) => tag.isSelected)
-            .toList();
-
-        final success = await ref
-            .read(globalProfileProvider.notifier)
-            .updateProfile(
-              firstName: state.firstName,
-              lastName: state.lastName,
-              age: int.tryParse(state.age),
-              gender: state.gender,
-              tags: selectedTags,
-            );
-
+        final success = await createProfile();
         state = state.copyWith(isLoading: false);
 
         if (success) {
@@ -70,6 +56,24 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
         ref.nav.push(const ProfileSummaryRoute());
         break;
     }
+  }
+
+  Future<bool> createProfile() async {
+    final selectedTags = state.tags
+        .expand((group) => group.tags)
+        .where((tag) => tag.isSelected)
+        .toList();
+
+    final success = await ref
+        .read(globalProfileProvider.notifier)
+        .updateProfile(
+          firstName: state.firstName,
+          lastName: state.lastName,
+          age: int.tryParse(state.age),
+          gender: state.gender,
+          tags: selectedTags,
+        );
+    return success;
   }
 
   void onPop(TabsRouter tabsRouter) {

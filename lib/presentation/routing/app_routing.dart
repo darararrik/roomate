@@ -32,10 +32,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ChatRoute.page),
     AutoRoute(page: ApartamnetRoute.page),
     AutoRoute(page: ProfileEditRoute.page),
-    AutoRoute(
-      page: FiltersWrapper.page,
-      children: [AutoRoute(page: FiltersRoute.page, initial: true)],
-    ),
+    AutoRoute(page: FiltersRoute.page),
     AutoRoute(page: ProfileDataEditRoute.page),
     AutoRoute(
       initial: true,

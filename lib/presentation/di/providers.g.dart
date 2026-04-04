@@ -15,11 +15,11 @@ final profileRemoteDataSourceProvider = ProfileRemoteDataSourceProvider._();
 final class ProfileRemoteDataSourceProvider
     extends
         $FunctionalProvider<
-          ProfileRemoteDataSource,
-          ProfileRemoteDataSource,
-          ProfileRemoteDataSource
+          ProfileDataSource,
+          ProfileDataSource,
+          ProfileDataSource
         >
-    with $Provider<ProfileRemoteDataSource> {
+    with $Provider<ProfileDataSource> {
   ProfileRemoteDataSourceProvider._()
     : super(
         from: null,
@@ -36,122 +36,75 @@ final class ProfileRemoteDataSourceProvider
 
   @$internal
   @override
-  $ProviderElement<ProfileRemoteDataSource> $createElement(
+  $ProviderElement<ProfileDataSource> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  ProfileRemoteDataSource create(Ref ref) {
+  ProfileDataSource create(Ref ref) {
     return profileRemoteDataSource(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ProfileRemoteDataSource value) {
+  Override overrideWithValue(ProfileDataSource value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ProfileRemoteDataSource>(value),
+      providerOverride: $SyncValueProvider<ProfileDataSource>(value),
     );
   }
 }
 
 String _$profileRemoteDataSourceHash() =>
-    r'8d3ab2b512d64014a20509cb5458ee4110385336';
+    r'00c3b479d5121eb1a7aa0d7a0a771099dda65607';
 
-@ProviderFor(apartamentsMockDataSource)
-final apartamentsMockDataSourceProvider = ApartamentsMockDataSourceProvider._();
+@ProviderFor(apartamentsRemoteDataSource)
+final apartamentsRemoteDataSourceProvider =
+    ApartamentsRemoteDataSourceProvider._();
 
-final class ApartamentsMockDataSourceProvider
+final class ApartamentsRemoteDataSourceProvider
     extends
         $FunctionalProvider<
-          ApartamentsMockDataSource,
-          ApartamentsMockDataSource,
-          ApartamentsMockDataSource
+          ApartamentsRemoteDataSource,
+          ApartamentsRemoteDataSource,
+          ApartamentsRemoteDataSource
         >
-    with $Provider<ApartamentsMockDataSource> {
-  ApartamentsMockDataSourceProvider._()
+    with $Provider<ApartamentsRemoteDataSource> {
+  ApartamentsRemoteDataSourceProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'apartamentsMockDataSourceProvider',
+        name: r'apartamentsRemoteDataSourceProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$apartamentsMockDataSourceHash();
+  String debugGetCreateSourceHash() => _$apartamentsRemoteDataSourceHash();
 
   @$internal
   @override
-  $ProviderElement<ApartamentsMockDataSource> $createElement(
+  $ProviderElement<ApartamentsRemoteDataSource> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  ApartamentsMockDataSource create(Ref ref) {
-    return apartamentsMockDataSource(ref);
+  ApartamentsRemoteDataSource create(Ref ref) {
+    return apartamentsRemoteDataSource(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ApartamentsMockDataSource value) {
+  Override overrideWithValue(ApartamentsRemoteDataSource value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ApartamentsMockDataSource>(value),
+      providerOverride: $SyncValueProvider<ApartamentsRemoteDataSource>(value),
     );
   }
 }
 
-String _$apartamentsMockDataSourceHash() =>
-    r'5f852b2b0e3c534620fc89f682dac39e6411853b';
-
-@ProviderFor(createAdMockDataSource)
-final createAdMockDataSourceProvider = CreateAdMockDataSourceProvider._();
-
-final class CreateAdMockDataSourceProvider
-    extends
-        $FunctionalProvider<
-          CreateAdMockDataSource,
-          CreateAdMockDataSource,
-          CreateAdMockDataSource
-        >
-    with $Provider<CreateAdMockDataSource> {
-  CreateAdMockDataSourceProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'createAdMockDataSourceProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$createAdMockDataSourceHash();
-
-  @$internal
-  @override
-  $ProviderElement<CreateAdMockDataSource> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  CreateAdMockDataSource create(Ref ref) {
-    return createAdMockDataSource(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(CreateAdMockDataSource value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<CreateAdMockDataSource>(value),
-    );
-  }
-}
-
-String _$createAdMockDataSourceHash() =>
-    r'2e3e2f0f2b77a982ff2fc8d17c4529a6c195b1e9';
+String _$apartamentsRemoteDataSourceHash() =>
+    r'cc9d82b0267dfddf5ff9aa6b9aab7f14d5a85fcc';
 
 @ProviderFor(profileTagsMockDataSource)
 final profileTagsMockDataSourceProvider = ProfileTagsMockDataSourceProvider._();
@@ -218,7 +171,7 @@ final class ApartamentsRepositoryProvider
         argument: null,
         retry: null,
         name: r'apartamentsRepositoryProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -247,7 +200,7 @@ final class ApartamentsRepositoryProvider
 }
 
 String _$apartamentsRepositoryHash() =>
-    r'9c67bb1f479cd627156999a693ed63aef4775e31';
+    r'd05e97e4f804e621d6bd4223a03ace3a83266ce9';
 
 @ProviderFor(profileRepository)
 final profileRepositoryProvider = ProfileRepositoryProvider._();
@@ -336,51 +289,3 @@ final class AuthRepositoryProvider
 }
 
 String _$authRepositoryHash() => r'6300b397a3e060411d2834272246e3b7820c14d2';
-
-@ProviderFor(createAdRepository)
-final createAdRepositoryProvider = CreateAdRepositoryProvider._();
-
-final class CreateAdRepositoryProvider
-    extends
-        $FunctionalProvider<
-          ICreateAdRepository,
-          ICreateAdRepository,
-          ICreateAdRepository
-        >
-    with $Provider<ICreateAdRepository> {
-  CreateAdRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'createAdRepositoryProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$createAdRepositoryHash();
-
-  @$internal
-  @override
-  $ProviderElement<ICreateAdRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  ICreateAdRepository create(Ref ref) {
-    return createAdRepository(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ICreateAdRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ICreateAdRepository>(value),
-    );
-  }
-}
-
-String _$createAdRepositoryHash() =>
-    r'6633f14e80de1877faee41de0251303540a1d896';
