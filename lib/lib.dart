@@ -20,7 +20,6 @@ export 'app/auth/widgets/code_box_input.dart';
 export 'app/auth/widgets/widgets.dart';
 export 'app/create_ad/create_ad.dart';
 export 'app/create_ad/notifier/ad_form/ad_form_notifier.dart';
-export 'app/create_ad/notifier/ad_form/create_ad.dart';
 export 'app/create_ad/notifier/create_ad_flow/create_ad_flow_notifier.dart';
 export 'app/create_ad/screens/create_ad_screen.dart';
 export 'app/create_ad/screens/screens.dart';

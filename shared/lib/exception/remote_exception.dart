@@ -1,5 +1,4 @@
-import 'app_exception.dart';
-import 'server_error.dart';
+import 'package:shared/shared.dart';
 
 class RemoteException extends AppException {
   const RemoteException({
@@ -18,8 +17,7 @@ class RemoteException extends AppException {
 
   String? get generalServerErrorId => serverError?.generalServerErrorId ?? '';
 
-  Map<String, dynamic>? get generalMessages =>
-      serverError?.generalMessages ?? {};
+  Map<String, dynamic>? get generalMessages => serverError?.generalMessages ?? {};
 
   @override
   String toString() {

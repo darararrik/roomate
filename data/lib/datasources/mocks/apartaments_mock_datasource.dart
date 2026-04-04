@@ -27,8 +27,7 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
       if (filter.categoryId != null) {
         final categoryTitle = categoryMap[filter.categoryId];
         if (categoryTitle == "Снять" && apt.dealGoal != "rent") return false;
-        if (categoryTitle == "Обменять" && apt.dealGoal != "exchange")
-          return false;
+        if (categoryTitle == "Обменять" && apt.dealGoal != "exchange") return false;
       }
 
       // Фильтр по виду недвижимости

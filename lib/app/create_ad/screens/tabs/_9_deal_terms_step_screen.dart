@@ -4,12 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/app/create_ad/notifier/ad_form/ad_form_notifier.dart';
-import 'package:roomate/app/create_ad/notifier/create_ad_flow/create_ad_flow_notifier.dart';
 import 'package:roomate/lib.dart';
-import 'package:roomate/widgets/chips/chip_wrap.dart';
-import 'package:roomate/widgets/common/error_view.dart';
-import 'package:roomate/widgets/common/loading_widget.dart';
 
 @RoutePage()
 class DealTermsStepScreen extends HookConsumerWidget {

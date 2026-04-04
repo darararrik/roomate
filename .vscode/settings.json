@@ -1,5 +1,9 @@
 {
   "dart.flutterSdkPath": ".fvm/versions/stable",
   "dart.lineLength": 100,
-  "makefile.configureOnOpen": false
+  "makefile.configureOnOpen": false,
+  "editor.codeActionsOnSave": {
+    "source.fix": "explicit",
+    "source.organizeImports": "explicit"
+  }
 }
