@@ -10,36 +10,27 @@ class AdConfirmationScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(adFormProvider);
-    final notifier = ref.read(adFormProvider.notifier);
     final flow = ref.read(createAdFlowProvider.notifier);
     final l10n = context.l10n;
-    final colors = context.colors;
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("l10n.createAdConfirmationTitle", style: context.typography.headline1),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: const AutoLeadingButton(),
-      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: S.p16, vertical: S.p20),
         children: [
           _InfoRow(
-            iconPath: AppIcons.home,
-            title: flow.getPropertyTypeText(state),
+            iconPath: AppIcons.clock,
+            title: l10n.rent,
             subtitle: flow.getRentTypeText(state),
           ),
           _InfoRow(
-            iconPath: AppIcons.location,
-            title: l10n.createAdConfirmationLocationTitle,
-            subtitle: flow.getFullAddressText(state),
+            iconPath: AppIcons.building2,
+            title: l10n.typeOfProperty,
+            subtitle: flow.getPropertyTypeText(state),
           ),
           _InfoRow(
             iconPath: AppIcons.location,
-            title: "l10n.createAdConfirmationFeaturesTitle",
-            subtitle: flow.getApartmentSummary(state),
+            title: l10n.location,
+            subtitle: flow.getFullAddressText(state),
           ),
           _InfoRow(
             iconPath: AppIcons.phone,
@@ -53,12 +44,6 @@ class AdConfirmationScreen extends ConsumerWidget {
           ),
         ].separated(const SizedBox(height: S.p20)),
       ),
-      // bottomNavigationBar: SafeArea(
-      //   child: Padding(
-      //     padding: const EdgeInsets.all(S.p16),
-      //     child: AppButton(onPressed: () => notifier.submitForm(), text: l10n.publishAdButton),
-      //   ),
-      // ),
     );
   }
 }
@@ -77,25 +62,21 @@ class _InfoRow extends StatelessWidget {
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: S.p4,
       children: [
-        Container(
-          padding: const EdgeInsets.all(S.p12),
-          decoration: BoxDecoration(
-            color: colors.lightGray100,
-            borderRadius: BorderRadius.circular(S.p12),
-          ),
-          child: AppIcon(iconPath, color: colors.graysText400, width: 24),
+        Padding(
+          padding: const P(all: S.p12),
+          child: AppIcon(iconPath, color: colors.lightGray100),
         ),
-        const SizedBox(width: S.p16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: S.p12,
             children: [
-              Text(title, style: typography.headline1.copyWith(height: 1.2)),
-              const SizedBox(height: S.p4),
+              Text(title, style: typography.headline1),
               Text(
                 subtitle,
-                style: typography.bodyDescription.copyWith(color: colors.graysText400, height: 1.4),
+                style: typography.bodyDescription.copyWith(color: colors.graysText400),
               ),
             ],
           ),

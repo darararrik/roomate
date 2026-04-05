@@ -279,6 +279,8 @@ class CreateAdFlow extends _$CreateAdFlow {
       if (_formState.additionalNumber.trim().isEmpty) {
         state = state.copyWith(additionalPhoneError: _locale.validationAdditionalPhone);
       }
+    } else {
+      ref.read(adFormProvider.notifier).updateAdditionalPhone('');
     }
   }
 
@@ -379,10 +381,14 @@ class CreateAdFlow extends _$CreateAdFlow {
 
   /// Возвращает номер телефона (основной или дополнительный в зависимости от метода связи)
   String getContactPhone(CreateAdFormModel form) {
-    // Если выбран первый метод связи (например, "По номеру в профиле"), возвращаем основной
-    // Если выбран альтернативный — дополнительный.
-    // Логика зависит от вашего справочника contactMethod.
-    return form.additionalNumber.isNotEmpty ? form.additionalNumber : form.mainPhone;
+    // Создаем список только из тех номеров, которые не пусты
+    final phones = [
+      form.mainPhone,
+      form.additionalNumber,
+    ].where((phone) => phone.trim().isNotEmpty);
+
+    // Соединяем их через перенос строки
+    return phones.join('\n');
   }
 
   /// Возвращает краткие характеристики (Комнаты, Площадь, Этаж)

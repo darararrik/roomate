@@ -15,10 +15,9 @@ class LocationStepScreen extends HookConsumerWidget {
     final notifier = ref.read(adFormProvider.notifier);
     final apartmentController = useTextEditingController();
     return ListView(
-      padding: const P(horizontal: S.p16),
       children: [
         Padding(
-          padding: const P(vertical: S.p4),
+          padding: const P(vertical: S.p4, horizontal: S.p16),
           child: Column(
             crossAxisAlignment: .start,
             spacing: S.p12,
@@ -39,23 +38,32 @@ class LocationStepScreen extends HookConsumerWidget {
           title: context.l10n.createAdCityOmsk,
           subTitle: ref.watch(selectedStreetNameProvider),
         ),
-        FieldErrorText(text: flow.streetError),
-        const SizedBox(height: S.p12),
-
-        TextFieldWithTitle.number(
-          title: context.l10n.apartmentNumber,
-          hintText: context.l10n.enterApartmentNumber,
-          controller: apartmentController,
-          onChanged: notifier.updateApartmentNumber,
-        ),
         Padding(
-          padding: const P(vertical: S.p4),
-          child: Text(
-            context.l10n.notVisibleInAd,
-            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+          padding: const P(horizontal: S.p16),
+          child: Column(
+            crossAxisAlignment: .start,
+            children: [
+              FieldErrorText(text: flow.streetError),
+              const SizedBox(height: S.p12),
+              TextFieldWithTitle.number(
+                title: context.l10n.apartmentNumber,
+                hintText: context.l10n.enterApartmentNumber,
+                controller: apartmentController,
+                onChanged: notifier.updateApartmentNumber,
+              ),
+              Padding(
+                padding: const P(vertical: S.p4),
+                child: Text(
+                  context.l10n.notVisibleInAd,
+                  style: context.typography.bodyDescription.copyWith(
+                    color: context.colors.graysText400,
+                  ),
+                ),
+              ),
+              FieldErrorText(text: flow.apartmentNumberError),
+            ],
           ),
         ),
-        FieldErrorText(text: flow.apartmentNumberError),
       ],
     );
   }

@@ -10,7 +10,6 @@ class ContactsStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ref.watch заставляет виджет перерисовываться при изменении draft
     final draft = ref.watch(adFormProvider);
     final flow = ref.watch(createAdFlowProvider);
     final notifier = ref.read(adFormProvider.notifier);
@@ -23,6 +22,9 @@ class ContactsStepScreen extends HookConsumerWidget {
     useEffect(() {
       if (phoneController.text != draft.mainPhone) {
         phoneController.text = draft.mainPhone;
+      }
+      if (additionalPhoneController.text != draft.additionalNumber) {
+        additionalPhoneController.text = draft.additionalNumber;
       }
       return null;
     }, [draft.mainPhone, draft.additionalNumber]);
@@ -38,12 +40,13 @@ class ContactsStepScreen extends HookConsumerWidget {
           needSuffixIcon: false,
         ),
         if (isFirstSelected)
-          TextFieldWithTitle.number(
+          TextFieldWithTitle(
             title: context.l10n.additionalPhone,
             controller: additionalPhoneController,
             onChanged: notifier.updateAdditionalPhone,
             hintText: context.l10n.phonePlaceholder2,
             errorText: flow.additionalPhoneError,
+            inputFormatters: [RuPhoneWithPrefixFormatter()],
           ),
         ChipWrap(
           title: context.l10n.contactTitle,

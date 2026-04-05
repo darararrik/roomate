@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:roomate/routing/app_routing.gr.dart';
 
 abstract class CreateProfile {

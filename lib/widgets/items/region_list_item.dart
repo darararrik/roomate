@@ -19,7 +19,9 @@ class RegionListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasSubTitle = subTitle.trim().isNotEmpty;
-    return GestureDetector(
+    return InkWell(
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       onTap: onTap,
       child: Padding(
         padding: const P(horizontal: S.p12, vertical: S.p12),
