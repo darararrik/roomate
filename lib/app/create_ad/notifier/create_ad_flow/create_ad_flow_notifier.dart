@@ -332,5 +332,66 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     return true;
+  } // --- Методы для получения текстовых представлений (Геттеры для UI) ---
+
+  /// Возвращает текстовое описание типа недвижимости (напр. "Жилое, Квартира")
+  String getPropertyTypeText(CreateAdFormModel form) {
+    final options = ref.read(getAdFormOptionsProvider).requireValue;
+
+    final premises = options.premisesType
+        .firstWhere((e) => e.id == form.premisesTypeId, orElse: () => const OptionModel())
+        .title;
+    final property = options.propertyType
+        .firstWhere((e) => e.id == form.propertyTypeId, orElse: () => const OptionModel())
+        .title;
+
+    return [premises, property].where((s) => s.isNotEmpty).join(', ');
+  }
+
+  /// Возвращает тип аренды (напр. "Сдать, Длительно")
+  String getRentTypeText(CreateAdFormModel form) {
+    final options = ref.read(getAdFormOptionsProvider).value;
+    if (options == null) return '';
+
+    final goal = options.rentGoal
+        .firstWhere((e) => e.id == form.rentGoalId, orElse: () => const OptionModel())
+        .title;
+    final period = options.rentPeriod
+        .firstWhere((e) => e.id == form.rentPeriodId, orElse: () => const OptionModel())
+        .title;
+
+    return [goal, period].where((s) => s.isNotEmpty).join(', ');
+  }
+
+  /// Возвращает отформатированную цену (напр. "50 000 ₽")
+  String getFormattedPrice(CreateAdFormModel form) {
+    if (form.cost <= 0) return '';
+    // Можно добавить Intl для форматирования тысяч
+    return '${form.cost.toInt()} ${form.selectedCurrency.symbol}';
+  }
+
+  /// Возвращает адрес текстом (Улица + Номер квартиры)
+  String getFullAddressText(CreateAdFormModel form) {
+    if (form.address.isEmpty) return _locale.notSpecified;
+    final flat = form.apartmentNumber > 0 ? ', кв. ${form.apartmentNumber}' : '';
+    return '${form.address}$flat';
+  }
+
+  /// Возвращает номер телефона (основной или дополнительный в зависимости от метода связи)
+  String getContactPhone(CreateAdFormModel form) {
+    // Если выбран первый метод связи (например, "По номеру в профиле"), возвращаем основной
+    // Если выбран альтернативный — дополнительный.
+    // Логика зависит от вашего справочника contactMethod.
+    return form.additionalNumber.isNotEmpty ? form.additionalNumber : form.mainPhone;
+  }
+
+  /// Возвращает краткие характеристики (Комнаты, Площадь, Этаж)
+  String getApartmentSummary(CreateAdFormModel form) {
+    final options = ref.read(getAdFormOptionsProvider).requireValue;
+    final rooms = options.roomsCount
+        .firstWhere((e) => e.id == form.roomsCountId, orElse: () => const OptionModel())
+        .title;
+
+    return '$rooms • ${form.apartmentArea} м² • ${form.floor}/${form.totalFloors} эт.';
   }
 }

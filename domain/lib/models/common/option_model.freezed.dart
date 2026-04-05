@@ -201,8 +201,8 @@ return $default(_that.id,_that.title,_that.isDisabled);case _:
 /// @nodoc
 
 
-class _OptionModel extends OptionModel {
-  const _OptionModel({this.id = 0, this.title = '', this.isDisabled = false}): super._();
+class _OptionModel implements OptionModel {
+  const _OptionModel({this.id = 0, this.title = '', this.isDisabled = false});
   
 
 @override@JsonKey() final  int id;

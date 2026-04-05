@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../chip_model.dart';
 
 part 'option_model.freezed.dart';
@@ -12,9 +13,4 @@ sealed class OptionModel with _$OptionModel implements ChipModel {
     @Default('') String title,
     @Default(false) bool isDisabled,
   }) = _OptionModel;
-
-  const OptionModel._();
-
-  @override
-  String get label => title;
 }

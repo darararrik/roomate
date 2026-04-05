@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
-
+import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class MultiSelectChipGroup<T extends ChipModel> extends StatelessWidget {
@@ -42,9 +40,7 @@ class MultiSelectChipGroup<T extends ChipModel> extends StatelessWidget {
           final opt = options[index];
           final isSel = selectedIds.contains(opt.id);
 
-          final label = labelBuilder != null
-              ? labelBuilder!(context, opt)
-              : opt.label;
+          final label = labelBuilder != null ? labelBuilder!(context, opt) : opt.title;
 
           return TinySelectableChip(
             label: label,

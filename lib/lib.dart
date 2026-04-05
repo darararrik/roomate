@@ -35,7 +35,6 @@ export 'app/create_ad/screens/tabs/_6_add_media_step_screen.dart';
 export 'app/create_ad/screens/tabs/_7_features_first_step_screen.dart';
 export 'app/create_ad/screens/tabs/_8_features_second_step_screen.dart';
 export 'app/create_ad/screens/tabs/_9_deal_terms_step_screen.dart';
-export 'app/create_ad/screens/tabs/ad_confirmation_screen.dart';
 export 'app/create_ad/screens/tabs/tabs.dart';
 export 'app/create_ad/state/create_ad_flow_state.dart';
 export 'app/create_ad/state/state.dart';

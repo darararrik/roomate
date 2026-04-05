@@ -1,5 +1,5 @@
 abstract class ChipModel {
   int get id;
-  String get label;
+  String get title;
   bool get isDisabled;
 }

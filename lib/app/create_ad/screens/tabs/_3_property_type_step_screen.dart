@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -14,30 +12,19 @@ class PropertyTypeStepScreen extends ConsumerWidget {
     final state = ref.watch(adFormProvider);
     final flow = ref.watch(createAdFlowProvider);
     final notifier = ref.read(adFormProvider.notifier);
-    final optionsAsync = ref.watch(getAdFormOptionsProvider);
-
-    return optionsAsync.when(
-      loading: () => const LoadingWidget(),
-      error: (_, _) => const ErrorView(),
-      data: (options) {
-        return ListView(
-          padding: const P(horizontal: S.p16),
-          children: [
-            ChipWrap(
-              title: context.l10n.createAdHousingTypeTitle,
-              options: options.propertyType,
-              selectedIds: state.propertyTypeId != 0
-                  ? {state.propertyTypeId}
-                  : {},
-              onSelectionChanged: (ids) {
-                notifier.setPropertyType(ids.isNotEmpty ? ids.first : 0);
-              },
-              singleSelection: true,
-              errorText: flow.propertyError,
-            ),
-          ].separated(const SizedBox(height: S.p12)),
-        );
-      },
+    final options = ref.watch(getAdFormOptionsProvider).requireValue;
+    return Padding(
+      padding: const P(horizontal: S.p16),
+      child: ChipWrap(
+        title: context.l10n.createAdHousingTypeTitle,
+        options: options.propertyType,
+        selectedIds: state.propertyTypeId != 0 ? {state.propertyTypeId} : {},
+        onSelectionChanged: (ids) {
+          notifier.setPropertyType(ids.isNotEmpty ? ids.first : 0);
+        },
+        singleSelection: true,
+        errorText: flow.propertyError,
+      ),
     );
   }
 }

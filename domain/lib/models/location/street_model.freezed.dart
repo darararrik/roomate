@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StreetModel {
 
- int get id; String get name; String get city; String get district; String get regionLine;
+ int get id; String get name; String get district; String get regionLine;
 /// Create a copy of StreetModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $StreetModelCopyWith<StreetModel> get copyWith => _$StreetModelCopyWithImpl<Stre
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StreetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.city, city) || other.city == city)&&(identical(other.district, district) || other.district == district)&&(identical(other.regionLine, regionLine) || other.regionLine == regionLine));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StreetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.district, district) || other.district == district)&&(identical(other.regionLine, regionLine) || other.regionLine == regionLine));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,city,district,regionLine);
+int get hashCode => Object.hash(runtimeType,id,name,district,regionLine);
 
 @override
 String toString() {
-  return 'StreetModel(id: $id, name: $name, city: $city, district: $district, regionLine: $regionLine)';
+  return 'StreetModel(id: $id, name: $name, district: $district, regionLine: $regionLine)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $StreetModelCopyWith<$Res>  {
   factory $StreetModelCopyWith(StreetModel value, $Res Function(StreetModel) _then) = _$StreetModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, String city, String district, String regionLine
+ int id, String name, String district, String regionLine
 });
 
 
@@ -62,11 +62,10 @@ class _$StreetModelCopyWithImpl<$Res>
 
 /// Create a copy of StreetModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? city = null,Object? district = null,Object? regionLine = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? district = null,Object? regionLine = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,district: null == district ? _self.district : district // ignore: cast_nullable_to_non_nullable
 as String,regionLine: null == regionLine ? _self.regionLine : regionLine // ignore: cast_nullable_to_non_nullable
 as String,
@@ -151,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String city,  String district,  String regionLine)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String district,  String regionLine)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StreetModel() when $default != null:
-return $default(_that.id,_that.name,_that.city,_that.district,_that.regionLine);case _:
+return $default(_that.id,_that.name,_that.district,_that.regionLine);case _:
   return orElse();
 
 }
@@ -172,10 +171,10 @@ return $default(_that.id,_that.name,_that.city,_that.district,_that.regionLine);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String city,  String district,  String regionLine)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String district,  String regionLine)  $default,) {final _that = this;
 switch (_that) {
 case _StreetModel():
-return $default(_that.id,_that.name,_that.city,_that.district,_that.regionLine);}
+return $default(_that.id,_that.name,_that.district,_that.regionLine);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -189,10 +188,10 @@ return $default(_that.id,_that.name,_that.city,_that.district,_that.regionLine);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String city,  String district,  String regionLine)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String district,  String regionLine)?  $default,) {final _that = this;
 switch (_that) {
 case _StreetModel() when $default != null:
-return $default(_that.id,_that.name,_that.city,_that.district,_that.regionLine);case _:
+return $default(_that.id,_that.name,_that.district,_that.regionLine);case _:
   return null;
 
 }
@@ -204,12 +203,11 @@ return $default(_that.id,_that.name,_that.city,_that.district,_that.regionLine);
 
 
 class _StreetModel implements StreetModel {
-   _StreetModel({this.id = 0, this.name = '', this.city = '', this.district = '', this.regionLine = ''});
+   _StreetModel({this.id = 0, this.name = '', this.district = '', this.regionLine = ''});
   
 
 @override@JsonKey() final  int id;
 @override@JsonKey() final  String name;
-@override@JsonKey() final  String city;
 @override@JsonKey() final  String district;
 @override@JsonKey() final  String regionLine;
 
@@ -223,16 +221,16 @@ _$StreetModelCopyWith<_StreetModel> get copyWith => __$StreetModelCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StreetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.city, city) || other.city == city)&&(identical(other.district, district) || other.district == district)&&(identical(other.regionLine, regionLine) || other.regionLine == regionLine));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StreetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.district, district) || other.district == district)&&(identical(other.regionLine, regionLine) || other.regionLine == regionLine));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,city,district,regionLine);
+int get hashCode => Object.hash(runtimeType,id,name,district,regionLine);
 
 @override
 String toString() {
-  return 'StreetModel(id: $id, name: $name, city: $city, district: $district, regionLine: $regionLine)';
+  return 'StreetModel(id: $id, name: $name, district: $district, regionLine: $regionLine)';
 }
 
 
@@ -243,7 +241,7 @@ abstract mixin class _$StreetModelCopyWith<$Res> implements $StreetModelCopyWith
   factory _$StreetModelCopyWith(_StreetModel value, $Res Function(_StreetModel) _then) = __$StreetModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, String city, String district, String regionLine
+ int id, String name, String district, String regionLine
 });
 
 
@@ -260,11 +258,10 @@ class __$StreetModelCopyWithImpl<$Res>
 
 /// Create a copy of StreetModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? city = null,Object? district = null,Object? regionLine = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? district = null,Object? regionLine = null,}) {
   return _then(_StreetModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,district: null == district ? _self.district : district // ignore: cast_nullable_to_non_nullable
 as String,regionLine: null == regionLine ? _self.regionLine : regionLine // ignore: cast_nullable_to_non_nullable
 as String,

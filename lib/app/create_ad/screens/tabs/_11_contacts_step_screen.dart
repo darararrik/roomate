@@ -14,15 +14,12 @@ class ContactsStepScreen extends HookConsumerWidget {
     final draft = ref.watch(adFormProvider);
     final flow = ref.watch(createAdFlowProvider);
     final notifier = ref.read(adFormProvider.notifier);
-    final optionsAsync = ref.watch(getAdFormOptionsProvider);
+    final options = ref.watch(getAdFormOptionsProvider).requireValue;
 
-    // Инициализируем контроллеры.
-    // Внимание: аргумент 'text' работает только при первом создании!
     final phoneController = useTextEditingController(text: draft.mainPhone);
     final additionalPhoneController = useTextEditingController();
-
-    // Чтобы контроллер "увидел" изменения в draft.mainPhone (например, после загрузки профиля),
-    // используем useEffect, который следит за конкретным полем.
+    final firstOptionId = options.contactMethod.isNotEmpty ? options.contactMethod.first.id : null;
+    final isFirstSelected = firstOptionId != null && draft.contactMethodId == firstOptionId;
     useEffect(() {
       if (phoneController.text != draft.mainPhone) {
         phoneController.text = draft.mainPhone;
@@ -30,48 +27,35 @@ class ContactsStepScreen extends HookConsumerWidget {
       return null;
     }, [draft.mainPhone, draft.additionalNumber]);
 
-    return optionsAsync.when(
-      loading: () => const LoadingWidget(),
-      error: (_, _) => const ErrorView(),
-      data: (options) {
-        // Логика определения первого варианта
-        final firstOptionId = options.contactMethod.isNotEmpty
-            ? options.contactMethod.first.id
-            : null;
-        final isFirstSelected = firstOptionId != null && draft.contactMethodId == firstOptionId;
-
-        return ListView(
-          padding: const P(horizontal: S.p16),
-          children: [
-            // Поле основного телефона (Read Only)
-            TextFieldWithTitle(
-              title: context.l10n.phone,
-              controller: phoneController,
-              readOnly: true,
-              hintText: context.l10n.phonePlaceholder,
-              needSuffixIcon: false,
-            ),
-            if (isFirstSelected)
-              TextFieldWithTitle.number(
-                title: context.l10n.additionalPhone,
-                controller: additionalPhoneController,
-                onChanged: notifier.updateAdditionalPhone,
-                hintText: context.l10n.phonePlaceholder2,
-                errorText: flow.additionalPhoneError,
-              ),
-            ChipWrap(
-              title: context.l10n.contactTitle,
-              options: options.contactMethod,
-              selectedIds: draft.contactMethodId != 0 ? {draft.contactMethodId} : {},
-              onSelectionChanged: (ids) {
-                notifier.setContactMethod(ids.isNotEmpty ? ids.first : 0);
-              },
-              singleSelection: true,
-              errorText: flow.contactMethodError,
-            ),
-          ].separated(const SizedBox(height: S.p12)),
-        );
-      },
+    return ListView(
+      padding: const P(horizontal: S.p16),
+      children: [
+        TextFieldWithTitle(
+          title: context.l10n.phone,
+          controller: phoneController,
+          readOnly: true,
+          hintText: context.l10n.phonePlaceholder,
+          needSuffixIcon: false,
+        ),
+        if (isFirstSelected)
+          TextFieldWithTitle.number(
+            title: context.l10n.additionalPhone,
+            controller: additionalPhoneController,
+            onChanged: notifier.updateAdditionalPhone,
+            hintText: context.l10n.phonePlaceholder2,
+            errorText: flow.additionalPhoneError,
+          ),
+        ChipWrap(
+          title: context.l10n.contactTitle,
+          options: options.contactMethod,
+          selectedIds: draft.contactMethodId != 0 ? {draft.contactMethodId} : {},
+          onSelectionChanged: (ids) {
+            notifier.setContactMethod(ids.isNotEmpty ? ids.first : 0);
+          },
+          singleSelection: true,
+          errorText: flow.contactMethodError,
+        ),
+      ].separated(const SizedBox(height: S.p12)),
     );
   }
 }

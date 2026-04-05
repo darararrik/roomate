@@ -1,9 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
-
+import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class SingleSelectionChipWrap<T extends ChipModel> extends StatelessWidget {
@@ -35,11 +33,7 @@ class SingleSelectionChipWrap<T extends ChipModel> extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: ImageFiltered(
             enabled: isBlured,
-            imageFilter: ImageFilter.blur(
-              sigmaX: 6,
-              sigmaY: 6,
-              tileMode: TileMode.decal,
-            ),
+            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6, tileMode: TileMode.decal),
             child: Wrap(
               spacing: spacing,
               runSpacing: runSpacing,
@@ -47,7 +41,7 @@ class SingleSelectionChipWrap<T extends ChipModel> extends StatelessWidget {
                 final opt = options[index];
                 bool isSel = opt.id == selectedId;
                 return TinySelectableChip(
-                  label: opt.label,
+                  label: opt.title,
                   selected: isSel,
                   disabled: opt.isDisabled,
                   onSelected: (value) {
@@ -62,9 +56,7 @@ class SingleSelectionChipWrap<T extends ChipModel> extends StatelessWidget {
           Text(
             message!,
             textAlign: TextAlign.center,
-            style: context.typography.bodyDescription.copyWith(
-              color: context.colors.graysText700,
-            ),
+            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText700),
           ),
       ],
     );

@@ -42,7 +42,7 @@ class ChipWrap<T extends ChipModel> extends StatelessWidget {
               final opt = options[index];
               bool isSel = selectedIds.contains(opt.id);
               return TinySelectableChip(
-                label: opt.label,
+                label: opt.title,
                 selected: isSel,
                 disabled: opt.isDisabled,
                 onSelected: (value) {
