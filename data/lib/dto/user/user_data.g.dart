@@ -19,6 +19,7 @@ _UserData _$UserDataFromJson(Map<String, dynamic> json) => _UserData(
   tags: (json['tags'] as List<dynamic>?)
       ?.map((e) => UserTagData.fromJson(e as Map<String, dynamic>))
       .toList(),
+  isOwner: json['is_owner'] as bool?,
 );
 
 Map<String, dynamic> _$UserDataToJson(_UserData instance) => <String, dynamic>{
@@ -32,4 +33,5 @@ Map<String, dynamic> _$UserDataToJson(_UserData instance) => <String, dynamic>{
   'photo': instance.avatarUrl,
   'status': instance.isVerified,
   'tags': instance.tags,
+  'is_owner': instance.isOwner,
 };

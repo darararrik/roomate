@@ -48,3 +48,4 @@ app.*.map.json
 .fvm/
 git_full_report_2026.txt
 d.txt
+.docs/

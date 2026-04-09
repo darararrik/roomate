@@ -1,0 +1,22 @@
+abstract final class AdFormOptionKeys {
+  static const rentGoal = 'rent_goal';
+  static const rentPeriod = 'rent_period';
+  static const whoCanRent = 'who_can_rent';
+  static const premisesType = 'premises_type';
+  static const propertyType = 'property_type';
+  static const roomsCount = 'rooms_count';
+  static const layout = 'layout';
+  static const renovation = 'renovation';
+  static const elevators = 'elevators';
+  static const balconies = 'balconies';
+  static const furniture = 'furniture';
+  static const amenities = 'amenities';
+  static const bathroom = 'bathroom';
+  static const appliances = 'appliances';
+  static const stove = 'stove';
+  static const currency = 'currency';
+  static const prepayment = 'prepayment';
+  static const rentDuration = 'rent_duration';
+  static const rentConditions = 'rent_conditions';
+  static const contactMethod = 'contact_method';
+}

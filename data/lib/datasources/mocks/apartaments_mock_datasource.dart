@@ -2,15 +2,19 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
+@BackendOnly(
+  'Temporary mock datasource that emulates apartment backend responses.',
+)
 mixin ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
   Future<List<ApartamentDto>> fetchApartaments(ApartamentFilter filter) async {
     // Имитируем задержку сети
     await Future.delayed(const Duration(milliseconds: 300));
 
-    final allApartments = ApartmentsMockJson.fetchApartments
-        .map((json) => ApartamentDto.fromJson(json))
-        .toList();
+    final allApartments = [
+      ...ApartmentsMockJson.fetchApartments,
+      ...MockStorage.createAds,
+    ].map((json) => ApartamentDto.fromJson(json)).toList();
 
     // Маппинг ID для фильтрации (согласно ApartmentFiltersMockJson)
     final categoryMap = {1: "Снять", 2: "Обменять"};
@@ -19,15 +23,20 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
     // Фильтрация
     return allApartments.where((apt) {
       // Фильтр по городу
-      if (!apt.address.toLowerCase().contains(filter.city.toLowerCase())) {
+      final address = (apt.address ?? '').toLowerCase();
+      if (!address.contains(filter.city.toLowerCase())) {
         return false;
       }
 
       // Фильтр по категории
       if (filter.categoryId != null) {
         final categoryTitle = categoryMap[filter.categoryId];
-        if (categoryTitle == "Снять" && apt.dealGoal != "rent") return false;
-        if (categoryTitle == "Обменять" && apt.dealGoal != "exchange") return false;
+        if (categoryTitle == "Снять" && apt.dealGoal != "rent") {
+          return false;
+        }
+        if (categoryTitle == "Обменять" && apt.dealGoal != "exchange") {
+          return false;
+        }
       }
 
       // Фильтр по виду недвижимости
@@ -42,11 +51,11 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
             .map((id) => roomsCountMap[id])
             .whereType<String>()
             .toList();
-        if (!selectedRoomsTitles.contains(apt.roomsCount)) return false;
+        if (!selectedRoomsTitles.contains(apt.roomsCount ?? '')) return false;
       }
 
       // Фильтр по цене
-      final price = int.tryParse(apt.price.replaceAll(' ', '')) ?? 0;
+      final price = int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
       if (filter.minPrice != null && price < filter.minPrice!) return false;
       if (filter.maxPrice != null && price > filter.maxPrice!) return false;
 
@@ -66,5 +75,53 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
     await Future.delayed(const Duration(milliseconds: 1000));
     final json = CreateAdMockJson.fetchTagsResponse;
     return AdFormOptionsDto.fromJson(json).toModel();
+  }
+
+  @override
+  Future<void> createAd(CreateAdFormRequestDto request) async {
+    await Future.delayed(const Duration(milliseconds: 300));
+
+    final nextId =
+        [
+          ...ApartmentsMockJson.fetchApartments.map(
+            (item) => item['id'] as int? ?? 0,
+          ),
+          ...MockStorage.createAds.map((item) => item['id'] as int? ?? 0),
+        ].fold<int>(
+          0,
+          (maxId, currentId) => currentId > maxId ? currentId : maxId,
+        ) +
+        1;
+
+    final ownerName = _resolveOwnerName();
+    final apartment = CreateAdFormMapper.toApartamentDto(
+      request,
+      id: nextId,
+      ownerName: ownerName,
+    );
+
+    MockStorage.createAds.insert(0, apartment.toJson());
+  }
+
+  String _resolveOwnerName() {
+    final profile = MockStorage.userProfile;
+    if (profile == null) {
+      return 'Пользователь';
+    }
+
+    final firstName = (profile['first_name'] as String? ?? '').trim();
+    final lastName = (profile['last_name'] as String? ?? '').trim();
+    final fullName = '$firstName $lastName'.trim();
+
+    if (fullName.isNotEmpty) {
+      return fullName;
+    }
+
+    final legacyName = (profile['name'] as String? ?? '').trim();
+    if (legacyName.isNotEmpty) {
+      return legacyName;
+    }
+
+    return 'Пользователь';
   }
 }

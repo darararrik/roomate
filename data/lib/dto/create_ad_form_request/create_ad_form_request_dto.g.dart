@@ -9,97 +9,88 @@ part of 'create_ad_form_request_dto.dart';
 _CreateAdFormRequestDto _$CreateAdFormRequestDtoFromJson(
   Map<String, dynamic> json,
 ) => _CreateAdFormRequestDto(
-  rentGoalId: (json['rentGoalId'] as num?)?.toInt() ?? 0,
-  rentPeriodId: (json['rentPeriodId'] as num?)?.toInt() ?? 0,
-  whoCanRentIds:
-      (json['whoCanRentIds'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toSet() ??
-      const {},
-  premisesTypeId: (json['premisesTypeId'] as num?)?.toInt() ?? 0,
-  propertyTypeId: (json['propertyTypeId'] as num?)?.toInt() ?? 0,
-  roomsCountId: (json['roomsCountId'] as num?)?.toInt() ?? 0,
-  layoutId: (json['layoutId'] as num?)?.toInt() ?? 0,
-  renovationId: (json['renovationId'] as num?)?.toInt() ?? 0,
-  elevatorsId: (json['elevatorsId'] as num?)?.toInt() ?? 0,
-  balconiesId: (json['balconiesId'] as num?)?.toInt() ?? 0,
-  furnitureId: (json['furnitureId'] as num?)?.toInt() ?? 0,
-  amenitiesIds:
-      (json['amenitiesIds'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toSet() ??
-      const {},
-  bathroomIds:
-      (json['bathroomIds'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toSet() ??
-      const {},
-  appliancesIds:
-      (json['appliancesIds'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toSet() ??
-      const {},
-  stoveId: (json['stoveId'] as num?)?.toInt() ?? 0,
-  currencyId: (json['currencyId'] as num?)?.toInt() ?? 0,
-  prepaymentId: (json['prepaymentId'] as num?)?.toInt() ?? 0,
-  rentDurationId: (json['rentDurationId'] as num?)?.toInt() ?? 0,
-  rentConditionsIds:
-      (json['rentConditionsIds'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toSet() ??
-      const {},
-  contactMethodId: (json['contactMethodId'] as num?)?.toInt() ?? 0,
-  selectedCurrency:
-      $enumDecodeNullable(_$CurrencyEnumMap, json['selectedCurrency']) ??
-      Currency.rub,
-  cost: (json['cost'] as num?)?.toDouble() ?? 0,
-  deposit: (json['deposit'] as num?)?.toDouble() ?? 0,
-  apartmentArea: (json['apartmentArea'] as num?)?.toDouble() ?? 0,
-  floor: (json['floor'] as num?)?.toInt() ?? 0,
-  totalFloors: (json['totalFloors'] as num?)?.toInt() ?? 0,
-  address: json['address'] as String? ?? "",
-  apartmentNumber: (json['apartmentNumber'] as num?)?.toInt() ?? 0,
-  title: json['title'] as String? ?? "",
-  description: json['description'] as String? ?? "",
-  mainPhone: json['mainPhone'] as String? ?? "",
-  additionalNumber: json['additionalNumber'] as String? ?? "",
+  rentGoalId: (json['rent_goal_id'] as num?)?.toInt(),
+  rentPeriodId: (json['rent_period_id'] as num?)?.toInt(),
+  whoCanRentIds: (json['who_can_rent_ids'] as List<dynamic>?)
+      ?.map((e) => (e as num).toInt())
+      .toSet(),
+  premisesTypeId: (json['premises_type_id'] as num?)?.toInt(),
+  propertyTypeId: (json['property_type_id'] as num?)?.toInt(),
+  roomsCountId: (json['rooms_count_id'] as num?)?.toInt(),
+  layoutId: (json['layout_id'] as num?)?.toInt(),
+  renovationId: (json['renovation_id'] as num?)?.toInt(),
+  elevatorsId: (json['elevators_id'] as num?)?.toInt(),
+  balconiesId: (json['balconies_id'] as num?)?.toInt(),
+  furnitureId: (json['furniture_id'] as num?)?.toInt(),
+  amenitiesIds: (json['amenities_ids'] as List<dynamic>?)
+      ?.map((e) => (e as num).toInt())
+      .toSet(),
+  bathroomIds: (json['bathroom_ids'] as List<dynamic>?)
+      ?.map((e) => (e as num).toInt())
+      .toSet(),
+  appliancesIds: (json['appliances_ids'] as List<dynamic>?)
+      ?.map((e) => (e as num).toInt())
+      .toSet(),
+  stoveId: (json['stove_id'] as num?)?.toInt(),
+  currencyId: (json['currency_id'] as num?)?.toInt(),
+  prepaymentId: (json['prepayment_id'] as num?)?.toInt(),
+  rentDurationId: (json['rent_duration_id'] as num?)?.toInt(),
+  rentConditionsIds: (json['rent_conditions_ids'] as List<dynamic>?)
+      ?.map((e) => (e as num).toInt())
+      .toSet(),
+  contactMethodId: (json['contact_method_id'] as num?)?.toInt(),
+  selectedCurrency: $enumDecodeNullable(
+    _$CurrencyEnumMap,
+    json['selected_currency'],
+  ),
+  cost: (json['cost'] as num?)?.toDouble(),
+  deposit: (json['deposit'] as num?)?.toDouble(),
+  apartmentArea: (json['apartment_area'] as num?)?.toDouble(),
+  floor: (json['floor'] as num?)?.toInt(),
+  totalFloors: (json['total_floors'] as num?)?.toInt(),
+  address: json['address'] as String?,
+  apartmentNumber: (json['apartment_number'] as num?)?.toInt(),
+  title: json['title'] as String?,
+  description: json['description'] as String?,
+  mainPhone: json['main_phone'] as String?,
+  additionalNumber: json['additional_number'] as String?,
 );
 
 Map<String, dynamic> _$CreateAdFormRequestDtoToJson(
   _CreateAdFormRequestDto instance,
 ) => <String, dynamic>{
-  'rentGoalId': instance.rentGoalId,
-  'rentPeriodId': instance.rentPeriodId,
-  'whoCanRentIds': instance.whoCanRentIds.toList(),
-  'premisesTypeId': instance.premisesTypeId,
-  'propertyTypeId': instance.propertyTypeId,
-  'roomsCountId': instance.roomsCountId,
-  'layoutId': instance.layoutId,
-  'renovationId': instance.renovationId,
-  'elevatorsId': instance.elevatorsId,
-  'balconiesId': instance.balconiesId,
-  'furnitureId': instance.furnitureId,
-  'amenitiesIds': instance.amenitiesIds.toList(),
-  'bathroomIds': instance.bathroomIds.toList(),
-  'appliancesIds': instance.appliancesIds.toList(),
-  'stoveId': instance.stoveId,
-  'currencyId': instance.currencyId,
-  'prepaymentId': instance.prepaymentId,
-  'rentDurationId': instance.rentDurationId,
-  'rentConditionsIds': instance.rentConditionsIds.toList(),
-  'contactMethodId': instance.contactMethodId,
-  'selectedCurrency': _$CurrencyEnumMap[instance.selectedCurrency]!,
+  'rent_goal_id': instance.rentGoalId,
+  'rent_period_id': instance.rentPeriodId,
+  'who_can_rent_ids': instance.whoCanRentIds?.toList(),
+  'premises_type_id': instance.premisesTypeId,
+  'property_type_id': instance.propertyTypeId,
+  'rooms_count_id': instance.roomsCountId,
+  'layout_id': instance.layoutId,
+  'renovation_id': instance.renovationId,
+  'elevators_id': instance.elevatorsId,
+  'balconies_id': instance.balconiesId,
+  'furniture_id': instance.furnitureId,
+  'amenities_ids': instance.amenitiesIds?.toList(),
+  'bathroom_ids': instance.bathroomIds?.toList(),
+  'appliances_ids': instance.appliancesIds?.toList(),
+  'stove_id': instance.stoveId,
+  'currency_id': instance.currencyId,
+  'prepayment_id': instance.prepaymentId,
+  'rent_duration_id': instance.rentDurationId,
+  'rent_conditions_ids': instance.rentConditionsIds?.toList(),
+  'contact_method_id': instance.contactMethodId,
+  'selected_currency': _$CurrencyEnumMap[instance.selectedCurrency],
   'cost': instance.cost,
   'deposit': instance.deposit,
-  'apartmentArea': instance.apartmentArea,
+  'apartment_area': instance.apartmentArea,
   'floor': instance.floor,
-  'totalFloors': instance.totalFloors,
+  'total_floors': instance.totalFloors,
   'address': instance.address,
-  'apartmentNumber': instance.apartmentNumber,
+  'apartment_number': instance.apartmentNumber,
   'title': instance.title,
   'description': instance.description,
-  'mainPhone': instance.mainPhone,
-  'additionalNumber': instance.additionalNumber,
+  'main_phone': instance.mainPhone,
+  'additional_number': instance.additionalNumber,
 };
 
 const _$CurrencyEnumMap = {

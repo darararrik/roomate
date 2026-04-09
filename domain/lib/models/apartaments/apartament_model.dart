@@ -12,7 +12,6 @@ sealed class ApartamentModel with _$ApartamentModel {
     @Default('') String description,
     @Default([]) List<String> imageUrls,
     @Default(false) bool isVerification,
-    @Default(false) bool withCompany,
     @Default('') String price,
     @Default('') String roomsCount,
     @Default('') String area,

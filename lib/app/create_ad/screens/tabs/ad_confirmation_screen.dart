@@ -76,7 +76,7 @@ class _InfoRow extends StatelessWidget {
               Text(title, style: typography.headline1),
               Text(
                 subtitle,
-                style: typography.bodyDescription.copyWith(color: colors.graysText400),
+                style: typography.bodyDescription.copyWith(color: colors.graysText400, height: 1.2),
               ),
             ],
           ),

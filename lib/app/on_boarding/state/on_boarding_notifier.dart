@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -60,5 +59,8 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
 
   void skip() => ref.nav.replaceAll([const MainFlowRoute()]);
   void toCreateProfile() => ref.nav.push(const CreateProfileRoute());
-  void toCreateAd() => ref.nav.push(const CreateAdRoute());
+  void toCreateAd() {
+    ref.read(globalProfileProvider.notifier).createProfileOwner();
+    ref.nav.push(const CreateAdRoute());
+  }
 }

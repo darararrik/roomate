@@ -6,9 +6,7 @@ class ApartamentsRepositoryImpl implements IApartamentsRepository {
   final ApartamentsDataSource _dataSource;
 
   @override
-  Future<List<ApartamentModel>> fetchApartaments(
-    ApartamentFilter filter,
-  ) async {
+  Future<List<ApartamentModel>> fetchApartaments(ApartamentFilter filter) async {
     final dtos = await _dataSource.fetchApartaments(filter);
     return dtos.map((dto) => ApartamentMapper.toModel(dto)).toList();
   }
@@ -17,6 +15,11 @@ class ApartamentsRepositoryImpl implements IApartamentsRepository {
   Future<FilterModel> fetchFilters() => _dataSource.fetchFilterTags();
 
   @override
-  Future<AdFormOptionsModel> fetchAdFormOptions() =>
-      _dataSource.fetchAdFormOptions();
+  Future<AdFormOptionsModel> fetchAdFormOptions() => _dataSource.fetchAdFormOptions();
+
+  @override
+  Future<void> createAd(CreateAdFormModel request) {
+    final dto = CreateAdFormMapper.toDto(request);
+    return _dataSource.createAd(dto);
+  }
 }

@@ -8,26 +8,24 @@ part of 'apartament_dto.dart';
 
 _ApartamentDto _$ApartamentDtoFromJson(Map<String, dynamic> json) =>
     _ApartamentDto(
-      id: (json['id'] as num?)?.toInt() ?? 0,
-      title: json['title'] as String? ?? '',
-      description: json['description'] as String? ?? '',
-      imageUrls:
-          (json['image_urls'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      isVerification: json['is_verification'] as bool? ?? false,
-      withCompany: json['with_company'] as bool? ?? false,
-      price: json['price'] as String? ?? '',
-      roomsCount: json['rooms_count'] as String? ?? '',
-      area: json['area'] as String? ?? '',
-      floor: (json['floor'] as num?)?.toInt() ?? 0,
-      totalFloor: (json['total_floor'] as num?)?.toInt() ?? 0,
-      address: json['address'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      role: json['role'] as String? ?? '',
-      publishDate: json['publish_date'] as String? ?? '',
-      totalViewers: json['total_viewers'] as String? ?? '',
+      id: (json['id'] as num?)?.toInt(),
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      imageUrls: (json['image_urls'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      isVerification: json['is_verification'] as bool?,
+      withCompany: json['with_company'] as bool?,
+      price: json['price'] as String?,
+      roomsCount: json['rooms_count'] as String?,
+      area: json['area'] as String?,
+      floor: (json['floor'] as num?)?.toInt(),
+      totalFloor: (json['total_floor'] as num?)?.toInt(),
+      address: json['address'] as String?,
+      name: json['name'] as String?,
+      role: json['role'] as String?,
+      publishDate: json['publish_date'] as String?,
+      totalViewers: json['total_viewers'] as String?,
       layout: json['layout'] as String?,
       renovation: json['renovation'] as String?,
       elevatorType: json['elevator_type'] as String?,
@@ -36,19 +34,15 @@ _ApartamentDto _$ApartamentDtoFromJson(Map<String, dynamic> json) =>
       stoveType: json['stove_type'] as String?,
       dealGoal: json['deal_goal'] as String?,
       rentTerm: json['rent_term'] as String?,
-      whoToRent:
-          (json['who_to_rent'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      whoToRent: (json['who_to_rent'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       prepaymentType: json['prepayment_type'] as String?,
       rentalPeriod: json['rental_period'] as String?,
-      deposit: json['deposit'] as String? ?? '',
-      amenities:
-          (json['amenities'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      deposit: json['deposit'] as String?,
+      amenities: (json['amenities'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$ApartamentDtoToJson(_ApartamentDto instance) =>

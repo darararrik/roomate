@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApartamentDto {
 
-@JsonKey(name: 'id') int get id;@JsonKey(name: 'title') String get title;@JsonKey(name: 'description') String get description;@JsonKey(name: 'image_urls') List<String> get imageUrls;@JsonKey(name: 'is_verification') bool get isVerification;@JsonKey(name: 'with_company') bool get withCompany;@JsonKey(name: 'price') String get price;@JsonKey(name: 'rooms_count') String get roomsCount;@JsonKey(name: 'area') String get area;@JsonKey(name: 'floor') int get floor;@JsonKey(name: 'total_floor') int get totalFloor;@JsonKey(name: 'address') String get address;@JsonKey(name: 'name') String get name;@JsonKey(name: 'role') String get role;@JsonKey(name: 'publish_date') String get publishDate;@JsonKey(name: 'total_viewers') String get totalViewers;@JsonKey(name: 'layout') String? get layout;@JsonKey(name: 'renovation') String? get renovation;@JsonKey(name: 'elevator_type') String? get elevatorType;@JsonKey(name: 'furniture_type') String? get furnitureType;@JsonKey(name: 'balcony_type') String? get balconyType;@JsonKey(name: 'stove_type') String? get stoveType;@JsonKey(name: 'deal_goal') String? get dealGoal;@JsonKey(name: 'rent_term') String? get rentTerm;@JsonKey(name: 'who_to_rent') List<String> get whoToRent;@JsonKey(name: 'prepayment_type') String? get prepaymentType;@JsonKey(name: 'rental_period') String? get rentalPeriod;@JsonKey(name: 'deposit') String get deposit;@JsonKey(name: 'amenities') List<String> get amenities;
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'title') String? get title;@JsonKey(name: 'description') String? get description;@JsonKey(name: 'image_urls') List<String>? get imageUrls;@JsonKey(name: 'is_verification') bool? get isVerification;@JsonKey(name: 'with_company') bool? get withCompany;@JsonKey(name: 'price') String? get price;@JsonKey(name: 'rooms_count') String? get roomsCount;@JsonKey(name: 'area') String? get area;@JsonKey(name: 'floor') int? get floor;@JsonKey(name: 'total_floor') int? get totalFloor;@JsonKey(name: 'address') String? get address;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'role') String? get role;@JsonKey(name: 'publish_date') String? get publishDate;@JsonKey(name: 'total_viewers') String? get totalViewers;@JsonKey(name: 'layout') String? get layout;@JsonKey(name: 'renovation') String? get renovation;@JsonKey(name: 'elevator_type') String? get elevatorType;@JsonKey(name: 'furniture_type') String? get furnitureType;@JsonKey(name: 'balcony_type') String? get balconyType;@JsonKey(name: 'stove_type') String? get stoveType;@JsonKey(name: 'deal_goal') String? get dealGoal;@JsonKey(name: 'rent_term') String? get rentTerm;@JsonKey(name: 'who_to_rent') List<String>? get whoToRent;@JsonKey(name: 'prepayment_type') String? get prepaymentType;@JsonKey(name: 'rental_period') String? get rentalPeriod;@JsonKey(name: 'deposit') String? get deposit;@JsonKey(name: 'amenities') List<String>? get amenities;
 /// Create a copy of ApartamentDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ApartamentDtoCopyWith<$Res>  {
   factory $ApartamentDtoCopyWith(ApartamentDto value, $Res Function(ApartamentDto) _then) = _$ApartamentDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'title') String title,@JsonKey(name: 'description') String description,@JsonKey(name: 'image_urls') List<String> imageUrls,@JsonKey(name: 'is_verification') bool isVerification,@JsonKey(name: 'with_company') bool withCompany,@JsonKey(name: 'price') String price,@JsonKey(name: 'rooms_count') String roomsCount,@JsonKey(name: 'area') String area,@JsonKey(name: 'floor') int floor,@JsonKey(name: 'total_floor') int totalFloor,@JsonKey(name: 'address') String address,@JsonKey(name: 'name') String name,@JsonKey(name: 'role') String role,@JsonKey(name: 'publish_date') String publishDate,@JsonKey(name: 'total_viewers') String totalViewers,@JsonKey(name: 'layout') String? layout,@JsonKey(name: 'renovation') String? renovation,@JsonKey(name: 'elevator_type') String? elevatorType,@JsonKey(name: 'furniture_type') String? furnitureType,@JsonKey(name: 'balcony_type') String? balconyType,@JsonKey(name: 'stove_type') String? stoveType,@JsonKey(name: 'deal_goal') String? dealGoal,@JsonKey(name: 'rent_term') String? rentTerm,@JsonKey(name: 'who_to_rent') List<String> whoToRent,@JsonKey(name: 'prepayment_type') String? prepaymentType,@JsonKey(name: 'rental_period') String? rentalPeriod,@JsonKey(name: 'deposit') String deposit,@JsonKey(name: 'amenities') List<String> amenities
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'title') String? title,@JsonKey(name: 'description') String? description,@JsonKey(name: 'image_urls') List<String>? imageUrls,@JsonKey(name: 'is_verification') bool? isVerification,@JsonKey(name: 'with_company') bool? withCompany,@JsonKey(name: 'price') String? price,@JsonKey(name: 'rooms_count') String? roomsCount,@JsonKey(name: 'area') String? area,@JsonKey(name: 'floor') int? floor,@JsonKey(name: 'total_floor') int? totalFloor,@JsonKey(name: 'address') String? address,@JsonKey(name: 'name') String? name,@JsonKey(name: 'role') String? role,@JsonKey(name: 'publish_date') String? publishDate,@JsonKey(name: 'total_viewers') String? totalViewers,@JsonKey(name: 'layout') String? layout,@JsonKey(name: 'renovation') String? renovation,@JsonKey(name: 'elevator_type') String? elevatorType,@JsonKey(name: 'furniture_type') String? furnitureType,@JsonKey(name: 'balcony_type') String? balconyType,@JsonKey(name: 'stove_type') String? stoveType,@JsonKey(name: 'deal_goal') String? dealGoal,@JsonKey(name: 'rent_term') String? rentTerm,@JsonKey(name: 'who_to_rent') List<String>? whoToRent,@JsonKey(name: 'prepayment_type') String? prepaymentType,@JsonKey(name: 'rental_period') String? rentalPeriod,@JsonKey(name: 'deposit') String? deposit,@JsonKey(name: 'amenities') List<String>? amenities
 });
 
 
@@ -65,25 +65,25 @@ class _$ApartamentDtoCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? imageUrls = null,Object? isVerification = null,Object? withCompany = null,Object? price = null,Object? roomsCount = null,Object? area = null,Object? floor = null,Object? totalFloor = null,Object? address = null,Object? name = null,Object? role = null,Object? publishDate = null,Object? totalViewers = null,Object? layout = freezed,Object? renovation = freezed,Object? elevatorType = freezed,Object? furnitureType = freezed,Object? balconyType = freezed,Object? stoveType = freezed,Object? dealGoal = freezed,Object? rentTerm = freezed,Object? whoToRent = null,Object? prepaymentType = freezed,Object? rentalPeriod = freezed,Object? deposit = null,Object? amenities = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = freezed,Object? description = freezed,Object? imageUrls = freezed,Object? isVerification = freezed,Object? withCompany = freezed,Object? price = freezed,Object? roomsCount = freezed,Object? area = freezed,Object? floor = freezed,Object? totalFloor = freezed,Object? address = freezed,Object? name = freezed,Object? role = freezed,Object? publishDate = freezed,Object? totalViewers = freezed,Object? layout = freezed,Object? renovation = freezed,Object? elevatorType = freezed,Object? furnitureType = freezed,Object? balconyType = freezed,Object? stoveType = freezed,Object? dealGoal = freezed,Object? rentTerm = freezed,Object? whoToRent = freezed,Object? prepaymentType = freezed,Object? rentalPeriod = freezed,Object? deposit = freezed,Object? amenities = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,imageUrls: null == imageUrls ? _self.imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
-as List<String>,isVerification: null == isVerification ? _self.isVerification : isVerification // ignore: cast_nullable_to_non_nullable
-as bool,withCompany: null == withCompany ? _self.withCompany : withCompany // ignore: cast_nullable_to_non_nullable
-as bool,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as String,roomsCount: null == roomsCount ? _self.roomsCount : roomsCount // ignore: cast_nullable_to_non_nullable
-as String,area: null == area ? _self.area : area // ignore: cast_nullable_to_non_nullable
-as String,floor: null == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
-as int,totalFloor: null == totalFloor ? _self.totalFloor : totalFloor // ignore: cast_nullable_to_non_nullable
-as int,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String,publishDate: null == publishDate ? _self.publishDate : publishDate // ignore: cast_nullable_to_non_nullable
-as String,totalViewers: null == totalViewers ? _self.totalViewers : totalViewers // ignore: cast_nullable_to_non_nullable
-as String,layout: freezed == layout ? _self.layout : layout // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,imageUrls: freezed == imageUrls ? _self.imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
+as List<String>?,isVerification: freezed == isVerification ? _self.isVerification : isVerification // ignore: cast_nullable_to_non_nullable
+as bool?,withCompany: freezed == withCompany ? _self.withCompany : withCompany // ignore: cast_nullable_to_non_nullable
+as bool?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as String?,roomsCount: freezed == roomsCount ? _self.roomsCount : roomsCount // ignore: cast_nullable_to_non_nullable
+as String?,area: freezed == area ? _self.area : area // ignore: cast_nullable_to_non_nullable
+as String?,floor: freezed == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
+as int?,totalFloor: freezed == totalFloor ? _self.totalFloor : totalFloor // ignore: cast_nullable_to_non_nullable
+as int?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,publishDate: freezed == publishDate ? _self.publishDate : publishDate // ignore: cast_nullable_to_non_nullable
+as String?,totalViewers: freezed == totalViewers ? _self.totalViewers : totalViewers // ignore: cast_nullable_to_non_nullable
+as String?,layout: freezed == layout ? _self.layout : layout // ignore: cast_nullable_to_non_nullable
 as String?,renovation: freezed == renovation ? _self.renovation : renovation // ignore: cast_nullable_to_non_nullable
 as String?,elevatorType: freezed == elevatorType ? _self.elevatorType : elevatorType // ignore: cast_nullable_to_non_nullable
 as String?,furnitureType: freezed == furnitureType ? _self.furnitureType : furnitureType // ignore: cast_nullable_to_non_nullable
@@ -91,12 +91,12 @@ as String?,balconyType: freezed == balconyType ? _self.balconyType : balconyType
 as String?,stoveType: freezed == stoveType ? _self.stoveType : stoveType // ignore: cast_nullable_to_non_nullable
 as String?,dealGoal: freezed == dealGoal ? _self.dealGoal : dealGoal // ignore: cast_nullable_to_non_nullable
 as String?,rentTerm: freezed == rentTerm ? _self.rentTerm : rentTerm // ignore: cast_nullable_to_non_nullable
-as String?,whoToRent: null == whoToRent ? _self.whoToRent : whoToRent // ignore: cast_nullable_to_non_nullable
-as List<String>,prepaymentType: freezed == prepaymentType ? _self.prepaymentType : prepaymentType // ignore: cast_nullable_to_non_nullable
+as String?,whoToRent: freezed == whoToRent ? _self.whoToRent : whoToRent // ignore: cast_nullable_to_non_nullable
+as List<String>?,prepaymentType: freezed == prepaymentType ? _self.prepaymentType : prepaymentType // ignore: cast_nullable_to_non_nullable
 as String?,rentalPeriod: freezed == rentalPeriod ? _self.rentalPeriod : rentalPeriod // ignore: cast_nullable_to_non_nullable
-as String?,deposit: null == deposit ? _self.deposit : deposit // ignore: cast_nullable_to_non_nullable
-as String,amenities: null == amenities ? _self.amenities : amenities // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as String?,deposit: freezed == deposit ? _self.deposit : deposit // ignore: cast_nullable_to_non_nullable
+as String?,amenities: freezed == amenities ? _self.amenities : amenities // ignore: cast_nullable_to_non_nullable
+as List<String>?,
   ));
 }
 
@@ -181,7 +181,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'image_urls')  List<String> imageUrls, @JsonKey(name: 'is_verification')  bool isVerification, @JsonKey(name: 'with_company')  bool withCompany, @JsonKey(name: 'price')  String price, @JsonKey(name: 'rooms_count')  String roomsCount, @JsonKey(name: 'area')  String area, @JsonKey(name: 'floor')  int floor, @JsonKey(name: 'total_floor')  int totalFloor, @JsonKey(name: 'address')  String address, @JsonKey(name: 'name')  String name, @JsonKey(name: 'role')  String role, @JsonKey(name: 'publish_date')  String publishDate, @JsonKey(name: 'total_viewers')  String totalViewers, @JsonKey(name: 'layout')  String? layout, @JsonKey(name: 'renovation')  String? renovation, @JsonKey(name: 'elevator_type')  String? elevatorType, @JsonKey(name: 'furniture_type')  String? furnitureType, @JsonKey(name: 'balcony_type')  String? balconyType, @JsonKey(name: 'stove_type')  String? stoveType, @JsonKey(name: 'deal_goal')  String? dealGoal, @JsonKey(name: 'rent_term')  String? rentTerm, @JsonKey(name: 'who_to_rent')  List<String> whoToRent, @JsonKey(name: 'prepayment_type')  String? prepaymentType, @JsonKey(name: 'rental_period')  String? rentalPeriod, @JsonKey(name: 'deposit')  String deposit, @JsonKey(name: 'amenities')  List<String> amenities)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'title')  String? title, @JsonKey(name: 'description')  String? description, @JsonKey(name: 'image_urls')  List<String>? imageUrls, @JsonKey(name: 'is_verification')  bool? isVerification, @JsonKey(name: 'with_company')  bool? withCompany, @JsonKey(name: 'price')  String? price, @JsonKey(name: 'rooms_count')  String? roomsCount, @JsonKey(name: 'area')  String? area, @JsonKey(name: 'floor')  int? floor, @JsonKey(name: 'total_floor')  int? totalFloor, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'role')  String? role, @JsonKey(name: 'publish_date')  String? publishDate, @JsonKey(name: 'total_viewers')  String? totalViewers, @JsonKey(name: 'layout')  String? layout, @JsonKey(name: 'renovation')  String? renovation, @JsonKey(name: 'elevator_type')  String? elevatorType, @JsonKey(name: 'furniture_type')  String? furnitureType, @JsonKey(name: 'balcony_type')  String? balconyType, @JsonKey(name: 'stove_type')  String? stoveType, @JsonKey(name: 'deal_goal')  String? dealGoal, @JsonKey(name: 'rent_term')  String? rentTerm, @JsonKey(name: 'who_to_rent')  List<String>? whoToRent, @JsonKey(name: 'prepayment_type')  String? prepaymentType, @JsonKey(name: 'rental_period')  String? rentalPeriod, @JsonKey(name: 'deposit')  String? deposit, @JsonKey(name: 'amenities')  List<String>? amenities)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ApartamentDto() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isVerification,_that.withCompany,_that.price,_that.roomsCount,_that.area,_that.floor,_that.totalFloor,_that.address,_that.name,_that.role,_that.publishDate,_that.totalViewers,_that.layout,_that.renovation,_that.elevatorType,_that.furnitureType,_that.balconyType,_that.stoveType,_that.dealGoal,_that.rentTerm,_that.whoToRent,_that.prepaymentType,_that.rentalPeriod,_that.deposit,_that.amenities);case _:
@@ -202,7 +202,7 @@ return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isV
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'image_urls')  List<String> imageUrls, @JsonKey(name: 'is_verification')  bool isVerification, @JsonKey(name: 'with_company')  bool withCompany, @JsonKey(name: 'price')  String price, @JsonKey(name: 'rooms_count')  String roomsCount, @JsonKey(name: 'area')  String area, @JsonKey(name: 'floor')  int floor, @JsonKey(name: 'total_floor')  int totalFloor, @JsonKey(name: 'address')  String address, @JsonKey(name: 'name')  String name, @JsonKey(name: 'role')  String role, @JsonKey(name: 'publish_date')  String publishDate, @JsonKey(name: 'total_viewers')  String totalViewers, @JsonKey(name: 'layout')  String? layout, @JsonKey(name: 'renovation')  String? renovation, @JsonKey(name: 'elevator_type')  String? elevatorType, @JsonKey(name: 'furniture_type')  String? furnitureType, @JsonKey(name: 'balcony_type')  String? balconyType, @JsonKey(name: 'stove_type')  String? stoveType, @JsonKey(name: 'deal_goal')  String? dealGoal, @JsonKey(name: 'rent_term')  String? rentTerm, @JsonKey(name: 'who_to_rent')  List<String> whoToRent, @JsonKey(name: 'prepayment_type')  String? prepaymentType, @JsonKey(name: 'rental_period')  String? rentalPeriod, @JsonKey(name: 'deposit')  String deposit, @JsonKey(name: 'amenities')  List<String> amenities)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'title')  String? title, @JsonKey(name: 'description')  String? description, @JsonKey(name: 'image_urls')  List<String>? imageUrls, @JsonKey(name: 'is_verification')  bool? isVerification, @JsonKey(name: 'with_company')  bool? withCompany, @JsonKey(name: 'price')  String? price, @JsonKey(name: 'rooms_count')  String? roomsCount, @JsonKey(name: 'area')  String? area, @JsonKey(name: 'floor')  int? floor, @JsonKey(name: 'total_floor')  int? totalFloor, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'role')  String? role, @JsonKey(name: 'publish_date')  String? publishDate, @JsonKey(name: 'total_viewers')  String? totalViewers, @JsonKey(name: 'layout')  String? layout, @JsonKey(name: 'renovation')  String? renovation, @JsonKey(name: 'elevator_type')  String? elevatorType, @JsonKey(name: 'furniture_type')  String? furnitureType, @JsonKey(name: 'balcony_type')  String? balconyType, @JsonKey(name: 'stove_type')  String? stoveType, @JsonKey(name: 'deal_goal')  String? dealGoal, @JsonKey(name: 'rent_term')  String? rentTerm, @JsonKey(name: 'who_to_rent')  List<String>? whoToRent, @JsonKey(name: 'prepayment_type')  String? prepaymentType, @JsonKey(name: 'rental_period')  String? rentalPeriod, @JsonKey(name: 'deposit')  String? deposit, @JsonKey(name: 'amenities')  List<String>? amenities)  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentDto():
 return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isVerification,_that.withCompany,_that.price,_that.roomsCount,_that.area,_that.floor,_that.totalFloor,_that.address,_that.name,_that.role,_that.publishDate,_that.totalViewers,_that.layout,_that.renovation,_that.elevatorType,_that.furnitureType,_that.balconyType,_that.stoveType,_that.dealGoal,_that.rentTerm,_that.whoToRent,_that.prepaymentType,_that.rentalPeriod,_that.deposit,_that.amenities);case _:
@@ -222,7 +222,7 @@ return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isV
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'image_urls')  List<String> imageUrls, @JsonKey(name: 'is_verification')  bool isVerification, @JsonKey(name: 'with_company')  bool withCompany, @JsonKey(name: 'price')  String price, @JsonKey(name: 'rooms_count')  String roomsCount, @JsonKey(name: 'area')  String area, @JsonKey(name: 'floor')  int floor, @JsonKey(name: 'total_floor')  int totalFloor, @JsonKey(name: 'address')  String address, @JsonKey(name: 'name')  String name, @JsonKey(name: 'role')  String role, @JsonKey(name: 'publish_date')  String publishDate, @JsonKey(name: 'total_viewers')  String totalViewers, @JsonKey(name: 'layout')  String? layout, @JsonKey(name: 'renovation')  String? renovation, @JsonKey(name: 'elevator_type')  String? elevatorType, @JsonKey(name: 'furniture_type')  String? furnitureType, @JsonKey(name: 'balcony_type')  String? balconyType, @JsonKey(name: 'stove_type')  String? stoveType, @JsonKey(name: 'deal_goal')  String? dealGoal, @JsonKey(name: 'rent_term')  String? rentTerm, @JsonKey(name: 'who_to_rent')  List<String> whoToRent, @JsonKey(name: 'prepayment_type')  String? prepaymentType, @JsonKey(name: 'rental_period')  String? rentalPeriod, @JsonKey(name: 'deposit')  String deposit, @JsonKey(name: 'amenities')  List<String> amenities)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'title')  String? title, @JsonKey(name: 'description')  String? description, @JsonKey(name: 'image_urls')  List<String>? imageUrls, @JsonKey(name: 'is_verification')  bool? isVerification, @JsonKey(name: 'with_company')  bool? withCompany, @JsonKey(name: 'price')  String? price, @JsonKey(name: 'rooms_count')  String? roomsCount, @JsonKey(name: 'area')  String? area, @JsonKey(name: 'floor')  int? floor, @JsonKey(name: 'total_floor')  int? totalFloor, @JsonKey(name: 'address')  String? address, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'role')  String? role, @JsonKey(name: 'publish_date')  String? publishDate, @JsonKey(name: 'total_viewers')  String? totalViewers, @JsonKey(name: 'layout')  String? layout, @JsonKey(name: 'renovation')  String? renovation, @JsonKey(name: 'elevator_type')  String? elevatorType, @JsonKey(name: 'furniture_type')  String? furnitureType, @JsonKey(name: 'balcony_type')  String? balconyType, @JsonKey(name: 'stove_type')  String? stoveType, @JsonKey(name: 'deal_goal')  String? dealGoal, @JsonKey(name: 'rent_term')  String? rentTerm, @JsonKey(name: 'who_to_rent')  List<String>? whoToRent, @JsonKey(name: 'prepayment_type')  String? prepaymentType, @JsonKey(name: 'rental_period')  String? rentalPeriod, @JsonKey(name: 'deposit')  String? deposit, @JsonKey(name: 'amenities')  List<String>? amenities)?  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentDto() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isVerification,_that.withCompany,_that.price,_that.roomsCount,_that.area,_that.floor,_that.totalFloor,_that.address,_that.name,_that.role,_that.publishDate,_that.totalViewers,_that.layout,_that.renovation,_that.elevatorType,_that.furnitureType,_that.balconyType,_that.stoveType,_that.dealGoal,_that.rentTerm,_that.whoToRent,_that.prepaymentType,_that.rentalPeriod,_that.deposit,_that.amenities);case _:
@@ -237,31 +237,33 @@ return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isV
 @JsonSerializable()
 
 class _ApartamentDto implements ApartamentDto {
-  const _ApartamentDto({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'title') this.title = '', @JsonKey(name: 'description') this.description = '', @JsonKey(name: 'image_urls') final  List<String> imageUrls = const [], @JsonKey(name: 'is_verification') this.isVerification = false, @JsonKey(name: 'with_company') this.withCompany = false, @JsonKey(name: 'price') this.price = '', @JsonKey(name: 'rooms_count') this.roomsCount = '', @JsonKey(name: 'area') this.area = '', @JsonKey(name: 'floor') this.floor = 0, @JsonKey(name: 'total_floor') this.totalFloor = 0, @JsonKey(name: 'address') this.address = '', @JsonKey(name: 'name') this.name = '', @JsonKey(name: 'role') this.role = '', @JsonKey(name: 'publish_date') this.publishDate = '', @JsonKey(name: 'total_viewers') this.totalViewers = '', @JsonKey(name: 'layout') this.layout, @JsonKey(name: 'renovation') this.renovation, @JsonKey(name: 'elevator_type') this.elevatorType, @JsonKey(name: 'furniture_type') this.furnitureType, @JsonKey(name: 'balcony_type') this.balconyType, @JsonKey(name: 'stove_type') this.stoveType, @JsonKey(name: 'deal_goal') this.dealGoal, @JsonKey(name: 'rent_term') this.rentTerm, @JsonKey(name: 'who_to_rent') final  List<String> whoToRent = const [], @JsonKey(name: 'prepayment_type') this.prepaymentType, @JsonKey(name: 'rental_period') this.rentalPeriod, @JsonKey(name: 'deposit') this.deposit = '', @JsonKey(name: 'amenities') final  List<String> amenities = const []}): _imageUrls = imageUrls,_whoToRent = whoToRent,_amenities = amenities;
+  const _ApartamentDto({@JsonKey(name: 'id') this.id, @JsonKey(name: 'title') this.title, @JsonKey(name: 'description') this.description, @JsonKey(name: 'image_urls') final  List<String>? imageUrls, @JsonKey(name: 'is_verification') this.isVerification, @JsonKey(name: 'with_company') this.withCompany, @JsonKey(name: 'price') this.price, @JsonKey(name: 'rooms_count') this.roomsCount, @JsonKey(name: 'area') this.area, @JsonKey(name: 'floor') this.floor, @JsonKey(name: 'total_floor') this.totalFloor, @JsonKey(name: 'address') this.address, @JsonKey(name: 'name') this.name, @JsonKey(name: 'role') this.role, @JsonKey(name: 'publish_date') this.publishDate, @JsonKey(name: 'total_viewers') this.totalViewers, @JsonKey(name: 'layout') this.layout, @JsonKey(name: 'renovation') this.renovation, @JsonKey(name: 'elevator_type') this.elevatorType, @JsonKey(name: 'furniture_type') this.furnitureType, @JsonKey(name: 'balcony_type') this.balconyType, @JsonKey(name: 'stove_type') this.stoveType, @JsonKey(name: 'deal_goal') this.dealGoal, @JsonKey(name: 'rent_term') this.rentTerm, @JsonKey(name: 'who_to_rent') final  List<String>? whoToRent, @JsonKey(name: 'prepayment_type') this.prepaymentType, @JsonKey(name: 'rental_period') this.rentalPeriod, @JsonKey(name: 'deposit') this.deposit, @JsonKey(name: 'amenities') final  List<String>? amenities}): _imageUrls = imageUrls,_whoToRent = whoToRent,_amenities = amenities;
   factory _ApartamentDto.fromJson(Map<String, dynamic> json) => _$ApartamentDtoFromJson(json);
 
-@override@JsonKey(name: 'id') final  int id;
-@override@JsonKey(name: 'title') final  String title;
-@override@JsonKey(name: 'description') final  String description;
- final  List<String> _imageUrls;
-@override@JsonKey(name: 'image_urls') List<String> get imageUrls {
+@override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'title') final  String? title;
+@override@JsonKey(name: 'description') final  String? description;
+ final  List<String>? _imageUrls;
+@override@JsonKey(name: 'image_urls') List<String>? get imageUrls {
+  final value = _imageUrls;
+  if (value == null) return null;
   if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_imageUrls);
+  return EqualUnmodifiableListView(value);
 }
 
-@override@JsonKey(name: 'is_verification') final  bool isVerification;
-@override@JsonKey(name: 'with_company') final  bool withCompany;
-@override@JsonKey(name: 'price') final  String price;
-@override@JsonKey(name: 'rooms_count') final  String roomsCount;
-@override@JsonKey(name: 'area') final  String area;
-@override@JsonKey(name: 'floor') final  int floor;
-@override@JsonKey(name: 'total_floor') final  int totalFloor;
-@override@JsonKey(name: 'address') final  String address;
-@override@JsonKey(name: 'name') final  String name;
-@override@JsonKey(name: 'role') final  String role;
-@override@JsonKey(name: 'publish_date') final  String publishDate;
-@override@JsonKey(name: 'total_viewers') final  String totalViewers;
+@override@JsonKey(name: 'is_verification') final  bool? isVerification;
+@override@JsonKey(name: 'with_company') final  bool? withCompany;
+@override@JsonKey(name: 'price') final  String? price;
+@override@JsonKey(name: 'rooms_count') final  String? roomsCount;
+@override@JsonKey(name: 'area') final  String? area;
+@override@JsonKey(name: 'floor') final  int? floor;
+@override@JsonKey(name: 'total_floor') final  int? totalFloor;
+@override@JsonKey(name: 'address') final  String? address;
+@override@JsonKey(name: 'name') final  String? name;
+@override@JsonKey(name: 'role') final  String? role;
+@override@JsonKey(name: 'publish_date') final  String? publishDate;
+@override@JsonKey(name: 'total_viewers') final  String? totalViewers;
 @override@JsonKey(name: 'layout') final  String? layout;
 @override@JsonKey(name: 'renovation') final  String? renovation;
 @override@JsonKey(name: 'elevator_type') final  String? elevatorType;
@@ -270,21 +272,25 @@ class _ApartamentDto implements ApartamentDto {
 @override@JsonKey(name: 'stove_type') final  String? stoveType;
 @override@JsonKey(name: 'deal_goal') final  String? dealGoal;
 @override@JsonKey(name: 'rent_term') final  String? rentTerm;
- final  List<String> _whoToRent;
-@override@JsonKey(name: 'who_to_rent') List<String> get whoToRent {
+ final  List<String>? _whoToRent;
+@override@JsonKey(name: 'who_to_rent') List<String>? get whoToRent {
+  final value = _whoToRent;
+  if (value == null) return null;
   if (_whoToRent is EqualUnmodifiableListView) return _whoToRent;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_whoToRent);
+  return EqualUnmodifiableListView(value);
 }
 
 @override@JsonKey(name: 'prepayment_type') final  String? prepaymentType;
 @override@JsonKey(name: 'rental_period') final  String? rentalPeriod;
-@override@JsonKey(name: 'deposit') final  String deposit;
- final  List<String> _amenities;
-@override@JsonKey(name: 'amenities') List<String> get amenities {
+@override@JsonKey(name: 'deposit') final  String? deposit;
+ final  List<String>? _amenities;
+@override@JsonKey(name: 'amenities') List<String>? get amenities {
+  final value = _amenities;
+  if (value == null) return null;
   if (_amenities is EqualUnmodifiableListView) return _amenities;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_amenities);
+  return EqualUnmodifiableListView(value);
 }
 
 
@@ -321,7 +327,7 @@ abstract mixin class _$ApartamentDtoCopyWith<$Res> implements $ApartamentDtoCopy
   factory _$ApartamentDtoCopyWith(_ApartamentDto value, $Res Function(_ApartamentDto) _then) = __$ApartamentDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'title') String title,@JsonKey(name: 'description') String description,@JsonKey(name: 'image_urls') List<String> imageUrls,@JsonKey(name: 'is_verification') bool isVerification,@JsonKey(name: 'with_company') bool withCompany,@JsonKey(name: 'price') String price,@JsonKey(name: 'rooms_count') String roomsCount,@JsonKey(name: 'area') String area,@JsonKey(name: 'floor') int floor,@JsonKey(name: 'total_floor') int totalFloor,@JsonKey(name: 'address') String address,@JsonKey(name: 'name') String name,@JsonKey(name: 'role') String role,@JsonKey(name: 'publish_date') String publishDate,@JsonKey(name: 'total_viewers') String totalViewers,@JsonKey(name: 'layout') String? layout,@JsonKey(name: 'renovation') String? renovation,@JsonKey(name: 'elevator_type') String? elevatorType,@JsonKey(name: 'furniture_type') String? furnitureType,@JsonKey(name: 'balcony_type') String? balconyType,@JsonKey(name: 'stove_type') String? stoveType,@JsonKey(name: 'deal_goal') String? dealGoal,@JsonKey(name: 'rent_term') String? rentTerm,@JsonKey(name: 'who_to_rent') List<String> whoToRent,@JsonKey(name: 'prepayment_type') String? prepaymentType,@JsonKey(name: 'rental_period') String? rentalPeriod,@JsonKey(name: 'deposit') String deposit,@JsonKey(name: 'amenities') List<String> amenities
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'title') String? title,@JsonKey(name: 'description') String? description,@JsonKey(name: 'image_urls') List<String>? imageUrls,@JsonKey(name: 'is_verification') bool? isVerification,@JsonKey(name: 'with_company') bool? withCompany,@JsonKey(name: 'price') String? price,@JsonKey(name: 'rooms_count') String? roomsCount,@JsonKey(name: 'area') String? area,@JsonKey(name: 'floor') int? floor,@JsonKey(name: 'total_floor') int? totalFloor,@JsonKey(name: 'address') String? address,@JsonKey(name: 'name') String? name,@JsonKey(name: 'role') String? role,@JsonKey(name: 'publish_date') String? publishDate,@JsonKey(name: 'total_viewers') String? totalViewers,@JsonKey(name: 'layout') String? layout,@JsonKey(name: 'renovation') String? renovation,@JsonKey(name: 'elevator_type') String? elevatorType,@JsonKey(name: 'furniture_type') String? furnitureType,@JsonKey(name: 'balcony_type') String? balconyType,@JsonKey(name: 'stove_type') String? stoveType,@JsonKey(name: 'deal_goal') String? dealGoal,@JsonKey(name: 'rent_term') String? rentTerm,@JsonKey(name: 'who_to_rent') List<String>? whoToRent,@JsonKey(name: 'prepayment_type') String? prepaymentType,@JsonKey(name: 'rental_period') String? rentalPeriod,@JsonKey(name: 'deposit') String? deposit,@JsonKey(name: 'amenities') List<String>? amenities
 });
 
 
@@ -338,25 +344,25 @@ class __$ApartamentDtoCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? imageUrls = null,Object? isVerification = null,Object? withCompany = null,Object? price = null,Object? roomsCount = null,Object? area = null,Object? floor = null,Object? totalFloor = null,Object? address = null,Object? name = null,Object? role = null,Object? publishDate = null,Object? totalViewers = null,Object? layout = freezed,Object? renovation = freezed,Object? elevatorType = freezed,Object? furnitureType = freezed,Object? balconyType = freezed,Object? stoveType = freezed,Object? dealGoal = freezed,Object? rentTerm = freezed,Object? whoToRent = null,Object? prepaymentType = freezed,Object? rentalPeriod = freezed,Object? deposit = null,Object? amenities = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? title = freezed,Object? description = freezed,Object? imageUrls = freezed,Object? isVerification = freezed,Object? withCompany = freezed,Object? price = freezed,Object? roomsCount = freezed,Object? area = freezed,Object? floor = freezed,Object? totalFloor = freezed,Object? address = freezed,Object? name = freezed,Object? role = freezed,Object? publishDate = freezed,Object? totalViewers = freezed,Object? layout = freezed,Object? renovation = freezed,Object? elevatorType = freezed,Object? furnitureType = freezed,Object? balconyType = freezed,Object? stoveType = freezed,Object? dealGoal = freezed,Object? rentTerm = freezed,Object? whoToRent = freezed,Object? prepaymentType = freezed,Object? rentalPeriod = freezed,Object? deposit = freezed,Object? amenities = freezed,}) {
   return _then(_ApartamentDto(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,imageUrls: null == imageUrls ? _self._imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
-as List<String>,isVerification: null == isVerification ? _self.isVerification : isVerification // ignore: cast_nullable_to_non_nullable
-as bool,withCompany: null == withCompany ? _self.withCompany : withCompany // ignore: cast_nullable_to_non_nullable
-as bool,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as String,roomsCount: null == roomsCount ? _self.roomsCount : roomsCount // ignore: cast_nullable_to_non_nullable
-as String,area: null == area ? _self.area : area // ignore: cast_nullable_to_non_nullable
-as String,floor: null == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
-as int,totalFloor: null == totalFloor ? _self.totalFloor : totalFloor // ignore: cast_nullable_to_non_nullable
-as int,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String,publishDate: null == publishDate ? _self.publishDate : publishDate // ignore: cast_nullable_to_non_nullable
-as String,totalViewers: null == totalViewers ? _self.totalViewers : totalViewers // ignore: cast_nullable_to_non_nullable
-as String,layout: freezed == layout ? _self.layout : layout // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,imageUrls: freezed == imageUrls ? _self._imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
+as List<String>?,isVerification: freezed == isVerification ? _self.isVerification : isVerification // ignore: cast_nullable_to_non_nullable
+as bool?,withCompany: freezed == withCompany ? _self.withCompany : withCompany // ignore: cast_nullable_to_non_nullable
+as bool?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as String?,roomsCount: freezed == roomsCount ? _self.roomsCount : roomsCount // ignore: cast_nullable_to_non_nullable
+as String?,area: freezed == area ? _self.area : area // ignore: cast_nullable_to_non_nullable
+as String?,floor: freezed == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
+as int?,totalFloor: freezed == totalFloor ? _self.totalFloor : totalFloor // ignore: cast_nullable_to_non_nullable
+as int?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,publishDate: freezed == publishDate ? _self.publishDate : publishDate // ignore: cast_nullable_to_non_nullable
+as String?,totalViewers: freezed == totalViewers ? _self.totalViewers : totalViewers // ignore: cast_nullable_to_non_nullable
+as String?,layout: freezed == layout ? _self.layout : layout // ignore: cast_nullable_to_non_nullable
 as String?,renovation: freezed == renovation ? _self.renovation : renovation // ignore: cast_nullable_to_non_nullable
 as String?,elevatorType: freezed == elevatorType ? _self.elevatorType : elevatorType // ignore: cast_nullable_to_non_nullable
 as String?,furnitureType: freezed == furnitureType ? _self.furnitureType : furnitureType // ignore: cast_nullable_to_non_nullable
@@ -364,12 +370,12 @@ as String?,balconyType: freezed == balconyType ? _self.balconyType : balconyType
 as String?,stoveType: freezed == stoveType ? _self.stoveType : stoveType // ignore: cast_nullable_to_non_nullable
 as String?,dealGoal: freezed == dealGoal ? _self.dealGoal : dealGoal // ignore: cast_nullable_to_non_nullable
 as String?,rentTerm: freezed == rentTerm ? _self.rentTerm : rentTerm // ignore: cast_nullable_to_non_nullable
-as String?,whoToRent: null == whoToRent ? _self._whoToRent : whoToRent // ignore: cast_nullable_to_non_nullable
-as List<String>,prepaymentType: freezed == prepaymentType ? _self.prepaymentType : prepaymentType // ignore: cast_nullable_to_non_nullable
+as String?,whoToRent: freezed == whoToRent ? _self._whoToRent : whoToRent // ignore: cast_nullable_to_non_nullable
+as List<String>?,prepaymentType: freezed == prepaymentType ? _self.prepaymentType : prepaymentType // ignore: cast_nullable_to_non_nullable
 as String?,rentalPeriod: freezed == rentalPeriod ? _self.rentalPeriod : rentalPeriod // ignore: cast_nullable_to_non_nullable
-as String?,deposit: null == deposit ? _self.deposit : deposit // ignore: cast_nullable_to_non_nullable
-as String,amenities: null == amenities ? _self._amenities : amenities // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as String?,deposit: freezed == deposit ? _self.deposit : deposit // ignore: cast_nullable_to_non_nullable
+as String?,amenities: freezed == amenities ? _self._amenities : amenities // ignore: cast_nullable_to_non_nullable
+as List<String>?,
   ));
 }
 

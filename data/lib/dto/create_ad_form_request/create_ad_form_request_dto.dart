@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:domain/domain.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_ad_form_request_dto.freezed.dart';
 part 'create_ad_form_request_dto.g.dart';
@@ -7,45 +7,38 @@ part 'create_ad_form_request_dto.g.dart';
 @freezed
 sealed class CreateAdFormRequestDto with _$CreateAdFormRequestDto {
   const factory CreateAdFormRequestDto({
-    @Default(0) int rentGoalId,
-    @Default(0) int rentPeriodId,
-    @Default({}) Set<int> whoCanRentIds,
-
-    @Default(0) int premisesTypeId,
-    @Default(0) int propertyTypeId,
-
-    @Default(0) int roomsCountId,
-    @Default(0) int layoutId,
-
-    @Default(0) int renovationId,
-    @Default(0) int elevatorsId,
-    @Default(0) int balconiesId,
-
-    @Default(0) int furnitureId,
-    @Default({}) Set<int> amenitiesIds,
-    @Default({}) Set<int> bathroomIds,
-    @Default({}) Set<int> appliancesIds,
-    @Default(0) int stoveId,
-
-    @Default(0) int currencyId,
-    @Default(0) int prepaymentId,
-    @Default(0) int rentDurationId,
-    @Default({}) Set<int> rentConditionsIds,
-
-    @Default(0) int contactMethodId,
-
-    @Default(Currency.rub) Currency selectedCurrency,
-    @Default(0) double cost,
-    @Default(0) double deposit,
-    @Default(0) double apartmentArea,
-    @Default(0) int floor,
-    @Default(0) int totalFloors,
-    @Default("") String address,
-    @Default(0) int apartmentNumber,
-    @Default("") String title,
-    @Default("") String description,
-    @Default("") String mainPhone,
-    @Default("") String additionalNumber,
+    @JsonKey(name: 'rent_goal_id') int? rentGoalId,
+    @JsonKey(name: 'rent_period_id') int? rentPeriodId,
+    @JsonKey(name: 'who_can_rent_ids') Set<int>? whoCanRentIds,
+    @JsonKey(name: 'premises_type_id') int? premisesTypeId,
+    @JsonKey(name: 'property_type_id') int? propertyTypeId,
+    @JsonKey(name: 'rooms_count_id') int? roomsCountId,
+    @JsonKey(name: 'layout_id') int? layoutId,
+    @JsonKey(name: 'renovation_id') int? renovationId,
+    @JsonKey(name: 'elevators_id') int? elevatorsId,
+    @JsonKey(name: 'balconies_id') int? balconiesId,
+    @JsonKey(name: 'furniture_id') int? furnitureId,
+    @JsonKey(name: 'amenities_ids') Set<int>? amenitiesIds,
+    @JsonKey(name: 'bathroom_ids') Set<int>? bathroomIds,
+    @JsonKey(name: 'appliances_ids') Set<int>? appliancesIds,
+    @JsonKey(name: 'stove_id') int? stoveId,
+    @JsonKey(name: 'currency_id') int? currencyId,
+    @JsonKey(name: 'prepayment_id') int? prepaymentId,
+    @JsonKey(name: 'rent_duration_id') int? rentDurationId,
+    @JsonKey(name: 'rent_conditions_ids') Set<int>? rentConditionsIds,
+    @JsonKey(name: 'contact_method_id') int? contactMethodId,
+    @JsonKey(name: 'selected_currency') Currency? selectedCurrency,
+    @JsonKey(name: 'cost') double? cost,
+    @JsonKey(name: 'deposit') double? deposit,
+    @JsonKey(name: 'apartment_area') double? apartmentArea,
+    @JsonKey(name: 'floor') int? floor,
+    @JsonKey(name: 'total_floors') int? totalFloors,
+    @JsonKey(name: 'address') String? address,
+    @JsonKey(name: 'apartment_number') int? apartmentNumber,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'main_phone') String? mainPhone,
+    @JsonKey(name: 'additional_number') String? additionalNumber,
   }) = _CreateAdFormRequestDto;
   factory CreateAdFormRequestDto.fromJson(Map<String, dynamic> json) =>
       _$CreateAdFormRequestDtoFromJson(json);

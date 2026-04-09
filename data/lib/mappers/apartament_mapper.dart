@@ -4,22 +4,21 @@ import 'package:domain/domain.dart';
 class ApartamentMapper {
   static ApartamentModel toModel(ApartamentDto dto) {
     return ApartamentModel(
-      id: dto.id,
-      title: dto.title,
-      description: dto.description,
-      imageUrls: dto.imageUrls,
-      isVerification: dto.isVerification,
-      withCompany: dto.withCompany,
-      price: dto.price,
-      roomsCount: dto.roomsCount,
-      area: dto.area,
-      floor: dto.floor,
-      totalFloor: dto.totalFloor,
-      address: dto.address,
-      name: dto.name,
-      role: dto.role,
-      publishDate: dto.publishDate,
-      totalViewers: dto.totalViewers,
+      id: dto.id ?? 0,
+      title: dto.title ?? '',
+      description: dto.description ?? '',
+      imageUrls: dto.imageUrls ?? const [],
+      isVerification: dto.isVerification ?? false,
+      price: dto.price ?? '',
+      roomsCount: dto.roomsCount ?? '',
+      area: dto.area ?? '',
+      floor: dto.floor ?? 0,
+      totalFloor: dto.totalFloor ?? 0,
+      address: dto.address ?? '',
+      name: dto.name ?? '',
+      role: dto.role ?? '',
+      publishDate: dto.publishDate ?? '',
+      totalViewers: dto.totalViewers ?? '',
       layout: _parseEnum(ApartmentLayout.values, dto.layout),
       renovation: _parseEnum(RenovationType.values, dto.renovation),
       elevatorType: _parseEnum(ElevatorType.values, dto.elevatorType),
@@ -28,14 +27,14 @@ class ApartamentMapper {
       stoveType: _parseEnum(StoveType.values, dto.stoveType),
       dealGoal: _parseEnum(DealGoal.values, dto.dealGoal),
       rentTerm: _parseEnum(RentalConditions.values, dto.rentTerm),
-      whoToRent: dto.whoToRent
+      whoToRent: (dto.whoToRent ?? const [])
           .map((e) => _parseEnum(WhoToRent.values, e))
           .whereType<WhoToRent>()
           .toList(),
       prepaymentType: _parseEnum(PrepaymentType.values, dto.prepaymentType),
       rentalPeriod: _parseEnum(RentalPeriod.values, dto.rentalPeriod),
-      deposit: dto.deposit,
-      amenities: dto.amenities
+      deposit: dto.deposit ?? '',
+      amenities: (dto.amenities ?? const [])
           .map((e) => _parseEnum(ApartmentAmenity.values, e))
           .whereType<ApartmentAmenity>()
           .toList(),
@@ -49,7 +48,6 @@ class ApartamentMapper {
       description: model.description,
       imageUrls: model.imageUrls,
       isVerification: model.isVerification,
-      withCompany: model.withCompany,
       price: model.price,
       roomsCount: model.roomsCount,
       area: model.area,

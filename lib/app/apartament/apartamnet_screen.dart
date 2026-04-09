@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -87,8 +85,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                       itemBuilder: (context, index) => Image.network(
                         imageUrls[index],
                         fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) =>
-                            ColoredBox(color: colors.graysLight100),
+                        errorBuilder: (_, _, _) => ColoredBox(color: colors.graysLight100),
                       ),
                     )
                   else
@@ -115,9 +112,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           color: colors.opacityBlack60,
-                          borderRadius: const BorderRadius.all(
-                            .circular(S.p24),
-                          ),
+                          borderRadius: const BorderRadius.all(.circular(S.p24)),
                         ),
                         child: Padding(
                           padding: const P(horizontal: S.p10, vertical: S.p6),
@@ -143,15 +138,11 @@ class ApartamnetScreen extends HookConsumerWidget {
                             final isActive = index == page.value;
                             return AnimatedContainer(
                               duration: const Duration(milliseconds: 180),
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: S.p4,
-                              ),
+                              margin: const EdgeInsets.symmetric(horizontal: S.p4),
                               width: isActive ? S.p16 : S.p6,
                               height: S.p6,
                               decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(
-                                  .circular(S.p12),
-                                ),
+                                borderRadius: const BorderRadius.all(.circular(S.p12)),
                                 color: isActive
                                     ? colors.graysWhite
                                     : colors.graysWhite.withValues(alpha: .5),
@@ -170,13 +161,7 @@ class ApartamnetScreen extends HookConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  _header(
-                    context,
-                    isVerifiedText,
-                    withCompanyText,
-                    locale,
-                    colors,
-                  ),
+                  _header(context, isVerifiedText, withCompanyText, locale, colors),
                   Section(
                     title: locale.location,
                     child: Text(
@@ -200,8 +185,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                               color: colors.graysText400,
                             ),
                           ),
-                        if (apartment.publishDate.isNotEmpty &&
-                            apartment.totalViewers.isNotEmpty)
+                        if (apartment.publishDate.isNotEmpty && apartment.totalViewers.isNotEmpty)
                           const SizedBox(height: S.p8),
                         if (apartment.totalViewers.isNotEmpty)
                           Text(
@@ -224,38 +208,27 @@ class ApartamnetScreen extends HookConsumerWidget {
                         children: [
                           InfoRow(
                             title: locale.layout,
-                            value:
-                                apartment.layout?.title ?? locale.notSpecified,
+                            value: apartment.layout?.title ?? locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.renovationLabel,
-                            value:
-                                apartment.renovation?.title ??
-                                locale.notSpecified,
+                            value: apartment.renovation?.title ?? locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.elevator,
-                            value:
-                                apartment.elevatorType?.title ??
-                                locale.notSpecified,
+                            value: apartment.elevatorType?.title ?? locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.balconies,
-                            value:
-                                apartment.balconyType?.title ??
-                                locale.notSpecified,
+                            value: apartment.balconyType?.title ?? locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.furniture,
-                            value:
-                                apartment.furnitureType?.title ??
-                                locale.notSpecified,
+                            value: apartment.furnitureType?.title ?? locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.stove,
-                            value:
-                                apartment.stoveType?.title ??
-                                locale.notSpecified,
+                            value: apartment.stoveType?.title ?? locale.notSpecified,
                           ),
                         ],
                       ),
@@ -274,10 +247,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                             children: apartment.amenities.map((item) {
                               return SizedBox(
                                 width: itemWidth,
-                                child: FeatureChip(
-                                  title: item.title,
-                                  iconPath: item.iconPath,
-                                ),
+                                child: FeatureChip(title: item.title, iconPath: item.iconPath),
                               );
                             }).toList(),
                           ),
@@ -294,19 +264,12 @@ class ApartamnetScreen extends HookConsumerWidget {
                         children: [
                           InfoRow(
                             title: locale.prepayment,
-                            value:
-                                apartment.prepaymentType?.title ??
-                                locale.notSpecified,
+                            value: apartment.prepaymentType?.title ?? locale.notSpecified,
                           ),
-                          InfoRow(
-                            title: locale.deposit,
-                            value: apartment.deposit,
-                          ),
+                          InfoRow(title: locale.deposit, value: apartment.deposit),
                           InfoRow(
                             title: locale.rentalPeriod,
-                            value:
-                                apartment.rentalPeriod?.title ??
-                                locale.notSpecified,
+                            value: apartment.rentalPeriod?.title ?? locale.notSpecified,
                           ),
                         ],
                       ),
@@ -315,10 +278,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        context.l10n.adDescription,
-                        style: context.typography.headline1,
-                      ),
+                      Text(context.l10n.adDescription, style: context.typography.headline1),
                       const SizedBox(height: S.p12),
                       Padding(
                         padding: const P(vertical: S.p8),
@@ -366,9 +326,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                 Text("${apartment.roomsCount}-${locale.apartmentRoomsShort}"),
                 Text(
                   locale.apartment,
-                  style: context.typography.bodyDescription.copyWith(
-                    color: colors.graysText400,
-                  ),
+                  style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
                 ),
               ],
             ),
@@ -379,9 +337,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                 Text("${apartment.area} ${locale.squareMeters}"),
                 Text(
                   locale.apartmentArea,
-                  style: context.typography.bodyDescription.copyWith(
-                    color: colors.graysText400,
-                  ),
+                  style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
                 ),
               ],
             ),
@@ -392,9 +348,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                 Text("${apartment.floor}/${apartment.totalFloor}"),
                 Text(
                   locale.floor,
-                  style: context.typography.bodyDescription.copyWith(
-                    color: colors.graysText400,
-                  ),
+                  style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
                 ),
               ],
             ),
@@ -405,11 +359,7 @@ class ApartamnetScreen extends HookConsumerWidget {
     );
   }
 
-  Wrap _tags(
-    BuildContext context,
-    String isVerifiedText,
-    String withCompanyText,
-  ) {
+  Wrap _tags(BuildContext context, String isVerifiedText, String withCompanyText) {
     return Wrap(
       spacing: S.p12,
       runSpacing: S.p8,
@@ -433,9 +383,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                 ),
                 Text(
                   isVerifiedText,
-                  style: context.typography.bodySmall.copyWith(
-                    color: context.colors.labelGreen,
-                  ),
+                  style: context.typography.bodySmall.copyWith(color: context.colors.labelGreen),
                 ),
               ],
             ),
@@ -460,9 +408,7 @@ class ApartamnetScreen extends HookConsumerWidget {
                 ),
                 Text(
                   withCompanyText,
-                  style: context.typography.bodySmall.copyWith(
-                    color: context.colors.labelBlue,
-                  ),
+                  style: context.typography.bodySmall.copyWith(color: context.colors.labelBlue),
                 ),
               ],
             ),

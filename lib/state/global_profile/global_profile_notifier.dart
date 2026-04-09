@@ -1,8 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared/shared.dart';
-
 import 'package:roomate/lib.dart';
+import 'package:shared/shared.dart';
 
 part 'global_profile_notifier.g.dart';
 
@@ -79,10 +78,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     int? age,
     List<TagModel>? tags,
   }) async {
-    final current = state.maybeWhen(
-      data: (u) => u,
-      orElse: () => const UserModel(),
-    );
+    final current = state.maybeWhen(data: (u) => u, orElse: () => const UserModel());
 
     final updated = current.copyWith(
       firstName: firstName ?? current.firstName,
@@ -119,6 +115,20 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
       (_) {
         state = const AsyncData(UserModel());
         return true;
+      },
+    );
+  }
+
+  Future<void> createProfileOwner() async {
+    final current = state.requireValue;
+    final res = await _repository.updateProfile(current.copyWith(isOwner: true));
+    return res.fold(
+      (e) {
+        state = AsyncError(e, StackTrace.current);
+        _handleRemoteException(e);
+      },
+      (user) {
+        state = AsyncData(user);
       },
     );
   }

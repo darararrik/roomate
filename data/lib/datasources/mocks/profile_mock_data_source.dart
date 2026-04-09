@@ -20,6 +20,9 @@ mixin ProfileMockDataSource implements ProfileDataSource {
 
   @override
   Future<UserModel> updateProfile(UserModel user) async {
+    if (user.isOwner) {
+      user = user.copyWith(firstName: "Собственник");
+    }
     final json = UserMapper.toData(user).toJson();
     MockStorage.userProfile = json;
     return user.withDelay();

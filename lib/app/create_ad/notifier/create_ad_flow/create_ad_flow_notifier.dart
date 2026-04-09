@@ -51,6 +51,9 @@ class CreateAdFlow extends _$CreateAdFlow {
 
     if (step == 11) {
       _submitForm();
+    }
+    if (step == 12) {
+      ref.nav.replaceAll([const MainFlowRoute()]);
       return;
     }
 
@@ -67,19 +70,9 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
   }
 
-  Future<void> _submitForm() async {
-    // final request = _toCreateAdRequest();
-    // try {
-    //   await ref.read(apartamentsRepositoryProvider).createAd(request);
-    //   ref.nav.replaceAll([const MainFlowRoute()]);
-    // } catch (e) {
-    //   // Обработка ошибок
-    // }
-  }
+  Future<void> _submitForm() => ref.read(adFormProvider.notifier).createAd();
 
-  void clearValidation() {
-    state = const CreateAdFlowState();
-  }
+  void clearValidation() => state = const CreateAdFlowState();
 
   void validateStep(int step) {
     clearValidation();
