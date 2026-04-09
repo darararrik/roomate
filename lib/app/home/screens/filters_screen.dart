@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:roomate/app/filter/notifier/apartament_filter_notifier.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -15,7 +14,7 @@ class FiltersScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final filter = ref.watch(apartamentFilterProvider);
     final filterNotifier = ref.read(apartamentFilterProvider.notifier);
-    final taxonomyAsync = ref.watch(apartamentFiltersProvider);
+    final filtersAsync = ref.watch(filtersProvider);
 
     return Scaffold(
       body: CustomScrollView(
@@ -36,27 +35,24 @@ class FiltersScreen extends HookConsumerWidget {
               ),
             ],
           ),
-          taxonomyAsync.when(
-            data: (taxonomy) {
+          filtersAsync.when(
+            data: (filters) {
               return SliverPadding(
                 padding: const P(horizontal: S.p16, vertical: S.p12),
                 sliver: SliverList.list(
                   children: [
                     _FilterSection(
-                      title: "dasads",
-                      options: taxonomy.categories,
-                      selectedIds: {
-                        if (filter.categoryId != null) filter.categoryId!,
-                      },
+                      title: context.l10n.yourGoal,
+                      options: filters.categories,
+                      selectedIds: {if (filter.categoryId != null) filter.categoryId!},
                       isRadio: true,
-                      onSelectionChanged: (ids) => filterNotifier.setCategory(
-                        ids.isNotEmpty ? ids.first : null,
-                      ),
+                      onSelectionChanged: (ids) =>
+                          filterNotifier.setCategory(ids.isNotEmpty ? ids.first : null),
                     ),
                     const SizedBox(height: S.p24),
                     _FilterSection(
                       title: context.l10n.typeOfProperty,
-                      options: taxonomy.propertyTypes,
+                      options: filters.propertyTypes,
                       selectedIds: filter.propertyTypeIds.toSet(),
                       isRadio: false,
                       onSelectionChanged: (ids) {
@@ -75,7 +71,7 @@ class FiltersScreen extends HookConsumerWidget {
                     const SizedBox(height: S.p24),
                     _FilterSection(
                       title: context.l10n.numberOfRooms,
-                      options: taxonomy.roomsCounts,
+                      options: filters.roomsCounts,
                       selectedIds: filter.roomsCountIds.toSet(),
                       isRadio: false,
                       onSelectionChanged: (ids) {
@@ -95,10 +91,7 @@ class FiltersScreen extends HookConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          context.l10n.price,
-                          style: context.typography.headline2,
-                        ),
+                        Text(context.l10n.price, style: context.typography.headline2),
                         Text(
                           '${(filter.minPrice ?? 0).round()} - ${(filter.maxPrice ?? 200000).round()} ${context.l10n.currencySymbol}',
                           style: context.typography.bodyDescription,
@@ -106,25 +99,16 @@ class FiltersScreen extends HookConsumerWidget {
                       ],
                     ),
                     RangeSlider(
-                      values: RangeValues(
-                        filter.minPrice ?? 0,
-                        filter.maxPrice ?? 200000,
-                      ),
+                      values: RangeValues(filter.minPrice ?? 0, filter.maxPrice ?? 200000),
                       min: 0,
                       max: 200000,
                       divisions: 20,
                       activeColor: context.colors.orange,
                       inactiveColor: context.colors.graysLight100,
-                      onChanged: (values) => filterNotifier.setPriceRange(
-                        values.start,
-                        values.end,
-                      ),
+                      onChanged: (values) => filterNotifier.setPriceRange(values.start, values.end),
                     ),
                     const SizedBox(height: S.p24),
-                    Text(
-                      context.l10n.location,
-                      style: context.typography.headline2,
-                    ),
+                    Text(context.l10n.location, style: context.typography.headline2),
                     const SizedBox(height: S.p12),
                     RegionListItem(
                       iconPath: AppIcons.city,
@@ -140,15 +124,13 @@ class FiltersScreen extends HookConsumerWidget {
                 ),
               );
             },
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator()),
-            ),
-            error: (e, s) =>
-                SliverFillRemaining(child: Center(child: Text(e.toString()))),
+            loading: () =>
+                const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
+            error: (e, s) => SliverFillRemaining(child: Center(child: Text(e.toString()))),
           ),
         ],
       ),
-      bottomNavigationBar: taxonomyAsync.maybeWhen(
+      bottomNavigationBar: filtersAsync.maybeWhen(
         data: (_) => SafeArea(
           child: Padding(
             padding: const P(horizontal: S.p16, vertical: S.p12),

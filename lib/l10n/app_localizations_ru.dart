@@ -903,4 +903,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get errorGeneric => 'Ошибка загрузки';
+
+  @override
+  String get yourGoal => 'Ваша цель';
 }

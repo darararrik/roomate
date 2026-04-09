@@ -56,8 +56,6 @@ export 'app/home/screens/coworking_tab.dart';
 export 'app/home/screens/filters_screen.dart';
 export 'app/home/screens/home_screen.dart';
 export 'app/home/screens/neighbours_tab.dart';
-export 'app/home/state/apartament_filter_notifier.dart';
-export 'app/home/state/apartament_filters_notifier.dart';
 export 'app/home/state/apartaments_notifier.dart';
 export 'app/home/state/apartaments_state.dart';
 export 'app/main/main.dart';

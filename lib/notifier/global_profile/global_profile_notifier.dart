@@ -1,7 +1,8 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:roomate/lib.dart';
 import 'package:shared/shared.dart';
+
+import 'package:roomate/lib.dart';
 
 part 'global_profile_notifier.g.dart';
 

@@ -1845,6 +1845,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ошибка загрузки'**
   String get errorGeneric;
+
+  /// No description provided for @yourGoal.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваша цель'**
+  String get yourGoal;
 }
 
 class _AppLocalizationsDelegate

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/extensions.dart';
 import 'package:roomate/utils/formatters/decimal_formatter.dart';

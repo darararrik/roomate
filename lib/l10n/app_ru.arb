@@ -296,5 +296,6 @@
   "validationEnterPrice": "Укажите цену",
   "validationEnterDeposit": "Укажите залог",
   "validationFloorMustBeLessThenTotalFloors": "Этаж должен быть меньше количества этажей в доме",
-  "errorGeneric": "Ошибка загрузки"
+  "errorGeneric": "Ошибка загрузки",
+  "yourGoal": "Ваша цель"
 }

@@ -5,6 +5,11 @@ import 'package:roomate/lib.dart';
 
 part 'apartament_filter_notifier.g.dart';
 
+@riverpod
+Future<FilterModel> filters(Ref ref) async {
+  return ref.watch(apartamentsRepositoryProvider).fetchFilters();
+}
+
 @Riverpod(keepAlive: true)
 class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
   @override

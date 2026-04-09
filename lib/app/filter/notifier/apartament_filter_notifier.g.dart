@@ -9,6 +9,45 @@ part of 'apartament_filter_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
+@ProviderFor(filters)
+final filtersProvider = FiltersProvider._();
+
+final class FiltersProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<FilterModel>,
+          FilterModel,
+          FutureOr<FilterModel>
+        >
+    with $FutureModifier<FilterModel>, $FutureProvider<FilterModel> {
+  FiltersProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'filtersProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$filtersHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<FilterModel> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<FilterModel> create(Ref ref) {
+    return filters(ref);
+  }
+}
+
+String _$filtersHash() => r'ae6754bc2bbca3b008c85f40daca432225f87779';
+
 @ProviderFor(ApartamentFilterNotifier)
 final apartamentFilterProvider = ApartamentFilterNotifierProvider._();
 

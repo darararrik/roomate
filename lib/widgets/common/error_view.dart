@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/utils/extensions.dart';
 
 class ErrorView extends StatelessWidget {

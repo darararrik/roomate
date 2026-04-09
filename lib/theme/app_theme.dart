@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/theme/theme_x/app_palette.dart';
 import 'package:roomate/theme/theme_x/app_typography.dart';

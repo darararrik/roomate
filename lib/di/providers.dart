@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/lib.dart';
 
 part 'providers.g.dart';
