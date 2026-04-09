@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -49,14 +47,13 @@ class WelcomeScreen extends ConsumerWidget {
                         children: [
                           OpacityButton(
                             bgColor: context.colors.opacityWhite10,
-                            onPressed: () =>
-                                authNotifier.openEnterPhoneNumberScreen(),
+                            onPressed: () => authNotifier.enterByPhoneNumber(),
 
                             child: Text(context.l10n.loginByPhoneNumber),
                           ),
                           OpacityButton(
                             bgColor: context.colors.opacityWhite10,
-                            onPressed: () => authNotifier.openMainScreen(),
+                            onPressed: () => authNotifier.enterAsGuest(),
 
                             child: Text(context.l10n.loginByGuest),
                           ),
@@ -76,10 +73,9 @@ class WelcomeScreen extends ConsumerWidget {
                                     ),
                                     Text(
                                       context.l10n.loginViaSocialNetworks,
-                                      style: context.typography.activesLabel
-                                          .copyWith(
-                                            color: context.colors.graysInput200,
-                                          ),
+                                      style: context.typography.activesLabel.copyWith(
+                                        color: context.colors.graysInput200,
+                                      ),
                                     ),
                                     Expanded(
                                       child: Divider(
@@ -94,22 +90,10 @@ class WelcomeScreen extends ConsumerWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.vk,
-                                      ),
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.gos,
-                                      ),
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.sber,
-                                      ),
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.yandex,
-                                      ),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.vk),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.gos),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.sber),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.yandex),
                                     ].separated(const SizedBox(width: S.p16)),
                                   ),
                                 ),

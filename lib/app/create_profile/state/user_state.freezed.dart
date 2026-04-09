@@ -212,7 +212,7 @@ return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_tha
 
 
 class _UserState implements UserState {
-   _UserState({this.firstName = '', this.lastName = '', this.avatarUrl = Constants.avatarNull, this.gender = null, this.age = '', this.isVerified = false, final  List<TagGroupModel> tags = const [], this.firstNameError = '', this.lastNameError = '', this.ageError = '', this.genderError = '', this.isFormValid = false, this.isLoading = false}): _tags = tags;
+   _UserState({this.firstName = '', this.lastName = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = null, this.age = '', this.isVerified = false, final  List<TagGroupModel> tags = const [], this.firstNameError = '', this.lastNameError = '', this.ageError = '', this.genderError = '', this.isFormValid = false, this.isLoading = false}): _tags = tags;
   
 
 @override@JsonKey() final  String firstName;

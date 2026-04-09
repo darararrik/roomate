@@ -1,4 +1,3 @@
 abstract class Constants {
-  static const String avatarNull =
-      'lib/presentation/assets/pics/nullAvatar.png';
+  static const String defaultProfileImage = 'assets/pics/nullAvatar.png';
 }

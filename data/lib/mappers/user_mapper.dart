@@ -14,6 +14,7 @@ abstract class UserMapper {
       isVerified: userData?.isVerified ?? false,
       tags: userData?.tags?.map((e) => TagMapper.toModel(e)).toList() ?? [],
       city: userData?.city ?? '',
+      isOwner: userData?.isOwner ?? false,
     );
   }
 
@@ -29,6 +30,7 @@ abstract class UserMapper {
       isVerified: user.isVerified,
       tags: user.tags.map((e) => TagMapper.toData(e)).toList(),
       city: user.city,
+      isOwner: user.isOwner,
     );
   }
 }

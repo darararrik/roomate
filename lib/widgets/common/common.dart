@@ -4,7 +4,6 @@ export 'avatar_widget.dart';
 export 'background.dart';
 export 'drag_handle.dart';
 export 'field_error_text.dart';
-export 'loading_state.dart';
 export 'overlapping_avatars.dart';
 export 'progress_bar_widget.dart';
 export 'selection_step_content.dart';

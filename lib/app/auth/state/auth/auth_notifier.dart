@@ -40,9 +40,10 @@ class AuthNotifier extends _$AuthNotifier {
     state = state.copyWith(isCodeVerified: true, isError: false);
   }
 
-  void openEnterPhoneNumberScreen() => ref.nav.push(const EnterPhoneNumberRoute());
+  void enterByPhoneNumber() => ref.nav.push(const EnterPhoneNumberRoute());
 
-  void openMainScreen() {
+  void enterAsGuest() {
+    ref.read(globalProfileProvider.notifier).createProfileGuest();
     ref.nav.replace(const MainFlowRoute());
   }
 

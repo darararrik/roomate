@@ -12,7 +12,7 @@ sealed class UserModel with _$UserModel {
     @Default('') String lastName,
     //TODO: Мб CityModel будет нужен
     @Default('') String city,
-    @Default(Constants.avatarNull) String avatarUrl,
+    @Default(Constants.defaultProfileImage) String avatarUrl,
     @Default(GenderEnum.male) GenderEnum gender,
     @Default('') String phone,
     @Default(0) int age,
@@ -20,4 +20,9 @@ sealed class UserModel with _$UserModel {
     @Default([]) List<TagModel> tags,
     @Default(false) bool isOwner,
   }) = _UserModel;
+  const UserModel._();
+
+  factory UserModel.guest() => const UserModel();
+
+  bool get isGuest => id == 0 && firstName.isEmpty && lastName.isEmpty && phone.isEmpty;
 }

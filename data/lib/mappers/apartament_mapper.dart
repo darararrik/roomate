@@ -17,7 +17,7 @@ class ApartamentMapper {
       address: dto.address ?? '',
       name: dto.name ?? '',
       role: dto.role ?? '',
-      publishDate: dto.publishDate ?? '',
+      publishDate: toFormattedDate(dto.publishDate),
       totalViewers: dto.totalViewers ?? '',
       layout: _parseEnum(ApartmentLayout.values, dto.layout),
       renovation: _parseEnum(RenovationType.values, dto.renovation),
@@ -80,6 +80,15 @@ class ApartamentMapper {
       return values.firstWhere((e) => e.name == name);
     } catch (_) {
       return null;
+    }
+  }
+
+  static String toFormattedDate(String? date) {
+    if (date == null) return '';
+    try {
+      return DateTime.parse(date).toLocal().toString();
+    } catch (_) {
+      return '';
     }
   }
 }

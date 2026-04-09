@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -28,21 +26,13 @@ class ApartamentsTab extends ConsumerWidget {
                 padding: const P(vertical: S.p4, horizontal: S.p8),
                 children: [
                   FilterCard(
-                    leading: const AppIcon(
-                      AppIcons.filter2,
-                      width: S.p24,
-                      height: S.p24,
-                    ),
+                    leading: const AppIcon(AppIcons.filter2, width: S.p24, height: S.p24),
                     title: context.l10n.filters,
                     //TODO: вынести в нотифаер
                     onTap: () => context.pushRoute(const FiltersRoute()),
                   ),
                   FilterCard(
-                    trailing: const AppIcon(
-                      AppIcons.arrowDown,
-                      width: S.p24,
-                      height: S.p24,
-                    ),
+                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
                     title: context.l10n.term,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -51,11 +41,7 @@ class ApartamentsTab extends ConsumerWidget {
                     ),
                   ),
                   FilterCard(
-                    trailing: const AppIcon(
-                      AppIcons.arrowDown,
-                      width: S.p24,
-                      height: S.p24,
-                    ),
+                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
                     title: context.l10n.district,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -88,11 +74,7 @@ class ApartamentsTab extends ConsumerWidget {
                     ),
 
                     //TODO: сменить виджет
-                    child: const AppIcon(
-                      AppIcons.sort,
-                      width: S.p32,
-                      height: S.p32,
-                    ),
+                    child: const AppIcon(AppIcons.sort, width: S.p32, height: S.p32),
                   ),
                 ],
               ),
@@ -114,14 +96,10 @@ class ApartamentsTab extends ConsumerWidget {
                     if (isAdded) {
                       ref
                           .read(navigationServiceProvider)
-                          .showSnackBar(
-                            message: "Добавлено в избранное",
-                            durationInSeconds: 5,
-                          );
+                          .showSnackBar(message: "Добавлено в избранное", durationInSeconds: 5);
                     }
                   },
-                  onTap: () =>
-                      context.pushRoute(ApartamnetRoute(apartment: apartment)),
+                  onTap: () => context.pushRoute(ApartamnetRoute(apartment: apartment)),
                 );
               },
               separatorBuilder: (context, index) {
@@ -129,12 +107,8 @@ class ApartamentsTab extends ConsumerWidget {
               },
             );
           },
-          loading: () => const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
-          ),
-          error: (error, stack) => SliverToBoxAdapter(
-            child: Center(child: Text('Ошибка при загрузке: $error')),
-          ),
+          loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
+          error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: error)),
         ),
       ],
     );

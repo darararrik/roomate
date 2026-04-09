@@ -15,7 +15,6 @@ _ApartamentDto _$ApartamentDtoFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       isVerification: json['is_verification'] as bool?,
-      withCompany: json['with_company'] as bool?,
       price: json['price'] as String?,
       roomsCount: json['rooms_count'] as String?,
       area: json['area'] as String?,
@@ -52,7 +51,6 @@ Map<String, dynamic> _$ApartamentDtoToJson(_ApartamentDto instance) =>
       'description': instance.description,
       'image_urls': instance.imageUrls,
       'is_verification': instance.isVerification,
-      'with_company': instance.withCompany,
       'price': instance.price,
       'rooms_count': instance.roomsCount,
       'area': instance.area,

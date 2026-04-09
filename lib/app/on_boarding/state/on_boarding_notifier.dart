@@ -59,8 +59,8 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
 
   void skip() => ref.nav.replaceAll([const MainFlowRoute()]);
   void toCreateProfile() => ref.nav.push(const CreateProfileRoute());
-  void toCreateAd() {
-    ref.read(globalProfileProvider.notifier).createProfileOwner();
+  Future<void> toCreateAd() async {
+    await ref.read(globalProfileProvider.notifier).createProfileOwner();
     ref.nav.push(const CreateAdRoute());
   }
 }

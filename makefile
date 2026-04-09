@@ -81,6 +81,17 @@ format:
 ## Анализ кода
 analyze:
 	fvm flutter analyze
+# Полная очистка и переустановка подов
+pods-clean:
+	cd ios && rm -rf Pods Podfile.lock && pod cache clean --all && pod install --repo-update
+
+# Обычное обновление (если изменился Podfile)
+pods-install:
+	cd ios && pod install --repo-update
+
+# Обновление всех подов до последних разрешенных версий
+pods-update:
+	cd ios && pod update
 
 ## Помощь
 help:

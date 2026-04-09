@@ -210,8 +210,8 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// @nodoc
 
 
-class _UserModel implements UserModel {
-  const _UserModel({this.id = 0, this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.avatarNull, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, final  List<TagModel> tags = const [], this.isOwner = false}): _tags = tags;
+class _UserModel extends UserModel {
+  const _UserModel({this.id = 0, this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, final  List<TagModel> tags = const [], this.isOwner = false}): _tags = tags,super._();
   
 
 @override@JsonKey() final  int id;

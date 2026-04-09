@@ -9,7 +9,7 @@ sealed class UserState with _$UserState {
   factory UserState({
     @Default('') String firstName,
     @Default('') String lastName,
-    @Default(Constants.avatarNull) String avatarUrl,
+    @Default(Constants.defaultProfileImage) String avatarUrl,
     @Default(null) GenderEnum? gender,
     @Default('') String age,
     @Default(false) bool isVerified,

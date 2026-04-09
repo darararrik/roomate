@@ -27,7 +27,7 @@ class ApartamnetScreen extends HookConsumerWidget {
     final String isVerifiedText = apartment.isVerification
         ? context.l10n.apartmentVerified
         : context.l10n.apartmentNotVerified;
-    final String withCompanyText = apartment.withCompany
+    final String withCompanyText = apartment.whoToRent.contains(WhoToRent.company)
         ? context.l10n.apartmentCompanyAllowed
         : context.l10n.apartmentCompanyNotAllowed;
 

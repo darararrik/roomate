@@ -16,7 +16,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
   Future<UserModel> _fetchProfileOrThrow() async {
     final res = await _repository.fetchProfile();
-    return res.fold((e) => throw e, (u) => u);
+    return res.fold((e) => UserModel.guest(), (u) => u);
   }
 
   Future<void> refreshProfile() async {
@@ -131,6 +131,10 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
         state = AsyncData(user);
       },
     );
+  }
+
+  void createProfileGuest() {
+    state = AsyncData(UserModel.guest());
   }
 
   void _handleRemoteException(RemoteException error) {
