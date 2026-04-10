@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FilterModel {
 
- List<OptionModel> get categories; List<OptionModel> get propertyTypes; List<OptionModel> get roomsCounts;
+ List<OptionModel> get rentGoal; List<OptionModel> get propertyTypes; List<OptionModel> get roomsCounts; List<OptionModel> get districts; List<OptionModel> get rentDuration;
 /// Create a copy of FilterModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $FilterModelCopyWith<FilterModel> get copyWith => _$FilterModelCopyWithImpl<Filt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FilterModel&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.propertyTypes, propertyTypes)&&const DeepCollectionEquality().equals(other.roomsCounts, roomsCounts));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FilterModel&&const DeepCollectionEquality().equals(other.rentGoal, rentGoal)&&const DeepCollectionEquality().equals(other.propertyTypes, propertyTypes)&&const DeepCollectionEquality().equals(other.roomsCounts, roomsCounts)&&const DeepCollectionEquality().equals(other.districts, districts)&&const DeepCollectionEquality().equals(other.rentDuration, rentDuration));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(propertyTypes),const DeepCollectionEquality().hash(roomsCounts));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(rentGoal),const DeepCollectionEquality().hash(propertyTypes),const DeepCollectionEquality().hash(roomsCounts),const DeepCollectionEquality().hash(districts),const DeepCollectionEquality().hash(rentDuration));
 
 @override
 String toString() {
-  return 'FilterModel(categories: $categories, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts)';
+  return 'FilterModel(rentGoal: $rentGoal, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts, districts: $districts, rentDuration: $rentDuration)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $FilterModelCopyWith<$Res>  {
   factory $FilterModelCopyWith(FilterModel value, $Res Function(FilterModel) _then) = _$FilterModelCopyWithImpl;
 @useResult
 $Res call({
- List<OptionModel> categories, List<OptionModel> propertyTypes, List<OptionModel> roomsCounts
+ List<OptionModel> rentGoal, List<OptionModel> propertyTypes, List<OptionModel> roomsCounts, List<OptionModel> districts, List<OptionModel> rentDuration
 });
 
 
@@ -62,11 +62,13 @@ class _$FilterModelCopyWithImpl<$Res>
 
 /// Create a copy of FilterModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? categories = null,Object? propertyTypes = null,Object? roomsCounts = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? rentGoal = null,Object? propertyTypes = null,Object? roomsCounts = null,Object? districts = null,Object? rentDuration = null,}) {
   return _then(_self.copyWith(
-categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
+rentGoal: null == rentGoal ? _self.rentGoal : rentGoal // ignore: cast_nullable_to_non_nullable
 as List<OptionModel>,propertyTypes: null == propertyTypes ? _self.propertyTypes : propertyTypes // ignore: cast_nullable_to_non_nullable
 as List<OptionModel>,roomsCounts: null == roomsCounts ? _self.roomsCounts : roomsCounts // ignore: cast_nullable_to_non_nullable
+as List<OptionModel>,districts: null == districts ? _self.districts : districts // ignore: cast_nullable_to_non_nullable
+as List<OptionModel>,rentDuration: null == rentDuration ? _self.rentDuration : rentDuration // ignore: cast_nullable_to_non_nullable
 as List<OptionModel>,
   ));
 }
@@ -149,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<OptionModel> categories,  List<OptionModel> propertyTypes,  List<OptionModel> roomsCounts)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<OptionModel> rentGoal,  List<OptionModel> propertyTypes,  List<OptionModel> roomsCounts,  List<OptionModel> districts,  List<OptionModel> rentDuration)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FilterModel() when $default != null:
-return $default(_that.categories,_that.propertyTypes,_that.roomsCounts);case _:
+return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.districts,_that.rentDuration);case _:
   return orElse();
 
 }
@@ -170,10 +172,10 @@ return $default(_that.categories,_that.propertyTypes,_that.roomsCounts);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<OptionModel> categories,  List<OptionModel> propertyTypes,  List<OptionModel> roomsCounts)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<OptionModel> rentGoal,  List<OptionModel> propertyTypes,  List<OptionModel> roomsCounts,  List<OptionModel> districts,  List<OptionModel> rentDuration)  $default,) {final _that = this;
 switch (_that) {
 case _FilterModel():
-return $default(_that.categories,_that.propertyTypes,_that.roomsCounts);}
+return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.districts,_that.rentDuration);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -187,10 +189,10 @@ return $default(_that.categories,_that.propertyTypes,_that.roomsCounts);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<OptionModel> categories,  List<OptionModel> propertyTypes,  List<OptionModel> roomsCounts)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<OptionModel> rentGoal,  List<OptionModel> propertyTypes,  List<OptionModel> roomsCounts,  List<OptionModel> districts,  List<OptionModel> rentDuration)?  $default,) {final _that = this;
 switch (_that) {
 case _FilterModel() when $default != null:
-return $default(_that.categories,_that.propertyTypes,_that.roomsCounts);case _:
+return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.districts,_that.rentDuration);case _:
   return null;
 
 }
@@ -202,14 +204,14 @@ return $default(_that.categories,_that.propertyTypes,_that.roomsCounts);case _:
 
 
 class _FilterModel implements FilterModel {
-  const _FilterModel({final  List<OptionModel> categories = const [], final  List<OptionModel> propertyTypes = const [], final  List<OptionModel> roomsCounts = const []}): _categories = categories,_propertyTypes = propertyTypes,_roomsCounts = roomsCounts;
+  const _FilterModel({final  List<OptionModel> rentGoal = const [], final  List<OptionModel> propertyTypes = const [], final  List<OptionModel> roomsCounts = const [], final  List<OptionModel> districts = const [], final  List<OptionModel> rentDuration = const []}): _rentGoal = rentGoal,_propertyTypes = propertyTypes,_roomsCounts = roomsCounts,_districts = districts,_rentDuration = rentDuration;
   
 
- final  List<OptionModel> _categories;
-@override@JsonKey() List<OptionModel> get categories {
-  if (_categories is EqualUnmodifiableListView) return _categories;
+ final  List<OptionModel> _rentGoal;
+@override@JsonKey() List<OptionModel> get rentGoal {
+  if (_rentGoal is EqualUnmodifiableListView) return _rentGoal;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_categories);
+  return EqualUnmodifiableListView(_rentGoal);
 }
 
  final  List<OptionModel> _propertyTypes;
@@ -226,6 +228,20 @@ class _FilterModel implements FilterModel {
   return EqualUnmodifiableListView(_roomsCounts);
 }
 
+ final  List<OptionModel> _districts;
+@override@JsonKey() List<OptionModel> get districts {
+  if (_districts is EqualUnmodifiableListView) return _districts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_districts);
+}
+
+ final  List<OptionModel> _rentDuration;
+@override@JsonKey() List<OptionModel> get rentDuration {
+  if (_rentDuration is EqualUnmodifiableListView) return _rentDuration;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_rentDuration);
+}
+
 
 /// Create a copy of FilterModel
 /// with the given fields replaced by the non-null parameter values.
@@ -237,16 +253,16 @@ _$FilterModelCopyWith<_FilterModel> get copyWith => __$FilterModelCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FilterModel&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._propertyTypes, _propertyTypes)&&const DeepCollectionEquality().equals(other._roomsCounts, _roomsCounts));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FilterModel&&const DeepCollectionEquality().equals(other._rentGoal, _rentGoal)&&const DeepCollectionEquality().equals(other._propertyTypes, _propertyTypes)&&const DeepCollectionEquality().equals(other._roomsCounts, _roomsCounts)&&const DeepCollectionEquality().equals(other._districts, _districts)&&const DeepCollectionEquality().equals(other._rentDuration, _rentDuration));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_propertyTypes),const DeepCollectionEquality().hash(_roomsCounts));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_rentGoal),const DeepCollectionEquality().hash(_propertyTypes),const DeepCollectionEquality().hash(_roomsCounts),const DeepCollectionEquality().hash(_districts),const DeepCollectionEquality().hash(_rentDuration));
 
 @override
 String toString() {
-  return 'FilterModel(categories: $categories, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts)';
+  return 'FilterModel(rentGoal: $rentGoal, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts, districts: $districts, rentDuration: $rentDuration)';
 }
 
 
@@ -257,7 +273,7 @@ abstract mixin class _$FilterModelCopyWith<$Res> implements $FilterModelCopyWith
   factory _$FilterModelCopyWith(_FilterModel value, $Res Function(_FilterModel) _then) = __$FilterModelCopyWithImpl;
 @override @useResult
 $Res call({
- List<OptionModel> categories, List<OptionModel> propertyTypes, List<OptionModel> roomsCounts
+ List<OptionModel> rentGoal, List<OptionModel> propertyTypes, List<OptionModel> roomsCounts, List<OptionModel> districts, List<OptionModel> rentDuration
 });
 
 
@@ -274,11 +290,13 @@ class __$FilterModelCopyWithImpl<$Res>
 
 /// Create a copy of FilterModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? categories = null,Object? propertyTypes = null,Object? roomsCounts = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? rentGoal = null,Object? propertyTypes = null,Object? roomsCounts = null,Object? districts = null,Object? rentDuration = null,}) {
   return _then(_FilterModel(
-categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+rentGoal: null == rentGoal ? _self._rentGoal : rentGoal // ignore: cast_nullable_to_non_nullable
 as List<OptionModel>,propertyTypes: null == propertyTypes ? _self._propertyTypes : propertyTypes // ignore: cast_nullable_to_non_nullable
 as List<OptionModel>,roomsCounts: null == roomsCounts ? _self._roomsCounts : roomsCounts // ignore: cast_nullable_to_non_nullable
+as List<OptionModel>,districts: null == districts ? _self._districts : districts // ignore: cast_nullable_to_non_nullable
+as List<OptionModel>,rentDuration: null == rentDuration ? _self._rentDuration : rentDuration // ignore: cast_nullable_to_non_nullable
 as List<OptionModel>,
   ));
 }

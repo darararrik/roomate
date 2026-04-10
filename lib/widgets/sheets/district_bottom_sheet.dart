@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:group_button/group_button.dart';
-
 import 'package:roomate/lib.dart';
 
 class DistrictBottomSheet extends StatefulWidget {
@@ -84,10 +82,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                     padding: const P(bottom: S.p12),
                     child: InputWidget(
                       controller: _searchController,
-                      prefixIcon: AppIcon(
-                        AppIcons.search,
-                        color: context.colors.graysIcon500,
-                      ),
+                      prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
                       hintText: context.l10n.search,
                     ),
                   ),
@@ -99,9 +94,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                           isRadio: false,
                           buttons: disctricts,
                           onSelected: (val, index, isSelected) {
-                            debugPrint(
-                              'Button: $val index: $index selected: $isSelected',
-                            );
+                            debugPrint('Button: $val index: $index selected: $isSelected');
                           },
                           buttonBuilder: (selected, value, context) {
                             return Row(
@@ -112,7 +105,9 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                                     padding: const P(all: S.p12),
                                     child: Text(
                                       value,
-                                      style: context.typography.bodyDescription,
+                                      style: context.typography.bodyDescription.copyWith(
+                                        height: 17 / 14,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -130,10 +125,7 @@ class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
                   ),
                   Padding(
                     padding: const P(top: S.p16),
-                    child: PrimaryButton(
-                      text: context.l10n.apply,
-                      onPressed: () {},
-                    ),
+                    child: PrimaryButton(text: context.l10n.apply, onPressed: () {}),
                   ),
                 ],
               ),

@@ -1,14 +1,13 @@
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+import 'package:shared/mocks/tag_mock_data.dart';
 import 'package:shared/shared.dart';
 
-@BackendOnly(
-  'Temporary mock datasource that emulates apartment backend responses.',
-)
+@BackendOnly('Temporary mock datasource that emulates apartment backend responses.')
 mixin ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
+  @override
   Future<List<ApartamentDto>> fetchApartaments(ApartamentFilter filter) async {
-    // Имитируем задержку сети
     await Future.delayed(const Duration(milliseconds: 300));
 
     final allApartments = [
@@ -16,51 +15,62 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
       ...MockStorage.createAds,
     ].map((json) => ApartamentDto.fromJson(json)).toList();
 
-    // Маппинг ID для фильтрации (согласно ApartmentFiltersMockJson)
-    final categoryMap = {1: "Снять", 2: "Обменять"};
-    final roomsCountMap = {21: "Студия", 22: "1", 23: "2", 24: "3", 25: "4+"};
-
-    // Фильтрация
     return allApartments.where((apt) {
-      // Фильтр по городу
-      final address = (apt.address ?? '').toLowerCase();
-      if (!address.contains(filter.city.toLowerCase())) {
+      /// город
+      if (filter.cityId != 0 && apt.cityId != filter.cityId) {
         return false;
       }
 
-      // Фильтр по категории
-      if (filter.categoryId != null) {
-        final categoryTitle = categoryMap[filter.categoryId];
-        if (categoryTitle == "Снять" && apt.dealGoal != "rent") {
+      /// категория
+      if (filter.goalId != 0) {
+        final categoryTitle = _findTitle(TagsMockData.rentGoal, filter.goalId);
+
+        if (categoryTitle == "Аренда" && apt.dealGoal != "rent") {
           return false;
         }
-        if (categoryTitle == "Обменять" && apt.dealGoal != "exchange") {
+
+        if (categoryTitle == "Обмен" && apt.dealGoal != "exchange") {
           return false;
         }
       }
 
-      // Фильтр по виду недвижимости
-      if (filter.propertyTypeIds.isNotEmpty) {
-        // В нашем моке тип недвижимости неявно задан через заголовок или другие поля
-        // Для простоты пока оставим как есть, так как в DTO нет явного поля propertyType
-      }
-
-      // Фильтр по количеству комнат
+      /// комнаты
       if (filter.roomsCountIds.isNotEmpty) {
         final selectedRoomsTitles = filter.roomsCountIds
-            .map((id) => roomsCountMap[id])
+            .map((id) => _findTitle(TagsMockData.roomsCount, id))
             .whereType<String>()
             .toList();
-        if (!selectedRoomsTitles.contains(apt.roomsCount ?? '')) return false;
+
+        if (!selectedRoomsTitles.contains(apt.roomsCount)) {
+          return false;
+        }
       }
 
-      // Фильтр по цене
+      /// цена
       final price = int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
-      if (filter.minPrice != null && price < filter.minPrice!) return false;
-      if (filter.maxPrice != null && price > filter.maxPrice!) return false;
+
+      if (filter.minPrice != null && price < filter.minPrice!) {
+        return false;
+      }
+
+      if (filter.maxPrice != null && price > filter.maxPrice!) {
+        return false;
+      }
 
       return true;
     }).toList();
+  }
+
+  String? _findTitle(List<Map<String, dynamic>> list, int? id) {
+    if (id == null) return null;
+
+    for (final item in list) {
+      if (item["id"] == id) {
+        return item["title"] as String?;
+      }
+    }
+
+    return null;
   }
 
   @override
@@ -83,22 +93,13 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
 
     final nextId =
         [
-          ...ApartmentsMockJson.fetchApartments.map(
-            (item) => item['id'] as int? ?? 0,
-          ),
+          ...ApartmentsMockJson.fetchApartments.map((item) => item['id'] as int? ?? 0),
           ...MockStorage.createAds.map((item) => item['id'] as int? ?? 0),
-        ].fold<int>(
-          0,
-          (maxId, currentId) => currentId > maxId ? currentId : maxId,
-        ) +
+        ].fold<int>(0, (maxId, currentId) => currentId > maxId ? currentId : maxId) +
         1;
 
     final ownerName = _resolveOwnerName();
-    final apartment = CreateAdFormMapper.toApartamentDto(
-      request,
-      id: nextId,
-      ownerName: ownerName,
-    );
+    final apartment = CreateAdFormMapper.toApartamentDto(request, id: nextId, ownerName: ownerName);
 
     MockStorage.createAds.insert(0, apartment.toJson());
   }

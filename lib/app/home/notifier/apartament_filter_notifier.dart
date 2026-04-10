@@ -1,11 +1,11 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
+import 'package:roomate/routing/app_routing.gr.dart';
 
 part 'apartament_filter_notifier.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<FilterModel> filters(Ref ref) async {
   return ref.watch(apartamentsRepositoryProvider).fetchFilters();
 }
@@ -15,8 +15,10 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
   @override
   ApartamentFilter build() => const ApartamentFilter();
 
-  void setCategory(int? categoryId) {
-    state = state.copyWith(categoryId: categoryId);
+  void openFilters() => ref.nav.push(const FiltersRoute());
+
+  void setCategory(int goalId) {
+    state = state.copyWith(goalId: goalId);
   }
 
   void togglePropertyType(int typeId) {
@@ -49,5 +51,10 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
 
   void apply() {
     ref.read(apartamentsProvider.notifier).fetchWithFilter(state);
+  }
+
+  void setRentDuration(int id) {
+    state = state.copyWith(rentDurationId: id);
+    ref.nav.pop();
   }
 }

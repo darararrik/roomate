@@ -1,3 +1,4 @@
+export 'backend/backend.dart';
 export 'extensions/extensions.dart';
 export 'object.dart';
 export 'string.dart';

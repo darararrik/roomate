@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -104,9 +103,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
 
   Future<void> fetchTagsAboutSelf() async {
     state = state.copyWith(isLoading: true);
-    final result = await ref
-        .read(profileRepositoryProvider)
-        .fetchTagsAboutSelf();
+    final result = await ref.read(profileRepositoryProvider).fetchTagsAboutSelf();
     result.fold(
       (l) => state = state.copyWith(isLoading: false),
       (r) => state = state.copyWith(tags: r, isLoading: false),
@@ -116,9 +113,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
   void onSkip() => ref.nav.replaceAll([const MainFlowRoute()]);
 
   String titleButton(TabsRouter tabsRouter) {
-    return tabsRouter.activeIndex == 2
-        ? ref.l10n.confirmThroughGosuslugi
-        : ref.l10n.next;
+    return tabsRouter.activeIndex == 2 ? ref.l10n.confirmThroughGosuslugi : ref.l10n.next;
   }
 
   /// validation
@@ -151,11 +146,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
       lastNameError: lNameErr,
       ageError: ageErr,
       genderError: genderErr,
-      isFormValid:
-          fNameErr.isEmpty &&
-          lNameErr.isEmpty &&
-          ageErr.isEmpty &&
-          genderErr.isEmpty,
+      isFormValid: fNameErr.isEmpty && lNameErr.isEmpty && ageErr.isEmpty && genderErr.isEmpty,
     );
   }
 

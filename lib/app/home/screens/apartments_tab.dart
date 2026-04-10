@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:roomate/app/home/notifier/apartament_filter_notifier.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -30,8 +29,7 @@ class ApartamentsTab extends ConsumerWidget {
                   FilterCard(
                     leading: const AppIcon(AppIcons.filter2, width: S.p24, height: S.p24),
                     title: context.l10n.filters,
-                    //TODO: вынести в нотифаер
-                    onTap: () => context.pushRoute(const FiltersRoute()),
+                    onTap: () => ref.read(apartamentFilterProvider.notifier).openFilters(),
                   ),
                   FilterCard(
                     trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
@@ -110,7 +108,7 @@ class ApartamentsTab extends ConsumerWidget {
             );
           },
           loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
-          error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: error)),
+          error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: stack)),
         ),
       ],
     );

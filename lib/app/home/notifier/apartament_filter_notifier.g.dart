@@ -26,7 +26,7 @@ final class FiltersProvider
         argument: null,
         retry: null,
         name: r'filtersProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -46,7 +46,7 @@ final class FiltersProvider
   }
 }
 
-String _$filtersHash() => r'ae6754bc2bbca3b008c85f40daca432225f87779';
+String _$filtersHash() => r'43b0f1afbb9476604bb673d1e975faf01a7ab4ec';
 
 @ProviderFor(ApartamentFilterNotifier)
 final apartamentFilterProvider = ApartamentFilterNotifierProvider._();
@@ -81,7 +81,7 @@ final class ApartamentFilterNotifierProvider
 }
 
 String _$apartamentFilterNotifierHash() =>
-    r'fb5935ad7579ff93216f9aa6cec7c04e309ce2c9';
+    r'e4dd4191686aa1ea75f7699d3924d5030e844572';
 
 abstract class _$ApartamentFilterNotifier extends $Notifier<ApartamentFilter> {
   ApartamentFilter build();

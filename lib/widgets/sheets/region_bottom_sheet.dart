@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:group_button/group_button.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
@@ -63,49 +60,42 @@ class _RegionBottomSheetState extends State<RegionBottomSheet> {
                     padding: const P(bottom: S.p12),
                     child: InputWidget(
                       controller: _searchController,
-                      prefixIcon: AppIcon(
-                        AppIcons.search,
-                        color: context.colors.graysIcon500,
-                      ),
+                      prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
                       hintText: context.l10n.search,
                     ),
                   ),
                   Expanded(
-                    child: ListView(
+                    child: ListView.builder(
                       controller: controller,
-                      children: [
-                        GroupButton(
-                          buttons: cities,
-                          buttonBuilder: (selected, value, context) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(S.p12),
-                                    child: Text(
-                                      value,
-                                      style: context.typography.bodyDescription,
+                      itemCount: cities.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final city = cities[index];
+                        return InkWell(
+                          onTap: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(S.p12),
+                                  child: Text(
+                                    city,
+                                    style: context.typography.bodyDescription.copyWith(
+                                      height: 17 / 14,
                                     ),
                                   ),
                                 ),
-                                SelectionButton(
-                                  isSelected: selected,
-                                  isRadio: true,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ],
+                              ),
+                              const SelectionButton(isSelected: false, isRadio: true),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Padding(
                     padding: const P(top: S.p16),
-                    child: PrimaryButton(
-                      text: context.l10n.apply,
-                      onPressed: () {},
-                    ),
+                    child: PrimaryButton(text: context.l10n.apply, onPressed: () {}),
                   ),
                 ],
               ),

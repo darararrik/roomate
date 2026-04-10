@@ -18,6 +18,7 @@ sealed class ApartamentModel with _$ApartamentModel {
     @Default(0) int floor,
     @Default(0) int totalFloor,
     @Default('') String address,
+    @Default(0) int cityId,
     @Default('') String name,
     @Default('') String role,
     @Default('') String publishDate,

@@ -1,5 +1,5 @@
+import 'package:data/lib.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../apartaments/filter_dto.dart';
 
 part 'ad_form_options_dto.freezed.dart';
 part 'ad_form_options_dto.g.dart';
@@ -42,6 +42,5 @@ sealed class AdFormOptionsDto with _$AdFormOptionsDto {
     @JsonKey(name: 'contact_method') List<OptionDto>? contactMethod,
   }) = _AdFormOptionsDto;
 
-  factory AdFormOptionsDto.fromJson(Map<String, dynamic> json) =>
-      _$AdFormOptionsDtoFromJson(json);
+  factory AdFormOptionsDto.fromJson(Map<String, dynamic> json) => _$AdFormOptionsDtoFromJson(json);
 }

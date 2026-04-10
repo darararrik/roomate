@@ -17,6 +17,7 @@ abstract class ApartamentDto with _$ApartamentDto {
     @JsonKey(name: 'floor') int? floor,
     @JsonKey(name: 'total_floor') int? totalFloor,
     @JsonKey(name: 'address') String? address,
+    @JsonKey(name: 'city_id') int? cityId,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'role') String? role,
     @JsonKey(name: 'publish_date') String? publishDate,

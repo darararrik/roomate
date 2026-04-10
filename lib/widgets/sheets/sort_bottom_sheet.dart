@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:group_button/group_button.dart';
-
 import 'package:roomate/lib.dart';
 
 //TODO: Сделать sortTerms Разными
@@ -35,7 +33,7 @@ class SortBottomSheet extends StatelessWidget {
                         padding: const EdgeInsets.all(S.p12),
                         child: Text(
                           value,
-                          style: context.typography.bodyDescription,
+                          style: context.typography.bodyDescription.copyWith(height: 17 / 14),
                         ),
                       ),
                     ),
