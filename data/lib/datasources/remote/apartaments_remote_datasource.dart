@@ -1,3 +1,5 @@
-import 'package:data/data.dart';
+import 'package:data/lib.dart';
 
-class ApartamentsRemoteDataSource extends FullMockDataSource implements ApartamentsDataSource {}
+class ApartamentsRemoteDataSource extends FullMockDataSource implements ApartamentsDataSource {
+  ApartamentsRemoteDataSource(ApiClient client);
+}

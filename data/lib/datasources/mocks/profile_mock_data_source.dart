@@ -1,5 +1,6 @@
-import 'package:data/data.dart';
-import 'package:domain/domain.dart';
+import 'package:domain/lib.dart';
+
+import 'package:data/lib.dart';
 
 mixin ProfileMockDataSource implements ProfileDataSource {
   @override

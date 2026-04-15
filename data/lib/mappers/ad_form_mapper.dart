@@ -1,5 +1,6 @@
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+
+import 'package:data/lib.dart';
 
 class AdFormMapper {
   static OptionModel _toOptionModel(OptionDto dto) =>

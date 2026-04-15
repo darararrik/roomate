@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/data.dart';
+import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
@@ -13,35 +13,22 @@ class ProfileRepository implements IProfileRepository {
   final ProfileTagsMockDataSource _tagsMockDataSource;
 
   @override
-  Future<Either<RemoteException, UserModel>> createProfile(
-    UserModel user,
-  ) async {
+  Future<Either<RemoteException, UserModel>> createProfile(UserModel user) async {
     try {
       final result = await _remoteDataSource.createProfile(user);
       return Right(result);
     } catch (e) {
-      return Left(
-        RemoteException(
-          kind: RemoteExceptionKind.serverUndefined,
-          rootException: e,
-        ),
-      );
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
     }
   }
 
   @override
-  Future<Either<RemoteException, List<TagGroupModel>>>
-  fetchTagsAboutSelf() async {
+  Future<Either<RemoteException, List<TagGroupModel>>> fetchTagsAboutSelf() async {
     try {
       final result = _tagsMockDataSource.fetchTagsAboutSelf();
       return Right(result);
     } catch (e) {
-      return Left(
-        RemoteException(
-          kind: RemoteExceptionKind.serverUndefined,
-          rootException: e,
-        ),
-      );
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
     }
   }
 
@@ -51,12 +38,7 @@ class ProfileRepository implements IProfileRepository {
       final result = await _remoteDataSource.fetchProfile();
       return Right(result);
     } catch (e) {
-      return Left(
-        RemoteException(
-          kind: RemoteExceptionKind.serverUndefined,
-          rootException: e,
-        ),
-      );
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
     }
   }
 
@@ -73,19 +55,12 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<RemoteException, UserModel>> updateProfile(
-    UserModel user,
-  ) async {
+  Future<Either<RemoteException, UserModel>> updateProfile(UserModel user) async {
     try {
       final result = await _remoteDataSource.updateProfile(user);
       return Right(result);
     } catch (e) {
-      return Left(
-        RemoteException(
-          kind: RemoteExceptionKind.serverUndefined,
-          rootException: e,
-        ),
-      );
+      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
     }
   }
 }

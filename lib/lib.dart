@@ -70,7 +70,7 @@ export 'app/on_boarding/state/state.dart';
 export 'constants/app_icons.dart';
 export 'constants/constants.dart';
 export 'constants/spacing.dart';
-export 'di/providers.dart';
+export 'di/di.dart';
 export 'l10n/app_localizations.dart';
 export 'l10n/app_localizations_ru.dart';
 export 'l10n/l10n.dart';

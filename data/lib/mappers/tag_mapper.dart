@@ -1,18 +1,12 @@
-import 'package:data/data.dart';
+import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 
 abstract class TagMapper {
-  static TagModel toModel(UserTagData data) => TagModel(
-    id: data.id ?? 0,
-    title: data.title ?? '',
-    isSelected: data.isSelected ?? false,
-  );
+  static TagModel toModel(UserTagData data) =>
+      TagModel(id: data.id ?? 0, title: data.title ?? '', isSelected: data.isSelected ?? false);
 
-  static UserTagData toData(TagModel model) => UserTagData(
-    id: model.id,
-    title: model.title,
-    isSelected: model.isSelected,
-  );
+  static UserTagData toData(TagModel model) =>
+      UserTagData(id: model.id, title: model.title, isSelected: model.isSelected);
 }
 
 abstract class TagsMapper {

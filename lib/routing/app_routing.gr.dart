@@ -56,6 +56,7 @@ import 'package:roomate/app/create_profile/screens/tabs/verification_intro_scree
     as _i44;
 import 'package:roomate/app/create_profile/screens/verification_status.dart'
     as _i45;
+import 'package:roomate/app/favorites/favorites_screen.dart' as _i22;
 import 'package:roomate/app/home/screens/apartments_tab.dart' as _i4;
 import 'package:roomate/app/home/screens/coworking_tab.dart' as _i14;
 import 'package:roomate/app/home/screens/filters_screen.dart' as _i26;
@@ -72,7 +73,6 @@ import 'package:roomate/screens/auth_edit_third_page.dart' as _i9;
 import 'package:roomate/screens/chats/chat_screen.dart' as _i11;
 import 'package:roomate/screens/chats/chats_screen.dart' as _i12;
 import 'package:roomate/screens/create_screen.dart' as _i17;
-import 'package:roomate/screens/favorites_screen.dart' as _i22;
 import 'package:roomate/screens/filling_profile_screen.dart' as _i25;
 import 'package:roomate/screens/location_screen.dart' as _i30;
 import 'package:roomate/screens/profile/profile_data_edit_screen.dart' as _i36;

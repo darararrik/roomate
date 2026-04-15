@@ -1,8 +1,10 @@
 export 'ad_form_options/ad_form_options.dart';
 export 'apartaments/apartaments.dart';
+export 'auth_response/auth_response.dart';
 export 'create_ad_form_request/create_ad_form_request.dart';
 export 'filter/filter.dart';
 export 'location/location.dart';
 export 'option/option.dart';
+export 'sign_in_response/sign_in_response.dart';
 export 'user/user.dart';
 export 'user_tags/user_tags.dart';

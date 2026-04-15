@@ -1,6 +1,7 @@
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/lib.dart';
 
 class LocationCatalogMockDataSource implements LocationCatalogDataSource {
   List<StreetModel>? _cache;

@@ -39,6 +39,7 @@ dependencies:
   dartz: ^0.10.1
   fluttertoast: ^9.0.0
   collection: ^1.19.1
+  talker: ^5.1.16
 dev_dependencies:
   flutter_test:
     sdk: flutter

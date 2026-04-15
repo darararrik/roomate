@@ -1,5 +1,6 @@
-import 'package:data/data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:data/lib.dart';
 
 part 'filter_dto.freezed.dart';
 part 'filter_dto.g.dart';

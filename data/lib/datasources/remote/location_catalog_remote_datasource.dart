@@ -1,4 +1,4 @@
-import 'package:data/data.dart';
+import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 
 /// Удалённый источник улиц. Пока заглушка под будущий API.

@@ -1,5 +1,6 @@
-import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:domain/domain.dart';
 
 part 'filter_model.freezed.dart';
 

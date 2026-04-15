@@ -1,5 +1,6 @@
-import 'package:data/lib.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:data/lib.dart';
 
 part 'ad_form_options_dto.freezed.dart';
 part 'ad_form_options_dto.g.dart';

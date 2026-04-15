@@ -5,8 +5,8 @@
       "name": "roomate - dev",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main.dart"
-      // "args": ["--dart-define-from-file=env/dev.json"]
+      "program": "lib/main.dart",
+      "args": ["--dart-define-from-file=env/dev.json"]
     },
     {
       "name": "roomate",

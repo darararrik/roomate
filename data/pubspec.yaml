@@ -19,7 +19,21 @@ dependencies:
   json_annotation: ^4.11.0
   dartz: ^0.10.1
   flutter_secure_storage: ^10.0.0
+  dio: ^5.9.2
+  talker_dio_logger: ^5.1.16
+  talker: ^5.1.16
+  import_sorter: ^4.6.0
 
 dev_dependencies:
   build_runner: ^2.13.1
   flutter_lints: ^6.0.0
+
+import_sorter:
+  emojis: false
+  comments: false
+  ignored_files:
+    - lib/l10n/*
+    - lib/routing/*
+    - r".*g\.dart$"
+    - r".*gr\.dart$"
+    - r".*freezed\.dart$"
