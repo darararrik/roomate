@@ -70,7 +70,6 @@ export 'lib/repository/auth_repository.dart';
 export 'lib/repository/location_catalog_repository_impl.dart';
 export 'lib/repository/profile_repository.dart';
 export 'lib/repository/repository.dart';
-export 'lib/repository/token_repository.dart';
 export 'lib/services/api_client.dart';
 export 'lib/services/network_module.dart';
 export 'lib/services/services.dart';

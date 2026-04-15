@@ -1,8 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared/shared.dart';
-
 import 'package:roomate/lib.dart';
+import 'package:shared/shared.dart';
 
 part 'global_profile_notifier.g.dart';
 
@@ -25,50 +24,36 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     state = await AsyncValue.guard(_fetchProfileOrThrow);
   }
 
-  Future<bool> ensureProfileByPhone(String phone) async {
-    final currentUser = state.asData?.value;
-    if (currentUser != null && currentUser.phone.isNotEmpty) return true;
+  // Future<bool> ensureProfileByPhone(String phone) async {
+  //   final currentUser = state.asData?.value;
+  //   if (currentUser != null && currentUser.phone.isNotEmpty) return true;
 
-    final existing = await _repository.fetchProfile();
-    return existing.fold((_) => createProfileWithPhone(phone), (user) async {
-      if (user.phone.isNotEmpty) {
-        state = AsyncData(user);
-        return true;
-      }
+  //   // final existing = await _repository.fetchProfile();
+  //   // return existing.fold((_) => createProfileWithPhone(UserModel(phone: phone)), (user) async {
+  //   //   if (user.phone.isNotEmpty) {
+  //   //     state = AsyncData(user);
+  //   //     return true;
+  //   //   }
 
-      final fullPhone = '+7$phone';
-      final patched = user.copyWith(phone: fullPhone);
-      final update = await _repository.updateProfile(patched);
+  //   //   final patched = user.copyWith(phone: phone);
+  //   //   final update = await _repository.updateProfile(patched);
 
-      return update.fold(
-        (e) {
-          state = AsyncError(e, StackTrace.current);
-          _handleRemoteException(e);
-          return false;
-        },
-        (saved) {
-          state = AsyncData(saved);
-          return true;
-        },
-      );
-    });
-  }
+  //   //   return update.fold(
+  //   //     (e) {
+  //   //       state = AsyncError(e, StackTrace.current);
+  //   //       _handleRemoteException(e);
+  //   //       return false;
+  //   //     },
+  //   //     (saved) {
+  //   //       state = AsyncData(saved);
+  //   //       return true;
+  //   //     },
+  //   //   );
+  //   // });
+  // }
 
-  Future<bool> createProfileWithPhone(String phone) async {
-    final fullPhone = '+7$phone';
-    final res = await _repository.createProfile(UserModel(phone: fullPhone));
-
-    return res.fold(
-      (e) {
-        state = AsyncError(e, StackTrace.current);
-        _handleRemoteException(e);
-        return false;
-      },
-      (user) {
-        state = AsyncData(user);
-        return true;
-      },
-    );
+  Future<void> createProfileWithPhone(UserModel user) async {
+    state = AsyncData(user);
   }
 
   Future<bool> updateProfile({

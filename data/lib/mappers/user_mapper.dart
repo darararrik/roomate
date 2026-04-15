@@ -4,7 +4,7 @@ import 'package:domain/domain.dart';
 abstract class UserMapper {
   static UserModel toModel(UserData? userData) {
     return UserModel(
-      id: userData?.id ?? 0,
+      id: userData?.id ?? '',
       firstName: userData?.firstName ?? '',
       lastName: userData?.lastName ?? '',
       avatarUrl: userData?.avatarUrl ?? '',

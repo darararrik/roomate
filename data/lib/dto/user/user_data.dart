@@ -8,7 +8,7 @@ part 'user_data.g.dart';
 @freezed
 sealed class UserData with _$UserData {
   const factory UserData({
-    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "id") String? id,
     @JsonKey(name: "first_name") String? firstName,
     @JsonKey(name: "last_name") String? lastName,
     @JsonKey(name: "phone") String? phone,

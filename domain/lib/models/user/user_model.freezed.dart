@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
- int get id; String get firstName; String get lastName;//TODO: Мб CityModel будет нужен
+ String get id; String get firstName; String get lastName;//TODO: Мб CityModel будет нужен
  String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; List<TagModel> get tags; bool get isOwner;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +46,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner
+ String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner
 });
 
 
@@ -66,7 +66,7 @@ class _$UserModelCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? tags = null,Object? isOwner = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner);case _:
@@ -179,7 +179,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
 return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner);}
@@ -196,7 +196,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner);case _:
@@ -211,10 +211,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 
 
 class _UserModel extends UserModel {
-  const _UserModel({this.id = 0, this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, final  List<TagModel> tags = const [], this.isOwner = false}): _tags = tags,super._();
+  const _UserModel({this.id = '', this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, final  List<TagModel> tags = const [], this.isOwner = false}): _tags = tags,super._();
   
 
-@override@JsonKey() final  int id;
+@override@JsonKey() final  String id;
 @override@JsonKey() final  String firstName;
 @override@JsonKey() final  String lastName;
 //TODO: Мб CityModel будет нужен
@@ -263,7 +263,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner
+ String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner
 });
 
 
@@ -283,7 +283,7 @@ class __$UserModelCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? tags = null,Object? isOwner = null,}) {
   return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable

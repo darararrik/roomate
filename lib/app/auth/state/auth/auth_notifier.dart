@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -48,27 +47,30 @@ class AuthNotifier extends _$AuthNotifier {
     ref.nav.replace(const MainFlowRoute());
   }
 
-  void openEnterCodeScreen() => ref.nav.push(const EnterCodeRoute());
+  void openEnterCodeScreen() {
+    final cleanPhone = state.phone.replaceAll(RegExp(r'\D'), '');
+    final formattedPhone = cleanPhone.startsWith('7') ? '+$cleanPhone' : '+7$cleanPhone';
+    ref.read(authRepositoryProvider).signInByPhone(formattedPhone);
+    ref.nav.push(const EnterCodeRoute());
+  }
 
+  // Future<void> verify() async {
+  //   if (!state.isPinComplete) return;
+  //   final result = await ref.read(authRepositoryProvider).verifySms(state.phone, state.code);
+  //   result.fold((e) => setError(e.kind.toString()), (user) async {
+  //     await ref.read(globalProfileProvider.notifier).createProfileWithPhone(user);
+  //     ref.nav.replace(const OnBoardingRoute());
+  //   });
+  // }
+  //TODO: потом разбить
   void openOnBoardingScreen() async {
     if (!state.isPinComplete) return;
-
-    checkCode();
-
-    if (state.isCodeVerified) {
-      // 1. Гарантируем наличие профиля (берем существующий или создаем новый)
-      final success = await ref
-          .read(globalProfileProvider.notifier)
-          .ensureProfileByPhone(state.phone);
-
-      // 2. Проверяем, нет ли ошибки после создания
-      if (!success) {
-        setError("Ошибка при создании профиля");
-        return;
-      }
-
-      // 3. Только если профиль создан успешно — переходим
+    final cleanPhone = state.phone.replaceAll(RegExp(r'\D'), '');
+    final formattedPhone = cleanPhone.startsWith('7') ? '+$cleanPhone' : '+7$cleanPhone';
+    final result = await ref.read(authRepositoryProvider).verifySms(formattedPhone, state.code);
+    result.fold((e) => setError(e.rootException.toString()), (user) async {
+      await ref.read(globalProfileProvider.notifier).createProfileWithPhone(user);
       ref.nav.replace(const OnBoardingRoute());
-    }
+    });
   }
 }

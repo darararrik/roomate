@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserData {
 
-@JsonKey(name: "id") int? get id;@JsonKey(name: "first_name") String? get firstName;@JsonKey(name: "last_name") String? get lastName;@JsonKey(name: "phone") String? get phone;@JsonKey(name: "gender") String? get gender;@JsonKey(name: "age") int? get age;@JsonKey(name: "city") String? get city;@JsonKey(name: "photo") String? get avatarUrl;@JsonKey(name: "status") bool? get isVerified;@JsonKey(name: "tags") List<UserTagData>? get tags;@JsonKey(name: "is_owner") bool? get isOwner;
+@JsonKey(name: "id") String? get id;@JsonKey(name: "first_name") String? get firstName;@JsonKey(name: "last_name") String? get lastName;@JsonKey(name: "phone") String? get phone;@JsonKey(name: "gender") String? get gender;@JsonKey(name: "age") int? get age;@JsonKey(name: "city") String? get city;@JsonKey(name: "photo") String? get avatarUrl;@JsonKey(name: "status") bool? get isVerified;@JsonKey(name: "tags") List<UserTagData>? get tags;@JsonKey(name: "is_owner") bool? get isOwner;
 /// Create a copy of UserData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserDataCopyWith<$Res>  {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) _then) = _$UserDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") int? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "tags") List<UserTagData>? tags,@JsonKey(name: "is_owner") bool? isOwner
+@JsonKey(name: "id") String? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "tags") List<UserTagData>? tags,@JsonKey(name: "is_owner") bool? isOwner
 });
 
 
@@ -68,7 +68,7 @@ class _$UserDataCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? firstName = freezed,Object? lastName = freezed,Object? phone = freezed,Object? gender = freezed,Object? age = freezed,Object? city = freezed,Object? avatarUrl = freezed,Object? isVerified = freezed,Object? tags = freezed,Object? isOwner = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String?,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "tags")  List<UserTagData>? tags, @JsonKey(name: "is_owner")  bool? isOwner)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "tags")  List<UserTagData>? tags, @JsonKey(name: "is_owner")  bool? isOwner)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserData() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender,_that.age,_that.city,_that.avatarUrl,_that.isVerified,_that.tags,_that.isOwner);case _:
@@ -181,7 +181,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "tags")  List<UserTagData>? tags, @JsonKey(name: "is_owner")  bool? isOwner)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "tags")  List<UserTagData>? tags, @JsonKey(name: "is_owner")  bool? isOwner)  $default,) {final _that = this;
 switch (_that) {
 case _UserData():
 return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender,_that.age,_that.city,_that.avatarUrl,_that.isVerified,_that.tags,_that.isOwner);}
@@ -198,7 +198,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  int? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "tags")  List<UserTagData>? tags, @JsonKey(name: "is_owner")  bool? isOwner)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "tags")  List<UserTagData>? tags, @JsonKey(name: "is_owner")  bool? isOwner)?  $default,) {final _that = this;
 switch (_that) {
 case _UserData() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender,_that.age,_that.city,_that.avatarUrl,_that.isVerified,_that.tags,_that.isOwner);case _:
@@ -216,7 +216,7 @@ class _UserData implements UserData {
   const _UserData({@JsonKey(name: "id") this.id, @JsonKey(name: "first_name") this.firstName, @JsonKey(name: "last_name") this.lastName, @JsonKey(name: "phone") this.phone, @JsonKey(name: "gender") this.gender, @JsonKey(name: "age") this.age, @JsonKey(name: "city") this.city, @JsonKey(name: "photo") this.avatarUrl, @JsonKey(name: "status") this.isVerified, @JsonKey(name: "tags") final  List<UserTagData>? tags, @JsonKey(name: "is_owner") this.isOwner}): _tags = tags;
   factory _UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
 
-@override@JsonKey(name: "id") final  int? id;
+@override@JsonKey(name: "id") final  String? id;
 @override@JsonKey(name: "first_name") final  String? firstName;
 @override@JsonKey(name: "last_name") final  String? lastName;
 @override@JsonKey(name: "phone") final  String? phone;
@@ -269,7 +269,7 @@ abstract mixin class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res>
   factory _$UserDataCopyWith(_UserData value, $Res Function(_UserData) _then) = __$UserDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") int? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "tags") List<UserTagData>? tags,@JsonKey(name: "is_owner") bool? isOwner
+@JsonKey(name: "id") String? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "tags") List<UserTagData>? tags,@JsonKey(name: "is_owner") bool? isOwner
 });
 
 
@@ -289,7 +289,7 @@ class __$UserDataCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? firstName = freezed,Object? lastName = freezed,Object? phone = freezed,Object? gender = freezed,Object? age = freezed,Object? city = freezed,Object? avatarUrl = freezed,Object? isVerified = freezed,Object? tags = freezed,Object? isOwner = freezed,}) {
   return _then(_UserData(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String?,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable

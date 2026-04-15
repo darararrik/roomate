@@ -7,9 +7,6 @@ import 'data_source_providers.dart';
 part 'repository_providers.g.dart';
 
 @Riverpod(keepAlive: true)
-ITokenRepository tokenRepository(Ref ref) => TokenRepositoryImpl();
-
-@Riverpod(keepAlive: true)
 IApartamentsRepository apartamentsRepository(Ref ref) {
   return ApartamentsRepositoryImpl(ref.watch(apartamentsRemoteDataSourceProvider));
 }

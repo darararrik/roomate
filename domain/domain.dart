@@ -32,4 +32,3 @@ export 'lib/repository/auth_repository.dart';
 export 'lib/repository/location_catalog_repository.dart';
 export 'lib/repository/profile_repository.dart';
 export 'lib/repository/repository.dart';
-export 'lib/repository/token_repository.dart';

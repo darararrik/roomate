@@ -47,7 +47,7 @@ final class TalkerProvider extends $FunctionalProvider<Talker, Talker, Talker>
   }
 }
 
-String _$talkerHash() => r'c8d646cd20bd75ed0669d004dcd9296d4a741de4';
+String _$talkerHash() => r'4ac665ebbb23bde0e7001cd299bbdd45e4be0670';
 
 @ProviderFor(apiClient)
 final apiClientProvider = ApiClientProvider._();
@@ -88,7 +88,7 @@ final class ApiClientProvider
   }
 }
 
-String _$apiClientHash() => r'9a8feac5373d6da1de8cdb1f4d1c907a30345dff';
+String _$apiClientHash() => r'4914467ac5492b3a2b99b29b801e08bfb29770d4';
 
 @ProviderFor(l10n)
 final l10nProvider = L10nProvider._();
@@ -135,3 +135,44 @@ final class L10nProvider
 }
 
 String _$l10nHash() => r'a08e49877c69c7a14eb968ff7e29c6dfa35ec0e6';
+
+@ProviderFor(tokenService)
+final tokenServiceProvider = TokenServiceProvider._();
+
+final class TokenServiceProvider
+    extends $FunctionalProvider<TokenService, TokenService, TokenService>
+    with $Provider<TokenService> {
+  TokenServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'tokenServiceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$tokenServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<TokenService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  TokenService create(Ref ref) {
+    return tokenService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TokenService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TokenService>(value),
+    );
+  }
+}
+
+String _$tokenServiceHash() => r'a80d33e54d872956b0b5dcd442ddbee6b645d092';

@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
+import 'package:shared/shared.dart';
 
 abstract interface class IApartamentsRepository {
   Future<List<ApartamentModel>> fetchApartaments(ApartamentFilter filter);
   Future<FilterModel> fetchFilters();
-  Future<AdFormOptionsModel> fetchAdFormOptions();
+  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions();
   Future<void> createAd(CreateAdFormModel request);
 }

@@ -1,14 +1,13 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
-
-import 'package:domain/domain.dart';
 
 part 'user_model.freezed.dart';
 
 @freezed
 sealed class UserModel with _$UserModel {
   const factory UserModel({
-    @Default(0) int id,
+    @Default('') String id,
     @Default('') String firstName,
     @Default('') String lastName,
     //TODO: Мб CityModel будет нужен

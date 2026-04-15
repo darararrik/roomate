@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/lib.dart';
+import 'package:data/services/token_service.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
-import 'package:data/lib.dart';
-
 class AuthRemoteDataSource implements AuthDataSource {
-  AuthRemoteDataSource({required ApiClient client}) : _client = client;
+  AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
+    : _client = client,
+      _tokenService = tokenService;
   final ApiClient _client;
+  final TokenService _tokenService;
 
   @override
   Future<Either<RemoteException, UserModel>> verifySms(String phone, String code) async {
@@ -14,9 +17,11 @@ class AuthRemoteDataSource implements AuthDataSource {
       final result = await _client.post(
         ApiUrlConstants.verifySms,
         body: {'phone': phone, 'code': code},
-        transformer: (json) => UserData.fromJson(json as Map<String, dynamic>),
+        transformer: (json) => AuthResponseData.fromJson(json),
       );
-      final user = UserMapper.toModel(result);
+      final user = UserMapper.toModel(result.user);
+      await _saveTokens(result.accessToken!, result.refreshToken!);
+
       return Right(user);
     } on RemoteException catch (e) {
       return Left(e);
@@ -64,5 +69,9 @@ class AuthRemoteDataSource implements AuthDataSource {
   Future<Either<RemoteException, bool>> refreshToken(String refreshToken) async {
     // Реализация аналогична...
     throw UnimplementedError();
+  }
+
+  Future<void> _saveTokens(String accessToken, String refreshToken) async {
+    await _tokenService.saveTokens(accessToken, refreshToken);
   }
 }

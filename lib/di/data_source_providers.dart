@@ -27,5 +27,8 @@ LocationCatalogDataSource locationCatalogDataSource(Ref ref) {
 
 @Riverpod(keepAlive: true)
 AuthDataSource authDataSource(Ref ref) {
-  return AuthRemoteDataSource(client: ref.watch(apiClientProvider));
+  return AuthRemoteDataSource(
+    client: ref.watch(apiClientProvider),
+    tokenService: ref.watch(tokenServiceProvider),
+  );
 }

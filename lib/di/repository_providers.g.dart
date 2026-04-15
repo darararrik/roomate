@@ -9,52 +9,6 @@ part of 'repository_providers.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(tokenRepository)
-final tokenRepositoryProvider = TokenRepositoryProvider._();
-
-final class TokenRepositoryProvider
-    extends
-        $FunctionalProvider<
-          ITokenRepository,
-          ITokenRepository,
-          ITokenRepository
-        >
-    with $Provider<ITokenRepository> {
-  TokenRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'tokenRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$tokenRepositoryHash();
-
-  @$internal
-  @override
-  $ProviderElement<ITokenRepository> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  ITokenRepository create(Ref ref) {
-    return tokenRepository(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ITokenRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ITokenRepository>(value),
-    );
-  }
-}
-
-String _$tokenRepositoryHash() => r'171b18730991dc7fcb8695507a7569b1ff9e6eaa';
-
 @ProviderFor(apartamentsRepository)
 final apartamentsRepositoryProvider = ApartamentsRepositoryProvider._();
 

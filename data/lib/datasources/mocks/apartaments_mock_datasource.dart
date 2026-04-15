@@ -1,8 +1,8 @@
+import 'package:dartz/dartz.dart';
+import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/mocks/tag_mock_data.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/lib.dart';
 
 @BackendOnly('Temporary mock datasource that emulates apartment backend responses.')
 mixin ApartamentsMockDataSource implements ApartamentsDataSource {
@@ -82,10 +82,10 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<AdFormOptionsModel> fetchAdFormOptions() async {
+  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
     await Future.delayed(const Duration(milliseconds: 1000));
     final json = CreateAdMockJson.fetchTagsResponse;
-    return AdFormOptionsDto.fromJson(json).toModel();
+    return Right(AdFormOptionsDto.fromJson(json).toModel());
   }
 
   @override
