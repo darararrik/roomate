@@ -1,8 +1,7 @@
 import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'data_source_providers.dart';
+import 'package:roomate/di/data_source_providers.dart';
 
 part 'repository_providers.g.dart';
 

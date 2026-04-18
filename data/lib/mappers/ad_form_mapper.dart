@@ -1,15 +1,14 @@
+import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 
-import 'package:data/lib.dart';
-
 class AdFormMapper {
-  static OptionModel _toOptionModel(OptionDto dto) =>
+  static OptionModel _toOptionModel(OptionData dto) =>
       OptionModel(id: dto.id ?? 0, title: dto.title ?? '');
 
-  static List<OptionModel> _toOptionList(List<OptionDto>? dtos) =>
+  static List<OptionModel> _toOptionList(List<OptionData>? dtos) =>
       dtos?.map(_toOptionModel).toList() ?? [];
 
-  static AdFormOptionsModel toModel(AdFormOptionsDto dto) => AdFormOptionsModel(
+  static AdFormOptionsModel toModel(AdFormOptionsData dto) => AdFormOptionsModel(
     rentGoal: _toOptionList(dto.rentGoal),
     rentPeriod: _toOptionList(dto.rentPeriod),
     whoCanRent: _toOptionList(dto.whoCanRent),
@@ -33,6 +32,6 @@ class AdFormMapper {
   );
 }
 
-extension AdFormOptionsDtoX on AdFormOptionsDto {
+extension AdFormOptionsDtoX on AdFormOptionsData {
   AdFormOptionsModel toModel() => AdFormMapper.toModel(this);
 }

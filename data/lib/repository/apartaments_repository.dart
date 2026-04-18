@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
+
+import 'package:data/lib.dart';
 
 class ApartamentsRepositoryImpl implements IApartamentsRepository {
   ApartamentsRepositoryImpl(this._dataSource);

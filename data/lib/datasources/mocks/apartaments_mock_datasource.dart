@@ -8,13 +8,13 @@ import 'package:shared/shared.dart';
 mixin ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
   @override
-  Future<List<ApartamentDto>> fetchApartaments(ApartamentFilter filter) async {
+  Future<List<ApartamentData>> fetchApartaments(ApartamentFilter filter) async {
     await Future.delayed(const Duration(milliseconds: 300));
 
     final allApartments = [
       ...ApartmentsMockJson.fetchApartments,
       ...MockStorage.createAds,
-    ].map((json) => ApartamentDto.fromJson(json)).toList();
+    ].map((json) => ApartamentData.fromJson(json)).toList();
 
     return allApartments.where((apt) {
       /// город
@@ -78,18 +78,18 @@ mixin ApartamentsMockDataSource implements ApartamentsDataSource {
   Future<FilterModel> fetchFilterTags() async {
     await Future.delayed(const Duration(milliseconds: 100));
     final json = ApartmentFiltersMockJson.fetchFilterTags;
-    return FilterDto.fromJson(json).toModel();
+    return FilterData.fromJson(json).toModel();
   }
 
   @override
   Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
     await Future.delayed(const Duration(milliseconds: 1000));
     final json = CreateAdMockJson.fetchTagsResponse;
-    return Right(AdFormOptionsDto.fromJson(json).toModel());
+    return Right(AdFormOptionsData.fromJson(json).toModel());
   }
 
   @override
-  Future<void> createAd(CreateAdFormRequestDto request) async {
+  Future<void> createAd(CreateAdFormRequestData request) async {
     await Future.delayed(const Duration(milliseconds: 300));
 
     final nextId =

@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
-import 'package:data/services/token_service.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/lib.dart';
+import 'package:data/services/token_service.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
   AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
@@ -13,21 +14,17 @@ class AuthRemoteDataSource implements AuthDataSource {
 
   @override
   Future<Either<RemoteException, UserModel>> verifySms(String phone, String code) async {
-    try {
-      final result = await _client.post(
-        ApiUrlConstants.verifySms,
-        body: {'phone': phone, 'code': code},
-        transformer: (json) => AuthResponseData.fromJson(json),
-      );
-      final user = UserMapper.toModel(result.user);
-      await _saveTokens(result.accessToken!, result.refreshToken!);
+    final result = await _client.post(
+      ApiUrlConstants.verifySms,
+      body: {'phone': phone, 'code': code},
+      transformer: (json) => AuthResponseData.fromJson(json),
+    );
 
+    return result.fold((exception) => Left(exception), (data) async {
+      final user = UserMapper.toModel(data.user);
+      await _saveTokens(data.accessToken!, data.refreshToken!);
       return Right(user);
-    } on RemoteException catch (e) {
-      return Left(e);
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.unknown, rootException: e));
-    }
+    });
   }
 
   @override

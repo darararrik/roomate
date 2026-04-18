@@ -2,7 +2,7 @@ import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 
 class ApartamentMapper {
-  static ApartamentModel toModel(ApartamentDto dto) {
+  static ApartamentModel toModel(ApartamentData dto) {
     return ApartamentModel(
       id: dto.id ?? 0,
       title: dto.title ?? '',
@@ -41,8 +41,8 @@ class ApartamentMapper {
     );
   }
 
-  static ApartamentDto toDto(ApartamentModel model) {
-    return ApartamentDto(
+  static ApartamentData toDto(ApartamentModel model) {
+    return ApartamentData(
       id: model.id,
       title: model.title,
       description: model.description,

@@ -1,7 +1,6 @@
 export 'exception/app_exception.dart';
 export 'exception/exception.dart';
 export 'exception/remote_exception.dart';
-export 'exception/server_error.dart';
 export 'mocks/apartament_filters_mock.dart';
 export 'mocks/apartaments_mock.dart';
 export 'mocks/create_ad.mock.dart';

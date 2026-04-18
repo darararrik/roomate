@@ -8,7 +8,7 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   final ApiClient _client;
 
   @override
-  Future<List<ApartamentDto>> fetchApartaments(ApartamentFilter filter) {
+  Future<List<ApartamentData>> fetchApartaments(ApartamentFilter filter) {
     // TODO: implement fetchApartaments
     throw UnimplementedError();
   }
@@ -18,7 +18,7 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
     try {
       final result = await _client.get(
         ApiUrlConstants.adFormOptions,
-        transformer: (json) => AdFormOptionsDto.fromJson(json),
+        transformer: (json) => AdFormOptionsData.fromJson(json),
       );
       return Right(AdFormMapper.toModel(result));
     } catch (e) {
@@ -33,7 +33,7 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<void> createAd(CreateAdFormRequestDto request) async {
+  Future<void> createAd(CreateAdFormRequestData request) async {
     try {
       final res = await _client.post(
         ApiUrlConstants.createAd,

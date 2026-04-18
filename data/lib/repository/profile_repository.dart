@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/lib.dart';
 
 class ProfileRepository implements IProfileRepository {
   ProfileRepository({

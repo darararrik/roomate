@@ -1,3 +1,4 @@
+import 'package:data/entity/server_error/server_error.dart';
 import 'package:shared/shared.dart';
 
 class RemoteException extends AppException {
@@ -35,6 +36,7 @@ class RemoteException extends AppException {
 }
 
 enum RemoteExceptionKind {
+  unauthorized,
   noInternet,
 
   /// host not found, cannot connect to host, SocketException

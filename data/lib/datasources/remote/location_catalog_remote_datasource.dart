@@ -1,5 +1,6 @@
-import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
+
+import 'package:data/lib.dart';
 
 /// Удалённый источник улиц. Пока заглушка под будущий API.
 class LocationCatalogRemoteDataSource implements LocationCatalogDataSource {

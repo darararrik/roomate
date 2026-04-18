@@ -4,8 +4,8 @@ import 'package:shared/shared.dart';
 
 @BackendOnly('Maps create-ad form data into temporary backend mock contracts.')
 abstract class CreateAdFormMapper {
-  static CreateAdFormRequestDto toDto(CreateAdFormModel model) {
-    return CreateAdFormRequestDto(
+  static CreateAdFormRequestData toDto(CreateAdFormModel model) {
+    return CreateAdFormRequestData(
       rentGoalId: model.rentGoalId,
       rentPeriodId: model.rentPeriodId,
       whoCanRentIds: model.whoCanRentIds,
@@ -45,8 +45,8 @@ abstract class CreateAdFormMapper {
     );
   }
 
-  static ApartamentDto toApartamentDto(
-    CreateAdFormRequestDto request, {
+  static ApartamentData toApartamentDto(
+    CreateAdFormRequestData request, {
     required int id,
     required String ownerName,
     String role = 'Собственник',
@@ -61,7 +61,7 @@ abstract class CreateAdFormMapper {
       ...(request.rentConditionsIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
     }.toList();
 
-    return ApartamentDto(
+    return ApartamentData(
       id: id,
       title: (request.title ?? '').trim().isEmpty
           ? _buildFallbackTitle(request)
@@ -158,7 +158,7 @@ abstract class CreateAdFormMapper {
     return parts.join(', ');
   }
 
-  static String _buildFallbackTitle(CreateAdFormRequestDto request) {
+  static String _buildFallbackTitle(CreateAdFormRequestData request) {
     final propertyType =
         _findOptionTitle(AdFormOptionKeys.propertyType, request.propertyTypeId) ?? 'Объект';
     final roomsCount = _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId);
