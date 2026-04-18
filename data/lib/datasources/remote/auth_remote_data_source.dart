@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:domain/domain.dart';
-import 'package:shared/shared.dart';
-
 import 'package:data/lib.dart';
 import 'package:data/services/token_service.dart';
+import 'package:domain/domain.dart';
+import 'package:shared/shared.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
   AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
@@ -46,26 +45,16 @@ class AuthRemoteDataSource implements AuthDataSource {
 
   @override
   Future<Either<RemoteException, SignInResponseModel>> signInByPhone(String phone) async {
-    try {
-      final result = await _client.post(
-        ApiUrlConstants.signInByPhone,
-        body: {'phone': phone},
-        // Если сервер возвращает статус успеха
-        transformer: (json) => SignInResponseData.fromJson(json),
-      );
-      final model = SingInResponseMapper.toModel(result);
-      return Right(model);
-    } on RemoteException catch (e) {
-      return Left(e);
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.unknown, rootException: e));
-    }
-  }
+    final result = await _client.post<SignInResponseData>(
+      ApiUrlConstants.signInByPhone,
+      body: {'phone': phone},
+      transformer: (json) => SignInResponseData.fromJson(json),
+    );
 
-  @override
-  Future<Either<RemoteException, bool>> refreshToken(String refreshToken) async {
-    // Реализация аналогична...
-    throw UnimplementedError();
+    return result.fold((error) => Left(error), (data) {
+      final model = SingInResponseMapper.toModel(data);
+      return Right(model);
+    });
   }
 
   Future<void> _saveTokens(String accessToken, String refreshToken) async {

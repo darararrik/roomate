@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/datasources/auth_data_source.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/datasources/auth_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._dataSource);
@@ -18,8 +17,4 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<RemoteException, void>> logout() => _dataSource.logout();
-
-  @override
-  Future<Either<RemoteException, bool>> refreshToken(String refreshToken) =>
-      _dataSource.refreshToken(refreshToken);
 }

@@ -1,6 +1,5 @@
+import 'package:data/entity/location/street_dto.dart';
 import 'package:domain/domain.dart';
-
-import 'package:data/dto/location/street_dto.dart';
 
 extension StreetDtoExtension on StreetDto {
   StreetModel toModel() => StreetModel(

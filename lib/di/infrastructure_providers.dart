@@ -14,7 +14,6 @@ part 'infrastructure_providers.g.dart';
 @Riverpod(keepAlive: true)
 AppConfig config(Ref ref) {
   const flavor = String.fromEnvironment('flavor', defaultValue: 'dev');
-
   switch (flavor) {
     case 'prod':
       return AppConfig.prod();

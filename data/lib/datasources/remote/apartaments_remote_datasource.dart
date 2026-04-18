@@ -15,15 +15,11 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
 
   @override
   Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
-    try {
-      final result = await _client.get(
-        ApiUrlConstants.adFormOptions,
-        transformer: (json) => AdFormOptionsData.fromJson(json),
-      );
-      return Right(AdFormMapper.toModel(result));
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.unknown, rootException: e.toString()));
-    }
+    final result = await _client.get(
+      ApiUrlConstants.adFormOptions,
+      transformer: (json) => AdFormOptionsData.fromJson(json),
+    );
+    return result.fold((error) => Left(error), (data) => Right(AdFormMapper.toModel(data)));
   }
 
   @override
