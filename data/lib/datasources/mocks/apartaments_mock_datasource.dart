@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
-import 'package:shared/mocks/tag_mock_data.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/data.dart';
 
 @BackendOnly('Temporary mock datasource that emulates apartment backend responses.')
 mixin ApartamentsMockDataSource implements ApartamentsDataSource {

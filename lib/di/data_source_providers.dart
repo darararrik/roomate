@@ -1,4 +1,4 @@
-import 'package:data/lib.dart';
+import 'package:data/data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'infrastructure_providers.dart'; // импорт apiClientProvider
@@ -13,11 +13,6 @@ ProfileDataSource profileRemoteDataSource(Ref ref) {
 @Riverpod(keepAlive: true)
 ApartamentsDataSource apartamentsRemoteDataSource(Ref ref) {
   return ApartamentsRemoteDataSource(ref.watch(apiClientProvider));
-}
-
-@Riverpod(keepAlive: true)
-ProfileTagsMockDataSource profileTagsMockDataSource(Ref ref) {
-  return ProfileTagsMockDataSource();
 }
 
 @Riverpod(keepAlive: true)

@@ -1,5 +1,6 @@
-import 'package:data/entity/dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:data/data.dart';
 
 part 'auth_response_data.freezed.dart';
 part 'auth_response_data.g.dart';

@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
-import 'package:domain/lib.dart';
+import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
+
+import 'package:data/data.dart';
 
 class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   ApartamentsRemoteDataSource(ApiClient client) : _client = client;

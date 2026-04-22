@@ -106,54 +106,6 @@ final class ApartamentsRemoteDataSourceProvider
 String _$apartamentsRemoteDataSourceHash() =>
     r'e3b51f4871152ec2876b37f65a66f2d53365f093';
 
-@ProviderFor(profileTagsMockDataSource)
-final profileTagsMockDataSourceProvider = ProfileTagsMockDataSourceProvider._();
-
-final class ProfileTagsMockDataSourceProvider
-    extends
-        $FunctionalProvider<
-          ProfileTagsMockDataSource,
-          ProfileTagsMockDataSource,
-          ProfileTagsMockDataSource
-        >
-    with $Provider<ProfileTagsMockDataSource> {
-  ProfileTagsMockDataSourceProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'profileTagsMockDataSourceProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$profileTagsMockDataSourceHash();
-
-  @$internal
-  @override
-  $ProviderElement<ProfileTagsMockDataSource> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  ProfileTagsMockDataSource create(Ref ref) {
-    return profileTagsMockDataSource(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ProfileTagsMockDataSource value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ProfileTagsMockDataSource>(value),
-    );
-  }
-}
-
-String _$profileTagsMockDataSourceHash() =>
-    r'33941b74ca955549128dfd40d049921924e24570';
-
 @ProviderFor(locationCatalogDataSource)
 final locationCatalogDataSourceProvider = LocationCatalogDataSourceProvider._();
 

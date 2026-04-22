@@ -42,7 +42,7 @@ final class OnBoardingNotifierProvider
 }
 
 String _$onBoardingNotifierHash() =>
-    r'c355ac3c9bac1f04490cc3d5c69edee54f9b0041';
+    r'f99755265bbac2d6fde744abff41d462c08e88ce';
 
 abstract class _$OnBoardingNotifier extends $Notifier<OnBoardingState> {
   OnBoardingState build();

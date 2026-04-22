@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-import 'package:data/lib.dart';
+import 'package:data/data.dart';
 
 class LocationCatalogRepositoryImpl implements ILocationCatalogRepository {
   LocationCatalogRepositoryImpl(this._dataSource);

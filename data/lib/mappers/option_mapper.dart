@@ -1,12 +1,20 @@
-import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 
-class AdFormMapper {
-  static OptionModel _toOptionModel(OptionData dto) =>
-      OptionModel(id: dto.id ?? 0, title: dto.title ?? '');
+import 'package:data/data.dart';
 
+abstract class OptionMapper {
+  static OptionModel toModel(OptionData dto) {
+    return OptionModel(id: dto.id ?? 0, title: dto.title ?? '');
+  }
+
+  static OptionData toDto(OptionModel model) {
+    return OptionData(id: model.id, title: model.title);
+  }
+}
+
+abstract class AdFormMapper {
   static List<OptionModel> _toOptionList(List<OptionData>? dtos) =>
-      dtos?.map(_toOptionModel).toList() ?? [];
+      dtos?.map(OptionMapper.toModel).toList() ?? [];
 
   static AdFormOptionsModel toModel(AdFormOptionsData dto) => AdFormOptionsModel(
     rentGoal: _toOptionList(dto.rentGoal),
@@ -34,4 +42,23 @@ class AdFormMapper {
 
 extension AdFormOptionsDtoX on AdFormOptionsData {
   AdFormOptionsModel toModel() => AdFormMapper.toModel(this);
+}
+
+abstract class PreferencesTagsMapper {
+  static PreferencesTagsModel toModel(PreferencesTagsData dto) {
+    List<OptionModel> mapList(List<OptionData>? list) =>
+        list?.map(OptionMapper.toModel).toList() ?? [];
+
+    return PreferencesTagsModel(
+      communication: mapList(dto.communication),
+      sleep: mapList(dto.sleep),
+      employment: mapList(dto.employment),
+      badHabits: mapList(dto.badHabits),
+      guests: mapList(dto.guests),
+      noiseLevel: mapList(dto.noiseLevel),
+      cleaning: mapList(dto.cleaning),
+      pets: mapList(dto.pets),
+      petsAttitude: mapList(dto.petsAttitude),
+    );
+  }
 }

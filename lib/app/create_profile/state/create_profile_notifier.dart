@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -49,6 +50,8 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
         break;
     }
   }
+
+  void openUserPreferences() => ref.nav.push(const UserPreferencesPageViewRoute());
 
   Future<bool> createProfile() async {
     final success = await ref

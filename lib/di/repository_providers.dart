@@ -1,6 +1,7 @@
-import 'package:data/lib.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/di/data_source_providers.dart';
 
 part 'repository_providers.g.dart';
@@ -17,10 +18,7 @@ ILocationCatalogRepository locationCatalogRepository(Ref ref) {
 
 @Riverpod(keepAlive: true)
 IProfileRepository profileRepository(Ref ref) {
-  return ProfileRepository(
-    remoteDataSource: ref.watch(profileRemoteDataSourceProvider),
-    tagsMockDataSource: ref.watch(profileTagsMockDataSourceProvider),
-  );
+  return ProfileRepository(remoteDataSource: ref.watch(profileRemoteDataSourceProvider));
 }
 
 @Riverpod(keepAlive: true)

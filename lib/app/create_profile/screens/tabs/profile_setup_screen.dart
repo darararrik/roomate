@@ -31,20 +31,13 @@ class ProfileSetupScreen extends HookConsumerWidget {
           ),
         ),
         const SizedBox(height: S.p28),
-        Center(
-          child: Text(
-            locale.letsGetToKnowEachOther,
-            style: context.typography.headline1,
-          ),
-        ),
+        Center(child: Text(locale.letsGetToKnowEachOther, style: context.typography.headline1)),
         const SizedBox(height: S.p8),
         Center(
           child: Text(
             locale.pleaseProvideRealData,
             textAlign: TextAlign.center,
-            style: context.typography.headline2.copyWith(
-              color: context.colors.graysText400,
-            ),
+            style: context.typography.headline2.copyWith(color: context.colors.graysText400),
           ),
         ),
         const SizedBox(height: S.p28),
@@ -59,7 +52,6 @@ class ProfileSetupScreen extends HookConsumerWidget {
               focusNode: hooks.firstNameFocusNode,
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              inputFormatters: [StandartTextFormatter()],
             ),
             InputWidget(
               controller: hooks.lastNameController,
@@ -69,7 +61,6 @@ class ProfileSetupScreen extends HookConsumerWidget {
               focusNode: hooks.lastNameFocusNode,
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              inputFormatters: [StandartTextFormatter()],
             ),
             Row(
               spacing: S.p12,
@@ -100,8 +91,7 @@ class ProfileSetupScreen extends HookConsumerWidget {
                         .read(navigationServiceProvider)
                         .showBottomSheet(
                           GenderBottomSheet(
-                            onSelected: (gender, index, isSelected) =>
-                                notifier.setGender(gender),
+                            onSelected: (gender, index, isSelected) => notifier.setGender(gender),
                             selectedGender: state.gender,
                           ),
                         ),

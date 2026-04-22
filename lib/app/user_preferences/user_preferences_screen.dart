@@ -1,11 +1,15 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:roomate/lib.dart';
 
 @RoutePage()
-class PreferencesScreen extends ConsumerWidget {
-  const PreferencesScreen({super.key});
+class UserPreferencesScreen extends ConsumerWidget {
+  const UserPreferencesScreen({super.key, required this.tags});
+  final List<OptionModel> tags;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,13 +35,6 @@ class PreferencesScreen extends ConsumerWidget {
             ],
           ),
         ),
-        // ...tags.map(
-        //   (group) => SelectableTagGroup(
-        //     tagsGroup: group,
-        //     onTagSelected: (tag, isSelected) =>
-        //         notifier.toggleTagSelection(tag.id),
-        //   ),
-        // ),
       ],
     );
   }

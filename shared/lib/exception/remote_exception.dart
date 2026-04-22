@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:data/entity/server_error/server_error.dart';
+
+// Project imports:
 import 'package:shared/shared.dart';
 
 class RemoteException extends AppException {

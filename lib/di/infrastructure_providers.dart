@@ -1,13 +1,15 @@
+import 'package:flutter/material.dart';
+
 import 'package:data/services/api_client.dart';
 import 'package:data/services/auth_interceptor.dart';
 import 'package:data/services/network_module.dart';
 import 'package:data/services/token_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:talker_flutter/talker_flutter.dart';
+
 import 'package:roomate/config/config.dart';
 import 'package:roomate/lib.dart';
-import 'package:talker_flutter/talker_flutter.dart';
 
 part 'infrastructure_providers.g.dart';
 

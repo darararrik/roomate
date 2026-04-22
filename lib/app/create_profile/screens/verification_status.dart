@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/lib.dart';
-import 'package:roomate/routing/app_routing.gr.dart';
 
 @RoutePage()
-class VerificationStatusScreen extends StatelessWidget {
+class VerificationStatusScreen extends ConsumerWidget {
   const VerificationStatusScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final locale = context.l10n;
     final typography = context.typography;
+    final not = ref.read(createProfileProvider.notifier);
     return Scaffold(
       bottomNavigationBar: SafeArea(
-        child: BottomNextButton(
-          //TODO: вынести в нотифаер
-          onPressed: () => context.router.replaceAll([const MainFlowRoute()]),
-        ),
+        child: BottomNextButton(onPressed: () => not.openUserPreferences()),
       ),
       appBar: AppBar(title: Text(locale.verification), centerTitle: false),
       body: SafeArea(
@@ -29,28 +27,17 @@ class VerificationStatusScreen extends StatelessWidget {
               padding: const P(horizontal: S.p32, top: S.p60),
               child: Column(
                 children: [
-                  Text(
-                    locale.documentsUnderReview,
-                    style: typography.headline1,
-                  ),
+                  Text(locale.documentsUnderReview, style: typography.headline1),
                   const SizedBox(height: S.p8),
                   Text(
                     locale.verificationWaitTime,
                     textAlign: .center,
-                    style: typography.headline2.copyWith(
-                      color: context.colors.graysText400,
-                    ),
+                    style: typography.headline2.copyWith(color: context.colors.graysText400),
                   ),
                 ],
               ),
             ),
-            const Expanded(
-              child: AppIcon(
-                AppIcons.verificationWait,
-                width: 200,
-                height: 200,
-              ),
-            ),
+            const Expanded(child: AppIcon(AppIcons.verificationWait, width: 200, height: 200)),
           ],
         ),
       ),

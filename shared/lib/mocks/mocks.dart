@@ -4,3 +4,4 @@ export 'create_ad.mock.dart';
 export 'omsk_streets.dart';
 export 'profile.mock.dart';
 export 'profile_tags.mock.dart';
+export 'tag_mock_data.dart';

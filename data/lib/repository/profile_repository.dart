@@ -1,16 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
+import 'package:data/data.dart';
+
 class ProfileRepository implements IProfileRepository {
-  ProfileRepository({
-    required ProfileDataSource remoteDataSource,
-    required ProfileTagsMockDataSource tagsMockDataSource,
-  }) : _remoteDataSource = remoteDataSource,
-       _tagsMockDataSource = tagsMockDataSource;
+  ProfileRepository({required ProfileDataSource remoteDataSource})
+    : _remoteDataSource = remoteDataSource;
   final ProfileDataSource _remoteDataSource;
-  final ProfileTagsMockDataSource _tagsMockDataSource;
 
   @override
   Future<Either<RemoteException, UserModel>> createProfile(UserModel user) async {
@@ -18,8 +15,8 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<RemoteException, List<TagGroupModel>>> fetchTagsAboutSelf() async {
-    return _remoteDataSource.fetchTagsAboutSelf();
+  Future<Either<RemoteException, PreferencesTagsModel>> fetchPreferencesTags() async {
+    return _remoteDataSource.fetchPreferencesTags();
   }
 
   @override

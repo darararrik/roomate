@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
-import 'package:data/services/token_service.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/data.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
   AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})

@@ -5,7 +5,7 @@ export 'chip_model.dart';
 export 'common/common.dart';
 export 'filter/filter.dart';
 export 'location/location.dart';
+export 'preferences_tags/preferences_tags.dart';
 export 'quiz_step_model.dart';
 export 'sign_in_response/sign_in_response.dart';
-export 'tag_model.dart';
 export 'user/user.dart';

@@ -1,6 +1,7 @@
-import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/data.dart';
 
 @BackendOnly('Maps create-ad form data into temporary backend mock contracts.')
 abstract class CreateAdFormMapper {

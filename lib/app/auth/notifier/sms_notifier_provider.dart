@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/app/auth/notifier/auth_notifier.dart';
 import 'package:roomate/lib.dart';
 

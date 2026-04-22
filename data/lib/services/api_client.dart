@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/constants/api_key.dart';
-import 'package:data/utils/extensions/map_dio_exc.dart';
 import 'package:dio/dio.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/constants/api_key.dart';
+import 'package:data/utils/extensions/map_dio_exc.dart';
 
 typedef ResponseTransformer<T> = T Function(dynamic json);
 

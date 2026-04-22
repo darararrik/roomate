@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/lib.dart';
-import 'package:domain/models/tag_model.dart';
-import 'package:domain/models/user/user_model.dart';
+import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
-class ProfileRemoteDataSource extends FullMockDataSource implements ProfileDataSource {
+import 'package:data/data.dart';
+
+class ProfileRemoteDataSource implements ProfileDataSource {
   ProfileRemoteDataSource(ApiClient client) : _client = client;
   final ApiClient _client;
 
@@ -37,8 +37,13 @@ class ProfileRemoteDataSource extends FullMockDataSource implements ProfileDataS
   }
 
   @override
-  Future<Either<RemoteException, List<TagGroupModel>>> fetchTagsAboutSelf() {
-    // TODO: implement fetchTagsAboutSelf
-    throw UnimplementedError();
+  Future<Either<RemoteException, PreferencesTagsModel>> fetchPreferencesTags() async {
+    final result = await _client.get(
+      ApiUrlConstants.me,
+      needAuth: true,
+      transformer: (json) => PreferencesTagsData.fromJson(json),
+    );
+
+    return result.fold((e) => Left(e), (u) => Right(PreferencesTagsMapper.toModel(u)));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/lib.dart';
 
 part 'global_profile_notifier.g.dart';
@@ -27,7 +28,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     String? avatarUrl,
     GenderEnum? gender,
     int? age,
-    List<TagModel>? tags,
+    // List<TagModel>? tags,
   }) async {
     // Берем текущие данные из стейта (если там еще загрузка или ошибка — берем гостя)
     final current = state.value ?? UserModel.guest();
@@ -38,7 +39,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
       avatarUrl: avatarUrl ?? current.avatarUrl,
       gender: gender ?? current.gender,
       age: age ?? current.age,
-      tags: tags ?? current.tags,
+      // tags: tags ?? current.tags,
     );
 
     // Ставим состояние загрузки для UI

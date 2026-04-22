@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:data/entity/server_error/server_error.dart';
 import 'package:dio/dio.dart';
 import 'package:shared/exception/remote_exception.dart';
+
+import 'package:data/entity/server_error/server_error.dart';
 
 extension DioExceptionMapper on DioException {
   RemoteException toRemoteException() {

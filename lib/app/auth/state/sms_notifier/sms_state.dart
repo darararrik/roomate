@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:roomate/l10n/app_localizations.dart';
 
 part 'sms_state.freezed.dart';

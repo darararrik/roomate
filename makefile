@@ -35,6 +35,14 @@ runner:
 	@if [ -d "data" ]; then \
 		cd data && fvm dart run build_runner build --delete-conflicting-outputs; \
 	fi
+	@echo "--- Running build_runner in domain layer ---"
+	@if [ -d "domain" ]; then \
+		cd domain && fvm dart run build_runner build --delete-conflicting-outputs; \
+	fi
+	@echo "--- Running build_runner in shared layer ---"
+	@if [ -d "shared" ]; then \
+		cd shared && fvm dart run build_runner build --delete-conflicting-outputs; \
+	fi
 	@echo "--- Running build_runner in root project ---"
 	fvm dart run build_runner build --delete-conflicting-outputs
 
