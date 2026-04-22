@@ -1,11 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/app/auth/state/auth/auth_notifier.dart';
+import 'package:roomate/app/auth/notifier/auth_notifier.dart';
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';

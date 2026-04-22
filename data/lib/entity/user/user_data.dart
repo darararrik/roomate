@@ -19,6 +19,7 @@ sealed class UserData with _$UserData {
     @JsonKey(name: "status") bool? isVerified,
     @JsonKey(name: "tags") List<UserTagData>? tags,
     @JsonKey(name: "is_owner") bool? isOwner,
+    @JsonKey(name: "isNewUser") bool? isNewUser,
   }) = _UserData;
   factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
 }

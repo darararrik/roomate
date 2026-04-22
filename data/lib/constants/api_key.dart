@@ -9,4 +9,5 @@ class ApiUrlConstants {
   static const logout = '/auth/logout';
   static const adFormOptions = '/ads/tags';
   static const createAd = '/ads';
+  static const me = '/profile/me';
 }

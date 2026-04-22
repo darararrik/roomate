@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:roomate/app/auth/state/auth/auth_notifier.dart';
-import 'package:roomate/app/auth/state/sms_notifier/sms_notifier_provider.dart';
+import 'package:roomate/app/auth/notifier/auth_notifier.dart';
+import 'package:roomate/app/auth/notifier/sms_notifier_provider.dart';
 import 'package:roomate/app/auth/widgets/code_box_input.dart';
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
@@ -37,10 +37,7 @@ class EnterCodeScreen extends HookConsumerWidget {
           child: Padding(
             padding: const P(horizontal: S.p16, vertical: S.p8),
             child: PrimaryButton(
-              onPressed: disableIf(
-                authState.isPinComplete,
-                () => authNotifier.openOnBoardingScreen(),
-              ),
+              onPressed: disableIf(authState.isPinComplete, () => authNotifier.verifySms()),
               text: context.l10n.next,
             ),
           ),

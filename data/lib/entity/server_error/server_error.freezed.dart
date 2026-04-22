@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ServerError {
 
- int? get generalServerStatusCode; String? get generalServerErrorId; Map<String, dynamic>? get generalMessages;
+ int? get status; String? get error; String? get message; String? get path;
 /// Create a copy of ServerError
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ServerErrorCopyWith<ServerError> get copyWith => _$ServerErrorCopyWithImpl<Serv
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerError&&(identical(other.generalServerStatusCode, generalServerStatusCode) || other.generalServerStatusCode == generalServerStatusCode)&&(identical(other.generalServerErrorId, generalServerErrorId) || other.generalServerErrorId == generalServerErrorId)&&const DeepCollectionEquality().equals(other.generalMessages, generalMessages));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerError&&(identical(other.status, status) || other.status == status)&&(identical(other.error, error) || other.error == error)&&(identical(other.message, message) || other.message == message)&&(identical(other.path, path) || other.path == path));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,generalServerStatusCode,generalServerErrorId,const DeepCollectionEquality().hash(generalMessages));
+int get hashCode => Object.hash(runtimeType,status,error,message,path);
 
 @override
 String toString() {
-  return 'ServerError(generalServerStatusCode: $generalServerStatusCode, generalServerErrorId: $generalServerErrorId, generalMessages: $generalMessages)';
+  return 'ServerError(status: $status, error: $error, message: $message, path: $path)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ServerErrorCopyWith<$Res>  {
   factory $ServerErrorCopyWith(ServerError value, $Res Function(ServerError) _then) = _$ServerErrorCopyWithImpl;
 @useResult
 $Res call({
- int? generalServerStatusCode, String? generalServerErrorId, Map<String, dynamic>? generalMessages
+ int? status, String? error, String? message, String? path
 });
 
 
@@ -65,12 +65,13 @@ class _$ServerErrorCopyWithImpl<$Res>
 
 /// Create a copy of ServerError
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? generalServerStatusCode = freezed,Object? generalServerErrorId = freezed,Object? generalMessages = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = freezed,Object? error = freezed,Object? message = freezed,Object? path = freezed,}) {
   return _then(_self.copyWith(
-generalServerStatusCode: freezed == generalServerStatusCode ? _self.generalServerStatusCode : generalServerStatusCode // ignore: cast_nullable_to_non_nullable
-as int?,generalServerErrorId: freezed == generalServerErrorId ? _self.generalServerErrorId : generalServerErrorId // ignore: cast_nullable_to_non_nullable
-as String?,generalMessages: freezed == generalMessages ? _self.generalMessages : generalMessages // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as int?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,path: freezed == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -152,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? generalServerStatusCode,  String? generalServerErrorId,  Map<String, dynamic>? generalMessages)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? status,  String? error,  String? message,  String? path)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServerError() when $default != null:
-return $default(_that.generalServerStatusCode,_that.generalServerErrorId,_that.generalMessages);case _:
+return $default(_that.status,_that.error,_that.message,_that.path);case _:
   return orElse();
 
 }
@@ -173,10 +174,10 @@ return $default(_that.generalServerStatusCode,_that.generalServerErrorId,_that.g
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? generalServerStatusCode,  String? generalServerErrorId,  Map<String, dynamic>? generalMessages)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? status,  String? error,  String? message,  String? path)  $default,) {final _that = this;
 switch (_that) {
 case _ServerError():
-return $default(_that.generalServerStatusCode,_that.generalServerErrorId,_that.generalMessages);}
+return $default(_that.status,_that.error,_that.message,_that.path);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,10 +191,10 @@ return $default(_that.generalServerStatusCode,_that.generalServerErrorId,_that.g
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? generalServerStatusCode,  String? generalServerErrorId,  Map<String, dynamic>? generalMessages)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? status,  String? error,  String? message,  String? path)?  $default,) {final _that = this;
 switch (_that) {
 case _ServerError() when $default != null:
-return $default(_that.generalServerStatusCode,_that.generalServerErrorId,_that.generalMessages);case _:
+return $default(_that.status,_that.error,_that.message,_that.path);case _:
   return null;
 
 }
@@ -205,20 +206,13 @@ return $default(_that.generalServerStatusCode,_that.generalServerErrorId,_that.g
 @JsonSerializable()
 
 class _ServerError implements ServerError {
-  const _ServerError({this.generalServerStatusCode, this.generalServerErrorId, final  Map<String, dynamic>? generalMessages}): _generalMessages = generalMessages;
+  const _ServerError({this.status, this.error, this.message, this.path});
   factory _ServerError.fromJson(Map<String, dynamic> json) => _$ServerErrorFromJson(json);
 
-@override final  int? generalServerStatusCode;
-@override final  String? generalServerErrorId;
- final  Map<String, dynamic>? _generalMessages;
-@override Map<String, dynamic>? get generalMessages {
-  final value = _generalMessages;
-  if (value == null) return null;
-  if (_generalMessages is EqualUnmodifiableMapView) return _generalMessages;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(value);
-}
-
+@override final  int? status;
+@override final  String? error;
+@override final  String? message;
+@override final  String? path;
 
 /// Create a copy of ServerError
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +227,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerError&&(identical(other.generalServerStatusCode, generalServerStatusCode) || other.generalServerStatusCode == generalServerStatusCode)&&(identical(other.generalServerErrorId, generalServerErrorId) || other.generalServerErrorId == generalServerErrorId)&&const DeepCollectionEquality().equals(other._generalMessages, _generalMessages));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerError&&(identical(other.status, status) || other.status == status)&&(identical(other.error, error) || other.error == error)&&(identical(other.message, message) || other.message == message)&&(identical(other.path, path) || other.path == path));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,generalServerStatusCode,generalServerErrorId,const DeepCollectionEquality().hash(_generalMessages));
+int get hashCode => Object.hash(runtimeType,status,error,message,path);
 
 @override
 String toString() {
-  return 'ServerError(generalServerStatusCode: $generalServerStatusCode, generalServerErrorId: $generalServerErrorId, generalMessages: $generalMessages)';
+  return 'ServerError(status: $status, error: $error, message: $message, path: $path)';
 }
 
 
@@ -253,7 +247,7 @@ abstract mixin class _$ServerErrorCopyWith<$Res> implements $ServerErrorCopyWith
   factory _$ServerErrorCopyWith(_ServerError value, $Res Function(_ServerError) _then) = __$ServerErrorCopyWithImpl;
 @override @useResult
 $Res call({
- int? generalServerStatusCode, String? generalServerErrorId, Map<String, dynamic>? generalMessages
+ int? status, String? error, String? message, String? path
 });
 
 
@@ -270,12 +264,13 @@ class __$ServerErrorCopyWithImpl<$Res>
 
 /// Create a copy of ServerError
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? generalServerStatusCode = freezed,Object? generalServerErrorId = freezed,Object? generalMessages = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = freezed,Object? error = freezed,Object? message = freezed,Object? path = freezed,}) {
   return _then(_ServerError(
-generalServerStatusCode: freezed == generalServerStatusCode ? _self.generalServerStatusCode : generalServerStatusCode // ignore: cast_nullable_to_non_nullable
-as int?,generalServerErrorId: freezed == generalServerErrorId ? _self.generalServerErrorId : generalServerErrorId // ignore: cast_nullable_to_non_nullable
-as String?,generalMessages: freezed == generalMessages ? _self._generalMessages : generalMessages // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as int?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,path: freezed == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

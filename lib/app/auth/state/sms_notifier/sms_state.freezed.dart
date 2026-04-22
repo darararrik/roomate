@@ -200,7 +200,7 @@ return $default(_that.timerCount);case _:
 
 
 class _SmsState extends SmsState {
-  const _SmsState({this.timerCount = 59}): super._();
+  const _SmsState({this.timerCount = 300}): super._();
   
 
 @override@JsonKey() final  int timerCount;

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -38,32 +37,20 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
       case 0:
         _validate();
         if (!state.isFormValid) return;
-        tabsRouter.setActiveIndex(1);
-        fetchTagsAboutSelf();
-        break;
-      case 1:
-        state = state.copyWith(isLoading: true);
         final success = await createProfile();
-        state = state.copyWith(isLoading: false);
-
         if (success) {
-          tabsRouter.setActiveIndex(2);
+          tabsRouter.setActiveIndex(1);
         } else {
           //TODO: Показать ошибку (через state или через event/scaffold)
         }
         break;
-      case 2:
+      case 1:
         ref.nav.push(const ProfileSummaryRoute());
         break;
     }
   }
 
   Future<bool> createProfile() async {
-    final selectedTags = state.tags
-        .expand((group) => group.tags)
-        .where((tag) => tag.isSelected)
-        .toList();
-
     final success = await ref
         .read(globalProfileProvider.notifier)
         .updateProfile(
@@ -71,7 +58,6 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
           lastName: state.lastName,
           age: int.tryParse(state.age),
           gender: state.gender,
-          tags: selectedTags,
         );
     return success;
   }
@@ -85,31 +71,31 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
     }
   }
 
-  void toggleTagSelection(int tagId) {
-    // Копируем текущий список тегов
-    final updatedTags = state.tags.map((group) {
-      // Если твои теги приходят сгруппированными, ищем в них
-      final newTags = group.tags.map((tag) {
-        if (tag.id == tagId) {
-          return tag.copyWith(isSelected: !tag.isSelected);
-        }
-        return tag;
-      }).toList();
+  // void toggleTagSelection(int tagId) {
+  //   // Копируем текущий список тегов
+  //   final updatedTags = state.tags.map((group) {
+  //     // Если твои теги приходят сгруппированными, ищем в них
+  //     final newTags = group.tags.map((tag) {
+  //       if (tag.id == tagId) {
+  //         return tag.copyWith(isSelected: !tag.isSelected);
+  //       }
+  //       return tag;
+  //     }).toList();
 
-      return group.copyWith(tags: newTags);
-    }).toList();
+  //     return group.copyWith(tags: newTags);
+  //   }).toList();
 
-    state = state.copyWith(tags: updatedTags);
-  }
+  //   state = state.copyWith(tags: updatedTags);
+  // }
 
-  Future<void> fetchTagsAboutSelf() async {
-    state = state.copyWith(isLoading: true);
-    final result = await ref.read(profileRepositoryProvider).fetchTagsAboutSelf();
-    result.fold(
-      (l) => state = state.copyWith(isLoading: false),
-      (r) => state = state.copyWith(tags: r, isLoading: false),
-    );
-  }
+  // Future<void> fetchTagsAboutSelf() async {
+  //   state = state.copyWith(isLoading: true);
+  //   final result = await ref.read(profileRepositoryProvider).fetchTagsAboutSelf();
+  //   result.fold(
+  //     (l) => state = state.copyWith(isLoading: false),
+  //     (r) => state = state.copyWith(tags: r, isLoading: false),
+  //   );
+  // }
 
   void onSkip() => ref.nav.replaceAll([const MainFlowRoute()]);
 

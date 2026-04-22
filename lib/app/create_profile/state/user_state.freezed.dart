@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserState {
 
- String get firstName; String get lastName; String get avatarUrl; GenderEnum? get gender; String get age; bool get isVerified; List<TagGroupModel> get tags; String get firstNameError; String get lastNameError; String get ageError; String get genderError; bool get isFormValid; bool get isLoading;
+ String get firstName; String get lastName; String get avatarUrl; GenderEnum? get gender; String get age; bool get isVerified; String get firstNameError; String get lastNameError; String get ageError; String get genderError; bool get isFormValid;
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UserStateCopyWith<UserState> get copyWith => _$UserStateCopyWithImpl<UserState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.firstNameError, firstNameError) || other.firstNameError == firstNameError)&&(identical(other.lastNameError, lastNameError) || other.lastNameError == lastNameError)&&(identical(other.ageError, ageError) || other.ageError == ageError)&&(identical(other.genderError, genderError) || other.genderError == genderError)&&(identical(other.isFormValid, isFormValid) || other.isFormValid == isFormValid)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.firstNameError, firstNameError) || other.firstNameError == firstNameError)&&(identical(other.lastNameError, lastNameError) || other.lastNameError == lastNameError)&&(identical(other.ageError, ageError) || other.ageError == ageError)&&(identical(other.genderError, genderError) || other.genderError == genderError)&&(identical(other.isFormValid, isFormValid) || other.isFormValid == isFormValid));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,avatarUrl,gender,age,isVerified,const DeepCollectionEquality().hash(tags),firstNameError,lastNameError,ageError,genderError,isFormValid,isLoading);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,avatarUrl,gender,age,isVerified,firstNameError,lastNameError,ageError,genderError,isFormValid);
 
 @override
 String toString() {
-  return 'UserState(firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, gender: $gender, age: $age, isVerified: $isVerified, tags: $tags, firstNameError: $firstNameError, lastNameError: $lastNameError, ageError: $ageError, genderError: $genderError, isFormValid: $isFormValid, isLoading: $isLoading)';
+  return 'UserState(firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, gender: $gender, age: $age, isVerified: $isVerified, firstNameError: $firstNameError, lastNameError: $lastNameError, ageError: $ageError, genderError: $genderError, isFormValid: $isFormValid)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UserStateCopyWith<$Res>  {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) = _$UserStateCopyWithImpl;
 @useResult
 $Res call({
- String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, List<TagGroupModel> tags, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid, bool isLoading
+ String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid
 });
 
 
@@ -62,7 +62,7 @@ class _$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? gender = freezed,Object? age = null,Object? isVerified = null,Object? tags = null,Object? firstNameError = null,Object? lastNameError = null,Object? ageError = null,Object? genderError = null,Object? isFormValid = null,Object? isLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? gender = freezed,Object? age = null,Object? isVerified = null,Object? firstNameError = null,Object? lastNameError = null,Object? ageError = null,Object? genderError = null,Object? isFormValid = null,}) {
   return _then(_self.copyWith(
 firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
@@ -70,13 +70,11 @@ as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: 
 as String,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as GenderEnum?,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
-as bool,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
-as List<TagGroupModel>,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
+as bool,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
 as String,lastNameError: null == lastNameError ? _self.lastNameError : lastNameError // ignore: cast_nullable_to_non_nullable
 as String,ageError: null == ageError ? _self.ageError : ageError // ignore: cast_nullable_to_non_nullable
 as String,genderError: null == genderError ? _self.genderError : genderError // ignore: cast_nullable_to_non_nullable
 as String,isFormValid: null == isFormValid ? _self.isFormValid : isFormValid // ignore: cast_nullable_to_non_nullable
-as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -159,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<TagGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid,_that.isLoading);case _:
+return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid);case _:
   return orElse();
 
 }
@@ -180,10 +178,10 @@ return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<TagGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid)  $default,) {final _that = this;
 switch (_that) {
 case _UserState():
-return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid,_that.isLoading);}
+return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +195,10 @@ return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  List<TagGroupModel> tags,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid,  bool isLoading)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String avatarUrl,  GenderEnum? gender,  String age,  bool isVerified,  String firstNameError,  String lastNameError,  String ageError,  String genderError,  bool isFormValid)?  $default,) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.tags,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid,_that.isLoading);case _:
+return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_that.age,_that.isVerified,_that.firstNameError,_that.lastNameError,_that.ageError,_that.genderError,_that.isFormValid);case _:
   return null;
 
 }
@@ -212,7 +210,7 @@ return $default(_that.firstName,_that.lastName,_that.avatarUrl,_that.gender,_tha
 
 
 class _UserState implements UserState {
-   _UserState({this.firstName = '', this.lastName = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = null, this.age = '', this.isVerified = false, final  List<TagGroupModel> tags = const [], this.firstNameError = '', this.lastNameError = '', this.ageError = '', this.genderError = '', this.isFormValid = false, this.isLoading = false}): _tags = tags;
+   _UserState({this.firstName = '', this.lastName = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = null, this.age = '', this.isVerified = false, this.firstNameError = '', this.lastNameError = '', this.ageError = '', this.genderError = '', this.isFormValid = false});
   
 
 @override@JsonKey() final  String firstName;
@@ -221,19 +219,11 @@ class _UserState implements UserState {
 @override@JsonKey() final  GenderEnum? gender;
 @override@JsonKey() final  String age;
 @override@JsonKey() final  bool isVerified;
- final  List<TagGroupModel> _tags;
-@override@JsonKey() List<TagGroupModel> get tags {
-  if (_tags is EqualUnmodifiableListView) return _tags;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_tags);
-}
-
 @override@JsonKey() final  String firstNameError;
 @override@JsonKey() final  String lastNameError;
 @override@JsonKey() final  String ageError;
 @override@JsonKey() final  String genderError;
 @override@JsonKey() final  bool isFormValid;
-@override@JsonKey() final  bool isLoading;
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
@@ -245,16 +235,16 @@ _$UserStateCopyWith<_UserState> get copyWith => __$UserStateCopyWithImpl<_UserSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.firstNameError, firstNameError) || other.firstNameError == firstNameError)&&(identical(other.lastNameError, lastNameError) || other.lastNameError == lastNameError)&&(identical(other.ageError, ageError) || other.ageError == ageError)&&(identical(other.genderError, genderError) || other.genderError == genderError)&&(identical(other.isFormValid, isFormValid) || other.isFormValid == isFormValid)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.firstNameError, firstNameError) || other.firstNameError == firstNameError)&&(identical(other.lastNameError, lastNameError) || other.lastNameError == lastNameError)&&(identical(other.ageError, ageError) || other.ageError == ageError)&&(identical(other.genderError, genderError) || other.genderError == genderError)&&(identical(other.isFormValid, isFormValid) || other.isFormValid == isFormValid));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,avatarUrl,gender,age,isVerified,const DeepCollectionEquality().hash(_tags),firstNameError,lastNameError,ageError,genderError,isFormValid,isLoading);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,avatarUrl,gender,age,isVerified,firstNameError,lastNameError,ageError,genderError,isFormValid);
 
 @override
 String toString() {
-  return 'UserState(firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, gender: $gender, age: $age, isVerified: $isVerified, tags: $tags, firstNameError: $firstNameError, lastNameError: $lastNameError, ageError: $ageError, genderError: $genderError, isFormValid: $isFormValid, isLoading: $isLoading)';
+  return 'UserState(firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, gender: $gender, age: $age, isVerified: $isVerified, firstNameError: $firstNameError, lastNameError: $lastNameError, ageError: $ageError, genderError: $genderError, isFormValid: $isFormValid)';
 }
 
 
@@ -265,7 +255,7 @@ abstract mixin class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Re
   factory _$UserStateCopyWith(_UserState value, $Res Function(_UserState) _then) = __$UserStateCopyWithImpl;
 @override @useResult
 $Res call({
- String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, List<TagGroupModel> tags, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid, bool isLoading
+ String firstName, String lastName, String avatarUrl, GenderEnum? gender, String age, bool isVerified, String firstNameError, String lastNameError, String ageError, String genderError, bool isFormValid
 });
 
 
@@ -282,7 +272,7 @@ class __$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? gender = freezed,Object? age = null,Object? isVerified = null,Object? tags = null,Object? firstNameError = null,Object? lastNameError = null,Object? ageError = null,Object? genderError = null,Object? isFormValid = null,Object? isLoading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? gender = freezed,Object? age = null,Object? isVerified = null,Object? firstNameError = null,Object? lastNameError = null,Object? ageError = null,Object? genderError = null,Object? isFormValid = null,}) {
   return _then(_UserState(
 firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
@@ -290,13 +280,11 @@ as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: 
 as String,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as GenderEnum?,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
-as bool,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
-as List<TagGroupModel>,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
+as bool,firstNameError: null == firstNameError ? _self.firstNameError : firstNameError // ignore: cast_nullable_to_non_nullable
 as String,lastNameError: null == lastNameError ? _self.lastNameError : lastNameError // ignore: cast_nullable_to_non_nullable
 as String,ageError: null == ageError ? _self.ageError : ageError // ignore: cast_nullable_to_non_nullable
 as String,genderError: null == genderError ? _self.genderError : genderError // ignore: cast_nullable_to_non_nullable
 as String,isFormValid: null == isFormValid ? _self.isFormValid : isFormValid // ignore: cast_nullable_to_non_nullable
-as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

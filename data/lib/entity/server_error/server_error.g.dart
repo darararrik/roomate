@@ -7,14 +7,16 @@ part of 'server_error.dart';
 // **************************************************************************
 
 _ServerError _$ServerErrorFromJson(Map<String, dynamic> json) => _ServerError(
-  generalServerStatusCode: (json['generalServerStatusCode'] as num?)?.toInt(),
-  generalServerErrorId: json['generalServerErrorId'] as String?,
-  generalMessages: json['generalMessages'] as Map<String, dynamic>?,
+  status: (json['status'] as num?)?.toInt(),
+  error: json['error'] as String?,
+  message: json['message'] as String?,
+  path: json['path'] as String?,
 );
 
 Map<String, dynamic> _$ServerErrorToJson(_ServerError instance) =>
     <String, dynamic>{
-      'generalServerStatusCode': instance.generalServerStatusCode,
-      'generalServerErrorId': instance.generalServerErrorId,
-      'generalMessages': instance.generalMessages,
+      'status': instance.status,
+      'error': instance.error,
+      'message': instance.message,
+      'path': instance.path,
     };

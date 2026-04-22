@@ -14,11 +14,11 @@ class RemoteException extends AppException {
   final ServerError? serverError;
   final Object? rootException;
 
-  int get generalServerStatusCode => serverError?.generalServerStatusCode ?? -1;
+  int get statusCode => serverError?.status ?? -1;
 
-  String? get generalServerErrorId => serverError?.generalServerErrorId ?? '';
+  String? get error => serverError?.error ?? '';
 
-  Map<String, dynamic>? get generalMessages => serverError?.generalMessages ?? {};
+  String get messages => serverError?.message ?? '';
 
   @override
   String toString() {
@@ -27,9 +27,9 @@ class RemoteException extends AppException {
       httpErrorCode: $httpErrorCode,
       serverError: $serverError,
       rootException: $rootException,
-      generalServerMessage: $generalMessages,
-      generalServerErrorCode: $generalServerStatusCode,
-      generalServerErrorId: $generalServerErrorId,
+      generalServerMessage: $messages,
+      generalServerErrorCode: $statusCode,
+      generalServerErrorId: $error,
       stackTrace: ${rootException is Error ? (rootException as Error).stackTrace : ''}
 }''';
   }

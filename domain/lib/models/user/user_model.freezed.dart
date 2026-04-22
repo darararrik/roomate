@@ -14,8 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
- String get id; String get firstName; String get lastName;//TODO: Мб CityModel будет нужен
- String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; List<TagModel> get tags; bool get isOwner;
+ String get id; String get firstName; String get lastName; String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; List<TagModel> get tags; bool get isOwner; bool get isNewUser;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +25,16 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.isNewUser, isNewUser) || other.isNewUser == isNewUser));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,const DeepCollectionEquality().hash(tags),isOwner);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,const DeepCollectionEquality().hash(tags),isOwner,isNewUser);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, tags: $tags, isOwner: $isOwner)';
+  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, tags: $tags, isOwner: $isOwner, isNewUser: $isNewUser)';
 }
 
 
@@ -46,7 +45,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner
+ String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner, bool isNewUser
 });
 
 
@@ -63,7 +62,7 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? tags = null,Object? isOwner = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? tags = null,Object? isOwner = null,Object? isNewUser = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -76,6 +75,7 @@ as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nul
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<TagModel>,isOwner: null == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
+as bool,isNewUser: null == isNewUser ? _self.isNewUser : isNewUser // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -158,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner,  bool isNewUser)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner,_that.isNewUser);case _:
   return orElse();
 
 }
@@ -179,10 +179,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner,  bool isNewUser)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner);}
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner,_that.isNewUser);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -196,10 +196,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  List<TagModel> tags,  bool isOwner,  bool isNewUser)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.tags,_that.isOwner,_that.isNewUser);case _:
   return null;
 
 }
@@ -211,13 +211,12 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 
 
 class _UserModel extends UserModel {
-  const _UserModel({this.id = '', this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, final  List<TagModel> tags = const [], this.isOwner = false}): _tags = tags,super._();
+  const _UserModel({this.id = '', this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, final  List<TagModel> tags = const [], this.isOwner = false, this.isNewUser = true}): _tags = tags,super._();
   
 
 @override@JsonKey() final  String id;
 @override@JsonKey() final  String firstName;
 @override@JsonKey() final  String lastName;
-//TODO: Мб CityModel будет нужен
 @override@JsonKey() final  String city;
 @override@JsonKey() final  String avatarUrl;
 @override@JsonKey() final  GenderEnum gender;
@@ -232,6 +231,7 @@ class _UserModel extends UserModel {
 }
 
 @override@JsonKey() final  bool isOwner;
+@override@JsonKey() final  bool isNewUser;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -243,16 +243,16 @@ _$UserModelCopyWith<_UserModel> get copyWith => __$UserModelCopyWithImpl<_UserMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.isNewUser, isNewUser) || other.isNewUser == isNewUser));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,const DeepCollectionEquality().hash(_tags),isOwner);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,const DeepCollectionEquality().hash(_tags),isOwner,isNewUser);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, tags: $tags, isOwner: $isOwner)';
+  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, tags: $tags, isOwner: $isOwner, isNewUser: $isNewUser)';
 }
 
 
@@ -263,7 +263,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner
+ String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, List<TagModel> tags, bool isOwner, bool isNewUser
 });
 
 
@@ -280,7 +280,7 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? tags = null,Object? isOwner = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? tags = null,Object? isOwner = null,Object? isNewUser = null,}) {
   return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -293,6 +293,7 @@ as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nul
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<TagModel>,isOwner: null == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
+as bool,isNewUser: null == isNewUser ? _self.isNewUser : isNewUser // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

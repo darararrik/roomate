@@ -1,6 +1,5 @@
-import 'package:domain/domain.dart';
-
 import 'package:data/lib.dart';
+import 'package:domain/domain.dart';
 
 abstract class UserMapper {
   static UserModel toModel(UserData? userData) {
@@ -16,6 +15,7 @@ abstract class UserMapper {
       tags: userData?.tags?.map((e) => TagMapper.toModel(e)).toList() ?? [],
       city: userData?.city ?? '',
       isOwner: userData?.isOwner ?? false,
+      isNewUser: userData?.isNewUser ?? true,
     );
   }
 
@@ -32,6 +32,7 @@ abstract class UserMapper {
       tags: user.tags.map((e) => TagMapper.toData(e)).toList(),
       city: user.city,
       isOwner: user.isOwner,
+      isNewUser: user.isNewUser,
     );
   }
 }

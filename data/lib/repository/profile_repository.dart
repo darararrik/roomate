@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/lib.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/lib.dart';
 
 class ProfileRepository implements IProfileRepository {
   ProfileRepository({
@@ -15,32 +14,17 @@ class ProfileRepository implements IProfileRepository {
 
   @override
   Future<Either<RemoteException, UserModel>> createProfile(UserModel user) async {
-    try {
-      final result = await _remoteDataSource.createProfile(user);
-      return Right(result);
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
-    }
+    return _remoteDataSource.createProfile(user);
   }
 
   @override
   Future<Either<RemoteException, List<TagGroupModel>>> fetchTagsAboutSelf() async {
-    try {
-      final result = _tagsMockDataSource.fetchTagsAboutSelf();
-      return Right(result);
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
-    }
+    return _remoteDataSource.fetchTagsAboutSelf();
   }
 
   @override
   Future<Either<RemoteException, UserModel>> fetchProfile() async {
-    try {
-      final result = await _remoteDataSource.fetchProfile();
-      return Right(result);
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
-    }
+    return _remoteDataSource.fetchProfile();
   }
 
   @override
@@ -57,11 +41,6 @@ class ProfileRepository implements IProfileRepository {
 
   @override
   Future<Either<RemoteException, UserModel>> updateProfile(UserModel user) async {
-    try {
-      final result = await _remoteDataSource.updateProfile(user);
-      return Right(result);
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.serverUndefined, rootException: e));
-    }
+    return _remoteDataSource.updateProfile(user);
   }
 }

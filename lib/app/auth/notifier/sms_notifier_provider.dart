@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'package:roomate/app/auth/state/sms_notifier/sms_state.dart';
+import 'package:roomate/app/auth/notifier/auth_notifier.dart';
+import 'package:roomate/lib.dart';
 
 part 'sms_notifier_provider.g.dart';
 
@@ -29,9 +29,9 @@ class SmsNotifier extends _$SmsNotifier {
   }
 
   void resetTimer() {
-    if (!state.canResend) return; // Защита от лишних нажатий
-    state = state.copyWith(timerCount: 59); // Сбрасываем
+    if (!state.canResend) return;
+    state = state.copyWith(timerCount: 300);
     _startTimer();
-    // Тут можно вызвать API для повторной отправки SMS
+    ref.read(authProvider.notifier).verifySms();
   }
 }

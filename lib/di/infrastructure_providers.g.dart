@@ -215,7 +215,7 @@ final class ApiClientProvider
   }
 }
 
-String _$apiClientHash() => r'241386535a36ed4fb7041e3f0f4668727509bb62';
+String _$apiClientHash() => r'a3597fcc7ac8dab57ea70e7625b549e06e8c4fbb';
 
 @ProviderFor(tokenService)
 final tokenServiceProvider = TokenServiceProvider._();

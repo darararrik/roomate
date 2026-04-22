@@ -9,12 +9,18 @@ abstract class CreateProfile {
         page: CreateProfileRoute.page,
         children: [
           AutoRoute(page: ProfileSetupRoute.page),
-          AutoRoute(page: PreferencesRoute.page),
           AutoRoute(page: VerificationIntroRoute.page),
         ],
       ),
       AutoRoute(page: ProfileSummaryRoute.page),
       AutoRoute(page: VerificationStatusRoute.page),
     ],
+  );
+}
+
+abstract class ProfilePreferences {
+  static final route = AutoRoute(
+    page: const EmptyShellRoute("ProfilePreferencesShell").page,
+    children: [AutoRoute(page: PreferencesRoute.page)],
   );
 }

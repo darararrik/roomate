@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/lib.dart';
-import 'package:shared/shared.dart';
 
 part 'global_profile_notifier.g.dart';
 
@@ -11,49 +10,15 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
   @override
   Future<UserModel> build() async {
-    return _fetchProfileOrThrow();
+    return UserModel.guest();
   }
 
-  Future<UserModel> _fetchProfileOrThrow() async {
-    final res = await _repository.fetchProfile();
-    return res.fold((e) => UserModel.guest(), (u) => u);
-  }
-
-  Future<void> refreshProfile() async {
+  Future<void> fetchProfile() async {
     state = const AsyncLoading();
-    state = await AsyncValue.guard(_fetchProfileOrThrow);
-  }
-
-  // Future<bool> ensureProfileByPhone(String phone) async {
-  //   final currentUser = state.asData?.value;
-  //   if (currentUser != null && currentUser.phone.isNotEmpty) return true;
-
-  //   // final existing = await _repository.fetchProfile();
-  //   // return existing.fold((_) => createProfileWithPhone(UserModel(phone: phone)), (user) async {
-  //   //   if (user.phone.isNotEmpty) {
-  //   //     state = AsyncData(user);
-  //   //     return true;
-  //   //   }
-
-  //   //   final patched = user.copyWith(phone: phone);
-  //   //   final update = await _repository.updateProfile(patched);
-
-  //   //   return update.fold(
-  //   //     (e) {
-  //   //       state = AsyncError(e, StackTrace.current);
-  //   //       _handleRemoteException(e);
-  //   //       return false;
-  //   //     },
-  //   //     (saved) {
-  //   //       state = AsyncData(saved);
-  //   //       return true;
-  //   //     },
-  //   //   );
-  //   // });
-  // }
-
-  Future<void> createProfileWithPhone(UserModel user) async {
-    state = AsyncData(user);
+    state = await AsyncValue.guard(() async {
+      final res = await _repository.fetchProfile();
+      return res.fold((e) => throw e, (u) => u);
+    });
   }
 
   Future<bool> updateProfile({
@@ -64,7 +29,8 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     int? age,
     List<TagModel>? tags,
   }) async {
-    final current = state.maybeWhen(data: (u) => u, orElse: () => const UserModel());
+    // Берем текущие данные из стейта (если там еще загрузка или ошибка — берем гостя)
+    final current = state.value ?? UserModel.guest();
 
     final updated = current.copyWith(
       firstName: firstName ?? current.firstName,
@@ -75,12 +41,14 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
       tags: tags ?? current.tags,
     );
 
+    // Ставим состояние загрузки для UI
+    state = const AsyncLoading();
+
     final res = await _repository.updateProfile(updated);
 
     return res.fold(
       (e) {
         state = AsyncError(e, StackTrace.current);
-        _handleRemoteException(e);
         return false;
       },
       (saved) {
@@ -88,46 +56,5 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
         return true;
       },
     );
-  }
-
-  Future<bool> deleteProfile() async {
-    final res = await _repository.deleteProfile();
-    return res.fold(
-      (e) {
-        state = AsyncError(e, StackTrace.current);
-        _handleRemoteException(e);
-        return false;
-      },
-      (_) {
-        state = const AsyncData(UserModel());
-        return true;
-      },
-    );
-  }
-
-  Future<void> createProfileOwner() async {
-    final current = state.requireValue;
-    final res = await _repository.updateProfile(current.copyWith(isOwner: true));
-    return res.fold(
-      (e) {
-        state = AsyncError(e, StackTrace.current);
-        _handleRemoteException(e);
-      },
-      (user) {
-        state = AsyncData(user);
-      },
-    );
-  }
-
-  void createProfileGuest() {
-    state = AsyncData(UserModel.guest());
-  }
-
-  void _handleRemoteException(RemoteException error) {
-    if (error.kind == RemoteExceptionKind.refreshTokenFailed) {
-      // logout flow
-    } else {
-      // snackbar / telemetry
-    }
   }
 }

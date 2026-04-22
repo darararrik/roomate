@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
+import 'package:roomate/utils/helpers/phone_number.dart';
 
 part 'auth_notifier.g.dart';
 
@@ -43,34 +44,33 @@ class AuthNotifier extends _$AuthNotifier {
   void enterByPhoneNumber() => ref.nav.push(const EnterPhoneNumberRoute());
 
   void enterAsGuest() {
-    ref.read(globalProfileProvider.notifier).createProfileGuest();
     ref.nav.replace(const MainFlowRoute());
   }
 
   void openEnterCodeScreen() {
-    final cleanPhone = state.phone.replaceAll(RegExp(r'\D'), '');
-    final formattedPhone = cleanPhone.startsWith('7') ? '+$cleanPhone' : '+7$cleanPhone';
-    ref.read(authRepositoryProvider).signInByPhone(formattedPhone);
+    final phone = PhoneNumber(state.phone);
+    ref.read(authRepositoryProvider).signInByPhone(phone.value);
     ref.nav.push(const EnterCodeRoute());
   }
 
-  // Future<void> verify() async {
-  //   if (!state.isPinComplete) return;
-  //   final result = await ref.read(authRepositoryProvider).verifySms(state.phone, state.code);
-  //   result.fold((e) => setError(e.kind.toString()), (user) async {
-  //     await ref.read(globalProfileProvider.notifier).createProfileWithPhone(user);
-  //     ref.nav.replace(const OnBoardingRoute());
-  //   });
-  // }
-  //TODO: потом разбить
-  void openOnBoardingScreen() async {
+  Future<void> verifySms() async {
     if (!state.isPinComplete) return;
-    final cleanPhone = state.phone.replaceAll(RegExp(r'\D'), '');
-    final formattedPhone = cleanPhone.startsWith('7') ? '+$cleanPhone' : '+7$cleanPhone';
-    final result = await ref.read(authRepositoryProvider).verifySms(formattedPhone, state.code);
-    result.fold((e) => setError(e.rootException.toString()), (user) async {
-      await ref.read(globalProfileProvider.notifier).createProfileWithPhone(user);
-      ref.nav.replace(const OnBoardingRoute());
+    final phone = PhoneNumber(state.phone);
+    final result = await ref.read(authRepositoryProvider).verifySms(phone.value, state.code);
+    result.fold((e) => setError(e.messages), (user) async {
+      if (user.isNewUser) {
+        openCreateProfileScreen();
+      } else {
+        openMainScreen();
+      }
     });
+  }
+
+  void openMainScreen() {
+    ref.nav.replace(const MainFlowRoute());
+  }
+
+  void openCreateProfileScreen() async {
+    ref.nav.push(const CreateProfileRoute());
   }
 }

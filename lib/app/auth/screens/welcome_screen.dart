@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:roomate/app/auth/notifier/auth_notifier.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()

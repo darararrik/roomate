@@ -1,7 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
-
-import 'package:domain/domain.dart';
 
 part 'user_model.freezed.dart';
 
@@ -11,7 +10,6 @@ sealed class UserModel with _$UserModel {
     @Default('') String id,
     @Default('') String firstName,
     @Default('') String lastName,
-    //TODO: Мб CityModel будет нужен
     @Default('') String city,
     @Default(Constants.defaultProfileImage) String avatarUrl,
     @Default(GenderEnum.male) GenderEnum gender,
@@ -20,6 +18,7 @@ sealed class UserModel with _$UserModel {
     @Default(false) bool isVerified,
     @Default([]) List<TagModel> tags,
     @Default(false) bool isOwner,
+    @Default(true) bool isNewUser,
   }) = _UserModel;
   const UserModel._();
 
