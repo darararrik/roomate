@@ -1,6 +1,5 @@
-import 'package:domain/domain.dart';
-
 import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 
 abstract class OptionMapper {
   static OptionModel toModel(OptionData dto) {
@@ -10,6 +9,9 @@ abstract class OptionMapper {
   static OptionData toDto(OptionModel model) {
     return OptionData(id: model.id, title: model.title);
   }
+
+  static List<OptionModel> toModelList(List<OptionData>? dtos) =>
+      dtos?.map(OptionMapper.toModel).toList() ?? [];
 }
 
 abstract class AdFormMapper {
