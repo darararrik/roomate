@@ -15,21 +15,17 @@ class AppRouter extends RootStackRouter {
       page: MainFlowRoute.page,
       children: [
         // Home Tabs (Вкладка 1)
-        AutoRoute(
-          page: HomeRoute.page,
-          initial: true,
-          children: [
-            AutoRoute(page: ApartamentsTabRoute.page, initial: true),
-            AutoRoute(page: NeighboursTabRoute.page),
-            AutoRoute(page: CoworkingTabRoute.page),
-          ],
-        ),
+        AutoRoute(page: HomeRoute.page, initial: true),
+
         AutoRoute(page: FavoritesRoute.page),
         AutoRoute(page: CreateRoute.page),
         AutoRoute(page: ChatsRoute.page),
         AutoRoute(page: ProfileRoute.page),
       ],
     ),
+    AutoRoute(page: ApartamentsRoute.page),
+    AutoRoute(page: NeighboursRoute.page),
+    AutoRoute(page: CoworkingRoute.page),
     AutoRoute(page: ChatRoute.page),
     AutoRoute(page: ApartamnetRoute.page),
     AutoRoute(page: ProfileEditRoute.page),

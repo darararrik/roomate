@@ -1,3 +1,5 @@
+import 'dart:core';
+
 abstract class AppIcons {
   static const String edit = 'assets/icons/Edit.svg';
   static const String edit2 = 'assets/icons/Edit2.svg';
@@ -74,4 +76,8 @@ abstract class AppIcons {
   static const String videoIntercom = 'assets/icons/video_intercom.svg';
   static const String washingMachine = 'assets/icons/washing-machine.svg';
   static const String wifi = 'assets/icons/wifi.svg';
+  static const String neighbors = 'assets/pics/neighbors.png';
+  static const String coworking = 'assets/pics/coworking.png';
+  static const String myRents = 'assets/pics/my_rents.png';
+  static const String rent = 'assets/pics/rent.png';
 }
