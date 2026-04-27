@@ -57,6 +57,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get optionsFound => 'Найдено вариантов';
 
   @override
+  String get rentApartment => 'Снять в аренду';
+
+  @override
+  String get myAdvertisements => 'Мои объявления';
+
+  @override
+  String get findNeighbour => 'Найти соседа';
+
+  @override
+  String get recentAdvertisements => 'Недавние объявления';
+
+  @override
+  String get seeAll => 'Смотреть все';
+
+  @override
   String get currencySymbol => '₽';
 
   @override

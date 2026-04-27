@@ -190,6 +190,36 @@ abstract class AppLocalizations {
   /// **'Найдено вариантов'**
   String get optionsFound;
 
+  /// No description provided for @rentApartment.
+  ///
+  /// In ru, this message translates to:
+  /// **'Снять в аренду'**
+  String get rentApartment;
+
+  /// No description provided for @myAdvertisements.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мои объявления'**
+  String get myAdvertisements;
+
+  /// No description provided for @findNeighbour.
+  ///
+  /// In ru, this message translates to:
+  /// **'Найти соседа'**
+  String get findNeighbour;
+
+  /// No description provided for @recentAdvertisements.
+  ///
+  /// In ru, this message translates to:
+  /// **'Недавние объявления'**
+  String get recentAdvertisements;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In ru, this message translates to:
+  /// **'Смотреть все'**
+  String get seeAll;
+
   /// No description provided for @currencySymbol.
   ///
   /// In ru, this message translates to:

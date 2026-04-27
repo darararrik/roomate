@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/lib.dart';
-import 'package:roomate/routing/app_routing.gr.dart';
 
 @RoutePage()
 class HomeScreen extends ConsumerWidget {
@@ -12,7 +11,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncState = ref.watch(apartamentsProvider);
+    final asyncState = ref.watch(homeProvider);
+    final notifier = ref.read(homeProvider.notifier);
     final favorites = ref.watch(favoriteApartmentIdsProvider);
     final favoritesNotifier = ref.read(favoriteApartmentIdsProvider.notifier);
     return CustomScrollView(
@@ -27,24 +27,24 @@ class HomeScreen extends ConsumerWidget {
             childAspectRatio: 1.12,
             children: [
               _HomeActionCard(
-                title: 'Снять в аренду',
+                title: context.l10n.rentApartment,
                 imagePath: AppIcons.rent,
-                onTap: () => context.pushRoute(const ApartamentsRoute()),
+                onTap: notifier.openApartments,
               ),
               _HomeActionCard(
-                title: 'Мои объявления',
+                title: context.l10n.myAdvertisements,
                 imagePath: AppIcons.myRents,
-                onTap: () {},
+                onTap: notifier.openMyAdvertisements,
               ),
               _HomeActionCard(
-                title: 'Найти соседа',
+                title: context.l10n.findNeighbour,
                 imagePath: AppIcons.neighbors,
-                onTap: () => context.pushRoute(const NeighboursRoute()),
+                onTap: notifier.openNeighbours,
               ),
               _HomeActionCard(
-                title: 'Коворкинг',
+                title: context.l10n.coworking,
                 imagePath: AppIcons.coworking,
-                onTap: () => context.pushRoute(const CoworkingRoute()),
+                onTap: notifier.openCoworking,
               ),
             ],
           ),
@@ -58,13 +58,16 @@ class HomeScreen extends ConsumerWidget {
                 mainAxisAlignment: .spaceBetween,
                 children: [
                   Text(
-                    "Недавние объявления",
+                    context.l10n.recentAdvertisements,
                     style: context.typography.headline1,
                   ),
-                  Text(
-                    "Смотреть все",
-                    style: context.typography.activesLabel.copyWith(
-                      color: context.colors.orangeSecond,
+                  GestureDetector(
+                    onTap: notifier.openApartments,
+                    child: Text(
+                      context.l10n.seeAll,
+                      style: context.typography.activesLabel.copyWith(
+                        color: context.colors.orangeSecond,
+                      ),
                     ),
                   ),
                 ],
@@ -74,7 +77,7 @@ class HomeScreen extends ConsumerWidget {
         ),
         asyncState.when(
           data: (state) {
-            final apartaments = state.apartaments;
+            final apartaments = state.recentApartments;
             return SliverList.separated(
               itemCount: apartaments.length,
               itemBuilder: (context, index) {
@@ -82,19 +85,8 @@ class HomeScreen extends ConsumerWidget {
                 return ApartmentCard(
                   apartment: apartment,
                   isFavorite: favorites.contains(apartment.id),
-                  onFavoriteTap: () {
-                    final isAdded = favoritesNotifier.toggle(apartment.id);
-                    if (isAdded) {
-                      ref
-                          .read(navigationServiceProvider)
-                          .showSnackBar(
-                            message: "Добавлено в избранное",
-                            durationInSeconds: 5,
-                          );
-                    }
-                  },
-                  onTap: () =>
-                      context.pushRoute(ApartamnetRoute(apartment: apartment)),
+                  onFavoriteTap: () => favoritesNotifier.toggle(apartment.id),
+                  onTap: () => notifier.openApartment(apartment),
                 );
               },
               separatorBuilder: (context, index) {
