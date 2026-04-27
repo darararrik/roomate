@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
-class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key});
+class OverviewScreen extends ConsumerWidget {
+  const OverviewScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -78,20 +76,23 @@ class HomeScreen extends ConsumerWidget {
         asyncState.when(
           data: (state) {
             final apartaments = state.recentApartments;
-            return SliverList.separated(
-              itemCount: apartaments.length,
-              itemBuilder: (context, index) {
-                final apartment = apartaments[index];
-                return ApartmentCard(
-                  apartment: apartment,
-                  isFavorite: favorites.contains(apartment.id),
-                  onFavoriteTap: () => favoritesNotifier.toggle(apartment.id),
-                  onTap: () => notifier.openApartment(apartment),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const SizedBox(height: S.p12);
-              },
+            return SliverPadding(
+              padding: const P(bottom: S.p24),
+              sliver: SliverList.separated(
+                itemCount: apartaments.length,
+                itemBuilder: (context, index) {
+                  final apartment = apartaments[index];
+                  return ApartmentCard(
+                    apartment: apartment,
+                    isFavorite: favorites.contains(apartment.id),
+                    onFavoriteTap: () => favoritesNotifier.toggle(apartment.id),
+                    onTap: () => notifier.openApartment(apartment),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(height: S.p12);
+                },
+              ),
             );
           },
           loading: () => const SliverToBoxAdapter(child: LoadingWidget()),

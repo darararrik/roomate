@@ -15,12 +15,16 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
+  Future<Either<RemoteException, AdFormOptionsModel>>
+  fetchAdFormOptions() async {
     final result = await _client.get(
       ApiUrlConstants.adFormOptions,
       transformer: (json) => AdFormOptionsData.fromJson(json),
     );
-    return result.fold((error) => Left(error), (data) => Right(AdFormMapper.toModel(data)));
+    return result.fold(
+      (error) => Left(error),
+      (data) => Right(AdFormMapper.toModel(data)),
+    );
   }
 
   @override
@@ -32,7 +36,7 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   @override
   Future<void> createAd(CreateAdFormRequestData request) async {
     try {
-      final res = await _client.post(
+      await _client.post(
         ApiUrlConstants.createAd,
         body: request.toJson(),
         needAuth: true,

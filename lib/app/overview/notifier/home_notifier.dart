@@ -28,7 +28,7 @@ class HomeNotifier extends _$HomeNotifier {
 
   void openApartments() => ref.nav.push(const ApartamentsRoute());
 
-  void openMyAdvertisements() => ref.nav.push(const ProfileRoute());
+  void openMyAdvertisements() => ref.nav.push(const MyAdvertisementsRoute());
 
   void openNeighbours() => ref.nav.push(const NeighboursRoute());
 

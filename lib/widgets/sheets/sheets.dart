@@ -1,4 +1,4 @@
-export '../../app/home/widgets/rent_duration_bottom_sheet.dart';
+export '../../app/apartments/widgets/rent_duration_bottom_sheet.dart';
 export 'add_media_sheet.dart';
 export 'base_bottom_sheet.dart';
 export 'district_bottom_sheet.dart';

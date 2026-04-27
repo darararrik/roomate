@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/app/home/notifier/apartament_filter_notifier.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -37,17 +36,7 @@ class ApartamentsScreen extends ConsumerWidget {
                   return ApartmentCard(
                     apartment: apartment,
                     isFavorite: favorites.contains(apartment.id),
-                    onFavoriteTap: () {
-                      final isAdded = favoritesNotifier.toggle(apartment.id);
-                      if (isAdded) {
-                        ref
-                            .read(navigationServiceProvider)
-                            .showSnackBar(
-                              message: "Добавлено в избранное",
-                              durationInSeconds: 5,
-                            );
-                      }
-                    },
+                    onFavoriteTap: () => favoritesNotifier.toggle(apartment.id),
                     onTap: () => context.pushRoute(
                       ApartamnetRoute(apartment: apartment),
                     ),

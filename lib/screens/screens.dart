@@ -1,6 +1,3 @@
-export '../app/favorites/favorites_screen.dart';
-export '../app/home/home.dart';
-export '../app/home/screens/filters_screen.dart';
 export 'about_group_screen.dart';
 export 'auth_edit_first_page.dart';
 export 'auth_edit_second_page.dart';

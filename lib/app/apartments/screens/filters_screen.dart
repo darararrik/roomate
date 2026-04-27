@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:roomate/app/home/notifier/apartament_filter_notifier.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -46,8 +45,9 @@ class FiltersScreen extends HookConsumerWidget {
                     options: filters.rentGoal,
                     selectedIds: {if (filter.goalId != 0) filter.goalId},
                     isRadio: true,
-                    onSelectionChanged: (ids) =>
-                        filterNotifier.setCategory(ids.isNotEmpty ? ids.first : 0),
+                    onSelectionChanged: (ids) => filterNotifier.setCategory(
+                      ids.isNotEmpty ? ids.first : 0,
+                    ),
                   ),
                   const SizedBox(height: S.p24),
                   _FilterSection(
@@ -91,7 +91,10 @@ class FiltersScreen extends HookConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(context.l10n.price, style: context.typography.headline2),
+                      Text(
+                        context.l10n.price,
+                        style: context.typography.headline2,
+                      ),
                       Text(
                         '${(filter.minPrice ?? 0).round()} - ${(filter.maxPrice ?? 200000).round()} ${context.l10n.currencySymbol}',
                         style: context.typography.bodyDescription,
@@ -99,16 +102,23 @@ class FiltersScreen extends HookConsumerWidget {
                     ],
                   ),
                   RangeSlider(
-                    values: RangeValues(filter.minPrice ?? 0, filter.maxPrice ?? 200000),
+                    values: RangeValues(
+                      filter.minPrice ?? 0,
+                      filter.maxPrice ?? 200000,
+                    ),
                     min: 0,
                     max: 200000,
                     divisions: 20,
                     activeColor: context.colors.orange,
                     inactiveColor: context.colors.graysLight100,
-                    onChanged: (values) => filterNotifier.setPriceRange(values.start, values.end),
+                    onChanged: (values) =>
+                        filterNotifier.setPriceRange(values.start, values.end),
                   ),
                   const SizedBox(height: S.p24),
-                  Text(context.l10n.location, style: context.typography.headline2),
+                  Text(
+                    context.l10n.location,
+                    style: context.typography.headline2,
+                  ),
                   const SizedBox(height: S.p12),
                   RegionListItem(
                     iconPath: AppIcons.city,

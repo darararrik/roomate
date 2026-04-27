@@ -7,11 +7,14 @@ part 'apartaments_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 class ApartamentsNotifier extends _$ApartamentsNotifier {
-  IApartamentsRepository get _repository => ref.read(apartamentsRepositoryProvider);
+  IApartamentsRepository get _repository =>
+      ref.read(apartamentsRepositoryProvider);
 
   @override
   Future<ApartamentsState> build() async {
-    final apartaments = await _repository.fetchApartaments(const ApartamentFilter());
+    final apartaments = await _repository.fetchApartaments(
+      const ApartamentFilter(),
+    );
     return ApartamentsState(apartaments: apartaments);
   }
 
