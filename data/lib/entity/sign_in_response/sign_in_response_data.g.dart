@@ -9,11 +9,11 @@ part of 'sign_in_response_data.dart';
 _SignInResponseData _$SignInResponseDataFromJson(Map<String, dynamic> json) =>
     _SignInResponseData(
       message: json['message'] as String?,
-      expiresInSeconds: (json['expiresInSeconds'] as num?)?.toInt(),
+      expiresInSeconds: (json['expires_in_seconds'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$SignInResponseDataToJson(_SignInResponseData instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'expiresInSeconds': instance.expiresInSeconds,
+      'expires_in_seconds': instance.expiresInSeconds,
     };

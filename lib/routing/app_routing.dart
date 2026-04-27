@@ -10,6 +10,7 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
+    AutoRoute(initial: true, page: SplashRoute.page),
     AutoRoute(
       page: MainFlowRoute.page,
       children: [
@@ -35,7 +36,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: FiltersRoute.page),
     AutoRoute(page: ProfileDataEditRoute.page),
     AutoRoute(
-      // initial: true,
       page: AuthWrapper.page,
       children: [
         AutoRoute(page: WelcomeRoute.page, initial: true),
@@ -43,7 +43,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: EnterCodeRoute.page),
       ],
     ),
-    AutoRoute(page: OnBoardingRoute.page),
     AutoRoute(page: AboutGroupRoute.page),
     AutoRoute(page: LocationRoute.page),
     CreateAdRoutes.routes,

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:shared/shared.dart';
+import 'package:talker/talker.dart';
 
 import 'package:data/constants/api_key.dart';
 import 'package:data/utils/extensions/map_dio_exc.dart';
@@ -8,8 +9,9 @@ import 'package:data/utils/extensions/map_dio_exc.dart';
 typedef ResponseTransformer<T> = T Function(dynamic json);
 
 class ApiClient {
-  ApiClient(this._dio);
+  ApiClient(this._dio, this._talker);
   final Dio _dio;
+  final Talker _talker;
 
   Future<Either<RemoteException, T>> request<T>({
     required String path,
@@ -32,13 +34,19 @@ class ApiClient {
         ),
       );
 
-      final result = transformer != null ? transformer(response.data) : response.data as T;
+      final result = transformer != null
+          ? transformer(response.data)
+          : response.data as T;
 
       return Right(result);
-    } on DioException catch (e) {
+    } on DioException catch (e, st) {
+      _talker.handle(e, st, 'API request failed: $method $path');
       return Left(e.toRemoteException());
-    } catch (e) {
-      return Left(RemoteException(kind: RemoteExceptionKind.unknown, rootException: e));
+    } catch (e, st) {
+      _talker.handle(e, st, 'API response parsing failed: $method $path');
+      return Left(
+        RemoteException(kind: RemoteExceptionKind.unknown, rootException: e),
+      );
     }
   }
 

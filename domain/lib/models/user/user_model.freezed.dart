@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
- String get id; String get firstName; String get lastName; String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; bool get isOwner; bool get isNewUser;
+ String get id; String get phone; String get role; bool get isNewUser;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.isNewUser, isNewUser) || other.isNewUser == isNewUser));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.role, role) || other.role == role)&&(identical(other.isNewUser, isNewUser) || other.isNewUser == isNewUser));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,isOwner,isNewUser);
+int get hashCode => Object.hash(runtimeType,id,phone,role,isNewUser);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, isNewUser: $isNewUser)';
+  return 'UserModel(id: $id, phone: $phone, role: $role, isNewUser: $isNewUser)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, bool isNewUser
+ String id, String phone, String role, bool isNewUser
 });
 
 
@@ -62,19 +62,12 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? isNewUser = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? phone = null,Object? role = null,Object? isNewUser = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
-as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as GenderEnum,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
-as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
-as bool,isOwner: null == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
-as bool,isNewUser: null == isNewUser ? _self.isNewUser : isNewUser // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String,isNewUser: null == isNewUser ? _self.isNewUser : isNewUser // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -122,7 +115,10 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that);}
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -157,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  bool isNewUser)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String phone,  String role,  bool isNewUser)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.isNewUser);case _:
+return $default(_that.id,_that.phone,_that.role,_that.isNewUser);case _:
   return orElse();
 
 }
@@ -178,10 +174,13 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  bool isNewUser)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String phone,  String role,  bool isNewUser)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.isNewUser);}
+return $default(_that.id,_that.phone,_that.role,_that.isNewUser);case _:
+  throw StateError('Unexpected subclass');
+
+}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -195,10 +194,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  bool isNewUser)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String phone,  String role,  bool isNewUser)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.isNewUser);case _:
+return $default(_that.id,_that.phone,_that.role,_that.isNewUser);case _:
   return null;
 
 }
@@ -209,20 +208,13 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// @nodoc
 
 
-class _UserModel extends UserModel {
-  const _UserModel({this.id = '', this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, this.isOwner = false, this.isNewUser = true}): super._();
+class _UserModel implements UserModel {
+  const _UserModel({this.id = '', this.phone = '', this.role = '', this.isNewUser = false});
   
 
 @override@JsonKey() final  String id;
-@override@JsonKey() final  String firstName;
-@override@JsonKey() final  String lastName;
-@override@JsonKey() final  String city;
-@override@JsonKey() final  String avatarUrl;
-@override@JsonKey() final  GenderEnum gender;
 @override@JsonKey() final  String phone;
-@override@JsonKey() final  int age;
-@override@JsonKey() final  bool isVerified;
-@override@JsonKey() final  bool isOwner;
+@override@JsonKey() final  String role;
 @override@JsonKey() final  bool isNewUser;
 
 /// Create a copy of UserModel
@@ -235,16 +227,16 @@ _$UserModelCopyWith<_UserModel> get copyWith => __$UserModelCopyWithImpl<_UserMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.isNewUser, isNewUser) || other.isNewUser == isNewUser));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.role, role) || other.role == role)&&(identical(other.isNewUser, isNewUser) || other.isNewUser == isNewUser));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,isOwner,isNewUser);
+int get hashCode => Object.hash(runtimeType,id,phone,role,isNewUser);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, isNewUser: $isNewUser)';
+  return 'UserModel(id: $id, phone: $phone, role: $role, isNewUser: $isNewUser)';
 }
 
 
@@ -255,7 +247,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, bool isNewUser
+ String id, String phone, String role, bool isNewUser
 });
 
 
@@ -272,19 +264,12 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? isNewUser = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? phone = null,Object? role = null,Object? isNewUser = null,}) {
   return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
-as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as GenderEnum,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
-as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
-as bool,isOwner: null == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
-as bool,isNewUser: null == isNewUser ? _self.isNewUser : isNewUser // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String,isNewUser: null == isNewUser ? _self.isNewUser : isNewUser // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

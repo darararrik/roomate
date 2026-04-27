@@ -13,7 +13,7 @@ part of 'global_profile_notifier.dart';
 final globalProfileProvider = GlobalProfileNotifierProvider._();
 
 final class GlobalProfileNotifierProvider
-    extends $AsyncNotifierProvider<GlobalProfileNotifier, UserModel> {
+    extends $AsyncNotifierProvider<GlobalProfileNotifier, ProfileModel> {
   GlobalProfileNotifierProvider._()
     : super(
         from: null,
@@ -34,19 +34,19 @@ final class GlobalProfileNotifierProvider
 }
 
 String _$globalProfileNotifierHash() =>
-    r'03ae797e7056a5a5410b363b9ae7e744af0dab34';
+    r'689cfecc3b689dab6354964723580de03716b13a';
 
-abstract class _$GlobalProfileNotifier extends $AsyncNotifier<UserModel> {
-  FutureOr<UserModel> build();
+abstract class _$GlobalProfileNotifier extends $AsyncNotifier<ProfileModel> {
+  FutureOr<ProfileModel> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<UserModel>, UserModel>;
+    final ref = this.ref as $Ref<AsyncValue<ProfileModel>, ProfileModel>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<UserModel>, UserModel>,
-              AsyncValue<UserModel>,
+              AnyNotifier<AsyncValue<ProfileModel>, ProfileModel>,
+              AsyncValue<ProfileModel>,
               Object?,
               Object?
             >;

@@ -8,32 +8,14 @@ part of 'user_data.dart';
 
 _UserData _$UserDataFromJson(Map<String, dynamic> json) => _UserData(
   id: json['id'] as String?,
-  firstName: json['first_name'] as String?,
-  lastName: json['last_name'] as String?,
   phone: json['phone'] as String?,
-  gender: json['gender'] as String?,
-  age: (json['age'] as num?)?.toInt(),
-  city: json['city'] as String?,
-  avatarUrl: json['photo'] as String?,
-  isVerified: json['status'] as bool?,
-  tags: (json['tags'] as List<dynamic>?)
-      ?.map((e) => UserTagData.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  isOwner: json['is_owner'] as bool?,
-  isNewUser: json['isNewUser'] as bool?,
+  role: json['role'] as String?,
+  isNewUser: json['is_new_user'] as bool?,
 );
 
 Map<String, dynamic> _$UserDataToJson(_UserData instance) => <String, dynamic>{
   'id': instance.id,
-  'first_name': instance.firstName,
-  'last_name': instance.lastName,
   'phone': instance.phone,
-  'gender': instance.gender,
-  'age': instance.age,
-  'city': instance.city,
-  'photo': instance.avatarUrl,
-  'status': instance.isVerified,
-  'tags': instance.tags,
-  'is_owner': instance.isOwner,
-  'isNewUser': instance.isNewUser,
+  'role': instance.role,
+  'is_new_user': instance.isNewUser,
 };

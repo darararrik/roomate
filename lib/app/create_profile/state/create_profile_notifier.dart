@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -41,20 +40,19 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
         final success = await createProfile();
         if (success) {
           tabsRouter.setActiveIndex(1);
-        } else {
-          //TODO: Показать ошибку (через state или через event/scaffold)
         }
         break;
       case 1:
-        ref.nav.push(const ProfileSummaryRoute());
+        ref.nav.push(const VerifcationSummaryRoute());
         break;
     }
   }
 
+  void openOnbording() => ref.nav.replaceAll([const OnBoardingRoute()]);
   void openUserPreferences() => ref.nav.push(const UserPreferencesPageViewRoute());
 
   Future<bool> createProfile() async {
-    final success = await ref
+    final error = await ref
         .read(globalProfileProvider.notifier)
         .updateProfile(
           firstName: state.firstName,
@@ -62,7 +60,14 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
           age: int.tryParse(state.age),
           gender: state.gender,
         );
-    return success;
+    if (error != null) {
+      final message = error.messages.isNotEmpty ? error.messages : 'Не удалось обновить профиль';
+      ref.read(navigationServiceProvider).showSnackBar(message: message);
+      return false;
+    }
+
+    await ref.read(appStatusProvider.notifier).markFormCompleted();
+    return true;
   }
 
   void onPop(TabsRouter tabsRouter) {

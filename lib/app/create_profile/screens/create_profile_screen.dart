@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/create_profile/state/create_profile_notifier.dart';
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
@@ -18,7 +16,7 @@ class CreateProfileScreen extends ConsumerWidget {
     final _ = ref.watch(createProfileProvider);
     return AutoTabsRouter.pageView(
       physics: const NeverScrollableScrollPhysics(),
-      routes: const [ProfileSetupRoute(), VerificationIntroRoute()],
+      routes: const [ProfileSetupRoute()],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
 

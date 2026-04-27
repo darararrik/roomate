@@ -1,10 +1,9 @@
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
-import 'package:data/data.dart';
-
-abstract class UserMapper {
-  static UserModel toModel(UserData? userData) {
-    return UserModel(
+abstract class ProfileMapper {
+  static ProfileModel toModel(ProfileData? userData) {
+    return ProfileModel(
       id: userData?.id ?? '',
       firstName: userData?.firstName ?? '',
       lastName: userData?.lastName ?? '',
@@ -16,12 +15,11 @@ abstract class UserMapper {
       // tags: userData?.tags?.map((e) => TagMapper.toModel(e)).toList() ?? [],
       city: userData?.city ?? '',
       isOwner: userData?.isOwner ?? false,
-      isNewUser: userData?.isNewUser ?? true,
     );
   }
 
-  static UserData toData(UserModel user) {
-    return UserData(
+  static ProfileData toData(ProfileModel user) {
+    return ProfileData(
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -33,7 +31,17 @@ abstract class UserMapper {
       // tags: user.tags.map((e) => TagMapper.toData(e)).toList(),
       city: user.city,
       isOwner: user.isOwner,
-      isNewUser: user.isNewUser,
+    );
+  }
+}
+
+abstract class UserMapper {
+  static UserModel toModel(UserData data) {
+    return UserModel(
+      id: data.id ?? '',
+      phone: data.phone ?? '',
+      role: data.phone ?? '',
+      isNewUser: data.isNewUser ?? false,
     );
   }
 }

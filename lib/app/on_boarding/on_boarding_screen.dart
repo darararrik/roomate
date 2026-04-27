@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/on_boarding/state/on_boarding_notifier.dart';
 import 'package:roomate/app/on_boarding/state/on_boarding_state.dart';
 import 'package:roomate/constants/constants.dart';
@@ -24,8 +22,6 @@ class OnBoardingScreen extends ConsumerWidget {
         if (didPop) return;
         if (!state.isFirstStep) {
           notifier.stepBack();
-        } else {
-          context.pop();
         }
       },
       child: Scaffold(
@@ -33,18 +29,14 @@ class OnBoardingScreen extends ConsumerWidget {
           child: SafeArea(
             child: Column(
               children: [
-                _QuizAppBar(
-                  showBackButton: !state.isFirstStep,
-                  onBack: notifier.stepBack,
-                ),
+                _QuizAppBar(showBackButton: !state.isFirstStep, onBack: notifier.stepBack),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: S.p64),
                     child: Center(
                       child: _QuizStepContent(
                         state: state,
-                        onOptionSelected: (index) =>
-                            notifier.handleSelection(optionIndex: index),
+                        onOptionSelected: (index) => notifier.handleSelection(optionIndex: index),
                       ),
                     ),
                   ),
@@ -71,23 +63,23 @@ class _QuizAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (showBackButton)
-            BackButton(color: context.colors.graysWhite, onPressed: onBack)
-          else
+          if (showBackButton) ...[
+            BackButton(color: context.colors.graysWhite, onPressed: onBack),
+            Consumer(
+              builder: (context, ref, child) {
+                return IconButton(
+                  onPressed: () => ref.read(onBoardingProvider.notifier).skip(),
+                  icon: AppIcon(
+                    AppIcons.xBig,
+                    width: S.p32,
+                    height: S.p32,
+                    color: context.colors.graysWhite,
+                  ),
+                );
+              },
+            ),
+          ] else
             const SizedBox(width: S.p48),
-          Consumer(
-            builder: (context, ref, child) {
-              return IconButton(
-                onPressed: () => ref.read(onBoardingProvider.notifier).skip(),
-                icon: AppIcon(
-                  AppIcons.xBig,
-                  width: S.p32,
-                  height: S.p32,
-                  color: context.colors.graysWhite,
-                ),
-              );
-            },
-          ),
         ],
       ),
     );
@@ -163,8 +155,7 @@ class _QuizStepContent extends StatelessWidget {
                       builder: (context, ref, child) {
                         return OpacityButton(
                           radius: S.p16,
-                          onPressed: () =>
-                              ref.read(onBoardingProvider.notifier).skip(),
+                          onPressed: () => ref.read(onBoardingProvider.notifier).skip(),
                           bgColor: context.colors.graysLight100,
                           child: Text(
                             step.cancel!,

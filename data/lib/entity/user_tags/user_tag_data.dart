@@ -11,8 +11,7 @@ sealed class UserTagData with _$UserTagData {
     @JsonKey(name: "is_selected") bool? isSelected,
   }) = _UserTagData;
 
-  factory UserTagData.fromJson(Map<String, dynamic> json) =>
-      _$UserTagDataFromJson(json);
+  factory UserTagData.fromJson(Map<String, dynamic> json) => _$UserTagDataFromJson(json);
 }
 
 @freezed

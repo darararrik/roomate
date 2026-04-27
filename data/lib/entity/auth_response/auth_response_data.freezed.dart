@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthResponseData {
 
-@JsonKey(name: 'accessToken') String? get accessToken;@JsonKey(name: 'refreshToken') String? get refreshToken;@JsonKey(name: 'tokenType') String? get tokenType;@JsonKey(name: 'expiresInSeconds') int? get expiresInSeconds;@JsonKey(name: 'user') UserData? get user;
+@JsonKey(name: 'access_token') String? get accessToken;@JsonKey(name: 'refresh_token') String? get refreshToken;@JsonKey(name: 'token_type') String? get tokenType;@JsonKey(name: 'expires_in_seconds') int? get expiresInSeconds;@JsonKey(name: 'user') UserData? get user;
 /// Create a copy of AuthResponseData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $AuthResponseDataCopyWith<$Res>  {
   factory $AuthResponseDataCopyWith(AuthResponseData value, $Res Function(AuthResponseData) _then) = _$AuthResponseDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'accessToken') String? accessToken,@JsonKey(name: 'refreshToken') String? refreshToken,@JsonKey(name: 'tokenType') String? tokenType,@JsonKey(name: 'expiresInSeconds') int? expiresInSeconds,@JsonKey(name: 'user') UserData? user
+@JsonKey(name: 'access_token') String? accessToken,@JsonKey(name: 'refresh_token') String? refreshToken,@JsonKey(name: 'token_type') String? tokenType,@JsonKey(name: 'expires_in_seconds') int? expiresInSeconds,@JsonKey(name: 'user') UserData? user
 });
 
 
@@ -169,7 +169,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'accessToken')  String? accessToken, @JsonKey(name: 'refreshToken')  String? refreshToken, @JsonKey(name: 'tokenType')  String? tokenType, @JsonKey(name: 'expiresInSeconds')  int? expiresInSeconds, @JsonKey(name: 'user')  UserData? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'access_token')  String? accessToken, @JsonKey(name: 'refresh_token')  String? refreshToken, @JsonKey(name: 'token_type')  String? tokenType, @JsonKey(name: 'expires_in_seconds')  int? expiresInSeconds, @JsonKey(name: 'user')  UserData? user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AuthResponseData() when $default != null:
 return $default(_that.accessToken,_that.refreshToken,_that.tokenType,_that.expiresInSeconds,_that.user);case _:
@@ -190,7 +190,7 @@ return $default(_that.accessToken,_that.refreshToken,_that.tokenType,_that.expir
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'accessToken')  String? accessToken, @JsonKey(name: 'refreshToken')  String? refreshToken, @JsonKey(name: 'tokenType')  String? tokenType, @JsonKey(name: 'expiresInSeconds')  int? expiresInSeconds, @JsonKey(name: 'user')  UserData? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'access_token')  String? accessToken, @JsonKey(name: 'refresh_token')  String? refreshToken, @JsonKey(name: 'token_type')  String? tokenType, @JsonKey(name: 'expires_in_seconds')  int? expiresInSeconds, @JsonKey(name: 'user')  UserData? user)  $default,) {final _that = this;
 switch (_that) {
 case _AuthResponseData():
 return $default(_that.accessToken,_that.refreshToken,_that.tokenType,_that.expiresInSeconds,_that.user);case _:
@@ -210,7 +210,7 @@ return $default(_that.accessToken,_that.refreshToken,_that.tokenType,_that.expir
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'accessToken')  String? accessToken, @JsonKey(name: 'refreshToken')  String? refreshToken, @JsonKey(name: 'tokenType')  String? tokenType, @JsonKey(name: 'expiresInSeconds')  int? expiresInSeconds, @JsonKey(name: 'user')  UserData? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'access_token')  String? accessToken, @JsonKey(name: 'refresh_token')  String? refreshToken, @JsonKey(name: 'token_type')  String? tokenType, @JsonKey(name: 'expires_in_seconds')  int? expiresInSeconds, @JsonKey(name: 'user')  UserData? user)?  $default,) {final _that = this;
 switch (_that) {
 case _AuthResponseData() when $default != null:
 return $default(_that.accessToken,_that.refreshToken,_that.tokenType,_that.expiresInSeconds,_that.user);case _:
@@ -225,13 +225,13 @@ return $default(_that.accessToken,_that.refreshToken,_that.tokenType,_that.expir
 @JsonSerializable()
 
 class _AuthResponseData implements AuthResponseData {
-  const _AuthResponseData({@JsonKey(name: 'accessToken') this.accessToken, @JsonKey(name: 'refreshToken') this.refreshToken, @JsonKey(name: 'tokenType') this.tokenType, @JsonKey(name: 'expiresInSeconds') this.expiresInSeconds, @JsonKey(name: 'user') this.user});
+  const _AuthResponseData({@JsonKey(name: 'access_token') this.accessToken, @JsonKey(name: 'refresh_token') this.refreshToken, @JsonKey(name: 'token_type') this.tokenType, @JsonKey(name: 'expires_in_seconds') this.expiresInSeconds, @JsonKey(name: 'user') this.user});
   factory _AuthResponseData.fromJson(Map<String, dynamic> json) => _$AuthResponseDataFromJson(json);
 
-@override@JsonKey(name: 'accessToken') final  String? accessToken;
-@override@JsonKey(name: 'refreshToken') final  String? refreshToken;
-@override@JsonKey(name: 'tokenType') final  String? tokenType;
-@override@JsonKey(name: 'expiresInSeconds') final  int? expiresInSeconds;
+@override@JsonKey(name: 'access_token') final  String? accessToken;
+@override@JsonKey(name: 'refresh_token') final  String? refreshToken;
+@override@JsonKey(name: 'token_type') final  String? tokenType;
+@override@JsonKey(name: 'expires_in_seconds') final  int? expiresInSeconds;
 @override@JsonKey(name: 'user') final  UserData? user;
 
 /// Create a copy of AuthResponseData
@@ -267,7 +267,7 @@ abstract mixin class _$AuthResponseDataCopyWith<$Res> implements $AuthResponseDa
   factory _$AuthResponseDataCopyWith(_AuthResponseData value, $Res Function(_AuthResponseData) _then) = __$AuthResponseDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'accessToken') String? accessToken,@JsonKey(name: 'refreshToken') String? refreshToken,@JsonKey(name: 'tokenType') String? tokenType,@JsonKey(name: 'expiresInSeconds') int? expiresInSeconds,@JsonKey(name: 'user') UserData? user
+@JsonKey(name: 'access_token') String? accessToken,@JsonKey(name: 'refresh_token') String? refreshToken,@JsonKey(name: 'token_type') String? tokenType,@JsonKey(name: 'expires_in_seconds') int? expiresInSeconds,@JsonKey(name: 'user') UserData? user
 });
 
 

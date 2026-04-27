@@ -3,8 +3,8 @@ import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
 abstract interface class ProfileDataSource {
-  Future<Either<RemoteException, UserModel>> createProfile(UserModel user);
-  Future<Either<RemoteException, UserModel>> fetchProfile();
-  Future<Either<RemoteException, UserModel>> updateProfile(UserModel user);
+  Future<Either<RemoteException, ProfileModel>> createProfile(ProfileModel user);
+  Future<Either<RemoteException, ProfileModel>> fetchProfile();
+  Future<Either<RemoteException, ProfileModel>> updateProfile(ProfileModel user);
   Future<Either<RemoteException, PreferencesTagsModel>> fetchPreferencesTags();
 }

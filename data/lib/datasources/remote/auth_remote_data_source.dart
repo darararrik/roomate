@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/data.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
   AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
@@ -20,7 +19,7 @@ class AuthRemoteDataSource implements AuthDataSource {
     );
 
     return result.fold((exception) => Left(exception), (data) async {
-      final user = UserMapper.toModel(data.user);
+      final user = UserMapper.toModel(data.user!);
       await _saveTokens(data.accessToken!, data.refreshToken!);
       return Right(user);
     });
@@ -35,10 +34,13 @@ class AuthRemoteDataSource implements AuthDataSource {
         // Если сервер возвращает пустой ответ, трансформер может просто вернуть null
         transformer: (json) => null,
       );
+      await _tokenService.deleteTokens();
       return const Right(null);
     } on RemoteException catch (e) {
+      await _tokenService.deleteTokens();
       return Left(e);
     } catch (e) {
+      await _tokenService.deleteTokens();
       return Left(RemoteException(kind: RemoteExceptionKind.unknown, rootException: e));
     }
   }

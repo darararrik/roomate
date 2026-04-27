@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignInResponseData {
 
-@JsonKey(name: 'message') String? get message;@JsonKey(name: 'expiresInSeconds') int? get expiresInSeconds;
+@JsonKey(name: 'message') String? get message;@JsonKey(name: 'expires_in_seconds') int? get expiresInSeconds;
 /// Create a copy of SignInResponseData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $SignInResponseDataCopyWith<$Res>  {
   factory $SignInResponseDataCopyWith(SignInResponseData value, $Res Function(SignInResponseData) _then) = _$SignInResponseDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'message') String? message,@JsonKey(name: 'expiresInSeconds') int? expiresInSeconds
+@JsonKey(name: 'message') String? message,@JsonKey(name: 'expires_in_seconds') int? expiresInSeconds
 });
 
 
@@ -151,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'expiresInSeconds')  int? expiresInSeconds)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'expires_in_seconds')  int? expiresInSeconds)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignInResponseData() when $default != null:
 return $default(_that.message,_that.expiresInSeconds);case _:
@@ -172,7 +172,7 @@ return $default(_that.message,_that.expiresInSeconds);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'expiresInSeconds')  int? expiresInSeconds)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'expires_in_seconds')  int? expiresInSeconds)  $default,) {final _that = this;
 switch (_that) {
 case _SignInResponseData():
 return $default(_that.message,_that.expiresInSeconds);}
@@ -189,7 +189,7 @@ return $default(_that.message,_that.expiresInSeconds);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'expiresInSeconds')  int? expiresInSeconds)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'expires_in_seconds')  int? expiresInSeconds)?  $default,) {final _that = this;
 switch (_that) {
 case _SignInResponseData() when $default != null:
 return $default(_that.message,_that.expiresInSeconds);case _:
@@ -204,11 +204,11 @@ return $default(_that.message,_that.expiresInSeconds);case _:
 @JsonSerializable()
 
 class _SignInResponseData implements SignInResponseData {
-  const _SignInResponseData({@JsonKey(name: 'message') this.message, @JsonKey(name: 'expiresInSeconds') this.expiresInSeconds});
+  const _SignInResponseData({@JsonKey(name: 'message') this.message, @JsonKey(name: 'expires_in_seconds') this.expiresInSeconds});
   factory _SignInResponseData.fromJson(Map<String, dynamic> json) => _$SignInResponseDataFromJson(json);
 
 @override@JsonKey(name: 'message') final  String? message;
-@override@JsonKey(name: 'expiresInSeconds') final  int? expiresInSeconds;
+@override@JsonKey(name: 'expires_in_seconds') final  int? expiresInSeconds;
 
 /// Create a copy of SignInResponseData
 /// with the given fields replaced by the non-null parameter values.
@@ -243,7 +243,7 @@ abstract mixin class _$SignInResponseDataCopyWith<$Res> implements $SignInRespon
   factory _$SignInResponseDataCopyWith(_SignInResponseData value, $Res Function(_SignInResponseData) _then) = __$SignInResponseDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'message') String? message,@JsonKey(name: 'expiresInSeconds') int? expiresInSeconds
+@JsonKey(name: 'message') String? message,@JsonKey(name: 'expires_in_seconds') int? expiresInSeconds
 });
 
 

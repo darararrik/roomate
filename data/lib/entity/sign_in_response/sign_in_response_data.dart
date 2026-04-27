@@ -7,7 +7,7 @@ part 'sign_in_response_data.g.dart';
 sealed class SignInResponseData with _$SignInResponseData {
   const factory SignInResponseData({
     @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'expiresInSeconds') int? expiresInSeconds,
+    @JsonKey(name: 'expires_in_seconds') int? expiresInSeconds,
   }) = _SignInResponseData;
 
   factory SignInResponseData.fromJson(Map<String, dynamic> json) =>

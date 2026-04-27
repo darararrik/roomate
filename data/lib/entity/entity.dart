@@ -6,6 +6,7 @@ export 'filter/filter.dart';
 export 'location/location.dart';
 export 'option/option.dart';
 export 'prefernces_tags/prefernces_tags.dart';
+export 'profile/profile.dart';
 export 'sign_in_response/sign_in_response.dart';
-export 'user/user.dart';
+export 'user/user_data.dart';
 export 'user_tags/user_tags.dart';

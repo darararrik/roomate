@@ -26,7 +26,11 @@ class AuthNotifier extends _$AuthNotifier {
   }
 
   void setError(String message) {
-    state = state.copyWith(isError: true, errorMessage: message, isCodeVerified: false);
+    state = state.copyWith(
+      isError: true,
+      errorMessage: message,
+      isCodeVerified: false,
+    );
   }
 
   void checkCode() {
@@ -34,7 +38,11 @@ class AuthNotifier extends _$AuthNotifier {
     if (state.code == "0000") {
       state = state.copyWith(isCodeVerified: true);
     } else {
-      state = state.copyWith(isCodeVerified: false, isError: true, errorMessage: l10n.wrongCode);
+      state = state.copyWith(
+        isCodeVerified: false,
+        isError: true,
+        errorMessage: l10n.wrongCode,
+      );
     }
   }
 
@@ -48,6 +56,14 @@ class AuthNotifier extends _$AuthNotifier {
     ref.nav.replace(const MainFlowRoute());
   }
 
+  Future<void> logout() async {
+    await ref.read(authRepositoryProvider).logout();
+    state = const AuthState();
+    ref.read(globalProfileProvider.notifier).resetToGuest();
+    await ref.read(appStatusProvider.notifier).markLoggedOut();
+    ref.nav.replaceAll([const OnBoardingRoute()]);
+  }
+
   void openEnterCodeScreen() {
     final phone = PhoneNumber(state.phone);
     ref.read(authRepositoryProvider).signInByPhone(phone.value);
@@ -57,11 +73,15 @@ class AuthNotifier extends _$AuthNotifier {
   Future<void> verifySms() async {
     if (!state.isPinComplete) return;
     final phone = PhoneNumber(state.phone);
-    final result = await ref.read(authRepositoryProvider).verifySms(phone.value, state.code);
+    final result = await ref
+        .read(authRepositoryProvider)
+        .verifySms(phone.value, state.code);
     result.fold((e) => setError(e.messages), (user) async {
       if (user.isNewUser) {
+        await ref.read(appStatusProvider.notifier).markProfileIncomplete();
         openCreateProfileScreen();
       } else {
+        await ref.read(appStatusProvider.notifier).markProfileCompleted();
         openMainScreen();
       }
     });

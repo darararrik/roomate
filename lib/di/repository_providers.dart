@@ -8,17 +8,19 @@ part 'repository_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 IApartamentsRepository apartamentsRepository(Ref ref) {
-  return ApartamentsRepositoryImpl(ref.watch(apartamentsRemoteDataSourceProvider));
+  return ApartamentsRepositoryImpl(ref.watch(apartamentsDataSourceProvider));
 }
 
 @Riverpod(keepAlive: true)
 ILocationCatalogRepository locationCatalogRepository(Ref ref) {
-  return LocationCatalogRepositoryImpl(ref.watch(locationCatalogDataSourceProvider));
+  return LocationCatalogRepositoryImpl(
+    ref.watch(locationCatalogDataSourceProvider),
+  );
 }
 
 @Riverpod(keepAlive: true)
 IProfileRepository profileRepository(Ref ref) {
-  return ProfileRepository(remoteDataSource: ref.watch(profileRemoteDataSourceProvider));
+  return ProfileRepository(dataSource: ref.watch(profileDataSourceProvider));
 }
 
 @Riverpod(keepAlive: true)

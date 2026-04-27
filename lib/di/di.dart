@@ -1,4 +1,5 @@
-export 'infrastructure_providers.dart';
+export 'app_providers.dart';
+export 'diagnostics_providers.dart';
 export 'location_providers.dart';
-export 'providers.dart';
+export 'network_providers.dart';
 export 'repository_providers.dart';

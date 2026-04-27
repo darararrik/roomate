@@ -19,6 +19,7 @@ dependencies:
   json_annotation: ^4.11.0
   dartz: ^0.10.1
   flutter_secure_storage: ^10.0.0
+  shared_preferences: ^2.5.5
   dio: ^5.9.2
   talker_dio_logger: ^5.1.16
   talker: ^5.1.16

@@ -177,10 +177,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get quizQ1Subtitle => 'Выберите свою роль в сервисе';
 
   @override
-  String get quizQ1Opt1 => 'Ищу квартиру';
+  String get quizQ1Opt1 => 'Я арендатор';
 
   @override
-  String get quizQ1Opt2 => 'Хочу сдать помещение';
+  String get quizQ1Opt2 => 'Я собственник';
 
   @override
   String get quizQ2Title => 'Хотите создать объявление?';

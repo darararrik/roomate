@@ -1,19 +1,18 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
 
-import 'package:data/data.dart';
-
-mixin ProfileMockDataSource implements ProfileDataSource {
+class ProfileMockDataSource implements ProfileDataSource {
   @override
-  Future<Either<RemoteException, UserModel>> createProfile(UserModel user) async {
-    final json = UserMapper.toData(user).toJson();
+  Future<Either<RemoteException, ProfileModel>> createProfile(ProfileModel user) async {
+    final json = ProfileMapper.toData(user).toJson();
     MockStorage.userProfile = json;
     return Right(await user.withDelay(milliseconds: 0));
   }
 
   @override
-  Future<Either<RemoteException, UserModel>> fetchProfile() async {
+  Future<Either<RemoteException, ProfileModel>> fetchProfile() async {
     final json = MockStorage.userProfile;
     if (json == null) {
       return Left(
@@ -23,16 +22,18 @@ mixin ProfileMockDataSource implements ProfileDataSource {
         ),
       );
     }
-    return Right(await UserMapper.toModel(UserData.fromJson(json)).withDelay());
+    return Right(await ProfileMapper.toModel(ProfileData.fromJson(json)).withDelay());
   }
 
   @override
-  Future<Either<RemoteException, UserModel>> updateProfile(UserModel user) async {
-    if (user.isOwner) {
-      user = user.copyWith(firstName: "Собственник");
-    }
-    final json = UserMapper.toData(user).toJson();
+  Future<Either<RemoteException, ProfileModel>> updateProfile(ProfileModel user) async {
+    final json = ProfileMapper.toData(user).toJson();
     MockStorage.userProfile = json;
     return Right(await user.withDelay());
+  }
+
+  @override
+  Future<Either<RemoteException, PreferencesTagsModel>> fetchPreferencesTags() async {
+    return const Right(PreferencesTagsModel());
   }
 }

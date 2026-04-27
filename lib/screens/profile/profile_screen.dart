@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:roomate/app/auth/notifier/auth_notifier.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -57,6 +58,13 @@ class ProfileScreen extends ConsumerWidget {
                   subtitle: context.l10n.supportSubtitle,
                   onTap: () {},
                 ),
+                if (!isGuest)
+                  ProfileMenuItem(
+                    iconPath: AppIcons.settings,
+                    title: context.l10n.logout,
+                    subtitle: '',
+                    onTap: () => ref.read(authProvider.notifier).logout(),
+                  ),
               ];
 
               return SliverList(

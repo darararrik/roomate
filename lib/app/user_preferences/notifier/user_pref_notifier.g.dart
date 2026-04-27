@@ -15,13 +15,13 @@ final preferencesTagsProvider = PreferencesTagsProvider._();
 final class PreferencesTagsProvider
     extends
         $FunctionalProvider<
-          AsyncValue<List<OptionModel>>,
-          List<OptionModel>,
-          FutureOr<List<OptionModel>>
+          AsyncValue<PreferencesTagsModel>,
+          PreferencesTagsModel,
+          FutureOr<PreferencesTagsModel>
         >
     with
-        $FutureModifier<List<OptionModel>>,
-        $FutureProvider<List<OptionModel>> {
+        $FutureModifier<PreferencesTagsModel>,
+        $FutureProvider<PreferencesTagsModel> {
   PreferencesTagsProvider._()
     : super(
         from: null,
@@ -38,17 +38,17 @@ final class PreferencesTagsProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<OptionModel>> $createElement(
+  $FutureProviderElement<PreferencesTagsModel> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<List<OptionModel>> create(Ref ref) {
+  FutureOr<PreferencesTagsModel> create(Ref ref) {
     return preferencesTags(ref);
   }
 }
 
-String _$preferencesTagsHash() => r'4c86e1df3f6d69ba8a0aa4453b08f86d366853a8';
+String _$preferencesTagsHash() => r'821e477fa4c71ea0608be644dc8e742514dd6be5';
 
 @ProviderFor(UserPrefNotifier)
 final userPrefProvider = UserPrefNotifierProvider._();
@@ -82,7 +82,7 @@ final class UserPrefNotifierProvider
   }
 }
 
-String _$userPrefNotifierHash() => r'2944c38a7d8e54ea76b6752397242720a5f8b964';
+String _$userPrefNotifierHash() => r'a3bcab126922bbd6b63131f25f9fe687f47f548b';
 
 abstract class _$UserPrefNotifier extends $Notifier<PrefState> {
   PrefState build();

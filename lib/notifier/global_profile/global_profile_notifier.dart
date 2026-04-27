@@ -1,7 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
+import 'package:shared/shared.dart';
 
 part 'global_profile_notifier.g.dart';
 
@@ -10,8 +10,8 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   IProfileRepository get _repository => ref.read(profileRepositoryProvider);
 
   @override
-  Future<UserModel> build() async {
-    return UserModel.guest();
+  Future<ProfileModel> build() async {
+    return ProfileModel.guest();
   }
 
   Future<void> fetchProfile() async {
@@ -22,7 +22,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     });
   }
 
-  Future<bool> updateProfile({
+  Future<RemoteException?> updateProfile({
     String? firstName,
     String? lastName,
     String? avatarUrl,
@@ -31,7 +31,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     // List<TagModel>? tags,
   }) async {
     // Берем текущие данные из стейта (если там еще загрузка или ошибка — берем гостя)
-    final current = state.value ?? UserModel.guest();
+    final current = state.value ?? ProfileModel.guest();
 
     final updated = current.copyWith(
       firstName: firstName ?? current.firstName,
@@ -50,12 +50,16 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     return res.fold(
       (e) {
         state = AsyncError(e, StackTrace.current);
-        return false;
+        return e;
       },
       (saved) {
         state = AsyncData(saved);
-        return true;
+        return null;
       },
     );
+  }
+
+  void resetToGuest() {
+    state = AsyncData(ProfileModel.guest());
   }
 }

@@ -9,10 +9,10 @@ part of 'data_source_providers.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(profileRemoteDataSource)
-final profileRemoteDataSourceProvider = ProfileRemoteDataSourceProvider._();
+@ProviderFor(profileDataSource)
+final profileDataSourceProvider = ProfileDataSourceProvider._();
 
-final class ProfileRemoteDataSourceProvider
+final class ProfileDataSourceProvider
     extends
         $FunctionalProvider<
           ProfileDataSource,
@@ -20,19 +20,19 @@ final class ProfileRemoteDataSourceProvider
           ProfileDataSource
         >
     with $Provider<ProfileDataSource> {
-  ProfileRemoteDataSourceProvider._()
+  ProfileDataSourceProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'profileRemoteDataSourceProvider',
+        name: r'profileDataSourceProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$profileRemoteDataSourceHash();
+  String debugGetCreateSourceHash() => _$profileDataSourceHash();
 
   @$internal
   @override
@@ -42,7 +42,7 @@ final class ProfileRemoteDataSourceProvider
 
   @override
   ProfileDataSource create(Ref ref) {
-    return profileRemoteDataSource(ref);
+    return profileDataSource(ref);
   }
 
   /// {@macro riverpod.override_with_value}
@@ -54,14 +54,12 @@ final class ProfileRemoteDataSourceProvider
   }
 }
 
-String _$profileRemoteDataSourceHash() =>
-    r'316c6c8f58dc5b0e01b2eb8ae5bdebf74d5a287d';
+String _$profileDataSourceHash() => r'4a7cd265aade3b25b28595663c2b4ca4972ec676';
 
-@ProviderFor(apartamentsRemoteDataSource)
-final apartamentsRemoteDataSourceProvider =
-    ApartamentsRemoteDataSourceProvider._();
+@ProviderFor(apartamentsDataSource)
+final apartamentsDataSourceProvider = ApartamentsDataSourceProvider._();
 
-final class ApartamentsRemoteDataSourceProvider
+final class ApartamentsDataSourceProvider
     extends
         $FunctionalProvider<
           ApartamentsDataSource,
@@ -69,19 +67,19 @@ final class ApartamentsRemoteDataSourceProvider
           ApartamentsDataSource
         >
     with $Provider<ApartamentsDataSource> {
-  ApartamentsRemoteDataSourceProvider._()
+  ApartamentsDataSourceProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'apartamentsRemoteDataSourceProvider',
+        name: r'apartamentsDataSourceProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$apartamentsRemoteDataSourceHash();
+  String debugGetCreateSourceHash() => _$apartamentsDataSourceHash();
 
   @$internal
   @override
@@ -91,7 +89,7 @@ final class ApartamentsRemoteDataSourceProvider
 
   @override
   ApartamentsDataSource create(Ref ref) {
-    return apartamentsRemoteDataSource(ref);
+    return apartamentsDataSource(ref);
   }
 
   /// {@macro riverpod.override_with_value}
@@ -103,8 +101,8 @@ final class ApartamentsRemoteDataSourceProvider
   }
 }
 
-String _$apartamentsRemoteDataSourceHash() =>
-    r'e3b51f4871152ec2876b37f65a66f2d53365f093';
+String _$apartamentsDataSourceHash() =>
+    r'9676eab7e60accc0c0bfeb6d4b55eff233d0e20c';
 
 @ProviderFor(locationCatalogDataSource)
 final locationCatalogDataSourceProvider = LocationCatalogDataSourceProvider._();
@@ -152,7 +150,7 @@ final class LocationCatalogDataSourceProvider
 }
 
 String _$locationCatalogDataSourceHash() =>
-    r'6bb8015878d3f5510fc1687a6fd2fa6c68a8ff03';
+    r'0395186ddabc691e387b8dbff3cca66b52bafeb7';
 
 @ProviderFor(authDataSource)
 final authDataSourceProvider = AuthDataSourceProvider._();
@@ -193,4 +191,4 @@ final class AuthDataSourceProvider
   }
 }
 
-String _$authDataSourceHash() => r'379f07b08b8f5a5eb9455d934ee4f38f5e98fcd3';
+String _$authDataSourceHash() => r'2fbe80d413e2cf6dac58d141e6b28ebaa43aeddb';

@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -15,9 +13,7 @@ class VerificationStatusScreen extends ConsumerWidget {
     final typography = context.typography;
     final not = ref.read(createProfileProvider.notifier);
     return Scaffold(
-      bottomNavigationBar: SafeArea(
-        child: BottomNextButton(onPressed: () => not.openUserPreferences()),
-      ),
+      bottomNavigationBar: SafeArea(child: BottomNextButton(onPressed: () => not.openOnbording())),
       appBar: AppBar(title: Text(locale.verification), centerTitle: false),
       body: SafeArea(
         child: Column(

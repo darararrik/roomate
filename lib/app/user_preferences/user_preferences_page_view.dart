@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/user_preferences/notifier/user_pref_notifier.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/routing.dart';
@@ -14,84 +13,62 @@ class UserPreferencesPageView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final value = ref.watch(preferencesTagsProvider);
-    final notifier = ref.watch(userPrefProvider.notifier);
+    ref.watch(userPrefProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: value.maybeWhen(
-          data: (_) {
-            final tabsRouter = AutoTabsRouter.of(context, watch: true);
-            return SizedBox(
-              width: S.p100,
-              child: ProgressBarWidget(tabsRouter: tabsRouter, totalPages: tabsRouter.pageCount),
-            );
-          },
-          orElse: () => const SizedBox(),
-        ),
-        actionsPadding: const P(right: S.p16),
-        actions: [
-          value.maybeWhen(
-            data: (_) {
-              final tabsRouter = AutoTabsRouter.of(context, watch: true);
-              final activeIndex = tabsRouter.activeIndex + 1;
-              final totalPages = tabsRouter.pageCount;
-              return Text("$activeIndex/$totalPages", style: context.typography.headline2);
-            },
-            orElse: () => const SizedBox(),
-          ),
-        ],
-        leading: value.maybeWhen(
-          data: (_) {
-            final tabsRouter = AutoTabsRouter.of(context, watch: true);
-            return BB(onPressed: () => notifier.onPop(tabsRouter));
-          },
-          orElse: () => const SizedBox(),
-        ),
-      ),
+    return value.when(
+      loading: () => const Scaffold(body: LoadingWidget()),
+      error: (e, _) => Scaffold(body: ErrorView(error: e.toString())),
+      data: (tags) => _Content(tags: tags),
+    );
+  }
+}
 
-      bottomNavigationBar: value.maybeWhen(
-        data: (_) {
-          final tabsRouter = AutoTabsRouter.of(context, watch: true);
+class _Content extends ConsumerWidget {
+  const _Content({required this.tags});
+  final PreferencesTagsModel tags;
 
-          return SafeArea(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colors.graysWhite,
-                boxShadow: [context.colors.bottomNavBarShadow],
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return AutoTabsRouter.pageView(
+      physics: const NeverScrollableScrollPhysics(),
+      routes: [
+        UserPreferencesRoute(tags: tags),
+        UserPreferencesRoute(tags: tags),
+        const VerificationIntroRoute(),
+      ],
+      builder: (context, child, controller) {
+        final tabsRouter = AutoTabsRouter.of(context, watch: true);
+        final notifier = ref.read(userPrefProvider.notifier);
+        final totalPages = tabsRouter.pageCount;
+        final activeIndex = tabsRouter.activeIndex + 1;
+        return ListenableBuilder(
+          listenable: tabsRouter,
+          builder: (context, child) {
+            return Scaffold(
+              appBar: AppBar(
+                centerTitle: true,
+                title: SizedBox(
+                  width: S.p100,
+                  child: ProgressBarWidget(tabsRouter: tabsRouter, totalPages: totalPages),
+                ),
+                actions: [Text("$activeIndex/$totalPages")],
+                actionsPadding: const P(right: S.p16),
+                leading: BB(onPressed: () => notifier.onPop(tabsRouter)),
               ),
-              child: Padding(
-                padding: const P(horizontal: S.p16, vertical: S.p20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: S.p12,
-                  children: [
-                    PrimaryButton(
-                      onPressed: () => tabsRouter.setActiveIndex(tabsRouter.activeIndex + 1),
-                      text: context.l10n.next,
-                    ),
-                  ],
+              bottomNavigationBar: SafeArea(
+                child: Padding(
+                  padding: const P(horizontal: S.p16, vertical: S.p20),
+                  child: PrimaryButton(
+                    onPressed: () => notifier.onNext(tabsRouter),
+                    text: context.l10n.next,
+                  ),
                 ),
               ),
-            ),
-          );
-        },
-        orElse: () => null,
-      ),
-
-      body: value.when(
-        loading: () => const LoadingWidget(),
-        error: (error, stackTrace) => ErrorView(error: error.toString()),
-        data: (tags) {
-          return AutoTabsRouter.pageView(
-            physics: const NeverScrollableScrollPhysics(),
-            routes: [
-              UserPreferencesRoute(tags: tags),
-              UserPreferencesRoute(tags: tags),
-            ],
-          );
-        },
-      ),
+              body: child,
+            );
+          },
+        );
+      },
     );
   }
 }

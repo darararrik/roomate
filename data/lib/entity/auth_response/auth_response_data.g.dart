@@ -8,10 +8,10 @@ part of 'auth_response_data.dart';
 
 _AuthResponseData _$AuthResponseDataFromJson(Map<String, dynamic> json) =>
     _AuthResponseData(
-      accessToken: json['accessToken'] as String?,
-      refreshToken: json['refreshToken'] as String?,
-      tokenType: json['tokenType'] as String?,
-      expiresInSeconds: (json['expiresInSeconds'] as num?)?.toInt(),
+      accessToken: json['access_token'] as String?,
+      refreshToken: json['refresh_token'] as String?,
+      tokenType: json['token_type'] as String?,
+      expiresInSeconds: (json['expires_in_seconds'] as num?)?.toInt(),
       user: json['user'] == null
           ? null
           : UserData.fromJson(json['user'] as Map<String, dynamic>),
@@ -19,9 +19,9 @@ _AuthResponseData _$AuthResponseDataFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AuthResponseDataToJson(_AuthResponseData instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'refreshToken': instance.refreshToken,
-      'tokenType': instance.tokenType,
-      'expiresInSeconds': instance.expiresInSeconds,
+      'access_token': instance.accessToken,
+      'refresh_token': instance.refreshToken,
+      'token_type': instance.tokenType,
+      'expires_in_seconds': instance.expiresInSeconds,
       'user': instance.user,
     };

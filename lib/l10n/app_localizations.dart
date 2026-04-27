@@ -427,13 +427,13 @@ abstract class AppLocalizations {
   /// No description provided for @quizQ1Opt1.
   ///
   /// In ru, this message translates to:
-  /// **'Ищу квартиру'**
+  /// **'Я арендатор'**
   String get quizQ1Opt1;
 
   /// No description provided for @quizQ1Opt2.
   ///
   /// In ru, this message translates to:
-  /// **'Хочу сдать помещение'**
+  /// **'Я собственник'**
   String get quizQ1Opt2;
 
   /// No description provided for @quizQ2Title.

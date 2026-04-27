@@ -55,7 +55,7 @@ final class ApartamentsRepositoryProvider
 }
 
 String _$apartamentsRepositoryHash() =>
-    r'd05e97e4f804e621d6bd4223a03ace3a83266ce9';
+    r'4c758212f583701676f0194d36faf433c6e1f359';
 
 @ProviderFor(locationCatalogRepository)
 final locationCatalogRepositoryProvider = LocationCatalogRepositoryProvider._();
@@ -150,7 +150,7 @@ final class ProfileRepositoryProvider
   }
 }
 
-String _$profileRepositoryHash() => r'e718f47361b2aab368b907185549356049bf0c4a';
+String _$profileRepositoryHash() => r'3d86c3812428d0c6f09fec25003f638c6e0149ae';
 
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();

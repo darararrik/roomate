@@ -5,20 +5,16 @@ import 'package:data/entity/auth_response/auth_response_data.dart';
 import 'package:data/services/token_service.dart';
 
 class AuthInterceptor extends Interceptor {
-  AuthInterceptor(this.tokenService)
-    : _refreshDio = Dio(
-        BaseOptions(
-          baseUrl: const String.fromEnvironment(
-            'api_base_url',
-            defaultValue: 'http://192.168.3.2:8080/api',
-          ),
-        ),
-      );
+  AuthInterceptor({required this.tokenService, required String baseUrl})
+    : _refreshDio = Dio(BaseOptions(baseUrl: baseUrl));
   final Dio _refreshDio;
   final TokenService tokenService;
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     if (options.extra[ApiKeyConstants.requiresAuth] == true) {
       final token = await tokenService.getAccessToken();
       if (token != null) {
