@@ -1,5 +1,6 @@
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+
+import 'package:data/data.dart';
 
 abstract class OptionMapper {
   static OptionModel toModel(OptionData dto) {

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:domain/domain.dart';
 
 abstract interface class AuthRepository {
   Future<Either<RemoteException, SignInResponseModel>> signInByPhone(String phone);

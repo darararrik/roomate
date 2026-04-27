@@ -1,6 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:roomate/app/on_boarding/state/on_boarding_notifier.dart';
 import 'package:roomate/app/on_boarding/state/on_boarding_state.dart';
 import 'package:roomate/constants/constants.dart';

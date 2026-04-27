@@ -1,5 +1,6 @@
-import 'package:data/entity/user_tags/user_tag_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:data/entity/user_tags/user_tag_data.dart';
 
 part 'profile_data.freezed.dart';
 part 'profile_data.g.dart';

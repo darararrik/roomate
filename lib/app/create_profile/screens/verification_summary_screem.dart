@@ -1,5 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:roomate/constants/spacing.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:roomate/theme/theme.dart';

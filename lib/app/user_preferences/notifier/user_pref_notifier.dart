@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/app/startup/state/app_status_notifier.dart';
 import 'package:roomate/app/user_preferences/state/pref_state.dart';
 import 'package:roomate/di/repository_providers.dart';

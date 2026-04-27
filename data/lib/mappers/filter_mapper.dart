@@ -1,5 +1,6 @@
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+
+import 'package:data/data.dart';
 
 class FilterMapper {
   static FilterModel toModel(FilterData dto) => FilterModel(

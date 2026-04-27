@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:domain/domain.dart';
 
 abstract interface class IProfileRepository {
   Future<Either<RemoteException, ProfileModel>> createProfile(ProfileModel user);

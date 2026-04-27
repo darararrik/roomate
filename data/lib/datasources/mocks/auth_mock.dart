@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/data.dart';
-import 'package:data/entity/server_error/server_error.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/data.dart';
+import 'package:data/entity/server_error/server_error.dart';
 
 class AuthMockDataSource implements AuthDataSource {
   AuthMockDataSource({required TokenService tokenService}) : _tokenService = tokenService;
