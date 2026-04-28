@@ -49,8 +49,8 @@ import 'package:roomate/app/create_ad/screens/tabs/ad_confirmation_screen.dart'
     as _i2;
 import 'package:roomate/app/create_profile/screens/create_profile_screen.dart'
     as _i15;
-import 'package:roomate/app/create_profile/screens/tabs/profile_setup_screen.dart'
-    as _i38;
+import 'package:roomate/app/create_profile/screens/profile_details_screen.dart'
+    as _i36;
 import 'package:roomate/app/create_profile/screens/tabs/verification_intro_screen.dart'
     as _i46;
 import 'package:roomate/app/create_profile/screens/verification_status.dart'
@@ -66,9 +66,9 @@ import 'package:roomate/app/on_boarding/on_boarding_screen.dart' as _i33;
 import 'package:roomate/app/overview/screens/overview_screen.dart' as _i34;
 import 'package:roomate/app/startup/splash_screen.dart' as _i42;
 import 'package:roomate/app/user_preferences/user_preferences_page_view.dart'
-    as _i43;
-import 'package:roomate/app/user_preferences/user_preferences_screen.dart'
     as _i44;
+import 'package:roomate/app/user_preferences/user_preferences_screen.dart'
+    as _i43;
 import 'package:roomate/routing/wrappers/auth_wrapper.dart' as _i9;
 import 'package:roomate/screens/about_group_screen.dart' as _i1;
 import 'package:roomate/screens/auth_edit_first_page.dart' as _i6;
@@ -80,8 +80,8 @@ import 'package:roomate/screens/create_screen.dart' as _i16;
 import 'package:roomate/screens/filling_profile_screen.dart' as _i24;
 import 'package:roomate/screens/location_screen.dart' as _i28;
 import 'package:roomate/screens/profile/profile_data_edit_screen.dart' as _i35;
-import 'package:roomate/screens/profile/profile_edit_screen.dart' as _i36;
-import 'package:roomate/screens/profile/profile_screen.dart' as _i37;
+import 'package:roomate/screens/profile/profile_edit_screen.dart' as _i37;
+import 'package:roomate/screens/profile/profile_screen.dart' as _i38;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]
@@ -706,7 +706,23 @@ class ProfileDataEditRoute extends _i49.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i36.ProfileEditScreen]
+/// [_i36.ProfileDetailsScreen]
+class ProfileDetailsRoute extends _i49.PageRouteInfo<void> {
+  const ProfileDetailsRoute({List<_i49.PageRouteInfo>? children})
+    : super(ProfileDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileDetailsRoute';
+
+  static _i49.PageInfo page = _i49.PageInfo(
+    name,
+    builder: (data) {
+      return const _i36.ProfileDetailsScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i37.ProfileEditScreen]
 class ProfileEditRoute extends _i49.PageRouteInfo<void> {
   const ProfileEditRoute({List<_i49.PageRouteInfo>? children})
     : super(ProfileEditRoute.name, initialChildren: children);
@@ -716,13 +732,13 @@ class ProfileEditRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i36.ProfileEditScreen();
+      return const _i37.ProfileEditScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i37.ProfileScreen]
+/// [_i38.ProfileScreen]
 class ProfileRoute extends _i49.PageRouteInfo<void> {
   const ProfileRoute({List<_i49.PageRouteInfo>? children})
     : super(ProfileRoute.name, initialChildren: children);
@@ -732,23 +748,7 @@ class ProfileRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i37.ProfileScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i38.ProfileSetupScreen]
-class ProfileSetupRoute extends _i49.PageRouteInfo<void> {
-  const ProfileSetupRoute({List<_i49.PageRouteInfo>? children})
-    : super(ProfileSetupRoute.name, initialChildren: children);
-
-  static const String name = 'ProfileSetupRoute';
-
-  static _i49.PageInfo page = _i49.PageInfo(
-    name,
-    builder: (data) {
-      return const _i38.ProfileSetupScreen();
+      return const _i38.ProfileScreen();
     },
   );
 }
@@ -818,7 +818,109 @@ class SplashRoute extends _i49.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i43.UserPreferencesPageView]
+/// [_i43.UserPreferencesHouseholdScreen]
+class UserPreferencesHouseholdRoute
+    extends _i49.PageRouteInfo<UserPreferencesHouseholdRouteArgs> {
+  UserPreferencesHouseholdRoute({
+    _i50.Key? key,
+    required _i51.PreferencesTagsModel tags,
+    List<_i49.PageRouteInfo>? children,
+  }) : super(
+         UserPreferencesHouseholdRoute.name,
+         args: UserPreferencesHouseholdRouteArgs(key: key, tags: tags),
+         initialChildren: children,
+       );
+
+  static const String name = 'UserPreferencesHouseholdRoute';
+
+  static _i49.PageInfo page = _i49.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserPreferencesHouseholdRouteArgs>();
+      return _i43.UserPreferencesHouseholdScreen(
+        key: args.key,
+        tags: args.tags,
+      );
+    },
+  );
+}
+
+class UserPreferencesHouseholdRouteArgs {
+  const UserPreferencesHouseholdRouteArgs({this.key, required this.tags});
+
+  final _i50.Key? key;
+
+  final _i51.PreferencesTagsModel tags;
+
+  @override
+  String toString() {
+    return 'UserPreferencesHouseholdRouteArgs{key: $key, tags: $tags}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserPreferencesHouseholdRouteArgs) return false;
+    return key == other.key && tags == other.tags;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ tags.hashCode;
+}
+
+/// generated route for
+/// [_i43.UserPreferencesLifestyleScreen]
+class UserPreferencesLifestyleRoute
+    extends _i49.PageRouteInfo<UserPreferencesLifestyleRouteArgs> {
+  UserPreferencesLifestyleRoute({
+    _i50.Key? key,
+    required _i51.PreferencesTagsModel tags,
+    List<_i49.PageRouteInfo>? children,
+  }) : super(
+         UserPreferencesLifestyleRoute.name,
+         args: UserPreferencesLifestyleRouteArgs(key: key, tags: tags),
+         initialChildren: children,
+       );
+
+  static const String name = 'UserPreferencesLifestyleRoute';
+
+  static _i49.PageInfo page = _i49.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserPreferencesLifestyleRouteArgs>();
+      return _i43.UserPreferencesLifestyleScreen(
+        key: args.key,
+        tags: args.tags,
+      );
+    },
+  );
+}
+
+class UserPreferencesLifestyleRouteArgs {
+  const UserPreferencesLifestyleRouteArgs({this.key, required this.tags});
+
+  final _i50.Key? key;
+
+  final _i51.PreferencesTagsModel tags;
+
+  @override
+  String toString() {
+    return 'UserPreferencesLifestyleRouteArgs{key: $key, tags: $tags}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserPreferencesLifestyleRouteArgs) return false;
+    return key == other.key && tags == other.tags;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ tags.hashCode;
+}
+
+/// generated route for
+/// [_i44.UserPreferencesPageView]
 class UserPreferencesPageViewRoute extends _i49.PageRouteInfo<void> {
   const UserPreferencesPageViewRoute({List<_i49.PageRouteInfo>? children})
     : super(UserPreferencesPageViewRoute.name, initialChildren: children);
@@ -828,57 +930,9 @@ class UserPreferencesPageViewRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i43.UserPreferencesPageView();
+      return const _i44.UserPreferencesPageView();
     },
   );
-}
-
-/// generated route for
-/// [_i44.UserPreferencesScreen]
-class UserPreferencesRoute
-    extends _i49.PageRouteInfo<UserPreferencesRouteArgs> {
-  UserPreferencesRoute({
-    _i50.Key? key,
-    required _i51.PreferencesTagsModel tags,
-    List<_i49.PageRouteInfo>? children,
-  }) : super(
-         UserPreferencesRoute.name,
-         args: UserPreferencesRouteArgs(key: key, tags: tags),
-         initialChildren: children,
-       );
-
-  static const String name = 'UserPreferencesRoute';
-
-  static _i49.PageInfo page = _i49.PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<UserPreferencesRouteArgs>();
-      return _i44.UserPreferencesScreen(key: args.key, tags: args.tags);
-    },
-  );
-}
-
-class UserPreferencesRouteArgs {
-  const UserPreferencesRouteArgs({this.key, required this.tags});
-
-  final _i50.Key? key;
-
-  final _i51.PreferencesTagsModel tags;
-
-  @override
-  String toString() {
-    return 'UserPreferencesRouteArgs{key: $key, tags: $tags}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! UserPreferencesRouteArgs) return false;
-    return key == other.key && tags == other.tags;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ tags.hashCode;
 }
 
 /// generated route for

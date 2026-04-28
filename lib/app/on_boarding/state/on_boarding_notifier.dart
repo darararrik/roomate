@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -55,7 +54,7 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
     ref.nav.replaceAll([const MainFlowRoute()]);
   }
 
-  void toUserPreferences() => ref.nav.replace(const UserPreferencesPageViewRoute());
+  void toUserPreferences() => ref.nav.push(const UserPreferencesPageViewRoute());
 
   Future<void> toCreateAd() async {
     await ref.read(appStatusProvider.notifier).markProfileCompleted();

@@ -142,6 +142,12 @@ abstract class AppLocalizations {
   /// **'Профиль'**
   String get profile;
 
+  /// No description provided for @profileDetailsTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваши данные'**
+  String get profileDetailsTitle;
+
   /// No description provided for @searchRegion.
   ///
   /// In ru, this message translates to:
@@ -562,6 +568,30 @@ abstract class AppLocalizations {
   /// **'Режим сна'**
   String get traitSleepMode;
 
+  /// No description provided for @traitEmployment.
+  ///
+  /// In ru, this message translates to:
+  /// **'Занятость'**
+  String get traitEmployment;
+
+  /// No description provided for @traitNoiseLevel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уровень шума'**
+  String get traitNoiseLevel;
+
+  /// No description provided for @traitCleaning.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уборка'**
+  String get traitCleaning;
+
+  /// No description provided for @traitPets.
+  ///
+  /// In ru, this message translates to:
+  /// **'Питомцы'**
+  String get traitPets;
+
   /// No description provided for @traitPetAttitude.
   ///
   /// In ru, this message translates to:
@@ -573,6 +603,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Какого соседа ищите?'**
   String get roommateSearchSection;
+
+  /// No description provided for @preferencesLifestyleTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Расскажите о себе'**
+  String get preferencesLifestyleTitle;
+
+  /// No description provided for @preferencesHouseholdTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Бытовые привычки'**
+  String get preferencesHouseholdTitle;
 
   /// No description provided for @traitGender.
   ///

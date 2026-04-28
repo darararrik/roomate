@@ -33,6 +33,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profile => 'Профиль';
 
   @override
+  String get profileDetailsTitle => 'Ваши данные';
+
+  @override
   String get searchRegion => 'Регион поиска >';
 
   @override
@@ -246,10 +249,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String get traitSleepMode => 'Режим сна';
 
   @override
+  String get traitEmployment => 'Занятость';
+
+  @override
+  String get traitNoiseLevel => 'Уровень шума';
+
+  @override
+  String get traitCleaning => 'Уборка';
+
+  @override
+  String get traitPets => 'Питомцы';
+
+  @override
   String get traitPetAttitude => 'Отношение к животным';
 
   @override
   String get roommateSearchSection => 'Какого соседа ищите?';
+
+  @override
+  String get preferencesLifestyleTitle => 'Расскажите о себе';
+
+  @override
+  String get preferencesHouseholdTitle => 'Бытовые привычки';
 
   @override
   String get traitGender => 'Пол';

@@ -33,6 +33,16 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
 
   /// Navigation
 
+  Future<void> submitProfileDetails() async {
+    _validate();
+    if (!state.isFormValid) return;
+
+    final success = await createProfile();
+    if (success) {
+      ref.nav.replaceAll([const OnBoardingRoute()]);
+    }
+  }
+
   Future<void> onNextStep(TabsRouter tabsRouter) async {
     switch (tabsRouter.activeIndex) {
       case 0:
@@ -49,8 +59,11 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
     }
   }
 
+  void pop() => ref.nav.pop();
+
   void openOnbording() => ref.nav.replaceAll([const OnBoardingRoute()]);
-  void openUserPreferences() => ref.nav.push(const UserPreferencesPageViewRoute());
+  void openUserPreferences() =>
+      ref.nav.push(const UserPreferencesPageViewRoute());
 
   Future<bool> createProfile() async {
     final error = await ref
@@ -62,7 +75,9 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
           gender: state.gender,
         );
     if (error != null) {
-      final message = error.messages.isNotEmpty ? error.messages : 'Не удалось обновить профиль';
+      final message = error.messages.isNotEmpty
+          ? error.messages
+          : 'Не удалось обновить профиль';
       ref.read(navigationServiceProvider).showSnackBar(message: message);
       return false;
     }
@@ -109,7 +124,9 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
   void onSkip() => ref.nav.replaceAll([const MainFlowRoute()]);
 
   String titleButton(TabsRouter tabsRouter) {
-    return tabsRouter.activeIndex == 2 ? ref.l10n.confirmThroughGosuslugi : ref.l10n.next;
+    return tabsRouter.activeIndex == 2
+        ? ref.l10n.confirmThroughGosuslugi
+        : ref.l10n.next;
   }
 
   /// validation
@@ -142,7 +159,11 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
       lastNameError: lNameErr,
       ageError: ageErr,
       genderError: genderErr,
-      isFormValid: fNameErr.isEmpty && lNameErr.isEmpty && ageErr.isEmpty && genderErr.isEmpty,
+      isFormValid:
+          fNameErr.isEmpty &&
+          lNameErr.isEmpty &&
+          ageErr.isEmpty &&
+          genderErr.isEmpty,
     );
   }
 

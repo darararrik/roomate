@@ -129,7 +129,7 @@ final class TokenServiceProvider
   }
 }
 
-String _$tokenServiceHash() => r'a80d33e54d872956b0b5dcd442ddbee6b645d092';
+String _$tokenServiceHash() => r'6b28efffc9fe89e6732e46d397bee94be270afcf';
 
 @ProviderFor(preferencesService)
 final preferencesServiceProvider = PreferencesServiceProvider._();
@@ -225,4 +225,4 @@ final class AppStatusStorageServiceProvider
 }
 
 String _$appStatusStorageServiceHash() =>
-    r'14721b20a6fba9678b6dca1faa44520669a2dc6a';
+    r'73276f84aff67b7423a9c4c538021ae2d7c45c00';

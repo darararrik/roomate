@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/app/startup/state/app_status_notifier.dart';
 import 'package:roomate/app/user_preferences/state/pref_state.dart';
 import 'package:roomate/di/repository_providers.dart';
@@ -12,9 +11,7 @@ part 'user_pref_notifier.g.dart';
 
 @riverpod
 Future<PreferencesTagsModel> preferencesTags(Ref ref) async {
-  final result = await ref
-      .read(profileRepositoryProvider)
-      .fetchPreferencesTags();
+  final result = await ref.read(profileRepositoryProvider).fetchPreferencesTags();
   return result.fold((l) => const PreferencesTagsModel(), (r) => r);
 }
 
@@ -65,10 +62,18 @@ class UserPrefNotifier extends _$UserPrefNotifier {
     });
   }
 
+  void setEmploymentIds(Set<int> ids) {
+    state = state.copyWith(employmentId: ids);
+  }
+
   void setBadHabitsId(int id) {
     _toggleTag(state.badHabitsId, id, (newSet) {
       state = state.copyWith(badHabitsId: newSet);
     });
+  }
+
+  void setBadHabitsIds(Set<int> ids) {
+    state = state.copyWith(badHabitsId: ids);
   }
 
   void setPetsId(int id) {
@@ -77,12 +82,16 @@ class UserPrefNotifier extends _$UserPrefNotifier {
     });
   }
 
+  void setPetsIds(Set<int> ids) {
+    state = state.copyWith(petsId: ids);
+  }
+
   void onPop(TabsRouter tabsRouter) {
     final nextIndex = tabsRouter.activeIndex - 1;
     if (nextIndex >= 0) {
       tabsRouter.setActiveIndex(nextIndex);
     } else {
-      ref.nav.navigate(const VerificationStatusRoute());
+      ref.nav.navigate(const OnBoardingRoute());
     }
   }
 

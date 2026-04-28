@@ -34,8 +34,8 @@ class _Content extends ConsumerWidget {
     return AutoTabsRouter.pageView(
       physics: const NeverScrollableScrollPhysics(),
       routes: [
-        UserPreferencesRoute(tags: tags),
-        UserPreferencesRoute(tags: tags),
+        UserPreferencesLifestyleRoute(tags: tags),
+        UserPreferencesHouseholdRoute(tags: tags),
         const VerificationIntroRoute(),
       ],
       builder: (context, child, controller) {
@@ -51,7 +51,10 @@ class _Content extends ConsumerWidget {
                 centerTitle: true,
                 title: SizedBox(
                   width: S.p100,
-                  child: ProgressBarWidget(tabsRouter: tabsRouter, totalPages: totalPages),
+                  child: ProgressBarWidget(
+                    tabsRouter: tabsRouter,
+                    totalPages: totalPages,
+                  ),
                 ),
                 actions: [Text("$activeIndex/$totalPages")],
                 actionsPadding: const P(right: S.p16),

@@ -38,7 +38,7 @@ export 'app/create_ad/state/state.dart';
 export 'app/create_profile/create_profile.dart';
 export 'app/create_profile/screens/create_profile_screen.dart';
 export 'app/create_profile/screens/screens.dart';
-export 'app/create_profile/screens/tabs/profile_setup_screen.dart';
+export 'app/create_profile/screens/profile_details_screen.dart';
 export 'app/create_profile/screens/tabs/verification_intro_screen.dart';
 export 'app/create_profile/screens/verification_status.dart';
 export 'app/create_profile/screens/verification_summary_screem.dart';

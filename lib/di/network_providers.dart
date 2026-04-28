@@ -37,7 +37,8 @@ ApiClient apiClient(Ref ref) {
 
 @Riverpod(keepAlive: true)
 TokenService tokenService(Ref ref) {
-  return TokenService();
+  final config = ref.watch(configProvider);
+  return TokenService(namespace: config.mode.name);
 }
 
 @Riverpod(keepAlive: true)
@@ -47,5 +48,9 @@ PreferencesService preferencesService(Ref ref) {
 
 @Riverpod(keepAlive: true)
 AppStatusStorageService appStatusStorageService(Ref ref) {
-  return AppStatusStorageService(ref.watch(preferencesServiceProvider));
+  final config = ref.watch(configProvider);
+  return AppStatusStorageService(
+    ref.watch(preferencesServiceProvider),
+    namespace: config.mode.name,
+  );
 }

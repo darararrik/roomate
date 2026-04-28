@@ -5,13 +5,14 @@ abstract class CreateProfile {
   static final routes = AutoRoute(
     page: const EmptyShellRoute("CreateProfileShell").page,
     children: [
-      AutoRoute(page: ProfileSetupRoute.page),
+      AutoRoute(page: ProfileDetailsRoute.page, initial: true),
       AutoRoute(page: OnBoardingRoute.page),
       VerificationFlow.routes,
       AutoRoute(
         page: UserPreferencesPageViewRoute.page,
         children: [
-          AutoRoute(page: UserPreferencesRoute.page),
+          AutoRoute(page: UserPreferencesLifestyleRoute.page),
+          AutoRoute(page: UserPreferencesHouseholdRoute.page),
           VerificationFlow.routes,
         ],
       ),
