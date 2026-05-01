@@ -15,14 +15,15 @@ class HomeNotifier extends _$HomeNotifier {
 
   @override
   Future<HomeState> build() async {
-    final apartments = await _repository.fetchApartaments(
-      const ApartamentFilter(),
-    );
+    final result = await _repository.fetchApartaments(const ApartamentFilter());
 
-    return HomeState(
-      recentApartments: apartments
-          .take(_recentApartmentsLimit)
-          .toList(growable: false),
+    return result.fold(
+      (error) => throw error,
+      (apartments) => HomeState(
+        recentApartments: apartments
+            .take(_recentApartmentsLimit)
+            .toList(growable: false),
+      ),
     );
   }
 

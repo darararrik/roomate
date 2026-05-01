@@ -9,7 +9,9 @@ import 'package:data/data.dart';
 )
 class ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
-  Future<List<ApartamentData>> fetchApartaments(ApartamentFilter filter) async {
+  Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
+    ApartamentFilter filter,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 300));
 
     final allApartments = [
@@ -17,50 +19,59 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
       ...MockStorage.createAds,
     ].map((json) => ApartamentData.fromJson(json)).toList();
 
-    return allApartments.where((apt) {
-      /// город
-      if (filter.cityId != 0 && apt.cityId != filter.cityId) {
-        return false;
-      }
+    final filteredApartments = allApartments
+        .where((apt) {
+          /// город
+          if (filter.cityId != 0 && apt.cityId != filter.cityId) {
+            return false;
+          }
 
-      /// категория
-      if (filter.goalId != 0) {
-        final categoryTitle = _findTitle(TagsMockData.rentGoal, filter.goalId);
+          /// категория
+          if (filter.goalId != 0) {
+            final categoryTitle = _findTitle(
+              TagsMockData.rentGoal,
+              filter.goalId,
+            );
 
-        if (categoryTitle == "Аренда" && apt.dealGoal != "rent") {
-          return false;
-        }
+            if (categoryTitle == "Аренда" && apt.dealGoal != "rent") {
+              return false;
+            }
 
-        if (categoryTitle == "Обмен" && apt.dealGoal != "exchange") {
-          return false;
-        }
-      }
+            if (categoryTitle == "Обмен" && apt.dealGoal != "exchange") {
+              return false;
+            }
+          }
 
-      /// комнаты
-      if (filter.roomsCountIds.isNotEmpty) {
-        final selectedRoomsTitles = filter.roomsCountIds
-            .map((id) => _findTitle(TagsMockData.roomsCount, id))
-            .whereType<String>()
-            .toList();
+          /// комнаты
+          if (filter.roomsCountIds.isNotEmpty) {
+            final selectedRoomsTitles = filter.roomsCountIds
+                .map((id) => _findTitle(TagsMockData.roomsCount, id))
+                .whereType<String>()
+                .toList();
 
-        if (!selectedRoomsTitles.contains(apt.roomsCount)) {
-          return false;
-        }
-      }
+            if (!selectedRoomsTitles.contains(apt.roomsCount)) {
+              return false;
+            }
+          }
 
-      /// цена
-      final price = int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
+          /// цена
+          final price =
+              int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
 
-      if (filter.minPrice != null && price < filter.minPrice!) {
-        return false;
-      }
+          if (filter.minPrice != null && price < filter.minPrice!) {
+            return false;
+          }
 
-      if (filter.maxPrice != null && price > filter.maxPrice!) {
-        return false;
-      }
+          if (filter.maxPrice != null && price > filter.maxPrice!) {
+            return false;
+          }
 
-      return true;
-    }).toList();
+          return true;
+        })
+        .map(ApartamentMapper.toModel)
+        .toList();
+
+    return Right(filteredApartments);
   }
 
   String? _findTitle(List<Map<String, dynamic>> list, int? id) {

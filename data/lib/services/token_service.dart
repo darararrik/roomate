@@ -32,6 +32,12 @@ class TokenService {
     }
   }
 
+  Future<bool> hasSession() async {
+    final accessToken = await getAccessToken();
+    final refreshToken = await getRefreshToken();
+    return accessToken != null || refreshToken != null;
+  }
+
   Future<void> deleteTokens() async {
     await _storage.delete(key: _key(_accessTokenKey));
     await _storage.delete(key: _key(_refreshTokenKey));

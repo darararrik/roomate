@@ -8,15 +8,12 @@ part 'global_profile_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 class GlobalProfileNotifier extends _$GlobalProfileNotifier {
-  bool _hasRequestedProfile = false;
-
   @override
-  FutureOr<ProfileModel> build() async {
-    return fetchProfile(showError: false);
+  FutureOr<ProfileModel> build() {
+    return ProfileModel.guest();
   }
 
   Future<ProfileModel> fetchProfile({bool showError = true}) async {
-    _hasRequestedProfile = true;
     state = const AsyncValue.loading();
     final result = await ref.read(loadCurrentProfileUseCaseProvider).call();
 
@@ -32,11 +29,6 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
     state = AsyncData(result.profile);
     return result.profile;
-  }
-
-  Future<void> fetchProfileIfNeeded() async {
-    if (_hasRequestedProfile || state.isLoading) return;
-    await fetchProfile();
   }
 
   Future<RemoteException?> updateProfile({
@@ -90,7 +82,10 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   }
 
   void resetToGuest() {
-    _hasRequestedProfile = false;
+    state = AsyncData(ProfileModel.guest());
+  }
+
+  void enterAsGuest() {
     state = AsyncData(ProfileModel.guest());
   }
 

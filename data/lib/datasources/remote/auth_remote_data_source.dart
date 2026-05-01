@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/data.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
   AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
@@ -33,6 +32,7 @@ class AuthRemoteDataSource implements AuthDataSource {
         ApiUrlConstants.logout,
         needAuth: true, // Логаут обычно требует JWT
         // Если сервер возвращает пустой ответ, трансформер может просто вернуть null
+        body: {'refresh_token': _tokenService.getRefreshToken()},
         transformer: (json) => null,
       );
       await _tokenService.deleteTokens();

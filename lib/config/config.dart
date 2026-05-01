@@ -1,7 +1,7 @@
 enum AppMode { live, mock }
 
 // Toggle mock mode here and apply hot restart.
-const bool kUseMocks = true;
+const bool kUseMocks = false;
 const String kApiBaseUrl = 'http://192.168.3.2:8080/api';
 
 class AppConfig {

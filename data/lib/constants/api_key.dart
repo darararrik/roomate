@@ -8,7 +8,7 @@ class ApiUrlConstants {
   static const refreshToken = '/auth/refresh';
   static const logout = '/auth/logout';
   static const adFormOptions = '/ads/tags';
-  static const createAd = '/ads';
+  static const ads = '/ads';
   static const me = '/profile/me';
   static const preferenceTagsCatalog = '/profile/tags';
 }

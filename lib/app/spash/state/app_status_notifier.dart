@@ -11,6 +11,7 @@ enum AuthStatus { unknown, unverified, noForm, noProfile, ready }
 class AppStatusNotifier extends _$AppStatusNotifier {
   AppStatusStorageService get _storage =>
       ref.read(appStatusStorageServiceProvider);
+  TokenService get _tokenService => ref.read(tokenServiceProvider);
 
   @override
   Future<AuthStatus> build() async {
@@ -43,7 +44,14 @@ class AppStatusNotifier extends _$AppStatusNotifier {
   }
 
   Future<AuthStatus> _resolve() async {
-    final profile = await ref.watch(globalProfileProvider.future);
+    final hasSession = await _tokenService.hasSession();
+    if (!hasSession) {
+      return AuthStatus.unverified;
+    }
+
+    final profile = await ref
+        .read(globalProfileProvider.notifier)
+        .fetchProfile(showError: false);
     if (profile.isGuest) {
       return AuthStatus.unverified;
     }
