@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/di/network_providers.dart';
+import 'package:roomate/notifier/global_profile/global_profile_notifier.dart';
 
 part 'app_status_notifier.g.dart';
 
@@ -43,18 +43,19 @@ class AppStatusNotifier extends _$AppStatusNotifier {
   }
 
   Future<AuthStatus> _resolve() async {
-    final hasToken = await _hasToken();
-    if (!hasToken) return AuthStatus.unverified;
+    final profile = await ref.watch(globalProfileProvider.future);
+    if (profile.isGuest) {
+      return AuthStatus.unverified;
+    }
 
     final snapshot = await _storage.read();
-    if (!snapshot.hasCompletedForm) return AuthStatus.noForm;
-    if (!snapshot.hasCompletedProfile) return AuthStatus.noProfile;
+    if (!snapshot.hasCompletedForm) {
+      return AuthStatus.noForm;
+    }
+    if (!snapshot.hasCompletedProfile) {
+      return AuthStatus.noProfile;
+    }
 
     return AuthStatus.ready;
-  }
-
-  Future<bool> _hasToken() async {
-    final token = await ref.read(tokenServiceProvider).getAccessToken();
-    return token != null && token.isNotEmpty;
   }
 }

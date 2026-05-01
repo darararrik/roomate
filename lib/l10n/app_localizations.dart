@@ -688,6 +688,12 @@ abstract class AppLocalizations {
   /// **'Выберите регион'**
   String get selectRegion;
 
+  /// No description provided for @selectAtLeastOneOption.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите хотя бы один вариант'**
+  String get selectAtLeastOneOption;
+
   /// No description provided for @search.
   ///
   /// In ru, this message translates to:

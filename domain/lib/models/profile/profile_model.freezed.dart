@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileModel {
 
- String get id; String get firstName; String get lastName; String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; bool get isOwner;
+ String get id; String get firstName; String get lastName; String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; bool get isOwner; SelectedUserPreferencesModel get preferences;
 /// Create a copy of ProfileModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ProfileModelCopyWith<ProfileModel> get copyWith => _$ProfileModelCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.preferences, preferences) || other.preferences == preferences));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,isOwner);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,isOwner,preferences);
 
 @override
 String toString() {
-  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner)';
+  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, preferences: $preferences)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $ProfileModelCopyWith<$Res>  {
   factory $ProfileModelCopyWith(ProfileModel value, $Res Function(ProfileModel) _then) = _$ProfileModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner
+ String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, SelectedUserPreferencesModel preferences
 });
 
 
-
+$SelectedUserPreferencesModelCopyWith<$Res> get preferences;
 
 }
 /// @nodoc
@@ -62,7 +62,7 @@ class _$ProfileModelCopyWithImpl<$Res>
 
 /// Create a copy of ProfileModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? preferences = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -74,10 +74,20 @@ as GenderEnum,phone: null == phone ? _self.phone : phone // ignore: cast_nullabl
 as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,isOwner: null == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,preferences: null == preferences ? _self.preferences : preferences // ignore: cast_nullable_to_non_nullable
+as SelectedUserPreferencesModel,
   ));
 }
-
+/// Create a copy of ProfileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SelectedUserPreferencesModelCopyWith<$Res> get preferences {
+  
+  return $SelectedUserPreferencesModelCopyWith<$Res>(_self.preferences, (value) {
+    return _then(_self.copyWith(preferences: value));
+  });
+}
 }
 
 
@@ -156,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);case _:
   return orElse();
 
 }
@@ -177,10 +187,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileModel():
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner);}
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -194,10 +204,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);case _:
   return null;
 
 }
@@ -209,7 +219,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.city,_that.avatarU
 
 
 class _ProfileModel extends ProfileModel {
-  const _ProfileModel({this.id = '', this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, this.isOwner = false}): super._();
+  const _ProfileModel({this.id = '', this.firstName = '', this.lastName = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, this.isOwner = false, this.preferences = const SelectedUserPreferencesModel()}): super._();
   
 
 @override@JsonKey() final  String id;
@@ -222,6 +232,7 @@ class _ProfileModel extends ProfileModel {
 @override@JsonKey() final  int age;
 @override@JsonKey() final  bool isVerified;
 @override@JsonKey() final  bool isOwner;
+@override@JsonKey() final  SelectedUserPreferencesModel preferences;
 
 /// Create a copy of ProfileModel
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +244,16 @@ _$ProfileModelCopyWith<_ProfileModel> get copyWith => __$ProfileModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.preferences, preferences) || other.preferences == preferences));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,isOwner);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,city,avatarUrl,gender,phone,age,isVerified,isOwner,preferences);
 
 @override
 String toString() {
-  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner)';
+  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, preferences: $preferences)';
 }
 
 
@@ -253,11 +264,11 @@ abstract mixin class _$ProfileModelCopyWith<$Res> implements $ProfileModelCopyWi
   factory _$ProfileModelCopyWith(_ProfileModel value, $Res Function(_ProfileModel) _then) = __$ProfileModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner
+ String id, String firstName, String lastName, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, SelectedUserPreferencesModel preferences
 });
 
 
-
+@override $SelectedUserPreferencesModelCopyWith<$Res> get preferences;
 
 }
 /// @nodoc
@@ -270,7 +281,7 @@ class __$ProfileModelCopyWithImpl<$Res>
 
 /// Create a copy of ProfileModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? preferences = null,}) {
   return _then(_ProfileModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -282,11 +293,21 @@ as GenderEnum,phone: null == phone ? _self.phone : phone // ignore: cast_nullabl
 as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,isOwner: null == isOwner ? _self.isOwner : isOwner // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,preferences: null == preferences ? _self.preferences : preferences // ignore: cast_nullable_to_non_nullable
+as SelectedUserPreferencesModel,
   ));
 }
 
-
+/// Create a copy of ProfileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SelectedUserPreferencesModelCopyWith<$Res> get preferences {
+  
+  return $SelectedUserPreferencesModelCopyWith<$Res>(_self.preferences, (value) {
+    return _then(_self.copyWith(preferences: value));
+  });
+}
 }
 
 // dart format on

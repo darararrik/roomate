@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -43,22 +41,6 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
     }
   }
 
-  Future<void> onNextStep(TabsRouter tabsRouter) async {
-    switch (tabsRouter.activeIndex) {
-      case 0:
-        _validate();
-        if (!state.isFormValid) return;
-        final success = await createProfile();
-        if (success) {
-          tabsRouter.setActiveIndex(1);
-        }
-        break;
-      case 1:
-        ref.nav.push(const VerifcationSummaryRoute());
-        break;
-    }
-  }
-
   void pop() => ref.nav.pop();
 
   void openOnbording() => ref.nav.replaceAll([const OnBoardingRoute()]);
@@ -74,6 +56,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
           age: int.tryParse(state.age),
           gender: state.gender,
         );
+
     if (error != null) {
       final message = error.messages.isNotEmpty
           ? error.messages
@@ -86,48 +69,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
     return true;
   }
 
-  void onPop(TabsRouter tabsRouter) {
-    final nextIndex = tabsRouter.activeIndex - 1;
-    if (nextIndex >= 0) {
-      tabsRouter.setActiveIndex(nextIndex);
-    } else {
-      ref.nav.pop();
-    }
-  }
-
-  // void toggleTagSelection(int tagId) {
-  //   // Копируем текущий список тегов
-  //   final updatedTags = state.tags.map((group) {
-  //     // Если твои теги приходят сгруппированными, ищем в них
-  //     final newTags = group.tags.map((tag) {
-  //       if (tag.id == tagId) {
-  //         return tag.copyWith(isSelected: !tag.isSelected);
-  //       }
-  //       return tag;
-  //     }).toList();
-
-  //     return group.copyWith(tags: newTags);
-  //   }).toList();
-
-  //   state = state.copyWith(tags: updatedTags);
-  // }
-
-  // Future<void> fetchTagsAboutSelf() async {
-  //   state = state.copyWith(isLoading: true);
-  //   final result = await ref.read(profileRepositoryProvider).fetchTagsAboutSelf();
-  //   result.fold(
-  //     (l) => state = state.copyWith(isLoading: false),
-  //     (r) => state = state.copyWith(tags: r, isLoading: false),
-  //   );
-  // }
-
   void onSkip() => ref.nav.replaceAll([const MainFlowRoute()]);
-
-  String titleButton(TabsRouter tabsRouter) {
-    return tabsRouter.activeIndex == 2
-        ? ref.l10n.confirmThroughGosuslugi
-        : ref.l10n.next;
-  }
 
   /// validation
   void _validate() {

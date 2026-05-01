@@ -16,7 +16,11 @@ _ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) => _ProfileData(
   city: json['city'] as String?,
   avatarUrl: json['photo'] as String?,
   isVerified: json['status'] as bool?,
-  tags: const UserTagsConverter().fromJson(json['tags']),
+  preferences: json['preferences'] == null
+      ? null
+      : SelectedUserPreferencesData.fromJson(
+          json['preferences'] as Map<String, dynamic>,
+        ),
   isOwner: json['is_owner'] as bool?,
   isNewUser: json['is_new_user'] as bool?,
 );
@@ -32,7 +36,7 @@ Map<String, dynamic> _$ProfileDataToJson(_ProfileData instance) =>
       'city': instance.city,
       'photo': instance.avatarUrl,
       'status': instance.isVerified,
-      'tags': const UserTagsConverter().toJson(instance.tags),
+      'preferences': instance.preferences,
       'is_owner': instance.isOwner,
       'is_new_user': instance.isNewUser,
     };

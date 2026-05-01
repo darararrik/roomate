@@ -1,26 +1,42 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared/shared.dart';
-
 import 'package:roomate/lib.dart';
+import 'package:roomate/routing/app_routing.gr.dart';
+import 'package:shared/shared.dart';
 
 part 'global_profile_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 class GlobalProfileNotifier extends _$GlobalProfileNotifier {
-  IProfileRepository get _repository => ref.read(profileRepositoryProvider);
+  bool _hasRequestedProfile = false;
 
   @override
-  Future<ProfileModel> build() async {
-    return ProfileModel.guest();
+  FutureOr<ProfileModel> build() async {
+    return fetchProfile(showError: false);
   }
 
-  Future<void> fetchProfile() async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
-      final res = await _repository.fetchProfile();
-      return res.fold((e) => throw e, (u) => u);
-    });
+  Future<ProfileModel> fetchProfile({bool showError = true}) async {
+    _hasRequestedProfile = true;
+    state = const AsyncValue.loading();
+    final result = await ref.read(loadCurrentProfileUseCaseProvider).call();
+
+    if (result.error != null) {
+      state = AsyncData(result.profile);
+
+      if (showError) {
+        _showFetchProfileError(result.error!);
+      }
+
+      return result.profile;
+    }
+
+    state = AsyncData(result.profile);
+    return result.profile;
+  }
+
+  Future<void> fetchProfileIfNeeded() async {
+    if (_hasRequestedProfile || state.isLoading) return;
+    await fetchProfile();
   }
 
   Future<RemoteException?> updateProfile({
@@ -29,7 +45,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     String? avatarUrl,
     GenderEnum? gender,
     int? age,
-    // List<TagModel>? tags,
+    SelectedUserPreferencesModel? preferences,
   }) async {
     // Берем текущие данные из стейта (если там еще загрузка или ошибка — берем гостя)
     final current = state.value ?? ProfileModel.guest();
@@ -40,27 +56,55 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
       avatarUrl: avatarUrl ?? current.avatarUrl,
       gender: gender ?? current.gender,
       age: age ?? current.age,
-      // tags: tags ?? current.tags,
+      preferences: preferences ?? current.preferences,
     );
 
     // Ставим состояние загрузки для UI
     state = const AsyncLoading();
 
-    final res = await _repository.updateProfile(updated);
+    final result = await ref.read(updateProfileUseCaseProvider).call(updated);
 
-    return res.fold(
-      (e) {
-        state = AsyncError(e, StackTrace.current);
-        return e;
-      },
-      (saved) {
-        state = AsyncData(saved);
-        return null;
-      },
-    );
+    if (result.error != null) {
+      state = AsyncError(result.error!, StackTrace.current);
+      return result.error;
+    }
+
+    state = AsyncData(result.profile);
+    return null;
+  }
+
+  Future<void> logout() async {
+    final error = await ref.read(logoutUseCaseProvider).call();
+    if (error != null) {
+      final message = error.messages.isNotEmpty
+          ? error.messages
+          : 'Не удалось выйти из аккаунта';
+      ref.nav.showSnackBar(message: message);
+      return;
+    }
+
+    resetToGuest();
+    await ref.read(appStatusStorageServiceProvider).markLoggedOut();
+    ref.invalidate(appStatusProvider);
+    ref.nav.replaceAll([const OnBoardingRoute()]);
   }
 
   void resetToGuest() {
+    _hasRequestedProfile = false;
     state = AsyncData(ProfileModel.guest());
+  }
+
+  void _showFetchProfileError(RemoteException error) {
+    final message = switch (error.kind) {
+      RemoteExceptionKind.unauthorized ||
+      RemoteExceptionKind.refreshTokenFailed =>
+        'Сессия истекла. Войдите снова.',
+      _ =>
+        error.messages.isNotEmpty
+            ? error.messages
+            : 'Не удалось загрузить профиль',
+    };
+
+    ref.nav.showSnackBar(message: message);
   }
 }

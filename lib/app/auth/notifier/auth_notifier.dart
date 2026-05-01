@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:roomate/utils/helpers/phone_number.dart';
@@ -26,11 +25,7 @@ class AuthNotifier extends _$AuthNotifier {
   }
 
   void setError(String message) {
-    state = state.copyWith(
-      isError: true,
-      errorMessage: message,
-      isCodeVerified: false,
-    );
+    state = state.copyWith(isError: true, errorMessage: message, isCodeVerified: false);
   }
 
   void checkCode() {
@@ -38,11 +33,7 @@ class AuthNotifier extends _$AuthNotifier {
     if (state.code == "0000") {
       state = state.copyWith(isCodeVerified: true);
     } else {
-      state = state.copyWith(
-        isCodeVerified: false,
-        isError: true,
-        errorMessage: l10n.wrongCode,
-      );
+      state = state.copyWith(isCodeVerified: false, isError: true, errorMessage: l10n.wrongCode);
     }
   }
 
@@ -56,14 +47,6 @@ class AuthNotifier extends _$AuthNotifier {
     ref.nav.replace(const MainFlowRoute());
   }
 
-  Future<void> logout() async {
-    await ref.read(authRepositoryProvider).logout();
-    state = const AuthState();
-    ref.read(globalProfileProvider.notifier).resetToGuest();
-    await ref.read(appStatusProvider.notifier).markLoggedOut();
-    ref.nav.replaceAll([const OnBoardingRoute()]);
-  }
-
   void openEnterCodeScreen() {
     final phone = PhoneNumber(state.phone);
     ref.read(authRepositoryProvider).signInByPhone(phone.value);
@@ -73,14 +56,13 @@ class AuthNotifier extends _$AuthNotifier {
   Future<void> verifySms() async {
     if (!state.isPinComplete) return;
     final phone = PhoneNumber(state.phone);
-    final result = await ref
-        .read(authRepositoryProvider)
-        .verifySms(phone.value, state.code);
+    final result = await ref.read(authRepositoryProvider).verifySms(phone.value, state.code);
     result.fold((e) => setError(e.messages), (user) async {
       if (user.isNewUser) {
         await ref.read(appStatusProvider.notifier).markProfileIncomplete();
-        openCreateProfileScreen();
+        openSetupProfileScreen();
       } else {
+        await ref.read(globalProfileProvider.notifier).fetchProfile(showError: false);
         await ref.read(appStatusProvider.notifier).markProfileCompleted();
         openMainScreen();
       }
@@ -91,7 +73,7 @@ class AuthNotifier extends _$AuthNotifier {
     ref.nav.replace(const MainFlowRoute());
   }
 
-  void openCreateProfileScreen() async {
-    ref.nav.push(const CreateProfileRoute());
+  void openSetupProfileScreen() async {
+    ref.nav.push(const SetupProfileRoute());
   }
 }

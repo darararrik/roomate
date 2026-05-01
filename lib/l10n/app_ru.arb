@@ -99,6 +99,7 @@
   "toSort": "Сортировать",
   "selectDistrict": "Выберите район",
   "selectRegion": "Выберите регион",
+  "selectAtLeastOneOption": "Выберите хотя бы один вариант",
   "search": "Поиск",
   "notifications": "Уведомления",
   "login": "Войти",

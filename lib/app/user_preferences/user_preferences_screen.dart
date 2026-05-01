@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/user_preferences/notifier/user_pref_notifier.dart';
 import 'package:roomate/lib.dart';
 
@@ -11,7 +9,7 @@ import 'package:roomate/lib.dart';
 class UserPreferencesLifestyleScreen extends ConsumerWidget {
   const UserPreferencesLifestyleScreen({super.key, required this.tags});
 
-  final PreferencesTagsModel tags;
+  final PreferenceTagsCatalogModel tags;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,8 +22,9 @@ class UserPreferencesLifestyleScreen extends ConsumerWidget {
         ChipWrap<OptionModel>(
           title: context.l10n.traitSociability,
           options: tags.communication,
-          selectedIds: {if (state.communcationId != 0) state.communcationId},
+          selectedIds: {if (state.communicationId != 0) state.communicationId},
           singleSelection: true,
+          errorText: state.communicationError,
           onSelectionChanged: (ids) =>
               notifier.setCommunicationId(ids.firstOrNull ?? 0),
         ),
@@ -34,6 +33,7 @@ class UserPreferencesLifestyleScreen extends ConsumerWidget {
           options: tags.sleep,
           selectedIds: {if (state.sleepId != 0) state.sleepId},
           singleSelection: true,
+          errorText: state.sleepError,
           onSelectionChanged: (ids) =>
               notifier.setSleepId(ids.firstOrNull ?? 0),
         ),
@@ -41,12 +41,14 @@ class UserPreferencesLifestyleScreen extends ConsumerWidget {
           title: context.l10n.traitEmployment,
           options: tags.employment,
           selectedIds: state.employmentId,
+          errorText: state.employmentError,
           onSelectionChanged: notifier.setEmploymentIds,
         ),
         ChipWrap<OptionModel>(
           title: context.l10n.traitBadHabits,
           options: tags.badHabits,
           selectedIds: state.badHabitsId,
+          errorText: state.badHabitsError,
           onSelectionChanged: notifier.setBadHabitsIds,
         ),
       ],
@@ -58,7 +60,7 @@ class UserPreferencesLifestyleScreen extends ConsumerWidget {
 class UserPreferencesHouseholdScreen extends ConsumerWidget {
   const UserPreferencesHouseholdScreen({super.key, required this.tags});
 
-  final PreferencesTagsModel tags;
+  final PreferenceTagsCatalogModel tags;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,6 +75,7 @@ class UserPreferencesHouseholdScreen extends ConsumerWidget {
           options: tags.guests,
           selectedIds: {if (state.guestsId != 0) state.guestsId},
           singleSelection: true,
+          errorText: state.guestsError,
           onSelectionChanged: (ids) =>
               notifier.setGuestsId(ids.firstOrNull ?? 0),
         ),
@@ -81,6 +84,7 @@ class UserPreferencesHouseholdScreen extends ConsumerWidget {
           options: tags.noiseLevel,
           selectedIds: {if (state.noiseLevelId != 0) state.noiseLevelId},
           singleSelection: true,
+          errorText: state.noiseLevelError,
           onSelectionChanged: (ids) =>
               notifier.setNoiseLevelId(ids.firstOrNull ?? 0),
         ),
@@ -89,6 +93,7 @@ class UserPreferencesHouseholdScreen extends ConsumerWidget {
           options: tags.cleaning,
           selectedIds: {if (state.cleaningId != 0) state.cleaningId},
           singleSelection: true,
+          errorText: state.cleaningError,
           onSelectionChanged: (ids) =>
               notifier.setCleaningId(ids.firstOrNull ?? 0),
         ),
@@ -96,6 +101,7 @@ class UserPreferencesHouseholdScreen extends ConsumerWidget {
           title: context.l10n.traitPets,
           options: tags.pets,
           selectedIds: state.petsId,
+          errorText: state.petsError,
           onSelectionChanged: notifier.setPetsIds,
         ),
         ChipWrap<OptionModel>(
@@ -103,6 +109,7 @@ class UserPreferencesHouseholdScreen extends ConsumerWidget {
           options: tags.petsAttitude,
           selectedIds: {if (state.petsAttitudeId != 0) state.petsAttitudeId},
           singleSelection: true,
+          errorText: state.petsAttitudeError,
           onSelectionChanged: (ids) =>
               notifier.setPetsAttitudeId(ids.firstOrNull ?? 0),
         ),

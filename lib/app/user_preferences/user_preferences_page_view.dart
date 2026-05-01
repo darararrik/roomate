@@ -14,7 +14,7 @@ class UserPreferencesPageView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final value = ref.watch(preferencesTagsProvider);
+    final value = ref.watch(preferenceTagsCatalogProvider);
     ref.watch(userPrefProvider);
 
     return value.when(
@@ -27,7 +27,7 @@ class UserPreferencesPageView extends ConsumerWidget {
 
 class _Content extends ConsumerWidget {
   const _Content({required this.tags});
-  final PreferencesTagsModel tags;
+  final PreferenceTagsCatalogModel tags;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,14 +38,14 @@ class _Content extends ConsumerWidget {
         UserPreferencesHouseholdRoute(tags: tags),
         const VerificationIntroRoute(),
       ],
-      builder: (context, child, controller) {
+      builder: (context, tabChild, controller) {
         final tabsRouter = AutoTabsRouter.of(context, watch: true);
         final notifier = ref.read(userPrefProvider.notifier);
         final totalPages = tabsRouter.pageCount;
         final activeIndex = tabsRouter.activeIndex + 1;
         return ListenableBuilder(
           listenable: tabsRouter,
-          builder: (context, child) {
+          builder: (context, _) {
             return Scaffold(
               appBar: AppBar(
                 centerTitle: true,
@@ -69,7 +69,7 @@ class _Content extends ConsumerWidget {
                   ),
                 ),
               ),
-              body: child,
+              body: tabChild,
             );
           },
         );

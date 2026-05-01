@@ -309,6 +309,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get selectRegion => 'Выберите регион';
 
   @override
+  String get selectAtLeastOneOption => 'Выберите хотя бы один вариант';
+
+  @override
   String get search => 'Поиск';
 
   @override

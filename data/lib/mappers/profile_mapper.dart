@@ -13,9 +13,9 @@ abstract class ProfileMapper {
       phone: userData?.phone ?? '',
       age: userData?.age ?? 0,
       isVerified: userData?.isVerified ?? false,
-      // tags: userData?.tags?.map((e) => TagMapper.toModel(e)).toList() ?? [],
       city: userData?.city ?? '',
       isOwner: userData?.isOwner ?? false,
+      preferences: SelectedUserPreferencesMapper.toModel(userData?.preferences),
     );
   }
 
@@ -29,9 +29,9 @@ abstract class ProfileMapper {
       phone: user.phone,
       age: user.age,
       isVerified: user.isVerified,
-      // tags: user.tags.map((e) => TagMapper.toData(e)).toList(),
       city: user.city,
       isOwner: user.isOwner,
+      preferences: SelectedUserPreferencesMapper.toData(user.preferences),
     );
   }
 }

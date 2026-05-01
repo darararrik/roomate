@@ -10,5 +10,5 @@ class ApiUrlConstants {
   static const adFormOptions = '/ads/tags';
   static const createAd = '/ads';
   static const me = '/profile/me';
-  static const preferencesTags = '/profile/tags';
+  static const preferenceTagsCatalog = '/profile/tags';
 }

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:roomate/app/startup/state/app_status_notifier.dart';
+import 'package:roomate/app/spash/state/app_status_notifier.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
 @RoutePage()
@@ -22,7 +22,7 @@ class SplashScreen extends ConsumerWidget {
               case AuthStatus.unverified:
                 context.router.replaceAll([const AuthWrapper()]);
               case AuthStatus.noForm:
-                context.router.replaceAll([const ProfileDetailsRoute()]);
+                context.router.replaceAll([const SetupProfileRoute()]);
               case AuthStatus.noProfile:
                 context.router.replaceAll([const OnBoardingRoute()]);
               case AuthStatus.ready:
@@ -45,11 +45,7 @@ class SplashScreen extends ConsumerWidget {
       body: Center(
         child: Text(
           'Splash Screen',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF111111),
-          ),
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, color: Color(0xFF111111)),
         ),
       ),
     );

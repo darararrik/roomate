@@ -20,12 +20,9 @@ class ProfileRemoteDataSource implements ProfileDataSource {
   }
 
   @override
-  Future<Either<RemoteException, ProfileModel>> createProfile(ProfileModel user) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<RemoteException, ProfileModel>> updateProfile(ProfileModel user) async {
+  Future<Either<RemoteException, ProfileModel>> updateProfile(
+    ProfileModel user,
+  ) async {
     final result = await _client.put<ProfileData>(
       ApiUrlConstants.me,
       needAuth: true,
@@ -37,13 +34,17 @@ class ProfileRemoteDataSource implements ProfileDataSource {
   }
 
   @override
-  Future<Either<RemoteException, PreferencesTagsModel>> fetchPreferencesTags() async {
+  Future<Either<RemoteException, PreferenceTagsCatalogModel>>
+  fetchPreferenceTagsCatalog() async {
     final result = await _client.get(
-      ApiUrlConstants.preferencesTags,
+      ApiUrlConstants.preferenceTagsCatalog,
       needAuth: true,
       transformer: (json) => PreferencesTagsData.fromJson(json),
     );
 
-    return result.fold((e) => Left(e), (u) => Right(PreferencesTagsMapper.toModel(u)));
+    return result.fold(
+      (e) => Left(e),
+      (u) => Right(PreferenceTagsCatalogMapper.toModel(u)),
+    );
   }
 }

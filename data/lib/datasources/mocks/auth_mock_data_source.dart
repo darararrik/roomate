@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:domain/domain.dart';
-import 'package:shared/shared.dart';
-
 import 'package:data/data.dart';
 import 'package:data/entity/server_error/server_error.dart';
+import 'package:domain/domain.dart';
+import 'package:shared/shared.dart';
 
 class AuthMockDataSource implements AuthDataSource {
   AuthMockDataSource({required TokenService tokenService}) : _tokenService = tokenService;
@@ -38,13 +37,13 @@ class AuthMockDataSource implements AuthDataSource {
       );
     }
 
-    const user = UserData(
+    final user = UserData(
       id: 'mock-user-1',
-      phone: '+7 927 777-77-77',
+      phone: phone.toString(),
       role: "OWNER",
       isNewUser: true,
     );
-
+    MockStorage.phone = phone.toString();
     MockStorage.userProfile = user.toJson();
     await _tokenService.saveTokens('mock_access_token', 'mock_refresh_token');
 

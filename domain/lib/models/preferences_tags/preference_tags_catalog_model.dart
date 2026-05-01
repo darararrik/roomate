@@ -2,11 +2,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/models/common/option_model.dart';
 
-part 'preferences_tags_model.freezed.dart';
+part 'preference_tags_catalog_model.freezed.dart';
 
 @freezed
-abstract class PreferencesTagsModel with _$PreferencesTagsModel {
-  const factory PreferencesTagsModel({
+abstract class PreferenceTagsCatalogModel with _$PreferenceTagsCatalogModel {
+  const factory PreferenceTagsCatalogModel({
     @Default([]) List<OptionModel> communication,
     @Default([]) List<OptionModel> sleep,
     @Default([]) List<OptionModel> employment,
@@ -16,5 +16,5 @@ abstract class PreferencesTagsModel with _$PreferencesTagsModel {
     @Default([]) List<OptionModel> cleaning,
     @Default([]) List<OptionModel> pets,
     @Default([]) List<OptionModel> petsAttitude,
-  }) = _PreferencesTagsModel;
+  }) = _PreferenceTagsCatalogModel;
 }

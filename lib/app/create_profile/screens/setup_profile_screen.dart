@@ -6,8 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()
-class ProfileDetailsScreen extends HookConsumerWidget {
-  const ProfileDetailsScreen({super.key});
+class SetupProfileScreen extends HookConsumerWidget {
+  const SetupProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,10 +19,7 @@ class ProfileDetailsScreen extends HookConsumerWidget {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const P(horizontal: S.p16, vertical: S.p20),
-          child: PrimaryButton(
-            onPressed: notifier.submitProfileDetails,
-            text: context.l10n.next,
-          ),
+          child: PrimaryButton(onPressed: notifier.submitProfileDetails, text: context.l10n.next),
         ),
       ),
       appBar: AppBar(
@@ -44,20 +41,13 @@ class ProfileDetailsScreen extends HookConsumerWidget {
             ),
           ),
           const SizedBox(height: S.p28),
-          Center(
-            child: Text(
-              locale.letsGetToKnowEachOther,
-              style: context.typography.headline1,
-            ),
-          ),
+          Center(child: Text(locale.letsGetToKnowEachOther, style: context.typography.headline1)),
           const SizedBox(height: S.p8),
           Center(
             child: Text(
               locale.pleaseProvideRealData,
               textAlign: TextAlign.center,
-              style: context.typography.headline2.copyWith(
-                color: context.colors.graysText400,
-              ),
+              style: context.typography.headline2.copyWith(color: context.colors.graysText400),
             ),
           ),
           const SizedBox(height: S.p28),
@@ -111,8 +101,7 @@ class ProfileDetailsScreen extends HookConsumerWidget {
                           .read(navigationServiceProvider)
                           .showBottomSheet(
                             GenderBottomSheet(
-                              onSelected: (gender, index, isSelected) =>
-                                  notifier.setGender(gender),
+                              onSelected: (gender, index, isSelected) => notifier.setGender(gender),
                               selectedGender: state.gender,
                             ),
                           ),

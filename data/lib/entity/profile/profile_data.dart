@@ -1,25 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:data/entity/user_tags/user_tag_data.dart';
+import 'package:data/entity/prefernces_tags/selected_user_preferences_data.dart';
 
 part 'profile_data.freezed.dart';
 part 'profile_data.g.dart';
-
-class UserTagsConverter implements JsonConverter<List<UserTagData>?, Object?> {
-  const UserTagsConverter();
-
-  @override
-  List<UserTagData>? fromJson(Object? json) {
-    if (json is! List) {
-      return null;
-    }
-
-    return json.whereType<Map<String, dynamic>>().map(UserTagData.fromJson).toList();
-  }
-
-  @override
-  Object? toJson(List<UserTagData>? object) => object;
-}
 
 @freezed
 sealed class ProfileData with _$ProfileData {
@@ -33,9 +17,10 @@ sealed class ProfileData with _$ProfileData {
     @JsonKey(name: "city") String? city,
     @JsonKey(name: "photo") String? avatarUrl,
     @JsonKey(name: "status") bool? isVerified,
-    @JsonKey(name: "tags") @UserTagsConverter() List<UserTagData>? tags,
+    @JsonKey(name: "preferences") SelectedUserPreferencesData? preferences,
     @JsonKey(name: "is_owner") bool? isOwner,
     @JsonKey(name: "is_new_user") bool? isNewUser,
   }) = _ProfileData;
-  factory ProfileData.fromJson(Map<String, dynamic> json) => _$ProfileDataFromJson(json);
+  factory ProfileData.fromJson(Map<String, dynamic> json) =>
+      _$ProfileDataFromJson(json);
 }

@@ -19,40 +19,41 @@ abstract class AdFormMapper {
   static List<OptionModel> _toOptionList(List<OptionData>? dtos) =>
       dtos?.map(OptionMapper.toModel).toList() ?? [];
 
-  static AdFormOptionsModel toModel(AdFormOptionsData dto) => AdFormOptionsModel(
-    rentGoal: _toOptionList(dto.rentGoal),
-    rentPeriod: _toOptionList(dto.rentPeriod),
-    whoCanRent: _toOptionList(dto.whoCanRent),
-    premisesType: _toOptionList(dto.premisesType),
-    propertyType: _toOptionList(dto.propertyType),
-    roomsCount: _toOptionList(dto.roomsCount),
-    layout: _toOptionList(dto.layout),
-    renovation: _toOptionList(dto.renovation),
-    elevators: _toOptionList(dto.elevators),
-    balconies: _toOptionList(dto.balconies),
-    furniture: _toOptionList(dto.furniture),
-    amenities: _toOptionList(dto.amenities),
-    bathroom: _toOptionList(dto.bathroom),
-    appliances: _toOptionList(dto.appliances),
-    stove: _toOptionList(dto.stove),
-    currency: _toOptionList(dto.currency),
-    prepayment: _toOptionList(dto.prepayment),
-    rentDuration: _toOptionList(dto.rentDuration),
-    rentConditions: _toOptionList(dto.rentConditions),
-    contactMethod: _toOptionList(dto.contactMethod),
-  );
+  static AdFormOptionsModel toModel(AdFormOptionsData dto) =>
+      AdFormOptionsModel(
+        rentGoal: _toOptionList(dto.rentGoal),
+        rentPeriod: _toOptionList(dto.rentPeriod),
+        whoCanRent: _toOptionList(dto.whoCanRent),
+        premisesType: _toOptionList(dto.premisesType),
+        propertyType: _toOptionList(dto.propertyType),
+        roomsCount: _toOptionList(dto.roomsCount),
+        layout: _toOptionList(dto.layout),
+        renovation: _toOptionList(dto.renovation),
+        elevators: _toOptionList(dto.elevators),
+        balconies: _toOptionList(dto.balconies),
+        furniture: _toOptionList(dto.furniture),
+        amenities: _toOptionList(dto.amenities),
+        bathroom: _toOptionList(dto.bathroom),
+        appliances: _toOptionList(dto.appliances),
+        stove: _toOptionList(dto.stove),
+        currency: _toOptionList(dto.currency),
+        prepayment: _toOptionList(dto.prepayment),
+        rentDuration: _toOptionList(dto.rentDuration),
+        rentConditions: _toOptionList(dto.rentConditions),
+        contactMethod: _toOptionList(dto.contactMethod),
+      );
 }
 
 extension AdFormOptionsDtoX on AdFormOptionsData {
   AdFormOptionsModel toModel() => AdFormMapper.toModel(this);
 }
 
-abstract class PreferencesTagsMapper {
-  static PreferencesTagsModel toModel(PreferencesTagsData dto) {
+abstract class PreferenceTagsCatalogMapper {
+  static PreferenceTagsCatalogModel toModel(PreferencesTagsData dto) {
     List<OptionModel> mapList(List<OptionData>? list) =>
         list?.map(OptionMapper.toModel).toList() ?? [];
 
-    return PreferencesTagsModel(
+    return PreferenceTagsCatalogModel(
       communication: mapList(dto.communication),
       sleep: mapList(dto.sleep),
       employment: mapList(dto.employment),
@@ -62,6 +63,40 @@ abstract class PreferencesTagsMapper {
       cleaning: mapList(dto.cleaning),
       pets: mapList(dto.pets),
       petsAttitude: mapList(dto.petsAttitude),
+    );
+  }
+}
+
+abstract class SelectedUserPreferencesMapper {
+  static SelectedUserPreferencesModel toModel(
+    SelectedUserPreferencesData? data,
+  ) {
+    return SelectedUserPreferencesModel(
+      communication: data?.communication ?? const [],
+      sleep: data?.sleep ?? const [],
+      employment: data?.employment ?? const [],
+      badHabits: data?.badHabits ?? const [],
+      guests: data?.guests ?? const [],
+      noiseLevel: data?.noiseLevel ?? const [],
+      cleaning: data?.cleaning ?? const [],
+      pets: data?.pets ?? const [],
+      petsAttitude: data?.petsAttitude ?? const [],
+    );
+  }
+
+  static SelectedUserPreferencesData toData(
+    SelectedUserPreferencesModel preferences,
+  ) {
+    return SelectedUserPreferencesData(
+      communication: preferences.communication,
+      sleep: preferences.sleep,
+      employment: preferences.employment,
+      badHabits: preferences.badHabits,
+      guests: preferences.guests,
+      noiseLevel: preferences.noiseLevel,
+      cleaning: preferences.cleaning,
+      pets: preferences.pets,
+      petsAttitude: preferences.petsAttitude,
     );
   }
 }

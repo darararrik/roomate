@@ -9,46 +9,47 @@ part of 'user_pref_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(preferencesTags)
-final preferencesTagsProvider = PreferencesTagsProvider._();
+@ProviderFor(preferenceTagsCatalog)
+final preferenceTagsCatalogProvider = PreferenceTagsCatalogProvider._();
 
-final class PreferencesTagsProvider
+final class PreferenceTagsCatalogProvider
     extends
         $FunctionalProvider<
-          AsyncValue<PreferencesTagsModel>,
-          PreferencesTagsModel,
-          FutureOr<PreferencesTagsModel>
+          AsyncValue<PreferenceTagsCatalogModel>,
+          PreferenceTagsCatalogModel,
+          FutureOr<PreferenceTagsCatalogModel>
         >
     with
-        $FutureModifier<PreferencesTagsModel>,
-        $FutureProvider<PreferencesTagsModel> {
-  PreferencesTagsProvider._()
+        $FutureModifier<PreferenceTagsCatalogModel>,
+        $FutureProvider<PreferenceTagsCatalogModel> {
+  PreferenceTagsCatalogProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'preferencesTagsProvider',
+        name: r'preferenceTagsCatalogProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$preferencesTagsHash();
+  String debugGetCreateSourceHash() => _$preferenceTagsCatalogHash();
 
   @$internal
   @override
-  $FutureProviderElement<PreferencesTagsModel> $createElement(
+  $FutureProviderElement<PreferenceTagsCatalogModel> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<PreferencesTagsModel> create(Ref ref) {
-    return preferencesTags(ref);
+  FutureOr<PreferenceTagsCatalogModel> create(Ref ref) {
+    return preferenceTagsCatalog(ref);
   }
 }
 
-String _$preferencesTagsHash() => r'821e477fa4c71ea0608be644dc8e742514dd6be5';
+String _$preferenceTagsCatalogHash() =>
+    r'eebc978aedf82cc3b9f20a2676af8a7e51dd206d';
 
 @ProviderFor(UserPrefNotifier)
 final userPrefProvider = UserPrefNotifierProvider._();
@@ -82,7 +83,7 @@ final class UserPrefNotifierProvider
   }
 }
 
-String _$userPrefNotifierHash() => r'4553a54cda794910766a5c18c8deefcc0814a51d';
+String _$userPrefNotifierHash() => r'deab6fe37b1c31a1d686b34e47e227ae7c9e30bd';
 
 abstract class _$UserPrefNotifier extends $Notifier<PrefState> {
   PrefState build();
