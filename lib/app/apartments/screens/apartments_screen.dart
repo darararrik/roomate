@@ -27,7 +27,7 @@ class ApartamentsScreen extends ConsumerWidget {
             data: (state) {
               final apartaments = state.apartaments;
               return SliverPadding(
-                padding: const P(bottom: S.p24),
+                padding: const P(horizontal: S.p16, bottom: S.p24),
                 sliver: SliverList.separated(
                   itemCount: apartaments.length,
                   itemBuilder: (context, index) {

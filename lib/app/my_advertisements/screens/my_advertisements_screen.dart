@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -23,7 +21,7 @@ class MyAdvertisementsScreen extends ConsumerWidget {
               final apartments = state.apartaments;
 
               return SliverPadding(
-                padding: const P(horizontal: S.p16, top: S.p12),
+                padding: const P(horizontal: S.p16, top: S.p16, bottom: S.p24),
                 sliver: SliverList.separated(
                   itemCount: apartments.length,
                   itemBuilder: (context, index) {
@@ -33,19 +31,15 @@ class MyAdvertisementsScreen extends ConsumerWidget {
                       apartment: apartment,
                       isFavorite: false,
                       onFavoriteTap: () {},
-                      onTap: () => context.pushRoute(
-                        ApartamnetRoute(apartment: apartment),
-                      ),
+                      onTap: () => context.pushRoute(ApartamnetRoute(apartment: apartment)),
                     );
                   },
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: S.p12),
+                  separatorBuilder: (context, index) => const SizedBox(height: S.p12),
                 ),
               );
             },
             loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
-            error: (error, stack) =>
-                SliverToBoxAdapter(child: ErrorView(error: stack)),
+            error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: stack)),
           ),
         ],
       ),

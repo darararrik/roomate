@@ -55,10 +55,7 @@ class OverviewScreen extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: .spaceBetween,
                 children: [
-                  Text(
-                    context.l10n.recentAdvertisements,
-                    style: context.typography.headline1,
-                  ),
+                  Text(context.l10n.recentAdvertisements, style: context.typography.headline1),
                   GestureDetector(
                     onTap: notifier.openApartments,
                     child: Text(
@@ -77,7 +74,7 @@ class OverviewScreen extends ConsumerWidget {
           data: (state) {
             final apartaments = state.recentApartments;
             return SliverPadding(
-              padding: const P(bottom: S.p24),
+              padding: const P(horizontal: S.p16, bottom: S.p24),
               sliver: SliverList.separated(
                 itemCount: apartaments.length,
                 itemBuilder: (context, index) {
@@ -96,8 +93,7 @@ class OverviewScreen extends ConsumerWidget {
             );
           },
           loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
-          error: (error, stack) =>
-              SliverToBoxAdapter(child: ErrorView(error: stack)),
+          error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: stack)),
         ),
       ],
     );
@@ -105,11 +101,7 @@ class OverviewScreen extends ConsumerWidget {
 }
 
 class _HomeActionCard extends StatelessWidget {
-  const _HomeActionCard({
-    required this.title,
-    required this.imagePath,
-    required this.onTap,
-  });
+  const _HomeActionCard({required this.title, required this.imagePath, required this.onTap});
 
   final String title;
   final String imagePath;
@@ -135,10 +127,7 @@ class _HomeActionCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: context.typography.bodyDescription,
               ),
-              Align(
-                alignment: .bottomRight,
-                child: Image.asset(imagePath, width: 98, height: 98),
-              ),
+              Align(alignment: .bottomRight, child: Image.asset(imagePath, width: 98, height: 98)),
             ],
           ),
         ),
