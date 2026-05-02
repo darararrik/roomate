@@ -24,14 +24,13 @@ class OverviewProfileScreen extends ConsumerWidget {
           state.when(
             data: (profile) {
               final isGuest = profile.isGuest;
-
               final menuItems = [
                 if (!isGuest)
                   ProfileMenuItem(
                     iconPath: AppIcons.personSettings,
                     title: context.l10n.profile,
                     subtitle: context.l10n.profileSubtitle,
-                    onTap: () => context.pushRoute(const ProfileEditRoute()),
+                    onTap: () => context.pushRoute(const ProfileRoute()),
                   ),
                 if (!isGuest)
                   ProfileMenuItem(

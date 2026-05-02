@@ -9,48 +9,6 @@ part of 'user_pref_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(preferenceTagsCatalog)
-final preferenceTagsCatalogProvider = PreferenceTagsCatalogProvider._();
-
-final class PreferenceTagsCatalogProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<PreferenceTagsCatalogModel>,
-          PreferenceTagsCatalogModel,
-          FutureOr<PreferenceTagsCatalogModel>
-        >
-    with
-        $FutureModifier<PreferenceTagsCatalogModel>,
-        $FutureProvider<PreferenceTagsCatalogModel> {
-  PreferenceTagsCatalogProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'preferenceTagsCatalogProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$preferenceTagsCatalogHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<PreferenceTagsCatalogModel> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<PreferenceTagsCatalogModel> create(Ref ref) {
-    return preferenceTagsCatalog(ref);
-  }
-}
-
-String _$preferenceTagsCatalogHash() =>
-    r'eebc978aedf82cc3b9f20a2676af8a7e51dd206d';
-
 @ProviderFor(UserPrefNotifier)
 final userPrefProvider = UserPrefNotifierProvider._();
 

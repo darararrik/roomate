@@ -65,6 +65,21 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     return null;
   }
 
+  Future<bool> updatePreferences(
+    SelectedUserPreferencesModel preferences,
+  ) async {
+    final error = await updateProfile(preferences: preferences);
+    if (error != null) {
+      final message = error.messages.isNotEmpty
+          ? error.messages
+          : 'Не удалось сохранить предпочтения';
+      ref.nav.showSnackBar(message: message);
+      return false;
+    }
+
+    return true;
+  }
+
   Future<void> logout() async {
     final error = await ref.read(logoutUseCaseProvider).call();
     if (error != null) {
@@ -87,6 +102,28 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
   void enterAsGuest() {
     state = AsyncData(ProfileModel.guest());
+  }
+
+  String preferenceTitle(
+    List<OptionModel> catalog,
+    List<int> selectedIds, {
+    String emptyTitle = 'Не выбраны',
+  }) {
+    if (selectedIds.isEmpty) {
+      return emptyTitle;
+    }
+
+    final titlesById = {for (final option in catalog) option.id: option.title};
+    final titles = <String>[];
+
+    for (final id in selectedIds) {
+      final title = titlesById[id];
+      if (title != null && title.isNotEmpty) {
+        titles.add(title);
+      }
+    }
+
+    return titles.isEmpty ? emptyTitle : titles.join(', ');
   }
 
   void _showFetchProfileError(RemoteException error) {

@@ -28,7 +28,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CoworkingRoute.page),
     AutoRoute(page: ChatRoute.page),
     AutoRoute(page: ApartamnetRoute.page),
-    AutoRoute(page: ProfileEditRoute.page),
+    AutoRoute(page: ProfileRoute.page),
     AutoRoute(page: FiltersRoute.page),
     AutoRoute(page: ProfileDataEditRoute.page),
     AutoRoute(

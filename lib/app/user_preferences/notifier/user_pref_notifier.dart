@@ -9,14 +9,6 @@ import 'package:shared/shared.dart';
 part 'user_pref_notifier.g.dart';
 
 @riverpod
-Future<PreferenceTagsCatalogModel> preferenceTagsCatalog(Ref ref) async {
-  final result = await ref
-      .read(fetchPreferenceTagsCatalogUseCaseProvider)
-      .call();
-  return result.tags;
-}
-
-@riverpod
 class UserPrefNotifier extends _$UserPrefNotifier {
   @override
   PrefState build() {

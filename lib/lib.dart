@@ -88,7 +88,6 @@ export 'screens/filling_profile_screen.dart';
 export 'screens/location_screen.dart';
 export 'screens/profile/profile.dart';
 export 'screens/profile/profile_data_edit_screen.dart';
-export 'screens/profile/profile_edit_screen.dart';
 export 'screens/screens.dart';
 export 'services/navigation_service.dart';
 export 'services/services.dart';
