@@ -33,7 +33,7 @@ final class AppStatusNotifierProvider
   AppStatusNotifier create() => AppStatusNotifier();
 }
 
-String _$appStatusNotifierHash() => r'6013d991fb4b76a14c40437e33d72260e9860ea5';
+String _$appStatusNotifierHash() => r'13479713476ab3ba4d4861b68944bdaf858ca5a5';
 
 abstract class _$AppStatusNotifier extends $AsyncNotifier<AuthStatus> {
   FutureOr<AuthStatus> build();

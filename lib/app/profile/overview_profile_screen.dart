@@ -5,8 +5,8 @@ import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
 @RoutePage()
-class ProfileScreen extends ConsumerWidget {
-  const ProfileScreen({super.key});
+class OverviewProfileScreen extends ConsumerWidget {
+  const OverviewProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,10 +16,7 @@ class ProfileScreen extends ConsumerWidget {
       body: CustomScrollView(
         slivers: [
           AB(
-            title: Text(
-              context.l10n.profile,
-              style: context.typography.headline1,
-            ),
+            title: Text(context.l10n.profile, style: context.typography.headline1),
             centerTitle: true,
             canPop: false,
           ),
@@ -60,8 +57,7 @@ class ProfileScreen extends ConsumerWidget {
                     iconPath: AppIcons.settings,
                     title: context.l10n.logout,
                     subtitle: '',
-                    onTap: () =>
-                        ref.read(globalProfileProvider.notifier).logout(),
+                    onTap: () => ref.read(globalProfileProvider.notifier).logout(),
                   ),
               ];
 
@@ -84,8 +80,9 @@ class ProfileScreen extends ConsumerWidget {
                             child: Text(
                               'Войдите, чтобы пользоваться всеми возможностями приложения.',
                               textAlign: TextAlign.center,
-                              style: context.typography.bodyDescription
-                                  .copyWith(color: context.colors.graysText400),
+                              style: context.typography.bodyDescription.copyWith(
+                                color: context.colors.graysText400,
+                              ),
                             ),
                           )
                         else ...[
@@ -113,23 +110,17 @@ class ProfileScreen extends ConsumerWidget {
                       ),
                       child: Padding(
                         padding: const P(vertical: S.p24),
-                        child: Column(
-                          children: menuItems.separated(
-                            const SizedBox(height: S.p24),
-                          ),
-                        ),
+                        child: Column(children: menuItems.separated(const SizedBox(height: S.p24))),
                       ),
                     ),
                   ),
                 ]),
               );
             },
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator()),
-            ),
-            error: (err, stack) => SliverFillRemaining(
-              child: Center(child: Text('Ошибка загрузки: $err')),
-            ),
+            loading: () =>
+                const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
+            error: (err, stack) =>
+                SliverFillRemaining(child: Center(child: Text('Ошибка загрузки: $err'))),
           ),
         ],
       ),

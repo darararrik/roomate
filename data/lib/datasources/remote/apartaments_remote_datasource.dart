@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
+import 'package:shared/mocks/apartament_filters_mock.dart';
 
 class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   ApartamentsRemoteDataSource(ApiClient client) : _client = client;
@@ -33,9 +34,11 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<FilterModel> fetchFilterTags() {
-    // TODO: implement fetchFilterTags
-    throw UnimplementedError();
+  Future<FilterModel> fetchFilterTags() async {
+    //TODO: заставить степу сделать реализацию
+    await Future.delayed(const Duration(milliseconds: 1000));
+    final json = ApartmentFiltersMockJson.fetchFilterTags;
+    return FilterData.fromJson(json).toModel();
   }
 
   @override

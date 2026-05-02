@@ -32,7 +32,7 @@ class AuthRemoteDataSource implements AuthDataSource {
         ApiUrlConstants.logout,
         needAuth: true, // Логаут обычно требует JWT
         // Если сервер возвращает пустой ответ, трансформер может просто вернуть null
-        body: {'refresh_token': _tokenService.getRefreshToken()},
+        body: {'refreshToken': _tokenService.getRefreshToken()},
         transformer: (json) => null,
       );
       await _tokenService.deleteTokens();

@@ -16,7 +16,7 @@ class MainFlow extends ConsumerWidget {
         FavoritesRoute(),
         CreateRoute(),
         ChatsRoute(),
-        ProfileRoute(),
+        OverviewProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return DecoratedBox(

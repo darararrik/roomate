@@ -34,7 +34,7 @@ final class ApartamentsNotifierProvider
 }
 
 String _$apartamentsNotifierHash() =>
-    r'a529ea0160838f12fa04515928b5663b08c38f1c';
+    r'87b994d1894e81f6e7f8b3a842f6d861aa725ba8';
 
 abstract class _$ApartamentsNotifier extends $AsyncNotifier<ApartamentsState> {
   FutureOr<ApartamentsState> build();

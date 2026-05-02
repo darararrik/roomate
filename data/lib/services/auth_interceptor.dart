@@ -23,7 +23,7 @@ class AuthInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     // 1. Проверяем, что ошибка — это 401 (токен протух)
-    if (err.response?.statusCode == 401) {
+    if (err.response?.statusCode == 403) {
       try {
         // 2. Делаем запрос на обновление токена (используйте отдельный экземпляр Dio!)
         String newToken = await _refreshToken();
@@ -47,7 +47,7 @@ class AuthInterceptor extends Interceptor {
 
     final response = await _refreshDio.post(
       '/auth/refresh',
-      data: {'refreshToken': refreshToken},
+      data: {'refresh_token': refreshToken},
       options: Options(extra: {ApiKeyConstants.requiresAuth: false}),
     );
     final data = AuthResponseData.fromJson(response.data);

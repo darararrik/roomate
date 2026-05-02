@@ -83,7 +83,7 @@ final class UserPrefNotifierProvider
   }
 }
 
-String _$userPrefNotifierHash() => r'deab6fe37b1c31a1d686b34e47e227ae7c9e30bd';
+String _$userPrefNotifierHash() => r'0d694beaef379bb73b8119b356bd2abdc4206ec5';
 
 abstract class _$UserPrefNotifier extends $Notifier<PrefState> {
   PrefState build();

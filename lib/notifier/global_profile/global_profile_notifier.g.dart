@@ -34,7 +34,7 @@ final class GlobalProfileNotifierProvider
 }
 
 String _$globalProfileNotifierHash() =>
-    r'2083b8e4050dc7610ba97ad95e705790708a1e9b';
+    r'38d2a99794090acbfd29e218580ed4cb431e8d7d';
 
 abstract class _$GlobalProfileNotifier extends $AsyncNotifier<ProfileModel> {
   FutureOr<ProfileModel> build();
