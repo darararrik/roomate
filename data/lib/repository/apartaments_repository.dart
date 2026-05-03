@@ -9,7 +9,7 @@ class ApartamentsRepositoryImpl implements IApartamentsRepository {
 
   @override
   Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
-    ApartamentFilter filter,
+    ApartamentFilterModel filter,
   ) => _dataSource.fetchApartaments(filter);
 
   @override

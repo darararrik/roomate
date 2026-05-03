@@ -1,138 +1,126 @@
 import 'package:flutter/material.dart';
 
-import 'package:group_button/group_button.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/lib.dart';
 
-class DistrictBottomSheet extends StatefulWidget {
+class DistrictBottomSheet extends HookConsumerWidget {
   const DistrictBottomSheet({super.key});
 
   @override
-  State<DistrictBottomSheet> createState() => _DistrictBottomSheetState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final searchController = useTextEditingController();
+    final query = useListenable(searchController).text.trim().toLowerCase();
+    final filtersAsync = ref.watch(filtersProvider);
+    final currentDistrictIds = ref.watch(apartamentFilterProvider).districtIds;
+    final selectedDistrictIds = useState<Set<int>>(currentDistrictIds.toSet());
 
-class _DistrictBottomSheetState extends State<DistrictBottomSheet> {
-  late final TextEditingController _searchController;
+    return filtersAsync.when(
+      loading: () => const SizedBox(
+        height: 200,
+        child: Center(child: CircularProgressIndicator()),
+      ),
+      error: (error, stack) =>
+          SizedBox(height: 200, child: Center(child: Text(error.toString()))),
+      data: (filters) {
+        final districts = query.isEmpty
+            ? filters.districts
+            : filters.districts
+                  .where(
+                    (district) => district.title.toLowerCase().contains(query),
+                  )
+                  .toList(growable: false);
 
-  @override
-  void initState() {
-    super.initState();
-    _searchController = TextEditingController();
-  }
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.7,
+          maxChildSize: 0.9,
+          minChildSize: 0.4,
+          builder: (context, controller) {
+            return BaseBottomSheet(
+              title: context.l10n.selectDistrict,
+              child: Expanded(
+                child: Padding(
+                  padding: const P(horizontal: S.p24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: const P(bottom: S.p12),
+                        child: InputWidget(
+                          controller: searchController,
+                          prefixIcon: AppIcon(
+                            AppIcons.search,
+                            color: context.colors.graysIcon500,
+                          ),
+                          hintText: context.l10n.search,
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView.separated(
+                          controller: controller,
+                          itemCount: districts.length,
+                          separatorBuilder: (_, _) =>
+                              const SizedBox(height: S.p4),
+                          itemBuilder: (context, index) {
+                            final district = districts[index];
+                            final isSelected = selectedDistrictIds.value
+                                .contains(district.id);
 
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  final List<String> disctricts = [
-    "Авангард",
-    "Тюмень",
-    "Каржас",
-    "11-й",
-    "Тополиный",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-    "Авангард",
-    "Тюмень",
-    "Каржас",
-    "11-й",
-    "Тополиный",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-    "Авангард",
-    "Тюмень",
-    "Каржас",
-    "11-й",
-    "Тополиный",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-    "Авангард",
-    "Тюмень",
-    "Каржас",
-    "11-й",
-    "Тополиный",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-    "Кристалл",
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      expand: false,
-      initialChildSize: 0.7,
-      maxChildSize: 0.9,
-      minChildSize: 0.4,
-      builder: (context, controller) {
-        return BaseBottomSheet(
-          title: context.l10n.selectDistrict,
-          child: Expanded(
-            child: Padding(
-              padding: const P(horizontal: S.p24),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: const P(bottom: S.p12),
-                    child: InputWidget(
-                      controller: _searchController,
-                      prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
-                      hintText: context.l10n.search,
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView(
-                      controller: controller,
-                      children: [
-                        GroupButton(
-                          isRadio: false,
-                          buttons: disctricts,
-                          onSelected: (val, index, isSelected) {
-                            debugPrint('Button: $val index: $index selected: $isSelected');
-                          },
-                          buttonBuilder: (selected, value, context) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const P(all: S.p12),
-                                    child: Text(
-                                      value,
-                                      style: context.typography.bodyDescription.copyWith(
-                                        height: 17 / 14,
+                            return InkWell(
+                              onTap: () {
+                                final ids = Set<int>.from(
+                                  selectedDistrictIds.value,
+                                );
+                                isSelected
+                                    ? ids.remove(district.id)
+                                    : ids.add(district.id);
+                                selectedDistrictIds.value = ids;
+                              },
+                              child: Padding(
+                                padding: const P(all: S.p12),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        district.title,
+                                        style: context
+                                            .typography
+                                            .bodyDescription
+                                            .copyWith(height: 17 / 14),
                                       ),
                                     ),
-                                  ),
+                                    SelectionButton(isSelected: isSelected),
+                                  ],
                                 ),
-                                SelectionButton(isSelected: selected),
-                              ],
+                              ),
                             );
                           },
-                          options: const GroupButtonOptions(
-                            crossGroupAlignment: CrossGroupAlignment.start,
-                            groupingType: GroupingType.column,
-                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Padding(
+                        padding: const P(top: S.p16),
+                        child: PrimaryButton(
+                          text: context.l10n.apply,
+                          onPressed: () {
+                            final notifier = ref.read(
+                              apartamentFilterProvider.notifier,
+                            );
+                            notifier.setDistrictIds(selectedDistrictIds.value);
+                            notifier.apply();
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const P(top: S.p16),
-                    child: PrimaryButton(text: context.l10n.apply, onPressed: () {}),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );

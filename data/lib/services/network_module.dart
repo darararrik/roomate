@@ -24,6 +24,12 @@ class NetworkModule {
         settings: const TalkerDioLoggerSettings(
           printRequestHeaders: true,
           printResponseMessage: true,
+          printRequestData: true,
+          printErrorData: true,
+          printErrorHeaders: true,
+          printErrorMessage: true,
+          printResponseData: true,
+          printRequestExtra: true,
         ),
       ),
     ]);

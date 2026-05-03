@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:roomate/app/apartament/widgets/app_bar_and_photo.dart';
+import 'package:roomate/app/apartament/widgets/price_and_favorite_icon.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -22,148 +22,176 @@ class ApartamnetScreen extends HookConsumerWidget {
     final imageUrls = apartment.imageUrls;
     final hasImages = imageUrls.isNotEmpty;
     final imagesCount = hasImages ? imageUrls.length : 1;
-    final isFavorite = ref.watch(
-      favoriteApartmentIdsProvider.select((ids) => ids.contains(apartment.id)),
-    );
-    final favoriteNotifier = ref.read(favoriteApartmentIdsProvider.notifier);
     final String isVerifiedText = apartment.isVerification
         ? context.l10n.apartmentVerified
         : context.l10n.apartmentNotVerified;
     final String withCompanyText = apartment.whoToRent.contains(WhoToRent.company)
         ? context.l10n.apartmentCompanyAllowed
         : context.l10n.apartmentCompanyNotAllowed;
-
+    final isFavorite = ref.watch(
+      favoriteApartmentIdsProvider.select((ids) => ids.contains(apartment.id)),
+    );
+    final favoriteNotifier = ref.read(favoriteApartmentIdsProvider.notifier);
     return Scaffold(
       backgroundColor: colors.graysWhite,
+      bottomNavigationBar: SafeArea(
+        child: DecoratedBox(
+          decoration: const BoxDecoration(),
+          child: Padding(
+            padding: const P(vertical: S.p20, horizontal: S.p16),
+            child: Row(
+              spacing: S.p12,
+              children: [
+                Expanded(
+                  child: PrimaryButton(text: locale.call, onPressed: () {}),
+                ),
+                Expanded(
+                  child: OpacityButton(
+                    onPressed: () {},
+                    bgColor: context.colors.opacityOrange20,
+                    color: context.colors.orange,
+                    child: Text(locale.write),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 280,
-            leading: IconButton(
-              onPressed: () => context.maybePop(),
-              icon: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: colors.graysWhite.withValues(alpha: .92),
-                  shape: BoxShape.circle,
-                ),
-                child: const Padding(
-                  padding: P(all: S.p8),
-                  child: Icon(Icons.arrow_back_ios_new_rounded, size: S.p24),
-                ),
-              ),
-            ),
-            actions: [
-              Padding(
-                padding: const P(right: S.p16),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: colors.graysWhite.withValues(alpha: .92),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Padding(
-                    padding: const P(all: S.p4),
-                    child: IconButtonWidget(
-                      icon: AppIcons.favourite,
-                      onPressed: () => favoriteNotifier.toggle(apartment.id),
-                      iconColor: isFavorite ? colors.orange : colors.graysBlack,
-                      size: S.p36,
-                      iconSize: S.p24,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-            flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  if (hasImages)
-                    PageView.builder(
-                      controller: pageController,
-                      physics: const PageScrollPhysics(),
-                      itemCount: imageUrls.length,
-                      onPageChanged: (index) => page.value = index,
-                      itemBuilder: (context, index) => Image.network(
-                        imageUrls[index],
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) => ColoredBox(color: colors.graysLight100),
-                      ),
-                    )
-                  else
-                    ColoredBox(color: colors.graysLight100),
-                  IgnorePointer(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            colors.opacityBlack60.withValues(alpha: .12),
-                            Colors.transparent,
-                            colors.opacityBlack60.withValues(alpha: .35),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: S.p16,
-                    bottom: S.p20,
-                    child: IgnorePointer(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: colors.opacityBlack60,
-                          borderRadius: const BorderRadius.all(.circular(S.p24)),
-                        ),
-                        child: Padding(
-                          padding: const P(horizontal: S.p10, vertical: S.p6),
-                          child: Text(
-                            "${page.value + 1}/$imagesCount",
-                            style: context.typography.activesLabel.copyWith(
-                              color: colors.graysWhite,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  if (hasImages && imageUrls.length > 1)
-                    Positioned(
-                      left: S.p16,
-                      right: S.p16,
-                      bottom: S.p20,
-                      child: IgnorePointer(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(imageUrls.length, (index) {
-                            final isActive = index == page.value;
-                            return AnimatedContainer(
-                              duration: const Duration(milliseconds: 180),
-                              margin: const EdgeInsets.symmetric(horizontal: S.p4),
-                              width: isActive ? S.p16 : S.p6,
-                              height: S.p6,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(.circular(S.p12)),
-                                color: isActive
-                                    ? colors.graysWhite
-                                    : colors.graysWhite.withValues(alpha: .5),
-                              ),
-                            );
-                          }),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
+          AppBarAndPhoto(
+            hasImages: hasImages,
+            pageController: pageController,
+            imageUrls: imageUrls,
+            page: page,
+            colors: colors,
+            imagesCount: imagesCount,
           ),
           SliverPadding(
             padding: const P(all: S.p16),
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  _header(context, isVerifiedText, withCompanyText, locale, colors),
+                  Column(
+                    crossAxisAlignment: .start,
+                    spacing: S.p12,
+                    children: [
+                      Wrap(
+                        spacing: S.p12,
+                        runSpacing: S.p8,
+                        children: [
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: context.colors.lightGreen100,
+                              borderRadius: .circular(S.p8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(S.p8),
+                              child: Row(
+                                mainAxisSize: .min,
+                                spacing: S.p8,
+                                children: [
+                                  AppIcon(
+                                    AppIcons.verified,
+                                    color: context.colors.labelGreen,
+                                    width: S.p16,
+                                    height: S.p16,
+                                  ),
+                                  Text(
+                                    isVerifiedText,
+                                    style: context.typography.bodySmall.copyWith(
+                                      color: context.colors.labelGreen,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: context.colors.lightBlue100,
+                              borderRadius: .circular(S.p8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(S.p8),
+                              child: Row(
+                                mainAxisSize: .min,
+                                spacing: S.p8,
+                                children: [
+                                  AppIcon(
+                                    AppIcons.company,
+                                    color: context.colors.labelBlue,
+                                    width: S.p16,
+                                    height: S.p16,
+                                  ),
+                                  Text(
+                                    withCompanyText,
+                                    style: context.typography.bodySmall.copyWith(
+                                      color: context.colors.labelBlue,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      PriceAndFavoriteIcon(
+                        apartment: apartment,
+                        favoriteNotifier: favoriteNotifier,
+                        isFavorite: isFavorite,
+                        colors: colors,
+                      ),
+                      Text(apartment.title, style: context.typography.headline1),
+                      Row(
+                        spacing: S.p32,
+                        children: [
+                          Column(
+                            crossAxisAlignment: .start,
+                            spacing: S.p4,
+                            children: [
+                              Text("${apartment.roomsCount}-${locale.apartmentRoomsShort}"),
+                              Text(
+                                locale.apartment,
+                                style: context.typography.bodyDescription.copyWith(
+                                  color: colors.graysText400,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: .start,
+                            spacing: S.p4,
+                            children: [
+                              Text("${apartment.area} ${locale.squareMeters}"),
+                              Text(
+                                locale.apartmentArea,
+                                style: context.typography.bodyDescription.copyWith(
+                                  color: colors.graysText400,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: .start,
+                            spacing: S.p4,
+                            children: [
+                              Text("${apartment.floor}/${apartment.totalFloor}"),
+                              Text(
+                                locale.floor,
+                                style: context.typography.bodyDescription.copyWith(
+                                  color: colors.graysText400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const Divider(),
+                    ],
+                  ),
+
                   Section(
                     title: locale.location,
                     child: Text(
@@ -298,125 +326,6 @@ class ApartamnetScreen extends HookConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Column _header(
-    BuildContext context,
-    String isVerifiedText,
-    String withCompanyText,
-    AppLocalizations locale,
-    AppPalette colors,
-  ) {
-    return Column(
-      crossAxisAlignment: .start,
-      spacing: S.p12,
-      children: [
-        _tags(context, isVerifiedText, withCompanyText),
-        Text(
-          "${apartment.price} ${context.l10n.currencyPerMonth}",
-          style: context.typography.headline0,
-        ),
-        Text(apartment.title, style: context.typography.headline1),
-        Row(
-          spacing: S.p32,
-          children: [
-            Column(
-              crossAxisAlignment: .start,
-              spacing: S.p4,
-              children: [
-                Text("${apartment.roomsCount}-${locale.apartmentRoomsShort}"),
-                Text(
-                  locale.apartment,
-                  style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: .start,
-              spacing: S.p4,
-              children: [
-                Text("${apartment.area} ${locale.squareMeters}"),
-                Text(
-                  locale.apartmentArea,
-                  style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: .start,
-              spacing: S.p4,
-              children: [
-                Text("${apartment.floor}/${apartment.totalFloor}"),
-                Text(
-                  locale.floor,
-                  style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const Divider(),
-      ],
-    );
-  }
-
-  Wrap _tags(BuildContext context, String isVerifiedText, String withCompanyText) {
-    return Wrap(
-      spacing: S.p12,
-      runSpacing: S.p8,
-      children: [
-        DecoratedBox(
-          decoration: BoxDecoration(
-            color: context.colors.lightGreen100,
-            borderRadius: .circular(S.p8),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(S.p8),
-            child: Row(
-              mainAxisSize: .min,
-              spacing: S.p8,
-              children: [
-                AppIcon(
-                  AppIcons.verified,
-                  color: context.colors.labelGreen,
-                  width: S.p16,
-                  height: S.p16,
-                ),
-                Text(
-                  isVerifiedText,
-                  style: context.typography.bodySmall.copyWith(color: context.colors.labelGreen),
-                ),
-              ],
-            ),
-          ),
-        ),
-        DecoratedBox(
-          decoration: BoxDecoration(
-            color: context.colors.lightBlue100,
-            borderRadius: .circular(S.p8),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(S.p8),
-            child: Row(
-              mainAxisSize: .min,
-              spacing: S.p8,
-              children: [
-                AppIcon(
-                  AppIcons.company,
-                  color: context.colors.labelBlue,
-                  width: S.p16,
-                  height: S.p16,
-                ),
-                Text(
-                  withCompanyText,
-                  style: context.typography.bodySmall.copyWith(color: context.colors.labelBlue),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

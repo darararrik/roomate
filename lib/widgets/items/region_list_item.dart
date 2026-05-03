@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
@@ -36,20 +35,22 @@ class RegionListItem extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const P(horizontal: S.p12),
+                padding: const P(left: S.p12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(title, style: context.typography.headline2),
+                    Text(
+                      title,
+                      style: context.typography.bodyDescription.copyWith(height: 17 / 14),
+                    ),
                     if (hasSubTitle) ...[
                       const SizedBox(height: S.p8),
                       Text(
                         subTitle,
                         style: context.typography.bodyDescription.copyWith(
                           color: context.colors.graysText400,
-                          height: 17 / 14,
                         ),
                       ),
                     ],

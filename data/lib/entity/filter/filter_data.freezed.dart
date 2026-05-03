@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FilterData {
 
-@JsonKey(name: 'rent_goal') List<OptionData>? get rentGoal;@JsonKey(name: 'property_type') List<OptionData>? get propertyTypes;@JsonKey(name: 'rooms_count') List<OptionData>? get roomsCounts;//TODO: camelcase
-@JsonKey(name: 'rentDuration') List<OptionData>? get rentDuration;
+@JsonKey(name: 'rent_goal') List<OptionData>? get rentGoal;@JsonKey(name: 'property_type') List<OptionData>? get propertyTypes;@JsonKey(name: 'rooms_count') List<OptionData>? get roomsCounts;@JsonKey(name: 'rent_duration') List<OptionData>? get rentDuration;@JsonKey(name: 'districts') List<OptionData>? get districts;
 /// Create a copy of FilterData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +28,16 @@ $FilterDataCopyWith<FilterData> get copyWith => _$FilterDataCopyWithImpl<FilterD
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FilterData&&const DeepCollectionEquality().equals(other.rentGoal, rentGoal)&&const DeepCollectionEquality().equals(other.propertyTypes, propertyTypes)&&const DeepCollectionEquality().equals(other.roomsCounts, roomsCounts)&&const DeepCollectionEquality().equals(other.rentDuration, rentDuration));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FilterData&&const DeepCollectionEquality().equals(other.rentGoal, rentGoal)&&const DeepCollectionEquality().equals(other.propertyTypes, propertyTypes)&&const DeepCollectionEquality().equals(other.roomsCounts, roomsCounts)&&const DeepCollectionEquality().equals(other.rentDuration, rentDuration)&&const DeepCollectionEquality().equals(other.districts, districts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(rentGoal),const DeepCollectionEquality().hash(propertyTypes),const DeepCollectionEquality().hash(roomsCounts),const DeepCollectionEquality().hash(rentDuration));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(rentGoal),const DeepCollectionEquality().hash(propertyTypes),const DeepCollectionEquality().hash(roomsCounts),const DeepCollectionEquality().hash(rentDuration),const DeepCollectionEquality().hash(districts));
 
 @override
 String toString() {
-  return 'FilterData(rentGoal: $rentGoal, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts, rentDuration: $rentDuration)';
+  return 'FilterData(rentGoal: $rentGoal, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts, rentDuration: $rentDuration, districts: $districts)';
 }
 
 
@@ -49,7 +48,7 @@ abstract mixin class $FilterDataCopyWith<$Res>  {
   factory $FilterDataCopyWith(FilterData value, $Res Function(FilterData) _then) = _$FilterDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'rent_goal') List<OptionData>? rentGoal,@JsonKey(name: 'property_type') List<OptionData>? propertyTypes,@JsonKey(name: 'rooms_count') List<OptionData>? roomsCounts,@JsonKey(name: 'rentDuration') List<OptionData>? rentDuration
+@JsonKey(name: 'rent_goal') List<OptionData>? rentGoal,@JsonKey(name: 'property_type') List<OptionData>? propertyTypes,@JsonKey(name: 'rooms_count') List<OptionData>? roomsCounts,@JsonKey(name: 'rent_duration') List<OptionData>? rentDuration,@JsonKey(name: 'districts') List<OptionData>? districts
 });
 
 
@@ -66,12 +65,13 @@ class _$FilterDataCopyWithImpl<$Res>
 
 /// Create a copy of FilterData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? rentGoal = freezed,Object? propertyTypes = freezed,Object? roomsCounts = freezed,Object? rentDuration = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? rentGoal = freezed,Object? propertyTypes = freezed,Object? roomsCounts = freezed,Object? rentDuration = freezed,Object? districts = freezed,}) {
   return _then(_self.copyWith(
 rentGoal: freezed == rentGoal ? _self.rentGoal : rentGoal // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,propertyTypes: freezed == propertyTypes ? _self.propertyTypes : propertyTypes // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,roomsCounts: freezed == roomsCounts ? _self.roomsCounts : roomsCounts // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,rentDuration: freezed == rentDuration ? _self.rentDuration : rentDuration // ignore: cast_nullable_to_non_nullable
+as List<OptionData>?,districts: freezed == districts ? _self.districts : districts // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,
   ));
 }
@@ -154,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'rent_goal')  List<OptionData>? rentGoal, @JsonKey(name: 'property_type')  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count')  List<OptionData>? roomsCounts, @JsonKey(name: 'rentDuration')  List<OptionData>? rentDuration)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'rent_goal')  List<OptionData>? rentGoal, @JsonKey(name: 'property_type')  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count')  List<OptionData>? roomsCounts, @JsonKey(name: 'rent_duration')  List<OptionData>? rentDuration, @JsonKey(name: 'districts')  List<OptionData>? districts)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FilterData() when $default != null:
-return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentDuration);case _:
+return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentDuration,_that.districts);case _:
   return orElse();
 
 }
@@ -175,10 +175,10 @@ return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentD
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'rent_goal')  List<OptionData>? rentGoal, @JsonKey(name: 'property_type')  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count')  List<OptionData>? roomsCounts, @JsonKey(name: 'rentDuration')  List<OptionData>? rentDuration)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'rent_goal')  List<OptionData>? rentGoal, @JsonKey(name: 'property_type')  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count')  List<OptionData>? roomsCounts, @JsonKey(name: 'rent_duration')  List<OptionData>? rentDuration, @JsonKey(name: 'districts')  List<OptionData>? districts)  $default,) {final _that = this;
 switch (_that) {
 case _FilterData():
-return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentDuration);}
+return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentDuration,_that.districts);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -192,10 +192,10 @@ return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentD
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'rent_goal')  List<OptionData>? rentGoal, @JsonKey(name: 'property_type')  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count')  List<OptionData>? roomsCounts, @JsonKey(name: 'rentDuration')  List<OptionData>? rentDuration)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'rent_goal')  List<OptionData>? rentGoal, @JsonKey(name: 'property_type')  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count')  List<OptionData>? roomsCounts, @JsonKey(name: 'rent_duration')  List<OptionData>? rentDuration, @JsonKey(name: 'districts')  List<OptionData>? districts)?  $default,) {final _that = this;
 switch (_that) {
 case _FilterData() when $default != null:
-return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentDuration);case _:
+return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentDuration,_that.districts);case _:
   return null;
 
 }
@@ -207,7 +207,7 @@ return $default(_that.rentGoal,_that.propertyTypes,_that.roomsCounts,_that.rentD
 @JsonSerializable()
 
 class _FilterData implements FilterData {
-  const _FilterData({@JsonKey(name: 'rent_goal') final  List<OptionData>? rentGoal, @JsonKey(name: 'property_type') final  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count') final  List<OptionData>? roomsCounts, @JsonKey(name: 'rentDuration') final  List<OptionData>? rentDuration}): _rentGoal = rentGoal,_propertyTypes = propertyTypes,_roomsCounts = roomsCounts,_rentDuration = rentDuration;
+  const _FilterData({@JsonKey(name: 'rent_goal') final  List<OptionData>? rentGoal, @JsonKey(name: 'property_type') final  List<OptionData>? propertyTypes, @JsonKey(name: 'rooms_count') final  List<OptionData>? roomsCounts, @JsonKey(name: 'rent_duration') final  List<OptionData>? rentDuration, @JsonKey(name: 'districts') final  List<OptionData>? districts}): _rentGoal = rentGoal,_propertyTypes = propertyTypes,_roomsCounts = roomsCounts,_rentDuration = rentDuration,_districts = districts;
   factory _FilterData.fromJson(Map<String, dynamic> json) => _$FilterDataFromJson(json);
 
  final  List<OptionData>? _rentGoal;
@@ -237,13 +237,20 @@ class _FilterData implements FilterData {
   return EqualUnmodifiableListView(value);
 }
 
-//TODO: camelcase
  final  List<OptionData>? _rentDuration;
-//TODO: camelcase
-@override@JsonKey(name: 'rentDuration') List<OptionData>? get rentDuration {
+@override@JsonKey(name: 'rent_duration') List<OptionData>? get rentDuration {
   final value = _rentDuration;
   if (value == null) return null;
   if (_rentDuration is EqualUnmodifiableListView) return _rentDuration;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  List<OptionData>? _districts;
+@override@JsonKey(name: 'districts') List<OptionData>? get districts {
+  final value = _districts;
+  if (value == null) return null;
+  if (_districts is EqualUnmodifiableListView) return _districts;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(value);
 }
@@ -262,16 +269,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FilterData&&const DeepCollectionEquality().equals(other._rentGoal, _rentGoal)&&const DeepCollectionEquality().equals(other._propertyTypes, _propertyTypes)&&const DeepCollectionEquality().equals(other._roomsCounts, _roomsCounts)&&const DeepCollectionEquality().equals(other._rentDuration, _rentDuration));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FilterData&&const DeepCollectionEquality().equals(other._rentGoal, _rentGoal)&&const DeepCollectionEquality().equals(other._propertyTypes, _propertyTypes)&&const DeepCollectionEquality().equals(other._roomsCounts, _roomsCounts)&&const DeepCollectionEquality().equals(other._rentDuration, _rentDuration)&&const DeepCollectionEquality().equals(other._districts, _districts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_rentGoal),const DeepCollectionEquality().hash(_propertyTypes),const DeepCollectionEquality().hash(_roomsCounts),const DeepCollectionEquality().hash(_rentDuration));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_rentGoal),const DeepCollectionEquality().hash(_propertyTypes),const DeepCollectionEquality().hash(_roomsCounts),const DeepCollectionEquality().hash(_rentDuration),const DeepCollectionEquality().hash(_districts));
 
 @override
 String toString() {
-  return 'FilterData(rentGoal: $rentGoal, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts, rentDuration: $rentDuration)';
+  return 'FilterData(rentGoal: $rentGoal, propertyTypes: $propertyTypes, roomsCounts: $roomsCounts, rentDuration: $rentDuration, districts: $districts)';
 }
 
 
@@ -282,7 +289,7 @@ abstract mixin class _$FilterDataCopyWith<$Res> implements $FilterDataCopyWith<$
   factory _$FilterDataCopyWith(_FilterData value, $Res Function(_FilterData) _then) = __$FilterDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'rent_goal') List<OptionData>? rentGoal,@JsonKey(name: 'property_type') List<OptionData>? propertyTypes,@JsonKey(name: 'rooms_count') List<OptionData>? roomsCounts,@JsonKey(name: 'rentDuration') List<OptionData>? rentDuration
+@JsonKey(name: 'rent_goal') List<OptionData>? rentGoal,@JsonKey(name: 'property_type') List<OptionData>? propertyTypes,@JsonKey(name: 'rooms_count') List<OptionData>? roomsCounts,@JsonKey(name: 'rent_duration') List<OptionData>? rentDuration,@JsonKey(name: 'districts') List<OptionData>? districts
 });
 
 
@@ -299,12 +306,13 @@ class __$FilterDataCopyWithImpl<$Res>
 
 /// Create a copy of FilterData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? rentGoal = freezed,Object? propertyTypes = freezed,Object? roomsCounts = freezed,Object? rentDuration = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? rentGoal = freezed,Object? propertyTypes = freezed,Object? roomsCounts = freezed,Object? rentDuration = freezed,Object? districts = freezed,}) {
   return _then(_FilterData(
 rentGoal: freezed == rentGoal ? _self._rentGoal : rentGoal // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,propertyTypes: freezed == propertyTypes ? _self._propertyTypes : propertyTypes // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,roomsCounts: freezed == roomsCounts ? _self._roomsCounts : roomsCounts // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,rentDuration: freezed == rentDuration ? _self._rentDuration : rentDuration // ignore: cast_nullable_to_non_nullable
+as List<OptionData>?,districts: freezed == districts ? _self._districts : districts // ignore: cast_nullable_to_non_nullable
 as List<OptionData>?,
   ));
 }

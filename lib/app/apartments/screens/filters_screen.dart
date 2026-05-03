@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -15,6 +15,18 @@ class FiltersScreen extends HookConsumerWidget {
     final filter = ref.watch(apartamentFilterProvider);
     final filterNotifier = ref.read(apartamentFilterProvider.notifier);
     final filtersState = ref.watch(filtersProvider);
+    final minPriceController = useTextEditingController(
+      text: _formatPrice(filter.minPrice),
+    );
+    final maxPriceController = useTextEditingController(
+      text: _formatPrice(filter.maxPrice),
+    );
+
+    useEffect(() {
+      _syncControllerText(minPriceController, _formatPrice(filter.minPrice));
+      _syncControllerText(maxPriceController, _formatPrice(filter.maxPrice));
+      return null;
+    }, [filter.minPrice, filter.maxPrice]);
 
     return Scaffold(
       body: CustomScrollView(
@@ -49,72 +61,15 @@ class FiltersScreen extends HookConsumerWidget {
                       ids.isNotEmpty ? ids.first : 0,
                     ),
                   ),
-                  const SizedBox(height: S.p24),
+                  const SizedBox(height: S.p12),
                   _FilterSection(
                     title: context.l10n.typeOfProperty,
                     options: filters.propertyTypes,
                     selectedIds: filter.propertyTypeIds.toSet(),
                     isRadio: false,
-                    onSelectionChanged: (ids) {
-                      for (var id in ids) {
-                        if (!filter.propertyTypeIds.contains(id)) {
-                          filterNotifier.togglePropertyType(id);
-                        }
-                      }
-                      for (var id in filter.propertyTypeIds) {
-                        if (!ids.contains(id)) {
-                          filterNotifier.togglePropertyType(id);
-                        }
-                      }
-                    },
+                    onSelectionChanged: filterNotifier.setPropertyTypeIds,
                   ),
-                  const SizedBox(height: S.p24),
-                  _FilterSection(
-                    title: context.l10n.numberOfRooms,
-                    options: filters.roomsCounts,
-                    selectedIds: filter.roomsCountIds.toSet(),
-                    isRadio: false,
-                    onSelectionChanged: (ids) {
-                      for (var id in ids) {
-                        if (!filter.roomsCountIds.contains(id)) {
-                          filterNotifier.toggleRoomsCount(id);
-                        }
-                      }
-                      for (var id in filter.roomsCountIds) {
-                        if (!ids.contains(id)) {
-                          filterNotifier.toggleRoomsCount(id);
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(height: S.p24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        context.l10n.price,
-                        style: context.typography.headline2,
-                      ),
-                      Text(
-                        '${(filter.minPrice ?? 0).round()} - ${(filter.maxPrice ?? 200000).round()} ${context.l10n.currencySymbol}',
-                        style: context.typography.bodyDescription,
-                      ),
-                    ],
-                  ),
-                  RangeSlider(
-                    values: RangeValues(
-                      filter.minPrice ?? 0,
-                      filter.maxPrice ?? 200000,
-                    ),
-                    min: 0,
-                    max: 200000,
-                    divisions: 20,
-                    activeColor: context.colors.orange,
-                    inactiveColor: context.colors.graysLight100,
-                    onChanged: (values) =>
-                        filterNotifier.setPriceRange(values.start, values.end),
-                  ),
-                  const SizedBox(height: S.p24),
+                  const SizedBox(height: S.p12),
                   Text(
                     context.l10n.location,
                     style: context.typography.headline2,
@@ -123,18 +78,141 @@ class FiltersScreen extends HookConsumerWidget {
                   RegionListItem(
                     iconPath: AppIcons.city,
                     onTap: () => context.pushRoute(
-                      //TODO: вынести в нотифаер
-                      LocationRoute(onSelected: (street) {}),
+                      LocationRoute(
+                        onSelected: (street) {
+                          filterNotifier.setLocationTitle(street.name);
+                          context.router.pop();
+                        },
+                      ),
                     ),
                     title: context.l10n.filtersCityMoscowTitle,
-                    subTitle: context.l10n.filtersLocationSearchHint,
+                    subTitle: filter.locationTitle.isEmpty
+                        ? context.l10n.filtersLocationSearchHint
+                        : filter.locationTitle,
                   ),
-                  const SizedBox(height: S.p100),
+                  const SizedBox(height: S.p12),
+                  _FilterSection(
+                    title: context.l10n.numberOfRooms,
+                    options: filters.roomsCounts,
+                    selectedIds: filter.roomsCountIds.toSet(),
+                    isRadio: false,
+                    onSelectionChanged: filterNotifier.setRoomsCountIds,
+                  ),
+                  Padding(
+                    padding: const P(vertical: S.p12),
+                    child: Text(
+                      context.l10n.price,
+                      style: context.typography.headline2,
+                    ),
+                  ),
+                  Row(
+                    spacing: S.p12,
+                    children: [
+                      Expanded(
+                        child: InputWidget(
+                          controller: minPriceController,
+                          hintText: context.l10n.priceFromHint,
+                          needSuffixIcon: false,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          onChanged: (value) =>
+                              filterNotifier.setMinPrice(_parsePrice(value)),
+                          decoration: InputDecoration(
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: S.p12),
+                              child: Align(
+                                widthFactor: 1,
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  context.l10n.currencySymbol,
+                                  style: context.typography.inputRegular
+                                      .copyWith(
+                                        color: context.colors.graysBlack,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: InputWidget(
+                          controller: maxPriceController,
+                          hintText: context.l10n.priceToHint,
+                          needSuffixIcon: false,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          onChanged: (value) =>
+                              filterNotifier.setMaxPrice(_parsePrice(value)),
+                          decoration: InputDecoration(
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: S.p12),
+                              child: Align(
+                                widthFactor: 1,
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  context.l10n.currencySymbol,
+                                  style: context.typography.inputRegular
+                                      .copyWith(
+                                        color: context.colors.graysBlack,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: .spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const P(vertical: S.p20),
+                        child: Text(
+                          context.l10n.childrenAllowedFilter,
+                          style: context.typography.headline2,
+                        ),
+                      ),
+                      Padding(
+                        padding: const P(vertical: S.p12),
+                        child: Switch.adaptive(
+                          activeTrackColor: context.colors.orangeSecond,
+                          value: filter.childrenAllowed,
+                          onChanged: filterNotifier.setChildrenAllowed,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: .spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const P(vertical: S.p20),
+                        child: Text(
+                          context.l10n.petsAllowedFilter,
+                          style: context.typography.headline2,
+                        ),
+                      ),
+                      Padding(
+                        padding: const P(vertical: S.p12),
+                        child: Switch.adaptive(
+                          activeTrackColor: context.colors.orangeSecond,
+                          value: filter.petsAllowed,
+                          onChanged: filterNotifier.setPetsAllowed,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
             error: (_, _) => const SliverToBoxAdapter(child: ErrorView()),
-            loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
+            loading: () => const SliverFillRemaining(child: LoadingWidget()),
           ),
         ],
       ),
@@ -152,6 +230,28 @@ class FiltersScreen extends HookConsumerWidget {
       ),
     );
   }
+}
+
+String _formatPrice(double? value) {
+  if (value == null) return '';
+  if (value == value.roundToDouble()) {
+    return value.toInt().toString();
+  }
+  return value.toString();
+}
+
+double? _parsePrice(String value) {
+  final normalized = value.trim().replaceAll(' ', '');
+  if (normalized.isEmpty) return null;
+  return double.tryParse(normalized);
+}
+
+void _syncControllerText(TextEditingController controller, String value) {
+  if (controller.text == value) return;
+  controller.value = TextEditingValue(
+    text: value,
+    selection: TextSelection.collapsed(offset: value.length),
+  );
 }
 
 class _FilterSection<T extends ChipModel> extends StatelessWidget {

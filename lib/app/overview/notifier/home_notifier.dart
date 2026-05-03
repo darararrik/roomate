@@ -15,7 +15,9 @@ class HomeNotifier extends _$HomeNotifier {
 
   @override
   Future<HomeState> build() async {
-    final result = await _repository.fetchApartaments(const ApartamentFilter());
+    final result = await _repository.fetchApartaments(
+      const ApartamentFilterModel(),
+    );
 
     return result.fold(
       (error) => throw error,

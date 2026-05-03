@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
-class ListControlsAppBarBottom extends StatelessWidget implements PreferredSizeWidget {
+class ListControlsAppBarBottom extends StatelessWidget
+    implements PreferredSizeWidget {
   const ListControlsAppBarBottom({
     super.key,
     required this.optionsCount,
@@ -30,12 +31,20 @@ class ListControlsAppBarBottom extends StatelessWidget implements PreferredSizeW
                 padding: const P(vertical: S.p8, horizontal: S.p8),
                 children: [
                   FilterCard(
-                    leading: const AppIcon(AppIcons.filter2, width: S.p24, height: S.p24),
+                    leading: const AppIcon(
+                      AppIcons.filter2,
+                      width: S.p24,
+                      height: S.p24,
+                    ),
                     title: context.l10n.filters,
                     onTap: onFiltersTap,
                   ),
                   FilterCard(
-                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
+                    trailing: const AppIcon(
+                      AppIcons.arrowDown,
+                      width: S.p24,
+                      height: S.p24,
+                    ),
                     title: context.l10n.term,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -44,7 +53,11 @@ class ListControlsAppBarBottom extends StatelessWidget implements PreferredSizeW
                     ),
                   ),
                   FilterCard(
-                    trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
+                    trailing: const AppIcon(
+                      AppIcons.arrowDown,
+                      width: S.p24,
+                      height: S.p24,
+                    ),
                     title: context.l10n.district,
                     onTap: () => showModalBottomSheet(
                       context: context,
@@ -71,9 +84,13 @@ class ListControlsAppBarBottom extends StatelessWidget implements PreferredSizeW
                     onTap: () => showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                      builder: (context) => SortBottomSheet(),
+                      builder: (context) => const SortBottomSheet(),
                     ),
-                    child: const AppIcon(AppIcons.sort, width: S.p32, height: S.p32),
+                    child: const AppIcon(
+                      AppIcons.sort,
+                      width: S.p32,
+                      height: S.p32,
+                    ),
                   ),
                 ],
               ),

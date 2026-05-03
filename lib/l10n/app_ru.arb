@@ -310,5 +310,14 @@
   "validationEnterDeposit": "Укажите залог",
   "validationFloorMustBeLessThenTotalFloors": "Этаж должен быть меньше количества этажей в доме",
   "errorGeneric": "Ошибка загрузки",
-  "yourGoal": "Ваша цель"
+  "yourGoal": "Ваша цель",
+  "priceFromHint": "От",
+  "priceToHint": "До",
+  "childrenAllowedFilter": "Можно с детьми",
+  "petsAllowedFilter": "Разрешены животные",
+  "sortByPopularity": "По популярности",
+  "sortByPriceAsc": "По цене (сначала дешевле)",
+  "sortByPriceDesc": "По цене (сначала дороже)",
+  "sortByDateDesc": "По дате добавления (сначала новые)",
+  "sortByDateAsc": "По дате добавления (сначала старые)"
 }

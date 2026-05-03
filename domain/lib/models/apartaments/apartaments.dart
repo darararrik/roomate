@@ -1,2 +1,2 @@
-export 'apartament_filter.dart';
+export 'apartament_filter_model.dart';
 export 'apartament_model.dart';

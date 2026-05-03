@@ -10,11 +10,11 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
 
   @override
   Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
-    ApartamentFilter filter,
+    ApartamentFilterModel filter,
   ) async {
     final result = await _client.get<List<ApartamentModel>>(
       ApiUrlConstants.ads,
-      query: {"limit": 20, "offset": 0},
+      query: ApartamentFilterMapper.toData(filter).toJson(),
       transformer: (json) => (json as List<dynamic>)
           .map((item) => ApartamentData.fromJson(item as Map<String, dynamic>))
           .map((dto) => ApartamentMapper.toModel(dto))
@@ -25,12 +25,16 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
+  Future<Either<RemoteException, AdFormOptionsModel>>
+  fetchAdFormOptions() async {
     final result = await _client.get(
       ApiUrlConstants.adFormOptions,
       transformer: (json) => AdFormOptionsData.fromJson(json),
     );
-    return result.fold((error) => Left(error), (data) => Right(AdFormMapper.toModel(data)));
+    return result.fold(
+      (error) => Left(error),
+      (data) => Right(AdFormMapper.toModel(data)),
+    );
   }
 
   @override
@@ -44,7 +48,11 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   @override
   Future<void> createAd(CreateAdFormRequestData request) async {
     try {
-      await _client.post(ApiUrlConstants.ads, body: request.toJson(), needAuth: true);
+      await _client.post(
+        ApiUrlConstants.ads,
+        body: request.toJson(),
+        needAuth: true,
+      );
     } catch (e) {
       rethrow;
     }

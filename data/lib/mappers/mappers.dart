@@ -1,4 +1,5 @@
 export 'apartament_mapper.dart';
+export 'apartament_filter_mapper.dart';
 export 'create_ad_mapper.dart';
 export 'filter_mapper.dart';
 export 'gender_mapper.dart';

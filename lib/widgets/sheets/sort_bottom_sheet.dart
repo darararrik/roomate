@@ -1,22 +1,42 @@
 import 'package:flutter/material.dart';
 
+import 'package:domain/domain.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:group_button/group_button.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:roomate/lib.dart';
 
-//TODO: Сделать sortTerms Разными
-class SortBottomSheet extends StatelessWidget {
-  SortBottomSheet({super.key});
+class SortBottomSheet extends HookConsumerWidget {
+  const SortBottomSheet({super.key});
 
-  final List<String> sortTerms = [
-    "По популярности",
-    "По цене (сначала дешевле)",
-    "По цене (сначала дороже)",
-    "По дате добавления (сначала новые)",
-    "По дате добавления (сначала старые)",
-  ];
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentSortType = ref.watch(apartamentFilterProvider).sortType;
+    final selectedSortType = useState(currentSortType);
+    final sortOptions = [
+      _SortOption(
+        title: context.l10n.sortByPopularity,
+        type: ApartmentSortType.popularity,
+      ),
+      _SortOption(
+        title: context.l10n.sortByPriceAsc,
+        type: ApartmentSortType.priceAsc,
+      ),
+      _SortOption(
+        title: context.l10n.sortByPriceDesc,
+        type: ApartmentSortType.priceDesc,
+      ),
+      _SortOption(
+        title: context.l10n.sortByDateDesc,
+        type: ApartmentSortType.dateDesc,
+      ),
+      _SortOption(
+        title: context.l10n.sortByDateAsc,
+        type: ApartmentSortType.dateAsc,
+      ),
+    ];
+
     return BaseBottomSheet(
       title: context.l10n.toSort,
       child: Padding(
@@ -24,9 +44,14 @@ class SortBottomSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            GroupButton(
-              buttons: sortTerms,
+            GroupButton<_SortOption>(
+              isRadio: true,
+              buttons: sortOptions,
+              onSelected: (option, index, isSelected) {
+                selectedSortType.value = option.type;
+              },
               buttonBuilder: (selected, value, context) {
+                final isSelected = value.type == selectedSortType.value;
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -34,23 +59,40 @@ class SortBottomSheet extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(S.p12),
                         child: Text(
-                          value,
-                          style: context.typography.bodyDescription.copyWith(height: 17 / 14),
+                          value.title,
+                          style: context.typography.bodyDescription.copyWith(
+                            height: 17 / 14,
+                          ),
                         ),
                       ),
                     ),
-                    SelectionButton(isSelected: selected, isRadio: true),
+                    SelectionButton(isSelected: isSelected, isRadio: true),
                   ],
                 );
               },
             ),
             Padding(
               padding: const P(top: S.p16),
-              child: PrimaryButton(text: context.l10n.apply, onPressed: () {}),
+              child: PrimaryButton(
+                text: context.l10n.apply,
+                onPressed: () {
+                  final notifier = ref.read(apartamentFilterProvider.notifier);
+                  notifier.setSortType(selectedSortType.value);
+                  notifier.apply();
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class _SortOption {
+  const _SortOption({required this.title, required this.type});
+
+  final String title;
+  final ApartmentSortType type;
 }

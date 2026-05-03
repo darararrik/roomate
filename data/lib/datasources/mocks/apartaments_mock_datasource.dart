@@ -10,7 +10,7 @@ import 'package:data/data.dart';
 class ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
   Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
-    ApartamentFilter filter,
+    ApartamentFilterModel filter,
   ) async {
     await Future.delayed(const Duration(milliseconds: 300));
 

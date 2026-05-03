@@ -12,14 +12,16 @@ class ApartamentsNotifier extends _$ApartamentsNotifier {
 
   @override
   Future<ApartamentsState> build() async {
-    final result = await _repository.fetchApartaments(const ApartamentFilter());
+    final result = await _repository.fetchApartaments(
+      const ApartamentFilterModel(),
+    );
     return result.fold(
       (error) => throw error,
       (apartaments) => ApartamentsState(apartaments: apartaments),
     );
   }
 
-  Future<void> fetchWithFilter(ApartamentFilter filter) async {
+  Future<void> fetchWithFilter(ApartamentFilterModel filter) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final result = await _repository.fetchApartaments(filter);

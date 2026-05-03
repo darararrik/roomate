@@ -16,7 +16,10 @@ _FilterData _$FilterDataFromJson(Map<String, dynamic> json) => _FilterData(
   roomsCounts: (json['rooms_count'] as List<dynamic>?)
       ?.map((e) => OptionData.fromJson(e as Map<String, dynamic>))
       .toList(),
-  rentDuration: (json['rentDuration'] as List<dynamic>?)
+  rentDuration: (json['rent_duration'] as List<dynamic>?)
+      ?.map((e) => OptionData.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  districts: (json['districts'] as List<dynamic>?)
       ?.map((e) => OptionData.fromJson(e as Map<String, dynamic>))
       .toList(),
 );
@@ -26,5 +29,6 @@ Map<String, dynamic> _$FilterDataToJson(_FilterData instance) =>
       'rent_goal': instance.rentGoal,
       'property_type': instance.propertyTypes,
       'rooms_count': instance.roomsCounts,
-      'rentDuration': instance.rentDuration,
+      'rent_duration': instance.rentDuration,
+      'districts': instance.districts,
     };

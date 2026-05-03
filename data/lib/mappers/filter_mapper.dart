@@ -8,6 +8,7 @@ class FilterMapper {
     propertyTypes: OptionMapper.toModelList(dto.propertyTypes),
     roomsCounts: OptionMapper.toModelList(dto.roomsCounts),
     rentDuration: OptionMapper.toModelList(dto.rentDuration),
+    districts: OptionMapper.toModelList(dto.districts),
   );
 }
 

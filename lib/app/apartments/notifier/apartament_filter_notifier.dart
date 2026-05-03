@@ -14,7 +14,7 @@ Future<FilterModel> filters(Ref ref) async {
 @Riverpod(keepAlive: true)
 class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
   @override
-  ApartamentFilter build() => const ApartamentFilter();
+  ApartamentFilterModel build() => const ApartamentFilterModel();
 
   void openFilters() => ref.nav.push(const FiltersRoute());
 
@@ -32,6 +32,10 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
     state = state.copyWith(propertyTypeIds: current);
   }
 
+  void setPropertyTypeIds(Set<int> typeIds) {
+    state = state.copyWith(propertyTypeIds: typeIds.toList());
+  }
+
   void toggleRoomsCount(int roomsCountId) {
     final current = List<int>.from(state.roomsCountIds);
     if (current.contains(roomsCountId)) {
@@ -42,12 +46,44 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
     state = state.copyWith(roomsCountIds: current);
   }
 
-  void setPriceRange(double min, double max) {
+  void setRoomsCountIds(Set<int> roomsCountIds) {
+    state = state.copyWith(roomsCountIds: roomsCountIds.toList());
+  }
+
+  void setPriceRange(double? min, double? max) {
     state = state.copyWith(minPrice: min, maxPrice: max);
   }
 
+  void setMinPrice(double? minPrice) {
+    state = state.copyWith(minPrice: minPrice);
+  }
+
+  void setMaxPrice(double? maxPrice) {
+    state = state.copyWith(maxPrice: maxPrice);
+  }
+
+  void setChildrenAllowed(bool value) {
+    state = state.copyWith(childrenAllowed: value);
+  }
+
+  void setPetsAllowed(bool value) {
+    state = state.copyWith(petsAllowed: value);
+  }
+
+  void setDistrictIds(Set<int> districtIds) {
+    state = state.copyWith(districtIds: districtIds.toList());
+  }
+
+  void setLocationTitle(String locationTitle) {
+    state = state.copyWith(locationTitle: locationTitle);
+  }
+
+  void setSortType(ApartmentSortType sortType) {
+    state = state.copyWith(sortType: sortType);
+  }
+
   void reset() {
-    state = const ApartamentFilter();
+    state = const ApartamentFilterModel();
   }
 
   void apply() {
@@ -56,6 +92,5 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
 
   void setRentDuration(int id) {
     state = state.copyWith(rentDurationId: id);
-    ref.nav.pop();
   }
 }

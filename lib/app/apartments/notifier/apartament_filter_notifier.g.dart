@@ -52,7 +52,7 @@ String _$filtersHash() => r'43b0f1afbb9476604bb673d1e975faf01a7ab4ec';
 final apartamentFilterProvider = ApartamentFilterNotifierProvider._();
 
 final class ApartamentFilterNotifierProvider
-    extends $NotifierProvider<ApartamentFilterNotifier, ApartamentFilter> {
+    extends $NotifierProvider<ApartamentFilterNotifier, ApartamentFilterModel> {
   ApartamentFilterNotifierProvider._()
     : super(
         from: null,
@@ -72,28 +72,29 @@ final class ApartamentFilterNotifierProvider
   ApartamentFilterNotifier create() => ApartamentFilterNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ApartamentFilter value) {
+  Override overrideWithValue(ApartamentFilterModel value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ApartamentFilter>(value),
+      providerOverride: $SyncValueProvider<ApartamentFilterModel>(value),
     );
   }
 }
 
 String _$apartamentFilterNotifierHash() =>
-    r'f3a52db3887a8eeb50fd98b23055411625d57121';
+    r'c5e6b943873e1c555fee491e8968b5596ea5c600';
 
-abstract class _$ApartamentFilterNotifier extends $Notifier<ApartamentFilter> {
-  ApartamentFilter build();
+abstract class _$ApartamentFilterNotifier
+    extends $Notifier<ApartamentFilterModel> {
+  ApartamentFilterModel build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<ApartamentFilter, ApartamentFilter>;
+    final ref = this.ref as $Ref<ApartamentFilterModel, ApartamentFilterModel>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<ApartamentFilter, ApartamentFilter>,
-              ApartamentFilter,
+              AnyNotifier<ApartamentFilterModel, ApartamentFilterModel>,
+              ApartamentFilterModel,
               Object?,
               Object?
             >;

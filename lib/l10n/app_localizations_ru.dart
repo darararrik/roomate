@@ -945,4 +945,31 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get yourGoal => 'Ваша цель';
+
+  @override
+  String get priceFromHint => 'От';
+
+  @override
+  String get priceToHint => 'До';
+
+  @override
+  String get childrenAllowedFilter => 'Можно с детьми';
+
+  @override
+  String get petsAllowedFilter => 'Разрешены животные';
+
+  @override
+  String get sortByPopularity => 'По популярности';
+
+  @override
+  String get sortByPriceAsc => 'По цене (сначала дешевле)';
+
+  @override
+  String get sortByPriceDesc => 'По цене (сначала дороже)';
+
+  @override
+  String get sortByDateDesc => 'По дате добавления (сначала новые)';
+
+  @override
+  String get sortByDateAsc => 'По дате добавления (сначала старые)';
 }

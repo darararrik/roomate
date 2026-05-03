@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -79,7 +77,8 @@ class LocationScreen extends HookConsumerWidget {
                       itemCount: streets.length,
                       itemBuilder: (context, index) {
                         final street = streets[index];
-                        return AdressItem(
+                        return ListItem(
+                          iconPath: AppIcons.street,
                           title: street.name,
                           subtitle: street.district,
                           onTap: () => onSelected(street),

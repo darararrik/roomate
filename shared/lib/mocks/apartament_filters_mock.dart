@@ -6,6 +6,7 @@ class ApartmentFiltersMockJson {
     "rent_goal": TagsMockData.rentGoal,
     "property_type": TagsMockData.propertyType,
     "rooms_count": TagsMockData.roomsCount,
-    "rentDuration": TagsMockData.rentPeriod,
+    "rent_duration": TagsMockData.rentPeriod,
+    "districts": TagsMockData.districts,
   };
 }

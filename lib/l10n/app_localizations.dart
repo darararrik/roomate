@@ -1929,6 +1929,60 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ваша цель'**
   String get yourGoal;
+
+  /// No description provided for @priceFromHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'От'**
+  String get priceFromHint;
+
+  /// No description provided for @priceToHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'До'**
+  String get priceToHint;
+
+  /// No description provided for @childrenAllowedFilter.
+  ///
+  /// In ru, this message translates to:
+  /// **'Можно с детьми'**
+  String get childrenAllowedFilter;
+
+  /// No description provided for @petsAllowedFilter.
+  ///
+  /// In ru, this message translates to:
+  /// **'Разрешены животные'**
+  String get petsAllowedFilter;
+
+  /// No description provided for @sortByPopularity.
+  ///
+  /// In ru, this message translates to:
+  /// **'По популярности'**
+  String get sortByPopularity;
+
+  /// No description provided for @sortByPriceAsc.
+  ///
+  /// In ru, this message translates to:
+  /// **'По цене (сначала дешевле)'**
+  String get sortByPriceAsc;
+
+  /// No description provided for @sortByPriceDesc.
+  ///
+  /// In ru, this message translates to:
+  /// **'По цене (сначала дороже)'**
+  String get sortByPriceDesc;
+
+  /// No description provided for @sortByDateDesc.
+  ///
+  /// In ru, this message translates to:
+  /// **'По дате добавления (сначала новые)'**
+  String get sortByDateDesc;
+
+  /// No description provided for @sortByDateAsc.
+  ///
+  /// In ru, this message translates to:
+  /// **'По дате добавления (сначала старые)'**
+  String get sortByDateAsc;
 }
 
 class _AppLocalizationsDelegate

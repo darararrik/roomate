@@ -12,10 +12,10 @@ sealed class FilterData with _$FilterData {
     @JsonKey(name: 'rent_goal') List<OptionData>? rentGoal,
     @JsonKey(name: 'property_type') List<OptionData>? propertyTypes,
     @JsonKey(name: 'rooms_count') List<OptionData>? roomsCounts,
-
-    //TODO: camelcase
-    @JsonKey(name: 'rentDuration') List<OptionData>? rentDuration,
+    @JsonKey(name: 'rent_duration') List<OptionData>? rentDuration,
+    @JsonKey(name: 'districts') List<OptionData>? districts,
   }) = _FilterData;
 
-  factory FilterData.fromJson(Map<String, dynamic> json) => _$FilterDataFromJson(json);
+  factory FilterData.fromJson(Map<String, dynamic> json) =>
+      _$FilterDataFromJson(json);
 }

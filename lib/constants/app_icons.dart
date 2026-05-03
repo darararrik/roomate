@@ -1,6 +1,7 @@
 import 'dart:core';
 
 abstract class AppIcons {
+  static const String archive = 'assets/icons/archive.svg';
   static const String edit = 'assets/icons/Edit.svg';
   static const String edit2 = 'assets/icons/Edit2.svg';
   static const String edit3 = 'assets/icons/Edit3.svg';
@@ -61,7 +62,7 @@ abstract class AppIcons {
   static const String verified = 'assets/icons/verified.svg';
   static const String company = 'assets/icons/company.svg';
   static const String defaultAvatar = 'assets/icons/defaultAvatar.svg';
-
+  static const String more = 'assets/icons/more.svg';
   static const String airConditioner = 'assets/icons/air-conditioner.svg';
   static const String animals = 'assets/icons/animals.svg';
   static const String bathroom = 'assets/icons/bathroom.svg';

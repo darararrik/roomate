@@ -46,6 +46,14 @@ class TagsMockData {
     {"id": 47, "title": "Свободная планировка"},
   ];
 
+  static const districts = [
+    {"id": 201, "title": "Авангард"},
+    {"id": 202, "title": "Тополиный"},
+    {"id": 203, "title": "Кристалл"},
+    {"id": 204, "title": "11-й"},
+    {"id": 205, "title": "Каржас"},
+  ];
+
   static const layout = [
     {"id": 50, "title": "Смежная"},
     {"id": 51, "title": "Изолированная"},
