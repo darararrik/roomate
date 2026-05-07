@@ -65,6 +65,7 @@ import 'package:roomate/app/overview/screens/overview_screen.dart' as _i36;
 import 'package:roomate/app/profile/my_account_screen.dart' as _i30;
 import 'package:roomate/app/profile/my_questionnaire_screen.dart' as _i32;
 import 'package:roomate/app/profile/overview_profile_screen.dart' as _i35;
+import 'package:roomate/app/profile/profile_data_edit_screen.dart' as _i37;
 import 'package:roomate/app/settings/settings_screen.dart' as _i41;
 import 'package:roomate/app/spash/splash_screen.dart' as _i43;
 import 'package:roomate/app/user_preferences/user_preferences_page_view.dart'
@@ -81,7 +82,6 @@ import 'package:roomate/screens/chats/chats_screen.dart' as _i11;
 import 'package:roomate/screens/create_screen.dart' as _i15;
 import 'package:roomate/screens/filling_profile_screen.dart' as _i23;
 import 'package:roomate/screens/location_screen.dart' as _i27;
-import 'package:roomate/screens/profile/profile_data_edit_screen.dart' as _i37;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]

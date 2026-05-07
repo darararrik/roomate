@@ -43,6 +43,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     int? age,
     SelectedUserPreferencesModel? preferences,
     bool? isOwner,
+    bool showLoading = true,
   }) async {
     // Берем текущие данные из стейта (если там еще загрузка или ошибка — берем гостя)
     final current = state.value ?? ProfileModel.guest();
@@ -59,12 +60,14 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     );
 
     // Ставим состояние загрузки для UI
-    state = const AsyncLoading();
+    if (showLoading) {
+      state = const AsyncLoading();
+    }
 
     final result = await ref.read(updateProfileUseCaseProvider).call(updated);
 
     if (result.error != null) {
-      state = AsyncError(result.error!, StackTrace.current);
+      state = AsyncData(current);
       return result.error;
     }
 
@@ -72,7 +75,9 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     return null;
   }
 
-  Future<bool> updatePreferences(SelectedUserPreferencesModel preferences) async {
+  Future<bool> updatePreferences(
+    SelectedUserPreferencesModel preferences,
+  ) async {
     final error = await updateProfile(preferences: preferences);
     if (error != null) {
       final message = error.messages.isNotEmpty
@@ -103,7 +108,9 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
     final error = await ref.read(logoutUseCaseProvider).call();
     if (error != null) {
-      final message = error.messages.isNotEmpty ? error.messages : 'Не удалось выйти из аккаунта';
+      final message = error.messages.isNotEmpty
+          ? error.messages
+          : 'Не удалось выйти из аккаунта';
       ref.nav.showSnackBar(message: message);
       return;
     }
@@ -146,8 +153,12 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   void _showFetchProfileError(RemoteException error) {
     final message = switch (error.kind) {
       RemoteExceptionKind.unauthorized ||
-      RemoteExceptionKind.refreshTokenFailed => 'Сессия истекла. Войдите снова.',
-      _ => error.messages.isNotEmpty ? error.messages : 'Не удалось загрузить профиль',
+      RemoteExceptionKind.refreshTokenFailed =>
+        'Сессия истекла. Войдите снова.',
+      _ =>
+        error.messages.isNotEmpty
+            ? error.messages
+            : 'Не удалось загрузить профиль',
     };
 
     ref.nav.showSnackBar(message: message);

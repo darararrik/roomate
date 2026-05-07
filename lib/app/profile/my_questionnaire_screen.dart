@@ -45,6 +45,7 @@ class MyQuestionnaireScreen extends ConsumerWidget {
         AB(
           title: Text(context.l10n.myProfile, style: context.typography.headline1),
           centerTitle: false,
+          pinned: true,
         ),
         SliverPadding(
           padding: const P(horizontal: S.p16, vertical: S.p24),
