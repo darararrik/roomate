@@ -74,8 +74,6 @@ export 'notifier/state.dart';
 export 'routing/app_routing.dart';
 export 'routing/create_ad_routes.dart';
 export 'routing/create_profile_routes.dart';
-export 'routing/wrappers/auth_wrapper.dart';
-export 'routing/wrappers/wrappers.dart';
 export 'screens/about_group_screen.dart';
 export 'screens/auth_edit_first_page.dart';
 export 'screens/auth_edit_second_page.dart';

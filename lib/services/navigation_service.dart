@@ -67,12 +67,12 @@ class NavigationService {
     );
   }
 
-  Future<void> showAlertDialog({
+  Future<T?> showAlertDialog<T>({
     required WidgetBuilder builder,
     bool barrierDismissible = true,
   }) async {
-    if (context == null) return;
-    await showDialog(
+    if (context == null) return null;
+    return showDialog<T>(
       context: context!,
       barrierDismissible: barrierDismissible,
       builder: builder,

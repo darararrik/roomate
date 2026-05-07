@@ -58,12 +58,12 @@ import 'package:roomate/app/create_profile/screens/verification_summary_screem.d
 import 'package:roomate/app/favorites/favorites_screen.dart' as _i20;
 import 'package:roomate/app/main/main_flow.dart' as _i29;
 import 'package:roomate/app/my_advertisements/screens/my_advertisements_screen.dart'
-    as _i30;
-import 'package:roomate/app/neighbours/screens/neighbours_screen.dart' as _i31;
-import 'package:roomate/app/on_boarding/on_boarding_screen.dart' as _i32;
-import 'package:roomate/app/overview/screens/overview_screen.dart' as _i34;
-import 'package:roomate/app/profile/overview_profile_screen.dart' as _i33;
-import 'package:roomate/app/profile/profile_screen.dart' as _i36;
+    as _i31;
+import 'package:roomate/app/neighbours/screens/neighbours_screen.dart' as _i32;
+import 'package:roomate/app/on_boarding/on_boarding_screen.dart' as _i33;
+import 'package:roomate/app/overview/screens/overview_screen.dart' as _i35;
+import 'package:roomate/app/profile/my_account_screen.dart' as _i30;
+import 'package:roomate/app/profile/overview_profile_screen.dart' as _i34;
 import 'package:roomate/app/settings/settings_screen.dart' as _i40;
 import 'package:roomate/app/spash/splash_screen.dart' as _i42;
 import 'package:roomate/app/user_preferences/user_preferences_page_view.dart'
@@ -80,7 +80,7 @@ import 'package:roomate/screens/chats/chats_screen.dart' as _i11;
 import 'package:roomate/screens/create_screen.dart' as _i15;
 import 'package:roomate/screens/filling_profile_screen.dart' as _i23;
 import 'package:roomate/screens/location_screen.dart' as _i27;
-import 'package:roomate/screens/profile/profile_data_edit_screen.dart' as _i35;
+import 'package:roomate/screens/profile/profile_data_edit_screen.dart' as _i36;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]
@@ -609,7 +609,23 @@ class MainFlowRoute extends _i49.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i30.MyAdvertisementsScreen]
+/// [_i30.MyAccountScreen]
+class MyAccountRoute extends _i49.PageRouteInfo<void> {
+  const MyAccountRoute({List<_i49.PageRouteInfo>? children})
+    : super(MyAccountRoute.name, initialChildren: children);
+
+  static const String name = 'MyAccountRoute';
+
+  static _i49.PageInfo page = _i49.PageInfo(
+    name,
+    builder: (data) {
+      return const _i30.MyAccountScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i31.MyAdvertisementsScreen]
 class MyAdvertisementsRoute extends _i49.PageRouteInfo<void> {
   const MyAdvertisementsRoute({List<_i49.PageRouteInfo>? children})
     : super(MyAdvertisementsRoute.name, initialChildren: children);
@@ -619,13 +635,13 @@ class MyAdvertisementsRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i30.MyAdvertisementsScreen();
+      return const _i31.MyAdvertisementsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i31.NeighboursScreen]
+/// [_i32.NeighboursScreen]
 class NeighboursRoute extends _i49.PageRouteInfo<void> {
   const NeighboursRoute({List<_i49.PageRouteInfo>? children})
     : super(NeighboursRoute.name, initialChildren: children);
@@ -635,13 +651,13 @@ class NeighboursRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i31.NeighboursScreen();
+      return const _i32.NeighboursScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i32.OnBoardingScreen]
+/// [_i33.OnBoardingScreen]
 class OnBoardingRoute extends _i49.PageRouteInfo<void> {
   const OnBoardingRoute({List<_i49.PageRouteInfo>? children})
     : super(OnBoardingRoute.name, initialChildren: children);
@@ -651,13 +667,13 @@ class OnBoardingRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i32.OnBoardingScreen();
+      return const _i33.OnBoardingScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i33.OverviewProfileScreen]
+/// [_i34.OverviewProfileScreen]
 class OverviewProfileRoute extends _i49.PageRouteInfo<void> {
   const OverviewProfileRoute({List<_i49.PageRouteInfo>? children})
     : super(OverviewProfileRoute.name, initialChildren: children);
@@ -667,13 +683,13 @@ class OverviewProfileRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i33.OverviewProfileScreen();
+      return const _i34.OverviewProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i34.OverviewScreen]
+/// [_i35.OverviewScreen]
 class OverviewRoute extends _i49.PageRouteInfo<void> {
   const OverviewRoute({List<_i49.PageRouteInfo>? children})
     : super(OverviewRoute.name, initialChildren: children);
@@ -683,13 +699,13 @@ class OverviewRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i34.OverviewScreen();
+      return const _i35.OverviewScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i35.ProfileDataEditScreen]
+/// [_i36.ProfileDataEditScreen]
 class ProfileDataEditRoute extends _i49.PageRouteInfo<void> {
   const ProfileDataEditRoute({List<_i49.PageRouteInfo>? children})
     : super(ProfileDataEditRoute.name, initialChildren: children);
@@ -699,23 +715,7 @@ class ProfileDataEditRoute extends _i49.PageRouteInfo<void> {
   static _i49.PageInfo page = _i49.PageInfo(
     name,
     builder: (data) {
-      return const _i35.ProfileDataEditScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i36.ProfileScreen]
-class ProfileRoute extends _i49.PageRouteInfo<void> {
-  const ProfileRoute({List<_i49.PageRouteInfo>? children})
-    : super(ProfileRoute.name, initialChildren: children);
-
-  static const String name = 'ProfileRoute';
-
-  static _i49.PageInfo page = _i49.PageInfo(
-    name,
-    builder: (data) {
-      return const _i36.ProfileScreen();
+      return const _i36.ProfileDataEditScreen();
     },
   );
 }

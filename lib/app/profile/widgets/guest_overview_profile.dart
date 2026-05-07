@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:roomate/app/auth/notifier/auth_notifier.dart';
 import 'package:roomate/app/profile/widgets/overview_profile_menu.dart';
 import 'package:roomate/lib.dart';
 
-class GuestOverviewProfile extends StatelessWidget {
+class GuestOverviewProfile extends ConsumerWidget {
   const GuestOverviewProfile({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SliverList(
       delegate: SliverChildListDelegate([
         Padding(
@@ -38,10 +40,17 @@ class GuestOverviewProfile extends StatelessWidget {
             ProfileMenuItem(
               iconPath: AppIcons.settings,
               title: context.l10n.settings,
-              onTap: () {},
+              onTap: () => ref.read(globalProfileProvider.notifier).openSettings(),
             ),
             ProfileMenuItem(iconPath: AppIcons.help, title: context.l10n.support, onTap: () {}),
           ],
+        ),
+        Padding(
+          padding: const P(horizontal: S.p16, top: S.p24),
+          child: PrimaryButton(
+            text: context.l10n.login,
+            onPressed: () => ref.read(authProvider.notifier).enterByPhoneNumber(),
+          ),
         ),
       ]),
     );

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:roomate/app/profile/my_account_screen.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:roomate/routing/create_ad_routes.dart';
 import 'package:roomate/routing/create_profile_routes.dart';
@@ -28,7 +29,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CoworkingRoute.page),
     AutoRoute(page: ChatRoute.page),
     AutoRoute(page: ApartamnetRoute.page),
-    AutoRoute(page: ProfileRoute.page),
+    AutoRoute(page: MyAccountRoute.page),
     AutoRoute(page: FiltersRoute.page),
     AutoRoute(page: ProfileDataEditRoute.page),
     AutoRoute(

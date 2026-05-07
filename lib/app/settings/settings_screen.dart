@@ -10,6 +10,7 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(globalProfileProvider.select((p) => p.requireValue.isGuest));
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -30,17 +31,19 @@ class SettingsScreen extends ConsumerWidget {
                     title: context.l10n.language,
                     iconPath: AppIcons.world,
                   ),
-                  ListItemArrow(
-                    onTap: () => ref.read(globalProfileProvider.notifier).logout(),
-                    title: context.l10n.logout,
-                    iconPath: AppIcons.exit,
-                  ),
-                  ListItemArrow(
-                    onTap: () {},
-                    title: context.l10n.deleteAccount,
-                    iconPath: AppIcons.trash2,
-                    color: context.colors.red,
-                  ),
+                  if (!isGuest) ...[
+                    ListItemArrow(
+                      onTap: () => ref.read(globalProfileProvider.notifier).logout(),
+                      title: context.l10n.logout,
+                      iconPath: AppIcons.exit,
+                    ),
+                    ListItemArrow(
+                      onTap: () {},
+                      title: context.l10n.deleteAccount,
+                      iconPath: AppIcons.trash2,
+                      color: context.colors.red,
+                    ),
+                  ],
                 ],
               ),
             ),

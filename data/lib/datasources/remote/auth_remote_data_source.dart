@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/data.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
   AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
@@ -28,10 +27,11 @@ class AuthRemoteDataSource implements AuthDataSource {
 
   @override
   Future<Either<RemoteException, void>> logout() async {
+    final refresh = await _tokenService.getRefreshToken();
     final result = await _client.post<void>(
       ApiUrlConstants.logout,
       needAuth: true,
-      body: {'refreshToken': _tokenService.getRefreshToken()},
+      body: {'refresh_token': refresh},
       transformer: (_) {},
     );
 

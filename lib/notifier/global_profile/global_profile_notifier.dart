@@ -1,9 +1,10 @@
 import 'package:domain/domain.dart';
+import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:shared/shared.dart';
 
-import 'package:roomate/lib.dart';
-import 'package:roomate/routing/app_routing.gr.dart';
+import '../../lib.dart';
 
 part 'global_profile_notifier.g.dart';
 
@@ -83,7 +84,22 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     return true;
   }
 
+  void openSettings() => ref.nav.push(const SettingsRoute());
+
+  void openMyAccount() => ref.nav.push(const MyAccountRoute());
+
   Future<void> logout() async {
+    final shouldLogout = await ref.nav.showAlertDialog<bool>(
+      builder: (context) => AlertWidget(
+        title: ref.l10n.confirmation,
+        content: 'Вы уверены, что хотите выйти из аккаунта?',
+        onCancel: () => Navigator.of(context).pop(false),
+        onConfirm: () => Navigator.of(context).pop(true),
+      ),
+    );
+
+    if (shouldLogout != true) return;
+
     final error = await ref.read(logoutUseCaseProvider).call();
     if (error != null) {
       final message = error.messages.isNotEmpty ? error.messages : 'Не удалось выйти из аккаунта';
@@ -92,9 +108,8 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     }
 
     resetToGuest();
-    await ref.read(appStatusStorageServiceProvider).markLoggedOut();
-    ref.invalidate(appStatusProvider);
-    ref.nav.replaceAll([const OnBoardingRoute()]);
+    await ref.read(appStatusProvider.notifier).markLoggedOut();
+    ref.nav.replaceAll([const AuthWrapper()]);
   }
 
   void resetToGuest() {

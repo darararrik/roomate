@@ -26,7 +26,11 @@ class AuthNotifier extends _$AuthNotifier {
   }
 
   void setError(String message) {
-    state = state.copyWith(isError: true, errorMessage: message, isCodeVerified: false);
+    state = state.copyWith(
+      isError: true,
+      errorMessage: message,
+      isCodeVerified: false,
+    );
   }
 
   void codeVerifiedSuccess() {
@@ -37,7 +41,7 @@ class AuthNotifier extends _$AuthNotifier {
 
   void enterAsGuest() {
     ref.read(globalProfileProvider.notifier).enterAsGuest();
-    ref.nav.replace(const MainFlowRoute());
+    ref.nav.replaceAll([const MainFlowRoute()]);
   }
 
   void openEnterCodeScreen() async {
@@ -49,7 +53,9 @@ class AuthNotifier extends _$AuthNotifier {
 
   Future<bool> requestCode() async {
     final phone = PhoneNumber(state.phone);
-    final res = await ref.read(authRepositoryProvider).signInByPhone(phone.value);
+    final res = await ref
+        .read(authRepositoryProvider)
+        .signInByPhone(phone.value);
     final isSucces = res.fold(
       (l) {
         ref.nav.showSnackBar(message: "Не удалось отправить смс код");
@@ -65,13 +71,17 @@ class AuthNotifier extends _$AuthNotifier {
   Future<void> verifySms() async {
     if (!state.isPinComplete) return;
     final phone = PhoneNumber(state.phone);
-    final result = await ref.read(authRepositoryProvider).verifySms(phone.value, state.code);
+    final result = await ref
+        .read(authRepositoryProvider)
+        .verifySms(phone.value, state.code);
     result.fold((e) => setError(e.messages), (user) async {
       if (user.isNewUser) {
         await ref.read(appStatusProvider.notifier).markProfileIncomplete();
         openSetupProfileScreen();
       } else {
-        await ref.read(globalProfileProvider.notifier).fetchProfile(showError: false);
+        await ref
+            .read(globalProfileProvider.notifier)
+            .fetchProfile(showError: false);
         await ref.read(appStatusProvider.notifier).markProfileCompleted();
         openMainScreen();
       }
@@ -79,10 +89,10 @@ class AuthNotifier extends _$AuthNotifier {
   }
 
   void openMainScreen() {
-    ref.nav.replace(const MainFlowRoute());
+    ref.nav.replaceAll([const MainFlowRoute()]);
   }
 
-  void openSetupProfileScreen() async {
-    ref.nav.push(const SetupProfileRoute());
+  void openSetupProfileScreen() {
+    ref.nav.replaceAll([const SetupProfileRoute()]);
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:core';
 
 abstract class AppIcons {
+  static const String docs = 'assets/icons/docs.svg';
   static const String archive = 'assets/icons/archive.svg';
   static const String edit = 'assets/icons/Edit.svg';
   static const String edit2 = 'assets/icons/Edit2.svg';
