@@ -8,7 +8,8 @@ part 'apartament_filter_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 Future<FilterModel> filters(Ref ref) async {
-  return ref.watch(apartamentsRepositoryProvider).fetchFilters();
+  final res = await ref.watch(apartamentsRepositoryProvider).fetchFilters();
+  return res.fold((e) => throw e, (data) => data);
 }
 
 @Riverpod(keepAlive: true)

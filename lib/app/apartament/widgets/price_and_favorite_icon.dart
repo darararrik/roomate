@@ -1,5 +1,7 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+
+import 'package:domain/domain.dart';
+
 import 'package:roomate/lib.dart';
 
 class PriceAndFavoriteIcon extends StatelessWidget {

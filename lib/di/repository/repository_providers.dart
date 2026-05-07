@@ -2,7 +2,7 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:roomate/di/data_source_providers.dart';
+import '../data_source/data_source_providers.dart';
 
 part 'repository_providers.g.dart';
 
@@ -12,10 +12,8 @@ IApartamentsRepository apartamentsRepository(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-ILocationCatalogRepository locationCatalogRepository(Ref ref) {
-  return LocationCatalogRepositoryImpl(
-    ref.watch(locationCatalogDataSourceProvider),
-  );
+ILocationRepository locationRepository(Ref ref) {
+  return LocationRepositoryImpl(ref.watch(locationDataSourceProvider));
 }
 
 @Riverpod(keepAlive: true)

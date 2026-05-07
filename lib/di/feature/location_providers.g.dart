@@ -9,6 +9,45 @@ part of 'location_providers.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
+@ProviderFor(cities)
+final citiesProvider = CitiesProvider._();
+
+final class CitiesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<CityModel>>,
+          List<CityModel>,
+          FutureOr<List<CityModel>>
+        >
+    with $FutureModifier<List<CityModel>>, $FutureProvider<List<CityModel>> {
+  CitiesProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'citiesProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$citiesHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<CityModel>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<CityModel>> create(Ref ref) {
+    return cities(ref);
+  }
+}
+
+String _$citiesHash() => r'422cdd1166838c449e48057c2330a2beea61ea9c';
+
 @ProviderFor(cityStreets)
 final cityStreetsProvider = CityStreetsFamily._();
 
@@ -66,7 +105,7 @@ final class CityStreetsProvider
   }
 }
 
-String _$cityStreetsHash() => r'592e57e77381eb082cb6068ee324f1258266b563';
+String _$cityStreetsHash() => r'b2f95357c49ae7c4121aabfaeb1f7ce5f55d7c54';
 
 final class CityStreetsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<List<StreetModel>>, String> {

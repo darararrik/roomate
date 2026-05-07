@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared/shared.dart';
+
 import 'package:roomate/app/user_preferences/state/pref_state.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
-import 'package:shared/shared.dart';
 
 part 'user_pref_notifier.g.dart';
 

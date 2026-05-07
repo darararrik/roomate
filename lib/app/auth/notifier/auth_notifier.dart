@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:roomate/utils/helpers/phone_number.dart';
@@ -28,15 +29,6 @@ class AuthNotifier extends _$AuthNotifier {
     state = state.copyWith(isError: true, errorMessage: message, isCodeVerified: false);
   }
 
-  void checkCode() {
-    final l10n = ref.read(l10nProvider);
-    if (state.code == "0000") {
-      state = state.copyWith(isCodeVerified: true);
-    } else {
-      state = state.copyWith(isCodeVerified: false, isError: true, errorMessage: l10n.wrongCode);
-    }
-  }
-
   void codeVerifiedSuccess() {
     state = state.copyWith(isCodeVerified: true, isError: false);
   }
@@ -48,10 +40,26 @@ class AuthNotifier extends _$AuthNotifier {
     ref.nav.replace(const MainFlowRoute());
   }
 
-  void openEnterCodeScreen() {
+  void openEnterCodeScreen() async {
+    final res = await requestCode();
+    if (res) {
+      ref.nav.push(const EnterCodeRoute());
+    }
+  }
+
+  Future<bool> requestCode() async {
     final phone = PhoneNumber(state.phone);
-    ref.read(authRepositoryProvider).signInByPhone(phone.value);
-    ref.nav.push(const EnterCodeRoute());
+    final res = await ref.read(authRepositoryProvider).signInByPhone(phone.value);
+    final isSucces = res.fold(
+      (l) {
+        ref.nav.showSnackBar(message: "Не удалось отправить смс код");
+        return false;
+      },
+      (r) {
+        return true;
+      },
+    );
+    return isSucces;
   }
 
   Future<void> verifySms() async {

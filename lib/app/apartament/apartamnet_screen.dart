@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:roomate/app/apartament/widgets/app_bar_and_photo.dart';
 import 'package:roomate/app/apartament/widgets/price_and_favorite_icon.dart';
 import 'package:roomate/lib.dart';

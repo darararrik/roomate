@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -49,8 +50,14 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
     }
   }
 
-  Future<void> skip() async {
+  // Future<void> skip() async {
+  //   await ref.read(appStatusProvider.notifier).markProfileCompleted();
+  //   ref.nav.replaceAll([const MainFlowRoute()]);
+  // }
+
+  void skipByOwner() async {
     await ref.read(appStatusProvider.notifier).markProfileCompleted();
+    await ref.read(globalProfileProvider.notifier).updateProfile(isOwner: true);
     ref.nav.replaceAll([const MainFlowRoute()]);
   }
 

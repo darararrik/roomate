@@ -29,10 +29,14 @@ class SmsNotifier extends _$SmsNotifier {
     });
   }
 
-  void resetTimer() {
+  void resetTimer() async {
     if (!state.canResend) return;
-    state = state.copyWith(timerCount: 300);
-    _startTimer();
-    ref.read(authProvider.notifier).verifySms();
+    final res = await ref.read(authProvider.notifier).requestCode();
+    if (res) {
+      state = state.copyWith(timerCount: 300);
+      _startTimer();
+    } else {
+      ref.nav.showSnackBar(message: "Не удалось запросить смс код");
+    }
   }
 }

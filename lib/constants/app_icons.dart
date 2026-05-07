@@ -20,7 +20,7 @@ abstract class AppIcons {
   static const String flash = 'assets/icons/flash.svg';
   static const String help = 'assets/icons/help.svg';
   static const String home = 'assets/icons/home.svg';
-  static const String internet = 'assets/icons/internet.svg';
+  static const String world = 'assets/icons/world.svg';
   static const String male = 'assets/icons/male.svg';
   static const String map = 'assets/icons/map.svg';
   static const String notification = 'assets/icons/notification.svg';
@@ -73,6 +73,8 @@ abstract class AppIcons {
   static const String fridge = 'assets/icons/fridge.svg';
   static const String smartHome = 'assets/icons/smart-home.svg';
   static const String trash = 'assets/icons/trash.svg';
+  static const String trash2 = 'assets/icons/trash2.svg';
+
   static const String tv = 'assets/icons/tv.svg';
   static const String videoIntercom = 'assets/icons/video_intercom.svg';
   static const String washingMachine = 'assets/icons/washing-machine.svg';
@@ -81,4 +83,6 @@ abstract class AppIcons {
   static const String coworking = 'assets/pics/coworking.png';
   static const String myRents = 'assets/pics/my_rents.png';
   static const String rent = 'assets/pics/rent.png';
+  static const String deal = 'assets/pics/deal.png';
+  static const String request = 'assets/pics/request.png';
 }

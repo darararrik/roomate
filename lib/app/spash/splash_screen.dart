@@ -1,6 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:roomate/app/spash/state/app_status_notifier.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 

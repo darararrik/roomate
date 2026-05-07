@@ -972,4 +972,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get sortByDateAsc => 'По дате добавления (сначала старые)';
+
+  @override
+  String get tenantApplications => 'Заявки от арендаторов';
+
+  @override
+  String get analytics => 'Аналитика';
+
+  @override
+  String get myTransactions => 'Мои сделки';
+
+  @override
+  String get myAccount => 'Мой аккаунт';
+
+  @override
+  String get deleteAccount => 'Удалить аккаунт';
 }

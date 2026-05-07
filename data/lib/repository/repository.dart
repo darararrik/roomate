@@ -1,4 +1,4 @@
 export 'apartaments_repository.dart';
 export 'auth_repository.dart';
-export 'location_catalog_repository_impl.dart';
+export 'location_repository.dart';
 export 'profile_repository.dart';

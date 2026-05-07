@@ -3,7 +3,7 @@ import 'package:shared/shared.dart';
 
 import 'package:data/data.dart';
 
-class LocationCatalogMockDataSource implements LocationCatalogDataSource {
+class LocationCatalogMockDataSource implements LocationDataSource {
   List<StreetModel>? _cache;
 
   @override
@@ -19,5 +19,11 @@ class LocationCatalogMockDataSource implements LocationCatalogDataSource {
     final json = OmskStreetsMockJson.fetchStreets;
     final data = json.map((e) => StreetDto.fromJson(e)).toList();
     return data.map((e) => e.toModel()).toList();
+  }
+
+  @override
+  fetchCities() {
+    // TODO: implement fetchCities
+    throw UnimplementedError();
   }
 }

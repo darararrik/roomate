@@ -4,9 +4,7 @@ import 'package:shared/shared.dart';
 
 import 'package:data/data.dart';
 
-@BackendOnly(
-  'Temporary mock datasource that emulates apartment backend responses.',
-)
+@BackendOnly('Temporary mock datasource that emulates apartment backend responses.')
 class ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
   Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
@@ -28,10 +26,7 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
 
           /// категория
           if (filter.goalId != 0) {
-            final categoryTitle = _findTitle(
-              TagsMockData.rentGoal,
-              filter.goalId,
-            );
+            final categoryTitle = _findTitle(TagsMockData.rentGoal, filter.goalId);
 
             if (categoryTitle == "Аренда" && apt.dealGoal != "rent") {
               return false;
@@ -55,8 +50,7 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
           }
 
           /// цена
-          final price =
-              int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
+          final price = int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
 
           if (filter.minPrice != null && price < filter.minPrice!) {
             return false;
@@ -87,15 +81,14 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<FilterModel> fetchFilterTags() async {
+  Future<Either<RemoteException, FilterModel>> fetchFilterTags() async {
     await Future.delayed(const Duration(milliseconds: 100));
     final json = ApartmentFiltersMockJson.fetchFilterTags;
-    return FilterData.fromJson(json).toModel();
+    return Right(FilterData.fromJson(json).toModel());
   }
 
   @override
-  Future<Either<RemoteException, AdFormOptionsModel>>
-  fetchAdFormOptions() async {
+  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
     await Future.delayed(const Duration(milliseconds: 1000));
     final json = CreateAdMockJson.fetchTagsResponse;
     return Right(AdFormOptionsData.fromJson(json).toModel());
@@ -107,22 +100,13 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
 
     final nextId =
         [
-          ...ApartmentsMockJson.fetchApartments.map(
-            (item) => item['id'] as int? ?? 0,
-          ),
+          ...ApartmentsMockJson.fetchApartments.map((item) => item['id'] as int? ?? 0),
           ...MockStorage.createAds.map((item) => item['id'] as int? ?? 0),
-        ].fold<int>(
-          0,
-          (maxId, currentId) => currentId > maxId ? currentId : maxId,
-        ) +
+        ].fold<int>(0, (maxId, currentId) => currentId > maxId ? currentId : maxId) +
         1;
 
     final ownerName = _resolveOwnerName();
-    final apartment = CreateAdFormMapper.toApartamentDto(
-      request,
-      id: nextId,
-      ownerName: ownerName,
-    );
+    final apartment = CreateAdFormMapper.toApartamentDto(request, id: nextId, ownerName: ownerName);
 
     MockStorage.createAds.insert(0, apartment.toJson());
   }

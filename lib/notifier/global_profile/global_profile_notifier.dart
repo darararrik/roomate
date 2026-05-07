@@ -1,8 +1,9 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared/shared.dart';
+
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
-import 'package:shared/shared.dart';
 
 part 'global_profile_notifier.g.dart';
 
@@ -34,10 +35,12 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   Future<RemoteException?> updateProfile({
     String? firstName,
     String? lastName,
+    String? city,
     String? avatarUrl,
     GenderEnum? gender,
     int? age,
     SelectedUserPreferencesModel? preferences,
+    bool? isOwner,
   }) async {
     // Берем текущие данные из стейта (если там еще загрузка или ошибка — берем гостя)
     final current = state.value ?? ProfileModel.guest();
@@ -45,10 +48,12 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     final updated = current.copyWith(
       firstName: firstName ?? current.firstName,
       lastName: lastName ?? current.lastName,
+      city: city ?? current.city,
       avatarUrl: avatarUrl ?? current.avatarUrl,
       gender: gender ?? current.gender,
       age: age ?? current.age,
       preferences: preferences ?? current.preferences,
+      isOwner: isOwner ?? current.isOwner,
     );
 
     // Ставим состояние загрузки для UI
@@ -65,9 +70,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     return null;
   }
 
-  Future<bool> updatePreferences(
-    SelectedUserPreferencesModel preferences,
-  ) async {
+  Future<bool> updatePreferences(SelectedUserPreferencesModel preferences) async {
     final error = await updateProfile(preferences: preferences);
     if (error != null) {
       final message = error.messages.isNotEmpty
@@ -83,9 +86,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   Future<void> logout() async {
     final error = await ref.read(logoutUseCaseProvider).call();
     if (error != null) {
-      final message = error.messages.isNotEmpty
-          ? error.messages
-          : 'Не удалось выйти из аккаунта';
+      final message = error.messages.isNotEmpty ? error.messages : 'Не удалось выйти из аккаунта';
       ref.nav.showSnackBar(message: message);
       return;
     }
@@ -129,12 +130,8 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   void _showFetchProfileError(RemoteException error) {
     final message = switch (error.kind) {
       RemoteExceptionKind.unauthorized ||
-      RemoteExceptionKind.refreshTokenFailed =>
-        'Сессия истекла. Войдите снова.',
-      _ =>
-        error.messages.isNotEmpty
-            ? error.messages
-            : 'Не удалось загрузить профиль',
+      RemoteExceptionKind.refreshTokenFailed => 'Сессия истекла. Войдите снова.',
+      _ => error.messages.isNotEmpty ? error.messages : 'Не удалось загрузить профиль',
     };
 
     ref.nav.showSnackBar(message: message);

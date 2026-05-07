@@ -1,7 +1,8 @@
+import 'package:dio/dio.dart';
+
 import 'package:data/constants/api_key.dart';
 import 'package:data/entity/auth_response/auth_response_data.dart';
 import 'package:data/services/token_service.dart';
-import 'package:dio/dio.dart';
 
 class AuthInterceptor extends Interceptor {
   AuthInterceptor({required this.tokenService, required String baseUrl})

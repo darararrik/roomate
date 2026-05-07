@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
+
+import 'package:data/data.dart';
 
 class ProfileMockDataSource implements ProfileDataSource {
   @override

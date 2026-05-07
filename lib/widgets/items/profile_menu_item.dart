@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
@@ -9,12 +8,10 @@ class ProfileMenuItem extends StatelessWidget {
     super.key,
     required this.iconPath,
     required this.title,
-    required this.subtitle,
     required this.onTap,
   });
   final String iconPath;
   final String title;
-  final String subtitle;
   final VoidCallback onTap;
 
   @override
@@ -41,20 +38,7 @@ class ProfileMenuItem extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const P(horizontal: S.p12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(title, style: context.typography.bodyDescription),
-                      const SizedBox(height: S.p8),
-                      Text(
-                        subtitle,
-                        style: context.typography.bodySmall.copyWith(
-                          color: context.colors.graysText400,
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: Text(title, style: context.typography.bodyDescription),
                 ),
               ),
               const SizedBox(width: S.p4),

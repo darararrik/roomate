@@ -70,7 +70,7 @@ class _QuizAppBar extends StatelessWidget {
             Consumer(
               builder: (context, ref, child) {
                 return IconButton(
-                  onPressed: () => ref.read(onBoardingProvider.notifier).skip(),
+                  onPressed: () => ref.read(onBoardingProvider.notifier).skipByOwner(),
                   icon: AppIcon(
                     AppIcons.xBig,
                     width: S.p32,
@@ -157,7 +157,7 @@ class _QuizStepContent extends StatelessWidget {
                       builder: (context, ref, child) {
                         return OpacityButton(
                           radius: S.p16,
-                          onPressed: () => ref.read(onBoardingProvider.notifier).skip(),
+                          onPressed: () => ref.read(onBoardingProvider.notifier).skipByOwner(),
                           bgColor: context.colors.graysLight100,
                           child: Text(
                             step.cancel!,

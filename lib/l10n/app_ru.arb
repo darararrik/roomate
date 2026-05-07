@@ -319,5 +319,12 @@
   "sortByPriceAsc": "По цене (сначала дешевле)",
   "sortByPriceDesc": "По цене (сначала дороже)",
   "sortByDateDesc": "По дате добавления (сначала новые)",
-  "sortByDateAsc": "По дате добавления (сначала старые)"
+  "sortByDateAsc": "По дате добавления (сначала старые)",
+  "tenantApplications":"Заявки от арендаторов",
+  "analytics":"Аналитика",
+  "myTransactions":"Мои сделки",
+  "myAccount": "Мой аккаунт",
+  "deleteAccount": "Удалить аккаунт"
+
+
 }

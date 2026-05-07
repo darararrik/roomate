@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import 'package:data/data.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
   AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
@@ -27,23 +28,16 @@ class AuthRemoteDataSource implements AuthDataSource {
 
   @override
   Future<Either<RemoteException, void>> logout() async {
-    try {
-      await _client.post(
-        ApiUrlConstants.logout,
-        needAuth: true, // Логаут обычно требует JWT
-        // Если сервер возвращает пустой ответ, трансформер может просто вернуть null
-        body: {'refreshToken': _tokenService.getRefreshToken()},
-        transformer: (json) => null,
-      );
-      await _tokenService.deleteTokens();
-      return const Right(null);
-    } on RemoteException catch (e) {
-      await _tokenService.deleteTokens();
-      return Left(e);
-    } catch (e) {
-      await _tokenService.deleteTokens();
-      return Left(RemoteException(kind: RemoteExceptionKind.unknown, rootException: e));
-    }
+    final result = await _client.post<void>(
+      ApiUrlConstants.logout,
+      needAuth: true,
+      body: {'refreshToken': _tokenService.getRefreshToken()},
+      transformer: (_) {},
+    );
+
+    await _tokenService.deleteTokens();
+
+    return result;
   }
 
   @override

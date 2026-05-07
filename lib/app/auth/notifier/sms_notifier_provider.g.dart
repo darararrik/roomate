@@ -41,7 +41,7 @@ final class SmsNotifierProvider
   }
 }
 
-String _$smsNotifierHash() => r'4badd8a59a2bc7b8f37cdf74da502881ab100e88';
+String _$smsNotifierHash() => r'8dd9d60a9fd3f04c14d728c1720d7dd78184aed2';
 
 abstract class _$SmsNotifier extends $Notifier<SmsState> {
   SmsState build();

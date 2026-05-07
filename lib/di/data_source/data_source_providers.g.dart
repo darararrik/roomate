@@ -104,53 +104,53 @@ final class ApartamentsDataSourceProvider
 String _$apartamentsDataSourceHash() =>
     r'9676eab7e60accc0c0bfeb6d4b55eff233d0e20c';
 
-@ProviderFor(locationCatalogDataSource)
-final locationCatalogDataSourceProvider = LocationCatalogDataSourceProvider._();
+@ProviderFor(locationDataSource)
+final locationDataSourceProvider = LocationDataSourceProvider._();
 
-final class LocationCatalogDataSourceProvider
+final class LocationDataSourceProvider
     extends
         $FunctionalProvider<
-          LocationCatalogDataSource,
-          LocationCatalogDataSource,
-          LocationCatalogDataSource
+          LocationDataSource,
+          LocationDataSource,
+          LocationDataSource
         >
-    with $Provider<LocationCatalogDataSource> {
-  LocationCatalogDataSourceProvider._()
+    with $Provider<LocationDataSource> {
+  LocationDataSourceProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'locationCatalogDataSourceProvider',
+        name: r'locationDataSourceProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$locationCatalogDataSourceHash();
+  String debugGetCreateSourceHash() => _$locationDataSourceHash();
 
   @$internal
   @override
-  $ProviderElement<LocationCatalogDataSource> $createElement(
+  $ProviderElement<LocationDataSource> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  LocationCatalogDataSource create(Ref ref) {
-    return locationCatalogDataSource(ref);
+  LocationDataSource create(Ref ref) {
+    return locationDataSource(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(LocationCatalogDataSource value) {
+  Override overrideWithValue(LocationDataSource value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<LocationCatalogDataSource>(value),
+      providerOverride: $SyncValueProvider<LocationDataSource>(value),
     );
   }
 }
 
-String _$locationCatalogDataSourceHash() =>
-    r'0395186ddabc691e387b8dbff3cca66b52bafeb7';
+String _$locationDataSourceHash() =>
+    r'1e2cd2c12f2ce0de6d43bc4d276e69db08aee498';
 
 @ProviderFor(authDataSource)
 final authDataSourceProvider = AuthDataSourceProvider._();

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:roomate/lib.dart';
 
-class MainAppBar extends StatelessWidget {
+class MainAppBar extends ConsumerWidget {
   const MainAppBar({
     super.key,
     this.pinned = false,
@@ -17,7 +19,10 @@ class MainAppBar extends StatelessWidget {
   final PreferredSizeWidget? bottom;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileCity = ref.watch(globalProfileProvider).value?.city ?? '';
+    final cityTitle = profileCity.isEmpty ? 'Москва' : profileCity;
+
     return SliverAppBar(
       pinned: pinned,
       floating: floating,
@@ -39,7 +44,7 @@ class MainAppBar extends StatelessWidget {
               style: context.typography.headline2,
             ),
             const SizedBox(height: S.p4),
-            Text('Омская область', style: context.typography.headline1),
+            Text(cityTitle, style: context.typography.headline1),
           ],
         ),
       ),

@@ -1983,6 +1983,36 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'По дате добавления (сначала старые)'**
   String get sortByDateAsc;
+
+  /// No description provided for @tenantApplications.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заявки от арендаторов'**
+  String get tenantApplications;
+
+  /// No description provided for @analytics.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аналитика'**
+  String get analytics;
+
+  /// No description provided for @myTransactions.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мои сделки'**
+  String get myTransactions;
+
+  /// No description provided for @myAccount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мой аккаунт'**
+  String get myAccount;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить аккаунт'**
+  String get deleteAccount;
 }
 
 class _AppLocalizationsDelegate

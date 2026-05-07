@@ -57,53 +57,53 @@ final class ApartamentsRepositoryProvider
 String _$apartamentsRepositoryHash() =>
     r'4c758212f583701676f0194d36faf433c6e1f359';
 
-@ProviderFor(locationCatalogRepository)
-final locationCatalogRepositoryProvider = LocationCatalogRepositoryProvider._();
+@ProviderFor(locationRepository)
+final locationRepositoryProvider = LocationRepositoryProvider._();
 
-final class LocationCatalogRepositoryProvider
+final class LocationRepositoryProvider
     extends
         $FunctionalProvider<
-          ILocationCatalogRepository,
-          ILocationCatalogRepository,
-          ILocationCatalogRepository
+          ILocationRepository,
+          ILocationRepository,
+          ILocationRepository
         >
-    with $Provider<ILocationCatalogRepository> {
-  LocationCatalogRepositoryProvider._()
+    with $Provider<ILocationRepository> {
+  LocationRepositoryProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'locationCatalogRepositoryProvider',
+        name: r'locationRepositoryProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$locationCatalogRepositoryHash();
+  String debugGetCreateSourceHash() => _$locationRepositoryHash();
 
   @$internal
   @override
-  $ProviderElement<ILocationCatalogRepository> $createElement(
+  $ProviderElement<ILocationRepository> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  ILocationCatalogRepository create(Ref ref) {
-    return locationCatalogRepository(ref);
+  ILocationRepository create(Ref ref) {
+    return locationRepository(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ILocationCatalogRepository value) {
+  Override overrideWithValue(ILocationRepository value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ILocationCatalogRepository>(value),
+      providerOverride: $SyncValueProvider<ILocationRepository>(value),
     );
   }
 }
 
-String _$locationCatalogRepositoryHash() =>
-    r'd9ee12c33c0b23c294ae66f18d664f628ed1e3d9';
+String _$locationRepositoryHash() =>
+    r'a12106ce7770a0f1e4f9819b0e62a0b0252dbf8f';
 
 @ProviderFor(profileRepository)
 final profileRepositoryProvider = ProfileRepositoryProvider._();

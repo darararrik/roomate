@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
-import 'package:shared/mocks/apartament_filters_mock.dart';
+
+import 'package:data/data.dart';
 
 class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   ApartamentsRemoteDataSource(ApiClient client) : _client = client;
@@ -25,34 +25,28 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, AdFormOptionsModel>>
-  fetchAdFormOptions() async {
+  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
     final result = await _client.get(
       ApiUrlConstants.adFormOptions,
       transformer: (json) => AdFormOptionsData.fromJson(json),
     );
-    return result.fold(
-      (error) => Left(error),
-      (data) => Right(AdFormMapper.toModel(data)),
-    );
+    return result.fold((error) => Left(error), (data) => Right(AdFormMapper.toModel(data)));
   }
 
   @override
-  Future<FilterModel> fetchFilterTags() async {
-    //TODO: заставить степу сделать реализацию
-    await Future.delayed(const Duration(milliseconds: 1000));
-    final json = ApartmentFiltersMockJson.fetchFilterTags;
-    return FilterData.fromJson(json).toModel();
+  Future<Either<RemoteException, FilterModel>> fetchFilterTags() async {
+    final result = await _client.get(
+      ApiUrlConstants.filters,
+      transformer: (json) => FilterData.fromJson(json),
+      needAuth: true,
+    );
+    return result.fold((error) => Left(error), (data) => Right(FilterMapper.toModel(data)));
   }
 
   @override
   Future<void> createAd(CreateAdFormRequestData request) async {
     try {
-      await _client.post(
-        ApiUrlConstants.ads,
-        body: request.toJson(),
-        needAuth: true,
-      );
+      await _client.post(ApiUrlConstants.ads, body: request.toJson(), needAuth: true);
     } catch (e) {
       rethrow;
     }

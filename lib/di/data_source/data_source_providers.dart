@@ -1,8 +1,8 @@
 import 'package:data/data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'app_providers.dart';
-import 'network_providers.dart';
+import '../core/app_providers.dart';
+import '../core/network_providers.dart';
 
 part 'data_source_providers.g.dart';
 
@@ -23,11 +23,11 @@ ApartamentsDataSource apartamentsDataSource(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-LocationCatalogDataSource locationCatalogDataSource(Ref ref) {
+LocationDataSource locationDataSource(Ref ref) {
   if (ref.watch(configProvider).useMocks) {
     return LocationCatalogMockDataSource();
   }
-  return LocationCatalogRemoteDataSource();
+  return LocationRemoteDataSource(client: ref.watch(apiClientProvider));
 }
 
 @Riverpod(keepAlive: true)

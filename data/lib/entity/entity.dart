@@ -1,6 +1,7 @@
 export 'ad_form_options/ad_form_options.dart';
 export 'apartaments/apartaments.dart';
 export 'auth_response/auth_response.dart';
+export 'city/city_data.dart';
 export 'create_ad_form_request/create_ad_form_request.dart';
 export 'filter/filter.dart';
 export 'location/location.dart';

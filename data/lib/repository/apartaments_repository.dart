@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
+
+import 'package:data/data.dart';
 
 class ApartamentsRepositoryImpl implements IApartamentsRepository {
   ApartamentsRepositoryImpl(this._dataSource);
@@ -13,7 +14,7 @@ class ApartamentsRepositoryImpl implements IApartamentsRepository {
   ) => _dataSource.fetchApartaments(filter);
 
   @override
-  Future<FilterModel> fetchFilters() => _dataSource.fetchFilterTags();
+  Future<Either<RemoteException, FilterModel>> fetchFilters() => _dataSource.fetchFilterTags();
 
   @override
   Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() =>

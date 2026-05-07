@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:roomate/di/network_providers.dart';
-import 'package:roomate/notifier/global_profile/global_profile_notifier.dart';
+
+import 'package:roomate/lib.dart';
 
 part 'app_status_notifier.g.dart';
 

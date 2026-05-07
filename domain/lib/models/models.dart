@@ -1,7 +1,9 @@
 export 'ad_form_model/ad_form_model.dart';
 export 'ad_form_options/ad_form_options.dart';
+export 'apartament_filter/apartament_filter_model.dart';
 export 'apartaments/apartaments.dart';
 export 'chip_model.dart';
+export 'city/city_model.dart';
 export 'common/common.dart';
 export 'filter/filter.dart';
 export 'location/location.dart';
