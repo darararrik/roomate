@@ -1,6 +1,8 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+
+import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:roomate/app/profile/widgets/overview_profile_menu.dart';
 import 'package:roomate/app/profile/widgets/profile_header.dart';
 import 'package:roomate/lib.dart';

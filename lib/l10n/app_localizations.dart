@@ -2013,6 +2013,24 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Удалить аккаунт'**
   String get deleteAccount;
+
+  /// No description provided for @paymentMethods.
+  ///
+  /// In ru, this message translates to:
+  /// **'Способы оплаты'**
+  String get paymentMethods;
+
+  /// No description provided for @myProfile.
+  ///
+  /// In ru, this message translates to:
+  /// **'Моя анкета'**
+  String get myProfile;
+
+  /// No description provided for @loginByOwner.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти как\nсобственник'**
+  String get loginByOwner;
 }
 
 class _AppLocalizationsDelegate

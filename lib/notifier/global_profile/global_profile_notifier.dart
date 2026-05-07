@@ -1,9 +1,10 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:shared/shared.dart';
 
+import 'package:roomate/routing/app_routing.gr.dart';
 import '../../lib.dart';
 
 part 'global_profile_notifier.g.dart';
@@ -151,4 +152,6 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
     ref.nav.showSnackBar(message: message);
   }
+
+  void openProfileEdit() => ref.nav.push(const ProfileDataEditRoute());
 }

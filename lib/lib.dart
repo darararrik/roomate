@@ -55,6 +55,8 @@ export 'app/on_boarding/state/on_boarding_notifier.dart';
 export 'app/on_boarding/state/on_boarding_state.dart';
 export 'app/on_boarding/state/state.dart';
 export 'app/overview/overview.dart';
+export 'app/profile/my_account_screen.dart';
+export 'app/profile/my_questionnaire_screen.dart';
 export 'app/profile/overview_profile_screen.dart';
 export 'app/spash/splash_screen.dart';
 export 'app/spash/state/app_status_notifier.dart';

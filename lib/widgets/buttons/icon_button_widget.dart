@@ -34,9 +34,9 @@ class IconButtonWidget extends StatelessWidget {
       child: Material(
         color: backgroundColor ?? Colors.transparent,
         borderRadius: .circular(radius),
-        child: InkWell(
-          borderRadius: .circular(radius),
-          overlayColor: WidgetStatePropertyAll(overlayColor),
+        child: GestureDetector(
+          // borderRadius: .circular(radius),
+          // overlayColor: WidgetStatePropertyAll(overlayColor),
           onTap: onPressed,
           child: Padding(
             padding: padding,

@@ -987,4 +987,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get deleteAccount => 'Удалить аккаунт';
+
+  @override
+  String get paymentMethods => 'Способы оплаты';
+
+  @override
+  String get myProfile => 'Моя анкета';
+
+  @override
+  String get loginByOwner => 'Войти как\nсобственник';
 }

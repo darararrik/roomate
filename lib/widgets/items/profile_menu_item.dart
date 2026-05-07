@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
@@ -42,7 +43,12 @@ class ProfileMenuItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: S.p4),
-              AppIcon(AppIcons.arrowRight, color: context.colors.graysIcon500),
+              AppIcon(
+                AppIcons.arrowRight,
+                color: context.colors.graysIcon500,
+                width: S.p32,
+                height: S.p32,
+              ),
             ],
           ),
         ),

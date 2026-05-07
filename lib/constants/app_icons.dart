@@ -6,7 +6,6 @@ abstract class AppIcons {
   static const String edit = 'assets/icons/Edit.svg';
   static const String edit2 = 'assets/icons/Edit2.svg';
   static const String edit3 = 'assets/icons/Edit3.svg';
-  static const String animal = 'assets/icons/animal.svg';
   static const String arrowDown = 'assets/icons/arrow_down.svg';
   static const String arrowLeft = 'assets/icons/arrow_left.svg';
   static const String arrowRight = 'assets/icons/arrow_right.svg';

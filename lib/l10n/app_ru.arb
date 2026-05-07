@@ -324,7 +324,10 @@
   "analytics":"Аналитика",
   "myTransactions":"Мои сделки",
   "myAccount": "Мой аккаунт",
-  "deleteAccount": "Удалить аккаунт"
+  "deleteAccount": "Удалить аккаунт",
+  "paymentMethods": "Способы оплаты",
+  "myProfile":"Моя анкета",
+  "loginByOwner":"Войти как\nсобственник"
 
 
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
@@ -63,8 +62,8 @@ class ProfileListItem extends StatelessWidget {
             child: AppIcon(
               AppIcons.arrowRight,
               color: context.colors.graysIcon500,
-              width: S.p24,
-              height: S.p24,
+              width: S.p32,
+              height: S.p32,
             ),
           ),
         ],
