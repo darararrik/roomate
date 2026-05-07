@@ -219,13 +219,13 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.male,
                   title: context.l10n.traitGender,
-                  value: 'Не выбран',
+                  value: context.l10n.notSelectedSingle,
                   onTap: () => _showPlaceholderBottomSheet(context, context.l10n.traitGender),
                 ),
                 ProfileListItem(
                   iconPath: AppIcons.cake,
                   title: context.l10n.traitAge,
-                  value: 'Не выбраны',
+                  value: context.l10n.notSelectedPlural,
                   onTap: () => _showPlaceholderBottomSheet(context, context.l10n.traitAge),
                 ),
               ].separated(const SizedBox(height: S.p8)),

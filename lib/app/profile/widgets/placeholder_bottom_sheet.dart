@@ -17,7 +17,7 @@ class PlaceholderBottomSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Редактирование этого пункта будет добавлено позже',
+              context.l10n.profileItemEditLater,
               textAlign: TextAlign.center,
               style: context.typography.bodyDescription.copyWith(
                 color: context.colors.graysText400,

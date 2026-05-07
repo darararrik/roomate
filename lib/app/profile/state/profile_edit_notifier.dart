@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/notifier/global_profile/global_profile_notifier.dart';
 import 'package:roomate/notifier/navigation/navigation_provider.dart';
+import 'package:roomate/utils/extensions.dart';
 
 part 'profile_edit_notifier.freezed.dart';
 part 'profile_edit_notifier.g.dart';
@@ -31,10 +32,11 @@ class ProfileEditNotifier extends _$ProfileEditNotifier {
   Future<void> save() async {
     final firstName = state.firstName.trim();
     final lastName = state.lastName.trim();
+    final locale = ref.l10n;
 
     state = state.copyWith(
-      firstNameError: firstName.isEmpty ? 'Имя обязательно' : '',
-      lastNameError: lastName.isEmpty ? 'Фамилия обязательна' : '',
+      firstNameError: firstName.isEmpty ? locale.profileEditFirstNameRequired : '',
+      lastNameError: lastName.isEmpty ? locale.profileEditLastNameRequired : '',
     );
 
     if (firstName.isEmpty || lastName.isEmpty || !state.hasChanges) return;
@@ -55,7 +57,7 @@ class ProfileEditNotifier extends _$ProfileEditNotifier {
 
       final message = error.messages.isNotEmpty
           ? error.messages
-          : 'Не удалось сохранить данные';
+          : locale.profileEditSaveFailed;
       ref.read(navigationServiceProvider).showSnackBar(message: message);
       return;
     }

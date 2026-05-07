@@ -94,12 +94,6 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ru')];
 
-  /// No description provided for @russian.
-  ///
-  /// In ru, this message translates to:
-  /// **'Русский'**
-  String get russian;
-
   /// No description provided for @russiaPhonePrefix.
   ///
   /// In ru, this message translates to:
@@ -328,12 +322,6 @@ abstract class AppLocalizations {
   /// **'Мы отправим код подтверждения'**
   String get descriptionSMSCode;
 
-  /// No description provided for @enterPhoneNumber.
-  ///
-  /// In ru, this message translates to:
-  /// **'Введите номер'**
-  String get enterPhoneNumber;
-
   /// No description provided for @enterSMSCode.
   ///
   /// In ru, this message translates to:
@@ -513,30 +501,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Верификация'**
   String get verification;
-
-  /// No description provided for @profileSubtitle.
-  ///
-  /// In ru, this message translates to:
-  /// **'Изменение ваших данных'**
-  String get profileSubtitle;
-
-  /// No description provided for @verificationSubtitle.
-  ///
-  /// In ru, this message translates to:
-  /// **'Подтверждение вашего профиля'**
-  String get verificationSubtitle;
-
-  /// No description provided for @supportSubtitle.
-  ///
-  /// In ru, this message translates to:
-  /// **'Сообщите о проблеме'**
-  String get supportSubtitle;
-
-  /// No description provided for @settingsSubtitle.
-  ///
-  /// In ru, this message translates to:
-  /// **'Ваш аккаунт, уведомления'**
-  String get settingsSubtitle;
 
   /// No description provided for @basicSection.
   ///
@@ -784,23 +748,11 @@ abstract class AppLocalizations {
   /// **'Загрузка...'**
   String get loading;
 
-  /// No description provided for @tryAgain.
-  ///
-  /// In ru, this message translates to:
-  /// **'Повторить попытку'**
-  String get tryAgain;
-
   /// No description provided for @success.
   ///
   /// In ru, this message translates to:
   /// **'Успешно'**
   String get success;
-
-  /// No description provided for @yes.
-  ///
-  /// In ru, this message translates to:
-  /// **'Да'**
-  String get yes;
 
   /// No description provided for @no.
   ///
@@ -813,12 +765,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'ОК'**
   String get ok;
-
-  /// No description provided for @close.
-  ///
-  /// In ru, this message translates to:
-  /// **'Закрыть'**
-  String get close;
 
   /// No description provided for @home.
   ///
@@ -856,18 +802,6 @@ abstract class AppLocalizations {
   /// **'Тема'**
   String get theme;
 
-  /// No description provided for @darkMode.
-  ///
-  /// In ru, this message translates to:
-  /// **'Тёмная тема'**
-  String get darkMode;
-
-  /// No description provided for @lightMode.
-  ///
-  /// In ru, this message translates to:
-  /// **'Светлая тема'**
-  String get lightMode;
-
   /// No description provided for @welcome.
   ///
   /// In ru, this message translates to:
@@ -879,18 +813,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Войти в аккаунт'**
   String get signIn;
-
-  /// No description provided for @signUp.
-  ///
-  /// In ru, this message translates to:
-  /// **'Создать аккаунт'**
-  String get signUp;
-
-  /// No description provided for @forgotPassword.
-  ///
-  /// In ru, this message translates to:
-  /// **'Забыли пароль?'**
-  String get forgotPassword;
 
   /// No description provided for @send.
   ///
@@ -928,12 +850,6 @@ abstract class AppLocalizations {
   /// **'Обновить'**
   String get update;
 
-  /// No description provided for @viewAll.
-  ///
-  /// In ru, this message translates to:
-  /// **'Показать всё'**
-  String get viewAll;
-
   /// No description provided for @advertisementSuccessfullyCreated.
   ///
   /// In ru, this message translates to:
@@ -945,12 +861,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».'**
   String get editOrSupplementAdvertisement;
-
-  /// No description provided for @wrongCode.
-  ///
-  /// In ru, this message translates to:
-  /// **'Некорректный код телефона'**
-  String get wrongCode;
 
   /// No description provided for @letsGetToKnowEachOther.
   ///
@@ -975,78 +885,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Женский'**
   String get genderFemale;
-
-  /// No description provided for @personalityIntrovert.
-  ///
-  /// In ru, this message translates to:
-  /// **'Интроверт'**
-  String get personalityIntrovert;
-
-  /// No description provided for @personalityAmbivert.
-  ///
-  /// In ru, this message translates to:
-  /// **'Амбиверт'**
-  String get personalityAmbivert;
-
-  /// No description provided for @personalityExtrovert.
-  ///
-  /// In ru, this message translates to:
-  /// **'Экстраверт'**
-  String get personalityExtrovert;
-
-  /// No description provided for @habitSmoking.
-  ///
-  /// In ru, this message translates to:
-  /// **'Курение'**
-  String get habitSmoking;
-
-  /// No description provided for @habitAlcohol.
-  ///
-  /// In ru, this message translates to:
-  /// **'Алкоголь'**
-  String get habitAlcohol;
-
-  /// No description provided for @habitProfanity.
-  ///
-  /// In ru, this message translates to:
-  /// **'Ненормативная лексика'**
-  String get habitProfanity;
-
-  /// No description provided for @frequencyNever.
-  ///
-  /// In ru, this message translates to:
-  /// **'Не привожу'**
-  String get frequencyNever;
-
-  /// No description provided for @frequencySometimes.
-  ///
-  /// In ru, this message translates to:
-  /// **'Иногда'**
-  String get frequencySometimes;
-
-  /// No description provided for @frequencyOften.
-  ///
-  /// In ru, this message translates to:
-  /// **'Часто'**
-  String get frequencyOften;
-
-  /// No description provided for @lifestyleEarlyBird.
-  ///
-  /// In ru, this message translates to:
-  /// **'Жаворонок'**
-  String get lifestyleEarlyBird;
-
-  /// No description provided for @lifestyleNightOwl.
-  ///
-  /// In ru, this message translates to:
-  /// **'Сова'**
-  String get lifestyleNightOwl;
-
-  /// No description provided for @lifestyleNoRoutine.
-  ///
-  /// In ru, this message translates to:
-  /// **'Без режима'**
-  String get lifestyleNoRoutine;
 
   /// No description provided for @almostDone.
   ///
@@ -1126,41 +964,11 @@ abstract class AppLocalizations {
   /// **'Проверка займёт некоторое время. Статус можно отслеживать в профиле.'**
   String get verificationWaitTime;
 
-  /// No description provided for @verificationSuccess.
-  ///
-  /// In ru, this message translates to:
-  /// **'Верификация пройдена!'**
-  String get verificationSuccess;
-
-  /// No description provided for @verificationSuccessDescription.
-  ///
-  /// In ru, this message translates to:
-  /// **'Ваши документы проверены. Продолжайте поиск с преимуществом'**
-  String get verificationSuccessDescription;
-
-  /// No description provided for @verificationFailed.
-  ///
-  /// In ru, this message translates to:
-  /// **'Верификация не пройдена'**
-  String get verificationFailed;
-
-  /// No description provided for @verificationFailedDescription.
-  ///
-  /// In ru, this message translates to:
-  /// **'Что-то пошло не так. Повторите попытку позже.'**
-  String get verificationFailedDescription;
-
   /// No description provided for @yourGender.
   ///
   /// In ru, this message translates to:
   /// **'Ваш пол'**
   String get yourGender;
-
-  /// No description provided for @confirmThroughGosuslugi.
-  ///
-  /// In ru, this message translates to:
-  /// **'Подтвердить через Госуслуги'**
-  String get confirmThroughGosuslugi;
 
   /// No description provided for @photoAndVideo.
   ///
@@ -1240,12 +1048,6 @@ abstract class AppLocalizations {
   /// **'Объявление'**
   String get advertisement;
 
-  /// No description provided for @wantToExit.
-  ///
-  /// In ru, this message translates to:
-  /// **'Хотите выйти?'**
-  String get wantToExit;
-
   /// No description provided for @draftWillBeSaved.
   ///
   /// In ru, this message translates to:
@@ -1270,95 +1072,11 @@ abstract class AppLocalizations {
   /// **'Аренда'**
   String get rent;
 
-  /// No description provided for @longTerm.
-  ///
-  /// In ru, this message translates to:
-  /// **'Долгосрочная'**
-  String get longTerm;
-
-  /// No description provided for @daily.
-  ///
-  /// In ru, this message translates to:
-  /// **'Посуточно'**
-  String get daily;
-
-  /// No description provided for @trade.
-  ///
-  /// In ru, this message translates to:
-  /// **'Обмен'**
-  String get trade;
-
-  /// No description provided for @whoReadyToRentTo.
-  ///
-  /// In ru, this message translates to:
-  /// **'Кому готов сдавать'**
-  String get whoReadyToRentTo;
-
-  /// No description provided for @toOnePerson.
-  ///
-  /// In ru, this message translates to:
-  /// **'Одному человеку'**
-  String get toOnePerson;
-
-  /// No description provided for @toGroup.
-  ///
-  /// In ru, this message translates to:
-  /// **'Компании'**
-  String get toGroup;
-
-  /// No description provided for @toFamily.
-  ///
-  /// In ru, this message translates to:
-  /// **'Семье'**
-  String get toFamily;
-
-  /// No description provided for @toStudents.
-  ///
-  /// In ru, this message translates to:
-  /// **'Студентам'**
-  String get toStudents;
-
-  /// No description provided for @longTermRent.
-  ///
-  /// In ru, this message translates to:
-  /// **'Долгосрочная аренда'**
-  String get longTermRent;
-
-  /// No description provided for @whatTypeOfRoom.
-  ///
-  /// In ru, this message translates to:
-  /// **'Какое у вас помещение?'**
-  String get whatTypeOfRoom;
-
-  /// No description provided for @residential.
-  ///
-  /// In ru, this message translates to:
-  /// **'Жилое'**
-  String get residential;
-
-  /// No description provided for @commercial.
-  ///
-  /// In ru, this message translates to:
-  /// **'Коммерческое'**
-  String get commercial;
-
   /// No description provided for @whatIsYourAddress.
   ///
   /// In ru, this message translates to:
   /// **'Какой у вас адрес?'**
   String get whatIsYourAddress;
-
-  /// No description provided for @moscowCity.
-  ///
-  /// In ru, this message translates to:
-  /// **'г. Москва'**
-  String get moscowCity;
-
-  /// No description provided for @locationDetailsHint.
-  ///
-  /// In ru, this message translates to:
-  /// **'Метро, район, адрес, шоссе, ЖК'**
-  String get locationDetailsHint;
 
   /// No description provided for @apartment.
   ///
@@ -1366,41 +1084,17 @@ abstract class AppLocalizations {
   /// **'Квартира'**
   String get apartment;
 
-  /// No description provided for @apartmentsRoom.
-  ///
-  /// In ru, this message translates to:
-  /// **'Апартаменты'**
-  String get apartmentsRoom;
-
   /// No description provided for @room.
   ///
   /// In ru, this message translates to:
   /// **'Комната'**
   String get room;
 
-  /// No description provided for @bedPlace.
-  ///
-  /// In ru, this message translates to:
-  /// **'Койко-место'**
-  String get bedPlace;
-
   /// No description provided for @house.
   ///
   /// In ru, this message translates to:
   /// **'Дом'**
   String get house;
-
-  /// No description provided for @cottage.
-  ///
-  /// In ru, this message translates to:
-  /// **'Коттедж'**
-  String get cottage;
-
-  /// No description provided for @townhouse.
-  ///
-  /// In ru, this message translates to:
-  /// **'Таунхаус'**
-  String get townhouse;
 
   /// No description provided for @apartmentNumber.
   ///
@@ -1426,18 +1120,6 @@ abstract class AppLocalizations {
   /// **'Количество комнат'**
   String get numberOfRooms;
 
-  /// No description provided for @studio.
-  ///
-  /// In ru, this message translates to:
-  /// **'Студия'**
-  String get studio;
-
-  /// No description provided for @openPlan.
-  ///
-  /// In ru, this message translates to:
-  /// **'Свободная планировка'**
-  String get openPlan;
-
   /// No description provided for @apartmentArea.
   ///
   /// In ru, this message translates to:
@@ -1455,24 +1137,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Планировка'**
   String get layout;
-
-  /// No description provided for @adjoining.
-  ///
-  /// In ru, this message translates to:
-  /// **'Смежная'**
-  String get adjoining;
-
-  /// No description provided for @isolated.
-  ///
-  /// In ru, this message translates to:
-  /// **'Изолированная'**
-  String get isolated;
-
-  /// No description provided for @combinedLayout.
-  ///
-  /// In ru, this message translates to:
-  /// **'Смежно-изолированная'**
-  String get combinedLayout;
 
   /// No description provided for @floor.
   ///
@@ -1762,24 +1426,6 @@ abstract class AppLocalizations {
   /// **'Выберите адрес'**
   String get validationPickStreet;
 
-  /// No description provided for @validationHousingDetails.
-  ///
-  /// In ru, this message translates to:
-  /// **'Укажите комнатность, планировку, площадь и этаж'**
-  String get validationHousingDetails;
-
-  /// No description provided for @validationDealTerms.
-  ///
-  /// In ru, this message translates to:
-  /// **'Укажите валюту, цену, предоплату, срок и условия аренды'**
-  String get validationDealTerms;
-
-  /// No description provided for @validationDescription.
-  ///
-  /// In ru, this message translates to:
-  /// **'Заполните заголовок и описание (минимум 10 символов в описании)'**
-  String get validationDescription;
-
   /// No description provided for @validationContactMethod.
   ///
   /// In ru, this message translates to:
@@ -1822,12 +1468,6 @@ abstract class AppLocalizations {
   /// **'Валюта'**
   String get createAdCurrencyTitle;
 
-  /// No description provided for @createAdConfirmationLocationTitle.
-  ///
-  /// In ru, this message translates to:
-  /// **'Расположение'**
-  String get createAdConfirmationLocationTitle;
-
   /// No description provided for @createAdConfirmationPhoneTitle.
   ///
   /// In ru, this message translates to:
@@ -1840,23 +1480,11 @@ abstract class AppLocalizations {
   /// **'Цена аренды'**
   String get createAdConfirmationPriceTitle;
 
-  /// No description provided for @placeholderDash.
-  ///
-  /// In ru, this message translates to:
-  /// **'—'**
-  String get placeholderDash;
-
   /// No description provided for @createAdCityOmsk.
   ///
   /// In ru, this message translates to:
   /// **'Омск'**
   String get createAdCityOmsk;
-
-  /// No description provided for @createAdStreetPickerSubtitle.
-  ///
-  /// In ru, this message translates to:
-  /// **'Улицы города, поиск'**
-  String get createAdStreetPickerSubtitle;
 
   /// No description provided for @filtersCityMoscowTitle.
   ///
@@ -2031,6 +1659,102 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Войти как\nсобственник'**
   String get loginByOwner;
+
+  /// No description provided for @loginByTenant.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти как\nарендатор'**
+  String get loginByTenant;
+
+  /// No description provided for @ownerWallet.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мой кошелек'**
+  String get ownerWallet;
+
+  /// No description provided for @saving.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохраняем...'**
+  String get saving;
+
+  /// No description provided for @logoutConfirmMessage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы уверены, что хотите выйти из аккаунта?'**
+  String get logoutConfirmMessage;
+
+  /// No description provided for @logoutFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось выйти из аккаунта'**
+  String get logoutFailed;
+
+  /// No description provided for @preferencesSaveFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось сохранить предпочтения'**
+  String get preferencesSaveFailed;
+
+  /// No description provided for @sessionExpiredReLogin.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сессия истекла. Войдите снова.'**
+  String get sessionExpiredReLogin;
+
+  /// No description provided for @profileLoadFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось загрузить профиль'**
+  String get profileLoadFailed;
+
+  /// No description provided for @profileEditSaveFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось сохранить данные'**
+  String get profileEditSaveFailed;
+
+  /// No description provided for @profileEditFirstNameRequired.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя обязательно'**
+  String get profileEditFirstNameRequired;
+
+  /// No description provided for @profileEditLastNameRequired.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фамилия обязательна'**
+  String get profileEditLastNameRequired;
+
+  /// No description provided for @loginToUseAllFeatures.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войдите, чтобы пользоваться всеми возможностями приложения.'**
+  String get loginToUseAllFeatures;
+
+  /// No description provided for @notSelectedSingle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не выбран'**
+  String get notSelectedSingle;
+
+  /// No description provided for @notSelectedPlural.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не выбраны'**
+  String get notSelectedPlural;
+
+  /// No description provided for @profileItemEditLater.
+  ///
+  /// In ru, this message translates to:
+  /// **'Редактирование этого пункта будет добавлено позже'**
+  String get profileItemEditLater;
+
+  /// No description provided for @profileLoadErrorWithDetails.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка загрузки: {error}'**
+  String profileLoadErrorWithDetails(Object error);
 }
 
 class _AppLocalizationsDelegate

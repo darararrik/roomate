@@ -47,7 +47,7 @@ class PreferenceBottomSheet extends HookConsumerWidget {
               ),
             const SizedBox(height: S.p24),
             PrimaryButton(
-              text: isSaving.value ? 'Сохраняем...' : context.l10n.save,
+              text: isSaving.value ? context.l10n.saving : context.l10n.save,
               onPressed: isSaving.value
                   ? null
                   : () async {

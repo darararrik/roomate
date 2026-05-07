@@ -9,9 +9,6 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get russian => 'Русский';
-
-  @override
   String get russiaPhonePrefix => '+7';
 
   @override
@@ -127,9 +124,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get descriptionSMSCode => 'Мы отправим код подтверждения';
 
   @override
-  String get enterPhoneNumber => 'Введите номер';
-
-  @override
   String get enterSMSCode => 'Введите смс-код';
 
   @override
@@ -220,18 +214,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get verification => 'Верификация';
-
-  @override
-  String get profileSubtitle => 'Изменение ваших данных';
-
-  @override
-  String get verificationSubtitle => 'Подтверждение вашего профиля';
-
-  @override
-  String get supportSubtitle => 'Сообщите о проблеме';
-
-  @override
-  String get settingsSubtitle => 'Ваш аккаунт, уведомления';
 
   @override
   String get basicSection => 'Основные';
@@ -357,22 +339,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get loading => 'Загрузка...';
 
   @override
-  String get tryAgain => 'Повторить попытку';
-
-  @override
   String get success => 'Успешно';
-
-  @override
-  String get yes => 'Да';
 
   @override
   String get no => 'Нет';
 
   @override
   String get ok => 'ОК';
-
-  @override
-  String get close => 'Закрыть';
 
   @override
   String get home => 'Домой';
@@ -393,22 +366,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get theme => 'Тема';
 
   @override
-  String get darkMode => 'Тёмная тема';
-
-  @override
-  String get lightMode => 'Светлая тема';
-
-  @override
   String get welcome => 'Добро пожаловать';
 
   @override
   String get signIn => 'Войти в аккаунт';
-
-  @override
-  String get signUp => 'Создать аккаунт';
-
-  @override
-  String get forgotPassword => 'Забыли пароль?';
 
   @override
   String get send => 'Отправить';
@@ -429,17 +390,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get update => 'Обновить';
 
   @override
-  String get viewAll => 'Показать всё';
-
-  @override
   String get advertisementSuccessfullyCreated => 'Объявление успешно создано!';
 
   @override
   String get editOrSupplementAdvertisement =>
       'Изменить или дополнить объявление можно в профиле, в разделе «Мои объявления».';
-
-  @override
-  String get wrongCode => 'Некорректный код телефона';
 
   @override
   String get letsGetToKnowEachOther => 'Давайте познакомимся';
@@ -453,42 +408,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get genderFemale => 'Женский';
-
-  @override
-  String get personalityIntrovert => 'Интроверт';
-
-  @override
-  String get personalityAmbivert => 'Амбиверт';
-
-  @override
-  String get personalityExtrovert => 'Экстраверт';
-
-  @override
-  String get habitSmoking => 'Курение';
-
-  @override
-  String get habitAlcohol => 'Алкоголь';
-
-  @override
-  String get habitProfanity => 'Ненормативная лексика';
-
-  @override
-  String get frequencyNever => 'Не привожу';
-
-  @override
-  String get frequencySometimes => 'Иногда';
-
-  @override
-  String get frequencyOften => 'Часто';
-
-  @override
-  String get lifestyleEarlyBird => 'Жаворонок';
-
-  @override
-  String get lifestyleNightOwl => 'Сова';
-
-  @override
-  String get lifestyleNoRoutine => 'Без режима';
 
   @override
   String get almostDone => 'Почти готово!';
@@ -534,24 +453,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Проверка займёт некоторое время. Статус можно отслеживать в профиле.';
 
   @override
-  String get verificationSuccess => 'Верификация пройдена!';
-
-  @override
-  String get verificationSuccessDescription =>
-      'Ваши документы проверены. Продолжайте поиск с преимуществом';
-
-  @override
-  String get verificationFailed => 'Верификация не пройдена';
-
-  @override
-  String get verificationFailedDescription =>
-      'Что-то пошло не так. Повторите попытку позже.';
-
-  @override
   String get yourGender => 'Ваш пол';
-
-  @override
-  String get confirmThroughGosuslugi => 'Подтвердить через Госуслуги';
 
   @override
   String get photoAndVideo => 'Фото и видео квартиры';
@@ -593,9 +495,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get advertisement => 'Объявление';
 
   @override
-  String get wantToExit => 'Хотите выйти?';
-
-  @override
   String get draftWillBeSaved =>
       'Черновик сохранится, можете продолжить заполнение позже';
 
@@ -609,70 +508,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get rent => 'Аренда';
 
   @override
-  String get longTerm => 'Долгосрочная';
-
-  @override
-  String get daily => 'Посуточно';
-
-  @override
-  String get trade => 'Обмен';
-
-  @override
-  String get whoReadyToRentTo => 'Кому готов сдавать';
-
-  @override
-  String get toOnePerson => 'Одному человеку';
-
-  @override
-  String get toGroup => 'Компании';
-
-  @override
-  String get toFamily => 'Семье';
-
-  @override
-  String get toStudents => 'Студентам';
-
-  @override
-  String get longTermRent => 'Долгосрочная аренда';
-
-  @override
-  String get whatTypeOfRoom => 'Какое у вас помещение?';
-
-  @override
-  String get residential => 'Жилое';
-
-  @override
-  String get commercial => 'Коммерческое';
-
-  @override
   String get whatIsYourAddress => 'Какой у вас адрес?';
-
-  @override
-  String get moscowCity => 'г. Москва';
-
-  @override
-  String get locationDetailsHint => 'Метро, район, адрес, шоссе, ЖК';
 
   @override
   String get apartment => 'Квартира';
 
   @override
-  String get apartmentsRoom => 'Апартаменты';
-
-  @override
   String get room => 'Комната';
 
   @override
-  String get bedPlace => 'Койко-место';
-
-  @override
   String get house => 'Дом';
-
-  @override
-  String get cottage => 'Коттедж';
-
-  @override
-  String get townhouse => 'Таунхаус';
 
   @override
   String get apartmentNumber => 'Номер квартиры';
@@ -687,12 +532,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get numberOfRooms => 'Количество комнат';
 
   @override
-  String get studio => 'Студия';
-
-  @override
-  String get openPlan => 'Свободная планировка';
-
-  @override
   String get apartmentArea => 'Площадь квартиры';
 
   @override
@@ -700,15 +539,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get layout => 'Планировка';
-
-  @override
-  String get adjoining => 'Смежная';
-
-  @override
-  String get isolated => 'Изолированная';
-
-  @override
-  String get combinedLayout => 'Смежно-изолированная';
 
   @override
   String get floor => 'Этаж';
@@ -859,18 +689,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get validationPickStreet => 'Выберите адрес';
 
   @override
-  String get validationHousingDetails =>
-      'Укажите комнатность, планировку, площадь и этаж';
-
-  @override
-  String get validationDealTerms =>
-      'Укажите валюту, цену, предоплату, срок и условия аренды';
-
-  @override
-  String get validationDescription =>
-      'Заполните заголовок и описание (минимум 10 символов в описании)';
-
-  @override
   String get validationContactMethod => 'Выберите способ связи';
 
   @override
@@ -892,22 +710,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get createAdCurrencyTitle => 'Валюта';
 
   @override
-  String get createAdConfirmationLocationTitle => 'Расположение';
-
-  @override
   String get createAdConfirmationPhoneTitle => 'Номер телефона';
 
   @override
   String get createAdConfirmationPriceTitle => 'Цена аренды';
 
   @override
-  String get placeholderDash => '—';
-
-  @override
   String get createAdCityOmsk => 'Омск';
-
-  @override
-  String get createAdStreetPickerSubtitle => 'Улицы города, поиск';
 
   @override
   String get filtersCityMoscowTitle => 'г. Москва';
@@ -996,4 +805,57 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get loginByOwner => 'Войти как\nсобственник';
+
+  @override
+  String get loginByTenant => 'Войти как\nарендатор';
+
+  @override
+  String get ownerWallet => 'Мой кошелек';
+
+  @override
+  String get saving => 'Сохраняем...';
+
+  @override
+  String get logoutConfirmMessage =>
+      'Вы уверены, что хотите выйти из аккаунта?';
+
+  @override
+  String get logoutFailed => 'Не удалось выйти из аккаунта';
+
+  @override
+  String get preferencesSaveFailed => 'Не удалось сохранить предпочтения';
+
+  @override
+  String get sessionExpiredReLogin => 'Сессия истекла. Войдите снова.';
+
+  @override
+  String get profileLoadFailed => 'Не удалось загрузить профиль';
+
+  @override
+  String get profileEditSaveFailed => 'Не удалось сохранить данные';
+
+  @override
+  String get profileEditFirstNameRequired => 'Имя обязательно';
+
+  @override
+  String get profileEditLastNameRequired => 'Фамилия обязательна';
+
+  @override
+  String get loginToUseAllFeatures =>
+      'Войдите, чтобы пользоваться всеми возможностями приложения.';
+
+  @override
+  String get notSelectedSingle => 'Не выбран';
+
+  @override
+  String get notSelectedPlural => 'Не выбраны';
+
+  @override
+  String get profileItemEditLater =>
+      'Редактирование этого пункта будет добавлено позже';
+
+  @override
+  String profileLoadErrorWithDetails(Object error) {
+    return 'Ошибка загрузки: $error';
+  }
 }

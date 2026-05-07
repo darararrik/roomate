@@ -34,8 +34,11 @@ class OverviewProfileScreen extends ConsumerWidget {
             },
             loading: () =>
                 const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-            error: (err, stack) =>
-                SliverFillRemaining(child: Center(child: Text('Ошибка загрузки: $err'))),
+            error: (err, stack) => SliverFillRemaining(
+              child: Center(
+                child: Text(context.l10n.profileLoadErrorWithDetails(err.toString())),
+              ),
+            ),
           ),
         ],
       ),

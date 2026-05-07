@@ -61,7 +61,7 @@ class _ProfileDataEditBody extends HookConsumerWidget {
         child: Padding(
           padding: const P(horizontal: S.p16, vertical: S.p20),
           child: PrimaryButton(
-            text: editState.isSaving ? 'Сохраняем...' : locale.save,
+            text: editState.isSaving ? locale.saving : locale.save,
             onPressed: editState.canSave ? notifier.save : null,
           ),
         ),

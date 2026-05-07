@@ -82,7 +82,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     if (error != null) {
       final message = error.messages.isNotEmpty
           ? error.messages
-          : 'Не удалось сохранить предпочтения';
+          : ref.l10n.preferencesSaveFailed;
       ref.nav.showSnackBar(message: message);
       return false;
     }
@@ -98,7 +98,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     final shouldLogout = await ref.nav.showAlertDialog<bool>(
       builder: (context) => AlertWidget(
         title: ref.l10n.confirmation,
-        content: 'Вы уверены, что хотите выйти из аккаунта?',
+        content: ref.l10n.logoutConfirmMessage,
         onCancel: () => Navigator.of(context).pop(false),
         onConfirm: () => Navigator.of(context).pop(true),
       ),
@@ -110,7 +110,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     if (error != null) {
       final message = error.messages.isNotEmpty
           ? error.messages
-          : 'Не удалось выйти из аккаунта';
+          : ref.l10n.logoutFailed;
       ref.nav.showSnackBar(message: message);
       return;
     }
@@ -131,10 +131,11 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   String preferenceTitle(
     List<OptionModel> catalog,
     List<int> selectedIds, {
-    String emptyTitle = 'Не выбраны',
+    String? emptyTitle,
   }) {
+    final resolvedEmptyTitle = emptyTitle ?? ref.l10n.notSelectedPlural;
     if (selectedIds.isEmpty) {
-      return emptyTitle;
+      return resolvedEmptyTitle;
     }
 
     final titlesById = {for (final option in catalog) option.id: option.title};
@@ -147,18 +148,18 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
       }
     }
 
-    return titles.isEmpty ? emptyTitle : titles.join(', ');
+    return titles.isEmpty ? resolvedEmptyTitle : titles.join(', ');
   }
 
   void _showFetchProfileError(RemoteException error) {
     final message = switch (error.kind) {
       RemoteExceptionKind.unauthorized ||
       RemoteExceptionKind.refreshTokenFailed =>
-        'Сессия истекла. Войдите снова.',
+        ref.l10n.sessionExpiredReLogin,
       _ =>
         error.messages.isNotEmpty
             ? error.messages
-            : 'Не удалось загрузить профиль',
+            : ref.l10n.profileLoadFailed,
     };
 
     ref.nav.showSnackBar(message: message);

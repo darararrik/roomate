@@ -27,7 +27,7 @@ class GuestOverviewProfile extends ConsumerWidget {
               Padding(
                 padding: const P(horizontal: S.p24),
                 child: Text(
-                  'Войдите, чтобы пользоваться всеми возможностями приложения.',
+                  context.l10n.loginToUseAllFeatures,
                   textAlign: TextAlign.center,
                   style: context.typography.bodyDescription.copyWith(
                     color: context.colors.graysText400,

@@ -20,7 +20,10 @@ class MyAccountScreen extends ConsumerWidget {
           return CustomScrollView(
             slivers: [
               AB(
-                title: Text(context.l10n.myAccount, style: context.typography.headline1),
+                title: Text(
+                  context.l10n.myAccount,
+                  style: context.typography.headline1,
+                ),
                 centerTitle: false,
               ),
               SliverPadding(
@@ -40,14 +43,15 @@ class MyAccountScreen extends ConsumerWidget {
                           spacing: S.p4,
                           children: [
                             Text(
-                              "${profile.firstName} ${profile.lastName}",
+                              '${profile.firstName} ${profile.lastName}'.trim(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: context.typography.bodyTitle,
                             ),
                             Text(
                               profile.phone,
-                              style: context.typography.bodyDescription.copyWith(
-                                color: context.colors.graysText400,
-                              ),
+                              style: context.typography.bodyDescription
+                                  .copyWith(color: context.colors.graysText400),
                             ),
                           ],
                         ),
@@ -73,28 +77,9 @@ class MyAccountScreen extends ConsumerWidget {
                     crossAxisSpacing: S.p12,
                     childAspectRatio: 1.28,
                   ),
-                  delegate: SliverChildListDelegate.fixed([
-                    AccountActionCard(
-                      iconPath: AppIcons.personSettings,
-                      title: context.l10n.myProfile,
-                      onTap: () => context.router.push(const MyQuestionnaireRoute()),
-                    ),
-                    AccountActionCard(
-                      iconPath: AppIcons.personSettings,
-                      title: context.l10n.verification,
-                      onTap: () {},
-                    ),
-                    AccountActionCard(
-                      iconPath: AppIcons.personSettings,
-                      title: context.l10n.paymentMethods,
-                      onTap: () {},
-                    ),
-                    AccountActionCard(
-                      iconPath: AppIcons.personSettings,
-                      title: context.l10n.loginByOwner,
-                      onTap: () {},
-                    ),
-                  ]),
+                  delegate: SliverChildListDelegate.fixed(
+                    _accountActions(context, profile.isOwner),
+                  ),
                 ),
               ),
             ],
@@ -104,5 +89,51 @@ class MyAccountScreen extends ConsumerWidget {
         loading: () => const LoadingWidget(),
       ),
     );
+  }
+
+  List<Widget> _accountActions(BuildContext context, bool isOwner) {
+    if (isOwner) {
+      return [
+        AccountActionCard(
+          iconPath: AppIcons.personSettings,
+          title: context.l10n.ownerWallet,
+          onTap: () {},
+        ),
+        AccountActionCard(
+          iconPath: AppIcons.personSettings,
+          title: context.l10n.verification,
+          onTap: () {},
+        ),
+        const SizedBox.shrink(),
+        AccountActionCard(
+          iconPath: AppIcons.personSettings,
+          title: context.l10n.loginByTenant,
+          onTap: () {},
+        ),
+      ];
+    }
+
+    return [
+      AccountActionCard(
+        iconPath: AppIcons.personSettings,
+        title: context.l10n.myProfile,
+        onTap: () => context.router.push(const MyQuestionnaireRoute()),
+      ),
+      AccountActionCard(
+        iconPath: AppIcons.personSettings,
+        title: context.l10n.verification,
+        onTap: () {},
+      ),
+      AccountActionCard(
+        iconPath: AppIcons.personSettings,
+        title: context.l10n.paymentMethods,
+        onTap: () {},
+      ),
+      AccountActionCard(
+        iconPath: AppIcons.personSettings,
+        title: context.l10n.loginByOwner,
+        onTap: () {},
+      ),
+    ];
   }
 }
