@@ -53,13 +53,24 @@ abstract class CreateAdFormMapper {
     String role = 'Собственник',
   }) {
     final whoToRent = request.whoCanRentIds ?? const <int>{};
-    final whoToRentNames = whoToRent.map(_mapWhoToRent).whereType<String>().toList();
+    final whoToRentNames = whoToRent
+        .map(_mapWhoToRent)
+        .whereType<String>()
+        .toList();
 
     final amenityNames = <String>{
-      ...(request.amenitiesIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
-      ...(request.bathroomIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
-      ...(request.appliancesIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
-      ...(request.rentConditionsIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
+      ...(request.amenitiesIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
+      ...(request.bathroomIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
+      ...(request.appliancesIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
+      ...(request.rentConditionsIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
     }.toList();
 
     return ApartamentData(
@@ -71,7 +82,9 @@ abstract class CreateAdFormMapper {
       imageUrls: const [],
       isVerification: false,
       price: _formatNumber(request.cost ?? 0),
-      roomsCount: _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId) ?? '',
+      roomsCount:
+          _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId) ??
+          '',
       area: _formatNumber(request.apartmentArea ?? 0),
       floor: request.floor ?? 0,
       totalFloor: request.totalFloors ?? 0,
@@ -110,7 +123,9 @@ abstract class CreateAdFormMapper {
         StoveType.values,
         (value) => value.title,
       ),
-      dealGoal: _mapDealGoal(_findOptionTitle(AdFormOptionKeys.rentGoal, request.rentGoalId)),
+      dealGoal: _mapDealGoal(
+        _findOptionTitle(AdFormOptionKeys.rentGoal, request.rentGoalId),
+      ),
       rentTerm: _mapByTitle(
         _findOptionTitle(AdFormOptionKeys.rentPeriod, request.rentPeriodId),
         RentalConditions.values,
@@ -127,7 +142,10 @@ abstract class CreateAdFormMapper {
         RentalPeriod.values,
         (value) => value.title,
       ),
-      deposit: _formatMoney(request.deposit ?? 0, request.selectedCurrency ?? Currency.rub),
+      deposit: _formatMoney(
+        request.deposit ?? 0,
+        request.selectedCurrency ?? Currency.rub,
+      ),
       amenities: amenityNames,
     );
   }
@@ -137,19 +155,11 @@ abstract class CreateAdFormMapper {
     required String fallbackDistrict,
     required int apartmentNumber,
   }) {
-    final street = OmskStreetsMockJson.fetchStreets.cast<Map<String, dynamic>>().firstWhere(
-      (item) => item['id'] == selectedStreetId,
-      orElse: () => const {},
-    );
-
-    final streetName = (street['name'] as String?)?.trim() ?? '';
-    final district = (street['district'] as String?)?.trim() ?? fallbackDistrict.trim();
-    final parts = <String>['Омск'];
-
-    if (streetName.isNotEmpty) {
-      parts.add(streetName);
-    } else if (district.isNotEmpty) {
-      parts.add(district);
+    final parts = <String>[];
+    if (fallbackDistrict.trim().isNotEmpty) {
+      parts.add(fallbackDistrict.trim());
+    } else if (selectedStreetId > 0) {
+      parts.add('ID $selectedStreetId');
     }
 
     if (apartmentNumber > 0) {
@@ -161,8 +171,15 @@ abstract class CreateAdFormMapper {
 
   static String _buildFallbackTitle(CreateAdFormRequestData request) {
     final propertyType =
-        _findOptionTitle(AdFormOptionKeys.propertyType, request.propertyTypeId) ?? 'Объект';
-    final roomsCount = _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId);
+        _findOptionTitle(
+          AdFormOptionKeys.propertyType,
+          request.propertyTypeId,
+        ) ??
+        'Объект';
+    final roomsCount = _findOptionTitle(
+      AdFormOptionKeys.roomsCount,
+      request.roomsCountId,
+    );
     if (roomsCount == null || roomsCount.isEmpty) {
       return propertyType;
     }

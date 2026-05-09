@@ -535,7 +535,7 @@ class InputDetailsApStepRoute extends _i50.PageRouteInfo<void> {
 class LocationRoute extends _i50.PageRouteInfo<LocationRouteArgs> {
   LocationRoute({
     _i51.Key? key,
-    required void Function(_i52.StreetModel) onSelected,
+    required void Function(_i52.LocationSelectionModel) onSelected,
     List<_i50.PageRouteInfo>? children,
   }) : super(
          LocationRoute.name,
@@ -559,7 +559,7 @@ class LocationRouteArgs {
 
   final _i51.Key? key;
 
-  final void Function(_i52.StreetModel) onSelected;
+  final void Function(_i52.LocationSelectionModel) onSelected;
 
   @override
   String toString() {

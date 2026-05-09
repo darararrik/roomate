@@ -15,6 +15,17 @@ class LocationStepScreen extends HookConsumerWidget {
     final flow = ref.watch(createAdFlowProvider);
     final flowNotifier = ref.read(createAdFlowProvider.notifier);
     final notifier = ref.read(adFormProvider.notifier);
+    final profileCity = ref.watch(
+      globalProfileProvider.select((state) => state.value?.city ?? ''),
+    );
+    final citiesState = ref.watch(citiesProvider);
+    final cityTitle = citiesState.maybeWhen(
+      data: (cities) {
+        if (profileCity.trim().isNotEmpty) return profileCity;
+        return cities.isNotEmpty ? cities.first.title : '';
+      },
+      orElse: () => profileCity,
+    );
     final apartmentController = useTextEditingController();
     return ListView(
       children: [
@@ -36,8 +47,8 @@ class LocationStepScreen extends HookConsumerWidget {
         ),
         RegionListItem(
           iconPath: AppIcons.city,
-          onTap: () => flowNotifier.openStreetPickerScreen(),
-          title: context.l10n.createAdCityOmsk,
+          onTap: () => flowNotifier.openCityPickerScreen(),
+          title: cityTitle.isNotEmpty ? cityTitle : context.l10n.selectRegion,
           subTitle: ref.watch(selectedStreetNameProvider),
         ),
         Padding(

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApartamentFilterModel {
 
- int get cityId; int get goalId; List<int> get propertyTypeIds; List<int> get roomsCountIds; double? get minPrice; double? get maxPrice; int get rentDurationId; List<int> get districtIds; String get locationTitle; bool get childrenAllowed; bool get petsAllowed; ApartmentSortType get sortType;
+ int get cityId; int get goalId; List<int> get propertyTypeIds; List<int> get roomsCountIds; double? get minPrice; double? get maxPrice; int get rentDurationId; List<int> get districtIds; String get locationTitle; String get addressQuery; bool get childrenAllowed; bool get petsAllowed; ApartmentSortType get sortType;
 /// Create a copy of ApartamentFilterModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ApartamentFilterModelCopyWith<ApartamentFilterModel> get copyWith => _$Apartame
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApartamentFilterModel&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other.propertyTypeIds, propertyTypeIds)&&const DeepCollectionEquality().equals(other.roomsCountIds, roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other.districtIds, districtIds)&&(identical(other.locationTitle, locationTitle) || other.locationTitle == locationTitle)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.sortType, sortType) || other.sortType == sortType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApartamentFilterModel&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other.propertyTypeIds, propertyTypeIds)&&const DeepCollectionEquality().equals(other.roomsCountIds, roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other.districtIds, districtIds)&&(identical(other.locationTitle, locationTitle) || other.locationTitle == locationTitle)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.sortType, sortType) || other.sortType == sortType));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,cityId,goalId,const DeepCollectionEquality().hash(propertyTypeIds),const DeepCollectionEquality().hash(roomsCountIds),minPrice,maxPrice,rentDurationId,const DeepCollectionEquality().hash(districtIds),locationTitle,childrenAllowed,petsAllowed,sortType);
+int get hashCode => Object.hash(runtimeType,cityId,goalId,const DeepCollectionEquality().hash(propertyTypeIds),const DeepCollectionEquality().hash(roomsCountIds),minPrice,maxPrice,rentDurationId,const DeepCollectionEquality().hash(districtIds),locationTitle,addressQuery,childrenAllowed,petsAllowed,sortType);
 
 @override
 String toString() {
-  return 'ApartamentFilterModel(cityId: $cityId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, districtIds: $districtIds, locationTitle: $locationTitle, childrenAllowed: $childrenAllowed, petsAllowed: $petsAllowed, sortType: $sortType)';
+  return 'ApartamentFilterModel(cityId: $cityId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, districtIds: $districtIds, locationTitle: $locationTitle, addressQuery: $addressQuery, childrenAllowed: $childrenAllowed, petsAllowed: $petsAllowed, sortType: $sortType)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ApartamentFilterModelCopyWith<$Res>  {
   factory $ApartamentFilterModelCopyWith(ApartamentFilterModel value, $Res Function(ApartamentFilterModel) _then) = _$ApartamentFilterModelCopyWithImpl;
 @useResult
 $Res call({
- int cityId, int goalId, List<int> propertyTypeIds, List<int> roomsCountIds, double? minPrice, double? maxPrice, int rentDurationId, List<int> districtIds, String locationTitle, bool childrenAllowed, bool petsAllowed, ApartmentSortType sortType
+ int cityId, int goalId, List<int> propertyTypeIds, List<int> roomsCountIds, double? minPrice, double? maxPrice, int rentDurationId, List<int> districtIds, String locationTitle, String addressQuery, bool childrenAllowed, bool petsAllowed, ApartmentSortType sortType
 });
 
 
@@ -62,7 +62,7 @@ class _$ApartamentFilterModelCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentFilterModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cityId = null,Object? goalId = null,Object? propertyTypeIds = null,Object? roomsCountIds = null,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = null,Object? districtIds = null,Object? locationTitle = null,Object? childrenAllowed = null,Object? petsAllowed = null,Object? sortType = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cityId = null,Object? goalId = null,Object? propertyTypeIds = null,Object? roomsCountIds = null,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = null,Object? districtIds = null,Object? locationTitle = null,Object? addressQuery = null,Object? childrenAllowed = null,Object? petsAllowed = null,Object? sortType = null,}) {
   return _then(_self.copyWith(
 cityId: null == cityId ? _self.cityId : cityId // ignore: cast_nullable_to_non_nullable
 as int,goalId: null == goalId ? _self.goalId : goalId // ignore: cast_nullable_to_non_nullable
@@ -73,6 +73,7 @@ as double?,maxPrice: freezed == maxPrice ? _self.maxPrice : maxPrice // ignore: 
 as double?,rentDurationId: null == rentDurationId ? _self.rentDurationId : rentDurationId // ignore: cast_nullable_to_non_nullable
 as int,districtIds: null == districtIds ? _self.districtIds : districtIds // ignore: cast_nullable_to_non_nullable
 as List<int>,locationTitle: null == locationTitle ? _self.locationTitle : locationTitle // ignore: cast_nullable_to_non_nullable
+as String,addressQuery: null == addressQuery ? _self.addressQuery : addressQuery // ignore: cast_nullable_to_non_nullable
 as String,childrenAllowed: null == childrenAllowed ? _self.childrenAllowed : childrenAllowed // ignore: cast_nullable_to_non_nullable
 as bool,petsAllowed: null == petsAllowed ? _self.petsAllowed : petsAllowed // ignore: cast_nullable_to_non_nullable
 as bool,sortType: null == sortType ? _self.sortType : sortType // ignore: cast_nullable_to_non_nullable
@@ -158,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int cityId,  int goalId,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  List<int> districtIds,  String locationTitle,  bool childrenAllowed,  bool petsAllowed,  ApartmentSortType sortType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int cityId,  int goalId,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  List<int> districtIds,  String locationTitle,  String addressQuery,  bool childrenAllowed,  bool petsAllowed,  ApartmentSortType sortType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ApartamentFilterModel() when $default != null:
-return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.districtIds,_that.locationTitle,_that.childrenAllowed,_that.petsAllowed,_that.sortType);case _:
+return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.districtIds,_that.locationTitle,_that.addressQuery,_that.childrenAllowed,_that.petsAllowed,_that.sortType);case _:
   return orElse();
 
 }
@@ -179,10 +180,10 @@ return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCount
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int cityId,  int goalId,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  List<int> districtIds,  String locationTitle,  bool childrenAllowed,  bool petsAllowed,  ApartmentSortType sortType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int cityId,  int goalId,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  List<int> districtIds,  String locationTitle,  String addressQuery,  bool childrenAllowed,  bool petsAllowed,  ApartmentSortType sortType)  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentFilterModel():
-return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.districtIds,_that.locationTitle,_that.childrenAllowed,_that.petsAllowed,_that.sortType);}
+return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.districtIds,_that.locationTitle,_that.addressQuery,_that.childrenAllowed,_that.petsAllowed,_that.sortType);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -196,10 +197,10 @@ return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCount
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int cityId,  int goalId,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  List<int> districtIds,  String locationTitle,  bool childrenAllowed,  bool petsAllowed,  ApartmentSortType sortType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int cityId,  int goalId,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  List<int> districtIds,  String locationTitle,  String addressQuery,  bool childrenAllowed,  bool petsAllowed,  ApartmentSortType sortType)?  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentFilterModel() when $default != null:
-return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.districtIds,_that.locationTitle,_that.childrenAllowed,_that.petsAllowed,_that.sortType);case _:
+return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.districtIds,_that.locationTitle,_that.addressQuery,_that.childrenAllowed,_that.petsAllowed,_that.sortType);case _:
   return null;
 
 }
@@ -211,7 +212,7 @@ return $default(_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCount
 
 
 class _ApartamentFilterModel implements ApartamentFilterModel {
-  const _ApartamentFilterModel({this.cityId = 0, this.goalId = 0, final  List<int> propertyTypeIds = const [], final  List<int> roomsCountIds = const [], this.minPrice, this.maxPrice, this.rentDurationId = 0, final  List<int> districtIds = const [], this.locationTitle = '', this.childrenAllowed = false, this.petsAllowed = false, this.sortType = ApartmentSortType.popularity}): _propertyTypeIds = propertyTypeIds,_roomsCountIds = roomsCountIds,_districtIds = districtIds;
+  const _ApartamentFilterModel({this.cityId = 0, this.goalId = 0, final  List<int> propertyTypeIds = const [], final  List<int> roomsCountIds = const [], this.minPrice, this.maxPrice, this.rentDurationId = 0, final  List<int> districtIds = const [], this.locationTitle = '', this.addressQuery = '', this.childrenAllowed = false, this.petsAllowed = false, this.sortType = ApartmentSortType.popularity}): _propertyTypeIds = propertyTypeIds,_roomsCountIds = roomsCountIds,_districtIds = districtIds;
   
 
 @override@JsonKey() final  int cityId;
@@ -241,6 +242,7 @@ class _ApartamentFilterModel implements ApartamentFilterModel {
 }
 
 @override@JsonKey() final  String locationTitle;
+@override@JsonKey() final  String addressQuery;
 @override@JsonKey() final  bool childrenAllowed;
 @override@JsonKey() final  bool petsAllowed;
 @override@JsonKey() final  ApartmentSortType sortType;
@@ -255,16 +257,16 @@ _$ApartamentFilterModelCopyWith<_ApartamentFilterModel> get copyWith => __$Apart
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApartamentFilterModel&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other._propertyTypeIds, _propertyTypeIds)&&const DeepCollectionEquality().equals(other._roomsCountIds, _roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other._districtIds, _districtIds)&&(identical(other.locationTitle, locationTitle) || other.locationTitle == locationTitle)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.sortType, sortType) || other.sortType == sortType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApartamentFilterModel&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other._propertyTypeIds, _propertyTypeIds)&&const DeepCollectionEquality().equals(other._roomsCountIds, _roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other._districtIds, _districtIds)&&(identical(other.locationTitle, locationTitle) || other.locationTitle == locationTitle)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.sortType, sortType) || other.sortType == sortType));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,cityId,goalId,const DeepCollectionEquality().hash(_propertyTypeIds),const DeepCollectionEquality().hash(_roomsCountIds),minPrice,maxPrice,rentDurationId,const DeepCollectionEquality().hash(_districtIds),locationTitle,childrenAllowed,petsAllowed,sortType);
+int get hashCode => Object.hash(runtimeType,cityId,goalId,const DeepCollectionEquality().hash(_propertyTypeIds),const DeepCollectionEquality().hash(_roomsCountIds),minPrice,maxPrice,rentDurationId,const DeepCollectionEquality().hash(_districtIds),locationTitle,addressQuery,childrenAllowed,petsAllowed,sortType);
 
 @override
 String toString() {
-  return 'ApartamentFilterModel(cityId: $cityId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, districtIds: $districtIds, locationTitle: $locationTitle, childrenAllowed: $childrenAllowed, petsAllowed: $petsAllowed, sortType: $sortType)';
+  return 'ApartamentFilterModel(cityId: $cityId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, districtIds: $districtIds, locationTitle: $locationTitle, addressQuery: $addressQuery, childrenAllowed: $childrenAllowed, petsAllowed: $petsAllowed, sortType: $sortType)';
 }
 
 
@@ -275,7 +277,7 @@ abstract mixin class _$ApartamentFilterModelCopyWith<$Res> implements $Apartamen
   factory _$ApartamentFilterModelCopyWith(_ApartamentFilterModel value, $Res Function(_ApartamentFilterModel) _then) = __$ApartamentFilterModelCopyWithImpl;
 @override @useResult
 $Res call({
- int cityId, int goalId, List<int> propertyTypeIds, List<int> roomsCountIds, double? minPrice, double? maxPrice, int rentDurationId, List<int> districtIds, String locationTitle, bool childrenAllowed, bool petsAllowed, ApartmentSortType sortType
+ int cityId, int goalId, List<int> propertyTypeIds, List<int> roomsCountIds, double? minPrice, double? maxPrice, int rentDurationId, List<int> districtIds, String locationTitle, String addressQuery, bool childrenAllowed, bool petsAllowed, ApartmentSortType sortType
 });
 
 
@@ -292,7 +294,7 @@ class __$ApartamentFilterModelCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentFilterModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cityId = null,Object? goalId = null,Object? propertyTypeIds = null,Object? roomsCountIds = null,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = null,Object? districtIds = null,Object? locationTitle = null,Object? childrenAllowed = null,Object? petsAllowed = null,Object? sortType = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cityId = null,Object? goalId = null,Object? propertyTypeIds = null,Object? roomsCountIds = null,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = null,Object? districtIds = null,Object? locationTitle = null,Object? addressQuery = null,Object? childrenAllowed = null,Object? petsAllowed = null,Object? sortType = null,}) {
   return _then(_ApartamentFilterModel(
 cityId: null == cityId ? _self.cityId : cityId // ignore: cast_nullable_to_non_nullable
 as int,goalId: null == goalId ? _self.goalId : goalId // ignore: cast_nullable_to_non_nullable
@@ -303,6 +305,7 @@ as double?,maxPrice: freezed == maxPrice ? _self.maxPrice : maxPrice // ignore: 
 as double?,rentDurationId: null == rentDurationId ? _self.rentDurationId : rentDurationId // ignore: cast_nullable_to_non_nullable
 as int,districtIds: null == districtIds ? _self._districtIds : districtIds // ignore: cast_nullable_to_non_nullable
 as List<int>,locationTitle: null == locationTitle ? _self.locationTitle : locationTitle // ignore: cast_nullable_to_non_nullable
+as String,addressQuery: null == addressQuery ? _self.addressQuery : addressQuery // ignore: cast_nullable_to_non_nullable
 as String,childrenAllowed: null == childrenAllowed ? _self.childrenAllowed : childrenAllowed // ignore: cast_nullable_to_non_nullable
 as bool,petsAllowed: null == petsAllowed ? _self.petsAllowed : petsAllowed // ignore: cast_nullable_to_non_nullable
 as bool,sortType: null == sortType ? _self.sortType : sortType // ignore: cast_nullable_to_non_nullable

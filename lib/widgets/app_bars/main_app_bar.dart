@@ -20,8 +20,10 @@ class MainAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profileCity = ref.watch(globalProfileProvider).value?.city ?? '';
-    final cityTitle = profileCity.isEmpty ? 'Москва' : profileCity;
+    final currentCity = ref.watch(currentProfileCityProvider);
+    final cityTitle = currentCity?.title.isNotEmpty == true
+        ? currentCity!.title
+        : context.l10n.selectRegion;
 
     return SliverAppBar(
       pinned: pinned,

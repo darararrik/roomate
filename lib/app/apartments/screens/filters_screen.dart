@@ -17,6 +17,10 @@ class FiltersScreen extends HookConsumerWidget {
     final filter = ref.watch(apartamentFilterProvider);
     final filterNotifier = ref.read(apartamentFilterProvider.notifier);
     final filtersState = ref.watch(filtersProvider);
+    final currentProfileCity = ref.watch(currentProfileCityProvider);
+    final effectiveCityTitle = filter.locationTitle.isNotEmpty
+        ? filter.locationTitle
+        : currentProfileCity?.title ?? '';
     final minPriceController = useTextEditingController(
       text: _formatPrice(filter.minPrice),
     );
@@ -81,16 +85,18 @@ class FiltersScreen extends HookConsumerWidget {
                     iconPath: AppIcons.city,
                     onTap: () => context.pushRoute(
                       LocationRoute(
-                        onSelected: (street) {
-                          filterNotifier.setLocationTitle(street.name);
+                        onSelected: (selection) {
+                          filterNotifier.setLocationSelection(selection);
                           context.router.pop();
                         },
                       ),
                     ),
-                    title: context.l10n.filtersCityMoscowTitle,
-                    subTitle: filter.locationTitle.isEmpty
+                    title: effectiveCityTitle.isEmpty
+                        ? context.l10n.selectRegion
+                        : effectiveCityTitle,
+                    subTitle: effectiveCityTitle.isEmpty
                         ? context.l10n.filtersLocationSearchHint
-                        : filter.locationTitle,
+                        : effectiveCityTitle,
                   ),
                   const SizedBox(height: S.p12),
                   _FilterSection(

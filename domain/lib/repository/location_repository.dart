@@ -9,7 +9,7 @@ import 'package:domain/domain.dart';
 /// переиспользуемый контент приложения (как и фильтры квартир). Профиль
 /// остаётся про человека; каталог локаций можно подключать к карте, к чату и т.д.
 abstract class ILocationRepository {
-  /// [cityKey] — стабильный ключ города, например `omsk`.
-  Future<List<StreetModel>> getStreetsForCity(String cityKey);
   Future<Either<RemoteException, List<CityModel>>> fetchCities();
+  Future<Either<RemoteException, List<LocationSuggestionModel>>>
+  suggestLocations(String addressQuery);
 }

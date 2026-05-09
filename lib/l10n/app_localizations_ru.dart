@@ -841,6 +841,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profileEditLastNameRequired => 'Фамилия обязательна';
 
   @override
+  String get profileUpdateFailed => 'Не удалось обновить профиль';
+
+  @override
+  String get createProfileAgeRequired => 'Заполните поле';
+
+  @override
+  String get createProfileAgeInvalid => 'Введите корректный возраст (18-100)';
+
+  @override
+  String get createProfileGenderRequired => 'Пол обязателен';
+
+  @override
+  String get createAdSubmitFailed => 'Не удалось создать объявление';
+
+  @override
   String get loginToUseAllFeatures =>
       'Войдите, чтобы пользоваться всеми возможностями приложения.';
 

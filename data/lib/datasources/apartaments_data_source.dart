@@ -10,5 +10,7 @@ abstract interface class ApartamentsDataSource {
   );
   Future<Either<RemoteException, FilterModel>> fetchFilterTags();
   Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions();
-  Future<void> createAd(CreateAdFormRequestData request);
+  Future<Either<RemoteException, void>> createAd(
+    CreateAdFormRequestData request,
+  );
 }

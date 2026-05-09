@@ -16,6 +16,7 @@ sealed class ApartamentFilterModel with _$ApartamentFilterModel {
     @Default(0) int rentDurationId,
     @Default([]) List<int> districtIds,
     @Default('') String locationTitle,
+    @Default('') String addressQuery,
     @Default(false) bool childrenAllowed,
     @Default(false) bool petsAllowed,
     @Default(ApartmentSortType.popularity) ApartmentSortType sortType,

@@ -10,9 +10,11 @@ class LocationRepositoryImpl implements ILocationRepository {
   final LocationDataSource _dataSource;
 
   @override
-  Future<List<StreetModel>> getStreetsForCity(String cityKey) =>
-      _dataSource.getStreetsForCity(cityKey);
+  Future<Either<RemoteException, List<CityModel>>> fetchCities() =>
+      _dataSource.fetchCities();
 
   @override
-  Future<Either<RemoteException, List<CityModel>>> fetchCities() => _dataSource.fetchCities();
+  Future<Either<RemoteException, List<LocationSuggestionModel>>>
+  suggestLocations(String addressQuery) =>
+      _dataSource.suggestLocations(addressQuery);
 }

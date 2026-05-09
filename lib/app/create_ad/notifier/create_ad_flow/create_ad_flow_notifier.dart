@@ -33,16 +33,18 @@ class CreateAdFlow extends _$CreateAdFlow {
     };
   }
 
-  void openStreetPickerScreen() => ref.nav.push(
+  void openCityPickerScreen() => ref.nav.push(
     LocationRoute(
-      onSelected: (street) {
-        ref.read(adFormProvider.notifier).selectStreet(street);
+      onSelected: (selection) {
+        ref.read(adFormProvider.notifier).selectLocation(selection);
         ref.nav.pop();
       },
     ),
   );
 
-  void nextStep(TabsRouter tabsRouter) {
+  Future<void> nextStep(TabsRouter tabsRouter) async {
+    if (state.isSubmitting) return;
+
     _formState = ref.read(adFormProvider);
     final step = tabsRouter.activeIndex;
 
@@ -51,7 +53,8 @@ class CreateAdFlow extends _$CreateAdFlow {
     if (!_isStepValid(step)) return;
 
     if (step == 11) {
-      _submitForm();
+      final isSubmitted = await _submitForm();
+      if (!isSubmitted) return;
     }
     if (step == 12) {
       ref.nav.replaceAll([const MainFlowRoute()]);
@@ -71,9 +74,56 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
   }
 
-  Future<void> _submitForm() => ref.read(adFormProvider.notifier).createAd();
+  Future<bool> _submitForm() async {
+    state = state.copyWith(isSubmitting: true);
 
-  void clearValidation() => state = const CreateAdFlowState();
+    final error = await ref.read(adFormProvider.notifier).createAd();
+    if (error != null) {
+      state = state.copyWith(isSubmitting: false);
+      final message = error.messages.isNotEmpty
+          ? error.messages
+          : ref.l10n.createAdSubmitFailed;
+      ref.nav.showSnackBar(message: message);
+      return false;
+    }
+
+    state = state.copyWith(isSubmitting: false);
+    return true;
+  }
+
+  void clearValidation() => state = state.copyWith(
+    validationStepIndex: -1,
+    rentGoalError: '',
+    rentPeriodError: '',
+    whoCanRentError: '',
+    premisesError: '',
+    propertyError: '',
+    streetError: '',
+    apartmentNumberError: '',
+    roomsError: '',
+    layoutError: '',
+    areaError: '',
+    floorError: '',
+    totalFloorsError: '',
+    renovationError: '',
+    elevatorsError: '',
+    balconiesError: '',
+    furnitureError: '',
+    amenitiesError: '',
+    bathroomError: '',
+    appliancesError: '',
+    stoveError: '',
+    currencyError: '',
+    priceError: '',
+    depositError: '',
+    prepaymentError: '',
+    rentDurationError: '',
+    rentConditionsError: '',
+    titleError: '',
+    descriptionError: '',
+    additionalPhoneError: '',
+    contactMethodError: '',
+  );
 
   void validateStep(int step) {
     clearValidation();
@@ -133,7 +183,9 @@ class CreateAdFlow extends _$CreateAdFlow {
       state = state.copyWith(rentPeriodError: _locale.validationSelectOption);
     }
     if (whoCanRent.isEmpty) {
-      state = state.copyWith(whoCanRentError: _locale.validationSelectAtLeastOne);
+      state = state.copyWith(
+        whoCanRentError: _locale.validationSelectAtLeastOne,
+      );
     }
   }
 
@@ -154,7 +206,9 @@ class CreateAdFlow extends _$CreateAdFlow {
       state = state.copyWith(streetError: _locale.validationPickStreet);
     }
     if (_formState.apartmentNumber == 0) {
-      state = state.copyWith(apartmentNumberError: _locale.validationEnterApartmentNumber);
+      state = state.copyWith(
+        apartmentNumberError: _locale.validationEnterApartmentNumber,
+      );
     }
   }
 
@@ -179,7 +233,9 @@ class CreateAdFlow extends _$CreateAdFlow {
       state = state.copyWith(totalFloorsError: _locale.validationEnterFloor);
     }
     if (_formState.floor > _formState.totalFloors) {
-      state = state.copyWith(floorError: _locale.validationFloorMustBeLessThenTotalFloors);
+      state = state.copyWith(
+        floorError: _locale.validationFloorMustBeLessThenTotalFloors,
+      );
     }
   }
 
@@ -203,7 +259,9 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.amenitiesIds.isEmpty) {
-      state = state.copyWith(amenitiesError: _locale.validationSelectAtLeastOne);
+      state = state.copyWith(
+        amenitiesError: _locale.validationSelectAtLeastOne,
+      );
     }
 
     if (_formState.bathroomIds.isEmpty) {
@@ -211,7 +269,9 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.appliancesIds.isEmpty) {
-      state = state.copyWith(appliancesError: _locale.validationSelectAtLeastOne);
+      state = state.copyWith(
+        appliancesError: _locale.validationSelectAtLeastOne,
+      );
     }
 
     if (_formState.stoveId == 0) {
@@ -241,7 +301,9 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.rentConditionsIds.isEmpty) {
-      state = state.copyWith(rentConditionsError: _locale.validationSelectAtLeastOne);
+      state = state.copyWith(
+        rentConditionsError: _locale.validationSelectAtLeastOne,
+      );
     }
   }
 
@@ -251,7 +313,9 @@ class CreateAdFlow extends _$CreateAdFlow {
     }
 
     if (_formState.description.trim().length < 10) {
-      state = state.copyWith(descriptionError: _locale.validationEnterDescription);
+      state = state.copyWith(
+        descriptionError: _locale.validationEnterDescription,
+      );
     }
   }
 
@@ -260,18 +324,23 @@ class CreateAdFlow extends _$CreateAdFlow {
 
     final options = ref.read(getAdFormOptionsProvider);
     final firstOptionId = options.maybeWhen(
-      data: (data) => data.contactMethod.isNotEmpty ? data.contactMethod.first.id : null,
+      data: (data) =>
+          data.contactMethod.isNotEmpty ? data.contactMethod.first.id : null,
       orElse: () => null,
     );
 
     if (contactMethodId == 0) {
-      state = state.copyWith(contactMethodError: _locale.validationContactMethod);
+      state = state.copyWith(
+        contactMethodError: _locale.validationContactMethod,
+      );
       return;
     }
 
     if (contactMethodId == firstOptionId) {
       if (_formState.additionalNumber.trim().isEmpty) {
-        state = state.copyWith(additionalPhoneError: _locale.validationAdditionalPhone);
+        state = state.copyWith(
+          additionalPhoneError: _locale.validationAdditionalPhone,
+        );
       }
     } else {
       ref.read(adFormProvider.notifier).updateAdditionalPhone('');
@@ -324,7 +393,8 @@ class CreateAdFlow extends _$CreateAdFlow {
         return state.titleError.isEmpty && state.descriptionError.isEmpty;
 
       case 10:
-        return state.contactMethodError.isEmpty && state.additionalPhoneError.isEmpty;
+        return state.contactMethodError.isEmpty &&
+            state.additionalPhoneError.isEmpty;
     }
 
     return true;
@@ -335,10 +405,16 @@ class CreateAdFlow extends _$CreateAdFlow {
     final options = ref.read(getAdFormOptionsProvider).requireValue;
 
     final premises = options.premisesType
-        .firstWhere((e) => e.id == form.premisesTypeId, orElse: () => const OptionModel())
+        .firstWhere(
+          (e) => e.id == form.premisesTypeId,
+          orElse: () => const OptionModel(),
+        )
         .title;
     final property = options.propertyType
-        .firstWhere((e) => e.id == form.propertyTypeId, orElse: () => const OptionModel())
+        .firstWhere(
+          (e) => e.id == form.propertyTypeId,
+          orElse: () => const OptionModel(),
+        )
         .title;
 
     return [premises, property].where((s) => s.isNotEmpty).join(', ');
@@ -350,10 +426,16 @@ class CreateAdFlow extends _$CreateAdFlow {
     if (options == null) return '';
 
     final goal = options.rentGoal
-        .firstWhere((e) => e.id == form.rentGoalId, orElse: () => const OptionModel())
+        .firstWhere(
+          (e) => e.id == form.rentGoalId,
+          orElse: () => const OptionModel(),
+        )
         .title;
     final period = options.rentPeriod
-        .firstWhere((e) => e.id == form.rentPeriodId, orElse: () => const OptionModel())
+        .firstWhere(
+          (e) => e.id == form.rentPeriodId,
+          orElse: () => const OptionModel(),
+        )
         .title;
 
     return [goal, period].where((s) => s.isNotEmpty).join(', ');
@@ -369,7 +451,9 @@ class CreateAdFlow extends _$CreateAdFlow {
   /// Возвращает адрес текстом (Улица + Номер квартиры)
   String getFullAddressText(CreateAdFormModel form) {
     if (form.address.isEmpty) return _locale.notSpecified;
-    final flat = form.apartmentNumber > 0 ? ', кв. ${form.apartmentNumber}' : '';
+    final flat = form.apartmentNumber > 0
+        ? ', кв. ${form.apartmentNumber}'
+        : '';
     return '${form.address}$flat';
   }
 
@@ -389,7 +473,10 @@ class CreateAdFlow extends _$CreateAdFlow {
   String getApartmentSummary(CreateAdFormModel form) {
     final options = ref.read(getAdFormOptionsProvider).requireValue;
     final rooms = options.roomsCount
-        .firstWhere((e) => e.id == form.roomsCountId, orElse: () => const OptionModel())
+        .firstWhere(
+          (e) => e.id == form.roomsCountId,
+          orElse: () => const OptionModel(),
+        )
         .title;
 
     return '$rooms • ${form.apartmentArea} м² • ${form.floor}/${form.totalFloors} эт.';

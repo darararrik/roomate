@@ -4,7 +4,9 @@ import 'package:shared/shared.dart';
 
 import 'package:data/data.dart';
 
-@BackendOnly('Temporary mock datasource that emulates apartment backend responses.')
+@BackendOnly(
+  'Temporary mock datasource that emulates apartment backend responses.',
+)
 class ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
   Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
@@ -26,7 +28,10 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
 
           /// категория
           if (filter.goalId != 0) {
-            final categoryTitle = _findTitle(TagsMockData.rentGoal, filter.goalId);
+            final categoryTitle = _findTitle(
+              TagsMockData.rentGoal,
+              filter.goalId,
+            );
 
             if (categoryTitle == "Аренда" && apt.dealGoal != "rent") {
               return false;
@@ -50,7 +55,8 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
           }
 
           /// цена
-          final price = int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
+          final price =
+              int.tryParse((apt.price ?? '').replaceAll(' ', '')) ?? 0;
 
           if (filter.minPrice != null && price < filter.minPrice!) {
             return false;
@@ -88,27 +94,40 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
+  Future<Either<RemoteException, AdFormOptionsModel>>
+  fetchAdFormOptions() async {
     await Future.delayed(const Duration(milliseconds: 1000));
     final json = CreateAdMockJson.fetchTagsResponse;
     return Right(AdFormOptionsData.fromJson(json).toModel());
   }
 
   @override
-  Future<void> createAd(CreateAdFormRequestData request) async {
+  Future<Either<RemoteException, void>> createAd(
+    CreateAdFormRequestData request,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 300));
 
     final nextId =
         [
-          ...ApartmentsMockJson.fetchApartments.map((item) => item['id'] as int? ?? 0),
+          ...ApartmentsMockJson.fetchApartments.map(
+            (item) => item['id'] as int? ?? 0,
+          ),
           ...MockStorage.createAds.map((item) => item['id'] as int? ?? 0),
-        ].fold<int>(0, (maxId, currentId) => currentId > maxId ? currentId : maxId) +
+        ].fold<int>(
+          0,
+          (maxId, currentId) => currentId > maxId ? currentId : maxId,
+        ) +
         1;
 
     final ownerName = _resolveOwnerName();
-    final apartment = CreateAdFormMapper.toApartamentDto(request, id: nextId, ownerName: ownerName);
+    final apartment = CreateAdFormMapper.toApartamentDto(
+      request,
+      id: nextId,
+      ownerName: ownerName,
+    );
 
     MockStorage.createAds.insert(0, apartment.toJson());
+    return const Right(null);
   }
 
   String _resolveOwnerName() {

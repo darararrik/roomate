@@ -5,9 +5,10 @@ import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
 
 class BottomNextButton extends StatelessWidget {
-  const BottomNextButton({super.key, this.onPressed});
+  const BottomNextButton({super.key, this.onPressed, this.text});
 
   final VoidCallback? onPressed;
+  final String? text;
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -17,7 +18,10 @@ class BottomNextButton extends StatelessWidget {
       ),
       child: Padding(
         padding: const P(horizontal: S.p16, vertical: S.p20),
-        child: PrimaryButton(text: context.l10n.next, onPressed: onPressed),
+        child: PrimaryButton(
+          text: text ?? context.l10n.next,
+          onPressed: onPressed,
+        ),
       ),
     );
   }

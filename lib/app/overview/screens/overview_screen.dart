@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:roomate/app/overview/widgets/home_action_card.dart';
-import 'package:roomate/app/overview/widgets/owner_overview_content.dart';
-import 'package:roomate/app/overview/widgets/recent_advertisements_section.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -18,7 +14,9 @@ class OverviewScreen extends ConsumerWidget {
       globalProfileProvider.select((state) => state.value?.isOwner ?? false),
     );
 
-    return isOwner ? const OwnerOverviewContent() : const _RenterOverviewContent();
+    return isOwner
+        ? const OwnerOverviewContent()
+        : const _RenterOverviewContent();
   }
 }
 

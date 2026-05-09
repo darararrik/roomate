@@ -14,14 +14,15 @@ class ApartamentsRepositoryImpl implements IApartamentsRepository {
   ) => _dataSource.fetchApartaments(filter);
 
   @override
-  Future<Either<RemoteException, FilterModel>> fetchFilters() => _dataSource.fetchFilterTags();
+  Future<Either<RemoteException, FilterModel>> fetchFilters() =>
+      _dataSource.fetchFilterTags();
 
   @override
   Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() =>
       _dataSource.fetchAdFormOptions();
 
   @override
-  Future<void> createAd(CreateAdFormModel request) {
+  Future<Either<RemoteException, void>> createAd(CreateAdFormModel request) {
     final dto = CreateAdFormMapper.toDto(request);
     return _dataSource.createAd(dto);
   }

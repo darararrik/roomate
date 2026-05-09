@@ -79,9 +79,12 @@ class AuthNotifier extends _$AuthNotifier {
         await ref.read(appStatusProvider.notifier).markProfileIncomplete();
         openSetupProfileScreen();
       } else {
-        await ref
-            .read(globalProfileProvider.notifier)
-            .fetchProfile(showError: false);
+        ref.invalidate(globalProfileProvider);
+        final profile = await ref.read(globalProfileProvider.future);
+        if (profile.isGuest) {
+          setError('Не удалось загрузить профиль');
+          return;
+        }
         await ref.read(appStatusProvider.notifier).markProfileCompleted();
         openMainScreen();
       }

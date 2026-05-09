@@ -12,8 +12,7 @@ class CreateAdScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final optionsAsync = ref.watch(getAdFormOptionsProvider);
-    ref.listen(createAdFlowProvider, (previous, next) {});
-
+    final flowState = ref.watch(createAdFlowProvider);
     final notifier = ref.read(createAdFlowProvider.notifier);
     return AutoTabsRouter.pageView(
       routes: const [
@@ -35,20 +34,33 @@ class CreateAdScreen extends ConsumerWidget {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
           bottomNavigationBar: SafeArea(
-            child: BottomNextButton(onPressed: () => notifier.nextStep(tabsRouter)),
+            child: BottomNextButton(
+              text: flowState.isSubmitting
+                  ? context.l10n.saving
+                  : context.l10n.next,
+              onPressed: flowState.isSubmitting
+                  ? null
+                  : () => notifier.nextStep(tabsRouter),
+            ),
           ),
           appBar: AppBar(
             centerTitle: false,
             title: Text(notifier.getStepTitle(tabsRouter.activeIndex)),
             actions: [
-              CancelButton(title: context.l10n.exit, content: context.l10n.draftWillBeSaved),
+              CancelButton(
+                title: context.l10n.exit,
+                content: context.l10n.draftWillBeSaved,
+              ),
             ],
             leading: BB(onPressed: () => notifier.previousStep(tabsRouter)),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(S.p16),
               child: Padding(
                 padding: const P(horizontal: S.p32),
-                child: ProgressBarWidget(tabsRouter: tabsRouter, totalPages: tabsRouter.pageCount),
+                child: ProgressBarWidget(
+                  tabsRouter: tabsRouter,
+                  totalPages: tabsRouter.pageCount,
+                ),
               ),
             ),
           ),

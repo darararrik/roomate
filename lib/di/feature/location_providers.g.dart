@@ -48,55 +48,55 @@ final class CitiesProvider
 
 String _$citiesHash() => r'422cdd1166838c449e48057c2330a2beea61ea9c';
 
-@ProviderFor(cityStreets)
-final cityStreetsProvider = CityStreetsFamily._();
+@ProviderFor(locationSuggestions)
+final locationSuggestionsProvider = LocationSuggestionsFamily._();
 
-final class CityStreetsProvider
+final class LocationSuggestionsProvider
     extends
         $FunctionalProvider<
-          AsyncValue<List<StreetModel>>,
-          List<StreetModel>,
-          FutureOr<List<StreetModel>>
+          AsyncValue<List<LocationSuggestionModel>>,
+          List<LocationSuggestionModel>,
+          FutureOr<List<LocationSuggestionModel>>
         >
     with
-        $FutureModifier<List<StreetModel>>,
-        $FutureProvider<List<StreetModel>> {
-  CityStreetsProvider._({
-    required CityStreetsFamily super.from,
+        $FutureModifier<List<LocationSuggestionModel>>,
+        $FutureProvider<List<LocationSuggestionModel>> {
+  LocationSuggestionsProvider._({
+    required LocationSuggestionsFamily super.from,
     required String super.argument,
   }) : super(
          retry: null,
-         name: r'cityStreetsProvider',
+         name: r'locationSuggestionsProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$cityStreetsHash();
+  String debugGetCreateSourceHash() => _$locationSuggestionsHash();
 
   @override
   String toString() {
-    return r'cityStreetsProvider'
+    return r'locationSuggestionsProvider'
         ''
         '($argument)';
   }
 
   @$internal
   @override
-  $FutureProviderElement<List<StreetModel>> $createElement(
+  $FutureProviderElement<List<LocationSuggestionModel>> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<List<StreetModel>> create(Ref ref) {
+  FutureOr<List<LocationSuggestionModel>> create(Ref ref) {
     final argument = this.argument as String;
-    return cityStreets(ref, argument);
+    return locationSuggestions(ref, argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CityStreetsProvider && other.argument == argument;
+    return other is LocationSuggestionsProvider && other.argument == argument;
   }
 
   @override
@@ -105,22 +105,69 @@ final class CityStreetsProvider
   }
 }
 
-String _$cityStreetsHash() => r'b2f95357c49ae7c4121aabfaeb1f7ce5f55d7c54';
+String _$locationSuggestionsHash() =>
+    r'5de09f30802ff76114f7a003fff497bbc510d9a0';
 
-final class CityStreetsFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<List<StreetModel>>, String> {
-  CityStreetsFamily._()
+final class LocationSuggestionsFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<List<LocationSuggestionModel>>,
+          String
+        > {
+  LocationSuggestionsFamily._()
     : super(
         retry: null,
-        name: r'cityStreetsProvider',
+        name: r'locationSuggestionsProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  CityStreetsProvider call(String cityKey) =>
-      CityStreetsProvider._(argument: cityKey, from: this);
+  LocationSuggestionsProvider call(String addressQuery) =>
+      LocationSuggestionsProvider._(argument: addressQuery, from: this);
 
   @override
-  String toString() => r'cityStreetsProvider';
+  String toString() => r'locationSuggestionsProvider';
 }
+
+@ProviderFor(currentProfileCity)
+final currentProfileCityProvider = CurrentProfileCityProvider._();
+
+final class CurrentProfileCityProvider
+    extends $FunctionalProvider<CityModel?, CityModel?, CityModel?>
+    with $Provider<CityModel?> {
+  CurrentProfileCityProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'currentProfileCityProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$currentProfileCityHash();
+
+  @$internal
+  @override
+  $ProviderElement<CityModel?> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  CityModel? create(Ref ref) {
+    return currentProfileCity(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CityModel? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CityModel?>(value),
+    );
+  }
+}
+
+String _$currentProfileCityHash() =>
+    r'db19a2bd8adf70be442d93b2104ae0f9ef479506';

@@ -1,6 +1,5 @@
-import 'package:domain/domain.dart';
-
 import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 
 abstract class ProfileMapper {
   static ProfileModel toModel(ProfileData? userData) {
@@ -13,6 +12,7 @@ abstract class ProfileMapper {
       phone: userData?.phone ?? '',
       age: userData?.age ?? 0,
       isVerified: userData?.isVerified ?? false,
+      cityId: userData?.cityId ?? 0,
       city: userData?.city ?? '',
       isOwner: userData?.isOwner ?? false,
       preferences: SelectedUserPreferencesMapper.toModel(userData?.preferences),
@@ -30,6 +30,7 @@ abstract class ProfileMapper {
       age: user.age,
       isVerified: user.isVerified,
       city: user.city,
+      cityId: user.cityId,
       isOwner: user.isOwner,
       preferences: SelectedUserPreferencesMapper.toData(user.preferences),
     );

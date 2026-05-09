@@ -5,6 +5,8 @@ part 'create_ad_flow_state.freezed.dart';
 @freezed
 sealed class CreateAdFlowState with _$CreateAdFlowState {
   const factory CreateAdFlowState({
+    @Default(false) bool isSubmitting,
+
     /// Шаг, для которого показываем [fieldErrors] (-1 — ошибок нет).
     @Default(-1) int validationStepIndex,
 

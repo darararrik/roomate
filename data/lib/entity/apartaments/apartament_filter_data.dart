@@ -18,6 +18,7 @@ abstract class ApartamentFilterData with _$ApartamentFilterData {
     @JsonKey(name: 'min_price') double? minPrice,
     @JsonKey(name: 'max_price') double? maxPrice,
     @JsonKey(name: 'rent_duration_id') int? rentDurationId,
+    @JsonKey(name: 'address_query') String? addressQuery,
     @JsonKey(name: 'district') String? district,
     @JsonKey(name: 'sort_by') String? sortBy,
     @JsonKey(name: 'sort_order') String? sortOrder,

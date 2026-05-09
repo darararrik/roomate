@@ -9,5 +9,5 @@ abstract interface class IApartamentsRepository {
   );
   Future<Either<RemoteException, FilterModel>> fetchFilters();
   Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions();
-  Future<void> createAd(CreateAdFormModel request);
+  Future<Either<RemoteException, void>> createAd(CreateAdFormModel request);
 }

@@ -1,7 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
-
-import 'package:domain/domain.dart';
 
 part 'profile_model.freezed.dart';
 
@@ -11,6 +10,8 @@ sealed class ProfileModel with _$ProfileModel {
     @Default('') String id,
     @Default('') String firstName,
     @Default('') String lastName,
+    @Default(0) int cityId,
+    //TODO: Убрать после изменения на бэке
     @Default('') String city,
     @Default(Constants.defaultProfileImage) String avatarUrl,
     @Default(GenderEnum.male) GenderEnum gender,
@@ -18,13 +19,11 @@ sealed class ProfileModel with _$ProfileModel {
     @Default(0) int age,
     @Default(false) bool isVerified,
     @Default(false) bool isOwner,
-    @Default(SelectedUserPreferencesModel())
-    SelectedUserPreferencesModel preferences,
+    @Default(SelectedUserPreferencesModel()) SelectedUserPreferencesModel preferences,
   }) = _ProfileModel;
   const ProfileModel._();
 
   factory ProfileModel.guest() => const ProfileModel();
 
-  bool get isGuest =>
-      id.isEmpty && firstName.isEmpty && lastName.isEmpty && phone.isEmpty;
+  bool get isGuest => id.isEmpty && firstName.isEmpty && lastName.isEmpty && phone.isEmpty;
 }

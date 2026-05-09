@@ -12,26 +12,15 @@ part 'global_profile_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   @override
-  FutureOr<ProfileModel> build() {
-    return ProfileModel.guest();
+  Future<ProfileModel> build() async {
+    return _resolveProfile(showError: false);
   }
 
   Future<ProfileModel> fetchProfile({bool showError = true}) async {
     state = const AsyncValue.loading();
-    final result = await ref.read(loadCurrentProfileUseCaseProvider).call();
-
-    if (result.error != null) {
-      state = AsyncData(result.profile);
-
-      if (showError) {
-        _showFetchProfileError(result.error!);
-      }
-
-      return result.profile;
-    }
-
-    state = AsyncData(result.profile);
-    return result.profile;
+    final profile = await _resolveProfile(showError: showError);
+    state = AsyncData(profile);
+    return profile;
   }
 
   Future<RemoteException?> updateProfile({
@@ -64,15 +53,20 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
       state = const AsyncLoading();
     }
 
-    final result = await ref.read(updateProfileUseCaseProvider).call(updated);
+    final result = await ref
+        .read(profileRepositoryProvider)
+        .updateProfile(updated);
 
-    if (result.error != null) {
-      state = AsyncData(current);
-      return result.error;
-    }
-
-    state = AsyncData(result.profile);
-    return null;
+    return result.fold(
+      (error) {
+        state = AsyncData(current);
+        return error;
+      },
+      (profile) {
+        state = AsyncData(profile);
+        return null;
+      },
+    );
   }
 
   Future<bool> updatePreferences(
@@ -106,7 +100,8 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
     if (shouldLogout != true) return;
 
-    final error = await ref.read(logoutUseCaseProvider).call();
+    final result = await ref.read(authRepositoryProvider).logout();
+    final error = result.fold((error) => error, (_) => null);
     if (error != null) {
       final message = error.messages.isNotEmpty
           ? error.messages
@@ -126,6 +121,22 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
   void enterAsGuest() {
     state = AsyncData(ProfileModel.guest());
+  }
+
+  Future<ProfileModel> _resolveProfile({required bool showError}) async {
+    final hasSession = await ref.read(tokenServiceProvider).hasSession();
+    if (!hasSession) {
+      return ProfileModel.guest();
+    }
+
+    final result = await ref.read(profileRepositoryProvider).fetchProfile();
+    return result.fold((error) {
+      if (showError) {
+        _showFetchProfileError(error);
+      }
+
+      return ProfileModel.guest();
+    }, (profile) => profile);
   }
 
   String preferenceTitle(
@@ -154,12 +165,9 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
   void _showFetchProfileError(RemoteException error) {
     final message = switch (error.kind) {
       RemoteExceptionKind.unauthorized ||
-      RemoteExceptionKind.refreshTokenFailed =>
-        ref.l10n.sessionExpiredReLogin,
+      RemoteExceptionKind.refreshTokenFailed => ref.l10n.sessionExpiredReLogin,
       _ =>
-        error.messages.isNotEmpty
-            ? error.messages
-            : ref.l10n.profileLoadFailed,
+        error.messages.isNotEmpty ? error.messages : ref.l10n.profileLoadFailed,
     };
 
     ref.nav.showSnackBar(message: message);

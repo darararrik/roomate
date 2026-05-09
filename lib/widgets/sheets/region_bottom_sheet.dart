@@ -9,8 +9,6 @@ import 'package:roomate/lib.dart';
 class RegionBottomSheet extends HookConsumerWidget {
   const RegionBottomSheet({super.key});
 
-  static const _fallbackCityTitle = 'Москва';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchController = useTextEditingController();
@@ -151,9 +149,7 @@ class RegionBottomSheet extends HookConsumerWidget {
   }
 
   CityModel? _currentCity(List<CityModel> cities, String profileCity) {
-    return _findCity(cities, profileCity) ??
-        _findCity(cities, _fallbackCityTitle) ??
-        cities.firstOrNull;
+    return _findCity(cities, profileCity) ?? cities.firstOrNull;
   }
 
   CityModel? _findCity(List<CityModel> cities, String title) {

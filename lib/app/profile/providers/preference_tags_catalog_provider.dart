@@ -8,12 +8,8 @@ part 'preference_tags_catalog_provider.g.dart';
 @Riverpod(keepAlive: true)
 Future<PreferenceTagsCatalogModel> preferenceTagsCatalog(Ref ref) async {
   final result = await ref
-      .read(fetchPreferenceTagsCatalogUseCaseProvider)
-      .call();
+      .read(profileRepositoryProvider)
+      .fetchPreferenceTagsCatalog();
 
-  if (result.error != null) {
-    throw result.error!;
-  }
-
-  return result.tags;
+  return result.fold((error) => throw error, (tags) => tags);
 }

@@ -1,62 +1,49 @@
-import 'package:data/data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:roomate/lib.dart';
+import 'auth_status.dart';
 
 part 'app_status_notifier.g.dart';
 
-enum AuthStatus { unknown, unverified, noForm, noProfile, ready }
-
 @Riverpod(keepAlive: true)
 class AppStatusNotifier extends _$AppStatusNotifier {
-  AppStatusStorageService get _storage =>
-      ref.read(appStatusStorageServiceProvider);
-  TokenService get _tokenService => ref.read(tokenServiceProvider);
-
   @override
   Future<AuthStatus> build() async {
-    return _resolve();
+    return _resolveAppStatus();
   }
 
   Future<void> refresh() async {
     state = const AsyncLoading();
-    state = await AsyncValue.guard(_resolve);
+    state = await AsyncValue.guard(_resolveAppStatus);
   }
 
   Future<void> markLoggedOut() async {
-    await _storage.markLoggedOut();
+    await ref.read(appStatusStorageServiceProvider).markLoggedOut();
     state = const AsyncData(AuthStatus.unverified);
   }
 
   Future<void> markFormCompleted() async {
-    await _storage.markFormCompleted();
+    await ref.read(appStatusStorageServiceProvider).markFormCompleted();
     state = const AsyncData(AuthStatus.noProfile);
   }
 
   Future<void> markProfileCompleted() async {
-    await _storage.markProfileCompleted();
+    await ref.read(appStatusStorageServiceProvider).markProfileCompleted();
     state = const AsyncData(AuthStatus.ready);
   }
 
   Future<void> markProfileIncomplete() async {
-    await _storage.markProfileIncomplete();
+    await ref.read(appStatusStorageServiceProvider).markProfileIncomplete();
     state = const AsyncData(AuthStatus.noForm);
   }
 
-  Future<AuthStatus> _resolve() async {
-    final hasSession = await _tokenService.hasSession();
-    if (!hasSession) {
-      return AuthStatus.unverified;
-    }
-
-    final profile = await ref
-        .read(globalProfileProvider.notifier)
-        .fetchProfile(showError: false);
+  Future<AuthStatus> _resolveAppStatus() async {
+    final profile = await ref.read(globalProfileProvider.future);
     if (profile.isGuest) {
       return AuthStatus.unverified;
     }
 
-    final snapshot = await _storage.read();
+    final snapshot = await ref.read(appStatusStorageServiceProvider).read();
     if (!snapshot.hasCompletedForm) {
       return AuthStatus.noForm;
     }

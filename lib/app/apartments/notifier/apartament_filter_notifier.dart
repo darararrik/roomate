@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -79,6 +78,22 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
     state = state.copyWith(locationTitle: locationTitle);
   }
 
+  void setCity(CityModel city) {
+    state = state.copyWith(
+      cityId: city.id,
+      locationTitle: city.title,
+      addressQuery: '',
+    );
+  }
+
+  void setLocationSelection(LocationSelectionModel selection) {
+    state = state.copyWith(
+      cityId: selection.cityId,
+      locationTitle: selection.displayTitle,
+      addressQuery: selection.addressQuery,
+    );
+  }
+
   void setSortType(ApartmentSortType sortType) {
     state = state.copyWith(sortType: sortType);
   }
@@ -88,7 +103,20 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
   }
 
   void apply() {
-    ref.read(apartamentsProvider.notifier).fetchWithFilter(state);
+    final profileCity = ref.read(currentProfileCityProvider);
+    final hasExplicitLocation = state.addressQuery.isNotEmpty;
+    final effectiveFilter =
+        state.cityId != 0 || hasExplicitLocation || profileCity == null
+        ? state
+        : state.copyWith(
+            cityId: profileCity.id,
+            locationTitle: state.locationTitle.isNotEmpty
+                ? state.locationTitle
+                : profileCity.title,
+            addressQuery: state.addressQuery,
+          );
+
+    ref.read(apartamentsProvider.notifier).fetchWithFilter(effectiveFilter);
   }
 
   void setRentDuration(int id) {

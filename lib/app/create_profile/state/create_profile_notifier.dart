@@ -8,6 +8,8 @@ part 'create_profile_notifier.g.dart';
 
 @riverpod
 class CreateProfileNotifier extends _$CreateProfileNotifier {
+  AppLocalizations get _locale => ref.l10n;
+
   @override
   UserState build() {
     return UserState();
@@ -61,7 +63,7 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
     if (error != null) {
       final message = error.messages.isNotEmpty
           ? error.messages
-          : 'Не удалось обновить профиль';
+          : _locale.profileUpdateFailed;
       ref.read(navigationServiceProvider).showSnackBar(message: message);
       return false;
     }
@@ -79,22 +81,22 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
     String ageErr = '';
     String genderErr = '';
     if (state.firstName.trim().isEmpty) {
-      fNameErr = 'Имя обязательно';
+      fNameErr = _locale.profileEditFirstNameRequired;
     }
 
     if (state.lastName.trim().isEmpty) {
-      lNameErr = 'Фамилия обязательна';
+      lNameErr = _locale.profileEditLastNameRequired;
     }
 
     final ageInt = int.tryParse(state.age);
     if (state.age.isEmpty) {
-      ageErr = 'Заполните поле';
+      ageErr = _locale.createProfileAgeRequired;
     } else if (ageInt == null || ageInt < 18 || ageInt > 100) {
-      ageErr = 'Введите корректный возраст (18-100)';
+      ageErr = _locale.createProfileAgeInvalid;
     }
 
     if (state.gender == null) {
-      genderErr = 'Пол обязателен';
+      genderErr = _locale.createProfileGenderRequired;
     }
 
     state = state.copyWith(

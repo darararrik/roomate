@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -11,27 +13,37 @@ import 'package:roomate/lib.dart';
 class LocationScreen extends HookConsumerWidget {
   const LocationScreen({super.key, required this.onSelected});
 
-  final void Function(StreetModel street) onSelected;
+  final void Function(LocationSelectionModel selection) onSelected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchController = useTextEditingController();
+    final rawSearchQuery = useValueListenable(
+      searchController,
+    ).text.trim().toLowerCase();
+    final debouncedQuery = useState(rawSearchQuery);
 
-    // Получаем текст из контроллера
-    // final searchQuery = useValueListenable(searchController).text.trim();
+    useEffect(() {
+      final timer = Timer(const Duration(milliseconds: 350), () {
+        debouncedQuery.value = rawSearchQuery;
+      });
 
-    // Теперь провайдер сам должен обрабатывать searchQuery (делать запрос на бэк)
-    // Убедись, что cityStreetsProvider принимает query или используй семейство (family)
-    final streetsAsync = ref.watch(cityStreetsProvider('omsk'));
+      return timer.cancel;
+    }, [rawSearchQuery]);
+
+    final citiesAsync = ref.watch(citiesProvider);
+    final suggestionsAsync = ref.watch(
+      locationSuggestionsProvider(debouncedQuery.value),
+    );
 
     return Scaffold(
       backgroundColor: context.colors.graysWhite,
       body: SafeArea(
         bottom: false, // Чтобы список уходил под системную панель снизу
-        child: streetsAsync.when(
+        child: citiesAsync.when(
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (err, _) => Center(child: Text('$err')),
-          data: (streets) {
+          data: (cities) {
             return CustomScrollView(
               slivers: [
                 SliverAppBar(
@@ -60,35 +72,78 @@ class LocationScreen extends HookConsumerWidget {
                   ),
                 ),
 
-                if (streets.isEmpty)
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Center(
-                      child: Text(
-                        context.l10n.searchNoResults,
-                        style: context.typography.bodyDescription.copyWith(
-                          color: context.colors.graysIcon500,
-                        ),
+                SliverPadding(
+                  padding: const P(horizontal: S.p16, top: S.p12),
+                  sliver: suggestionsAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Padding(
+                        padding: P(vertical: S.p24),
+                        child: Center(child: CircularProgressIndicator()),
                       ),
                     ),
-                  )
-                else
-                  SliverPadding(
-                    padding: const P(horizontal: S.p16, top: S.p12),
-                    sliver: SliverList.separated(
-                      itemCount: streets.length,
-                      itemBuilder: (context, index) {
-                        final street = streets[index];
-                        return ListItem(
-                          iconPath: AppIcons.street,
-                          title: street.name,
-                          subtitle: street.district,
-                          onTap: () => onSelected(street),
-                        );
-                      },
-                      separatorBuilder: (_, _) => const SizedBox(height: S.p20),
+                    error: (err, _) => SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Center(child: Text('$err')),
                     ),
+                    data: (suggestions) {
+                      if (debouncedQuery.value.isEmpty) {
+                        return SliverList.separated(
+                          itemCount: cities.length,
+                          itemBuilder: (context, index) {
+                            final city = cities[index];
+                            return ListItem(
+                              iconPath: AppIcons.city,
+                              title: city.title,
+                              subtitle: city.region,
+                              onTap: () => onSelected(
+                                LocationSelectionModel(
+                                  cityId: city.id,
+                                  cityTitle: city.title,
+                                  cityFiasId: city.fiasId,
+                                  displayTitle: city.title,
+                                ),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (_, _) =>
+                              const SizedBox(height: S.p20),
+                        );
+                      }
+
+                      if (suggestions.isEmpty) {
+                        return SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: Center(
+                            child: Text(
+                              context.l10n.searchNoResults,
+                              style: context.typography.bodyDescription
+                                  .copyWith(color: context.colors.graysIcon500),
+                            ),
+                          ),
+                        );
+                      }
+
+                      return SliverList.separated(
+                        itemCount: suggestions.length,
+                        itemBuilder: (context, index) {
+                          final suggestion = suggestions[index];
+                          final selection = resolveLocationSelection(
+                            suggestion: suggestion,
+                            cities: cities,
+                          );
+                          return ListItem(
+                            iconPath: AppIcons.city,
+                            title: selection.displayTitle,
+                            subtitle: suggestion.unrestrictedValue,
+                            onTap: () => onSelected(selection),
+                          );
+                        },
+                        separatorBuilder: (_, _) =>
+                            const SizedBox(height: S.p20),
+                      );
+                    },
                   ),
+                ),
               ],
             );
           },
@@ -109,7 +164,11 @@ class _SliverSearchDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 60;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return SizedBox.expand(child: child);
   }
 

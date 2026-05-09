@@ -4,4 +4,3 @@ export 'core/network_providers.dart';
 export 'data_source/data_source_providers.dart';
 export 'feature/location_providers.dart';
 export 'repository/repository_providers.dart';
-export 'use_case/use_case_providers.dart';

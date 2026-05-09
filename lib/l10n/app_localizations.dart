@@ -1726,6 +1726,36 @@ abstract class AppLocalizations {
   /// **'Фамилия обязательна'**
   String get profileEditLastNameRequired;
 
+  /// No description provided for @profileUpdateFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось обновить профиль'**
+  String get profileUpdateFailed;
+
+  /// No description provided for @createProfileAgeRequired.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заполните поле'**
+  String get createProfileAgeRequired;
+
+  /// No description provided for @createProfileAgeInvalid.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите корректный возраст (18-100)'**
+  String get createProfileAgeInvalid;
+
+  /// No description provided for @createProfileGenderRequired.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пол обязателен'**
+  String get createProfileGenderRequired;
+
+  /// No description provided for @createAdSubmitFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось создать объявление'**
+  String get createAdSubmitFailed;
+
   /// No description provided for @loginToUseAllFeatures.
   ///
   /// In ru, this message translates to:

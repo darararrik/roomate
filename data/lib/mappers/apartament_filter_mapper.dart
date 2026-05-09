@@ -1,18 +1,19 @@
-import 'package:domain/domain.dart';
-
 import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 
 abstract class ApartamentFilterMapper {
   static ApartamentFilterData toData(ApartamentFilterModel model) {
     return ApartamentFilterData(
+      cityId: model.cityId == 0 ? null : model.cityId,
       goalId: model.goalId,
       propertyTypeIds: _listOrNull(model.propertyTypeIds),
       roomsCountIds: _listOrNull(model.roomsCountIds),
       minPrice: model.minPrice,
       maxPrice: model.maxPrice,
       rentDurationId: model.rentDurationId,
-      sortBy: _sortBy(model.sortType),
-      sortOrder: _sortOrder(model.sortType),
+      addressQuery: model.addressQuery.isEmpty ? null : model.addressQuery,
+      sortBy: sortTypeToData(model.sortType),
+      sortOrder: sortOrderToData(model.sortType),
     );
   }
 
@@ -20,7 +21,7 @@ abstract class ApartamentFilterMapper {
     return value.isEmpty ? null : value;
   }
 
-  static String _sortBy(ApartmentSortType sortType) {
+  static String sortTypeToData(ApartmentSortType sortType) {
     return switch (sortType) {
       ApartmentSortType.popularity => 'popularity',
       ApartmentSortType.priceAsc || ApartmentSortType.priceDesc => 'price',
@@ -28,7 +29,7 @@ abstract class ApartamentFilterMapper {
     };
   }
 
-  static String _sortOrder(ApartmentSortType sortType) {
+  static String sortOrderToData(ApartmentSortType sortType) {
     return switch (sortType) {
       ApartmentSortType.priceAsc || ApartmentSortType.dateAsc => 'asc',
       ApartmentSortType.popularity ||

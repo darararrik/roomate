@@ -25,12 +25,16 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions() async {
+  Future<Either<RemoteException, AdFormOptionsModel>>
+  fetchAdFormOptions() async {
     final result = await _client.get(
       ApiUrlConstants.adFormOptions,
       transformer: (json) => AdFormOptionsData.fromJson(json),
     );
-    return result.fold((error) => Left(error), (data) => Right(AdFormMapper.toModel(data)));
+    return result.fold(
+      (error) => Left(error),
+      (data) => Right(AdFormMapper.toModel(data)),
+    );
   }
 
   @override
@@ -40,15 +44,22 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
       transformer: (json) => FilterData.fromJson(json),
       needAuth: true,
     );
-    return result.fold((error) => Left(error), (data) => Right(FilterMapper.toModel(data)));
+    return result.fold(
+      (error) => Left(error),
+      (data) => Right(FilterMapper.toModel(data)),
+    );
   }
 
   @override
-  Future<void> createAd(CreateAdFormRequestData request) async {
-    try {
-      await _client.post(ApiUrlConstants.ads, body: request.toJson(), needAuth: true);
-    } catch (e) {
-      rethrow;
-    }
+  Future<Either<RemoteException, void>> createAd(
+    CreateAdFormRequestData request,
+  ) async {
+    final result = await _client.post<void>(
+      ApiUrlConstants.ads,
+      body: request.toJson(),
+      needAuth: true,
+      transformer: (_) {},
+    );
+    return result;
   }
 }

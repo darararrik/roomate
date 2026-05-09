@@ -1,7 +1,7 @@
-import 'package:collection/collection.dart';
 import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared/shared.dart';
 
 import 'package:roomate/lib.dart';
 
@@ -9,28 +9,19 @@ part 'ad_form_notifier.g.dart';
 
 @riverpod
 Future<AdFormOptionsModel> getAdFormOptions(Ref ref) async {
-  final form = await ref.read(apartamentsRepositoryProvider).fetchAdFormOptions();
+  final form = await ref
+      .read(apartamentsRepositoryProvider)
+      .fetchAdFormOptions();
   return form.fold((error) => throw error, (value) => value);
 }
 
 @riverpod
 String selectedStreetName(Ref ref) {
-  final id = ref.watch(adFormProvider.select((s) => s.selectedStreetId));
-  final streets = ref.watch(cityStreetsProvider('omsk'));
-
-  return streets.maybeWhen(
-    data: (list) {
-      final street = list.firstWhereOrNull((s) => s.id == id);
-      return street?.name ?? '';
-    },
-    orElse: () => '',
-  );
+  return ref.watch(adFormProvider.select((state) => state.address));
 }
 
 @riverpod
 class AdFormNotifier extends _$AdFormNotifier {
-  IApartamentsRepository get _repository => ref.read(apartamentsRepositoryProvider);
-
   @override
   CreateAdFormModel build() {
     // Слушаем изменение профиля для автоматического обновления телефона
@@ -45,8 +36,15 @@ class AdFormNotifier extends _$AdFormNotifier {
     return CreateAdFormModel(mainPhone: initialPhone);
   }
 
-  void selectStreet(StreetModel street) {
-    state = state.copyWith(selectedStreetId: street.id, address: street.name);
+  void selectCity(CityModel city) {
+    state = state.copyWith(selectedStreetId: city.id, address: city.title);
+  }
+
+  void selectLocation(LocationSelectionModel selection) {
+    state = state.copyWith(
+      selectedStreetId: selection.cityId,
+      address: selection.displayTitle,
+    );
   }
 
   // ----- Вспомогательный метод для Toggle (множественный выбор) -----
@@ -66,10 +64,14 @@ class AdFormNotifier extends _$AdFormNotifier {
   void setRentGoal(int id) => state = state.copyWith(rentGoalId: id);
   void setRentPeriod(int id) => state = state.copyWith(rentPeriodId: id);
 
-  void setWhoCanRentIds(Set<int> ids) => state = state.copyWith(whoCanRentIds: ids);
+  void setWhoCanRentIds(Set<int> ids) =>
+      state = state.copyWith(whoCanRentIds: ids);
 
-  void toggleWhoCanRent(int id) =>
-      _toggleTag(state.whoCanRentIds, id, (val) => state = state.copyWith(whoCanRentIds: val));
+  void toggleWhoCanRent(int id) => _toggleTag(
+    state.whoCanRentIds,
+    id,
+    (val) => state = state.copyWith(whoCanRentIds: val),
+  );
 
   // ----- Premises & Property -----
 
@@ -91,20 +93,31 @@ class AdFormNotifier extends _$AdFormNotifier {
 
   void setFurniture(int id) => state = state.copyWith(furnitureId: id);
 
-  void setAmenitiesIds(Set<int> ids) => state = state.copyWith(amenitiesIds: ids);
+  void setAmenitiesIds(Set<int> ids) =>
+      state = state.copyWith(amenitiesIds: ids);
 
   void setBathroomIds(Set<int> ids) => state = state.copyWith(bathroomIds: ids);
 
-  void setAppliancesIds(Set<int> ids) => state = state.copyWith(appliancesIds: ids);
+  void setAppliancesIds(Set<int> ids) =>
+      state = state.copyWith(appliancesIds: ids);
 
-  void toggleAmenity(int id) =>
-      _toggleTag(state.amenitiesIds, id, (val) => state = state.copyWith(amenitiesIds: val));
+  void toggleAmenity(int id) => _toggleTag(
+    state.amenitiesIds,
+    id,
+    (val) => state = state.copyWith(amenitiesIds: val),
+  );
 
-  void toggleBathroom(int id) =>
-      _toggleTag(state.bathroomIds, id, (val) => state = state.copyWith(bathroomIds: val));
+  void toggleBathroom(int id) => _toggleTag(
+    state.bathroomIds,
+    id,
+    (val) => state = state.copyWith(bathroomIds: val),
+  );
 
-  void toggleAppliance(int id) =>
-      _toggleTag(state.appliancesIds, id, (val) => state = state.copyWith(appliancesIds: val));
+  void toggleAppliance(int id) => _toggleTag(
+    state.appliancesIds,
+    id,
+    (val) => state = state.copyWith(appliancesIds: val),
+  );
 
   void setStove(int id) => state = state.copyWith(stoveId: id);
 
@@ -114,7 +127,8 @@ class AdFormNotifier extends _$AdFormNotifier {
   void setPrepayment(int id) => state = state.copyWith(prepaymentId: id);
   void setRentDuration(int id) => state = state.copyWith(rentDurationId: id);
 
-  void setRentConditionsIds(Set<int> ids) => state = state.copyWith(rentConditionsIds: ids);
+  void setRentConditionsIds(Set<int> ids) =>
+      state = state.copyWith(rentConditionsIds: ids);
 
   void toggleRentCondition(int id) => _toggleTag(
     state.rentConditionsIds,
@@ -123,29 +137,40 @@ class AdFormNotifier extends _$AdFormNotifier {
   );
 
   void setCurrencySelection(int id, String optionTitle) =>
-      state = state.copyWith(currencyId: id, selectedCurrency: Currency.fromTitle(optionTitle));
+      state = state.copyWith(
+        currencyId: id,
+        selectedCurrency: Currency.fromTitle(optionTitle),
+      );
 
   // ----- Input Fields -----
 
-  void updateCost(String val) => state = state.copyWith(cost: double.tryParse(val) ?? 0);
-  void updateDeposit(String val) => state = state.copyWith(deposit: double.tryParse(val) ?? 0);
-  void updateArea(String val) => state = state.copyWith(apartmentArea: double.tryParse(val) ?? 0);
-  void updateFloor(String val) => state = state.copyWith(floor: int.tryParse(val) ?? 0);
-  void updateTotalFloors(String val) => state = state.copyWith(totalFloors: int.tryParse(val) ?? 0);
+  void updateCost(String val) =>
+      state = state.copyWith(cost: double.tryParse(val) ?? 0);
+  void updateDeposit(String val) =>
+      state = state.copyWith(deposit: double.tryParse(val) ?? 0);
+  void updateArea(String val) =>
+      state = state.copyWith(apartmentArea: double.tryParse(val) ?? 0);
+  void updateFloor(String val) =>
+      state = state.copyWith(floor: int.tryParse(val) ?? 0);
+  void updateTotalFloors(String val) =>
+      state = state.copyWith(totalFloors: int.tryParse(val) ?? 0);
 
   void updateApartmentNumber(String val) =>
       state = state.copyWith(apartmentNumber: int.tryParse(val) ?? 0);
 
   void updateTitle(String val) => state = state.copyWith(title: val);
-  void updateDescription(String val) => state = state.copyWith(description: val);
+  void updateDescription(String val) =>
+      state = state.copyWith(description: val);
 
   void setContactMethod(int id) {
     state = state.copyWith(contactMethodId: id);
   }
 
-  void updateAdditionalPhone(String val) => state = state.copyWith(additionalNumber: val);
+  void updateAdditionalPhone(String val) =>
+      state = state.copyWith(additionalNumber: val);
 
-  Future<void> createAd() async {
-    await _repository.createAd(state);
+  Future<RemoteException?> createAd() async {
+    final result = await ref.read(apartamentsRepositoryProvider).createAd(state);
+    return result.fold((error) => error, (_) => null);
   }
 }

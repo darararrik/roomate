@@ -81,7 +81,7 @@ final class ApartamentFilterNotifierProvider
 }
 
 String _$apartamentFilterNotifierHash() =>
-    r'137cef7191badee356a8a16738a288c09dbc08a2';
+    r'56e6330e5ac75a0407ee02cd33dd08d7349ba428';
 
 abstract class _$ApartamentFilterNotifier
     extends $Notifier<ApartamentFilterModel> {

@@ -1,29 +1,59 @@
+import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
 import 'package:data/data.dart';
 
 class LocationCatalogMockDataSource implements LocationDataSource {
-  List<StreetModel>? _cache;
+  @override
+  Future<Either<RemoteException, List<CityModel>>> fetchCities() async {
+    return Right([
+      CityModel(id: 1, title: 'Омск', fiasId: 'omsk', region: 'Омская область'),
+    ]);
+  }
 
   @override
-  Future<List<StreetModel>> getStreetsForCity(String cityKey) async {
-    if (cityKey != 'omsk') {
-      return [];
+  Future<Either<RemoteException, List<LocationSuggestionModel>>>
+  suggestLocations(String addressQuery) async {
+    final query = addressQuery.trim().toLowerCase();
+    if (query.isEmpty) {
+      return const Right([]);
     }
-    _cache ??= await _loadOmsk();
-    return List<StreetModel>.unmodifiable(_cache!);
-  }
 
-  Future<List<StreetModel>> _loadOmsk() async {
-    final json = OmskStreetsMockJson.fetchStreets;
-    final data = json.map((e) => StreetDto.fromJson(e)).toList();
-    return data.map((e) => e.toModel()).toList();
-  }
+    final suggestions =
+        [
+              const LocationSuggestionModel(
+                value: 'г Омск',
+                unrestrictedValue: '644000, Омская обл, г Омск',
+                country: 'Россия',
+                region: 'Омская обл',
+                city: 'г Омск',
+                cityFiasId: 'omsk',
+              ),
+              const LocationSuggestionModel(
+                value: 'г Омск, ул Омская',
+                unrestrictedValue:
+                    'Омская обл, г Омск, Центральный округ, ул Омская',
+                country: 'Россия',
+                region: 'Омская обл',
+                city: 'г Омск',
+                cityFiasId: 'omsk',
+                street: 'ул Омская',
+                streetFiasId: 'omsk-street',
+              ),
+            ]
+            .where((item) {
+              final haystack = [
+                item.value,
+                item.unrestrictedValue,
+                item.city ?? '',
+                item.region,
+                item.street ?? '',
+              ].join(' ').toLowerCase();
+              return haystack.contains(query);
+            })
+            .toList(growable: false);
 
-  @override
-  fetchCities() {
-    // TODO: implement fetchCities
-    throw UnimplementedError();
+    return Right(suggestions);
   }
 }

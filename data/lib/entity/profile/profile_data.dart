@@ -1,6 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:data/entity/prefernces_tags/selected_user_preferences_data.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_data.freezed.dart';
 part 'profile_data.g.dart';
@@ -14,6 +13,8 @@ sealed class ProfileData with _$ProfileData {
     @JsonKey(name: "phone") String? phone,
     @JsonKey(name: "gender") String? gender,
     @JsonKey(name: "age") int? age,
+    @JsonKey(name: "city_id") int? cityId,
+    //TODO: Убрать после изменения на бэке
     @JsonKey(name: "city") String? city,
     @JsonKey(name: "photo") String? avatarUrl,
     @JsonKey(name: "status") bool? isVerified,
@@ -21,6 +22,5 @@ sealed class ProfileData with _$ProfileData {
     @JsonKey(name: "is_owner") bool? isOwner,
     @JsonKey(name: "is_new_user") bool? isNewUser,
   }) = _ProfileData;
-  factory ProfileData.fromJson(Map<String, dynamic> json) =>
-      _$ProfileDataFromJson(json);
+  factory ProfileData.fromJson(Map<String, dynamic> json) => _$ProfileDataFromJson(json);
 }

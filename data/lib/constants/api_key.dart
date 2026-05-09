@@ -13,4 +13,5 @@ class ApiUrlConstants {
   static const me = '/profile/me';
   static const preferenceTagsCatalog = '/profile/tags';
   static const cities = '/locations/cities';
+  static const locationsSuggest = '/locations/suggest';
 }
