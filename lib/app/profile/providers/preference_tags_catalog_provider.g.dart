@@ -49,4 +49,4 @@ final class PreferenceTagsCatalogProvider
 }
 
 String _$preferenceTagsCatalogHash() =>
-    r'd2213e5baf9687382646685af2387b0bbc2f7254';
+    r'084a68e187c3d013082dcd60bf326986bed0efee';

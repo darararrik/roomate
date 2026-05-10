@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
 
 import 'package:roomate/lib.dart';
@@ -14,22 +13,24 @@ class PriceAndFavoriteIcon extends StatelessWidget {
   });
 
   final ApartamentModel apartment;
-  final FavoriteApartmentIdsNotifier favoriteNotifier;
+  final VoidCallback favoriteNotifier;
   final bool isFavorite;
   final AppPalette colors;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: .spaceBetween,
       children: [
-        Text(
-          "${apartment.price} ${context.l10n.currencyPerMonth}",
-          style: context.typography.headline0,
+        Expanded(
+          child: Text(
+            "${apartment.price} ${context.l10n.currencyPerMonth}",
+            style: context.typography.headline0,
+            softWrap: true,
+          ),
         ),
         IconButtonWidget(
           icon: AppIcons.favourite,
-          onPressed: () => favoriteNotifier.toggle(apartment.id),
+          onPressed: favoriteNotifier,
           iconColor: isFavorite ? colors.orange : colors.graysBlack,
           size: S.p36,
           iconSize: S.p24,

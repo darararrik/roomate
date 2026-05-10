@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:roomate/app/apartament/state/apartament_notifier.dart';
 import 'package:roomate/app/apartament/widgets/app_bar_and_photo.dart';
+import 'package:roomate/app/apartament/widgets/buttons.dart';
 import 'package:roomate/app/apartament/widgets/price_and_favorite_icon.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()
-class ApartamnetScreen extends HookConsumerWidget {
+class ApartamnetScreen extends ConsumerWidget {
   const ApartamnetScreen({super.key, required this.apartment});
 
   final ApartamentModel apartment;
@@ -19,56 +18,27 @@ class ApartamnetScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.colors;
     final locale = context.l10n;
-    final page = useState(0);
-    final pageController = usePageController();
-    final imageUrls = apartment.imageUrls;
-    final hasImages = imageUrls.isNotEmpty;
-    final imagesCount = hasImages ? imageUrls.length : 1;
-    final String isVerifiedText = apartment.isVerification
-        ? context.l10n.apartmentVerified
-        : context.l10n.apartmentNotVerified;
-    final String withCompanyText = apartment.whoToRent.contains(WhoToRent.company)
-        ? context.l10n.apartmentCompanyAllowed
-        : context.l10n.apartmentCompanyNotAllowed;
-    final isFavorite = ref.watch(
-      favoriteApartmentIdsProvider.select((ids) => ids.contains(apartment.id)),
-    );
-    final favoriteNotifier = ref.read(favoriteApartmentIdsProvider.notifier);
+    final state = ref.watch(apartamentProvider(apartment));
+    final notifier = ref.read(apartamentProvider(apartment).notifier);
     return Scaffold(
       backgroundColor: colors.graysWhite,
-      bottomNavigationBar: SafeArea(
-        child: DecoratedBox(
-          decoration: const BoxDecoration(),
-          child: Padding(
-            padding: const P(vertical: S.p20, horizontal: S.p16),
-            child: Row(
-              spacing: S.p12,
-              children: [
-                Expanded(
-                  child: PrimaryButton(text: locale.call, onPressed: () {}),
-                ),
-                Expanded(
-                  child: OpacityButton(
-                    onPressed: () {},
-                    bgColor: context.colors.opacityOrange20,
-                    color: context.colors.orange,
-                    child: Text(locale.write),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+      bottomNavigationBar: Buttons(
+        onCallPressed: notifier.onCallPressed,
+        onWritePressed: notifier.onWritePressed,
       ),
       body: CustomScrollView(
         slivers: [
           AppBarAndPhoto(
-            hasImages: hasImages,
-            pageController: pageController,
-            imageUrls: imageUrls,
-            page: page,
+            hasImages: state.hasImages,
+            pageController: notifier.pageController,
+            imageUrls: state.apartment.imageUrls,
+            page: state.page,
             colors: colors,
-            imagesCount: imagesCount,
+            imagesCount: state.imagesCount,
+            onPageChanged: notifier.onPageChanged,
+            onPreviousImagePressed: notifier.onPreviousImagePressed,
+            onNextImagePressed: notifier.onNextImagePressed,
+            onMorePressed: () => notifier.onMorePressed(context),
           ),
           SliverPadding(
             padding: const P(all: S.p16),
@@ -83,110 +53,88 @@ class ApartamnetScreen extends HookConsumerWidget {
                         spacing: S.p12,
                         runSpacing: S.p8,
                         children: [
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: context.colors.lightGreen100,
-                              borderRadius: .circular(S.p8),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(S.p8),
-                              child: Row(
-                                mainAxisSize: .min,
-                                spacing: S.p8,
-                                children: [
-                                  AppIcon(
-                                    AppIcons.verified,
-                                    color: context.colors.labelGreen,
-                                    width: S.p16,
-                                    height: S.p16,
-                                  ),
-                                  Text(
-                                    isVerifiedText,
-                                    style: context.typography.bodySmall.copyWith(
-                                      color: context.colors.labelGreen,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                          LabelChip(
+                            title: state.verifiedTitle,
+                            backgroundColor: context.colors.lightGreen100,
+                            color: context.colors.labelGreen,
+                            iconPath: AppIcons.verified,
                           ),
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: context.colors.lightBlue100,
-                              borderRadius: .circular(S.p8),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(S.p8),
-                              child: Row(
-                                mainAxisSize: .min,
-                                spacing: S.p8,
-                                children: [
-                                  AppIcon(
-                                    AppIcons.company,
-                                    color: context.colors.labelBlue,
-                                    width: S.p16,
-                                    height: S.p16,
-                                  ),
-                                  Text(
-                                    withCompanyText,
-                                    style: context.typography.bodySmall.copyWith(
-                                      color: context.colors.labelBlue,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                          LabelChip(
+                            title: state.companyTitle,
+                            backgroundColor: context.colors.lightBlue100,
+                            color: context.colors.labelBlue,
+                            iconPath: AppIcons.company,
                           ),
                         ],
                       ),
                       PriceAndFavoriteIcon(
                         apartment: apartment,
-                        favoriteNotifier: favoriteNotifier,
-                        isFavorite: isFavorite,
+                        favoriteNotifier: notifier.onFavoritePressed,
+                        isFavorite: state.isFavorite,
                         colors: colors,
                       ),
-                      Text(apartment.title, style: context.typography.headline1),
+                      Text(
+                        apartment.title,
+                        style: context.typography.headline1,
+                        softWrap: true,
+                      ),
                       Row(
-                        spacing: S.p32,
                         children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            spacing: S.p4,
-                            children: [
-                              Text("${apartment.roomsCount}-${locale.apartmentRoomsShort}"),
-                              Text(
-                                locale.apartment,
-                                style: context.typography.bodyDescription.copyWith(
-                                  color: colors.graysText400,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              spacing: S.p4,
+                              children: [
+                                Text(
+                                  "${apartment.roomsCount}-${locale.apartmentRoomsShort}",
+                                  softWrap: true,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  locale.apartment,
+                                  style: context.typography.bodyDescription
+                                      .copyWith(color: colors.graysText400),
+                                  softWrap: true,
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            spacing: S.p4,
-                            children: [
-                              Text("${apartment.area} ${locale.squareMeters}"),
-                              Text(
-                                locale.apartmentArea,
-                                style: context.typography.bodyDescription.copyWith(
-                                  color: colors.graysText400,
+                          const SizedBox(width: S.p16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              spacing: S.p4,
+                              children: [
+                                Text(
+                                  "${apartment.area} ${locale.squareMeters}",
+                                  softWrap: true,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  locale.apartmentArea,
+                                  style: context.typography.bodyDescription
+                                      .copyWith(color: colors.graysText400),
+                                  softWrap: true,
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            spacing: S.p4,
-                            children: [
-                              Text("${apartment.floor}/${apartment.totalFloor}"),
-                              Text(
-                                locale.floor,
-                                style: context.typography.bodyDescription.copyWith(
-                                  color: colors.graysText400,
+                          const SizedBox(width: S.p16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              spacing: S.p4,
+                              children: [
+                                Text(
+                                  "${apartment.floor}/${apartment.totalFloor}",
+                                  softWrap: true,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  locale.floor,
+                                  style: context.typography.bodyDescription
+                                      .copyWith(color: colors.graysText400),
+                                  softWrap: true,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -210,22 +158,19 @@ class ApartamnetScreen extends HookConsumerWidget {
                       children: [
                         OwnerCard(apartment: apartment),
                         const SizedBox(height: S.p24),
-                        if (apartment.publishDate.isNotEmpty)
-                          Text(
-                            apartment.publishDate,
-                            style: context.typography.bodyDescription.copyWith(
-                              color: colors.graysText400,
-                            ),
+                        Text(
+                          'Размещено: ${state.publishedAt}',
+                          style: context.typography.bodyDescription.copyWith(
+                            color: colors.graysText400,
                           ),
-                        if (apartment.publishDate.isNotEmpty && apartment.totalViewers.isNotEmpty)
-                          const SizedBox(height: S.p8),
-                        if (apartment.totalViewers.isNotEmpty)
-                          Text(
-                            locale.viewsCount(apartment.totalViewers),
-                            style: context.typography.bodyDescription.copyWith(
-                              color: colors.graysText400,
-                            ),
+                        ),
+                        const SizedBox(height: S.p8),
+                        Text(
+                          state.viewsText,
+                          style: context.typography.bodyDescription.copyWith(
+                            color: colors.graysText400,
                           ),
+                        ),
                       ],
                     ),
                   ),
@@ -240,27 +185,38 @@ class ApartamnetScreen extends HookConsumerWidget {
                         children: [
                           InfoRow(
                             title: locale.layout,
-                            value: apartment.layout?.title ?? locale.notSpecified,
+                            value:
+                                apartment.layout?.title ?? locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.renovationLabel,
-                            value: apartment.renovation?.title ?? locale.notSpecified,
+                            value:
+                                apartment.renovation?.title ??
+                                locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.elevator,
-                            value: apartment.elevatorType?.title ?? locale.notSpecified,
+                            value:
+                                apartment.elevatorType?.title ??
+                                locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.balconies,
-                            value: apartment.balconyType?.title ?? locale.notSpecified,
+                            value:
+                                apartment.balconyType?.title ??
+                                locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.furniture,
-                            value: apartment.furnitureType?.title ?? locale.notSpecified,
+                            value:
+                                apartment.furnitureType?.title ??
+                                locale.notSpecified,
                           ),
                           InfoRow(
                             title: locale.stove,
-                            value: apartment.stoveType?.title ?? locale.notSpecified,
+                            value:
+                                apartment.stoveType?.title ??
+                                locale.notSpecified,
                           ),
                         ],
                       ),
@@ -279,7 +235,10 @@ class ApartamnetScreen extends HookConsumerWidget {
                             children: apartment.amenities.map((item) {
                               return SizedBox(
                                 width: itemWidth,
-                                child: FeatureChip(title: item.title, iconPath: item.iconPath),
+                                child: FeatureChip(
+                                  title: item.title,
+                                  iconPath: item.iconPath,
+                                ),
                               );
                             }).toList(),
                           ),
@@ -296,12 +255,19 @@ class ApartamnetScreen extends HookConsumerWidget {
                         children: [
                           InfoRow(
                             title: locale.prepayment,
-                            value: apartment.prepaymentType?.title ?? locale.notSpecified,
+                            value:
+                                apartment.prepaymentType?.title ??
+                                locale.notSpecified,
                           ),
-                          InfoRow(title: locale.deposit, value: apartment.deposit),
+                          InfoRow(
+                            title: locale.deposit,
+                            value: apartment.deposit,
+                          ),
                           InfoRow(
                             title: locale.rentalPeriod,
-                            value: apartment.rentalPeriod?.title ?? locale.notSpecified,
+                            value:
+                                apartment.rentalPeriod?.title ??
+                                locale.notSpecified,
                           ),
                         ],
                       ),
@@ -310,7 +276,10 @@ class ApartamnetScreen extends HookConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(context.l10n.adDescription, style: context.typography.headline1),
+                      Text(
+                        context.l10n.adDescription,
+                        style: context.typography.headline1,
+                      ),
                       const SizedBox(height: S.p12),
                       Padding(
                         padding: const P(vertical: S.p8),

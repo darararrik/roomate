@@ -124,7 +124,7 @@ final class AdFormNotifierProvider
   }
 }
 
-String _$adFormNotifierHash() => r'7e12deb8ed645a30ef557450c386676f870f4c0e';
+String _$adFormNotifierHash() => r'd36902c8a27e4a876ac84e1c3c73eb6286e29286';
 
 abstract class _$AdFormNotifier extends $Notifier<CreateAdFormModel> {
   CreateAdFormModel build();

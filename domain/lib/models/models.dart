@@ -7,6 +7,7 @@ export 'city/city_model.dart';
 export 'common/common.dart';
 export 'filter/filter.dart';
 export 'location/location.dart';
+export 'neighbours_model/neighbours_model.dart';
 export 'preferences_tags/preferences_tags.dart';
 export 'profile/profile.dart';
 export 'quiz_step_model.dart';

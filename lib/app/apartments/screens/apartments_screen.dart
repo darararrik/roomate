@@ -20,9 +20,10 @@ class ApartamentsScreen extends ConsumerWidget {
       body: CustomScrollView(
         slivers: [
           MainAppBar(
-            bottom: ListControlsAppBarBottom(
+            bottom: FiltersRow(
               optionsCount: asyncState.value?.apartaments.length ?? 0,
-              onFiltersTap: () => ref.read(apartamentFilterProvider.notifier).openFilters(),
+              onFiltersTap: () =>
+                  ref.read(apartamentFilterProvider.notifier).openFilters(),
             ),
           ),
           asyncState.when(
@@ -37,8 +38,11 @@ class ApartamentsScreen extends ConsumerWidget {
                     return ApartmentCard(
                       apartment: apartment,
                       isFavorite: favorites.contains(apartment.id),
-                      onFavoriteTap: () => favoritesNotifier.toggle(apartment.id),
-                      onTap: () => context.pushRoute(ApartamnetRoute(apartment: apartment)),
+                      onFavoriteTap: () =>
+                          favoritesNotifier.toggle(apartment.id),
+                      onTap: () => context.pushRoute(
+                        ApartamnetRoute(apartment: apartment),
+                      ),
                     );
                   },
                   separatorBuilder: (context, index) {
@@ -48,7 +52,8 @@ class ApartamentsScreen extends ConsumerWidget {
               );
             },
             loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
-            error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: stack)),
+            error: (error, stack) =>
+                SliverToBoxAdapter(child: ErrorView(error: stack)),
           ),
         ],
       ),

@@ -13,6 +13,7 @@ class FeatureChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppIcon(
           iconPath,
@@ -21,7 +22,7 @@ class FeatureChip extends StatelessWidget {
           color: context.colors.graysIcon500,
         ),
         const SizedBox(width: S.p8),
-        Text(title, style: context.typography.bodyDescription),
+        Expanded(child: Text(title, style: context.typography.bodyDescription)),
       ],
     );
   }

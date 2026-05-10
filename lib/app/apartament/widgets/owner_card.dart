@@ -14,26 +14,47 @@ class OwnerCard extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colors.graysLight50,
+        border: Border.all(color: context.colors.graysStroke300),
         borderRadius: const BorderRadius.all(.circular(S.p12)),
       ),
       child: Padding(
         padding: const P(vertical: S.p20, horizontal: S.p12),
         child: Row(
           children: [
-            //TODO: потом реализовать аватрку у пользователя
-            const AppIcon(AppIcons.defaultAvatar, width: S.p52, height: S.p52),
+            DecoratedBox(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [Color(0xFFF7AD95), Color(0xFFFF5343)],
+                ),
+              ),
+              child: Padding(
+                padding: const P(all: S.p14),
+                child: AppIcon(
+                  AppIcons.defaultAvatar,
+                  width: S.p24,
+                  height: S.p24,
+                  color: context.colors.graysWhite,
+                ),
+              ),
+            ),
             const SizedBox(width: S.p12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(apartment.name, style: context.typography.headline2),
+                  Text(
+                    apartment.name,
+                    style: context.typography.headline2,
+                    softWrap: true,
+                  ),
                   const SizedBox(height: S.p12),
                   Text(
                     apartment.role,
                     style: context.typography.bodyDescription.copyWith(
                       color: context.colors.graysText700,
                     ),
+                    softWrap: true,
                   ),
                 ],
               ),
@@ -43,6 +64,8 @@ class OwnerCard extends StatelessWidget {
               onPressed: () {},
               iconColor: context.colors.lightOrange100,
               backgroundColor: context.colors.graysWhite,
+              size: S.p48,
+              iconSize: S.p24,
             ),
             const SizedBox(width: S.p12),
             IconButtonWidget(
@@ -50,6 +73,8 @@ class OwnerCard extends StatelessWidget {
               onPressed: () {},
               iconColor: context.colors.lightOrange100,
               backgroundColor: context.colors.graysWhite,
+              size: S.p48,
+              iconSize: S.p24,
             ),
           ],
         ),

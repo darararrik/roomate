@@ -31,8 +31,38 @@ extension DateTimeX on DateTime {
     return DateFormat('dd.MM.yyyy').format(this);
   }
 
+  String toRuLongDateString() {
+    const months = [
+      'янв.',
+      'февр.',
+      'мар.',
+      'апр.',
+      'мая',
+      'июн.',
+      'июл.',
+      'авг.',
+      'сент.',
+      'окт.',
+      'нояб.',
+      'дек.',
+    ];
+    return '$day ${months[month - 1]}, $year г.';
+  }
+
   String toNormalTimeString() {
     return DateFormat.Hm().format(this);
+  }
+}
+
+extension StringDateX on String {
+  String toRuLongPublishedDate() {
+    final raw = trim();
+    if (raw.isEmpty) return raw;
+
+    final parsed = DateTime.tryParse(raw);
+    if (parsed == null) return raw;
+
+    return parsed.toRuLongDateString();
   }
 }
 

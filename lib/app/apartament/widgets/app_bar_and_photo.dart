@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:roomate/app/apartament/widgets/more_action_bottom_sheet.dart';
 import 'package:roomate/lib.dart';
 
 class AppBarAndPhoto extends StatelessWidget {
@@ -12,117 +10,157 @@ class AppBarAndPhoto extends StatelessWidget {
     required this.page,
     required this.colors,
     required this.imagesCount,
+    required this.onPageChanged,
+    required this.onPreviousImagePressed,
+    required this.onNextImagePressed,
+    required this.onMorePressed,
   });
 
   final bool hasImages;
   final PageController pageController;
   final List<String> imageUrls;
-  final ValueNotifier<int> page;
+  final int page;
   final AppPalette colors;
   final int imagesCount;
+  final ValueChanged<int> onPageChanged;
+  final VoidCallback onPreviousImagePressed;
+  final VoidCallback onNextImagePressed;
+  final VoidCallback onMorePressed;
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      pinned: true,
-      expandedHeight: 280,
-      actions: [
-        Padding(
-          padding: const P(right: S.p8),
-          child: IconButtonWidget(
-            icon: AppIcons.more,
-            radius: 100,
-            onPressed: () => showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return const MoreActionBottomSheet();
-              },
+    Widget actionButton({
+      required Widget child,
+      VoidCallback? onTap,
+      double size = S.p32,
+    }) {
+      return Opacity(
+        opacity: onTap == null ? .45 : 1,
+        child: SizedBox.square(
+          dimension: size,
+          child: Material(
+            color: colors.opacityBlack60,
+            borderRadius: .circular(size),
+            child: InkWell(
+              borderRadius: .circular(size),
+              onTap: onTap,
+              child: Center(child: child),
             ),
-            iconSize: S.p32,
+          ),
+        ),
+      );
+    }
+
+    return SliverMainAxisGroup(
+      slivers: [
+        AB(
+          title: const SizedBox.shrink(),
+          centerTitle: false,
+          pinned: true,
+          backgroundColor: colors.graysWhite,
+          actionsPadding: const P(right: S.p8),
+          actions: [
+            IconButtonWidget(
+              icon: AppIcons.more,
+              radius: S.p32,
+              size: S.p32,
+              iconSize: S.p32,
+              onPressed: onMorePressed,
+            ),
+          ],
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const P(top: S.p4, horizontal: S.p16),
+            child: SizedBox(
+              height: 280,
+              child: ClipRRect(
+                borderRadius: .circular(S.p12),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    if (hasImages)
+                      PageView.builder(
+                        controller: pageController,
+                        physics: const PageScrollPhysics(),
+                        itemCount: imageUrls.length,
+                        onPageChanged: onPageChanged,
+                        itemBuilder: (context, index) => Image.network(
+                          imageUrls[index],
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, _, _) =>
+                              ColoredBox(color: colors.graysLight100),
+                        ),
+                      )
+                    else
+                      ColoredBox(color: colors.graysLight100),
+                    Positioned(
+                      left: S.p12,
+                      right: S.p12,
+                      top: 0,
+                      bottom: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          actionButton(
+                            onTap: page == 0 ? null : onPreviousImagePressed,
+                            child: AppIcon(
+                              AppIcons.arrowLeft,
+                              width: S.p24,
+                              height: S.p24,
+                              color: colors.graysWhite,
+                            ),
+                          ),
+                          actionButton(
+                            size: S.p48,
+                            child: Icon(
+                              Icons.play_arrow_rounded,
+                              color: colors.graysWhite,
+                              size: S.p28,
+                            ),
+                          ),
+                          actionButton(
+                            onTap: page == imagesCount - 1
+                                ? null
+                                : onNextImagePressed,
+                            child: AppIcon(
+                              AppIcons.arrowRight,
+                              width: S.p24,
+                              height: S.p24,
+                              color: colors.graysWhite,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      right: S.p12,
+                      bottom: S.p12,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: colors.opacityBlack60,
+                          borderRadius: const BorderRadius.all(
+                            .circular(S.p24),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const P(horizontal: S.p10, vertical: S.p6),
+                          child: Text(
+                            "${page + 1} из $imagesCount",
+                            style: context.typography.activesLabel.copyWith(
+                              color: colors.graysWhite,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ],
-      flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          fit: StackFit.expand,
-          children: [
-            if (hasImages)
-              PageView.builder(
-                controller: pageController,
-                physics: const PageScrollPhysics(),
-                itemCount: imageUrls.length,
-                onPageChanged: (index) => page.value = index,
-                itemBuilder: (context, index) => Image.network(
-                  imageUrls[index],
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, _, _) => ColoredBox(color: colors.graysLight100),
-                ),
-              )
-            else
-              ColoredBox(color: colors.graysLight100),
-            IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      colors.opacityBlack60.withValues(alpha: .12),
-                      Colors.transparent,
-                      colors.opacityBlack60.withValues(alpha: .35),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              right: S.p16,
-              bottom: S.p20,
-              child: IgnorePointer(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: colors.opacityBlack60,
-                    borderRadius: const BorderRadius.all(.circular(S.p24)),
-                  ),
-                  child: Padding(
-                    padding: const P(horizontal: S.p10, vertical: S.p6),
-                    child: Text(
-                      "${page.value + 1}/$imagesCount",
-                      style: context.typography.activesLabel.copyWith(color: colors.graysWhite),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            if (hasImages && imageUrls.length > 1)
-              Positioned(
-                left: S.p16,
-                right: S.p16,
-                bottom: S.p20,
-                child: IgnorePointer(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(imageUrls.length, (index) {
-                      final isActive = index == page.value;
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 180),
-                        margin: const EdgeInsets.symmetric(horizontal: S.p4),
-                        width: isActive ? S.p16 : S.p6,
-                        height: S.p6,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(.circular(S.p12)),
-                          color: isActive
-                              ? colors.graysWhite
-                              : colors.graysWhite.withValues(alpha: .5),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -46,7 +46,7 @@ final class CitiesProvider
   }
 }
 
-String _$citiesHash() => r'422cdd1166838c449e48057c2330a2beea61ea9c';
+String _$citiesHash() => r'5b19a897615d4de4a4553e24aac322ef4c7f495f';
 
 @ProviderFor(locationSuggestions)
 final locationSuggestionsProvider = LocationSuggestionsFamily._();
@@ -106,7 +106,7 @@ final class LocationSuggestionsProvider
 }
 
 String _$locationSuggestionsHash() =>
-    r'5de09f30802ff76114f7a003fff497bbc510d9a0';
+    r'c461c492564b7857304cffdfbf6d20697c7deaaa';
 
 final class LocationSuggestionsFamily extends $Family
     with
@@ -170,4 +170,4 @@ final class CurrentProfileCityProvider
 }
 
 String _$currentProfileCityHash() =>
-    r'db19a2bd8adf70be442d93b2104ae0f9ef479506';
+    r'36175a8d0b787a372a14ade125ad65626d9bd8a9';
