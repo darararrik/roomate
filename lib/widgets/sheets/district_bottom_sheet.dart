@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 class DistrictBottomSheet extends HookConsumerWidget {
@@ -17,19 +15,13 @@ class DistrictBottomSheet extends HookConsumerWidget {
     final selectedDistrictIds = useState<Set<int>>(currentDistrictIds.toSet());
 
     return filtersAsync.when(
-      loading: () => const SizedBox(
-        height: 200,
-        child: Center(child: CircularProgressIndicator()),
-      ),
-      error: (error, stack) =>
-          SizedBox(height: 200, child: Center(child: Text(error.toString()))),
+      loading: () => const SizedBox(height: 200, child: Center(child: CircularProgressIndicator())),
+      error: (error, stack) => SizedBox(height: 200, child: Center(child: Text(error.toString()))),
       data: (filters) {
         final districts = query.isEmpty
             ? filters.districts
             : filters.districts
-                  .where(
-                    (district) => district.title.toLowerCase().contains(query),
-                  )
+                  .where((district) => district.title.toLowerCase().contains(query))
                   .toList(growable: false);
 
         return DraggableScrollableSheet(
@@ -53,6 +45,8 @@ class DistrictBottomSheet extends HookConsumerWidget {
                           prefixIcon: AppIcon(
                             AppIcons.search,
                             color: context.colors.graysIcon500,
+                            width: S.p24,
+                            height: S.p24,
                           ),
                           hintText: context.l10n.search,
                         ),
@@ -61,36 +55,28 @@ class DistrictBottomSheet extends HookConsumerWidget {
                         child: ListView.separated(
                           controller: controller,
                           itemCount: districts.length,
-                          separatorBuilder: (_, _) =>
-                              const SizedBox(height: S.p4),
+                          separatorBuilder: (_, _) => const SizedBox(height: S.p4),
                           itemBuilder: (context, index) {
                             final district = districts[index];
-                            final isSelected = selectedDistrictIds.value
-                                .contains(district.id);
+                            final isSelected = selectedDistrictIds.value.contains(district.id);
 
                             return InkWell(
                               onTap: () {
-                                final ids = Set<int>.from(
-                                  selectedDistrictIds.value,
-                                );
-                                isSelected
-                                    ? ids.remove(district.id)
-                                    : ids.add(district.id);
+                                final ids = Set<int>.from(selectedDistrictIds.value);
+                                isSelected ? ids.remove(district.id) : ids.add(district.id);
                                 selectedDistrictIds.value = ids;
                               },
                               child: Padding(
                                 padding: const P(all: S.p12),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Text(
                                         district.title,
-                                        style: context
-                                            .typography
-                                            .bodyDescription
-                                            .copyWith(height: 17 / 14),
+                                        style: context.typography.bodyDescription.copyWith(
+                                          height: 17 / 14,
+                                        ),
                                       ),
                                     ),
                                     SelectionButton(isSelected: isSelected),
@@ -106,9 +92,7 @@ class DistrictBottomSheet extends HookConsumerWidget {
                         child: PrimaryButton(
                           text: context.l10n.apply,
                           onPressed: () {
-                            final notifier = ref.read(
-                              apartamentFilterProvider.notifier,
-                            );
+                            final notifier = ref.read(apartamentFilterProvider.notifier);
                             notifier.setDistrictIds(selectedDistrictIds.value);
                             notifier.apply();
                             Navigator.of(context).pop();

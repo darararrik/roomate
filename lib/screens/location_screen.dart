@@ -64,8 +64,10 @@ class LocationScreen extends HookConsumerWidget {
                         padding: const P(horizontal: S.p16),
                         child: InputWidget(
                           controller: searchController,
-                          //TODO: добавить иконку, посмотреть в рестике
-                          // prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
+                          prefixIcon: AppIcon(
+                            AppIcons.search,
+                            color: context.colors.graysIcon500,
+                          ),
                           hintText: context.l10n.search,
                         ),
                       ),

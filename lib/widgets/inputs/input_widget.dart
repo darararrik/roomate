@@ -72,6 +72,29 @@ class InputWidget extends HookWidget {
         ? colors.red
         : (hasFocus ? colors.orange : colors.graysStroke300);
     final textColor = hasError ? colors.red : colors.graysBlack;
+    final inputDecoration = decoration ?? const InputDecoration();
+    final effectivePrefixIcon = prefixIcon != null
+        ? Padding(
+            padding: const EdgeInsets.only(left: S.p16, right: S.p8),
+            child: Align(
+              widthFactor: 1,
+              heightFactor: 1,
+              child: SizedBox(width: S.p24, height: S.p24, child: prefixIcon),
+            ),
+          )
+        : inputDecoration.prefixIcon;
+    final effectiveSuffixIcon = controller.text.isNotEmpty
+        ? IconButtonWidget(
+            icon: AppIcons.xSmall,
+            iconSize: S.p16,
+            size: S.p24,
+            iconColor: context.colors.graysIcon500,
+            onPressed: () {
+              controller.clear();
+              onChanged?.call('');
+            },
+          )
+        : inputDecoration.suffixIcon;
     final textField = TextField(
       readOnly: readOnly,
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
@@ -92,26 +115,17 @@ class InputWidget extends HookWidget {
       style: (style ?? context.typography.inputRegular).copyWith(
         color: textColor,
       ),
-      decoration: (decoration ?? const InputDecoration()).copyWith(
-        prefixIcon: prefixIcon,
-
+      decoration: inputDecoration.copyWith(
+        prefixIcon: effectivePrefixIcon,
+        prefixIconConstraints: const BoxConstraints(
+          minWidth: S.p48,
+          minHeight: S.p24,
+        ),
         hintText: hintText,
         hintStyle: hintStyle,
         suffixIcon: needSuffixIcon
-            ? controller.text.isNotEmpty
-                  ? IconButtonWidget(
-                      icon: AppIcons.xSmall,
-                      iconSize: S.p16,
-                      size: S.p24,
-                      iconColor: context.colors.graysIcon500,
-                      onPressed: () {
-                        controller.clear();
-                        onChanged?.call('');
-                      },
-                    )
-                  : null
-            : null,
-        // 4. Динамические границы
+            ? effectiveSuffixIcon
+            : inputDecoration.suffixIcon,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: borderColor),

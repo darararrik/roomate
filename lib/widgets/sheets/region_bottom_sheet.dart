@@ -1,17 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 class RegionBottomSheet extends HookConsumerWidget {
-  const RegionBottomSheet({
-    super.key,
-    this.selectedCityFiasId,
-    this.onCitySelected,
-  });
+  const RegionBottomSheet({super.key, this.selectedCityFiasId, this.onCitySelected});
 
   final String? selectedCityFiasId;
   final Future<void> Function(CityModel city)? onCitySelected;
@@ -25,12 +19,8 @@ class RegionBottomSheet extends HookConsumerWidget {
     final selectedCity = useState<CityModel?>(null);
 
     return citiesState.when(
-      loading: () => const SizedBox(
-        height: 200,
-        child: Center(child: CircularProgressIndicator()),
-      ),
-      error: (error, stack) =>
-          SizedBox(height: 200, child: ErrorView(error: error.toString())),
+      loading: () => const SizedBox(height: 200, child: Center(child: CircularProgressIndicator())),
+      error: (error, stack) => SizedBox(height: 200, child: ErrorView(error: error.toString())),
       data: (cities) {
         final currentCity = _resolveCurrentCity(cities, profileCity);
         final effectiveSelectedCity = selectedCity.value ?? currentCity;
@@ -54,10 +44,7 @@ class RegionBottomSheet extends HookConsumerWidget {
                         padding: const P(bottom: S.p12),
                         child: InputWidget(
                           controller: searchController,
-                          prefixIcon: AppIcon(
-                            AppIcons.search,
-                            color: context.colors.graysIcon500,
-                          ),
+                          prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
                           hintText: context.l10n.search,
                         ),
                       ),
@@ -65,55 +52,42 @@ class RegionBottomSheet extends HookConsumerWidget {
                         child: ListView.separated(
                           controller: controller,
                           itemCount: filteredCities.length,
-                          separatorBuilder: (_, _) =>
-                              const SizedBox(height: S.p4),
+                          separatorBuilder: (_, _) => const SizedBox(height: S.p4),
                           itemBuilder: (context, index) {
                             final city = filteredCities[index];
-                            final isSelected =
-                                effectiveSelectedCity?.id == city.id;
+                            final isSelected = effectiveSelectedCity?.id == city.id;
 
                             return InkWell(
                               onTap: () => selectedCity.value = city,
                               child: Padding(
                                 padding: const P(all: S.p12),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             city.title,
-                                            style: context
-                                                .typography
-                                                .bodyDescription
-                                                .copyWith(height: 17 / 14),
+                                            style: context.typography.bodyDescription.copyWith(
+                                              height: 17 / 14,
+                                            ),
                                           ),
                                           if (city.region.isNotEmpty) ...[
                                             const SizedBox(height: S.p4),
                                             Text(
                                               city.region,
-                                              style: context
-                                                  .typography
-                                                  .bodyDescription
-                                                  .copyWith(
-                                                    color: context
-                                                        .colors
-                                                        .graysText400,
-                                                    height: 17 / 14,
-                                                  ),
+                                              style: context.typography.bodyDescription.copyWith(
+                                                color: context.colors.graysText400,
+                                                height: 17 / 14,
+                                              ),
                                             ),
                                           ],
                                         ],
                                       ),
                                     ),
-                                    SelectionButton(
-                                      isSelected: isSelected,
-                                      isRadio: true,
-                                    ),
+                                    SelectionButton(isSelected: isSelected, isRadio: true),
                                   ],
                                 ),
                               ),
@@ -142,10 +116,7 @@ class RegionBottomSheet extends HookConsumerWidget {
 
                             final error = await ref
                                 .read(globalProfileProvider.notifier)
-                                .updateProfile(
-                                  city: city.title,
-                                  cityFiasId: city.fiasId,
-                                );
+                                .updateProfile(city: city.title, cityFiasId: city.fiasId);
 
                             if (!context.mounted) return;
 
@@ -166,10 +137,7 @@ class RegionBottomSheet extends HookConsumerWidget {
     );
   }
 
-  CityModel? _resolveCurrentCity(
-    List<CityModel> cities,
-    CityModel? profileCity,
-  ) {
+  CityModel? _resolveCurrentCity(List<CityModel> cities, CityModel? profileCity) {
     final normalizedSelectedFiasId = (selectedCityFiasId ?? '').trim();
     if (normalizedSelectedFiasId.isNotEmpty) {
       for (final city in cities) {
@@ -188,8 +156,7 @@ class RegionBottomSheet extends HookConsumerWidget {
     return cities
         .where(
           (city) =>
-              city.title.toLowerCase().contains(query) ||
-              city.region.toLowerCase().contains(query),
+              city.title.toLowerCase().contains(query) || city.region.toLowerCase().contains(query),
         )
         .toList(growable: false);
   }
