@@ -170,4 +170,4 @@ final class CurrentProfileCityProvider
 }
 
 String _$currentProfileCityHash() =>
-    r'36175a8d0b787a372a14ade125ad65626d9bd8a9';
+    r'b2e347d56afbd0760eb2cbea1c27d7a6f9f72846';

@@ -32,6 +32,7 @@ class LocationScreen extends HookConsumerWidget {
     }, [rawSearchQuery]);
 
     final citiesAsync = ref.watch(citiesProvider);
+    final currentCity = ref.watch(currentProfileCityProvider);
     final suggestionsAsync = ref.watch(
       locationSuggestionsProvider(debouncedQuery.value),
     );
@@ -87,26 +88,15 @@ class LocationScreen extends HookConsumerWidget {
                     ),
                     data: (suggestions) {
                       if (debouncedQuery.value.isEmpty) {
-                        return SliverList.separated(
-                          itemCount: cities.length,
-                          itemBuilder: (context, index) {
-                            final city = cities[index];
-                            return ListItem(
-                              iconPath: AppIcons.city,
-                              title: city.title,
-                              subtitle: city.region,
-                              onTap: () => onSelected(
-                                LocationSelectionModel(
-                                  cityId: city.id,
-                                  cityTitle: city.title,
-                                  cityFiasId: city.fiasId,
-                                  displayTitle: city.title,
-                                ),
-                              ),
-                            );
-                          },
-                          separatorBuilder: (_, _) =>
-                              const SizedBox(height: S.p20),
+                        return SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: Center(
+                            child: Text(
+                              'Начните поиск',
+                              style: context.typography.bodyDescription
+                                  .copyWith(color: context.colors.graysIcon500),
+                            ),
+                          ),
                         );
                       }
 
@@ -130,6 +120,7 @@ class LocationScreen extends HookConsumerWidget {
                           final selection = resolveLocationSelection(
                             suggestion: suggestion,
                             cities: cities,
+                            fallbackCity: currentCity,
                           );
                           return ListItem(
                             iconPath: AppIcons.city,

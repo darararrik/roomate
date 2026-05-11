@@ -20,7 +20,12 @@ class FiltersScreen extends HookConsumerWidget {
     final currentProfileCity = ref.watch(currentProfileCityProvider);
     final effectiveCityTitle = filter.locationTitle.isNotEmpty
         ? filter.locationTitle
-        : currentProfileCity?.title ?? '';
+        : currentProfileCity?.title ?? AppDefaultCity.title;
+    final effectiveLocationSubtitle = filter.addressQuery.isNotEmpty
+        ? filter.addressQuery
+        : effectiveCityTitle.isEmpty
+        ? context.l10n.filtersLocationSearchHint
+        : effectiveCityTitle;
     final minPriceController = useTextEditingController(
       text: _formatPrice(filter.minPrice),
     );
@@ -94,9 +99,7 @@ class FiltersScreen extends HookConsumerWidget {
                     title: effectiveCityTitle.isEmpty
                         ? context.l10n.selectRegion
                         : effectiveCityTitle,
-                    subTitle: effectiveCityTitle.isEmpty
-                        ? context.l10n.filtersLocationSearchHint
-                        : effectiveCityTitle,
+                    subTitle: effectiveLocationSubtitle,
                   ),
                   const SizedBox(height: S.p12),
                   _FilterSection(

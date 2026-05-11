@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/lib.dart';
+import 'package:shared/exception/remote_exception.dart';
 
 part 'apartaments_notifier.g.dart';
 
@@ -10,14 +12,21 @@ class ApartamentsNotifier extends _$ApartamentsNotifier {
 
   @override
   Future<ApartamentsState> build() async {
-    final profile = await ref.watch(globalProfileProvider.future);
-    final cities = await ref.watch(citiesProvider.future);
-    final city = _resolveInitialCity(cities, profile);
-    final result = await _repository.fetchApartaments(ApartamentFilterModel(cityId: city.id));
+    final result = await _init();
     return result.fold(
       (error) => throw error,
       (apartaments) => ApartamentsState(apartaments: apartaments),
     );
+  }
+
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>> _init() async {
+    final profile = await ref.watch(globalProfileProvider.future);
+    final cities = await ref.watch(citiesProvider.future);
+    final city = _resolveInitialCity(cities, profile);
+    final result = await _repository.fetchApartaments(
+      ApartamentFilterModel(cityFiasId: city.fiasId),
+    );
+    return result;
   }
 
   Future<void> fetchWithFilter(ApartamentFilterModel filter) async {
@@ -32,10 +41,10 @@ class ApartamentsNotifier extends _$ApartamentsNotifier {
   }
 
   CityModel _resolveInitialCity(List<CityModel> cities, ProfileModel? profile) {
-    final profileCityId = profile?.cityId ?? 0;
-    if (profileCityId != 0) {
+    final profileCityFiasId = (profile?.cityFiasId ?? '').trim();
+    if (profileCityFiasId.isNotEmpty) {
       for (final city in cities) {
-        if (city.id == profileCityId) {
+        if (city.fiasId.trim() == profileCityFiasId) {
           return city;
         }
       }
@@ -51,11 +60,11 @@ class ApartamentsNotifier extends _$ApartamentsNotifier {
     }
 
     for (final city in cities) {
-      if (city.title.trim().toLowerCase() == 'москва') {
+      if (city.fiasId.trim() == AppDefaultCity.fiasId) {
         return city;
       }
     }
 
-    return CityModel(title: 'Москва');
+    return AppDefaultCity.city;
   }
 }

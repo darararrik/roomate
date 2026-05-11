@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:roomate/constants/constants.dart';
 import 'package:roomate/notifier/global_profile/global_profile_notifier.dart';
 
 import '../repository/repository_providers.dart';
@@ -14,44 +15,58 @@ Future<List<CityModel>> cities(Ref ref) async {
 }
 
 @riverpod
-Future<List<LocationSuggestionModel>> locationSuggestions(
-  Ref ref,
-  String addressQuery,
-) async {
+Future<List<LocationSuggestionModel>> locationSuggestions(Ref ref, String addressQuery) async {
   final trimmedQuery = addressQuery.trim();
   if (trimmedQuery.isEmpty) {
     return const [];
   }
 
-  final result = await ref
-      .read(locationRepositoryProvider)
-      .suggestLocations(trimmedQuery);
+  final result = await ref.read(locationRepositoryProvider).suggestLocations(trimmedQuery);
   return result.fold((error) => throw error, (suggestions) => suggestions);
 }
 
 @riverpod
 CityModel? currentProfileCity(Ref ref) {
-  final profileCity = ref.watch(globalProfileProvider).value?.city ?? '';
-  if (profileCity.trim().isEmpty) return CityModel(title: 'Москва');
+  final profile = ref.watch(globalProfileProvider).value;
+  final profileCityFiasId = (profile?.cityFiasId ?? '').trim();
+  final profileCity = (profile?.city ?? '').trim();
 
   final citiesState = ref.watch(citiesProvider);
   return citiesState.maybeWhen(
     data: (cities) {
-      final normalizedProfileCity = profileCity.trim().toLowerCase();
+      if (profileCityFiasId.isNotEmpty) {
+        for (final city in cities) {
+          if (city.fiasId.trim() == profileCityFiasId) {
+            return city;
+          }
+        }
+      }
+
+      final normalizedProfileCity = profileCity.toLowerCase();
+      if (normalizedProfileCity.isNotEmpty) {
+        for (final city in cities) {
+          if (city.title.trim().toLowerCase() == normalizedProfileCity) {
+            return city;
+          }
+        }
+      }
+
       for (final city in cities) {
-        if (city.title.trim().toLowerCase() == normalizedProfileCity) {
+        if (city.fiasId.trim() == AppDefaultCity.fiasId) {
           return city;
         }
       }
-      return null;
+
+      return AppDefaultCity.city;
     },
-    orElse: () => null,
+    orElse: () => AppDefaultCity.city,
   );
 }
 
 LocationSelectionModel resolveLocationSelection({
   required LocationSuggestionModel suggestion,
   required List<CityModel> cities,
+  CityModel? fallbackCity,
 }) {
   CityModel? matchedCity;
   final suggestionFiasId = (suggestion.cityFiasId ?? '').trim();
@@ -64,11 +79,30 @@ LocationSelectionModel resolveLocationSelection({
     }
   }
 
-  final cityTitle = matchedCity?.title ?? _sanitizeCityTitle(suggestion.city);
+  final suggestionCityTitle = _sanitizeCityTitle(suggestion.city);
+  if (matchedCity == null && suggestionCityTitle.isNotEmpty) {
+    for (final city in cities) {
+      if (city.title.trim().toLowerCase() == suggestionCityTitle.toLowerCase()) {
+        matchedCity = city;
+        break;
+      }
+    }
+  }
+
+  final cityTitle = matchedCity?.title.isNotEmpty == true
+      ? matchedCity!.title
+      : suggestionCityTitle.isNotEmpty
+      ? suggestionCityTitle
+      : fallbackCity?.title ?? '';
+
   return LocationSelectionModel(
-    cityId: matchedCity?.id ?? 0,
+    cityId: matchedCity?.id ?? fallbackCity?.id ?? 0,
     cityTitle: cityTitle,
-    cityFiasId: suggestionFiasId,
+    cityFiasId: matchedCity?.fiasId.isNotEmpty == true
+        ? matchedCity!.fiasId
+        : suggestionFiasId.isNotEmpty
+        ? suggestionFiasId
+        : fallbackCity?.fiasId ?? '',
     addressQuery: suggestion.value,
     displayTitle: suggestion.value,
   );

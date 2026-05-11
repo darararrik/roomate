@@ -7,14 +7,21 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:roomate/lib.dart';
 
 class RegionBottomSheet extends HookConsumerWidget {
-  const RegionBottomSheet({super.key});
+  const RegionBottomSheet({
+    super.key,
+    this.selectedCityFiasId,
+    this.onCitySelected,
+  });
+
+  final String? selectedCityFiasId;
+  final Future<void> Function(CityModel city)? onCitySelected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchController = useTextEditingController();
     final query = useListenable(searchController).text.trim().toLowerCase();
     final citiesState = ref.watch(citiesProvider);
-    final profileCity = ref.watch(globalProfileProvider).value?.city ?? '';
+    final profileCity = ref.watch(currentProfileCityProvider);
     final selectedCity = useState<CityModel?>(null);
 
     return citiesState.when(
@@ -25,7 +32,7 @@ class RegionBottomSheet extends HookConsumerWidget {
       error: (error, stack) =>
           SizedBox(height: 200, child: ErrorView(error: error.toString())),
       data: (cities) {
-        final currentCity = _currentCity(cities, profileCity);
+        final currentCity = _resolveCurrentCity(cities, profileCity);
         final effectiveSelectedCity = selectedCity.value ?? currentCity;
         final filteredCities = _filterCities(cities, query);
 
@@ -125,9 +132,20 @@ class RegionBottomSheet extends HookConsumerWidget {
                               return;
                             }
 
+                            if (onCitySelected != null) {
+                              await onCitySelected!(city);
+
+                              if (!context.mounted) return;
+                              Navigator.of(context).pop();
+                              return;
+                            }
+
                             final error = await ref
                                 .read(globalProfileProvider.notifier)
-                                .updateProfile(city: city.title);
+                                .updateProfile(
+                                  city: city.title,
+                                  cityFiasId: city.fiasId,
+                                );
 
                             if (!context.mounted) return;
 
@@ -148,17 +166,20 @@ class RegionBottomSheet extends HookConsumerWidget {
     );
   }
 
-  CityModel? _currentCity(List<CityModel> cities, String profileCity) {
-    return _findCity(cities, profileCity) ?? cities.firstOrNull;
-  }
+  CityModel? _resolveCurrentCity(
+    List<CityModel> cities,
+    CityModel? profileCity,
+  ) {
+    final normalizedSelectedFiasId = (selectedCityFiasId ?? '').trim();
+    if (normalizedSelectedFiasId.isNotEmpty) {
+      for (final city in cities) {
+        if (city.fiasId.trim() == normalizedSelectedFiasId) {
+          return city;
+        }
+      }
+    }
 
-  CityModel? _findCity(List<CityModel> cities, String title) {
-    final normalizedTitle = title.trim().toLowerCase();
-    if (normalizedTitle.isEmpty) return null;
-
-    return cities
-        .where((city) => city.title.toLowerCase() == normalizedTitle)
-        .firstOrNull;
+    return profileCity ?? cities.firstOrNull;
   }
 
   List<CityModel> _filterCities(List<CityModel> cities, String query) {

@@ -4,7 +4,7 @@ import 'package:domain/domain.dart';
 abstract class ApartamentFilterMapper {
   static ApartamentFilterData toData(ApartamentFilterModel model) {
     return ApartamentFilterData(
-      cityId: model.cityId == 0 ? null : model.cityId,
+      cityFiasId: model.cityFiasId.isEmpty ? null : model.cityFiasId,
       goalId: model.goalId,
       propertyTypeIds: _listOrNull(model.propertyTypeIds),
       roomsCountIds: _listOrNull(model.roomsCountIds),

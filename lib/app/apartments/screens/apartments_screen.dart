@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
@@ -13,11 +14,26 @@ class ApartamentsScreen extends ConsumerWidget {
     final asyncState = ref.watch(apartamentsProvider);
     final favorites = ref.watch(favoriteApartmentIdsProvider);
     final favoritesNotifier = ref.read(favoriteApartmentIdsProvider.notifier);
+    final filter = ref.watch(apartamentFilterProvider);
+    final currentCity = ref.watch(currentProfileCityProvider);
+    final effectiveCityTitle = filter.locationTitle.isNotEmpty
+        ? filter.locationTitle
+        : currentCity?.title ?? AppDefaultCity.title;
+    final effectiveCityFiasId = filter.cityFiasId.isNotEmpty
+        ? filter.cityFiasId
+        : currentCity?.fiasId ?? AppDefaultCity.fiasId;
+    final filterNotifier = ref.read(apartamentFilterProvider.notifier);
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           MainAppBar(
+            cityTitle: effectiveCityTitle,
+            selectedCityFiasId: effectiveCityFiasId,
+            onCitySelected: (CityModel city) async {
+              filterNotifier.setCity(city);
+              filterNotifier.apply();
+            },
             bottom: FiltersRow(
               optionsCount: asyncState.value?.apartaments.length ?? 0,
               onFiltersTap: () =>

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApartamentFilterData {
 
-@JsonKey(name: 'limit') int get limit;@JsonKey(name: 'offset') int get offset;@JsonKey(name: 'city_id') int? get cityId;@JsonKey(name: 'goal_id') int? get goalId;@JsonKey(name: 'property_type_ids', toJson: _idsToJson) List<int>? get propertyTypeIds;@JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) List<int>? get roomsCountIds;@JsonKey(name: 'min_price') double? get minPrice;@JsonKey(name: 'max_price') double? get maxPrice;@JsonKey(name: 'rent_duration_id') int? get rentDurationId;@JsonKey(name: 'address_query') String? get addressQuery;@JsonKey(name: 'district') String? get district;@JsonKey(name: 'sort_by') String? get sortBy;@JsonKey(name: 'sort_order') String? get sortOrder;
+@JsonKey(name: 'limit') int get limit;@JsonKey(name: 'offset') int get offset;@JsonKey(name: 'city_fias_id') String? get cityFiasId;@JsonKey(name: 'goal_id') int? get goalId;@JsonKey(name: 'property_type_ids', toJson: _idsToJson) List<int>? get propertyTypeIds;@JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) List<int>? get roomsCountIds;@JsonKey(name: 'min_price') double? get minPrice;@JsonKey(name: 'max_price') double? get maxPrice;@JsonKey(name: 'rent_duration_id') int? get rentDurationId;@JsonKey(name: 'address_query') String? get addressQuery;@JsonKey(name: 'district') String? get district;@JsonKey(name: 'sort_by') String? get sortBy;@JsonKey(name: 'sort_order') String? get sortOrder;
 /// Create a copy of ApartamentFilterData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ApartamentFilterDataCopyWith<ApartamentFilterData> get copyWith => _$Apartament
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApartamentFilterData&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.offset, offset) || other.offset == offset)&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other.propertyTypeIds, propertyTypeIds)&&const DeepCollectionEquality().equals(other.roomsCountIds, roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.district, district) || other.district == district)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApartamentFilterData&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.offset, offset) || other.offset == offset)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other.propertyTypeIds, propertyTypeIds)&&const DeepCollectionEquality().equals(other.roomsCountIds, roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.district, district) || other.district == district)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,limit,offset,cityId,goalId,const DeepCollectionEquality().hash(propertyTypeIds),const DeepCollectionEquality().hash(roomsCountIds),minPrice,maxPrice,rentDurationId,addressQuery,district,sortBy,sortOrder);
+int get hashCode => Object.hash(runtimeType,limit,offset,cityFiasId,goalId,const DeepCollectionEquality().hash(propertyTypeIds),const DeepCollectionEquality().hash(roomsCountIds),minPrice,maxPrice,rentDurationId,addressQuery,district,sortBy,sortOrder);
 
 @override
 String toString() {
-  return 'ApartamentFilterData(limit: $limit, offset: $offset, cityId: $cityId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, addressQuery: $addressQuery, district: $district, sortBy: $sortBy, sortOrder: $sortOrder)';
+  return 'ApartamentFilterData(limit: $limit, offset: $offset, cityFiasId: $cityFiasId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, addressQuery: $addressQuery, district: $district, sortBy: $sortBy, sortOrder: $sortOrder)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ApartamentFilterDataCopyWith<$Res>  {
   factory $ApartamentFilterDataCopyWith(ApartamentFilterData value, $Res Function(ApartamentFilterData) _then) = _$ApartamentFilterDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'limit') int limit,@JsonKey(name: 'offset') int offset,@JsonKey(name: 'city_id') int? cityId,@JsonKey(name: 'goal_id') int? goalId,@JsonKey(name: 'property_type_ids', toJson: _idsToJson) List<int>? propertyTypeIds,@JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) List<int>? roomsCountIds,@JsonKey(name: 'min_price') double? minPrice,@JsonKey(name: 'max_price') double? maxPrice,@JsonKey(name: 'rent_duration_id') int? rentDurationId,@JsonKey(name: 'address_query') String? addressQuery,@JsonKey(name: 'district') String? district,@JsonKey(name: 'sort_by') String? sortBy,@JsonKey(name: 'sort_order') String? sortOrder
+@JsonKey(name: 'limit') int limit,@JsonKey(name: 'offset') int offset,@JsonKey(name: 'city_fias_id') String? cityFiasId,@JsonKey(name: 'goal_id') int? goalId,@JsonKey(name: 'property_type_ids', toJson: _idsToJson) List<int>? propertyTypeIds,@JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) List<int>? roomsCountIds,@JsonKey(name: 'min_price') double? minPrice,@JsonKey(name: 'max_price') double? maxPrice,@JsonKey(name: 'rent_duration_id') int? rentDurationId,@JsonKey(name: 'address_query') String? addressQuery,@JsonKey(name: 'district') String? district,@JsonKey(name: 'sort_by') String? sortBy,@JsonKey(name: 'sort_order') String? sortOrder
 });
 
 
@@ -65,12 +65,12 @@ class _$ApartamentFilterDataCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentFilterData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? limit = null,Object? offset = null,Object? cityId = freezed,Object? goalId = freezed,Object? propertyTypeIds = freezed,Object? roomsCountIds = freezed,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = freezed,Object? addressQuery = freezed,Object? district = freezed,Object? sortBy = freezed,Object? sortOrder = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? limit = null,Object? offset = null,Object? cityFiasId = freezed,Object? goalId = freezed,Object? propertyTypeIds = freezed,Object? roomsCountIds = freezed,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = freezed,Object? addressQuery = freezed,Object? district = freezed,Object? sortBy = freezed,Object? sortOrder = freezed,}) {
   return _then(_self.copyWith(
 limit: null == limit ? _self.limit : limit // ignore: cast_nullable_to_non_nullable
 as int,offset: null == offset ? _self.offset : offset // ignore: cast_nullable_to_non_nullable
-as int,cityId: freezed == cityId ? _self.cityId : cityId // ignore: cast_nullable_to_non_nullable
-as int?,goalId: freezed == goalId ? _self.goalId : goalId // ignore: cast_nullable_to_non_nullable
+as int,cityFiasId: freezed == cityFiasId ? _self.cityFiasId : cityFiasId // ignore: cast_nullable_to_non_nullable
+as String?,goalId: freezed == goalId ? _self.goalId : goalId // ignore: cast_nullable_to_non_nullable
 as int?,propertyTypeIds: freezed == propertyTypeIds ? _self.propertyTypeIds : propertyTypeIds // ignore: cast_nullable_to_non_nullable
 as List<int>?,roomsCountIds: freezed == roomsCountIds ? _self.roomsCountIds : roomsCountIds // ignore: cast_nullable_to_non_nullable
 as List<int>?,minPrice: freezed == minPrice ? _self.minPrice : minPrice // ignore: cast_nullable_to_non_nullable
@@ -165,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'limit')  int limit, @JsonKey(name: 'offset')  int offset, @JsonKey(name: 'city_id')  int? cityId, @JsonKey(name: 'goal_id')  int? goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson)  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson)  List<int>? roomsCountIds, @JsonKey(name: 'min_price')  double? minPrice, @JsonKey(name: 'max_price')  double? maxPrice, @JsonKey(name: 'rent_duration_id')  int? rentDurationId, @JsonKey(name: 'address_query')  String? addressQuery, @JsonKey(name: 'district')  String? district, @JsonKey(name: 'sort_by')  String? sortBy, @JsonKey(name: 'sort_order')  String? sortOrder)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'limit')  int limit, @JsonKey(name: 'offset')  int offset, @JsonKey(name: 'city_fias_id')  String? cityFiasId, @JsonKey(name: 'goal_id')  int? goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson)  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson)  List<int>? roomsCountIds, @JsonKey(name: 'min_price')  double? minPrice, @JsonKey(name: 'max_price')  double? maxPrice, @JsonKey(name: 'rent_duration_id')  int? rentDurationId, @JsonKey(name: 'address_query')  String? addressQuery, @JsonKey(name: 'district')  String? district, @JsonKey(name: 'sort_by')  String? sortBy, @JsonKey(name: 'sort_order')  String? sortOrder)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ApartamentFilterData() when $default != null:
-return $default(_that.limit,_that.offset,_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.addressQuery,_that.district,_that.sortBy,_that.sortOrder);case _:
+return $default(_that.limit,_that.offset,_that.cityFiasId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.addressQuery,_that.district,_that.sortBy,_that.sortOrder);case _:
   return orElse();
 
 }
@@ -186,10 +186,10 @@ return $default(_that.limit,_that.offset,_that.cityId,_that.goalId,_that.propert
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'limit')  int limit, @JsonKey(name: 'offset')  int offset, @JsonKey(name: 'city_id')  int? cityId, @JsonKey(name: 'goal_id')  int? goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson)  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson)  List<int>? roomsCountIds, @JsonKey(name: 'min_price')  double? minPrice, @JsonKey(name: 'max_price')  double? maxPrice, @JsonKey(name: 'rent_duration_id')  int? rentDurationId, @JsonKey(name: 'address_query')  String? addressQuery, @JsonKey(name: 'district')  String? district, @JsonKey(name: 'sort_by')  String? sortBy, @JsonKey(name: 'sort_order')  String? sortOrder)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'limit')  int limit, @JsonKey(name: 'offset')  int offset, @JsonKey(name: 'city_fias_id')  String? cityFiasId, @JsonKey(name: 'goal_id')  int? goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson)  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson)  List<int>? roomsCountIds, @JsonKey(name: 'min_price')  double? minPrice, @JsonKey(name: 'max_price')  double? maxPrice, @JsonKey(name: 'rent_duration_id')  int? rentDurationId, @JsonKey(name: 'address_query')  String? addressQuery, @JsonKey(name: 'district')  String? district, @JsonKey(name: 'sort_by')  String? sortBy, @JsonKey(name: 'sort_order')  String? sortOrder)  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentFilterData():
-return $default(_that.limit,_that.offset,_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.addressQuery,_that.district,_that.sortBy,_that.sortOrder);case _:
+return $default(_that.limit,_that.offset,_that.cityFiasId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.addressQuery,_that.district,_that.sortBy,_that.sortOrder);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -206,10 +206,10 @@ return $default(_that.limit,_that.offset,_that.cityId,_that.goalId,_that.propert
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'limit')  int limit, @JsonKey(name: 'offset')  int offset, @JsonKey(name: 'city_id')  int? cityId, @JsonKey(name: 'goal_id')  int? goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson)  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson)  List<int>? roomsCountIds, @JsonKey(name: 'min_price')  double? minPrice, @JsonKey(name: 'max_price')  double? maxPrice, @JsonKey(name: 'rent_duration_id')  int? rentDurationId, @JsonKey(name: 'address_query')  String? addressQuery, @JsonKey(name: 'district')  String? district, @JsonKey(name: 'sort_by')  String? sortBy, @JsonKey(name: 'sort_order')  String? sortOrder)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'limit')  int limit, @JsonKey(name: 'offset')  int offset, @JsonKey(name: 'city_fias_id')  String? cityFiasId, @JsonKey(name: 'goal_id')  int? goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson)  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson)  List<int>? roomsCountIds, @JsonKey(name: 'min_price')  double? minPrice, @JsonKey(name: 'max_price')  double? maxPrice, @JsonKey(name: 'rent_duration_id')  int? rentDurationId, @JsonKey(name: 'address_query')  String? addressQuery, @JsonKey(name: 'district')  String? district, @JsonKey(name: 'sort_by')  String? sortBy, @JsonKey(name: 'sort_order')  String? sortOrder)?  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentFilterData() when $default != null:
-return $default(_that.limit,_that.offset,_that.cityId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.addressQuery,_that.district,_that.sortBy,_that.sortOrder);case _:
+return $default(_that.limit,_that.offset,_that.cityFiasId,_that.goalId,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.addressQuery,_that.district,_that.sortBy,_that.sortOrder);case _:
   return null;
 
 }
@@ -221,12 +221,12 @@ return $default(_that.limit,_that.offset,_that.cityId,_that.goalId,_that.propert
 
 @JsonSerializable(includeIfNull: false)
 class _ApartamentFilterData implements ApartamentFilterData {
-  const _ApartamentFilterData({@JsonKey(name: 'limit') this.limit = 20, @JsonKey(name: 'offset') this.offset = 0, @JsonKey(name: 'city_id') this.cityId, @JsonKey(name: 'goal_id') this.goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson) final  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) final  List<int>? roomsCountIds, @JsonKey(name: 'min_price') this.minPrice, @JsonKey(name: 'max_price') this.maxPrice, @JsonKey(name: 'rent_duration_id') this.rentDurationId, @JsonKey(name: 'address_query') this.addressQuery, @JsonKey(name: 'district') this.district, @JsonKey(name: 'sort_by') this.sortBy, @JsonKey(name: 'sort_order') this.sortOrder}): _propertyTypeIds = propertyTypeIds,_roomsCountIds = roomsCountIds;
+  const _ApartamentFilterData({@JsonKey(name: 'limit') this.limit = 20, @JsonKey(name: 'offset') this.offset = 0, @JsonKey(name: 'city_fias_id') this.cityFiasId, @JsonKey(name: 'goal_id') this.goalId, @JsonKey(name: 'property_type_ids', toJson: _idsToJson) final  List<int>? propertyTypeIds, @JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) final  List<int>? roomsCountIds, @JsonKey(name: 'min_price') this.minPrice, @JsonKey(name: 'max_price') this.maxPrice, @JsonKey(name: 'rent_duration_id') this.rentDurationId, @JsonKey(name: 'address_query') this.addressQuery, @JsonKey(name: 'district') this.district, @JsonKey(name: 'sort_by') this.sortBy, @JsonKey(name: 'sort_order') this.sortOrder}): _propertyTypeIds = propertyTypeIds,_roomsCountIds = roomsCountIds;
   factory _ApartamentFilterData.fromJson(Map<String, dynamic> json) => _$ApartamentFilterDataFromJson(json);
 
 @override@JsonKey(name: 'limit') final  int limit;
 @override@JsonKey(name: 'offset') final  int offset;
-@override@JsonKey(name: 'city_id') final  int? cityId;
+@override@JsonKey(name: 'city_fias_id') final  String? cityFiasId;
 @override@JsonKey(name: 'goal_id') final  int? goalId;
  final  List<int>? _propertyTypeIds;
 @override@JsonKey(name: 'property_type_ids', toJson: _idsToJson) List<int>? get propertyTypeIds {
@@ -267,16 +267,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApartamentFilterData&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.offset, offset) || other.offset == offset)&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other._propertyTypeIds, _propertyTypeIds)&&const DeepCollectionEquality().equals(other._roomsCountIds, _roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.district, district) || other.district == district)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApartamentFilterData&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.offset, offset) || other.offset == offset)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.goalId, goalId) || other.goalId == goalId)&&const DeepCollectionEquality().equals(other._propertyTypeIds, _propertyTypeIds)&&const DeepCollectionEquality().equals(other._roomsCountIds, _roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.district, district) || other.district == district)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,limit,offset,cityId,goalId,const DeepCollectionEquality().hash(_propertyTypeIds),const DeepCollectionEquality().hash(_roomsCountIds),minPrice,maxPrice,rentDurationId,addressQuery,district,sortBy,sortOrder);
+int get hashCode => Object.hash(runtimeType,limit,offset,cityFiasId,goalId,const DeepCollectionEquality().hash(_propertyTypeIds),const DeepCollectionEquality().hash(_roomsCountIds),minPrice,maxPrice,rentDurationId,addressQuery,district,sortBy,sortOrder);
 
 @override
 String toString() {
-  return 'ApartamentFilterData(limit: $limit, offset: $offset, cityId: $cityId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, addressQuery: $addressQuery, district: $district, sortBy: $sortBy, sortOrder: $sortOrder)';
+  return 'ApartamentFilterData(limit: $limit, offset: $offset, cityFiasId: $cityFiasId, goalId: $goalId, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, addressQuery: $addressQuery, district: $district, sortBy: $sortBy, sortOrder: $sortOrder)';
 }
 
 
@@ -287,7 +287,7 @@ abstract mixin class _$ApartamentFilterDataCopyWith<$Res> implements $Apartament
   factory _$ApartamentFilterDataCopyWith(_ApartamentFilterData value, $Res Function(_ApartamentFilterData) _then) = __$ApartamentFilterDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'limit') int limit,@JsonKey(name: 'offset') int offset,@JsonKey(name: 'city_id') int? cityId,@JsonKey(name: 'goal_id') int? goalId,@JsonKey(name: 'property_type_ids', toJson: _idsToJson) List<int>? propertyTypeIds,@JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) List<int>? roomsCountIds,@JsonKey(name: 'min_price') double? minPrice,@JsonKey(name: 'max_price') double? maxPrice,@JsonKey(name: 'rent_duration_id') int? rentDurationId,@JsonKey(name: 'address_query') String? addressQuery,@JsonKey(name: 'district') String? district,@JsonKey(name: 'sort_by') String? sortBy,@JsonKey(name: 'sort_order') String? sortOrder
+@JsonKey(name: 'limit') int limit,@JsonKey(name: 'offset') int offset,@JsonKey(name: 'city_fias_id') String? cityFiasId,@JsonKey(name: 'goal_id') int? goalId,@JsonKey(name: 'property_type_ids', toJson: _idsToJson) List<int>? propertyTypeIds,@JsonKey(name: 'rooms_count_ids', toJson: _idsToJson) List<int>? roomsCountIds,@JsonKey(name: 'min_price') double? minPrice,@JsonKey(name: 'max_price') double? maxPrice,@JsonKey(name: 'rent_duration_id') int? rentDurationId,@JsonKey(name: 'address_query') String? addressQuery,@JsonKey(name: 'district') String? district,@JsonKey(name: 'sort_by') String? sortBy,@JsonKey(name: 'sort_order') String? sortOrder
 });
 
 
@@ -304,12 +304,12 @@ class __$ApartamentFilterDataCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentFilterData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? limit = null,Object? offset = null,Object? cityId = freezed,Object? goalId = freezed,Object? propertyTypeIds = freezed,Object? roomsCountIds = freezed,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = freezed,Object? addressQuery = freezed,Object? district = freezed,Object? sortBy = freezed,Object? sortOrder = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? limit = null,Object? offset = null,Object? cityFiasId = freezed,Object? goalId = freezed,Object? propertyTypeIds = freezed,Object? roomsCountIds = freezed,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = freezed,Object? addressQuery = freezed,Object? district = freezed,Object? sortBy = freezed,Object? sortOrder = freezed,}) {
   return _then(_ApartamentFilterData(
 limit: null == limit ? _self.limit : limit // ignore: cast_nullable_to_non_nullable
 as int,offset: null == offset ? _self.offset : offset // ignore: cast_nullable_to_non_nullable
-as int,cityId: freezed == cityId ? _self.cityId : cityId // ignore: cast_nullable_to_non_nullable
-as int?,goalId: freezed == goalId ? _self.goalId : goalId // ignore: cast_nullable_to_non_nullable
+as int,cityFiasId: freezed == cityFiasId ? _self.cityFiasId : cityFiasId // ignore: cast_nullable_to_non_nullable
+as String?,goalId: freezed == goalId ? _self.goalId : goalId // ignore: cast_nullable_to_non_nullable
 as int?,propertyTypeIds: freezed == propertyTypeIds ? _self._propertyTypeIds : propertyTypeIds // ignore: cast_nullable_to_non_nullable
 as List<int>?,roomsCountIds: freezed == roomsCountIds ? _self._roomsCountIds : roomsCountIds // ignore: cast_nullable_to_non_nullable
 as List<int>?,minPrice: freezed == minPrice ? _self.minPrice : minPrice // ignore: cast_nullable_to_non_nullable

@@ -10,8 +10,7 @@ sealed class ProfileModel with _$ProfileModel {
     @Default('') String id,
     @Default('') String firstName,
     @Default('') String lastName,
-    @Default(0) int cityId,
-    //TODO: Убрать после изменения на бэке
+    @Default('') String cityFiasId,
     @Default('') String city,
     @Default(Constants.defaultProfileImage) String avatarUrl,
     @Default(GenderEnum.male) GenderEnum gender,

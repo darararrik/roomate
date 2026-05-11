@@ -80,7 +80,7 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
 
   void setCity(CityModel city) {
     state = state.copyWith(
-      cityId: city.id,
+      cityFiasId: city.fiasId,
       locationTitle: city.title,
       addressQuery: '',
     );
@@ -88,8 +88,8 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
 
   void setLocationSelection(LocationSelectionModel selection) {
     state = state.copyWith(
-      cityId: selection.cityId,
-      locationTitle: selection.displayTitle,
+      cityFiasId: selection.cityFiasId,
+      locationTitle: selection.cityTitle,
       addressQuery: selection.addressQuery,
     );
   }
@@ -99,24 +99,16 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
   }
 
   void reset() {
-    state = const ApartamentFilterModel();
+    final profileCity = ref.read(currentProfileCityProvider);
+
+    state = ApartamentFilterModel(
+      cityFiasId: profileCity?.fiasId ?? '',
+      locationTitle: profileCity?.title ?? '',
+    );
   }
 
   void apply() {
-    final profileCity = ref.read(currentProfileCityProvider);
-    final hasExplicitLocation = state.addressQuery.isNotEmpty;
-    final effectiveFilter =
-        state.cityId != 0 || hasExplicitLocation || profileCity == null
-        ? state
-        : state.copyWith(
-            cityId: profileCity.id,
-            locationTitle: state.locationTitle.isNotEmpty
-                ? state.locationTitle
-                : profileCity.title,
-            addressQuery: state.addressQuery,
-          );
-
-    ref.read(apartamentsProvider.notifier).fetchWithFilter(effectiveFilter);
+    ref.read(apartamentsProvider.notifier).fetchWithFilter(state);
   }
 
   void setRentDuration(int id) {

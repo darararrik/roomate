@@ -13,8 +13,8 @@ sealed class ProfileData with _$ProfileData {
     @JsonKey(name: "phone") String? phone,
     @JsonKey(name: "gender") String? gender,
     @JsonKey(name: "age") int? age,
-    @JsonKey(name: "city_id") int? cityId,
-    //TODO: Убрать после изменения на бэке
+    //TODO: сказать бэку сменить на snake
+    @JsonKey(name: "cityFiasId") String? cityFiasId,
     @JsonKey(name: "city") String? city,
     @JsonKey(name: "photo") String? avatarUrl,
     @JsonKey(name: "status") bool? isVerified,

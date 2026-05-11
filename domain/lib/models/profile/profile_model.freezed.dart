@@ -14,8 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileModel {
 
- String get id; String get firstName; String get lastName; int get cityId;//TODO: Убрать после изменения на бэке
- String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; bool get isOwner; SelectedUserPreferencesModel get preferences;
+ String get id; String get firstName; String get lastName; String get cityFiasId; String get city; String get avatarUrl; GenderEnum get gender; String get phone; int get age; bool get isVerified; bool get isOwner; SelectedUserPreferencesModel get preferences;
 /// Create a copy of ProfileModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +25,16 @@ $ProfileModelCopyWith<ProfileModel> get copyWith => _$ProfileModelCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.preferences, preferences) || other.preferences == preferences));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.preferences, preferences) || other.preferences == preferences));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,cityId,city,avatarUrl,gender,phone,age,isVerified,isOwner,preferences);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,cityFiasId,city,avatarUrl,gender,phone,age,isVerified,isOwner,preferences);
 
 @override
 String toString() {
-  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, cityId: $cityId, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, preferences: $preferences)';
+  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, cityFiasId: $cityFiasId, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, preferences: $preferences)';
 }
 
 
@@ -46,7 +45,7 @@ abstract mixin class $ProfileModelCopyWith<$Res>  {
   factory $ProfileModelCopyWith(ProfileModel value, $Res Function(ProfileModel) _then) = _$ProfileModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String firstName, String lastName, int cityId, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, SelectedUserPreferencesModel preferences
+ String id, String firstName, String lastName, String cityFiasId, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, SelectedUserPreferencesModel preferences
 });
 
 
@@ -63,13 +62,13 @@ class _$ProfileModelCopyWithImpl<$Res>
 
 /// Create a copy of ProfileModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? cityId = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? preferences = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? cityFiasId = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? preferences = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,cityId: null == cityId ? _self.cityId : cityId // ignore: cast_nullable_to_non_nullable
-as int,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
+as String,cityFiasId: null == cityFiasId ? _self.cityFiasId : cityFiasId // ignore: cast_nullable_to_non_nullable
+as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as GenderEnum,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
@@ -168,10 +167,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  int cityId,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String cityFiasId,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.cityId,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.cityFiasId,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);case _:
   return orElse();
 
 }
@@ -189,10 +188,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.cityId,_that.city,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  int cityId,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String firstName,  String lastName,  String cityFiasId,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileModel():
-return $default(_that.id,_that.firstName,_that.lastName,_that.cityId,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);}
+return $default(_that.id,_that.firstName,_that.lastName,_that.cityFiasId,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -206,10 +205,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.cityId,_that.city,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  int cityId,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String firstName,  String lastName,  String cityFiasId,  String city,  String avatarUrl,  GenderEnum gender,  String phone,  int age,  bool isVerified,  bool isOwner,  SelectedUserPreferencesModel preferences)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.cityId,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.cityFiasId,_that.city,_that.avatarUrl,_that.gender,_that.phone,_that.age,_that.isVerified,_that.isOwner,_that.preferences);case _:
   return null;
 
 }
@@ -221,14 +220,13 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.cityId,_that.city,
 
 
 class _ProfileModel extends ProfileModel {
-  const _ProfileModel({this.id = '', this.firstName = '', this.lastName = '', this.cityId = 0, this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, this.isOwner = false, this.preferences = const SelectedUserPreferencesModel()}): super._();
+  const _ProfileModel({this.id = '', this.firstName = '', this.lastName = '', this.cityFiasId = '', this.city = '', this.avatarUrl = Constants.defaultProfileImage, this.gender = GenderEnum.male, this.phone = '', this.age = 0, this.isVerified = false, this.isOwner = false, this.preferences = const SelectedUserPreferencesModel()}): super._();
   
 
 @override@JsonKey() final  String id;
 @override@JsonKey() final  String firstName;
 @override@JsonKey() final  String lastName;
-@override@JsonKey() final  int cityId;
-//TODO: Убрать после изменения на бэке
+@override@JsonKey() final  String cityFiasId;
 @override@JsonKey() final  String city;
 @override@JsonKey() final  String avatarUrl;
 @override@JsonKey() final  GenderEnum gender;
@@ -248,16 +246,16 @@ _$ProfileModelCopyWith<_ProfileModel> get copyWith => __$ProfileModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.cityId, cityId) || other.cityId == cityId)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.preferences, preferences) || other.preferences == preferences));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.city, city) || other.city == city)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.age, age) || other.age == age)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&(identical(other.isOwner, isOwner) || other.isOwner == isOwner)&&(identical(other.preferences, preferences) || other.preferences == preferences));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,cityId,city,avatarUrl,gender,phone,age,isVerified,isOwner,preferences);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,cityFiasId,city,avatarUrl,gender,phone,age,isVerified,isOwner,preferences);
 
 @override
 String toString() {
-  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, cityId: $cityId, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, preferences: $preferences)';
+  return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, cityFiasId: $cityFiasId, city: $city, avatarUrl: $avatarUrl, gender: $gender, phone: $phone, age: $age, isVerified: $isVerified, isOwner: $isOwner, preferences: $preferences)';
 }
 
 
@@ -268,7 +266,7 @@ abstract mixin class _$ProfileModelCopyWith<$Res> implements $ProfileModelCopyWi
   factory _$ProfileModelCopyWith(_ProfileModel value, $Res Function(_ProfileModel) _then) = __$ProfileModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String firstName, String lastName, int cityId, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, SelectedUserPreferencesModel preferences
+ String id, String firstName, String lastName, String cityFiasId, String city, String avatarUrl, GenderEnum gender, String phone, int age, bool isVerified, bool isOwner, SelectedUserPreferencesModel preferences
 });
 
 
@@ -285,13 +283,13 @@ class __$ProfileModelCopyWithImpl<$Res>
 
 /// Create a copy of ProfileModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? cityId = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? preferences = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? cityFiasId = null,Object? city = null,Object? avatarUrl = null,Object? gender = null,Object? phone = null,Object? age = null,Object? isVerified = null,Object? isOwner = null,Object? preferences = null,}) {
   return _then(_ProfileModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,cityId: null == cityId ? _self.cityId : cityId // ignore: cast_nullable_to_non_nullable
-as int,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
+as String,cityFiasId: null == cityFiasId ? _self.cityFiasId : cityFiasId // ignore: cast_nullable_to_non_nullable
+as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as GenderEnum,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable

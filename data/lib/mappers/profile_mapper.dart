@@ -12,7 +12,7 @@ abstract class ProfileMapper {
       phone: userData?.phone ?? '',
       age: userData?.age ?? 0,
       isVerified: userData?.isVerified ?? false,
-      cityId: userData?.cityId ?? 0,
+      cityFiasId: userData?.cityFiasId ?? '',
       city: userData?.city ?? '',
       isOwner: userData?.isOwner ?? false,
       preferences: SelectedUserPreferencesMapper.toModel(userData?.preferences),
@@ -30,7 +30,7 @@ abstract class ProfileMapper {
       age: user.age,
       isVerified: user.isVerified,
       city: user.city,
-      cityId: user.cityId,
+      cityFiasId: user.cityFiasId,
       isOwner: user.isOwner,
       preferences: SelectedUserPreferencesMapper.toData(user.preferences),
     );

@@ -20,8 +20,13 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
     final filteredApartments = allApartments
         .where((apt) {
           /// город
-          if (filter.cityId != 0 && apt.cityId != filter.cityId) {
-            return false;
+          if (filter.cityFiasId.isNotEmpty) {
+            final normalizedFiasId = filter.cityFiasId.trim().toLowerCase();
+            final address = (apt.address ?? '').trim().toLowerCase();
+
+            if (normalizedFiasId == 'omsk' && !address.contains('омск')) {
+              return false;
+            }
           }
 
           /// категория

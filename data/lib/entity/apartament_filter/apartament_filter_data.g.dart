@@ -11,7 +11,7 @@ _ApartamentFilterData _$ApartamentFilterDataFromJson(
 ) => _ApartamentFilterData(
   limit: (json['limit'] as num?)?.toInt() ?? 20,
   offset: (json['offset'] as num?)?.toInt() ?? 0,
-  cityId: (json['city_id'] as num?)?.toInt(),
+  cityFiasId: json['city_fias_id'] as String?,
   goalId: (json['goal_id'] as num?)?.toInt(),
   propertyTypeIds: (json['property_type_ids'] as List<dynamic>?)
       ?.map((e) => (e as num).toInt())
@@ -33,7 +33,7 @@ Map<String, dynamic> _$ApartamentFilterDataToJson(
 ) => <String, dynamic>{
   'limit': instance.limit,
   'offset': instance.offset,
-  'city_id': ?instance.cityId,
+  'city_fias_id': ?instance.cityFiasId,
   'goal_id': ?instance.goalId,
   'property_type_ids': ?_idsToJson(instance.propertyTypeIds),
   'rooms_count_ids': ?_idsToJson(instance.roomsCountIds),

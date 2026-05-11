@@ -7,7 +7,7 @@ enum ApartmentSortType { popularity, priceAsc, priceDesc, dateDesc, dateAsc }
 @freezed
 sealed class ApartamentFilterModel with _$ApartamentFilterModel {
   const factory ApartamentFilterModel({
-    @Default(0) int cityId,
+    @Default('') String cityFiasId,
     @Default(0) int goalId,
     @Default([]) List<int> propertyTypeIds,
     @Default([]) List<int> roomsCountIds,

@@ -9,7 +9,7 @@ abstract class ApartamentFilterData with _$ApartamentFilterData {
   const factory ApartamentFilterData({
     @JsonKey(name: 'limit') @Default(20) int limit,
     @JsonKey(name: 'offset') @Default(0) int offset,
-    @JsonKey(name: 'city_id') int? cityId,
+    @JsonKey(name: 'city_fias_id') String? cityFiasId,
     @JsonKey(name: 'goal_id') int? goalId,
     @JsonKey(name: 'property_type_ids', toJson: _idsToJson)
     List<int>? propertyTypeIds,
