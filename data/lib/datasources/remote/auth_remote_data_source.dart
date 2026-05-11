@@ -5,14 +5,19 @@ import 'package:shared/shared.dart';
 import 'package:data/data.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
-  AuthRemoteDataSource({required ApiClient client, required TokenService tokenService})
-    : _client = client,
-      _tokenService = tokenService;
+  AuthRemoteDataSource({
+    required ApiClient client,
+    required TokenService tokenService,
+  }) : _client = client,
+       _tokenService = tokenService;
   final ApiClient _client;
   final TokenService _tokenService;
 
   @override
-  Future<Either<RemoteException, UserModel>> verifySms(String phone, String code) async {
+  Future<Either<RemoteException, UserModel>> verifySms(
+    String phone,
+    String code,
+  ) async {
     final result = await _client.post(
       ApiUrlConstants.verifySms,
       body: {'phone': phone, 'code': code},
@@ -42,7 +47,9 @@ class AuthRemoteDataSource implements AuthDataSource {
   }
 
   @override
-  Future<Either<RemoteException, SignInResponseModel>> signInByPhone(String phone) async {
+  Future<Either<RemoteException, SignInResponseModel>> signInByPhone(
+    String phone,
+  ) async {
     final result = await _client.post<SignInResponseData>(
       ApiUrlConstants.signInByPhone,
       body: {'phone': phone},

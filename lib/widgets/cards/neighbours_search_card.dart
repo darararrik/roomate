@@ -15,7 +15,7 @@ class NeighboursSearchCard extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colors.graysLight50,
-            borderRadius: .circular(S.p24), 
+            borderRadius: .circular(S.p24),
           ),
           child: Padding(
             padding: const P(vertical: S.p20, horizontal: S.p8),
@@ -26,7 +26,10 @@ class NeighboursSearchCard extends StatelessWidget {
                   padding: const P(left: S.p12),
                   child: Padding(
                     padding: const P(all: S.p6),
-                    child: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
+                    child: AppIcon(
+                      AppIcons.search,
+                      color: context.colors.graysIcon500,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -37,7 +40,10 @@ class NeighboursSearchCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: S.p8,
                       children: [
-                        Text("Кого ищете?", style: context.typography.bodyDescription),
+                        Text(
+                          "Кого ищете?",
+                          style: context.typography.bodyDescription,
+                        ),
                         Text(
                           "Уточните параметры для более точной совместимости",
                           softWrap: true,

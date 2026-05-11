@@ -6,7 +6,7 @@ part 'apartament_data.g.dart';
 @freezed
 abstract class ApartamentData with _$ApartamentData {
   const factory ApartamentData({
-    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'image_urls') List<String>? imageUrls,

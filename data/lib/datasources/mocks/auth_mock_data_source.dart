@@ -6,7 +6,8 @@ import 'package:data/data.dart';
 import 'package:data/entity/server_error/server_error.dart';
 
 class AuthMockDataSource implements AuthDataSource {
-  AuthMockDataSource({required TokenService tokenService}) : _tokenService = tokenService;
+  AuthMockDataSource({required TokenService tokenService})
+    : _tokenService = tokenService;
 
   final TokenService _tokenService;
 
@@ -18,22 +19,32 @@ class AuthMockDataSource implements AuthDataSource {
   }
 
   @override
-  Future<Either<RemoteException, SignInResponseModel>> signInByPhone(String phone) async {
+  Future<Either<RemoteException, SignInResponseModel>> signInByPhone(
+    String phone,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 250));
     return const Right(
-      SignInResponseModel(message: 'Mock code sent. Use 0000.', expiresInSeconds: 300),
+      SignInResponseModel(
+        message: 'Mock code sent. Use 0000.',
+        expiresInSeconds: 300,
+      ),
     );
   }
 
   @override
-  Future<Either<RemoteException, UserModel>> verifySms(String phone, String code) async {
+  Future<Either<RemoteException, UserModel>> verifySms(
+    String phone,
+    String code,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 250));
 
     if (code != '0000') {
       return const Left(
         RemoteException(
           kind: RemoteExceptionKind.serverDefined,
-          serverError: ServerError(message: 'Неверный код. Для mock режима используйте 0000'),
+          serverError: ServerError(
+            message: 'Неверный код. Для mock режима используйте 0000',
+          ),
         ),
       );
     }

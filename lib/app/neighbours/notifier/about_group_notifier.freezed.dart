@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AboutGroupState {
 
- List<String> get imageUrls; int get page; bool get isFavorite; String get publishedAt;
+ GroupModel get group; int get page; bool get isFavorite;
 /// Create a copy of AboutGroupState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $AboutGroupStateCopyWith<AboutGroupState> get copyWith => _$AboutGroupStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AboutGroupState&&const DeepCollectionEquality().equals(other.imageUrls, imageUrls)&&(identical(other.page, page) || other.page == page)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AboutGroupState&&(identical(other.group, group) || other.group == group)&&(identical(other.page, page) || other.page == page)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(imageUrls),page,isFavorite,publishedAt);
+int get hashCode => Object.hash(runtimeType,group,page,isFavorite);
 
 @override
 String toString() {
-  return 'AboutGroupState(imageUrls: $imageUrls, page: $page, isFavorite: $isFavorite, publishedAt: $publishedAt)';
+  return 'AboutGroupState(group: $group, page: $page, isFavorite: $isFavorite)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $AboutGroupStateCopyWith<$Res>  {
   factory $AboutGroupStateCopyWith(AboutGroupState value, $Res Function(AboutGroupState) _then) = _$AboutGroupStateCopyWithImpl;
 @useResult
 $Res call({
- List<String> imageUrls, int page, bool isFavorite, String publishedAt
+ GroupModel group, int page, bool isFavorite
 });
 
 
-
+$GroupModelCopyWith<$Res> get group;
 
 }
 /// @nodoc
@@ -62,16 +62,24 @@ class _$AboutGroupStateCopyWithImpl<$Res>
 
 /// Create a copy of AboutGroupState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? imageUrls = null,Object? page = null,Object? isFavorite = null,Object? publishedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? group = null,Object? page = null,Object? isFavorite = null,}) {
   return _then(_self.copyWith(
-imageUrls: null == imageUrls ? _self.imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
-as List<String>,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+group: null == group ? _self.group : group // ignore: cast_nullable_to_non_nullable
+as GroupModel,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
 as int,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
-as bool,publishedAt: null == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
-as String,
+as bool,
   ));
 }
-
+/// Create a copy of AboutGroupState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GroupModelCopyWith<$Res> get group {
+  
+  return $GroupModelCopyWith<$Res>(_self.group, (value) {
+    return _then(_self.copyWith(group: value));
+  });
+}
 }
 
 
@@ -150,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> imageUrls,  int page,  bool isFavorite,  String publishedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GroupModel group,  int page,  bool isFavorite)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AboutGroupState() when $default != null:
-return $default(_that.imageUrls,_that.page,_that.isFavorite,_that.publishedAt);case _:
+return $default(_that.group,_that.page,_that.isFavorite);case _:
   return orElse();
 
 }
@@ -171,10 +179,10 @@ return $default(_that.imageUrls,_that.page,_that.isFavorite,_that.publishedAt);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> imageUrls,  int page,  bool isFavorite,  String publishedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GroupModel group,  int page,  bool isFavorite)  $default,) {final _that = this;
 switch (_that) {
 case _AboutGroupState():
-return $default(_that.imageUrls,_that.page,_that.isFavorite,_that.publishedAt);}
+return $default(_that.group,_that.page,_that.isFavorite);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -188,10 +196,10 @@ return $default(_that.imageUrls,_that.page,_that.isFavorite,_that.publishedAt);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> imageUrls,  int page,  bool isFavorite,  String publishedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GroupModel group,  int page,  bool isFavorite)?  $default,) {final _that = this;
 switch (_that) {
 case _AboutGroupState() when $default != null:
-return $default(_that.imageUrls,_that.page,_that.isFavorite,_that.publishedAt);case _:
+return $default(_that.group,_that.page,_that.isFavorite);case _:
   return null;
 
 }
@@ -203,19 +211,12 @@ return $default(_that.imageUrls,_that.page,_that.isFavorite,_that.publishedAt);c
 
 
 class _AboutGroupState implements AboutGroupState {
-  const _AboutGroupState({final  List<String> imageUrls = const <String>[], this.page = 0, this.isFavorite = false, this.publishedAt = ''}): _imageUrls = imageUrls;
+  const _AboutGroupState({required this.group, this.page = 0, this.isFavorite = false});
   
 
- final  List<String> _imageUrls;
-@override@JsonKey() List<String> get imageUrls {
-  if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_imageUrls);
-}
-
+@override final  GroupModel group;
 @override@JsonKey() final  int page;
 @override@JsonKey() final  bool isFavorite;
-@override@JsonKey() final  String publishedAt;
 
 /// Create a copy of AboutGroupState
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +228,16 @@ _$AboutGroupStateCopyWith<_AboutGroupState> get copyWith => __$AboutGroupStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AboutGroupState&&const DeepCollectionEquality().equals(other._imageUrls, _imageUrls)&&(identical(other.page, page) || other.page == page)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AboutGroupState&&(identical(other.group, group) || other.group == group)&&(identical(other.page, page) || other.page == page)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_imageUrls),page,isFavorite,publishedAt);
+int get hashCode => Object.hash(runtimeType,group,page,isFavorite);
 
 @override
 String toString() {
-  return 'AboutGroupState(imageUrls: $imageUrls, page: $page, isFavorite: $isFavorite, publishedAt: $publishedAt)';
+  return 'AboutGroupState(group: $group, page: $page, isFavorite: $isFavorite)';
 }
 
 
@@ -247,11 +248,11 @@ abstract mixin class _$AboutGroupStateCopyWith<$Res> implements $AboutGroupState
   factory _$AboutGroupStateCopyWith(_AboutGroupState value, $Res Function(_AboutGroupState) _then) = __$AboutGroupStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<String> imageUrls, int page, bool isFavorite, String publishedAt
+ GroupModel group, int page, bool isFavorite
 });
 
 
-
+@override $GroupModelCopyWith<$Res> get group;
 
 }
 /// @nodoc
@@ -264,17 +265,25 @@ class __$AboutGroupStateCopyWithImpl<$Res>
 
 /// Create a copy of AboutGroupState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? imageUrls = null,Object? page = null,Object? isFavorite = null,Object? publishedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? group = null,Object? page = null,Object? isFavorite = null,}) {
   return _then(_AboutGroupState(
-imageUrls: null == imageUrls ? _self._imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
-as List<String>,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+group: null == group ? _self.group : group // ignore: cast_nullable_to_non_nullable
+as GroupModel,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
 as int,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
-as bool,publishedAt: null == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
-as String,
+as bool,
   ));
 }
 
-
+/// Create a copy of AboutGroupState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GroupModelCopyWith<$Res> get group {
+  
+  return $GroupModelCopyWith<$Res>(_self.group, (value) {
+    return _then(_self.copyWith(group: value));
+  });
+}
 }
 
 // dart format on

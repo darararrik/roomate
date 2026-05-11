@@ -9,12 +9,15 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource _dataSource;
 
   @override
-  Future<Either<RemoteException, SignInResponseModel>> signInByPhone(String phone) =>
-      _dataSource.signInByPhone(phone);
+  Future<Either<RemoteException, SignInResponseModel>> signInByPhone(
+    String phone,
+  ) => _dataSource.signInByPhone(phone);
 
   @override
-  Future<Either<RemoteException, UserModel>> verifySms(String phone, String code) =>
-      _dataSource.verifySms(phone, code);
+  Future<Either<RemoteException, UserModel>> verifySms(
+    String phone,
+    String code,
+  ) => _dataSource.verifySms(phone, code);
 
   @override
   Future<Either<RemoteException, void>> logout() => _dataSource.logout();

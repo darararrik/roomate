@@ -51,7 +51,11 @@ class AdConfirmationScreen extends ConsumerWidget {
 }
 
 class _InfoRow extends StatelessWidget {
-  const _InfoRow({required this.iconPath, required this.title, required this.subtitle});
+  const _InfoRow({
+    required this.iconPath,
+    required this.title,
+    required this.subtitle,
+  });
 
   final String iconPath;
   final String title;
@@ -78,7 +82,10 @@ class _InfoRow extends StatelessWidget {
               Text(title, style: typography.headline1),
               Text(
                 subtitle,
-                style: typography.bodyDescription.copyWith(color: colors.graysText400, height: 1.2),
+                style: typography.bodyDescription.copyWith(
+                  color: colors.graysText400,
+                  height: 1.2,
+                ),
               ),
             ],
           ),

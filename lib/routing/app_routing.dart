@@ -41,6 +41,8 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: AboutGroupRoute.page),
+    AutoRoute(page: GroupConditionsAndParticipantsRoute.page),
+    AutoRoute(page: GroupParticipantProfileRoute.page),
     AutoRoute(page: LocationRoute.page),
     AutoRoute(page: SettingsRoute.page),
     AutoRoute(page: WhoSearchRoute.page),

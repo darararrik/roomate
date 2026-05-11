@@ -60,10 +60,18 @@ class AppTypography extends ThemeExtension<AppTypography> {
       headline1: TextStyle.lerp(headline1, other.headline1, t)!,
       headline2: TextStyle.lerp(headline2, other.headline2, t)!,
       bodyTitle: TextStyle.lerp(bodyTitle, other.bodyTitle, t)!,
-      bodyDescription: TextStyle.lerp(bodyDescription, other.bodyDescription, t)!,
+      bodyDescription: TextStyle.lerp(
+        bodyDescription,
+        other.bodyDescription,
+        t,
+      )!,
       bodySmall: TextStyle.lerp(bodySmall, other.bodySmall, t)!,
       inputRegular: TextStyle.lerp(inputRegular, other.inputRegular, t)!,
-      activesCodeNumber: TextStyle.lerp(activesCodeNumber, other.activesCodeNumber, t)!,
+      activesCodeNumber: TextStyle.lerp(
+        activesCodeNumber,
+        other.activesCodeNumber,
+        t,
+      )!,
       activesButton: TextStyle.lerp(activesButton, other.activesButton, t)!,
       activesLabel: TextStyle.lerp(activesLabel, other.activesLabel, t)!,
     );

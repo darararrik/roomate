@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:domain/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:roomate/routing/app_routing.gr.dart';
+import 'package:roomate/app/neighbours/notifier/groups_notifier.dart';
 
 import '../../../lib.dart';
 
@@ -12,7 +11,8 @@ class NeighboursScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncState = ref.watch(apartamentsProvider);
+    final asyncState = ref.watch(groupsProvider);
+    final notifier = ref.read(groupsProvider.notifier);
 
     return Scaffold(
       body: SafeArea(
@@ -39,28 +39,37 @@ class NeighboursScreen extends ConsumerWidget {
                 child: ColoredBox(
                   color: context.colors.graysWhite,
                   child: FiltersRow(
-                    optionsCount: asyncState.value?.apartaments.length ?? 0,
-                    onFiltersTap: () => ref.read(apartamentFilterProvider.notifier).openFilters(),
+                    optionsCount: asyncState.value?.length ?? 0,
+                    onFiltersTap: () => ref
+                        .read(apartamentFilterProvider.notifier)
+                        .openFilters(),
                   ),
                 ),
               ),
             ),
             SliverPadding(
               padding: const P(horizontal: S.p16),
-              sliver: SliverList.separated(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return NeighbourCard(
-                    onTap: () => context.router.push(const AboutGroupRoute()),
-                    neighboursModel: NeighboursModel(
-                      title: "Тихий уголок в центре",
-                      description:
-                          "Ищем соседей для уютной квартиры в центре города. Главное для нас — спокойствие, уважение личного пространства и чистота. Гостей приводим редко, любим работать и отдыхать в тишине. Если тебе тоже важен комфортный и размеренный быт — добро пожаловать!",
-                    ),
+              sliver: asyncState.when(
+                data: (groups) {
+                  return SliverList.separated(
+                    itemCount: groups.length,
+                    itemBuilder: (context, index) {
+                      final group = groups[index];
+                      return NeighbourCard(
+                        onTap: () => notifier.openGroup(group.id),
+                        group: group,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: S.p12);
+                    },
                   );
                 },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: S.p12);
+                error: (error, stack) {
+                  return SliverToBoxAdapter(child: ErrorView(error: error));
+                },
+                loading: () {
+                  return const SliverToBoxAdapter(child: LoadingWidget());
                 },
               ),
             ),
@@ -72,7 +81,10 @@ class NeighboursScreen extends ConsumerWidget {
 }
 
 class _NeighboursControlsHeaderDelegate extends SliverPersistentHeaderDelegate {
-  _NeighboursControlsHeaderDelegate({required this.child, required this.height});
+  _NeighboursControlsHeaderDelegate({
+    required this.child,
+    required this.height,
+  });
 
   final Widget child;
   final double height;
@@ -84,7 +96,11 @@ class _NeighboursControlsHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return SizedBox.expand(child: child);
   }
 

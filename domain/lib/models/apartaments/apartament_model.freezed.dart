@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApartamentModel {
 
- int get id; String get title; String get description; List<String> get imageUrls; bool get isVerification; String get price; String get roomsCount; String get area; int get floor; int get totalFloor; String get address; int get cityId; String get name; String get role; String get publishDate; String get totalViewers; ApartmentLayout? get layout; RenovationType? get renovation; ElevatorType? get elevatorType; FurnitureType? get furnitureType; BalconyType? get balconyType; StoveType? get stoveType; DealGoal? get dealGoal; RentalConditions? get rentTerm; List<WhoToRent> get whoToRent; PrepaymentType? get prepaymentType; RentalPeriod? get rentalPeriod; String get deposit; List<ApartmentAmenity> get amenities;
+ String get id; String get title; String get description; List<String> get imageUrls; bool get isVerification; String get price; String get roomsCount; String get area; int get floor; int get totalFloor; String get address; int get cityId; String get name; String get role; String get publishDate; String get totalViewers; ApartmentLayout? get layout; RenovationType? get renovation; ElevatorType? get elevatorType; FurnitureType? get furnitureType; BalconyType? get balconyType; StoveType? get stoveType; DealGoal? get dealGoal; RentalConditions? get rentTerm; List<WhoToRent> get whoToRent; PrepaymentType? get prepaymentType; RentalPeriod? get rentalPeriod; String get deposit; List<ApartmentAmenity> get amenities;
 /// Create a copy of ApartamentModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $ApartamentModelCopyWith<$Res>  {
   factory $ApartamentModelCopyWith(ApartamentModel value, $Res Function(ApartamentModel) _then) = _$ApartamentModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, String description, List<String> imageUrls, bool isVerification, String price, String roomsCount, String area, int floor, int totalFloor, String address, int cityId, String name, String role, String publishDate, String totalViewers, ApartmentLayout? layout, RenovationType? renovation, ElevatorType? elevatorType, FurnitureType? furnitureType, BalconyType? balconyType, StoveType? stoveType, DealGoal? dealGoal, RentalConditions? rentTerm, List<WhoToRent> whoToRent, PrepaymentType? prepaymentType, RentalPeriod? rentalPeriod, String deposit, List<ApartmentAmenity> amenities
+ String id, String title, String description, List<String> imageUrls, bool isVerification, String price, String roomsCount, String area, int floor, int totalFloor, String address, int cityId, String name, String role, String publishDate, String totalViewers, ApartmentLayout? layout, RenovationType? renovation, ElevatorType? elevatorType, FurnitureType? furnitureType, BalconyType? balconyType, StoveType? stoveType, DealGoal? dealGoal, RentalConditions? rentTerm, List<WhoToRent> whoToRent, PrepaymentType? prepaymentType, RentalPeriod? rentalPeriod, String deposit, List<ApartmentAmenity> amenities
 });
 
 
@@ -65,7 +65,7 @@ class _$ApartamentModelCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? imageUrls = null,Object? isVerification = null,Object? price = null,Object? roomsCount = null,Object? area = null,Object? floor = null,Object? totalFloor = null,Object? address = null,Object? cityId = null,Object? name = null,Object? role = null,Object? publishDate = null,Object? totalViewers = null,Object? layout = freezed,Object? renovation = freezed,Object? elevatorType = freezed,Object? furnitureType = freezed,Object? balconyType = freezed,Object? stoveType = freezed,Object? dealGoal = freezed,Object? rentTerm = freezed,Object? whoToRent = null,Object? prepaymentType = freezed,Object? rentalPeriod = freezed,Object? deposit = null,Object? amenities = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,imageUrls: null == imageUrls ? _self.imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
 as List<String>,isVerification: null == isVerification ? _self.isVerification : isVerification // ignore: cast_nullable_to_non_nullable
@@ -175,7 +175,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  String description,  List<String> imageUrls,  bool isVerification,  String price,  String roomsCount,  String area,  int floor,  int totalFloor,  String address,  int cityId,  String name,  String role,  String publishDate,  String totalViewers,  ApartmentLayout? layout,  RenovationType? renovation,  ElevatorType? elevatorType,  FurnitureType? furnitureType,  BalconyType? balconyType,  StoveType? stoveType,  DealGoal? dealGoal,  RentalConditions? rentTerm,  List<WhoToRent> whoToRent,  PrepaymentType? prepaymentType,  RentalPeriod? rentalPeriod,  String deposit,  List<ApartmentAmenity> amenities)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  List<String> imageUrls,  bool isVerification,  String price,  String roomsCount,  String area,  int floor,  int totalFloor,  String address,  int cityId,  String name,  String role,  String publishDate,  String totalViewers,  ApartmentLayout? layout,  RenovationType? renovation,  ElevatorType? elevatorType,  FurnitureType? furnitureType,  BalconyType? balconyType,  StoveType? stoveType,  DealGoal? dealGoal,  RentalConditions? rentTerm,  List<WhoToRent> whoToRent,  PrepaymentType? prepaymentType,  RentalPeriod? rentalPeriod,  String deposit,  List<ApartmentAmenity> amenities)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ApartamentModel() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isVerification,_that.price,_that.roomsCount,_that.area,_that.floor,_that.totalFloor,_that.address,_that.cityId,_that.name,_that.role,_that.publishDate,_that.totalViewers,_that.layout,_that.renovation,_that.elevatorType,_that.furnitureType,_that.balconyType,_that.stoveType,_that.dealGoal,_that.rentTerm,_that.whoToRent,_that.prepaymentType,_that.rentalPeriod,_that.deposit,_that.amenities);case _:
@@ -196,7 +196,7 @@ return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isV
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  String description,  List<String> imageUrls,  bool isVerification,  String price,  String roomsCount,  String area,  int floor,  int totalFloor,  String address,  int cityId,  String name,  String role,  String publishDate,  String totalViewers,  ApartmentLayout? layout,  RenovationType? renovation,  ElevatorType? elevatorType,  FurnitureType? furnitureType,  BalconyType? balconyType,  StoveType? stoveType,  DealGoal? dealGoal,  RentalConditions? rentTerm,  List<WhoToRent> whoToRent,  PrepaymentType? prepaymentType,  RentalPeriod? rentalPeriod,  String deposit,  List<ApartmentAmenity> amenities)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  List<String> imageUrls,  bool isVerification,  String price,  String roomsCount,  String area,  int floor,  int totalFloor,  String address,  int cityId,  String name,  String role,  String publishDate,  String totalViewers,  ApartmentLayout? layout,  RenovationType? renovation,  ElevatorType? elevatorType,  FurnitureType? furnitureType,  BalconyType? balconyType,  StoveType? stoveType,  DealGoal? dealGoal,  RentalConditions? rentTerm,  List<WhoToRent> whoToRent,  PrepaymentType? prepaymentType,  RentalPeriod? rentalPeriod,  String deposit,  List<ApartmentAmenity> amenities)  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentModel():
 return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isVerification,_that.price,_that.roomsCount,_that.area,_that.floor,_that.totalFloor,_that.address,_that.cityId,_that.name,_that.role,_that.publishDate,_that.totalViewers,_that.layout,_that.renovation,_that.elevatorType,_that.furnitureType,_that.balconyType,_that.stoveType,_that.dealGoal,_that.rentTerm,_that.whoToRent,_that.prepaymentType,_that.rentalPeriod,_that.deposit,_that.amenities);}
@@ -213,7 +213,7 @@ return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isV
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  String description,  List<String> imageUrls,  bool isVerification,  String price,  String roomsCount,  String area,  int floor,  int totalFloor,  String address,  int cityId,  String name,  String role,  String publishDate,  String totalViewers,  ApartmentLayout? layout,  RenovationType? renovation,  ElevatorType? elevatorType,  FurnitureType? furnitureType,  BalconyType? balconyType,  StoveType? stoveType,  DealGoal? dealGoal,  RentalConditions? rentTerm,  List<WhoToRent> whoToRent,  PrepaymentType? prepaymentType,  RentalPeriod? rentalPeriod,  String deposit,  List<ApartmentAmenity> amenities)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  List<String> imageUrls,  bool isVerification,  String price,  String roomsCount,  String area,  int floor,  int totalFloor,  String address,  int cityId,  String name,  String role,  String publishDate,  String totalViewers,  ApartmentLayout? layout,  RenovationType? renovation,  ElevatorType? elevatorType,  FurnitureType? furnitureType,  BalconyType? balconyType,  StoveType? stoveType,  DealGoal? dealGoal,  RentalConditions? rentTerm,  List<WhoToRent> whoToRent,  PrepaymentType? prepaymentType,  RentalPeriod? rentalPeriod,  String deposit,  List<ApartmentAmenity> amenities)?  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentModel() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isVerification,_that.price,_that.roomsCount,_that.area,_that.floor,_that.totalFloor,_that.address,_that.cityId,_that.name,_that.role,_that.publishDate,_that.totalViewers,_that.layout,_that.renovation,_that.elevatorType,_that.furnitureType,_that.balconyType,_that.stoveType,_that.dealGoal,_that.rentTerm,_that.whoToRent,_that.prepaymentType,_that.rentalPeriod,_that.deposit,_that.amenities);case _:
@@ -228,10 +228,10 @@ return $default(_that.id,_that.title,_that.description,_that.imageUrls,_that.isV
 
 
 class _ApartamentModel implements ApartamentModel {
-  const _ApartamentModel({this.id = 0, this.title = '', this.description = '', final  List<String> imageUrls = const [], this.isVerification = false, this.price = '', this.roomsCount = '', this.area = '', this.floor = 0, this.totalFloor = 0, this.address = '', this.cityId = 0, this.name = '', this.role = '', this.publishDate = '', this.totalViewers = '', this.layout = null, this.renovation = null, this.elevatorType = null, this.furnitureType = null, this.balconyType = null, this.stoveType = null, this.dealGoal = null, this.rentTerm = null, final  List<WhoToRent> whoToRent = const [], this.prepaymentType = null, this.rentalPeriod = null, this.deposit = '', final  List<ApartmentAmenity> amenities = const []}): _imageUrls = imageUrls,_whoToRent = whoToRent,_amenities = amenities;
+  const _ApartamentModel({this.id = '', this.title = '', this.description = '', final  List<String> imageUrls = const [], this.isVerification = false, this.price = '', this.roomsCount = '', this.area = '', this.floor = 0, this.totalFloor = 0, this.address = '', this.cityId = 0, this.name = '', this.role = '', this.publishDate = '', this.totalViewers = '', this.layout = null, this.renovation = null, this.elevatorType = null, this.furnitureType = null, this.balconyType = null, this.stoveType = null, this.dealGoal = null, this.rentTerm = null, final  List<WhoToRent> whoToRent = const [], this.prepaymentType = null, this.rentalPeriod = null, this.deposit = '', final  List<ApartmentAmenity> amenities = const []}): _imageUrls = imageUrls,_whoToRent = whoToRent,_amenities = amenities;
   
 
-@override@JsonKey() final  int id;
+@override@JsonKey() final  String id;
 @override@JsonKey() final  String title;
 @override@JsonKey() final  String description;
  final  List<String> _imageUrls;
@@ -309,7 +309,7 @@ abstract mixin class _$ApartamentModelCopyWith<$Res> implements $ApartamentModel
   factory _$ApartamentModelCopyWith(_ApartamentModel value, $Res Function(_ApartamentModel) _then) = __$ApartamentModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, String description, List<String> imageUrls, bool isVerification, String price, String roomsCount, String area, int floor, int totalFloor, String address, int cityId, String name, String role, String publishDate, String totalViewers, ApartmentLayout? layout, RenovationType? renovation, ElevatorType? elevatorType, FurnitureType? furnitureType, BalconyType? balconyType, StoveType? stoveType, DealGoal? dealGoal, RentalConditions? rentTerm, List<WhoToRent> whoToRent, PrepaymentType? prepaymentType, RentalPeriod? rentalPeriod, String deposit, List<ApartmentAmenity> amenities
+ String id, String title, String description, List<String> imageUrls, bool isVerification, String price, String roomsCount, String area, int floor, int totalFloor, String address, int cityId, String name, String role, String publishDate, String totalViewers, ApartmentLayout? layout, RenovationType? renovation, ElevatorType? elevatorType, FurnitureType? furnitureType, BalconyType? balconyType, StoveType? stoveType, DealGoal? dealGoal, RentalConditions? rentTerm, List<WhoToRent> whoToRent, PrepaymentType? prepaymentType, RentalPeriod? rentalPeriod, String deposit, List<ApartmentAmenity> amenities
 });
 
 
@@ -329,7 +329,7 @@ class __$ApartamentModelCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? imageUrls = null,Object? isVerification = null,Object? price = null,Object? roomsCount = null,Object? area = null,Object? floor = null,Object? totalFloor = null,Object? address = null,Object? cityId = null,Object? name = null,Object? role = null,Object? publishDate = null,Object? totalViewers = null,Object? layout = freezed,Object? renovation = freezed,Object? elevatorType = freezed,Object? furnitureType = freezed,Object? balconyType = freezed,Object? stoveType = freezed,Object? dealGoal = freezed,Object? rentTerm = freezed,Object? whoToRent = null,Object? prepaymentType = freezed,Object? rentalPeriod = freezed,Object? deposit = null,Object? amenities = null,}) {
   return _then(_ApartamentModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,imageUrls: null == imageUrls ? _self._imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
 as List<String>,isVerification: null == isVerification ? _self.isVerification : isVerification // ignore: cast_nullable_to_non_nullable

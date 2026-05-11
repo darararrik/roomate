@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class Buttons extends StatelessWidget {
-  const Buttons({super.key, required this.onCallPressed, required this.onWritePressed});
+  const Buttons({
+    super.key,
+    required this.onCallPressed,
+    required this.onWritePressed,
+  });
   final VoidCallback onCallPressed;
   final VoidCallback onWritePressed;
 
@@ -18,7 +22,10 @@ class Buttons extends StatelessWidget {
             spacing: S.p12,
             children: [
               Expanded(
-                child: PrimaryButton(text: locale.call, onPressed: onCallPressed),
+                child: PrimaryButton(
+                  text: locale.call,
+                  onPressed: onCallPressed,
+                ),
               ),
               Expanded(
                 child: OpacityButton(

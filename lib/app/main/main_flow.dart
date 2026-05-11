@@ -22,7 +22,9 @@ class MainFlow extends ConsumerWidget {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return DecoratedBox(
-          decoration: BoxDecoration(boxShadow: [context.colors.bottomNavBarShadow]),
+          decoration: BoxDecoration(
+            boxShadow: [context.colors.bottomNavBarShadow],
+          ),
           child: NavigationBar(
             height: S.p72,
             selectedIndex: tabsRouter.activeIndex,
@@ -33,27 +35,42 @@ class MainFlow extends ConsumerWidget {
               NavigationDestination(
                 icon: const AppIcon(AppIcons.home),
                 label: context.l10n.main,
-                selectedIcon: AppIcon(AppIcons.home, color: context.colors.orange),
+                selectedIcon: AppIcon(
+                  AppIcons.home,
+                  color: context.colors.orange,
+                ),
               ),
               NavigationDestination(
                 icon: const AppIcon(AppIcons.favourite),
                 label: context.l10n.favorites,
-                selectedIcon: AppIcon(AppIcons.favourite, color: context.colors.orange),
+                selectedIcon: AppIcon(
+                  AppIcons.favourite,
+                  color: context.colors.orange,
+                ),
               ),
               NavigationDestination(
                 icon: const AppIcon(AppIcons.add),
                 label: context.l10n.postAd,
-                selectedIcon: AppIcon(AppIcons.add, color: context.colors.orange),
+                selectedIcon: AppIcon(
+                  AppIcons.add,
+                  color: context.colors.orange,
+                ),
               ),
               NavigationDestination(
                 icon: const AppIcon(AppIcons.chats),
                 label: context.l10n.messages,
-                selectedIcon: AppIcon(AppIcons.chats, color: context.colors.orange),
+                selectedIcon: AppIcon(
+                  AppIcons.chats,
+                  color: context.colors.orange,
+                ),
               ),
               NavigationDestination(
                 icon: const AppIcon(AppIcons.profile),
                 label: context.l10n.profile,
-                selectedIcon: AppIcon(AppIcons.profile, color: context.colors.orange),
+                selectedIcon: AppIcon(
+                  AppIcons.profile,
+                  color: context.colors.orange,
+                ),
               ),
             ],
           ),

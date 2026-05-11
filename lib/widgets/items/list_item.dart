@@ -23,7 +23,9 @@ class ListItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: subtitle == null ? const P(vertical: S.p12) : const P(vertical: 0),
+        padding: subtitle == null
+            ? const P(vertical: S.p12)
+            : const P(vertical: 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,10 +35,14 @@ class ListItem extends StatelessWidget {
             Expanded(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: context.colors.graysStroke300)),
+                  border: Border(
+                    bottom: BorderSide(color: context.colors.graysStroke300),
+                  ),
                 ),
                 child: Padding(
-                  padding: subtitle == null ? const P(bottom: S.p16) : const P(bottom: S.p12),
+                  padding: subtitle == null
+                      ? const P(bottom: S.p16)
+                      : const P(bottom: S.p12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,

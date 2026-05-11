@@ -38,7 +38,9 @@ class DescriptionAdStepScreen extends HookConsumerWidget {
         ),
         Text(
           context.l10n.minimumCharactersRequired,
-          style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+          style: context.typography.bodyDescription.copyWith(
+            color: context.colors.graysText400,
+          ),
         ),
       ].separated(const SizedBox(height: S.p12)),
     );

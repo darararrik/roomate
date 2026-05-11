@@ -43,7 +43,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
     return CustomScrollView(
       slivers: [
         AB(
-          title: Text(context.l10n.myProfile, style: context.typography.headline1),
+          title: Text(
+            context.l10n.myProfile,
+            style: context.typography.headline1,
+          ),
           centerTitle: false,
           pinned: true,
         ),
@@ -53,13 +56,22 @@ class MyQuestionnaireScreen extends ConsumerWidget {
             delegate: SliverChildListDelegate(
               [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
-                  child: Text(context.l10n.basicSection, style: context.typography.headline2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: S.p8,
+                    vertical: S.p4,
+                  ),
+                  child: Text(
+                    context.l10n.basicSection,
+                    style: context.typography.headline2,
+                  ),
                 ),
                 ProfileListItem(
                   iconPath: AppIcons.flash,
                   title: context.l10n.traitSociability,
-                  value: notifier.preferenceTitle(catalog.communication, preferences.communication),
+                  value: notifier.preferenceTitle(
+                    catalog.communication,
+                    preferences.communication,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -75,7 +87,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.sleep,
                   title: context.l10n.traitSleepMode,
-                  value: notifier.preferenceTitle(catalog.sleep, preferences.sleep),
+                  value: notifier.preferenceTitle(
+                    catalog.sleep,
+                    preferences.sleep,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -91,7 +106,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.build,
                   title: context.l10n.traitEmployment,
-                  value: notifier.preferenceTitle(catalog.employment, preferences.employment),
+                  value: notifier.preferenceTitle(
+                    catalog.employment,
+                    preferences.employment,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -107,7 +125,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.drink,
                   title: context.l10n.traitBadHabits,
-                  value: notifier.preferenceTitle(catalog.badHabits, preferences.badHabits),
+                  value: notifier.preferenceTitle(
+                    catalog.badHabits,
+                    preferences.badHabits,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -123,7 +144,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.people,
                   title: context.l10n.traitGuestFrequency,
-                  value: notifier.preferenceTitle(catalog.guests, preferences.guests),
+                  value: notifier.preferenceTitle(
+                    catalog.guests,
+                    preferences.guests,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -139,7 +163,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.flash,
                   title: context.l10n.traitNoiseLevel,
-                  value: notifier.preferenceTitle(catalog.noiseLevel, preferences.noiseLevel),
+                  value: notifier.preferenceTitle(
+                    catalog.noiseLevel,
+                    preferences.noiseLevel,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -155,7 +182,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.trash,
                   title: context.l10n.traitCleaning,
-                  value: notifier.preferenceTitle(catalog.cleaning, preferences.cleaning),
+                  value: notifier.preferenceTitle(
+                    catalog.cleaning,
+                    preferences.cleaning,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -171,7 +201,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.animals,
                   title: context.l10n.traitPets,
-                  value: notifier.preferenceTitle(catalog.pets, preferences.pets),
+                  value: notifier.preferenceTitle(
+                    catalog.pets,
+                    preferences.pets,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -187,7 +220,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                 ProfileListItem(
                   iconPath: AppIcons.animals,
                   title: context.l10n.traitPetAttitude,
-                  value: notifier.preferenceTitle(catalog.petsAttitude, preferences.petsAttitude),
+                  value: notifier.preferenceTitle(
+                    catalog.petsAttitude,
+                    preferences.petsAttitude,
+                  ),
                   onTap: () => _showPreferenceBottomSheet(
                     context,
                     PreferenceSheetConfig(
@@ -210,7 +246,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
             delegate: SliverChildListDelegate(
               [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: S.p8, vertical: S.p4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: S.p8,
+                    vertical: S.p4,
+                  ),
                   child: Text(
                     context.l10n.roommateSearchSection,
                     style: context.typography.headline2,
@@ -220,13 +259,19 @@ class MyQuestionnaireScreen extends ConsumerWidget {
                   iconPath: AppIcons.male,
                   title: context.l10n.traitGender,
                   value: context.l10n.notSelectedSingle,
-                  onTap: () => _showPlaceholderBottomSheet(context, context.l10n.traitGender),
+                  onTap: () => _showPlaceholderBottomSheet(
+                    context,
+                    context.l10n.traitGender,
+                  ),
                 ),
                 ProfileListItem(
                   iconPath: AppIcons.cake,
                   title: context.l10n.traitAge,
                   value: context.l10n.notSelectedPlural,
-                  onTap: () => _showPlaceholderBottomSheet(context, context.l10n.traitAge),
+                  onTap: () => _showPlaceholderBottomSheet(
+                    context,
+                    context.l10n.traitAge,
+                  ),
                 ),
               ].separated(const SizedBox(height: S.p8)),
             ),
@@ -236,7 +281,10 @@ class MyQuestionnaireScreen extends ConsumerWidget {
     );
   }
 
-  void _showPreferenceBottomSheet(BuildContext context, PreferenceSheetConfig config) {
+  void _showPreferenceBottomSheet(
+    BuildContext context,
+    PreferenceSheetConfig config,
+  ) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,

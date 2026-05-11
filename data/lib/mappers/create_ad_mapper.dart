@@ -1,7 +1,6 @@
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/data.dart';
 
 @BackendOnly('Maps create-ad form data into temporary backend mock contracts.')
 abstract class CreateAdFormMapper {
@@ -48,29 +47,18 @@ abstract class CreateAdFormMapper {
 
   static ApartamentData toApartamentDto(
     CreateAdFormRequestData request, {
-    required int id,
+    required String id,
     required String ownerName,
     String role = 'Собственник',
   }) {
     final whoToRent = request.whoCanRentIds ?? const <int>{};
-    final whoToRentNames = whoToRent
-        .map(_mapWhoToRent)
-        .whereType<String>()
-        .toList();
+    final whoToRentNames = whoToRent.map(_mapWhoToRent).whereType<String>().toList();
 
     final amenityNames = <String>{
-      ...(request.amenitiesIds ?? const <int>{})
-          .map(_mapAmenity)
-          .whereType<String>(),
-      ...(request.bathroomIds ?? const <int>{})
-          .map(_mapAmenity)
-          .whereType<String>(),
-      ...(request.appliancesIds ?? const <int>{})
-          .map(_mapAmenity)
-          .whereType<String>(),
-      ...(request.rentConditionsIds ?? const <int>{})
-          .map(_mapAmenity)
-          .whereType<String>(),
+      ...(request.amenitiesIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
+      ...(request.bathroomIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
+      ...(request.appliancesIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
+      ...(request.rentConditionsIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
     }.toList();
 
     return ApartamentData(
@@ -82,9 +70,7 @@ abstract class CreateAdFormMapper {
       imageUrls: const [],
       isVerification: false,
       price: _formatNumber(request.cost ?? 0),
-      roomsCount:
-          _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId) ??
-          '',
+      roomsCount: _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId) ?? '',
       area: _formatNumber(request.apartmentArea ?? 0),
       floor: request.floor ?? 0,
       totalFloor: request.totalFloors ?? 0,
@@ -123,9 +109,7 @@ abstract class CreateAdFormMapper {
         StoveType.values,
         (value) => value.title,
       ),
-      dealGoal: _mapDealGoal(
-        _findOptionTitle(AdFormOptionKeys.rentGoal, request.rentGoalId),
-      ),
+      dealGoal: _mapDealGoal(_findOptionTitle(AdFormOptionKeys.rentGoal, request.rentGoalId)),
       rentTerm: _mapByTitle(
         _findOptionTitle(AdFormOptionKeys.rentPeriod, request.rentPeriodId),
         RentalConditions.values,
@@ -142,10 +126,7 @@ abstract class CreateAdFormMapper {
         RentalPeriod.values,
         (value) => value.title,
       ),
-      deposit: _formatMoney(
-        request.deposit ?? 0,
-        request.selectedCurrency ?? Currency.rub,
-      ),
+      deposit: _formatMoney(request.deposit ?? 0, request.selectedCurrency ?? Currency.rub),
       amenities: amenityNames,
     );
   }
@@ -171,15 +152,8 @@ abstract class CreateAdFormMapper {
 
   static String _buildFallbackTitle(CreateAdFormRequestData request) {
     final propertyType =
-        _findOptionTitle(
-          AdFormOptionKeys.propertyType,
-          request.propertyTypeId,
-        ) ??
-        'Объект';
-    final roomsCount = _findOptionTitle(
-      AdFormOptionKeys.roomsCount,
-      request.roomsCountId,
-    );
+        _findOptionTitle(AdFormOptionKeys.propertyType, request.propertyTypeId) ?? 'Объект';
+    final roomsCount = _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId);
     if (roomsCount == null || roomsCount.isEmpty) {
       return propertyType;
     }

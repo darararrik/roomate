@@ -13,7 +13,7 @@ part of 'favorites_notifier.dart';
 final favoriteApartmentIdsProvider = FavoriteApartmentIdsNotifierProvider._();
 
 final class FavoriteApartmentIdsNotifierProvider
-    extends $NotifierProvider<FavoriteApartmentIdsNotifier, Set<int>> {
+    extends $NotifierProvider<FavoriteApartmentIdsNotifier, Set<String>> {
   FavoriteApartmentIdsNotifierProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class FavoriteApartmentIdsNotifierProvider
   FavoriteApartmentIdsNotifier create() => FavoriteApartmentIdsNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(Set<int> value) {
+  Override overrideWithValue(Set<String> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<Set<int>>(value),
+      providerOverride: $SyncValueProvider<Set<String>>(value),
     );
   }
 }
 
 String _$favoriteApartmentIdsNotifierHash() =>
-    r'd242dc47b88aa480b568e0e1e700fbafd75617bd';
+    r'ba33a4970d955f60abde77916d551e0eea643678';
 
-abstract class _$FavoriteApartmentIdsNotifier extends $Notifier<Set<int>> {
-  Set<int> build();
+abstract class _$FavoriteApartmentIdsNotifier extends $Notifier<Set<String>> {
+  Set<String> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<Set<int>, Set<int>>;
+    final ref = this.ref as $Ref<Set<String>, Set<String>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<Set<int>, Set<int>>,
-              Set<int>,
+              AnyNotifier<Set<String>, Set<String>>,
+              Set<String>,
               Object?,
               Object?
             >;
@@ -66,7 +66,11 @@ abstract class _$FavoriteApartmentIdsNotifier extends $Notifier<Set<int>> {
 final favoritesScreenProvider = FavoritesScreenNotifierProvider._();
 
 final class FavoritesScreenNotifierProvider
-    extends $NotifierProvider<FavoritesScreenNotifier, List<ApartamentModel>> {
+    extends
+        $NotifierProvider<
+          FavoritesScreenNotifier,
+          List<ApartamentPreviewModel>
+        > {
   FavoritesScreenNotifierProvider._()
     : super(
         from: null,
@@ -86,29 +90,34 @@ final class FavoritesScreenNotifierProvider
   FavoritesScreenNotifier create() => FavoritesScreenNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<ApartamentModel> value) {
+  Override overrideWithValue(List<ApartamentPreviewModel> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<List<ApartamentModel>>(value),
+      providerOverride: $SyncValueProvider<List<ApartamentPreviewModel>>(value),
     );
   }
 }
 
 String _$favoritesScreenNotifierHash() =>
-    r'84def311be02d1cae97a0d938d3285abf0da2b1a';
+    r'882abf058fd6fdf43ff87d73839374980bc26659';
 
 abstract class _$FavoritesScreenNotifier
-    extends $Notifier<List<ApartamentModel>> {
-  List<ApartamentModel> build();
+    extends $Notifier<List<ApartamentPreviewModel>> {
+  List<ApartamentPreviewModel> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<List<ApartamentModel>, List<ApartamentModel>>;
+    final ref =
+        this.ref
+            as $Ref<List<ApartamentPreviewModel>, List<ApartamentPreviewModel>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<List<ApartamentModel>, List<ApartamentModel>>,
-              List<ApartamentModel>,
+              AnyNotifier<
+                List<ApartamentPreviewModel>,
+                List<ApartamentPreviewModel>
+              >,
+              List<ApartamentPreviewModel>,
               Object?,
               Object?
             >;

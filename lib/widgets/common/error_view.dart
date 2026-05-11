@@ -10,7 +10,10 @@ class ErrorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: [Text(context.l10n.errorGeneric), if (error != null) Text(error.toString())],
+        children: [
+          Text(context.l10n.errorGeneric),
+          if (error != null) Text(error.toString()),
+        ],
       ),
     );
   }

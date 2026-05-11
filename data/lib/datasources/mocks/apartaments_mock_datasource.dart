@@ -1,17 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/data.dart';
 
 @BackendOnly(
   'Temporary mock datasource that emulates apartment backend responses.',
 )
 class ApartamentsMockDataSource implements ApartamentsDataSource {
   @override
-  Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
-    ApartamentFilterModel filter,
-  ) async {
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>>
+  fetchApartaments(ApartamentFilterModel filter) async {
     await Future.delayed(const Duration(milliseconds: 300));
 
     final allApartments = [
@@ -68,7 +66,7 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
 
           return true;
         })
-        .map(ApartamentMapper.toModel)
+        .map(ApartamentMapper.toPreviewModel)
         .toList();
 
     return Right(filteredApartments);
@@ -110,9 +108,11 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
     final nextId =
         [
           ...ApartmentsMockJson.fetchApartments.map(
-            (item) => item['id'] as int? ?? 0,
+            (item) => int.tryParse('${item['id']}') ?? 0,
           ),
-          ...MockStorage.createAds.map((item) => item['id'] as int? ?? 0),
+          ...MockStorage.createAds.map(
+            (item) => int.tryParse('${item['id']}') ?? 0,
+          ),
         ].fold<int>(
           0,
           (maxId, currentId) => currentId > maxId ? currentId : maxId,
@@ -122,7 +122,7 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
     final ownerName = _resolveOwnerName();
     final apartment = CreateAdFormMapper.toApartamentDto(
       request,
-      id: nextId,
+      id: nextId.toString(),
       ownerName: ownerName,
     );
 
@@ -150,5 +150,32 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
     }
 
     return 'Пользователь';
+  }
+
+  @override
+  Future<Either<RemoteException, ApartamentModel>> fetchApartamentById(
+    String id,
+  ) {
+    final allApartments = [
+      ...ApartmentsMockJson.fetchApartments,
+      ...MockStorage.createAds,
+    ];
+
+    for (final json in allApartments) {
+      if (json['id'] == id) {
+        return Future.value(
+          Right(ApartamentMapper.toModel(ApartamentData.fromJson(json))),
+        );
+      }
+    }
+
+    return Future.value(
+      Left(
+        RemoteException(
+          kind: RemoteExceptionKind.serverDefined,
+          rootException: Exception('Apartment not found'),
+        ),
+      ),
+    );
   }
 }

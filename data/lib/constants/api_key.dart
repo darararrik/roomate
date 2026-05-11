@@ -9,9 +9,17 @@ class ApiUrlConstants {
   static const logout = '/auth/logout';
   static const adFormOptions = '/ads/tags';
   static const ads = '/ads';
+  static String adsId(String id) => '/ads/$id';
+
   static const filters = '/ads/filters';
+  static const groups = '/groups';
   static const me = '/profile/me';
   static const preferenceTagsCatalog = '/profile/tags';
   static const cities = '/locations/cities';
   static const locationsSuggest = '/locations/suggest';
+
+  static String group(String groupId) => '$groups/$groupId';
+  static String groupConditions(String groupId) => '$groups/$groupId/conditions';
+  static String groupApply(String groupId) => '$groups/$groupId/apply';
+  static String groupParticipant(String participantId) => '/group-participants/$participantId';
 }

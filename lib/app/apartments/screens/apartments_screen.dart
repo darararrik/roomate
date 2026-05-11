@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -41,7 +39,7 @@ class ApartamentsScreen extends ConsumerWidget {
                       onFavoriteTap: () =>
                           favoritesNotifier.toggle(apartment.id),
                       onTap: () => context.pushRoute(
-                        ApartamnetRoute(apartment: apartment),
+                        ApartamnetRoute(apartmentId: apartment.id),
                       ),
                     );
                   },

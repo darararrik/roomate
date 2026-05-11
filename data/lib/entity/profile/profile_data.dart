@@ -22,5 +22,6 @@ sealed class ProfileData with _$ProfileData {
     @JsonKey(name: "is_owner") bool? isOwner,
     @JsonKey(name: "is_new_user") bool? isNewUser,
   }) = _ProfileData;
-  factory ProfileData.fromJson(Map<String, dynamic> json) => _$ProfileDataFromJson(json);
+  factory ProfileData.fromJson(Map<String, dynamic> json) =>
+      _$ProfileDataFromJson(json);
 }

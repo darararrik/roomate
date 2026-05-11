@@ -13,10 +13,10 @@ part of 'apartament_notifier.dart';
 final apartamentProvider = ApartamentFamily._();
 
 final class ApartamentProvider
-    extends $NotifierProvider<Apartament, ApartamentState> {
+    extends $AsyncNotifierProvider<Apartament, ApartamentState> {
   ApartamentProvider._({
     required ApartamentFamily super.from,
-    required ApartamentModel super.argument,
+    required String super.argument,
   }) : super(
          retry: null,
          name: r'apartamentProvider',
@@ -39,14 +39,6 @@ final class ApartamentProvider
   @override
   Apartament create() => Apartament();
 
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ApartamentState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ApartamentState>(value),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is ApartamentProvider && other.argument == argument;
@@ -58,16 +50,16 @@ final class ApartamentProvider
   }
 }
 
-String _$apartamentHash() => r'37a18b1bd616665d8a52ca260b36a1c95abaec50';
+String _$apartamentHash() => r'5e7bdf47855d80839e6e1541633cd737d11ecbdf';
 
 final class ApartamentFamily extends $Family
     with
         $ClassFamilyOverride<
           Apartament,
+          AsyncValue<ApartamentState>,
           ApartamentState,
-          ApartamentState,
-          ApartamentState,
-          ApartamentModel
+          FutureOr<ApartamentState>,
+          String
         > {
   ApartamentFamily._()
     : super(
@@ -78,27 +70,27 @@ final class ApartamentFamily extends $Family
         isAutoDispose: true,
       );
 
-  ApartamentProvider call(ApartamentModel apartment) =>
-      ApartamentProvider._(argument: apartment, from: this);
+  ApartamentProvider call(String apartmentId) =>
+      ApartamentProvider._(argument: apartmentId, from: this);
 
   @override
   String toString() => r'apartamentProvider';
 }
 
-abstract class _$Apartament extends $Notifier<ApartamentState> {
-  late final _$args = ref.$arg as ApartamentModel;
-  ApartamentModel get apartment => _$args;
+abstract class _$Apartament extends $AsyncNotifier<ApartamentState> {
+  late final _$args = ref.$arg as String;
+  String get apartmentId => _$args;
 
-  ApartamentState build(ApartamentModel apartment);
+  FutureOr<ApartamentState> build(String apartmentId);
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<ApartamentState, ApartamentState>;
+    final ref = this.ref as $Ref<AsyncValue<ApartamentState>, ApartamentState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<ApartamentState, ApartamentState>,
-              ApartamentState,
+              AnyNotifier<AsyncValue<ApartamentState>, ApartamentState>,
+              AsyncValue<ApartamentState>,
               Object?,
               Object?
             >;

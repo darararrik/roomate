@@ -33,15 +33,19 @@ class MyAdvertisementsScreen extends ConsumerWidget {
                       apartment: apartment,
                       isFavorite: false,
                       onFavoriteTap: () {},
-                      onTap: () => context.pushRoute(ApartamnetRoute(apartment: apartment)),
+                      onTap: () => context.pushRoute(
+                        ApartamnetRoute(apartmentId: apartment.id),
+                      ),
                     );
                   },
-                  separatorBuilder: (context, index) => const SizedBox(height: S.p12),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: S.p12),
                 ),
               );
             },
             loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
-            error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: stack)),
+            error: (error, stack) =>
+                SliverToBoxAdapter(child: ErrorView(error: stack)),
           ),
         ],
       ),

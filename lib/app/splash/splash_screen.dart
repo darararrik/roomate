@@ -46,7 +46,11 @@ class SplashScreen extends ConsumerWidget {
       body: Center(
         child: Text(
           'Splash Screen',
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, color: Color(0xFF111111)),
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF111111),
+          ),
         ),
       ),
     );

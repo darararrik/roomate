@@ -61,7 +61,8 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
     ref.nav.replaceAll([const MainFlowRoute()]);
   }
 
-  void toUserPreferences() => ref.nav.push(const UserPreferencesPageViewRoute());
+  void toUserPreferences() =>
+      ref.nav.push(const UserPreferencesPageViewRoute());
 
   Future<void> toCreateAd() async {
     await ref.read(appStatusProvider.notifier).markProfileCompleted();

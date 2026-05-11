@@ -48,7 +48,9 @@ class AccountActionCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: context.typography.bodyDescription.copyWith(height: 17 / 14),
+                style: context.typography.bodyDescription.copyWith(
+                  height: 17 / 14,
+                ),
               ),
             ],
           ),

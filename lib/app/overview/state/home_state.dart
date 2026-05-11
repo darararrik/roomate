@@ -3,5 +3,5 @@ import 'package:domain/domain.dart';
 class HomeState {
   const HomeState({this.recentApartments = const []});
 
-  final List<ApartamentModel> recentApartments;
+  final List<ApartamentPreviewModel> recentApartments;
 }

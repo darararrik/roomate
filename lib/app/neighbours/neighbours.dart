@@ -1,1 +1,1 @@
-export 'screens/neighbours_screen.dart';
+export 'screens/screens.dart';

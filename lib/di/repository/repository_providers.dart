@@ -12,6 +12,11 @@ IApartamentsRepository apartamentsRepository(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
+IGroupsRepository groupsRepository(Ref ref) {
+  return GroupsRepositoryImpl(ref.watch(groupsDataSourceProvider));
+}
+
+@Riverpod(keepAlive: true)
 ILocationRepository locationRepository(Ref ref) {
   return LocationRepositoryImpl(ref.watch(locationDataSourceProvider));
 }

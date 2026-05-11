@@ -68,7 +68,9 @@ class InputWidget extends HookWidget {
     final hasError = errorText.isNotEmpty;
 
     final colors = context.colors;
-    final borderColor = hasError ? colors.red : (hasFocus ? colors.orange : colors.graysStroke300);
+    final borderColor = hasError
+        ? colors.red
+        : (hasFocus ? colors.orange : colors.graysStroke300);
     final textColor = hasError ? colors.red : colors.graysBlack;
     final textField = TextField(
       readOnly: readOnly,
@@ -85,8 +87,11 @@ class InputWidget extends HookWidget {
       textInputAction: textInputAction,
       inputFormatters: [...inputFormatters ?? []],
       maxLength: maxLenght,
-      buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
-      style: (style ?? context.typography.inputRegular).copyWith(color: textColor),
+      buildCounter:
+          (_, {required currentLength, required isFocused, maxLength}) => null,
+      style: (style ?? context.typography.inputRegular).copyWith(
+        color: textColor,
+      ),
       decoration: (decoration ?? const InputDecoration()).copyWith(
         prefixIcon: prefixIcon,
 
@@ -134,7 +139,10 @@ class InputWidget extends HookWidget {
           padding: const EdgeInsets.only(top: 6, left: 4),
           child: Text(
             errorText,
-            style: context.typography.inputRegular.copyWith(color: colors.red, fontSize: 12),
+            style: context.typography.inputRegular.copyWith(
+              color: colors.red,
+              fontSize: 12,
+            ),
           ),
         ),
       ],

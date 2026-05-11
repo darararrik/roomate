@@ -52,8 +52,10 @@ abstract class AppIcons {
   static const String video = 'assets/icons/video.svg';
   static const String verification1 = 'assets/icons/verification1.svg';
   static const String verificationWait = 'assets/icons/verificationWait.svg';
-  static const String verificationComplete = 'assets/icons/verificationComplete.svg';
-  static const String verificationUnsuccess = 'assets/icons/verificationUnsuccess.svg';
+  static const String verificationComplete =
+      'assets/icons/verificationComplete.svg';
+  static const String verificationUnsuccess =
+      'assets/icons/verificationUnsuccess.svg';
   static const String coins = 'assets/icons/la_coins.svg';
   static const String building2 = 'assets/icons/mingcute_building-2-line.svg';
   static const String phone = 'assets/icons/mingcute_phone-line.svg';

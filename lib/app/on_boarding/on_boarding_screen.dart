@@ -31,14 +31,18 @@ class OnBoardingScreen extends ConsumerWidget {
           child: SafeArea(
             child: Column(
               children: [
-                _QuizAppBar(showBackButton: !state.isFirstStep, onBack: notifier.stepBack),
+                _QuizAppBar(
+                  showBackButton: !state.isFirstStep,
+                  onBack: notifier.stepBack,
+                ),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: S.p64),
                     child: Center(
                       child: _QuizStepContent(
                         state: state,
-                        onOptionSelected: (index) => notifier.handleSelection(optionIndex: index),
+                        onOptionSelected: (index) =>
+                            notifier.handleSelection(optionIndex: index),
                       ),
                     ),
                   ),
@@ -70,7 +74,8 @@ class _QuizAppBar extends StatelessWidget {
             Consumer(
               builder: (context, ref, child) {
                 return IconButton(
-                  onPressed: () => ref.read(onBoardingProvider.notifier).skipByOwner(),
+                  onPressed: () =>
+                      ref.read(onBoardingProvider.notifier).skipByOwner(),
                   icon: AppIcon(
                     AppIcons.xBig,
                     width: S.p32,
@@ -157,7 +162,9 @@ class _QuizStepContent extends StatelessWidget {
                       builder: (context, ref, child) {
                         return OpacityButton(
                           radius: S.p16,
-                          onPressed: () => ref.read(onBoardingProvider.notifier).skipByOwner(),
+                          onPressed: () => ref
+                              .read(onBoardingProvider.notifier)
+                              .skipByOwner(),
                           bgColor: context.colors.graysLight100,
                           child: Text(
                             step.cancel!,

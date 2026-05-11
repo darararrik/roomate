@@ -8,7 +8,7 @@ part of 'apartament_data.dart';
 
 _ApartamentData _$ApartamentDataFromJson(Map<String, dynamic> json) =>
     _ApartamentData(
-      id: (json['id'] as num?)?.toInt(),
+      id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
       imageUrls: (json['image_urls'] as List<dynamic>?)

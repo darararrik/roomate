@@ -8,6 +8,6 @@ class WhoSearchScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(body: Center(),);
+    return const Scaffold(body: Center());
   }
 }

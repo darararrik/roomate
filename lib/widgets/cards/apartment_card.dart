@@ -14,7 +14,7 @@ class ApartmentCard extends HookWidget {
     this.onFavoriteTap,
   });
 
-  final ApartamentModel apartment;
+  final ApartamentPreviewModel apartment;
   final bool isFavorite;
   final VoidCallback? onTap;
   final VoidCallback? onFavoriteTap;
@@ -45,7 +45,9 @@ class ApartmentCard extends HookWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(S.p12)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(S.p12),
+                ),
                 child: SizedBox(
                   height: S.p163,
                   child: Stack(
@@ -66,7 +68,10 @@ class ApartmentCard extends HookWidget {
                                     gradient: LinearGradient(
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight,
-                                      colors: [colors.lightOrange100, colors.graysLight100],
+                                      colors: [
+                                        colors.lightOrange100,
+                                        colors.graysLight100,
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -77,9 +82,13 @@ class ApartmentCard extends HookWidget {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      colors.opacityBlack60.withValues(alpha: .08),
+                                      colors.opacityBlack60.withValues(
+                                        alpha: .08,
+                                      ),
                                       Colors.transparent,
-                                      colors.opacityBlack60.withValues(alpha: .28),
+                                      colors.opacityBlack60.withValues(
+                                        alpha: .28,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -101,14 +110,20 @@ class ApartmentCard extends HookWidget {
 
                               return AnimatedContainer(
                                 duration: const Duration(milliseconds: 180),
-                                margin: const EdgeInsets.symmetric(horizontal: S.p4),
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: S.p4,
+                                ),
                                 width: isActive ? S.p20 : S.p6,
                                 height: S.p6,
                                 decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(.circular(S.p12)),
+                                  borderRadius: const BorderRadius.all(
+                                    .circular(S.p12),
+                                  ),
                                   color: isActive
                                       ? colors.graysWhite
-                                      : colors.graysWhite.withValues(alpha: .45),
+                                      : colors.graysWhite.withValues(
+                                          alpha: .45,
+                                        ),
                                 ),
                               );
                             }),
@@ -135,7 +150,9 @@ class ApartmentCard extends HookWidget {
                         IconButtonWidget(
                           icon: AppIcons.favourite,
                           onPressed: onFavoriteTap,
-                          iconColor: isFavorite ? colors.orange : colors.graysIcon500,
+                          iconColor: isFavorite
+                              ? colors.orange
+                              : colors.graysIcon500,
                           size: S.p24,
                           iconSize: S.p24,
                         ),
@@ -147,7 +164,9 @@ class ApartmentCard extends HookWidget {
                     ),
                     Text(
                       apartment.address,
-                      style: context.typography.bodySmall.copyWith(color: colors.graysText400),
+                      style: context.typography.bodySmall.copyWith(
+                        color: colors.graysText400,
+                      ),
                     ),
                   ],
                 ),

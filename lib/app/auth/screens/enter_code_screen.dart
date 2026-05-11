@@ -25,7 +25,8 @@ class EnterCodeScreen extends HookConsumerWidget {
     final pinController = useMemoized(() => PinInputController());
     useEffect(() {
       if (authState.isError) {
-        pinController.triggerError(); // Это активирует флаг isError в ячейках и тряску
+        pinController
+            .triggerError(); // Это активирует флаг isError в ячейках и тряску
       } else {
         pinController.clearError();
       }
@@ -39,7 +40,10 @@ class EnterCodeScreen extends HookConsumerWidget {
           child: Padding(
             padding: const P(horizontal: S.p16, vertical: S.p8),
             child: PrimaryButton(
-              onPressed: disableIf(authState.isPinComplete, () => authNotifier.verifySms()),
+              onPressed: disableIf(
+                authState.isPinComplete,
+                () => authNotifier.verifySms(),
+              ),
               text: context.l10n.next,
             ),
           ),
@@ -47,7 +51,10 @@ class EnterCodeScreen extends HookConsumerWidget {
         body: CustomScrollView(
           physics: const ClampingScrollPhysics(),
           slivers: [
-            SliverAppBar(title: Text(context.l10n.confirmation), centerTitle: false),
+            SliverAppBar(
+              title: Text(context.l10n.confirmation),
+              centerTitle: false,
+            ),
             SliverFillRemaining(
               hasScrollBody: false,
               child: Padding(
@@ -60,7 +67,10 @@ class EnterCodeScreen extends HookConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(context.l10n.enterSMSCode, style: context.typography.headline0),
+                          Text(
+                            context.l10n.enterSMSCode,
+                            style: context.typography.headline0,
+                          ),
                           const SizedBox(height: S.p8),
                           Text(
                             context.l10n.descriptionSMSCode2,
@@ -108,7 +118,9 @@ class EnterCodeScreen extends HookConsumerWidget {
                             ),
                             const SizedBox(height: S.p12),
                             GestureDetector(
-                              onTap: smsState.canResend ? smsNotifier.resetTimer : null,
+                              onTap: smsState.canResend
+                                  ? smsNotifier.resetTimer
+                                  : null,
                               child: Text(
                                 smsState.resendText(context.l10n),
                                 style: context.typography.activesLabel.copyWith(

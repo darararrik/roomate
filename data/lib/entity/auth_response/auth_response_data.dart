@@ -15,5 +15,6 @@ abstract class AuthResponseData with _$AuthResponseData {
     @JsonKey(name: 'user') UserData? user,
   }) = _AuthResponseData;
 
-  factory AuthResponseData.fromJson(Map<String, dynamic> json) => _$AuthResponseDataFromJson(json);
+  factory AuthResponseData.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseDataFromJson(json);
 }

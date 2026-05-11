@@ -16,7 +16,9 @@ class InfoRow extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+            style: context.typography.bodyDescription.copyWith(
+              color: context.colors.graysText400,
+            ),
             softWrap: true,
           ),
         ),

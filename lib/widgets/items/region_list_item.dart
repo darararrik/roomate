@@ -44,7 +44,9 @@ class RegionListItem extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: context.typography.bodyDescription.copyWith(height: 17 / 14),
+                      style: context.typography.bodyDescription.copyWith(
+                        height: 17 / 14,
+                      ),
                     ),
                     if (hasSubTitle) ...[
                       const SizedBox(height: S.p8),

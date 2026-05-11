@@ -1,27 +1,40 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
+import 'package:data/entity/apartaments_response/apartaments_response_data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
-
-import 'package:data/data.dart';
 
 class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   ApartamentsRemoteDataSource(ApiClient client) : _client = client;
   final ApiClient _client;
 
   @override
-  Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
-    ApartamentFilterModel filter,
-  ) async {
-    final result = await _client.get<List<ApartamentModel>>(
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>>
+  fetchApartaments(ApartamentFilterModel filter) async {
+    final result = await _client.get<ApartamentsResponseData>(
       ApiUrlConstants.ads,
       query: ApartamentFilterMapper.toData(filter).toJson(),
-      transformer: (json) => (json as List<dynamic>)
-          .map((item) => ApartamentData.fromJson(item as Map<String, dynamic>))
-          .map((dto) => ApartamentMapper.toModel(dto))
-          .toList(),
+      transformer: (json) => ApartamentsResponseData.fromJson(json),
     );
+    return result.fold(
+      (result) => Left(result),
+      (result) =>
+          Right(result.items.map(ApartamentMapper.toPreviewModel).toList()),
+    );
+  }
 
-    return result;
+  @override
+  Future<Either<RemoteException, ApartamentModel>> fetchApartamentById(
+    String id,
+  ) async {
+    final result = await _client.get<ApartamentData>(
+      ApiUrlConstants.adsId(id),
+      transformer: (json) => ApartamentData.fromJson(json),
+    );
+    return result.fold(
+      (result) => Left(result),
+      (result) => Right(ApartamentMapper.toModel(result)),
+    );
   }
 
   @override

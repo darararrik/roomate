@@ -3,6 +3,7 @@ export 'apartament_filter_mapper.dart';
 export 'create_ad_mapper.dart';
 export 'filter_mapper.dart';
 export 'gender_mapper.dart';
+export 'group_mapper.dart';
 export 'location_mapper.dart';
 export 'option_mapper.dart';
 export 'profile_mapper.dart';

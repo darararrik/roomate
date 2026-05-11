@@ -61,7 +61,10 @@ class PreferenceOptionsList extends StatelessWidget {
                       Expanded(
                         child: Padding(
                           padding: const P(vertical: S.p12),
-                          child: Text(option.title, style: context.typography.bodyDescription),
+                          child: Text(
+                            option.title,
+                            style: context.typography.bodyDescription,
+                          ),
                         ),
                       ),
                       SelectionButton(

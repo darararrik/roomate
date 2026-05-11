@@ -7,7 +7,7 @@ part 'apartament_model.freezed.dart';
 @freezed
 sealed class ApartamentModel with _$ApartamentModel {
   const factory ApartamentModel({
-    @Default(0) int id,
+    @Default('') String id,
     @Default('') String title,
     @Default('') String description,
     @Default([]) List<String> imageUrls,

@@ -22,14 +22,20 @@ class OwnerOverviewProfile extends ConsumerWidget {
             ProfileMenuItem(
               iconPath: AppIcons.personSettings,
               title: context.l10n.myAccount,
-              onTap: () => ref.read(globalProfileProvider.notifier).openMyAccount(),
+              onTap: () =>
+                  ref.read(globalProfileProvider.notifier).openMyAccount(),
             ),
             ProfileMenuItem(
               iconPath: AppIcons.settings,
               title: context.l10n.settings,
-              onTap: () => ref.read(globalProfileProvider.notifier).openSettings(),
+              onTap: () =>
+                  ref.read(globalProfileProvider.notifier).openSettings(),
             ),
-            ProfileMenuItem(iconPath: AppIcons.help, title: context.l10n.support, onTap: () {}),
+            ProfileMenuItem(
+              iconPath: AppIcons.help,
+              title: context.l10n.support,
+              onTap: () {},
+            ),
           ],
         ),
       ]),

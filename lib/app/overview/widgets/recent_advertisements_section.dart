@@ -46,7 +46,8 @@ class RecentAdvertisementsSection extends ConsumerWidget {
             );
           },
           loading: () => const SliverToBoxAdapter(child: LoadingWidget()),
-          error: (error, stack) => SliverToBoxAdapter(child: ErrorView(error: error)),
+          error: (error, stack) =>
+              SliverToBoxAdapter(child: ErrorView(error: error)),
         ),
       ],
     );

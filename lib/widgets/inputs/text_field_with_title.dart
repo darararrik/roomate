@@ -39,7 +39,10 @@ class TextFieldWithTitle extends StatelessWidget {
     List<TextInputFormatter>? inputFormatters,
   }) : suffix = null,
        keyboardType = TextInputType.number,
-       inputFormatters = [FilteringTextInputFormatter.digitsOnly, ...?inputFormatters];
+       inputFormatters = [
+         FilteringTextInputFormatter.digitsOnly,
+         ...?inputFormatters,
+       ];
 
   /// Именованный конструктор для иконки (десятичные + м2)
   TextFieldWithTitle.withSuffix({
@@ -123,7 +126,9 @@ class TextFieldWithTitle extends StatelessWidget {
             readOnly: readOnly,
             decoration: InputDecoration(
               hintText: hintText,
-              suffixIcon: suffix != null ? _buildIconSuffix(context, suffix!) : null,
+              suffixIcon: suffix != null
+                  ? _buildIconSuffix(context, suffix!)
+                  : null,
             ),
           ),
         ),
@@ -140,7 +145,9 @@ class TextFieldWithTitle extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: Text(
           suffixPath,
-          style: context.typography.inputRegular.copyWith(color: context.colors.graysBlack),
+          style: context.typography.inputRegular.copyWith(
+            color: context.colors.graysBlack,
+          ),
         ),
       ),
     );

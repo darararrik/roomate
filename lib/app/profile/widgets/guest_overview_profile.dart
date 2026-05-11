@@ -42,16 +42,22 @@ class GuestOverviewProfile extends ConsumerWidget {
             ProfileMenuItem(
               iconPath: AppIcons.settings,
               title: context.l10n.settings,
-              onTap: () => ref.read(globalProfileProvider.notifier).openSettings(),
+              onTap: () =>
+                  ref.read(globalProfileProvider.notifier).openSettings(),
             ),
-            ProfileMenuItem(iconPath: AppIcons.help, title: context.l10n.support, onTap: () {}),
+            ProfileMenuItem(
+              iconPath: AppIcons.help,
+              title: context.l10n.support,
+              onTap: () {},
+            ),
           ],
         ),
         Padding(
           padding: const P(horizontal: S.p16, top: S.p24),
           child: PrimaryButton(
             text: context.l10n.login,
-            onPressed: () => ref.read(authProvider.notifier).enterByPhoneNumber(),
+            onPressed: () =>
+                ref.read(authProvider.notifier).enterByPhoneNumber(),
           ),
         ),
       ]),

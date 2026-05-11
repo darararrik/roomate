@@ -14,13 +14,18 @@ Future<List<CityModel>> cities(Ref ref) async {
 }
 
 @riverpod
-Future<List<LocationSuggestionModel>> locationSuggestions(Ref ref, String addressQuery) async {
+Future<List<LocationSuggestionModel>> locationSuggestions(
+  Ref ref,
+  String addressQuery,
+) async {
   final trimmedQuery = addressQuery.trim();
   if (trimmedQuery.isEmpty) {
     return const [];
   }
 
-  final result = await ref.read(locationRepositoryProvider).suggestLocations(trimmedQuery);
+  final result = await ref
+      .read(locationRepositoryProvider)
+      .suggestLocations(trimmedQuery);
   return result.fold((error) => throw error, (suggestions) => suggestions);
 }
 

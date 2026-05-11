@@ -18,7 +18,10 @@ class OverviewProfileScreen extends ConsumerWidget {
       body: CustomScrollView(
         slivers: [
           AB(
-            title: Text(context.l10n.profile, style: context.typography.headline1),
+            title: Text(
+              context.l10n.profile,
+              style: context.typography.headline1,
+            ),
             centerTitle: true,
             canPop: false,
           ),
@@ -32,11 +35,14 @@ class OverviewProfileScreen extends ConsumerWidget {
                   ? OwnerOverviewProfile(profile: profile)
                   : TenantOverviewProfile(profile: profile);
             },
-            loading: () =>
-                const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
+            loading: () => const SliverFillRemaining(
+              child: Center(child: CircularProgressIndicator()),
+            ),
             error: (err, stack) => SliverFillRemaining(
               child: Center(
-                child: Text(context.l10n.profileLoadErrorWithDetails(err.toString())),
+                child: Text(
+                  context.l10n.profileLoadErrorWithDetails(err.toString()),
+                ),
               ),
             ),
           ),

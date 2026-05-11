@@ -12,7 +12,9 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isGuest = ref.watch(globalProfileProvider.select((p) => p.requireValue.isGuest));
+    final isGuest = ref.watch(
+      globalProfileProvider.select((p) => p.requireValue.isGuest),
+    );
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -35,7 +37,8 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   if (!isGuest) ...[
                     ListItemArrow(
-                      onTap: () => ref.read(globalProfileProvider.notifier).logout(),
+                      onTap: () =>
+                          ref.read(globalProfileProvider.notifier).logout(),
                       title: context.l10n.logout,
                       iconPath: AppIcons.exit,
                     ),

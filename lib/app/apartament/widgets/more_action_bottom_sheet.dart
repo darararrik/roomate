@@ -14,8 +14,16 @@ class MoreActionBottomSheet extends StatelessWidget {
         child: Column(
           spacing: S.p12,
           children: [
-            ListItem(title: "Отправить в архив", onTap: () {}, iconPath: AppIcons.archive),
-            ListItem(title: "Удалить объявление", onTap: () {}, iconPath: AppIcons.trash),
+            ListItem(
+              title: "Отправить в архив",
+              onTap: () {},
+              iconPath: AppIcons.archive,
+            ),
+            ListItem(
+              title: "Удалить объявление",
+              onTap: () {},
+              iconPath: AppIcons.trash,
+            ),
           ],
         ),
       ),

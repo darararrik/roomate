@@ -1,13 +1,13 @@
-import 'package:domain/models/neighbours_model/neighbours_model.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
 
 class NeighbourCard extends StatelessWidget {
-  const NeighbourCard({super.key, required this.onTap, required this.neighboursModel});
+  const NeighbourCard({super.key, required this.onTap, required this.group});
   final VoidCallback onTap;
-  final NeighboursModel neighboursModel;
+  final GroupModel group;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,12 +28,12 @@ class NeighbourCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const ChipMatch(),
+                    ChipMatch(matchPercent: group.matchPercent),
                     const SizedBox(height: S.p12),
-                    Text(neighboursModel.title, style: context.typography.headline1),
+                    Text(group.title, style: context.typography.headline1),
                     const SizedBox(height: S.p8),
                     Text(
-                      neighboursModel.description,
+                      group.description,
                       style: context.typography.bodySmall.copyWith(
                         color: context.colors.graysText400,
                       ),
@@ -55,7 +55,7 @@ class NeighbourCard extends StatelessWidget {
                       const SizedBox(height: S.p8),
                       //TODO: l10n cделать склонение участников
                       Text(
-                        "${neighboursModel.participantsCount}/${neighboursModel.maxParticipantsCount} ${context.l10n.participants}",
+                        "${group.participantsCount}/${group.maxParticipantsCount} ${context.l10n.participants}",
                         style: context.typography.bodySmall.copyWith(
                           color: context.colors.graysText400,
                         ),
@@ -63,9 +63,9 @@ class NeighbourCard extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: P(right: S.p8),
+                    padding: const P(right: S.p8),
                     child: Text(
-                      "${neighboursModel.price} Руб/месяц",
+                      "${group.apartament.price} Руб/месяц",
                       style: context.typography.headline2.copyWith(),
                     ),
                   ),

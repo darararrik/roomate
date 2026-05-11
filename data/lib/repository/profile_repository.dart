@@ -5,11 +5,13 @@ import 'package:shared/shared.dart';
 import 'package:data/data.dart';
 
 class ProfileRepository implements IProfileRepository {
-  ProfileRepository({required ProfileDataSource dataSource}) : _dataSource = dataSource;
+  ProfileRepository({required ProfileDataSource dataSource})
+    : _dataSource = dataSource;
   final ProfileDataSource _dataSource;
 
   @override
-  Future<Either<RemoteException, PreferenceTagsCatalogModel>> fetchPreferenceTagsCatalog() async {
+  Future<Either<RemoteException, PreferenceTagsCatalogModel>>
+  fetchPreferenceTagsCatalog() async {
     return _dataSource.fetchPreferenceTagsCatalog();
   }
 
@@ -31,7 +33,9 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<RemoteException, ProfileModel>> updateProfile(ProfileModel user) async {
+  Future<Either<RemoteException, ProfileModel>> updateProfile(
+    ProfileModel user,
+  ) async {
     return _dataSource.updateProfile(user);
   }
 }

@@ -55,12 +55,16 @@ class OptionsPickerBottomSheet extends HookConsumerWidget {
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: isSelected ? context.colors.orange : context.colors.graysLight100,
+            backgroundColor: isSelected
+                ? context.colors.orange
+                : context.colors.graysLight100,
           ),
           child: Text(
             option.title,
             style: context.typography.activesButton.copyWith(
-              color: isSelected ? context.colors.graysWhite : context.colors.graysText400,
+              color: isSelected
+                  ? context.colors.graysWhite
+                  : context.colors.graysText400,
             ),
           ),
         ),

@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 
 part 'favorites_notifier.g.dart';
@@ -8,17 +7,17 @@ part 'favorites_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class FavoriteApartmentIdsNotifier extends _$FavoriteApartmentIdsNotifier {
   @override
-  Set<int> build() => <int>{};
+  Set<String> build() => <String>{};
 
-  bool isFavorite(int apartmentId) => state.contains(apartmentId);
+  bool isFavorite(String apartmentId) => state.contains(apartmentId);
 
-  bool toggle(int apartmentId) {
+  bool toggle(String apartmentId) {
     if (state.contains(apartmentId)) {
-      final updated = <int>{...state}..remove(apartmentId);
+      final updated = <String>{...state}..remove(apartmentId);
       state = updated;
       return false;
     }
-    state = <int>{...state, apartmentId};
+    state = <String>{...state, apartmentId};
     ref.nav.showCustomToast(const ToastWidget());
     return true;
   }
@@ -27,7 +26,7 @@ class FavoriteApartmentIdsNotifier extends _$FavoriteApartmentIdsNotifier {
 @riverpod
 class FavoritesScreenNotifier extends _$FavoritesScreenNotifier {
   @override
-  List<ApartamentModel> build() {
+  List<ApartamentPreviewModel> build() {
     final favoriteIds = ref.watch(favoriteApartmentIdsProvider);
     final apartaments = ref.watch(apartamentsProvider).value?.apartaments ?? [];
 

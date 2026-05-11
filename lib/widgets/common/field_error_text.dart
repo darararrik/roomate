@@ -17,7 +17,9 @@ class FieldErrorText extends StatelessWidget {
       padding: const P(vertical: S.p4),
       child: Text(
         text,
-        style: context.typography.bodyDescription.copyWith(color: context.colors.red),
+        style: context.typography.bodyDescription.copyWith(
+          color: context.colors.red,
+        ),
       ),
     );
   }

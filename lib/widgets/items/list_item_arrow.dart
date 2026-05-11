@@ -31,13 +31,17 @@ class ListItemArrow extends StatelessWidget {
           Expanded(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: context.colors.graysStroke300)),
+                border: Border(
+                  bottom: BorderSide(color: context.colors.graysStroke300),
+                ),
               ),
               child: Padding(
                 padding: const P(vertical: S.p24),
                 child: Text(
                   title,
-                  style: context.typography.bodyDescription.copyWith(color: color),
+                  style: context.typography.bodyDescription.copyWith(
+                    color: color,
+                  ),
                 ),
               ),
             ),

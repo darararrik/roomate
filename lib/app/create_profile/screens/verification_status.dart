@@ -15,7 +15,9 @@ class VerificationStatusScreen extends ConsumerWidget {
     final typography = context.typography;
     final not = ref.read(createProfileProvider.notifier);
     return Scaffold(
-      bottomNavigationBar: SafeArea(child: BottomNextButton(onPressed: () => not.openOnbording())),
+      bottomNavigationBar: SafeArea(
+        child: BottomNextButton(onPressed: () => not.openOnbording()),
+      ),
       appBar: AppBar(title: Text(locale.verification), centerTitle: false),
       body: SafeArea(
         child: Column(
@@ -25,17 +27,28 @@ class VerificationStatusScreen extends ConsumerWidget {
               padding: const P(horizontal: S.p32, top: S.p60),
               child: Column(
                 children: [
-                  Text(locale.documentsUnderReview, style: typography.headline1),
+                  Text(
+                    locale.documentsUnderReview,
+                    style: typography.headline1,
+                  ),
                   const SizedBox(height: S.p8),
                   Text(
                     locale.verificationWaitTime,
                     textAlign: .center,
-                    style: typography.headline2.copyWith(color: context.colors.graysText400),
+                    style: typography.headline2.copyWith(
+                      color: context.colors.graysText400,
+                    ),
                   ),
                 ],
               ),
             ),
-            const Expanded(child: AppIcon(AppIcons.verificationWait, width: 200, height: 200)),
+            const Expanded(
+              child: AppIcon(
+                AppIcons.verificationWait,
+                width: 200,
+                height: 200,
+              ),
+            ),
           ],
         ),
       ),

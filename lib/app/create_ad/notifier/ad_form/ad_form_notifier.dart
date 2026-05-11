@@ -170,7 +170,9 @@ class AdFormNotifier extends _$AdFormNotifier {
       state = state.copyWith(additionalNumber: val);
 
   Future<RemoteException?> createAd() async {
-    final result = await ref.read(apartamentsRepositoryProvider).createAd(state);
+    final result = await ref
+        .read(apartamentsRepositoryProvider)
+        .createAd(state);
     return result.fold((error) => error, (_) => null);
   }
 }

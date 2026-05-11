@@ -12,5 +12,6 @@ extension StreetDtoExtension on StreetDto {
 }
 
 extension StreetModelExtension on StreetModel {
-  StreetDto toData() => StreetDto(id: id, name: name, district: district, regionLine: regionLine);
+  StreetDto toData() =>
+      StreetDto(id: id, name: name, district: district, regionLine: regionLine);
 }

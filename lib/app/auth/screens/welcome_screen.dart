@@ -76,9 +76,10 @@ class WelcomeScreen extends ConsumerWidget {
                                     ),
                                     Text(
                                       context.l10n.loginViaSocialNetworks,
-                                      style: context.typography.activesLabel.copyWith(
-                                        color: context.colors.graysInput200,
-                                      ),
+                                      style: context.typography.activesLabel
+                                          .copyWith(
+                                            color: context.colors.graysInput200,
+                                          ),
                                     ),
                                     Expanded(
                                       child: Divider(
@@ -93,10 +94,22 @@ class WelcomeScreen extends ConsumerWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SocialButton(onPressed: () {}, iconPath: AppIcons.vk),
-                                      SocialButton(onPressed: () {}, iconPath: AppIcons.gos),
-                                      SocialButton(onPressed: () {}, iconPath: AppIcons.sber),
-                                      SocialButton(onPressed: () {}, iconPath: AppIcons.yandex),
+                                      SocialButton(
+                                        onPressed: () {},
+                                        iconPath: AppIcons.vk,
+                                      ),
+                                      SocialButton(
+                                        onPressed: () {},
+                                        iconPath: AppIcons.gos,
+                                      ),
+                                      SocialButton(
+                                        onPressed: () {},
+                                        iconPath: AppIcons.sber,
+                                      ),
+                                      SocialButton(
+                                        onPressed: () {},
+                                        iconPath: AppIcons.yandex,
+                                      ),
                                     ].separated(const SizedBox(width: S.p16)),
                                   ),
                                 ),

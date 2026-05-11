@@ -17,16 +17,18 @@ class LocationRemoteDataSource implements LocationDataSource {
     final res = await _client.get(
       ApiUrlConstants.cities,
       needAuth: true,
-      transformer: (json) =>
-          unpackDtoList(json, fromJson: CityData.fromJson, toModel: CityMapper.toModel),
+      transformer: (json) => unpackDtoList(
+        json,
+        fromJson: CityData.fromJson,
+        toModel: CityMapper.toModel,
+      ),
     );
     return res;
   }
 
   @override
-  Future<Either<RemoteException, List<LocationSuggestionModel>>> suggestLocations(
-    String addressQuery,
-  ) async {
+  Future<Either<RemoteException, List<LocationSuggestionModel>>>
+  suggestLocations(String addressQuery) async {
     final res = await _client.get<List<LocationSuggestionModel>>(
       ApiUrlConstants.locationsSuggest,
       query: {'query': addressQuery},

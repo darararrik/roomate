@@ -12,5 +12,6 @@ sealed class StreetDto with _$StreetDto {
     @JsonKey(name: 'region_line') String? regionLine,
   }) = _StreetDto;
 
-  factory StreetDto.fromJson(Map<String, dynamic> json) => _$StreetDtoFromJson(json);
+  factory StreetDto.fromJson(Map<String, dynamic> json) =>
+      _$StreetDtoFromJson(json);
 }

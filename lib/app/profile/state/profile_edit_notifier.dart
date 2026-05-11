@@ -35,7 +35,9 @@ class ProfileEditNotifier extends _$ProfileEditNotifier {
     final locale = ref.l10n;
 
     state = state.copyWith(
-      firstNameError: firstName.isEmpty ? locale.profileEditFirstNameRequired : '',
+      firstNameError: firstName.isEmpty
+          ? locale.profileEditFirstNameRequired
+          : '',
       lastNameError: lastName.isEmpty ? locale.profileEditLastNameRequired : '',
     );
 

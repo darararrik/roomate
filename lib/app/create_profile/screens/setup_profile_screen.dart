@@ -21,7 +21,10 @@ class SetupProfileScreen extends HookConsumerWidget {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const P(horizontal: S.p16, vertical: S.p20),
-          child: PrimaryButton(onPressed: notifier.submitProfileDetails, text: context.l10n.next),
+          child: PrimaryButton(
+            onPressed: notifier.submitProfileDetails,
+            text: context.l10n.next,
+          ),
         ),
       ),
       appBar: AppBar(
@@ -43,13 +46,20 @@ class SetupProfileScreen extends HookConsumerWidget {
             ),
           ),
           const SizedBox(height: S.p28),
-          Center(child: Text(locale.letsGetToKnowEachOther, style: context.typography.headline1)),
+          Center(
+            child: Text(
+              locale.letsGetToKnowEachOther,
+              style: context.typography.headline1,
+            ),
+          ),
           const SizedBox(height: S.p8),
           Center(
             child: Text(
               locale.pleaseProvideRealData,
               textAlign: TextAlign.center,
-              style: context.typography.headline2.copyWith(color: context.colors.graysText400),
+              style: context.typography.headline2.copyWith(
+                color: context.colors.graysText400,
+              ),
             ),
           ),
           const SizedBox(height: S.p28),
@@ -103,7 +113,8 @@ class SetupProfileScreen extends HookConsumerWidget {
                           .read(navigationServiceProvider)
                           .showBottomSheet(
                             GenderBottomSheet(
-                              onSelected: (gender, index, isSelected) => notifier.setGender(gender),
+                              onSelected: (gender, index, isSelected) =>
+                                  notifier.setGender(gender),
                               selectedGender: state.gender,
                             ),
                           ),

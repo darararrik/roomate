@@ -35,7 +35,9 @@ class ProfileListItem extends StatelessWidget {
           Expanded(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: context.colors.graysStroke300)),
+                border: Border(
+                  bottom: BorderSide(color: context.colors.graysStroke300),
+                ),
               ),
               child: Padding(
                 padding: const P(vertical: S.p12),
@@ -43,7 +45,12 @@ class ProfileListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(title, style: context.typography.bodyTitle.copyWith(height: 17 / 14)),
+                    Text(
+                      title,
+                      style: context.typography.bodyTitle.copyWith(
+                        height: 17 / 14,
+                      ),
+                    ),
                     const SizedBox(height: S.p8),
                     Text(
                       value,

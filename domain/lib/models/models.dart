@@ -6,6 +6,7 @@ export 'chip_model.dart';
 export 'city/city_model.dart';
 export 'common/common.dart';
 export 'filter/filter.dart';
+export 'group/group.dart';
 export 'location/location.dart';
 export 'neighbours_model/neighbours_model.dart';
 export 'preferences_tags/preferences_tags.dart';

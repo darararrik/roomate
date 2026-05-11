@@ -6,6 +6,6 @@ part 'apartaments_state.freezed.dart';
 @freezed
 sealed class ApartamentsState with _$ApartamentsState {
   const factory ApartamentsState({
-    @Default([]) List<ApartamentModel> apartaments,
+    @Default([]) List<ApartamentPreviewModel> apartaments,
   }) = _ApartamentsState;
 }

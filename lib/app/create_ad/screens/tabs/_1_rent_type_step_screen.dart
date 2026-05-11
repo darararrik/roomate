@@ -33,7 +33,9 @@ class RentTypeStepScreen extends ConsumerWidget {
         ChipWrap(
           title: l10n.rentalPeriod,
           options: options.rentPeriod,
-          selectedIds: formState.rentPeriodId != 0 ? {formState.rentPeriodId} : {},
+          selectedIds: formState.rentPeriodId != 0
+              ? {formState.rentPeriodId}
+              : {},
           onSelectionChanged: (ids) {
             notifier.setRentPeriod(ids.isNotEmpty ? ids.first : 0);
           },

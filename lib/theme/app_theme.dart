@@ -12,7 +12,9 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
-        overlayColor: WidgetStateColor.fromMap({WidgetState.pressed: _appColors.graysLight100}),
+        overlayColor: WidgetStateColor.fromMap({
+          WidgetState.pressed: _appColors.graysLight100,
+        }),
       ),
     ),
     colorScheme: ColorScheme.fromSeed(seedColor: _appColors.graysWhite),
@@ -33,8 +35,14 @@ class AppTheme {
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
     scaffoldBackgroundColor: _appColors.graysWhite,
     dividerColor: _appColors.graysStroke300,
-    dividerTheme: DividerThemeData(thickness: S.p1, space: S.p1, color: _appColors.graysStroke300),
-    bottomSheetTheme: BottomSheetThemeData(backgroundColor: _appColors.graysWhite),
+    dividerTheme: DividerThemeData(
+      thickness: S.p1,
+      space: S.p1,
+      color: _appColors.graysStroke300,
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: _appColors.graysWhite,
+    ),
     appBarTheme: AppBarTheme(
       surfaceTintColor: _appColors.graysWhite,
       backgroundColor: _appColors.graysWhite,
@@ -73,7 +81,9 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const P(horizontal: S.p16, vertical: S.p20),
       fillColor: _appColors.graysInput200,
-      hintStyle: _appTextStyle.inputRegular.copyWith(color: _appColors.graysText400),
+      hintStyle: _appTextStyle.inputRegular.copyWith(
+        color: _appColors.graysText400,
+      ),
       border: InputBorder.none,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),

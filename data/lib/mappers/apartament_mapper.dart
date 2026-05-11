@@ -1,11 +1,23 @@
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
-import 'package:data/data.dart';
-
 class ApartamentMapper {
+  static ApartamentPreviewModel toPreviewModel(ApartamentData dto) {
+    return ApartamentPreviewModel(
+      id: dto.id ?? '',
+      imageUrls: dto.imageUrls ?? const [],
+      price: dto.price ?? '',
+      roomsCount: dto.roomsCount ?? '',
+      area: dto.area ?? '',
+      floor: dto.floor ?? 0,
+      totalFloor: dto.totalFloor ?? 0,
+      address: dto.address ?? '',
+    );
+  }
+
   static ApartamentModel toModel(ApartamentData dto) {
     return ApartamentModel(
-      id: dto.id ?? 0,
+      id: dto.id ?? '',
       title: dto.title ?? '',
       description: dto.description ?? '',
       imageUrls: dto.imageUrls ?? const [],

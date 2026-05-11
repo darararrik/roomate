@@ -39,7 +39,7 @@ class HomeNotifier extends _$HomeNotifier {
 
   void openCoworking() => ref.nav.push(const CoworkingRoute());
 
-  void openApartment(ApartamentModel apartment) {
-    ref.nav.push(ApartamnetRoute(apartment: apartment));
+  void openApartment(ApartamentPreviewModel apartment) {
+    ref.nav.push(ApartamnetRoute(apartmentId: apartment.id));
   }
 }

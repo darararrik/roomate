@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/app/apartament/widgets/more_action_bottom_sheet.dart';
 import 'package:roomate/app/favorites/state/favorites_notifier.dart';
+import 'package:roomate/di/repository/repository_providers.dart';
 import 'package:roomate/utils/extensions.dart';
 
 part 'apartament_notifier.freezed.dart';
@@ -15,10 +16,11 @@ class Apartament extends _$Apartament {
   late final PageController pageController = PageController();
 
   @override
-  ApartamentState build(ApartamentModel apartment) {
+  Future<ApartamentState> build(String apartmentId) async {
     ref.onDispose(pageController.dispose);
 
     final locale = ref.l10n;
+    final apartment = await fetchApartament(apartmentId);
     final hasImages = apartment.imageUrls.isNotEmpty;
     final imagesCount = hasImages ? apartment.imageUrls.length : 1;
     final isFavorite = ref.watch(
@@ -41,12 +43,19 @@ class Apartament extends _$Apartament {
     );
   }
 
+  Future<ApartamentModel> fetchApartament(String apartmentId) async {
+    final res = await ref
+        .read(apartamentsRepositoryProvider)
+        .fetchApartamentById(apartmentId);
+    return res.fold((l) => throw l, (r) => r);
+  }
+
   void onPageChanged(int index) {
-    state = state.copyWith(page: index);
+    state = AsyncValue.data((state.requireValue).copyWith(page: index));
   }
 
   Future<void> onPreviousImagePressed() async {
-    if (state.page == 0) return;
+    if (state.requireValue.page == 0) return;
 
     await pageController.previousPage(
       duration: const Duration(milliseconds: 220),
@@ -55,7 +64,7 @@ class Apartament extends _$Apartament {
   }
 
   Future<void> onNextImagePressed() async {
-    if (state.page >= state.imagesCount - 1) return;
+    if (state.requireValue.page >= state.requireValue.imagesCount - 1) return;
 
     await pageController.nextPage(
       duration: const Duration(milliseconds: 220),
@@ -64,7 +73,9 @@ class Apartament extends _$Apartament {
   }
 
   void onFavoritePressed() {
-    ref.read(favoriteApartmentIdsProvider.notifier).toggle(state.apartment.id);
+    ref
+        .read(favoriteApartmentIdsProvider.notifier)
+        .toggle(state.requireValue.apartment.id);
   }
 
   void onCallPressed() {

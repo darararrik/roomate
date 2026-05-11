@@ -1,17 +1,16 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
-
-import 'package:data/data.dart';
 
 class ApartamentsRepositoryImpl implements IApartamentsRepository {
   ApartamentsRepositoryImpl(this._dataSource);
   final ApartamentsDataSource _dataSource;
 
   @override
-  Future<Either<RemoteException, List<ApartamentModel>>> fetchApartaments(
-    ApartamentFilterModel filter,
-  ) => _dataSource.fetchApartaments(filter);
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>>
+  fetchApartaments(ApartamentFilterModel filter) =>
+      _dataSource.fetchApartaments(filter);
 
   @override
   Future<Either<RemoteException, FilterModel>> fetchFilters() =>
@@ -25,5 +24,12 @@ class ApartamentsRepositoryImpl implements IApartamentsRepository {
   Future<Either<RemoteException, void>> createAd(CreateAdFormModel request) {
     final dto = CreateAdFormMapper.toDto(request);
     return _dataSource.createAd(dto);
+  }
+
+  @override
+  Future<Either<RemoteException, ApartamentModel>> fetchApartamentById(
+    String id,
+  ) {
+    return _dataSource.fetchApartamentById(id);
   }
 }

@@ -6,17 +6,14 @@ part 'apartaments_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 class ApartamentsNotifier extends _$ApartamentsNotifier {
-  IApartamentsRepository get _repository =>
-      ref.read(apartamentsRepositoryProvider);
+  IApartamentsRepository get _repository => ref.read(apartamentsRepositoryProvider);
 
   @override
   Future<ApartamentsState> build() async {
     final profile = await ref.watch(globalProfileProvider.future);
     final cities = await ref.watch(citiesProvider.future);
     final city = _resolveInitialCity(cities, profile);
-    final result = await _repository.fetchApartaments(
-      ApartamentFilterModel(cityId: city.id),
-    );
+    final result = await _repository.fetchApartaments(ApartamentFilterModel(cityId: city.id));
     return result.fold(
       (error) => throw error,
       (apartaments) => ApartamentsState(apartaments: apartaments),

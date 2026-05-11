@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApartamentsState {
 
- List<ApartamentModel> get apartaments;
+ List<ApartamentPreviewModel> get apartaments;
 /// Create a copy of ApartamentsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $ApartamentsStateCopyWith<$Res>  {
   factory $ApartamentsStateCopyWith(ApartamentsState value, $Res Function(ApartamentsState) _then) = _$ApartamentsStateCopyWithImpl;
 @useResult
 $Res call({
- List<ApartamentModel> apartaments
+ List<ApartamentPreviewModel> apartaments
 });
 
 
@@ -65,7 +65,7 @@ class _$ApartamentsStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? apartaments = null,}) {
   return _then(_self.copyWith(
 apartaments: null == apartaments ? _self.apartaments : apartaments // ignore: cast_nullable_to_non_nullable
-as List<ApartamentModel>,
+as List<ApartamentPreviewModel>,
   ));
 }
 
@@ -147,7 +147,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ApartamentModel> apartaments)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ApartamentPreviewModel> apartaments)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ApartamentsState() when $default != null:
 return $default(_that.apartaments);case _:
@@ -168,7 +168,7 @@ return $default(_that.apartaments);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ApartamentModel> apartaments)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ApartamentPreviewModel> apartaments)  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentsState():
 return $default(_that.apartaments);}
@@ -185,7 +185,7 @@ return $default(_that.apartaments);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ApartamentModel> apartaments)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ApartamentPreviewModel> apartaments)?  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentsState() when $default != null:
 return $default(_that.apartaments);case _:
@@ -200,11 +200,11 @@ return $default(_that.apartaments);case _:
 
 
 class _ApartamentsState implements ApartamentsState {
-  const _ApartamentsState({final  List<ApartamentModel> apartaments = const []}): _apartaments = apartaments;
+  const _ApartamentsState({final  List<ApartamentPreviewModel> apartaments = const []}): _apartaments = apartaments;
   
 
- final  List<ApartamentModel> _apartaments;
-@override@JsonKey() List<ApartamentModel> get apartaments {
+ final  List<ApartamentPreviewModel> _apartaments;
+@override@JsonKey() List<ApartamentPreviewModel> get apartaments {
   if (_apartaments is EqualUnmodifiableListView) return _apartaments;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_apartaments);
@@ -241,7 +241,7 @@ abstract mixin class _$ApartamentsStateCopyWith<$Res> implements $ApartamentsSta
   factory _$ApartamentsStateCopyWith(_ApartamentsState value, $Res Function(_ApartamentsState) _then) = __$ApartamentsStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<ApartamentModel> apartaments
+ List<ApartamentPreviewModel> apartaments
 });
 
 
@@ -261,7 +261,7 @@ class __$ApartamentsStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? apartaments = null,}) {
   return _then(_ApartamentsState(
 apartaments: null == apartaments ? _self._apartaments : apartaments // ignore: cast_nullable_to_non_nullable
-as List<ApartamentModel>,
+as List<ApartamentPreviewModel>,
   ));
 }
 

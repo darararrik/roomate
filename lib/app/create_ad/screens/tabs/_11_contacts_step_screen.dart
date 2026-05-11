@@ -19,8 +19,11 @@ class ContactsStepScreen extends HookConsumerWidget {
 
     final phoneController = useTextEditingController(text: draft.mainPhone);
     final additionalPhoneController = useTextEditingController();
-    final firstOptionId = options.contactMethod.isNotEmpty ? options.contactMethod.first.id : null;
-    final isFirstSelected = firstOptionId != null && draft.contactMethodId == firstOptionId;
+    final firstOptionId = options.contactMethod.isNotEmpty
+        ? options.contactMethod.first.id
+        : null;
+    final isFirstSelected =
+        firstOptionId != null && draft.contactMethodId == firstOptionId;
     useEffect(() {
       if (phoneController.text != draft.mainPhone) {
         phoneController.text = draft.mainPhone;
@@ -53,7 +56,9 @@ class ContactsStepScreen extends HookConsumerWidget {
         ChipWrap(
           title: context.l10n.contactTitle,
           options: options.contactMethod,
-          selectedIds: draft.contactMethodId != 0 ? {draft.contactMethodId} : {},
+          selectedIds: draft.contactMethodId != 0
+              ? {draft.contactMethodId}
+              : {},
           onSelectionChanged: (ids) {
             notifier.setContactMethod(ids.isNotEmpty ? ids.first : 0);
           },

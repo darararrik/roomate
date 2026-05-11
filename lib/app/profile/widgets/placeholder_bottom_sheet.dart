@@ -24,7 +24,10 @@ class PlaceholderBottomSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: S.p24),
-            PrimaryButton(text: context.l10n.apply, onPressed: () => Navigator.of(context).pop()),
+            PrimaryButton(
+              text: context.l10n.apply,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
           ],
         ),
       ),

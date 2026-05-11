@@ -11,7 +11,10 @@ class AuthInterceptor extends Interceptor {
   final TokenService tokenService;
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     if (options.extra[ApiKeyConstants.requiresAuth] == true) {
       final token = await tokenService.getAccessToken();
       if (token != null) {

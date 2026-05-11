@@ -1,4 +1,4 @@
-import 'package:data/data.dart';
+import 'package:data/entity/apartament_filter/apartament_filter_data.dart';
 import 'package:domain/domain.dart';
 
 abstract class ApartamentFilterMapper {
