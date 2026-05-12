@@ -52,16 +52,18 @@ abstract class AppIcons {
   static const String video = 'assets/icons/video.svg';
   static const String verification1 = 'assets/icons/verification1.svg';
   static const String verificationWait = 'assets/icons/verificationWait.svg';
-  static const String verificationComplete =
-      'assets/icons/verificationComplete.svg';
-  static const String verificationUnsuccess =
-      'assets/icons/verificationUnsuccess.svg';
+  static const String verificationComplete = 'assets/icons/verificationComplete.svg';
+  static const String verificationUnsuccess = 'assets/icons/verificationUnsuccess.svg';
   static const String coins = 'assets/icons/la_coins.svg';
   static const String building2 = 'assets/icons/mingcute_building-2-line.svg';
   static const String phone = 'assets/icons/mingcute_phone-line.svg';
   static const String clock = 'assets/icons/tabler_clock.svg';
   static const String location = 'assets/icons/tdesign_location.svg';
   static const String verified = 'assets/icons/verified.svg';
+  static const String verify = 'assets/icons/verify.svg';
+  static const String increment = 'assets/icons/increment.svg';
+  static const String decrement = 'assets/icons/decrement.svg';
+
   static const String company = 'assets/icons/company.svg';
   static const String defaultAvatar = 'assets/icons/defaultAvatar.svg';
   static const String more = 'assets/icons/more.svg';

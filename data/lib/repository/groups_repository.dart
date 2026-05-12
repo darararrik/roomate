@@ -20,6 +20,12 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   }
 
   @override
+  Future<Either<RemoteException, CreateGroupFormOptionsModel>>
+  fetchCreateGroupFormOptions() {
+    return _dataSource.fetchCreateGroupFormOptions();
+  }
+
+  @override
   Future<Either<RemoteException, GroupConditionsModel>> fetchGroupConditions(
     String groupId,
   ) {
@@ -35,5 +41,10 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   @override
   Future<Either<RemoteException, void>> applyToGroup(String groupId) {
     return _dataSource.applyToGroup(groupId);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> createGroup(CreateGroupFormModel form) {
+    return _dataSource.createGroup(form);
   }
 }

@@ -1486,6 +1486,246 @@ abstract class AppLocalizations {
   /// **'Омск'**
   String get createAdCityOmsk;
 
+  /// No description provided for @createGroupTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать группу'**
+  String get createGroupTitle;
+
+  /// No description provided for @createGroupLivingConditions.
+  ///
+  /// In ru, this message translates to:
+  /// **'Условия проживания'**
+  String get createGroupLivingConditions;
+
+  /// No description provided for @createGroupApartmentPhotos.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фото квартиры'**
+  String get createGroupApartmentPhotos;
+
+  /// No description provided for @createGroupFinancialConditions.
+  ///
+  /// In ru, this message translates to:
+  /// **'Финансовые условия'**
+  String get createGroupFinancialConditions;
+
+  /// No description provided for @createGroupRoommateGender.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пол соседа'**
+  String get createGroupRoommateGender;
+
+  /// No description provided for @createGroupParticipantsTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кол-во человек'**
+  String get createGroupParticipantsTitle;
+
+  /// No description provided for @createGroupIncludingYou.
+  ///
+  /// In ru, this message translates to:
+  /// **'Включая вас'**
+  String get createGroupIncludingYou;
+
+  /// No description provided for @createGroupLivingRulesTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Правила проживания'**
+  String get createGroupLivingRulesTitle;
+
+  /// No description provided for @createGroupLivingRulesHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите, что допустимо для проживания'**
+  String get createGroupLivingRulesHint;
+
+  /// No description provided for @createGroupPartnerAllowed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Можно с партнёром'**
+  String get createGroupPartnerAllowed;
+
+  /// No description provided for @createGroupSmokingAllowed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Разрешено курение в квартире'**
+  String get createGroupSmokingAllowed;
+
+  /// No description provided for @createGroupLookingForTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кого ищете?'**
+  String get createGroupLookingForTitle;
+
+  /// No description provided for @createGroupLookingForHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите привычки идеального соседа - подберём тех, кто совпадает'**
+  String get createGroupLookingForHint;
+
+  /// No description provided for @createGroupAtmosphereTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Атмосфера в квартире'**
+  String get createGroupAtmosphereTitle;
+
+  /// No description provided for @createGroupAtmosphereHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Опишите, как будет жить ваша группа - кандидаты увидят, подходит ли им такая обстановка'**
+  String get createGroupAtmosphereHint;
+
+  /// No description provided for @createGroupSelectAddress.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите адрес'**
+  String get createGroupSelectAddress;
+
+  /// No description provided for @createGroupMinPhotosCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Количество - минимум 1'**
+  String get createGroupMinPhotosCount;
+
+  /// No description provided for @createGroupPricePerPersonTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'На одного за месяц'**
+  String get createGroupPricePerPersonTitle;
+
+  /// No description provided for @createGroupPricePerPersonHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Например: 4 000'**
+  String get createGroupPricePerPersonHint;
+
+  /// No description provided for @createGroupAdTitleHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Например, тихий уголок в центре'**
+  String get createGroupAdTitleHint;
+
+  /// No description provided for @createGroupUtilitiesTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Коммунальные услуги'**
+  String get createGroupUtilitiesTitle;
+
+  /// No description provided for @createGroupGroupSizeTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кол-во в группе'**
+  String get createGroupGroupSizeTitle;
+
+  /// No description provided for @createGroupRentPricePerPersonTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цена аренды на одного'**
+  String get createGroupRentPricePerPersonTitle;
+
+  /// No description provided for @createGroupPublishAd.
+  ///
+  /// In ru, this message translates to:
+  /// **'Разместить объявление'**
+  String get createGroupPublishAd;
+
+  /// No description provided for @createGroupPublishing.
+  ///
+  /// In ru, this message translates to:
+  /// **'Размещение...'**
+  String get createGroupPublishing;
+
+  /// No description provided for @createGroupSaveDraft.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранить черновик'**
+  String get createGroupSaveDraft;
+
+  /// No description provided for @createGroupGreat.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отлично'**
+  String get createGroupGreat;
+
+  /// No description provided for @createGroupSubmitFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось создать группу'**
+  String get createGroupSubmitFailed;
+
+  /// No description provided for @createGroupValidationSelectRoommateGender.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите пол соседа'**
+  String get createGroupValidationSelectRoommateGender;
+
+  /// No description provided for @createGroupValidationEnterPeopleCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите количество людей'**
+  String get createGroupValidationEnterPeopleCount;
+
+  /// No description provided for @createGroupValidationSelectPropertyType.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите вид недвижимости'**
+  String get createGroupValidationSelectPropertyType;
+
+  /// No description provided for @createGroupValidationSelectRoomsCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите количество комнат'**
+  String get createGroupValidationSelectRoomsCount;
+
+  /// No description provided for @createGroupValidationEnterTotalFloors.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите этажность дома'**
+  String get createGroupValidationEnterTotalFloors;
+
+  /// No description provided for @createGroupValidationAddPhoto.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавьте минимум одну фотографию'**
+  String get createGroupValidationAddPhoto;
+
+  /// No description provided for @createGroupValidationSelectFurniture.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите состояние мебели'**
+  String get createGroupValidationSelectFurniture;
+
+  /// No description provided for @createGroupValidationSelectCurrency.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите валюту'**
+  String get createGroupValidationSelectCurrency;
+
+  /// No description provided for @createGroupValidationSelectRentDuration.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите срок аренды'**
+  String get createGroupValidationSelectRentDuration;
+
+  /// No description provided for @createGroupValidationSelectUtilitiesPayment.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите вариант оплаты коммунальных услуг'**
+  String get createGroupValidationSelectUtilitiesPayment;
+
+  /// No description provided for @createGroupParticipantsSummary.
+  ///
+  /// In ru, this message translates to:
+  /// **'{count} человек'**
+  String createGroupParticipantsSummary(Object count);
+
+  /// No description provided for @notSelectedNeutral.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не выбрано'**
+  String get notSelectedNeutral;
+
   /// No description provided for @filtersCityMoscowTitle.
   ///
   /// In ru, this message translates to:

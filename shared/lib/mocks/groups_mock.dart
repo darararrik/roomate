@@ -9,7 +9,7 @@ class GroupsMockJson {
       'participants_count': 4,
       'max_participants_count': 5,
       'apartament': {
-        'id': 101,
+        'id': "101",
         'title': 'Тихий уголок в центре',
         'description':
             'Ищем соседей для уютной квартиры в центре города. Главное для нас — спокойствие, уважение личного пространства и чистота. Гостей приводим редко, любим работать и отдыхать в тишине. Если тебе тоже важен комфортный и размеренный быт — добро пожаловать!',
@@ -62,7 +62,7 @@ class GroupsMockJson {
       'participants_count': 2,
       'max_participants_count': 3,
       'apartament': {
-        'id': 102,
+        'id': "102",
         'title': 'Спокойная квартира для студентов',
         'description':
             'Двухкомнатная квартира рядом с университетом и остановкой. Есть вся базовая техника, интернет и отдельное рабочее место.',
@@ -89,14 +89,7 @@ class GroupsMockJson {
         'balcony_type': 'loggia',
         'stove_type': 'electric',
         'rental_period': 'severalMonths',
-        'amenities': [
-          'internet',
-          'dishes',
-          'fridge',
-          'tv',
-          'washingMachine',
-          'childrenAllowed',
-        ],
+        'amenities': ['internet', 'dishes', 'fridge', 'tv', 'washingMachine', 'childrenAllowed'],
       },
     },
   ];
@@ -160,11 +153,7 @@ class GroupsMockJson {
     'group_2': {
       'group_id': 'group_2',
       'who_group_is_looking_for': ['Студенты', '20-27 лет'],
-      'living_rules': [
-        '👶 Без детей',
-        '🚬 Без курения',
-        '🎉 Без шумных вечеринок',
-      ],
+      'living_rules': ['👶 Без детей', '🚬 Без курения', '🎉 Без шумных вечеринок'],
       'apartment_lifestyle': [
         {'title': 'Общительность', 'value': 'Интроверт'},
         {'title': 'Режим сна', 'value': 'Сова'},

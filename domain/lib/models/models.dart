@@ -5,6 +5,8 @@ export 'apartaments/apartaments.dart';
 export 'chip_model.dart';
 export 'city/city_model.dart';
 export 'common/common.dart';
+export 'create_group_form_model/create_group_form_model.dart';
+export 'create_group_form_options/create_group_form_options_model.dart';
 export 'filter/filter.dart';
 export 'group/group.dart';
 export 'location/location.dart';

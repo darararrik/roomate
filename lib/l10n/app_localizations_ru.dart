@@ -719,6 +719,136 @@ class AppLocalizationsRu extends AppLocalizations {
   String get createAdCityOmsk => 'Омск';
 
   @override
+  String get createGroupTitle => 'Создать группу';
+
+  @override
+  String get createGroupLivingConditions => 'Условия проживания';
+
+  @override
+  String get createGroupApartmentPhotos => 'Фото квартиры';
+
+  @override
+  String get createGroupFinancialConditions => 'Финансовые условия';
+
+  @override
+  String get createGroupRoommateGender => 'Пол соседа';
+
+  @override
+  String get createGroupParticipantsTitle => 'Кол-во человек';
+
+  @override
+  String get createGroupIncludingYou => 'Включая вас';
+
+  @override
+  String get createGroupLivingRulesTitle => 'Правила проживания';
+
+  @override
+  String get createGroupLivingRulesHint =>
+      'Укажите, что допустимо для проживания';
+
+  @override
+  String get createGroupPartnerAllowed => 'Можно с партнёром';
+
+  @override
+  String get createGroupSmokingAllowed => 'Разрешено курение в квартире';
+
+  @override
+  String get createGroupLookingForTitle => 'Кого ищете?';
+
+  @override
+  String get createGroupLookingForHint =>
+      'Укажите привычки идеального соседа - подберём тех, кто совпадает';
+
+  @override
+  String get createGroupAtmosphereTitle => 'Атмосфера в квартире';
+
+  @override
+  String get createGroupAtmosphereHint =>
+      'Опишите, как будет жить ваша группа - кандидаты увидят, подходит ли им такая обстановка';
+
+  @override
+  String get createGroupSelectAddress => 'Выберите адрес';
+
+  @override
+  String get createGroupMinPhotosCount => 'Количество - минимум 1';
+
+  @override
+  String get createGroupPricePerPersonTitle => 'На одного за месяц';
+
+  @override
+  String get createGroupPricePerPersonHint => 'Например: 4 000';
+
+  @override
+  String get createGroupAdTitleHint => 'Например, тихий уголок в центре';
+
+  @override
+  String get createGroupUtilitiesTitle => 'Коммунальные услуги';
+
+  @override
+  String get createGroupGroupSizeTitle => 'Кол-во в группе';
+
+  @override
+  String get createGroupRentPricePerPersonTitle => 'Цена аренды на одного';
+
+  @override
+  String get createGroupPublishAd => 'Разместить объявление';
+
+  @override
+  String get createGroupPublishing => 'Размещение...';
+
+  @override
+  String get createGroupSaveDraft => 'Сохранить черновик';
+
+  @override
+  String get createGroupGreat => 'Отлично';
+
+  @override
+  String get createGroupSubmitFailed => 'Не удалось создать группу';
+
+  @override
+  String get createGroupValidationSelectRoommateGender => 'Выберите пол соседа';
+
+  @override
+  String get createGroupValidationEnterPeopleCount =>
+      'Укажите количество людей';
+
+  @override
+  String get createGroupValidationSelectPropertyType =>
+      'Выберите вид недвижимости';
+
+  @override
+  String get createGroupValidationSelectRoomsCount =>
+      'Выберите количество комнат';
+
+  @override
+  String get createGroupValidationEnterTotalFloors => 'Введите этажность дома';
+
+  @override
+  String get createGroupValidationAddPhoto =>
+      'Добавьте минимум одну фотографию';
+
+  @override
+  String get createGroupValidationSelectFurniture => 'Укажите состояние мебели';
+
+  @override
+  String get createGroupValidationSelectCurrency => 'Выберите валюту';
+
+  @override
+  String get createGroupValidationSelectRentDuration => 'Выберите срок аренды';
+
+  @override
+  String get createGroupValidationSelectUtilitiesPayment =>
+      'Выберите вариант оплаты коммунальных услуг';
+
+  @override
+  String createGroupParticipantsSummary(Object count) {
+    return '$count человек';
+  }
+
+  @override
+  String get notSelectedNeutral => 'Не выбрано';
+
+  @override
   String get filtersCityMoscowTitle => 'г. Москва';
 
   @override
