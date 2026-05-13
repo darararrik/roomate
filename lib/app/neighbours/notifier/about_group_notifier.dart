@@ -56,11 +56,25 @@ class AboutGroup extends _$AboutGroup {
     );
   }
 
-  void onFavoritePressed() {
+  Future<void> onFavoritePressed() async {
     final value = state.asData?.value;
     if (value == null) return;
 
-    state = AsyncData(value.copyWith(isFavorite: !value.isFavorite));
+    final nextIsFavorite = !value.isFavorite;
+    state = AsyncData(value.copyWith(isFavorite: nextIsFavorite));
+
+    final result = nextIsFavorite
+        ? await _repository.addGroupToFavorites(value.group.id)
+        : await _repository.removeGroupFromFavorites(value.group.id);
+
+    result.fold((_) {
+      state = AsyncData(value);
+      ref.nav.showSnackBar(
+        message: nextIsFavorite
+            ? 'Не удалось добавить в избранное'
+            : 'Не удалось удалить из избранного',
+      );
+    }, (_) {});
   }
 
   void openConditionsAndParticipants() {

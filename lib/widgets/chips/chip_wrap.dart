@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
-
+import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class ChipWrap<T extends ChipModel> extends StatelessWidget {

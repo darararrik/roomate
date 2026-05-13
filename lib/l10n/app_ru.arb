@@ -132,6 +132,7 @@
   "pleaseProvideRealData": "Укажите реальные данные для вашего профиля",
   "genderMale": "Мужской",
   "genderFemale": "Женский",
+  "genderOther": "Другой",
   "almostDone": "Почти готово!",
   "verificationRemaining": "Осталось пройти верификацию",
   "gosuslugiVerificationDescription": "Подтвердите свою учетную запись на портале Госуслуг.",
@@ -293,6 +294,22 @@
   "groupParticipantProfilePetsTitle": "Домашние животные",
   "groupParticipantProfileReviewsCount": "({count} оценок)",
   "@groupParticipantProfileReviewsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "whoSearchTitle": "Поиск группы",
+  "whoSearchRoommatesTitle": "Каких сожителей ищете?",
+  "whoSearchGenderAny": "Любой",
+  "whoSearchGenderMen": "Мужчины",
+  "whoSearchGenderWomen": "Женщины",
+  "whoSearchGenderOther": "Другой",
+  "whoSearchGroupSizeTitle": "Кол-во человек в группе",
+  "whoSearchConsiderTitle": "Что учесть при подборе?",
+  "whoSearchConsiderHint": "Группы с похожими условиями поднимутся выше в списке",
+  "whoSearchConsiderPlaceholder": "Например, веганы",
+  "whoSearchShowGroupsCount": "Показать {count} групп",
+  "@whoSearchShowGroupsCount": {
     "placeholders": {
       "count": {}
     }

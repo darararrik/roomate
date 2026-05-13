@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/utils/extensions.dart';
 import 'package:roomate/utils/formatters/decimal_formatter.dart';
@@ -22,6 +21,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.readOnly = false,
     this.errorText = '',
     this.inputFormatters,
+    this.subtitle = '',
   }) : keyboardType = TextInputType.text;
 
   /// Именованный конструктор для чисел (целых)
@@ -36,13 +36,12 @@ class TextFieldWithTitle extends StatelessWidget {
     this.minLines,
     this.readOnly = false,
     this.errorText = '',
+    this.subtitle = '',
+
     List<TextInputFormatter>? inputFormatters,
   }) : suffix = null,
        keyboardType = TextInputType.number,
-       inputFormatters = [
-         FilteringTextInputFormatter.digitsOnly,
-         ...?inputFormatters,
-       ];
+       inputFormatters = [FilteringTextInputFormatter.digitsOnly, ...?inputFormatters];
 
   /// Именованный конструктор для иконки (десятичные + м2)
   TextFieldWithTitle.withSuffix({
@@ -57,6 +56,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.minLines,
     this.readOnly = false,
     this.errorText = '',
+    this.subtitle = '',
   }) : keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
 
@@ -72,6 +72,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.readOnly = false,
     this.minLines,
     this.errorText = '',
+    this.subtitle = '',
   }) : suffix = null,
        keyboardType = const TextInputType.numberWithOptions(decimal: true),
        inputFormatters = [DecimalFormatter()];
@@ -84,6 +85,7 @@ class TextFieldWithTitle extends StatelessWidget {
     this.readOnly = false,
     this.onChanged,
     this.errorText = '',
+    this.subtitle = '',
   }) : suffix = null,
        keyboardType = TextInputType.multiline,
        maxLines = 10,
@@ -103,6 +105,7 @@ class TextFieldWithTitle extends StatelessWidget {
   final int? minLines;
   final bool readOnly;
   final String errorText;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -126,12 +129,15 @@ class TextFieldWithTitle extends StatelessWidget {
             readOnly: readOnly,
             decoration: InputDecoration(
               hintText: hintText,
-              suffixIcon: suffix != null
-                  ? _buildIconSuffix(context, suffix!)
-                  : null,
+              suffixIcon: suffix != null ? _buildIconSuffix(context, suffix!) : null,
             ),
           ),
         ),
+        if (subtitle.isNotEmpty)
+          Text(
+            subtitle,
+            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+          ),
         FieldErrorText(text: errorText),
       ],
     );
@@ -145,9 +151,7 @@ class TextFieldWithTitle extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: Text(
           suffixPath,
-          style: context.typography.inputRegular.copyWith(
-            color: context.colors.graysBlack,
-          ),
+          style: context.typography.inputRegular.copyWith(color: context.colors.graysBlack),
         ),
       ),
     );

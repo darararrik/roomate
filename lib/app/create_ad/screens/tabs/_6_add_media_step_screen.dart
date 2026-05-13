@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -38,7 +36,8 @@ class AddMediaStepScreen extends ConsumerWidget {
             FocusScope.of(context).requestFocus(FocusNode());
             showModalBottomSheet(
               context: context,
-              builder: (context) => const AddMediaSheet(isPhoto: true),
+              builder: (context) =>
+                  AddMediaSheet(isPhoto: true, onCreatePhoto: () {}, onPickUpFromGallery: () {}),
             );
           },
           child: Text(context.l10n.addPhoto),
@@ -64,7 +63,8 @@ class AddMediaStepScreen extends ConsumerWidget {
             FocusScope.of(context).requestFocus(FocusNode());
             showModalBottomSheet(
               context: context,
-              builder: (context) => const AddMediaSheet(isPhoto: false),
+              builder: (context) =>
+                  AddMediaSheet(isPhoto: false, onCreatePhoto: () {}, onPickUpFromGallery: () {}),
             );
           },
           child: Text(context.l10n.addVideo),

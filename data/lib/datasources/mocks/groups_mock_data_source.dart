@@ -112,7 +112,9 @@ class GroupsMockDataSource implements GroupsDataSource {
   ];
 
   @override
-  Future<Either<RemoteException, List<GroupModel>>> fetchGroups() async {
+  Future<Either<RemoteException, List<GroupModel>>> fetchGroups({
+    WhoSearchFilterModel? filter,
+  }) async {
     await Future.delayed(const Duration(milliseconds: 250));
 
     return Right(
@@ -216,6 +218,22 @@ class GroupsMockDataSource implements GroupsDataSource {
 
   @override
   Future<Either<RemoteException, void>> applyToGroup(String groupId) async {
+    await Future.delayed(const Duration(milliseconds: 250));
+    return const Right(null);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> addGroupToFavorites(
+    String groupId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 250));
+    return const Right(null);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> removeGroupFromFavorites(
+    String groupId,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 250));
     return const Right(null);
   }

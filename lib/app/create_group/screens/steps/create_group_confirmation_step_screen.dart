@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -19,7 +18,7 @@ class CreateGroupConfirmationStepScreen extends ConsumerWidget {
     return SafeArea(
       top: false,
       child: Padding(
-        padding: const P(horizontal: S.p16, vertical: S.p20),
+        padding: const P(horizontal: S.p16),
         child: Column(
           children: [
             Expanded(
@@ -50,14 +49,12 @@ class CreateGroupConfirmationStepScreen extends ConsumerWidget {
                     title: l10n.createGroupUtilitiesTitle,
                     subtitle: flow.confirmationUtilities(form, options),
                   ),
-                ].separated(const SizedBox(height: S.p20)),
+                ].separated(const SizedBox(height: S.p28)),
               ),
             ),
             const SizedBox(height: S.p12),
             PrimaryButton(
-              text: state.isSubmitting
-                  ? l10n.createGroupPublishing
-                  : l10n.createGroupPublishAd,
+              text: state.isSubmitting ? l10n.createGroupPublishing : l10n.createGroupPublishAd,
               onPressed: state.isSubmitting ? null : flow.submitReview,
             ),
             const SizedBox(height: S.p12),
@@ -117,7 +114,6 @@ class CreateGroupConfirmationItem extends StatelessWidget {
                 subtitle,
                 style: context.typography.bodyDescription.copyWith(
                   color: context.colors.graysText400,
-                  height: 1.2,
                 ),
               ),
             ],

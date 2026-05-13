@@ -7,6 +7,7 @@ extension GenderExtension on GenderEnum {
     return switch (this) {
       GenderEnum.male => l10n.genderMale,
       GenderEnum.female => l10n.genderFemale,
+      GenderEnum.other => l10n.genderOther,
     };
   }
 }

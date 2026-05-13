@@ -9,6 +9,53 @@ class GroupsRemoteDataSource implements GroupsDataSource {
 
   final ApiClient _client;
 
+  Map<String, dynamic>? _groupFilterQuery(WhoSearchFilterModel? filter) {
+    if (filter == null) {
+      return null;
+    }
+
+    final query = <String, dynamic>{};
+
+    if (filter.gender != null) {
+      query['gender'] = switch (filter.gender) {
+        GenderEnum.male => 'male',
+        GenderEnum.female => 'female',
+        GenderEnum.other => 'other',
+        null => null,
+      };
+    }
+    if (filter.minAge != null) {
+      query['age_from'] = filter.minAge;
+    }
+    if (filter.maxAge != null) {
+      query['age_to'] = filter.maxAge;
+    }
+    if (filter.minGroupSize != null) {
+      query['participants_count_from'] = filter.minGroupSize;
+    }
+    if (filter.maxGroupSize != null) {
+      query['participants_count_to'] = filter.maxGroupSize;
+    }
+    if (filter.searchQuery.trim().isNotEmpty) {
+      query['search'] = filter.searchQuery.trim();
+    }
+    if (filter.childrenAllowed) {
+      query['children_allowed'] = true;
+    }
+    if (filter.partnerAllowed) {
+      query['partner_allowed'] = true;
+    }
+    if (filter.petsAllowed) {
+      query['pets_allowed'] = true;
+    }
+    if (filter.smokingAllowed) {
+      query['smoking_allowed'] = true;
+    }
+
+    query.removeWhere((key, value) => value == null);
+    return query.isEmpty ? null : query;
+  }
+
   OptionModel _optionFromJson(Map<String, dynamic> json) {
     return OptionModel(
       id: (json['id'] as num?)?.toInt() ?? 0,
@@ -26,9 +73,12 @@ class GroupsRemoteDataSource implements GroupsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, List<GroupModel>>> fetchGroups() async {
+  Future<Either<RemoteException, List<GroupModel>>> fetchGroups({
+    WhoSearchFilterModel? filter,
+  }) async {
     return _client.get<List<GroupModel>>(
       ApiUrlConstants.groups,
+      query: _groupFilterQuery(filter),
       transformer: (json) => (json as List<dynamic>)
           .map((item) => GroupData.fromJson(item as Map<String, dynamic>))
           .map(GroupMapper.toModel)
@@ -112,12 +162,34 @@ class GroupsRemoteDataSource implements GroupsDataSource {
   }
 
   @override
+  Future<Either<RemoteException, void>> addGroupToFavorites(
+    String groupId,
+  ) async {
+    return _client.post<void>(
+      ApiUrlConstants.groupFavorite(groupId),
+      needAuth: true,
+      transformer: (_) {},
+    );
+  }
+
+  @override
+  Future<Either<RemoteException, void>> removeGroupFromFavorites(
+    String groupId,
+  ) async {
+    return _client.delete<void>(
+      ApiUrlConstants.groupFavorite(groupId),
+      needAuth: true,
+      transformer: (_) {},
+    );
+  }
+
+  @override
   Future<Either<RemoteException, void>> createGroup(
     CreateGroupFormModel form,
   ) async {
     return _client.post<void>(
       ApiUrlConstants.groups,
-      body: form.toJson(),
+      body: CreateGroupFormMapper.toDto(form).toJson(),
       needAuth: true,
       transformer: (_) {},
     );

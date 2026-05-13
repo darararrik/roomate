@@ -886,6 +886,12 @@ abstract class AppLocalizations {
   /// **'Женский'**
   String get genderFemale;
 
+  /// No description provided for @genderOther.
+  ///
+  /// In ru, this message translates to:
+  /// **'Другой'**
+  String get genderOther;
+
   /// No description provided for @almostDone.
   ///
   /// In ru, this message translates to:
@@ -1785,6 +1791,72 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'({count} оценок)'**
   String groupParticipantProfileReviewsCount(Object count);
+
+  /// No description provided for @whoSearchTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поиск группы'**
+  String get whoSearchTitle;
+
+  /// No description provided for @whoSearchRoommatesTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Каких сожителей ищете?'**
+  String get whoSearchRoommatesTitle;
+
+  /// No description provided for @whoSearchGenderAny.
+  ///
+  /// In ru, this message translates to:
+  /// **'Любой'**
+  String get whoSearchGenderAny;
+
+  /// No description provided for @whoSearchGenderMen.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мужчины'**
+  String get whoSearchGenderMen;
+
+  /// No description provided for @whoSearchGenderWomen.
+  ///
+  /// In ru, this message translates to:
+  /// **'Женщины'**
+  String get whoSearchGenderWomen;
+
+  /// No description provided for @whoSearchGenderOther.
+  ///
+  /// In ru, this message translates to:
+  /// **'Другой'**
+  String get whoSearchGenderOther;
+
+  /// No description provided for @whoSearchGroupSizeTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кол-во человек в группе'**
+  String get whoSearchGroupSizeTitle;
+
+  /// No description provided for @whoSearchConsiderTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что учесть при подборе?'**
+  String get whoSearchConsiderTitle;
+
+  /// No description provided for @whoSearchConsiderHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Группы с похожими условиями поднимутся выше в списке'**
+  String get whoSearchConsiderHint;
+
+  /// No description provided for @whoSearchConsiderPlaceholder.
+  ///
+  /// In ru, this message translates to:
+  /// **'Например, веганы'**
+  String get whoSearchConsiderPlaceholder;
+
+  /// No description provided for @whoSearchShowGroupsCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Показать {count} групп'**
+  String whoSearchShowGroupsCount(Object count);
 
   /// No description provided for @notSelectedNeutral.
   ///

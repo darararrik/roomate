@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:roomate/app/create_group/widgets/title.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -18,9 +18,7 @@ class CreateGroupHouseholdStepScreen extends HookConsumerWidget {
     final flowNotifier = ref.read(createGroupFlowProvider.notifier);
     final notifier = ref.read(groupFormProvider.notifier);
     final l10n = context.l10n;
-    final apartmentNumberController = useTextEditingController(
-      text: form.apartmentNumber,
-    );
+    final apartmentNumberController = useTextEditingController(text: form.apartmentNumber);
 
     useEffect(() {
       if (apartmentNumberController.text != form.apartmentNumber) {
@@ -35,32 +33,25 @@ class CreateGroupHouseholdStepScreen extends HookConsumerWidget {
         ChipWrap<OptionModel>(
           title: l10n.typeOfProperty,
           options: options.propertyType,
-          selectedIds: form.propertyTypeId == 0
-              ? const {}
-              : {form.propertyTypeId},
+          selectedIds: form.propertyTypeId == 0 ? const {} : {form.propertyTypeId},
           singleSelection: true,
           errorText: flow.propertyTypeError,
-          onSelectionChanged: (ids) =>
-              notifier.setPropertyType(ids.firstOrNull ?? 0),
-        ),
-        Text(l10n.location, style: context.typography.headline1),
-        const SizedBox(height: S.p8),
-        Text(
-          l10n.whatIsYourAddress,
-          style: context.typography.bodyDescription.copyWith(
-            color: context.colors.graysText400,
-          ),
+          onSelectionChanged: (ids) => notifier.setPropertyType(ids.firstOrNull ?? 0),
         ),
         const SizedBox(height: S.p12),
+        TitleWidget(l10n.location),
+        Padding(
+          padding: const P(vertical: S.p4),
+          child: Text(
+            l10n.whatIsYourAddress,
+            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+          ),
+        ),
         RegionListItem(
-          iconPath: AppIcons.building2,
+          iconPath: AppIcons.build,
           onTap: flowNotifier.openLocationPickerScreen,
-          title: form.address.trim().isEmpty
-              ? l10n.createGroupSelectAddress
-              : form.address,
-          subTitle: form.address.trim().isEmpty
-              ? l10n.filtersLocationSearchHint
-              : '',
+          title: form.address.trim().isEmpty ? l10n.createGroupSelectAddress : form.address,
+          subTitle: form.address.trim().isEmpty ? l10n.filtersLocationSearchHint : '',
         ),
         FieldErrorText(text: flow.locationError),
         const SizedBox(height: S.p12),
@@ -70,14 +61,9 @@ class CreateGroupHouseholdStepScreen extends HookConsumerWidget {
           controller: apartmentNumberController,
           onChanged: notifier.updateApartmentNumber,
           errorText: flow.apartmentNumberError,
+          subtitle: l10n.notVisibleInAd,
         ),
-        Text(
-          l10n.notVisibleInAd,
-          style: context.typography.bodyDescription.copyWith(
-            color: context.colors.graysText400,
-          ),
-        ),
-      ].separated(const SizedBox(height: S.p12)),
+      ],
     );
   }
 }

@@ -10,8 +10,10 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   final GroupsDataSource _dataSource;
 
   @override
-  Future<Either<RemoteException, List<GroupModel>>> fetchGroups() {
-    return _dataSource.fetchGroups();
+  Future<Either<RemoteException, List<GroupModel>>> fetchGroups({
+    WhoSearchFilterModel? filter,
+  }) {
+    return _dataSource.fetchGroups(filter: filter);
   }
 
   @override
@@ -41,6 +43,18 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   @override
   Future<Either<RemoteException, void>> applyToGroup(String groupId) {
     return _dataSource.applyToGroup(groupId);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> addGroupToFavorites(String groupId) {
+    return _dataSource.addGroupToFavorites(groupId);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> removeGroupFromFavorites(
+    String groupId,
+  ) {
+    return _dataSource.removeGroupFromFavorites(groupId);
   }
 
   @override

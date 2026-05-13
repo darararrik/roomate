@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:roomate/app/create_group/widgets/title.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -20,36 +20,35 @@ class CreateGroupLifestyleStepScreen extends ConsumerWidget {
     return ListView(
       padding: const P(horizontal: S.p16),
       children: [
-        Text(
-          l10n.createGroupAtmosphereTitle,
-          style: context.typography.headline1,
-        ),
-        const SizedBox(height: S.p8),
-        Text(
-          l10n.createGroupAtmosphereHint,
-          style: context.typography.bodyDescription.copyWith(
-            color: context.colors.graysText400,
+        TitleWidget(l10n.createGroupAtmosphereTitle),
+        Padding(
+          padding: const P(vertical: S.p4),
+          child: Text(
+            l10n.createGroupAtmosphereHint,
+            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
           ),
         ),
-        const SizedBox(height: S.p20),
+        const SizedBox(height: S.p12),
         ChipWrap<OptionModel>(
           title: l10n.traitNoiseLevel,
           options: options.noiseLevel,
           selectedIds: form.noiseLevelId == 0 ? const {} : {form.noiseLevelId},
           singleSelection: true,
           errorText: flow.noiseLevelError,
-          onSelectionChanged: (ids) =>
-              notifier.setNoiseLevel(ids.firstOrNull ?? 0),
+          onSelectionChanged: (ids) => notifier.setNoiseLevel(ids.firstOrNull ?? 0),
         ),
+        const SizedBox(height: S.p12),
+
         ChipWrap<OptionModel>(
           title: l10n.traitCleaning,
           options: options.cleaning,
           selectedIds: form.cleaningId == 0 ? const {} : {form.cleaningId},
           singleSelection: true,
           errorText: flow.cleaningError,
-          onSelectionChanged: (ids) =>
-              notifier.setCleaning(ids.firstOrNull ?? 0),
+          onSelectionChanged: (ids) => notifier.setCleaning(ids.firstOrNull ?? 0),
         ),
+        const SizedBox(height: S.p12),
+
         ChipWrap<OptionModel>(
           title: l10n.traitPets,
           options: options.pets,
@@ -58,18 +57,16 @@ class CreateGroupLifestyleStepScreen extends ConsumerWidget {
           errorText: flow.petsError,
           onSelectionChanged: (ids) => notifier.setPets(ids.firstOrNull ?? 0),
         ),
+        const SizedBox(height: S.p12),
         ChipWrap<OptionModel>(
           title: l10n.traitPetAttitude,
           options: options.petsAttitude,
-          selectedIds: form.petsAttitudeId == 0
-              ? const {}
-              : {form.petsAttitudeId},
+          selectedIds: form.petsAttitudeId == 0 ? const {} : {form.petsAttitudeId},
           singleSelection: true,
           errorText: flow.petsAttitudeError,
-          onSelectionChanged: (ids) =>
-              notifier.setPetsAttitude(ids.firstOrNull ?? 0),
+          onSelectionChanged: (ids) => notifier.setPetsAttitude(ids.firstOrNull ?? 0),
         ),
-      ].separated(const SizedBox(height: S.p12)),
+      ],
     );
   }
 }

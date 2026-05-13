@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -28,16 +27,6 @@ class CreateGroupRulesStepScreen extends HookConsumerWidget {
     );
 
     useEffect(() {
-      final nextArea = state.apartmentArea == 0
-          ? ''
-          : state.apartmentArea.toString();
-      if (areaController.text != nextArea) {
-        areaController.text = nextArea;
-      }
-      return null;
-    }, [state.apartmentArea]);
-
-    useEffect(() {
       final nextFloor = state.floor == 0 ? '' : '${state.floor}';
       if (floorController.text != nextFloor) {
         floorController.text = nextFloor;
@@ -46,9 +35,7 @@ class CreateGroupRulesStepScreen extends HookConsumerWidget {
     }, [state.floor]);
 
     useEffect(() {
-      final nextTotalFloors = state.totalFloors == 0
-          ? ''
-          : '${state.totalFloors}';
+      final nextTotalFloors = state.totalFloors == 0 ? '' : '${state.totalFloors}';
       if (totalFloorsController.text != nextTotalFloors) {
         totalFloorsController.text = nextTotalFloors;
       }
@@ -61,9 +48,7 @@ class CreateGroupRulesStepScreen extends HookConsumerWidget {
         ChipWrap(
           title: l10n.numberOfRooms,
           options: options.roomsCount,
-          selectedIds: state.roomsCountId == 0
-              ? const {}
-              : {state.roomsCountId},
+          selectedIds: state.roomsCountId == 0 ? const {} : {state.roomsCountId},
           onSelectionChanged: (ids) {
             notifier.setRoomsCount(ids.isNotEmpty ? ids.first : 0);
           },

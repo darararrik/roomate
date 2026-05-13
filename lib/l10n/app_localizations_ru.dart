@@ -410,6 +410,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get genderFemale => 'Женский';
 
   @override
+  String get genderOther => 'Другой';
+
+  @override
   String get almostDone => 'Почти готово!';
 
   @override
@@ -878,6 +881,42 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String groupParticipantProfileReviewsCount(Object count) {
     return '($count оценок)';
+  }
+
+  @override
+  String get whoSearchTitle => 'Поиск группы';
+
+  @override
+  String get whoSearchRoommatesTitle => 'Каких сожителей ищете?';
+
+  @override
+  String get whoSearchGenderAny => 'Любой';
+
+  @override
+  String get whoSearchGenderMen => 'Мужчины';
+
+  @override
+  String get whoSearchGenderWomen => 'Женщины';
+
+  @override
+  String get whoSearchGenderOther => 'Другой';
+
+  @override
+  String get whoSearchGroupSizeTitle => 'Кол-во человек в группе';
+
+  @override
+  String get whoSearchConsiderTitle => 'Что учесть при подборе?';
+
+  @override
+  String get whoSearchConsiderHint =>
+      'Группы с похожими условиями поднимутся выше в списке';
+
+  @override
+  String get whoSearchConsiderPlaceholder => 'Например, веганы';
+
+  @override
+  String whoSearchShowGroupsCount(Object count) {
+    return 'Показать $count групп';
   }
 
   @override

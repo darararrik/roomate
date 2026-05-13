@@ -23,6 +23,7 @@ class ApiUrlConstants {
   static String groupConditions(String groupId) =>
       '$groups/$groupId/conditions';
   static String groupApply(String groupId) => '$groups/$groupId/apply';
+  static String groupFavorite(String groupId) => '$groups/$groupId/favorite';
   static String groupParticipant(String participantId) =>
       '/group-participants/$participantId';
 }

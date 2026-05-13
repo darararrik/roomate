@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -24,7 +23,7 @@ class CreateGroupFinishStepScreen extends ConsumerWidget {
                 color: context.colors.opacityOrange20,
                 borderRadius: BorderRadius.circular(S.p20),
               ),
-              child: const SizedBox(height: 420, width: double.infinity),
+              child: const SizedBox(height: 240, width: double.infinity),
             ),
             const SizedBox(height: S.p24),
             Text(
@@ -41,10 +40,7 @@ class CreateGroupFinishStepScreen extends ConsumerWidget {
               ),
             ),
             const Spacer(),
-            PrimaryButton(
-              text: l10n.createGroupGreat,
-              onPressed: notifier.completeFlow,
-            ),
+            PrimaryButton(text: l10n.createGroupGreat, onPressed: notifier.completeFlow),
           ],
         ),
       ),

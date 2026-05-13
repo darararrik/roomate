@@ -16,3 +16,4 @@ export 'profile/profile.dart';
 export 'quiz_step_model.dart';
 export 'sign_in_response/sign_in_response.dart';
 export 'user/user_model.dart';
+export 'who_search_filter/who_search_filter_model.dart';
