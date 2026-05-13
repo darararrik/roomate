@@ -1756,6 +1756,36 @@ abstract class AppLocalizations {
   /// **'Участники'**
   String get groupConditionsParticipantsTitle;
 
+  /// No description provided for @groupParticipantProfileTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Анкета'**
+  String get groupParticipantProfileTitle;
+
+  /// No description provided for @groupParticipantProfileQuestionnaireTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Анкета арендатора'**
+  String get groupParticipantProfileQuestionnaireTitle;
+
+  /// No description provided for @groupParticipantProfilePersonalQualitiesTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Личные качества'**
+  String get groupParticipantProfilePersonalQualitiesTitle;
+
+  /// No description provided for @groupParticipantProfilePetsTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Домашние животные'**
+  String get groupParticipantProfilePetsTitle;
+
+  /// No description provided for @groupParticipantProfileReviewsCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'({count} оценок)'**
+  String groupParticipantProfileReviewsCount(Object count);
+
   /// No description provided for @notSelectedNeutral.
   ///
   /// In ru, this message translates to:

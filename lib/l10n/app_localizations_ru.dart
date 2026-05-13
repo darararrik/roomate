@@ -864,6 +864,23 @@ class AppLocalizationsRu extends AppLocalizations {
   String get groupConditionsParticipantsTitle => 'Участники';
 
   @override
+  String get groupParticipantProfileTitle => 'Анкета';
+
+  @override
+  String get groupParticipantProfileQuestionnaireTitle => 'Анкета арендатора';
+
+  @override
+  String get groupParticipantProfilePersonalQualitiesTitle => 'Личные качества';
+
+  @override
+  String get groupParticipantProfilePetsTitle => 'Домашние животные';
+
+  @override
+  String groupParticipantProfileReviewsCount(Object count) {
+    return '($count оценок)';
+  }
+
+  @override
   String get notSelectedNeutral => 'Не выбрано';
 
   @override

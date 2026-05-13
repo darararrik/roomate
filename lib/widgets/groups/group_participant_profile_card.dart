@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
-
+import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class GroupParticipantProfileCard extends StatelessWidget {
@@ -11,40 +9,37 @@ class GroupParticipantProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colors.graysLight50,
-        borderRadius: BorderRadius.circular(S.p24),
+        borderRadius: BorderRadius.circular(S.p12),
       ),
       child: Padding(
-        padding: const P(all: S.p24),
+        padding: const P(horizontal: S.p12, vertical: S.p20),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            GroupParticipantAvatar(
-              avatarUrl: participant.avatarUrl,
-              size: S.p96,
-            ),
-            const SizedBox(width: S.p16),
+            _ParticipantProfileAvatar(avatarUrl: participant.avatarUrl),
+            const SizedBox(width: S.p12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Expanded(
-                        child: Text(
-                          participant.fullName,
-                          style: context.typography.headline0,
-                          softWrap: true,
-                        ),
+                      Text(
+                        participant.fullName,
+                        style: context.typography.headline2,
+                        softWrap: true,
                       ),
                       if (participant.isVerified) ...[
-                        const SizedBox(width: S.p8),
+                        const SizedBox(width: S.p4),
                         const AppIcon(
-                          AppIcons.verified,
-                          width: S.p24,
-                          height: S.p24,
+                          AppIcons.verify,
+                          width: S.p16,
+                          height: S.p16,
                           color: Color(0xFF2979FF),
                         ),
                       ],
@@ -53,38 +48,70 @@ class GroupParticipantProfileCard extends StatelessWidget {
                   const SizedBox(height: S.p8),
                   Text(
                     '${participant.age} лет, ${participant.gender}',
-                    style: context.typography.headline2.copyWith(
+                    style: context.typography.bodySmall.copyWith(
                       color: context.colors.graysText400,
                     ),
                     softWrap: true,
                   ),
-                  const SizedBox(height: S.p12),
-                  Row(
-                    children: [
-                      const Text('⭐', style: TextStyle(fontSize: 20)),
-                      const SizedBox(width: S.p8),
-                      Text(
-                        participant.rating,
-                        style: context.typography.headline1,
-                      ),
-                      const SizedBox(width: S.p8),
-                      Expanded(
-                        child: Text(
-                          '(${participant.reviewsCount} оценок)',
-                          style: context.typography.headline2.copyWith(
-                            color: context.colors.graysText400,
+                  if (participant.rating.trim().isNotEmpty || participant.reviewsCount > 0) ...[
+                    const SizedBox(height: S.p8),
+                    Row(
+                      children: [
+                        const Icon(Icons.star_rounded, size: S.p16, color: Color(0xFFFDC700)),
+                        const SizedBox(width: S.p4),
+                        Text(participant.rating, style: context.typography.bodySmall),
+                        const SizedBox(width: S.p4),
+                        Expanded(
+                          child: Text(
+                            l10n.groupParticipantProfileReviewsCount(participant.reviewsCount),
+                            style: context.typography.bodySmall.copyWith(
+                              color: context.colors.graysText400,
+                            ),
+                            softWrap: true,
                           ),
-                          softWrap: true,
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ParticipantProfileAvatar extends StatelessWidget {
+  const _ParticipantProfileAvatar({required this.avatarUrl});
+
+  final String avatarUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasAvatar = avatarUrl.trim().isNotEmpty;
+
+    return Container(
+      width: S.p64,
+      height: S.p64,
+      decoration: BoxDecoration(
+        color: context.colors.graysLight100,
+        borderRadius: BorderRadius.circular(S.p12),
+        image: hasAvatar
+            ? DecorationImage(image: NetworkImage(avatarUrl), fit: BoxFit.cover)
+            : null,
+      ),
+      child: hasAvatar
+          ? null
+          : Center(
+              child: AppIcon(
+                AppIcons.defaultAvatar,
+                width: S.p64,
+                height: S.p64,
+                color: context.colors.graysText400,
+              ),
+            ),
     );
   }
 }

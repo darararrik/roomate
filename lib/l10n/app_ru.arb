@@ -287,6 +287,16 @@
   "groupConditionsApartmentLifestyleTitle": "Образ жизни в квартире",
   "groupConditionsApartmentAtmosphereTitle": "Атмосфера в квартире",
   "groupConditionsParticipantsTitle": "Участники",
+  "groupParticipantProfileTitle": "Анкета",
+  "groupParticipantProfileQuestionnaireTitle": "Анкета арендатора",
+  "groupParticipantProfilePersonalQualitiesTitle": "Личные качества",
+  "groupParticipantProfilePetsTitle": "Домашние животные",
+  "groupParticipantProfileReviewsCount": "({count} оценок)",
+  "@groupParticipantProfileReviewsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "notSelectedNeutral": "Не выбрано",
   "filtersCityMoscowTitle": "г. Москва",
   "filtersLocationSearchHint": "Метро, район, адрес, шоссе, ЖК",
