@@ -846,6 +846,24 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get groupConditionsAndParticipantsTitle => 'Участники и условия';
+
+  @override
+  String get groupConditionsLookingForTitle => 'Кого ищёт группа';
+
+  @override
+  String get groupConditionsLivingRulesTitle => 'Правила проживания';
+
+  @override
+  String get groupConditionsApartmentLifestyleTitle => 'Образ жизни в квартире';
+
+  @override
+  String get groupConditionsApartmentAtmosphereTitle => 'Атмосфера в квартире';
+
+  @override
+  String get groupConditionsParticipantsTitle => 'Участники';
+
+  @override
   String get notSelectedNeutral => 'Не выбрано';
 
   @override

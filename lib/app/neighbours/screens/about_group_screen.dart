@@ -29,7 +29,10 @@ class AboutGroupScreen extends ConsumerWidget {
             top: false,
             child: Padding(
               padding: const P(horizontal: S.p16, vertical: S.p12),
-              child: PrimaryButton(text: 'Подать заявку', onPressed: notifier.onApplyPressed),
+              child: PrimaryButton(
+                text: 'Подать заявку',
+                onPressed: notifier.onApplyPressed,
+              ),
             ),
           ),
           body: CustomScrollView(
@@ -52,24 +55,32 @@ class AboutGroupScreen extends ConsumerWidget {
                       spacing: S.p12,
                       children: [
                         ChipMatch(matchPercent: group.matchPercent),
-                        Text(group.title, style: context.typography.headline2, softWrap: true),
+                        Text(
+                          group.title,
+                          style: context.typography.headline2,
+                          softWrap: true,
+                        ),
                         DetailPriceAndFavoriteIcon(
-                          title: '${apartament.price} ${context.l10n.currencyPerMonth}',
+                          title:
+                              '${apartament.price} ${context.l10n.currencyPerMonth}',
                           onFavoritePressed: notifier.onFavoritePressed,
                           isFavorite: state.isFavorite,
                         ),
                         DetailMetricsRow(
                           items: [
                             DetailMetricItemData(
-                              value: '${apartament.roomsCount}-${locale.apartmentRoomsShort}',
+                              value:
+                                  '${apartament.roomsCount}-${locale.apartmentRoomsShort}',
                               label: locale.apartment,
                             ),
                             DetailMetricItemData(
-                              value: '${apartament.area} ${locale.squareMeters}',
+                              value:
+                                  '${apartament.area} ${locale.squareMeters}',
                               label: locale.apartmentArea,
                             ),
                             DetailMetricItemData(
-                              value: '${apartament.floor} из ${apartament.totalFloor}',
+                              value:
+                                  '${apartament.floor} из ${apartament.totalFloor}',
                               label: locale.floor,
                             ),
                           ],
@@ -90,7 +101,7 @@ class AboutGroupScreen extends ConsumerWidget {
                       ),
                     ),
                     DetailSection(
-                      title: 'Участники и условия',
+                      title: locale.groupConditionsAndParticipantsTitle,
                       child: GestureDetector(
                         onTap: notifier.openConditionsAndParticipants,
                         child: Column(
@@ -100,15 +111,21 @@ class AboutGroupScreen extends ConsumerWidget {
                               decoration: BoxDecoration(
                                 color: colors.graysLight50,
                                 borderRadius: BorderRadius.circular(S.p12),
-                                border: Border.all(color: colors.graysStroke300),
+                                border: Border.all(
+                                  color: colors.graysStroke300,
+                                ),
                               ),
                               child: Padding(
-                                padding: const P(vertical: S.p20, horizontal: S.p16),
+                                padding: const P(
+                                  vertical: S.p20,
+                                  horizontal: S.p16,
+                                ),
                                 child: Row(
                                   children: [
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           const OverlappingAvatars(
                                             avatarSize: S.p36,
@@ -117,9 +134,12 @@ class AboutGroupScreen extends ConsumerWidget {
                                           const SizedBox(height: S.p12),
                                           Text(
                                             '${group.participantsCount}/${group.maxParticipantsCount} ${context.l10n.participants}',
-                                            style: context.typography.bodyDescription.copyWith(
-                                              color: colors.graysText400,
-                                            ),
+                                            style: context
+                                                .typography
+                                                .bodyDescription
+                                                .copyWith(
+                                                  color: colors.graysText400,
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -140,16 +160,16 @@ class AboutGroupScreen extends ConsumerWidget {
                               children: [
                                 Text(
                                   'Размещено: ${apartament.publishDate.toRuLongPublishedDate()}',
-                                  style: context.typography.bodyDescription.copyWith(
-                                    color: colors.graysText400,
-                                  ),
+                                  style: context.typography.bodyDescription
+                                      .copyWith(color: colors.graysText400),
                                 ),
                                 const SizedBox(height: S.p8),
                                 Text(
-                                  context.l10n.viewsCount(apartament.totalViewers),
-                                  style: context.typography.bodyDescription.copyWith(
-                                    color: colors.graysText400,
+                                  context.l10n.viewsCount(
+                                    apartament.totalViewers,
                                   ),
+                                  style: context.typography.bodyDescription
+                                      .copyWith(color: colors.graysText400),
                                 ),
                               ],
                             ),
@@ -177,23 +197,33 @@ class AboutGroupScreen extends ConsumerWidget {
                           children: [
                             DetailInfoRow(
                               title: locale.layout,
-                              value: apartament.layout?.title ?? locale.notSpecified,
+                              value:
+                                  apartament.layout?.title ??
+                                  locale.notSpecified,
                             ),
                             DetailInfoRow(
                               title: locale.renovationLabel,
-                              value: apartament.renovation?.title ?? locale.notSpecified,
+                              value:
+                                  apartament.renovation?.title ??
+                                  locale.notSpecified,
                             ),
                             DetailInfoRow(
                               title: locale.elevator,
-                              value: apartament.elevatorType?.title ?? locale.notSpecified,
+                              value:
+                                  apartament.elevatorType?.title ??
+                                  locale.notSpecified,
                             ),
                             DetailInfoRow(
                               title: locale.balconies,
-                              value: apartament.balconyType?.title ?? locale.notSpecified,
+                              value:
+                                  apartament.balconyType?.title ??
+                                  locale.notSpecified,
                             ),
                             DetailInfoRow(
                               title: locale.stove,
-                              value: apartament.stoveType?.title ?? locale.notSpecified,
+                              value:
+                                  apartament.stoveType?.title ??
+                                  locale.notSpecified,
                             ),
                           ],
                         ),
@@ -232,7 +262,9 @@ class AboutGroupScreen extends ConsumerWidget {
                           children: [
                             DetailInfoRow(
                               title: 'Срок аренды',
-                              value: apartament.rentalPeriod?.title ?? locale.notSpecified,
+                              value:
+                                  apartament.rentalPeriod?.title ??
+                                  locale.notSpecified,
                             ),
                             const DetailInfoRow(
                               title: 'Коммунальные услуги',

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/lib.dart';
 
 class GroupCountChip extends StatelessWidget {
-  const GroupCountChip({
-    super.key,
-    required this.currentCount,
-    required this.maxCount,
-  });
+  const GroupCountChip({super.key, required this.currentCount, required this.maxCount});
 
   final int currentCount;
   final int maxCount;
@@ -17,16 +12,14 @@ class GroupCountChip extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colors.graysWhite,
-        borderRadius: BorderRadius.circular(S.p20),
+        borderRadius: BorderRadius.circular(S.p12),
         border: Border.all(color: context.colors.graysStroke300),
       ),
       child: Padding(
-        padding: const P(horizontal: S.p16, vertical: S.p10),
+        padding: const P(horizontal: S.p12, vertical: S.p8),
         child: Text(
           '$currentCount/$maxCount',
-          style: context.typography.headline2.copyWith(
-            color: context.colors.graysText400,
-          ),
+          style: context.typography.bodySmall.copyWith(color: context.colors.graysText400),
         ),
       ),
     );

@@ -1720,6 +1720,42 @@ abstract class AppLocalizations {
   /// **'{count} человек'**
   String createGroupParticipantsSummary(Object count);
 
+  /// No description provided for @groupConditionsAndParticipantsTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Участники и условия'**
+  String get groupConditionsAndParticipantsTitle;
+
+  /// No description provided for @groupConditionsLookingForTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кого ищёт группа'**
+  String get groupConditionsLookingForTitle;
+
+  /// No description provided for @groupConditionsLivingRulesTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Правила проживания'**
+  String get groupConditionsLivingRulesTitle;
+
+  /// No description provided for @groupConditionsApartmentLifestyleTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Образ жизни в квартире'**
+  String get groupConditionsApartmentLifestyleTitle;
+
+  /// No description provided for @groupConditionsApartmentAtmosphereTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Атмосфера в квартире'**
+  String get groupConditionsApartmentAtmosphereTitle;
+
+  /// No description provided for @groupConditionsParticipantsTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Участники'**
+  String get groupConditionsParticipantsTitle;
+
   /// No description provided for @notSelectedNeutral.
   ///
   /// In ru, this message translates to:

@@ -281,6 +281,12 @@
       "count": {}
     }
   },
+  "groupConditionsAndParticipantsTitle": "Участники и условия",
+  "groupConditionsLookingForTitle": "Кого ищёт группа",
+  "groupConditionsLivingRulesTitle": "Правила проживания",
+  "groupConditionsApartmentLifestyleTitle": "Образ жизни в квартире",
+  "groupConditionsApartmentAtmosphereTitle": "Атмосфера в квартире",
+  "groupConditionsParticipantsTitle": "Участники",
   "notSelectedNeutral": "Не выбрано",
   "filtersCityMoscowTitle": "г. Москва",
   "filtersLocationSearchHint": "Метро, район, адрес, шоссе, ЖК",
