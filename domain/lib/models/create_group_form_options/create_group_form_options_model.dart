@@ -1,45 +1,30 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:domain/domain.dart';
 
-class CreateGroupFormOptionsModel {
-  const CreateGroupFormOptionsModel({
-    this.lookingForGender = const [],
-    this.communication = const [],
-    this.sleep = const [],
-    this.employment = const [],
-    this.badHabits = const [],
-    this.guests = const [],
-    this.noiseLevel = const [],
-    this.cleaning = const [],
-    this.pets = const [],
-    this.petsAttitude = const [],
-    this.propertyType = const [],
-    this.roomsCount = const [],
-    this.furniture = const [],
-    this.amenities = const [],
-    this.bathroom = const [],
-    this.appliances = const [],
-    this.currency = const [],
-    this.rentDuration = const [],
-    this.utilitiesPayment = const [],
-  });
+part 'create_group_form_options_model.freezed.dart';
 
-  final List<OptionModel> lookingForGender;
-  final List<OptionModel> communication;
-  final List<OptionModel> sleep;
-  final List<OptionModel> employment;
-  final List<OptionModel> badHabits;
-  final List<OptionModel> guests;
-  final List<OptionModel> noiseLevel;
-  final List<OptionModel> cleaning;
-  final List<OptionModel> pets;
-  final List<OptionModel> petsAttitude;
-  final List<OptionModel> propertyType;
-  final List<OptionModel> roomsCount;
-  final List<OptionModel> furniture;
-  final List<OptionModel> amenities;
-  final List<OptionModel> bathroom;
-  final List<OptionModel> appliances;
-  final List<OptionModel> currency;
-  final List<OptionModel> rentDuration;
-  final List<OptionModel> utilitiesPayment;
+@freezed
+sealed class CreateGroupFormOptionsModel with _$CreateGroupFormOptionsModel {
+  const factory CreateGroupFormOptionsModel({
+    @Default([]) List<OptionModel> lookingForGender,
+    @Default([]) List<OptionModel> communication,
+    @Default([]) List<OptionModel> sleep,
+    @Default([]) List<OptionModel> employment,
+    @Default([]) List<OptionModel> badHabits,
+    @Default([]) List<OptionModel> guests,
+    @Default([]) List<OptionModel> noiseLevel,
+    @Default([]) List<OptionModel> cleaning,
+    @Default([]) List<OptionModel> pets,
+    @Default([]) List<OptionModel> petsAttitude,
+    @Default([]) List<OptionModel> propertyType,
+    @Default([]) List<OptionModel> roomsCount,
+    @Default([]) List<OptionModel> furniture,
+    @Default([]) List<OptionModel> amenities,
+    @Default([]) List<OptionModel> bathroom,
+    @Default([]) List<OptionModel> appliances,
+    @Default([]) List<OptionModel> currency,
+    @Default([]) List<OptionModel> rentDuration,
+    @Default([]) List<OptionModel> utilitiesPayment,
+  }) = _CreateGroupFormOptionsModel;
 }

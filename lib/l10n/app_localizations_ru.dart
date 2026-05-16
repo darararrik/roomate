@@ -483,6 +483,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get newAdvertisement => 'Новое объявление';
 
   @override
+  String get createAdvertisementTitle => 'Создать объявление';
+
+  @override
+  String get continueDraft => 'Продолжить черновик';
+
+  @override
+  String get createNewAdvertisement => 'Создать новое объявление';
+
+  @override
   String get propertyData => 'Параметры недвижимости';
 
   @override
@@ -867,6 +876,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get groupConditionsParticipantsTitle => 'Участники';
 
   @override
+  String get groupApply => 'Подать заявку';
+
+  @override
+  String get groupApplicationSending => 'Отправка заявки...';
+
+  @override
+  String get groupApplicationSent => 'Заявка отправлена';
+
+  @override
+  String get groupApplicationSubmitError => 'Не удалось отправить заявку';
+
+  @override
   String get groupParticipantProfileTitle => 'Анкета';
 
   @override
@@ -985,6 +1006,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get sortByDateAsc => 'По дате добавления (сначала старые)';
+
+  @override
+  String get sortByGroupSizeDesc => 'По размеру группы (сначала больше)';
+
+  @override
+  String get sortByGroupSizeAsc => 'По размеру группы (сначала меньше)';
 
   @override
   String get tenantApplications => 'Заявки от арендаторов';

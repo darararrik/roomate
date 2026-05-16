@@ -14,6 +14,10 @@ class CreateAdFlow extends _$CreateAdFlow {
     return const CreateAdFlowState();
   }
 
+  void reset() {
+    state = const CreateAdFlowState();
+  }
+
   late CreateAdFormModel _formState;
   AppLocalizations get _locale => ref.l10n;
 
@@ -174,18 +178,12 @@ class CreateAdFlow extends _$CreateAdFlow {
   void _validateRentType() {
     final rentType = _formState.rentGoalId;
     final rentPeriod = _formState.rentPeriodId;
-    final whoCanRent = _formState.whoCanRentIds;
 
     if (rentType == 0) {
       state = state.copyWith(rentGoalError: _locale.validationSelectOption);
     }
     if (rentPeriod == 0) {
       state = state.copyWith(rentPeriodError: _locale.validationSelectOption);
-    }
-    if (whoCanRent.isEmpty) {
-      state = state.copyWith(
-        whoCanRentError: _locale.validationSelectAtLeastOne,
-      );
     }
   }
 
@@ -202,7 +200,7 @@ class CreateAdFlow extends _$CreateAdFlow {
   }
 
   void _validateLocation() {
-    if (_formState.selectedStreetId == 0) {
+    if (_formState.addressDetails.value.trim().isEmpty) {
       state = state.copyWith(streetError: _locale.validationPickStreet);
     }
     if (_formState.apartmentNumber == 0) {
@@ -258,22 +256,6 @@ class CreateAdFlow extends _$CreateAdFlow {
       state = state.copyWith(furnitureError: _locale.validationSelectOption);
     }
 
-    if (_formState.amenitiesIds.isEmpty) {
-      state = state.copyWith(
-        amenitiesError: _locale.validationSelectAtLeastOne,
-      );
-    }
-
-    if (_formState.bathroomIds.isEmpty) {
-      state = state.copyWith(bathroomError: _locale.validationSelectAtLeastOne);
-    }
-
-    if (_formState.appliancesIds.isEmpty) {
-      state = state.copyWith(
-        appliancesError: _locale.validationSelectAtLeastOne,
-      );
-    }
-
     if (_formState.stoveId == 0) {
       state = state.copyWith(stoveError: _locale.validationSelectOption);
     }
@@ -288,22 +270,12 @@ class CreateAdFlow extends _$CreateAdFlow {
       state = state.copyWith(priceError: _locale.validationEnterPrice);
     }
 
-    if (_formState.deposit <= 0) {
-      state = state.copyWith(depositError: _locale.validationEnterDeposit);
-    }
-
     if (_formState.prepaymentId == 0) {
       state = state.copyWith(prepaymentError: _locale.validationSelectOption);
     }
 
     if (_formState.rentDurationId == 0) {
       state = state.copyWith(rentDurationError: _locale.validationSelectOption);
-    }
-
-    if (_formState.rentConditionsIds.isEmpty) {
-      state = state.copyWith(
-        rentConditionsError: _locale.validationSelectAtLeastOne,
-      );
     }
   }
 
@@ -312,9 +284,9 @@ class CreateAdFlow extends _$CreateAdFlow {
       state = state.copyWith(titleError: _locale.validationEnterTitle);
     }
 
-    if (_formState.description.trim().length < 10) {
+    if (_formState.description.trim().length < 50) {
       state = state.copyWith(
-        descriptionError: _locale.validationEnterDescription,
+        descriptionError: _locale.minimumCharactersRequired,
       );
     }
   }
@@ -350,9 +322,7 @@ class CreateAdFlow extends _$CreateAdFlow {
   bool _isStepValid(int step) {
     switch (step) {
       case 0:
-        return state.rentGoalError.isEmpty &&
-            state.rentPeriodError.isEmpty &&
-            state.whoCanRentError.isEmpty;
+        return state.rentGoalError.isEmpty && state.rentPeriodError.isEmpty;
 
       case 1:
         return state.premisesError.isEmpty;
@@ -361,7 +331,7 @@ class CreateAdFlow extends _$CreateAdFlow {
         return state.propertyError.isEmpty;
 
       case 3:
-        return state.streetError.isEmpty;
+        return state.streetError.isEmpty && state.apartmentNumberError.isEmpty;
 
       case 4:
         return state.roomsError.isEmpty &&
@@ -376,18 +346,13 @@ class CreateAdFlow extends _$CreateAdFlow {
             state.balconiesError.isEmpty;
 
       case 7:
-        return state.furnitureError.isEmpty &&
-            state.amenitiesError.isEmpty &&
-            state.bathroomError.isEmpty &&
-            state.appliancesError.isEmpty &&
-            state.stoveError.isEmpty;
+        return state.furnitureError.isEmpty && state.stoveError.isEmpty;
 
       case 8:
         return state.currencyError.isEmpty &&
             state.priceError.isEmpty &&
             state.prepaymentError.isEmpty &&
-            state.rentDurationError.isEmpty &&
-            state.rentConditionsError.isEmpty;
+            state.rentDurationError.isEmpty;
 
       case 9:
         return state.titleError.isEmpty && state.descriptionError.isEmpty;

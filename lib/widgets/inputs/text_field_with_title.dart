@@ -41,7 +41,10 @@ class TextFieldWithTitle extends StatelessWidget {
     List<TextInputFormatter>? inputFormatters,
   }) : suffix = null,
        keyboardType = TextInputType.number,
-       inputFormatters = [FilteringTextInputFormatter.digitsOnly, ...?inputFormatters];
+       inputFormatters = [
+         FilteringTextInputFormatter.digitsOnly,
+         ...?inputFormatters,
+       ];
 
   /// Именованный конструктор для иконки (десятичные + м2)
   TextFieldWithTitle.withSuffix({
@@ -109,6 +112,11 @@ class TextFieldWithTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final subtitleColor = errorText.isNotEmpty
+        ? context.colors.red
+        : context.colors.graysText400;
+    final shouldShowInlineError = errorText.isNotEmpty && errorText != subtitle;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -129,16 +137,20 @@ class TextFieldWithTitle extends StatelessWidget {
             readOnly: readOnly,
             decoration: InputDecoration(
               hintText: hintText,
-              suffixIcon: suffix != null ? _buildIconSuffix(context, suffix!) : null,
+              suffixIcon: suffix != null
+                  ? _buildIconSuffix(context, suffix!)
+                  : null,
             ),
           ),
         ),
         if (subtitle.isNotEmpty)
           Text(
             subtitle,
-            style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+            style: context.typography.bodyDescription.copyWith(
+              color: subtitleColor,
+            ),
           ),
-        FieldErrorText(text: errorText),
+        if (shouldShowInlineError) FieldErrorText(text: errorText),
       ],
     );
   }
@@ -151,7 +163,9 @@ class TextFieldWithTitle extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: Text(
           suffixPath,
-          style: context.typography.inputRegular.copyWith(color: context.colors.graysBlack),
+          style: context.typography.inputRegular.copyWith(
+            color: context.colors.graysBlack,
+          ),
         ),
       ),
     );

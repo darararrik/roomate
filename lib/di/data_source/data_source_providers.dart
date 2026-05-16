@@ -24,7 +24,7 @@ ApartamentsDataSource apartamentsDataSource(Ref ref) {
 
 @Riverpod(keepAlive: true)
 GroupsDataSource groupsDataSource(Ref ref) {
-  if (!ref.watch(configProvider).useMocks) {
+  if (ref.watch(configProvider).useMocks) {
     return GroupsMockDataSource();
   }
   return GroupsRemoteDataSource(ref.watch(apiClientProvider));

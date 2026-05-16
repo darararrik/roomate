@@ -11,6 +11,7 @@ part of 'location_suggestion_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$LocationSuggestionModel {
 
@@ -21,6 +22,8 @@ mixin _$LocationSuggestionModel {
 @pragma('vm:prefer-inline')
 $LocationSuggestionModelCopyWith<LocationSuggestionModel> get copyWith => _$LocationSuggestionModelCopyWithImpl<LocationSuggestionModel>(this as LocationSuggestionModel, _$identity);
 
+  /// Serializes this LocationSuggestionModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationSuggestionModel&&(identical(other.value, value) || other.value == value)&&(identical(other.unrestrictedValue, unrestrictedValue) || other.unrestrictedValue == unrestrictedValue)&&(identical(other.country, country) || other.country == country)&&(identical(other.region, region) || other.region == region)&&(identical(other.city, city) || other.city == city)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.district, district) || other.district == district)&&(identical(other.street, street) || other.street == street)&&(identical(other.streetFiasId, streetFiasId) || other.streetFiasId == streetFiasId)&&(identical(other.house, house) || other.house == house)&&(identical(other.houseFiasId, houseFiasId) || other.houseFiasId == houseFiasId)&&(identical(other.geoLat, geoLat) || other.geoLat == geoLat)&&(identical(other.geoLon, geoLon) || other.geoLon == geoLon));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,value,unrestrictedValue,country,region,city,cityFiasId,district,street,streetFiasId,house,houseFiasId,geoLat,geoLon);
 
@@ -210,10 +213,10 @@ return $default(_that.value,_that.unrestrictedValue,_that.country,_that.region,_
 
 /// @nodoc
 
-
+@JsonSerializable(includeIfNull: false)
 class _LocationSuggestionModel implements LocationSuggestionModel {
   const _LocationSuggestionModel({this.value = '', this.unrestrictedValue = '', this.country = '', this.region = '', this.city, this.cityFiasId, this.district, this.street, this.streetFiasId, this.house, this.houseFiasId, this.geoLat, this.geoLon});
-  
+  factory _LocationSuggestionModel.fromJson(Map<String, dynamic> json) => _$LocationSuggestionModelFromJson(json);
 
 @override@JsonKey() final  String value;
 @override@JsonKey() final  String unrestrictedValue;
@@ -235,14 +238,17 @@ class _LocationSuggestionModel implements LocationSuggestionModel {
 @pragma('vm:prefer-inline')
 _$LocationSuggestionModelCopyWith<_LocationSuggestionModel> get copyWith => __$LocationSuggestionModelCopyWithImpl<_LocationSuggestionModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$LocationSuggestionModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationSuggestionModel&&(identical(other.value, value) || other.value == value)&&(identical(other.unrestrictedValue, unrestrictedValue) || other.unrestrictedValue == unrestrictedValue)&&(identical(other.country, country) || other.country == country)&&(identical(other.region, region) || other.region == region)&&(identical(other.city, city) || other.city == city)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.district, district) || other.district == district)&&(identical(other.street, street) || other.street == street)&&(identical(other.streetFiasId, streetFiasId) || other.streetFiasId == streetFiasId)&&(identical(other.house, house) || other.house == house)&&(identical(other.houseFiasId, houseFiasId) || other.houseFiasId == houseFiasId)&&(identical(other.geoLat, geoLat) || other.geoLat == geoLat)&&(identical(other.geoLon, geoLon) || other.geoLon == geoLon));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,value,unrestrictedValue,country,region,city,cityFiasId,district,street,streetFiasId,house,houseFiasId,geoLat,geoLon);
 

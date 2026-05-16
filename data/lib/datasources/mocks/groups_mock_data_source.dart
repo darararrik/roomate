@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
+import 'package:data/entity/group_list_item/group_list_item_data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/data.dart';
 
 class GroupsMockDataSource implements GroupsDataSource {
   static const _genders = [
@@ -112,28 +112,28 @@ class GroupsMockDataSource implements GroupsDataSource {
   ];
 
   @override
-  Future<Either<RemoteException, List<GroupModel>>> fetchGroups({
+  Future<Either<RemoteException, List<GroupListItemModel>>> fetchGroups({
     WhoSearchFilterModel? filter,
   }) async {
     await Future.delayed(const Duration(milliseconds: 250));
 
     return Right(
       GroupsMockJson.fetchGroups
-          .map((item) => GroupData.fromJson(item))
-          .map(GroupMapper.toModel)
+          .map(GroupListItemData.fromJson)
+          .map(GroupMapper.toListItemModel)
           .toList(),
     );
   }
 
   @override
-  Future<Either<RemoteException, GroupModel>> fetchGroupById(
+  Future<Either<RemoteException, GroupDetailModel>> fetchGroupById(
     String groupId,
   ) async {
     await Future.delayed(const Duration(milliseconds: 250));
 
     for (final item in GroupsMockJson.fetchGroups) {
       if (item['id'] == groupId) {
-        return Right(GroupMapper.toModel(GroupData.fromJson(item)));
+        return Right(GroupMapper.toDetailModel(GroupDetailData.fromJson(item)));
       }
     }
 
@@ -147,7 +147,7 @@ class GroupsMockDataSource implements GroupsDataSource {
 
   @override
   Future<Either<RemoteException, CreateGroupFormOptionsModel>>
-  fetchCreateGroupFormOptions() async {
+  fetchTags() async {
     await Future.delayed(const Duration(milliseconds: 250));
     return const Right(
       CreateGroupFormOptionsModel(
@@ -174,27 +174,6 @@ class GroupsMockDataSource implements GroupsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, GroupConditionsModel>> fetchGroupConditions(
-    String groupId,
-  ) async {
-    await Future.delayed(const Duration(milliseconds: 250));
-
-    final json = GroupsMockJson.fetchGroupConditions[groupId];
-    if (json == null) {
-      return Left(
-        RemoteException(
-          kind: RemoteExceptionKind.serverDefined,
-          rootException: Exception('Group conditions not found'),
-        ),
-      );
-    }
-
-    return Right(
-      GroupMapper.toConditionsModel(GroupConditionsData.fromJson(json)),
-    );
-  }
-
-  @override
   Future<Either<RemoteException, ParticipantProfileModel>>
   fetchGroupParticipantById(String participantId) async {
     await Future.delayed(const Duration(milliseconds: 250));
@@ -217,9 +196,18 @@ class GroupsMockDataSource implements GroupsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, void>> applyToGroup(String groupId) async {
+  Future<Either<RemoteException, GroupApplicationModel>> applyToGroup(
+    String groupId,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 250));
-    return const Right(null);
+    return Right(
+      GroupApplicationModel(
+        id: 'mock-application-$groupId',
+        groupId: groupId,
+        status: 'pending',
+        createdAt: DateTime.now().toIso8601String(),
+      ),
+    );
   }
 
   @override

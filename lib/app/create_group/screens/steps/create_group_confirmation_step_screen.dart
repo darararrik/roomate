@@ -9,6 +9,7 @@ class CreateGroupConfirmationStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final tabsRouter = AutoTabsRouter.of(context);
     final form = ref.watch(groupFormProvider);
     final flow = ref.read(createGroupFlowProvider.notifier);
     final state = ref.watch(createGroupFlowProvider);
@@ -54,8 +55,12 @@ class CreateGroupConfirmationStepScreen extends ConsumerWidget {
             ),
             const SizedBox(height: S.p12),
             PrimaryButton(
-              text: state.isSubmitting ? l10n.createGroupPublishing : l10n.createGroupPublishAd,
-              onPressed: state.isSubmitting ? null : flow.submitReview,
+              text: state.isSubmitting
+                  ? l10n.createGroupPublishing
+                  : l10n.createGroupPublishAd,
+              onPressed: state.isSubmitting
+                  ? null
+                  : () => flow.submitReview(tabsRouter),
             ),
             const SizedBox(height: S.p12),
             DecoratedBox(

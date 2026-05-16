@@ -5,101 +5,105 @@ import 'package:data/data.dart';
 @BackendOnly('Maps create-group form data into nested backend contract.')
 abstract class CreateGroupFormMapper {
   static CreateGroupFormRequestData toDto(CreateGroupFormModel model) {
+    final title = model.title.trim();
+    final description = model.description.trim();
+
     return CreateGroupFormRequestData(
       group: CreateGroupGroupRequestData(
-        title: _emptyToNull(model.title),
-        description: _emptyToNull(model.description),
-        desired_gender: _mapDesiredGender(model.lookingForGenderId),
-        min_age: model.ageFrom,
-        max_age: model.ageTo,
-        max_participants_count: model.participantsCount,
-        children_allowed: model.childrenAllowed,
-        partner_allowed: model.partnerAllowed,
-        pets_allowed: model.petsAllowed,
-        smoking_allowed: model.smokingAllowed,
+        title: title,
+        description: description,
+        desiredGender: _mapDesiredGender(model.lookingForGenderId),
+        minAge: model.ageFrom,
+        maxAge: model.ageTo,
+        maxParticipantsCount: model.participantsCount,
+        childrenAllowed: model.childrenAllowed,
+        partnerAllowed: model.partnerAllowed,
+        petsAllowed: model.petsAllowed,
+        smokingAllowed: model.smokingAllowed,
       ),
       apartment: CreateGroupApartmentRequestData(
-        address_details: _mapAddressDetails(model),
-        property_type_id: _positiveInt(model.propertyTypeId),
-        rooms_count_id: _positiveInt(model.roomsCountId),
-        furniture_id: _positiveInt(model.furnitureId),
-        amenities_ids: _ids(model.amenitiesIds),
-        bathroom_ids: _ids(model.bathroomIds),
-        appliances_ids: _ids(model.appliancesIds),
-        currency_id: _positiveInt(model.currencyId),
-        rent_duration_id: _positiveInt(model.rentDurationId),
-        selected_currency: model.currencyId == 0
-            ? null
-            : model.selectedCurrency.name,
-        price_per_person: _positiveDouble(model.pricePerPerson),
-        apartment_area: _positiveDouble(model.apartmentArea),
-        floor: _positiveInt(model.floor),
-        total_floors: _positiveInt(model.totalFloors),
-        apartment_number: _parseApartmentNumber(model.apartmentNumber),
-        title: _emptyToNull(model.title),
-        description: _emptyToNull(model.description),
-        image_urls: model.imageUrls.isEmpty ? null : model.imageUrls,
+        addressDetails: _mapAddressDetails(model.addressDetails),
+        propertyTypeId: model.propertyTypeId,
+        roomsCountId: model.roomsCountId,
+        furnitureId: model.furnitureId,
+        amenitiesIds: _ids(model.amenitiesIds),
+        bathroomIds: _ids(model.bathroomIds),
+        appliancesIds: _ids(model.appliancesIds),
+        currencyId: model.currencyId,
+        rentDurationId: model.rentDurationId,
+        selectedCurrency: _mapSelectedCurrency(model.selectedCurrency),
+        pricePerPerson: model.pricePerPerson,
+        apartmentArea: model.apartmentArea,
+        floor: model.floor,
+        totalFloors: model.totalFloors,
+        apartmentNumber: _parseApartmentNumber(model.apartmentNumber),
+        title: title,
+        description: description,
+        imageUrls: model.imageUrls,
       ),
       preferences: CreateGroupPreferencesRequestData(
-        communication_id: _positiveInt(model.communicationId),
-        sleep_id: _positiveInt(model.sleepId),
-        bad_habits_id: _positiveInt(model.badHabitsId),
-        guests_id: _positiveInt(model.guestsId),
-        noise_level_id: _positiveInt(model.noiseLevelId),
-        cleaning_id: _positiveInt(model.cleaningId),
-        pets_id: _positiveInt(model.petsId),
-        pets_attitude_id: _positiveInt(model.petsAttitudeId),
+        communicationId: model.communicationId,
+        sleepId: model.sleepId,
+        badHabitsId: model.badHabitsId,
+        guestsId: model.guestsId,
+        noiseLevelId: model.noiseLevelId,
+        cleaningId: model.cleaningId,
+        petsId: model.petsId,
+        petsAttitudeId: model.petsAttitudeId,
       ),
     );
   }
 
-  static CreateGroupAddressDetailsRequestData? _mapAddressDetails(
-    CreateGroupFormModel model,
+  static CreateGroupAddressDetailsRequestData _mapAddressDetails(
+    LocationSuggestionModel details,
   ) {
-    final address = model.address.trim();
-    final cityFiasId = model.cityFiasId.trim();
-    if (address.isEmpty && cityFiasId.isEmpty) {
-      return null;
-    }
-
     return CreateGroupAddressDetailsRequestData(
-      value: address.isEmpty ? null : address,
-      unrestrictedValue: address.isEmpty ? null : address,
-      cityFiasId: cityFiasId.isEmpty ? null : cityFiasId,
+      value: _emptyToNull(details.value),
+      unrestrictedValue: _emptyToNull(details.unrestrictedValue),
+      country: _emptyToNull(details.country),
+      region: _emptyToNull(details.region),
+      city: _emptyToNull(details.city),
+      cityFiasId: _emptyToNull(details.cityFiasId),
+      district: _emptyToNull(details.district),
+      street: _emptyToNull(details.street),
+      streetFiasId: _emptyToNull(details.streetFiasId),
+      house: _emptyToNull(details.house),
+      houseFiasId: _emptyToNull(details.houseFiasId),
+      geoLat: details.geoLat,
+      geoLon: details.geoLon,
     );
   }
 
-  static String? _mapDesiredGender(int id) {
+  static String _mapDesiredGender(int id) {
     return switch (id) {
       1 => 'male',
       2 => 'female',
       3 => 'any',
-      _ => null,
+      _ => throw StateError('Unsupported desired gender id: $id'),
     };
   }
 
-  static List<int>? _ids(Set<int> ids) {
-    if (ids.isEmpty) {
-      return null;
-    }
-    return ids.toList();
+  static List<int> _ids(Set<int> ids) => ids.toList();
+
+  static CreateGroupSelectedCurrencyRequestData _mapSelectedCurrency(
+    Currency currency,
+  ) {
+    final code = currency.name.toUpperCase();
+    return CreateGroupSelectedCurrencyRequestData(code: code, symbol: code);
   }
 
-  static int? _positiveInt(int value) => value > 0 ? value : null;
-
-  static double? _positiveDouble(double value) => value > 0 ? value : null;
-
-  static int? _parseApartmentNumber(String value) {
+  static int _parseApartmentNumber(String value) {
     final normalized = value.trim();
-    if (normalized.isEmpty) {
-      return null;
+    final apartmentNumber = int.tryParse(normalized);
+    if (apartmentNumber == null) {
+      throw StateError('Apartment number must be numeric: $value');
     }
 
-    return int.tryParse(normalized);
+    return apartmentNumber;
   }
 
-  static String? _emptyToNull(String value) {
-    final normalized = value.trim();
+  static String? _emptyToNull(String? value) {
+    final normalized = (value ?? '').trim();
     return normalized.isEmpty ? null : normalized;
   }
 }

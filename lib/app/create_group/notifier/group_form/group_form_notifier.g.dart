@@ -49,7 +49,7 @@ final class GetCreateGroupFormOptionsProvider
 }
 
 String _$getCreateGroupFormOptionsHash() =>
-    r'32506e1dc3dd0bd67de32ede496783e672e09516';
+    r'9e87ac16eccb1b65c94a486bb85b146a760a168e';
 
 @ProviderFor(selectedGroupLocationName)
 final selectedGroupLocationNameProvider = SelectedGroupLocationNameProvider._();
@@ -104,7 +104,7 @@ final class GroupFormNotifierProvider
         argument: null,
         retry: null,
         name: r'groupFormProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -125,7 +125,7 @@ final class GroupFormNotifierProvider
   }
 }
 
-String _$groupFormNotifierHash() => r'848ab5108825084ed06f415d178e1d57e61feb91';
+String _$groupFormNotifierHash() => r'1c696f8be2647949fab2570983b8f13a8cf8296c';
 
 abstract class _$GroupFormNotifier extends $Notifier<CreateGroupFormModel> {
   CreateGroupFormModel build();

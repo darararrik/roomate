@@ -26,17 +26,13 @@ abstract class CreateAdFormMapper {
       rentDurationId: model.rentDurationId,
       rentConditionsIds: model.rentConditionsIds,
       contactMethodId: model.contactMethodId,
-      selectedCurrency: model.selectedCurrency,
+      selectedCurrency: _mapSelectedCurrency(model.selectedCurrency),
       cost: model.cost,
       deposit: model.deposit,
       apartmentArea: model.apartmentArea,
       floor: model.floor,
       totalFloors: model.totalFloors,
-      address: _buildAddress(
-        selectedStreetId: model.selectedStreetId,
-        fallbackDistrict: model.address,
-        apartmentNumber: model.apartmentNumber,
-      ),
+      addressDetails: _mapAddressDetails(model.addressDetails),
       apartmentNumber: model.apartmentNumber,
       title: model.title,
       description: model.description,
@@ -52,13 +48,24 @@ abstract class CreateAdFormMapper {
     String role = 'Собственник',
   }) {
     final whoToRent = request.whoCanRentIds ?? const <int>{};
-    final whoToRentNames = whoToRent.map(_mapWhoToRent).whereType<String>().toList();
+    final whoToRentNames = whoToRent
+        .map(_mapWhoToRent)
+        .whereType<String>()
+        .toList();
 
     final amenityNames = <String>{
-      ...(request.amenitiesIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
-      ...(request.bathroomIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
-      ...(request.appliancesIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
-      ...(request.rentConditionsIds ?? const <int>{}).map(_mapAmenity).whereType<String>(),
+      ...(request.amenitiesIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
+      ...(request.bathroomIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
+      ...(request.appliancesIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
+      ...(request.rentConditionsIds ?? const <int>{})
+          .map(_mapAmenity)
+          .whereType<String>(),
     }.toList();
 
     return ApartamentData(
@@ -70,11 +77,13 @@ abstract class CreateAdFormMapper {
       imageUrls: const [],
       isVerification: false,
       price: _formatNumber(request.cost ?? 0),
-      roomsCount: _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId) ?? '',
+      roomsCount:
+          _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId) ??
+          '',
       area: _formatNumber(request.apartmentArea ?? 0),
       floor: request.floor ?? 0,
       totalFloor: request.totalFloors ?? 0,
-      address: request.address ?? '',
+      address: _buildAddress(request),
       name: ownerName,
       role: role,
       publishDate: 'Сегодня',
@@ -109,7 +118,9 @@ abstract class CreateAdFormMapper {
         StoveType.values,
         (value) => value.title,
       ),
-      dealGoal: _mapDealGoal(_findOptionTitle(AdFormOptionKeys.rentGoal, request.rentGoalId)),
+      dealGoal: _mapDealGoal(
+        _findOptionTitle(AdFormOptionKeys.rentGoal, request.rentGoalId),
+      ),
       rentTerm: _mapByTitle(
         _findOptionTitle(AdFormOptionKeys.rentPeriod, request.rentPeriodId),
         RentalConditions.values,
@@ -126,34 +137,62 @@ abstract class CreateAdFormMapper {
         RentalPeriod.values,
         (value) => value.title,
       ),
-      deposit: _formatMoney(request.deposit ?? 0, request.selectedCurrency ?? Currency.rub),
+      deposit: _formatMoney(
+        request.deposit ?? 0,
+        _currencyFromRequest(request.selectedCurrency),
+      ),
       amenities: amenityNames,
     );
   }
 
-  static String _buildAddress({
-    required int selectedStreetId,
-    required String fallbackDistrict,
-    required int apartmentNumber,
-  }) {
+  static String _buildAddress(CreateAdFormRequestData request) {
     final parts = <String>[];
-    if (fallbackDistrict.trim().isNotEmpty) {
-      parts.add(fallbackDistrict.trim());
-    } else if (selectedStreetId > 0) {
-      parts.add('ID $selectedStreetId');
+    final baseAddress =
+        request.addressDetails?.value?.trim() ??
+        request.addressDetails?.street?.trim() ??
+        '';
+    if (baseAddress.isNotEmpty) {
+      parts.add(baseAddress);
     }
 
-    if (apartmentNumber > 0) {
-      parts.add('кв. $apartmentNumber');
+    if ((request.apartmentNumber ?? 0) > 0) {
+      parts.add('кв. ${request.apartmentNumber}');
     }
 
     return parts.join(', ');
   }
 
+  static CreateAdAddressDetailsRequestData _mapAddressDetails(
+    LocationSuggestionModel details,
+  ) {
+    return CreateAdAddressDetailsRequestData(
+      value: _emptyToNull(details.value),
+      unrestrictedValue: _emptyToNull(details.unrestrictedValue),
+      country: _emptyToNull(details.country),
+      region: _emptyToNull(details.region),
+      city: _emptyToNull(details.city),
+      cityFiasId: _emptyToNull(details.cityFiasId),
+      district: _emptyToNull(details.district),
+      street: _emptyToNull(details.street),
+      streetFiasId: _emptyToNull(details.streetFiasId),
+      house: _emptyToNull(details.house),
+      houseFiasId: _emptyToNull(details.houseFiasId),
+      geoLat: details.geoLat,
+      geoLon: details.geoLon,
+    );
+  }
+
   static String _buildFallbackTitle(CreateAdFormRequestData request) {
     final propertyType =
-        _findOptionTitle(AdFormOptionKeys.propertyType, request.propertyTypeId) ?? 'Объект';
-    final roomsCount = _findOptionTitle(AdFormOptionKeys.roomsCount, request.roomsCountId);
+        _findOptionTitle(
+          AdFormOptionKeys.propertyType,
+          request.propertyTypeId,
+        ) ??
+        'Объект';
+    final roomsCount = _findOptionTitle(
+      AdFormOptionKeys.roomsCount,
+      request.roomsCountId,
+    );
     if (roomsCount == null || roomsCount.isEmpty) {
       return propertyType;
     }
@@ -223,5 +262,23 @@ abstract class CreateAdFormMapper {
   static String _formatMoney(num value, Currency currency) {
     final amount = _formatNumber(value);
     return '$amount ${currency.symbol}';
+  }
+
+  static CreateAdSelectedCurrencyRequestData _mapSelectedCurrency(
+    Currency currency,
+  ) {
+    final code = currency.name.toUpperCase();
+    return CreateAdSelectedCurrencyRequestData(code: code, symbol: code);
+  }
+
+  static Currency _currencyFromRequest(
+    CreateAdSelectedCurrencyRequestData? currency,
+  ) {
+    return Currency.fromTitle(currency?.code ?? '');
+  }
+
+  static String? _emptyToNull(String? value) {
+    final normalized = (value ?? '').trim();
+    return normalized.isEmpty ? null : normalized;
   }
 }

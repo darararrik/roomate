@@ -27,4 +27,18 @@ sealed class ProfileModel with _$ProfileModel {
 
   bool get isGuest =>
       id.isEmpty && firstName.isEmpty && lastName.isEmpty && phone.isEmpty;
+
+  bool get hasCompletedBasicProfile =>
+      firstName.trim().isNotEmpty && lastName.trim().isNotEmpty && age > 0;
+
+  bool get hasCompletedPreferences =>
+      preferences.communication.isNotEmpty &&
+      preferences.sleep.isNotEmpty &&
+      preferences.employment.isNotEmpty &&
+      preferences.badHabits.isNotEmpty &&
+      preferences.guests.isNotEmpty &&
+      preferences.noiseLevel.isNotEmpty &&
+      preferences.cleaning.isNotEmpty &&
+      preferences.pets.isNotEmpty &&
+      preferences.petsAttitude.isNotEmpty;
 }

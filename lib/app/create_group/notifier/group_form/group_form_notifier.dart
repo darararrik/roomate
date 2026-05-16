@@ -1,17 +1,16 @@
+import 'dart:async';
+
 import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared/shared.dart';
-
 import 'package:roomate/lib.dart';
+import 'package:shared/shared.dart';
 
 part 'group_form_notifier.g.dart';
 
 @riverpod
 Future<CreateGroupFormOptionsModel> getCreateGroupFormOptions(Ref ref) async {
-  final result = await ref
-      .read(groupsRepositoryProvider)
-      .fetchCreateGroupFormOptions();
+  final result = await ref.read(groupsRepositoryProvider).fetchTags();
   return result.fold((error) => throw error, (value) => value);
 }
 
@@ -20,10 +19,14 @@ String selectedGroupLocationName(Ref ref) {
   return ref.watch(groupFormProvider.select((state) => state.address));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class GroupFormNotifier extends _$GroupFormNotifier {
   @override
   CreateGroupFormModel build() {
+    listenSelf((_, next) {
+      unawaited(_syncDraft(next));
+    });
+
     ref.listen(globalProfileProvider, (prev, next) {
       final profile = next.value;
       if (profile == null) {
@@ -38,6 +41,10 @@ class GroupFormNotifier extends _$GroupFormNotifier {
       }
     });
 
+    return _initialState();
+  }
+
+  CreateGroupFormModel _initialState() {
     final profile = ref.read(globalProfileProvider).value;
     return CreateGroupFormModel(
       address: profile?.city ?? '',
@@ -45,10 +52,25 @@ class GroupFormNotifier extends _$GroupFormNotifier {
     );
   }
 
+  Future<void> reset() async {
+    final draftService = ref.read(createDraftServiceProvider);
+    state = _initialState();
+    await draftService.clearGroupDraft();
+    if (!ref.mounted) {
+      return;
+    }
+    ref.invalidate(createGroupDraftProvider);
+  }
+
+  void restoreDraft(CreateGroupFormModel draft) {
+    state = draft;
+  }
+
   void selectLocation(LocationSelectionModel selection) {
     state = state.copyWith(
       selectedCityId: selection.cityId,
       address: selection.displayTitle,
+      addressDetails: selection.addressDetails,
       cityFiasId: selection.cityFiasId,
     );
   }
@@ -184,7 +206,73 @@ class GroupFormNotifier extends _$GroupFormNotifier {
       state = state.copyWith(description: value);
 
   Future<RemoteException?> createGroup() async {
+    final draftService = ref.read(createDraftServiceProvider);
     final result = await ref.read(groupsRepositoryProvider).createGroup(state);
-    return result.fold((error) => error, (_) => null);
+    if (!ref.mounted) {
+      return null;
+    }
+
+    return await result.fold((error) async => error, (_) async {
+      await draftService.clearGroupDraft();
+      if (!ref.mounted) {
+        return null;
+      }
+
+      ref.invalidate(createGroupDraftProvider);
+      return null;
+    });
+  }
+
+  bool _hasDraft(CreateGroupFormModel form) {
+    return form.title.trim().isNotEmpty ||
+        form.addressDetails.value.trim().isNotEmpty ||
+        form.selectedCityId != 0 ||
+        form.lookingForGenderId != 0 ||
+        form.ageFrom != 18 ||
+        form.ageTo != 60 ||
+        form.participantsCount != 1 ||
+        form.childrenAllowed ||
+        form.partnerAllowed ||
+        form.petsAllowed ||
+        form.smokingAllowed ||
+        form.communicationId != 0 ||
+        form.sleepId != 0 ||
+        form.employmentId != 0 ||
+        form.badHabitsId != 0 ||
+        form.guestsId != 0 ||
+        form.noiseLevelId != 0 ||
+        form.cleaningId != 0 ||
+        form.petsId != 0 ||
+        form.petsAttitudeId != 0 ||
+        form.propertyTypeId != 0 ||
+        form.apartmentNumber.trim().isNotEmpty ||
+        form.roomsCountId != 0 ||
+        form.apartmentArea > 0 ||
+        form.floor > 0 ||
+        form.totalFloors > 0 ||
+        form.description.trim().isNotEmpty ||
+        form.furnitureId != 0 ||
+        form.amenitiesIds.isNotEmpty ||
+        form.bathroomIds.isNotEmpty ||
+        form.appliancesIds.isNotEmpty ||
+        form.currencyId != 0 ||
+        form.pricePerPerson > 0 ||
+        form.rentDurationId != 0 ||
+        form.utilitiesPaymentId != 0 ||
+        form.imageUrls.isNotEmpty;
+  }
+
+  Future<void> _syncDraft(CreateGroupFormModel form) async {
+    final draftService = ref.read(createDraftServiceProvider);
+    if (_hasDraft(form)) {
+      await draftService.saveGroupDraft(form);
+    } else {
+      await draftService.clearGroupDraft();
+    }
+
+    if (!ref.mounted) {
+      return;
+    }
+    ref.invalidate(createGroupDraftProvider);
   }
 }

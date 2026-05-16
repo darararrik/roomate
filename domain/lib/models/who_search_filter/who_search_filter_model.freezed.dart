@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WhoSearchFilterModel {
 
- GenderEnum? get gender; int? get minAge; int? get maxAge; int? get minGroupSize; int? get maxGroupSize; String get searchQuery; bool get childrenAllowed; bool get partnerAllowed; bool get petsAllowed; bool get smokingAllowed;
+ int get limit; int get offset; String get smartQuery; String get cityFiasId; String get district; GenderEnum? get desiredGender; int? get minAge; int? get maxAge; int? get minParticipantsCount; int? get maxParticipantsCount; List<int> get propertyTypeIds; List<int> get roomsCountIds; double? get minPrice; double? get maxPrice; int get rentDurationId; bool get childrenAllowed; bool get partnerAllowed; bool get petsAllowed; bool get smokingAllowed; WhoSearchSortType get sortType; String get locationTitle; String get addressQuery; bool get utilitiesPayment;
 /// Create a copy of WhoSearchFilterModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $WhoSearchFilterModelCopyWith<WhoSearchFilterModel> get copyWith => _$WhoSearchF
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WhoSearchFilterModel&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.minGroupSize, minGroupSize) || other.minGroupSize == minGroupSize)&&(identical(other.maxGroupSize, maxGroupSize) || other.maxGroupSize == maxGroupSize)&&(identical(other.searchQuery, searchQuery) || other.searchQuery == searchQuery)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.partnerAllowed, partnerAllowed) || other.partnerAllowed == partnerAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.smokingAllowed, smokingAllowed) || other.smokingAllowed == smokingAllowed));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WhoSearchFilterModel&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.offset, offset) || other.offset == offset)&&(identical(other.smartQuery, smartQuery) || other.smartQuery == smartQuery)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.district, district) || other.district == district)&&(identical(other.desiredGender, desiredGender) || other.desiredGender == desiredGender)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.minParticipantsCount, minParticipantsCount) || other.minParticipantsCount == minParticipantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&const DeepCollectionEquality().equals(other.propertyTypeIds, propertyTypeIds)&&const DeepCollectionEquality().equals(other.roomsCountIds, roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.partnerAllowed, partnerAllowed) || other.partnerAllowed == partnerAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.smokingAllowed, smokingAllowed) || other.smokingAllowed == smokingAllowed)&&(identical(other.sortType, sortType) || other.sortType == sortType)&&(identical(other.locationTitle, locationTitle) || other.locationTitle == locationTitle)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.utilitiesPayment, utilitiesPayment) || other.utilitiesPayment == utilitiesPayment));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,gender,minAge,maxAge,minGroupSize,maxGroupSize,searchQuery,childrenAllowed,partnerAllowed,petsAllowed,smokingAllowed);
+int get hashCode => Object.hashAll([runtimeType,limit,offset,smartQuery,cityFiasId,district,desiredGender,minAge,maxAge,minParticipantsCount,maxParticipantsCount,const DeepCollectionEquality().hash(propertyTypeIds),const DeepCollectionEquality().hash(roomsCountIds),minPrice,maxPrice,rentDurationId,childrenAllowed,partnerAllowed,petsAllowed,smokingAllowed,sortType,locationTitle,addressQuery,utilitiesPayment]);
 
 @override
 String toString() {
-  return 'WhoSearchFilterModel(gender: $gender, minAge: $minAge, maxAge: $maxAge, minGroupSize: $minGroupSize, maxGroupSize: $maxGroupSize, searchQuery: $searchQuery, childrenAllowed: $childrenAllowed, partnerAllowed: $partnerAllowed, petsAllowed: $petsAllowed, smokingAllowed: $smokingAllowed)';
+  return 'WhoSearchFilterModel(limit: $limit, offset: $offset, smartQuery: $smartQuery, cityFiasId: $cityFiasId, district: $district, desiredGender: $desiredGender, minAge: $minAge, maxAge: $maxAge, minParticipantsCount: $minParticipantsCount, maxParticipantsCount: $maxParticipantsCount, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, childrenAllowed: $childrenAllowed, partnerAllowed: $partnerAllowed, petsAllowed: $petsAllowed, smokingAllowed: $smokingAllowed, sortType: $sortType, locationTitle: $locationTitle, addressQuery: $addressQuery, utilitiesPayment: $utilitiesPayment)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $WhoSearchFilterModelCopyWith<$Res>  {
   factory $WhoSearchFilterModelCopyWith(WhoSearchFilterModel value, $Res Function(WhoSearchFilterModel) _then) = _$WhoSearchFilterModelCopyWithImpl;
 @useResult
 $Res call({
- GenderEnum? gender, int? minAge, int? maxAge, int? minGroupSize, int? maxGroupSize, String searchQuery, bool childrenAllowed, bool partnerAllowed, bool petsAllowed, bool smokingAllowed
+ int limit, int offset, String smartQuery, String cityFiasId, String district, GenderEnum? desiredGender, int? minAge, int? maxAge, int? minParticipantsCount, int? maxParticipantsCount, List<int> propertyTypeIds, List<int> roomsCountIds, double? minPrice, double? maxPrice, int rentDurationId, bool childrenAllowed, bool partnerAllowed, bool petsAllowed, bool smokingAllowed, WhoSearchSortType sortType, String locationTitle, String addressQuery, bool utilitiesPayment
 });
 
 
@@ -62,18 +62,31 @@ class _$WhoSearchFilterModelCopyWithImpl<$Res>
 
 /// Create a copy of WhoSearchFilterModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? gender = freezed,Object? minAge = freezed,Object? maxAge = freezed,Object? minGroupSize = freezed,Object? maxGroupSize = freezed,Object? searchQuery = null,Object? childrenAllowed = null,Object? partnerAllowed = null,Object? petsAllowed = null,Object? smokingAllowed = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? limit = null,Object? offset = null,Object? smartQuery = null,Object? cityFiasId = null,Object? district = null,Object? desiredGender = freezed,Object? minAge = freezed,Object? maxAge = freezed,Object? minParticipantsCount = freezed,Object? maxParticipantsCount = freezed,Object? propertyTypeIds = null,Object? roomsCountIds = null,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = null,Object? childrenAllowed = null,Object? partnerAllowed = null,Object? petsAllowed = null,Object? smokingAllowed = null,Object? sortType = null,Object? locationTitle = null,Object? addressQuery = null,Object? utilitiesPayment = null,}) {
   return _then(_self.copyWith(
-gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+limit: null == limit ? _self.limit : limit // ignore: cast_nullable_to_non_nullable
+as int,offset: null == offset ? _self.offset : offset // ignore: cast_nullable_to_non_nullable
+as int,smartQuery: null == smartQuery ? _self.smartQuery : smartQuery // ignore: cast_nullable_to_non_nullable
+as String,cityFiasId: null == cityFiasId ? _self.cityFiasId : cityFiasId // ignore: cast_nullable_to_non_nullable
+as String,district: null == district ? _self.district : district // ignore: cast_nullable_to_non_nullable
+as String,desiredGender: freezed == desiredGender ? _self.desiredGender : desiredGender // ignore: cast_nullable_to_non_nullable
 as GenderEnum?,minAge: freezed == minAge ? _self.minAge : minAge // ignore: cast_nullable_to_non_nullable
 as int?,maxAge: freezed == maxAge ? _self.maxAge : maxAge // ignore: cast_nullable_to_non_nullable
-as int?,minGroupSize: freezed == minGroupSize ? _self.minGroupSize : minGroupSize // ignore: cast_nullable_to_non_nullable
-as int?,maxGroupSize: freezed == maxGroupSize ? _self.maxGroupSize : maxGroupSize // ignore: cast_nullable_to_non_nullable
-as int?,searchQuery: null == searchQuery ? _self.searchQuery : searchQuery // ignore: cast_nullable_to_non_nullable
-as String,childrenAllowed: null == childrenAllowed ? _self.childrenAllowed : childrenAllowed // ignore: cast_nullable_to_non_nullable
+as int?,minParticipantsCount: freezed == minParticipantsCount ? _self.minParticipantsCount : minParticipantsCount // ignore: cast_nullable_to_non_nullable
+as int?,maxParticipantsCount: freezed == maxParticipantsCount ? _self.maxParticipantsCount : maxParticipantsCount // ignore: cast_nullable_to_non_nullable
+as int?,propertyTypeIds: null == propertyTypeIds ? _self.propertyTypeIds : propertyTypeIds // ignore: cast_nullable_to_non_nullable
+as List<int>,roomsCountIds: null == roomsCountIds ? _self.roomsCountIds : roomsCountIds // ignore: cast_nullable_to_non_nullable
+as List<int>,minPrice: freezed == minPrice ? _self.minPrice : minPrice // ignore: cast_nullable_to_non_nullable
+as double?,maxPrice: freezed == maxPrice ? _self.maxPrice : maxPrice // ignore: cast_nullable_to_non_nullable
+as double?,rentDurationId: null == rentDurationId ? _self.rentDurationId : rentDurationId // ignore: cast_nullable_to_non_nullable
+as int,childrenAllowed: null == childrenAllowed ? _self.childrenAllowed : childrenAllowed // ignore: cast_nullable_to_non_nullable
 as bool,partnerAllowed: null == partnerAllowed ? _self.partnerAllowed : partnerAllowed // ignore: cast_nullable_to_non_nullable
 as bool,petsAllowed: null == petsAllowed ? _self.petsAllowed : petsAllowed // ignore: cast_nullable_to_non_nullable
 as bool,smokingAllowed: null == smokingAllowed ? _self.smokingAllowed : smokingAllowed // ignore: cast_nullable_to_non_nullable
+as bool,sortType: null == sortType ? _self.sortType : sortType // ignore: cast_nullable_to_non_nullable
+as WhoSearchSortType,locationTitle: null == locationTitle ? _self.locationTitle : locationTitle // ignore: cast_nullable_to_non_nullable
+as String,addressQuery: null == addressQuery ? _self.addressQuery : addressQuery // ignore: cast_nullable_to_non_nullable
+as String,utilitiesPayment: null == utilitiesPayment ? _self.utilitiesPayment : utilitiesPayment // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -156,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenderEnum? gender,  int? minAge,  int? maxAge,  int? minGroupSize,  int? maxGroupSize,  String searchQuery,  bool childrenAllowed,  bool partnerAllowed,  bool petsAllowed,  bool smokingAllowed)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int limit,  int offset,  String smartQuery,  String cityFiasId,  String district,  GenderEnum? desiredGender,  int? minAge,  int? maxAge,  int? minParticipantsCount,  int? maxParticipantsCount,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  bool childrenAllowed,  bool partnerAllowed,  bool petsAllowed,  bool smokingAllowed,  WhoSearchSortType sortType,  String locationTitle,  String addressQuery,  bool utilitiesPayment)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WhoSearchFilterModel() when $default != null:
-return $default(_that.gender,_that.minAge,_that.maxAge,_that.minGroupSize,_that.maxGroupSize,_that.searchQuery,_that.childrenAllowed,_that.partnerAllowed,_that.petsAllowed,_that.smokingAllowed);case _:
+return $default(_that.limit,_that.offset,_that.smartQuery,_that.cityFiasId,_that.district,_that.desiredGender,_that.minAge,_that.maxAge,_that.minParticipantsCount,_that.maxParticipantsCount,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.childrenAllowed,_that.partnerAllowed,_that.petsAllowed,_that.smokingAllowed,_that.sortType,_that.locationTitle,_that.addressQuery,_that.utilitiesPayment);case _:
   return orElse();
 
 }
@@ -177,10 +190,10 @@ return $default(_that.gender,_that.minAge,_that.maxAge,_that.minGroupSize,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenderEnum? gender,  int? minAge,  int? maxAge,  int? minGroupSize,  int? maxGroupSize,  String searchQuery,  bool childrenAllowed,  bool partnerAllowed,  bool petsAllowed,  bool smokingAllowed)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int limit,  int offset,  String smartQuery,  String cityFiasId,  String district,  GenderEnum? desiredGender,  int? minAge,  int? maxAge,  int? minParticipantsCount,  int? maxParticipantsCount,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  bool childrenAllowed,  bool partnerAllowed,  bool petsAllowed,  bool smokingAllowed,  WhoSearchSortType sortType,  String locationTitle,  String addressQuery,  bool utilitiesPayment)  $default,) {final _that = this;
 switch (_that) {
 case _WhoSearchFilterModel():
-return $default(_that.gender,_that.minAge,_that.maxAge,_that.minGroupSize,_that.maxGroupSize,_that.searchQuery,_that.childrenAllowed,_that.partnerAllowed,_that.petsAllowed,_that.smokingAllowed);}
+return $default(_that.limit,_that.offset,_that.smartQuery,_that.cityFiasId,_that.district,_that.desiredGender,_that.minAge,_that.maxAge,_that.minParticipantsCount,_that.maxParticipantsCount,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.childrenAllowed,_that.partnerAllowed,_that.petsAllowed,_that.smokingAllowed,_that.sortType,_that.locationTitle,_that.addressQuery,_that.utilitiesPayment);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -194,10 +207,10 @@ return $default(_that.gender,_that.minAge,_that.maxAge,_that.minGroupSize,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenderEnum? gender,  int? minAge,  int? maxAge,  int? minGroupSize,  int? maxGroupSize,  String searchQuery,  bool childrenAllowed,  bool partnerAllowed,  bool petsAllowed,  bool smokingAllowed)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int limit,  int offset,  String smartQuery,  String cityFiasId,  String district,  GenderEnum? desiredGender,  int? minAge,  int? maxAge,  int? minParticipantsCount,  int? maxParticipantsCount,  List<int> propertyTypeIds,  List<int> roomsCountIds,  double? minPrice,  double? maxPrice,  int rentDurationId,  bool childrenAllowed,  bool partnerAllowed,  bool petsAllowed,  bool smokingAllowed,  WhoSearchSortType sortType,  String locationTitle,  String addressQuery,  bool utilitiesPayment)?  $default,) {final _that = this;
 switch (_that) {
 case _WhoSearchFilterModel() when $default != null:
-return $default(_that.gender,_that.minAge,_that.maxAge,_that.minGroupSize,_that.maxGroupSize,_that.searchQuery,_that.childrenAllowed,_that.partnerAllowed,_that.petsAllowed,_that.smokingAllowed);case _:
+return $default(_that.limit,_that.offset,_that.smartQuery,_that.cityFiasId,_that.district,_that.desiredGender,_that.minAge,_that.maxAge,_that.minParticipantsCount,_that.maxParticipantsCount,_that.propertyTypeIds,_that.roomsCountIds,_that.minPrice,_that.maxPrice,_that.rentDurationId,_that.childrenAllowed,_that.partnerAllowed,_that.petsAllowed,_that.smokingAllowed,_that.sortType,_that.locationTitle,_that.addressQuery,_that.utilitiesPayment);case _:
   return null;
 
 }
@@ -209,19 +222,44 @@ return $default(_that.gender,_that.minAge,_that.maxAge,_that.minGroupSize,_that.
 
 
 class _WhoSearchFilterModel implements WhoSearchFilterModel {
-  const _WhoSearchFilterModel({this.gender, this.minAge, this.maxAge, this.minGroupSize, this.maxGroupSize, this.searchQuery = '', this.childrenAllowed = false, this.partnerAllowed = false, this.petsAllowed = false, this.smokingAllowed = false});
+  const _WhoSearchFilterModel({this.limit = 20, this.offset = 0, this.smartQuery = '', this.cityFiasId = '', this.district = '', this.desiredGender, this.minAge, this.maxAge, this.minParticipantsCount, this.maxParticipantsCount, final  List<int> propertyTypeIds = const [], final  List<int> roomsCountIds = const [], this.minPrice, this.maxPrice, this.rentDurationId = 0, this.childrenAllowed = false, this.partnerAllowed = false, this.petsAllowed = false, this.smokingAllowed = false, this.sortType = WhoSearchSortType.publishDateDesc, this.locationTitle = '', this.addressQuery = '', this.utilitiesPayment = false}): _propertyTypeIds = propertyTypeIds,_roomsCountIds = roomsCountIds;
   
 
-@override final  GenderEnum? gender;
+@override@JsonKey() final  int limit;
+@override@JsonKey() final  int offset;
+@override@JsonKey() final  String smartQuery;
+@override@JsonKey() final  String cityFiasId;
+@override@JsonKey() final  String district;
+@override final  GenderEnum? desiredGender;
 @override final  int? minAge;
 @override final  int? maxAge;
-@override final  int? minGroupSize;
-@override final  int? maxGroupSize;
-@override@JsonKey() final  String searchQuery;
+@override final  int? minParticipantsCount;
+@override final  int? maxParticipantsCount;
+ final  List<int> _propertyTypeIds;
+@override@JsonKey() List<int> get propertyTypeIds {
+  if (_propertyTypeIds is EqualUnmodifiableListView) return _propertyTypeIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_propertyTypeIds);
+}
+
+ final  List<int> _roomsCountIds;
+@override@JsonKey() List<int> get roomsCountIds {
+  if (_roomsCountIds is EqualUnmodifiableListView) return _roomsCountIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_roomsCountIds);
+}
+
+@override final  double? minPrice;
+@override final  double? maxPrice;
+@override@JsonKey() final  int rentDurationId;
 @override@JsonKey() final  bool childrenAllowed;
 @override@JsonKey() final  bool partnerAllowed;
 @override@JsonKey() final  bool petsAllowed;
 @override@JsonKey() final  bool smokingAllowed;
+@override@JsonKey() final  WhoSearchSortType sortType;
+@override@JsonKey() final  String locationTitle;
+@override@JsonKey() final  String addressQuery;
+@override@JsonKey() final  bool utilitiesPayment;
 
 /// Create a copy of WhoSearchFilterModel
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +271,16 @@ _$WhoSearchFilterModelCopyWith<_WhoSearchFilterModel> get copyWith => __$WhoSear
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WhoSearchFilterModel&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.minGroupSize, minGroupSize) || other.minGroupSize == minGroupSize)&&(identical(other.maxGroupSize, maxGroupSize) || other.maxGroupSize == maxGroupSize)&&(identical(other.searchQuery, searchQuery) || other.searchQuery == searchQuery)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.partnerAllowed, partnerAllowed) || other.partnerAllowed == partnerAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.smokingAllowed, smokingAllowed) || other.smokingAllowed == smokingAllowed));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WhoSearchFilterModel&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.offset, offset) || other.offset == offset)&&(identical(other.smartQuery, smartQuery) || other.smartQuery == smartQuery)&&(identical(other.cityFiasId, cityFiasId) || other.cityFiasId == cityFiasId)&&(identical(other.district, district) || other.district == district)&&(identical(other.desiredGender, desiredGender) || other.desiredGender == desiredGender)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.minParticipantsCount, minParticipantsCount) || other.minParticipantsCount == minParticipantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&const DeepCollectionEquality().equals(other._propertyTypeIds, _propertyTypeIds)&&const DeepCollectionEquality().equals(other._roomsCountIds, _roomsCountIds)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&(identical(other.childrenAllowed, childrenAllowed) || other.childrenAllowed == childrenAllowed)&&(identical(other.partnerAllowed, partnerAllowed) || other.partnerAllowed == partnerAllowed)&&(identical(other.petsAllowed, petsAllowed) || other.petsAllowed == petsAllowed)&&(identical(other.smokingAllowed, smokingAllowed) || other.smokingAllowed == smokingAllowed)&&(identical(other.sortType, sortType) || other.sortType == sortType)&&(identical(other.locationTitle, locationTitle) || other.locationTitle == locationTitle)&&(identical(other.addressQuery, addressQuery) || other.addressQuery == addressQuery)&&(identical(other.utilitiesPayment, utilitiesPayment) || other.utilitiesPayment == utilitiesPayment));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,gender,minAge,maxAge,minGroupSize,maxGroupSize,searchQuery,childrenAllowed,partnerAllowed,petsAllowed,smokingAllowed);
+int get hashCode => Object.hashAll([runtimeType,limit,offset,smartQuery,cityFiasId,district,desiredGender,minAge,maxAge,minParticipantsCount,maxParticipantsCount,const DeepCollectionEquality().hash(_propertyTypeIds),const DeepCollectionEquality().hash(_roomsCountIds),minPrice,maxPrice,rentDurationId,childrenAllowed,partnerAllowed,petsAllowed,smokingAllowed,sortType,locationTitle,addressQuery,utilitiesPayment]);
 
 @override
 String toString() {
-  return 'WhoSearchFilterModel(gender: $gender, minAge: $minAge, maxAge: $maxAge, minGroupSize: $minGroupSize, maxGroupSize: $maxGroupSize, searchQuery: $searchQuery, childrenAllowed: $childrenAllowed, partnerAllowed: $partnerAllowed, petsAllowed: $petsAllowed, smokingAllowed: $smokingAllowed)';
+  return 'WhoSearchFilterModel(limit: $limit, offset: $offset, smartQuery: $smartQuery, cityFiasId: $cityFiasId, district: $district, desiredGender: $desiredGender, minAge: $minAge, maxAge: $maxAge, minParticipantsCount: $minParticipantsCount, maxParticipantsCount: $maxParticipantsCount, propertyTypeIds: $propertyTypeIds, roomsCountIds: $roomsCountIds, minPrice: $minPrice, maxPrice: $maxPrice, rentDurationId: $rentDurationId, childrenAllowed: $childrenAllowed, partnerAllowed: $partnerAllowed, petsAllowed: $petsAllowed, smokingAllowed: $smokingAllowed, sortType: $sortType, locationTitle: $locationTitle, addressQuery: $addressQuery, utilitiesPayment: $utilitiesPayment)';
 }
 
 
@@ -253,7 +291,7 @@ abstract mixin class _$WhoSearchFilterModelCopyWith<$Res> implements $WhoSearchF
   factory _$WhoSearchFilterModelCopyWith(_WhoSearchFilterModel value, $Res Function(_WhoSearchFilterModel) _then) = __$WhoSearchFilterModelCopyWithImpl;
 @override @useResult
 $Res call({
- GenderEnum? gender, int? minAge, int? maxAge, int? minGroupSize, int? maxGroupSize, String searchQuery, bool childrenAllowed, bool partnerAllowed, bool petsAllowed, bool smokingAllowed
+ int limit, int offset, String smartQuery, String cityFiasId, String district, GenderEnum? desiredGender, int? minAge, int? maxAge, int? minParticipantsCount, int? maxParticipantsCount, List<int> propertyTypeIds, List<int> roomsCountIds, double? minPrice, double? maxPrice, int rentDurationId, bool childrenAllowed, bool partnerAllowed, bool petsAllowed, bool smokingAllowed, WhoSearchSortType sortType, String locationTitle, String addressQuery, bool utilitiesPayment
 });
 
 
@@ -270,18 +308,31 @@ class __$WhoSearchFilterModelCopyWithImpl<$Res>
 
 /// Create a copy of WhoSearchFilterModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? gender = freezed,Object? minAge = freezed,Object? maxAge = freezed,Object? minGroupSize = freezed,Object? maxGroupSize = freezed,Object? searchQuery = null,Object? childrenAllowed = null,Object? partnerAllowed = null,Object? petsAllowed = null,Object? smokingAllowed = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? limit = null,Object? offset = null,Object? smartQuery = null,Object? cityFiasId = null,Object? district = null,Object? desiredGender = freezed,Object? minAge = freezed,Object? maxAge = freezed,Object? minParticipantsCount = freezed,Object? maxParticipantsCount = freezed,Object? propertyTypeIds = null,Object? roomsCountIds = null,Object? minPrice = freezed,Object? maxPrice = freezed,Object? rentDurationId = null,Object? childrenAllowed = null,Object? partnerAllowed = null,Object? petsAllowed = null,Object? smokingAllowed = null,Object? sortType = null,Object? locationTitle = null,Object? addressQuery = null,Object? utilitiesPayment = null,}) {
   return _then(_WhoSearchFilterModel(
-gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+limit: null == limit ? _self.limit : limit // ignore: cast_nullable_to_non_nullable
+as int,offset: null == offset ? _self.offset : offset // ignore: cast_nullable_to_non_nullable
+as int,smartQuery: null == smartQuery ? _self.smartQuery : smartQuery // ignore: cast_nullable_to_non_nullable
+as String,cityFiasId: null == cityFiasId ? _self.cityFiasId : cityFiasId // ignore: cast_nullable_to_non_nullable
+as String,district: null == district ? _self.district : district // ignore: cast_nullable_to_non_nullable
+as String,desiredGender: freezed == desiredGender ? _self.desiredGender : desiredGender // ignore: cast_nullable_to_non_nullable
 as GenderEnum?,minAge: freezed == minAge ? _self.minAge : minAge // ignore: cast_nullable_to_non_nullable
 as int?,maxAge: freezed == maxAge ? _self.maxAge : maxAge // ignore: cast_nullable_to_non_nullable
-as int?,minGroupSize: freezed == minGroupSize ? _self.minGroupSize : minGroupSize // ignore: cast_nullable_to_non_nullable
-as int?,maxGroupSize: freezed == maxGroupSize ? _self.maxGroupSize : maxGroupSize // ignore: cast_nullable_to_non_nullable
-as int?,searchQuery: null == searchQuery ? _self.searchQuery : searchQuery // ignore: cast_nullable_to_non_nullable
-as String,childrenAllowed: null == childrenAllowed ? _self.childrenAllowed : childrenAllowed // ignore: cast_nullable_to_non_nullable
+as int?,minParticipantsCount: freezed == minParticipantsCount ? _self.minParticipantsCount : minParticipantsCount // ignore: cast_nullable_to_non_nullable
+as int?,maxParticipantsCount: freezed == maxParticipantsCount ? _self.maxParticipantsCount : maxParticipantsCount // ignore: cast_nullable_to_non_nullable
+as int?,propertyTypeIds: null == propertyTypeIds ? _self._propertyTypeIds : propertyTypeIds // ignore: cast_nullable_to_non_nullable
+as List<int>,roomsCountIds: null == roomsCountIds ? _self._roomsCountIds : roomsCountIds // ignore: cast_nullable_to_non_nullable
+as List<int>,minPrice: freezed == minPrice ? _self.minPrice : minPrice // ignore: cast_nullable_to_non_nullable
+as double?,maxPrice: freezed == maxPrice ? _self.maxPrice : maxPrice // ignore: cast_nullable_to_non_nullable
+as double?,rentDurationId: null == rentDurationId ? _self.rentDurationId : rentDurationId // ignore: cast_nullable_to_non_nullable
+as int,childrenAllowed: null == childrenAllowed ? _self.childrenAllowed : childrenAllowed // ignore: cast_nullable_to_non_nullable
 as bool,partnerAllowed: null == partnerAllowed ? _self.partnerAllowed : partnerAllowed // ignore: cast_nullable_to_non_nullable
 as bool,petsAllowed: null == petsAllowed ? _self.petsAllowed : petsAllowed // ignore: cast_nullable_to_non_nullable
 as bool,smokingAllowed: null == smokingAllowed ? _self.smokingAllowed : smokingAllowed // ignore: cast_nullable_to_non_nullable
+as bool,sortType: null == sortType ? _self.sortType : sortType // ignore: cast_nullable_to_non_nullable
+as WhoSearchSortType,locationTitle: null == locationTitle ? _self.locationTitle : locationTitle // ignore: cast_nullable_to_non_nullable
+as String,addressQuery: null == addressQuery ? _self.addressQuery : addressQuery // ignore: cast_nullable_to_non_nullable
+as String,utilitiesPayment: null == utilitiesPayment ? _self.utilitiesPayment : utilitiesPayment // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

@@ -8,7 +8,7 @@ class GroupsMockJson {
       'match_percent': 95,
       'participants_count': 4,
       'max_participants_count': 5,
-      'apartament': {
+      'apartment': {
         'id': "101",
         'title': 'Тихий уголок в центре',
         'description':
@@ -61,7 +61,7 @@ class GroupsMockJson {
       'match_percent': 87,
       'participants_count': 2,
       'max_participants_count': 3,
-      'apartament': {
+      'apartment': {
         'id': "102",
         'title': 'Спокойная квартира для студентов',
         'description':
@@ -89,7 +89,14 @@ class GroupsMockJson {
         'balcony_type': 'loggia',
         'stove_type': 'electric',
         'rental_period': 'severalMonths',
-        'amenities': ['internet', 'dishes', 'fridge', 'tv', 'washingMachine', 'childrenAllowed'],
+        'amenities': [
+          'internet',
+          'dishes',
+          'fridge',
+          'tv',
+          'washingMachine',
+          'childrenAllowed',
+        ],
       },
     },
   ];
@@ -153,7 +160,11 @@ class GroupsMockJson {
     'group_2': {
       'group_id': 'group_2',
       'who_group_is_looking_for': ['Студенты', '20-27 лет'],
-      'living_rules': ['👶 Без детей', '🚬 Без курения', '🎉 Без шумных вечеринок'],
+      'living_rules': [
+        '👶 Без детей',
+        '🚬 Без курения',
+        '🎉 Без шумных вечеринок',
+      ],
       'apartment_lifestyle': [
         {'title': 'Общительность', 'value': 'Интроверт'},
         {'title': 'Режим сна', 'value': 'Сова'},

@@ -18,6 +18,8 @@ abstract class ApartamentData with _$ApartamentData {
     @JsonKey(name: 'total_floor') int? totalFloor,
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'city_id') int? cityId,
+    @JsonKey(name: 'city_fias_id') String? cityFiasId,
+    @JsonKey(name: 'district') String? district,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'role') String? role,
     @JsonKey(name: 'publish_date') String? publishDate,
@@ -37,5 +39,6 @@ abstract class ApartamentData with _$ApartamentData {
     @JsonKey(name: 'amenities') List<String>? amenities,
   }) = _ApartamentData;
 
-  factory ApartamentData.fromJson(Map<String, dynamic> json) => _$ApartamentDataFromJson(json);
+  factory ApartamentData.fromJson(Map<String, dynamic> json) =>
+      _$ApartamentDataFromJson(json);
 }

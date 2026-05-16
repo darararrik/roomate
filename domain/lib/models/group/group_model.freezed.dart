@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GroupModel {
 
- String get id; String get title; String get description; int get matchPercent; int get participantsCount; int get maxParticipantsCount; ApartamentModel get apartament;
+ String get id; String get title; String get description; int get matchPercent; int get participantsCount; int get maxParticipantsCount; List<String> get participantAvatars; String get price; String get status; String get applicationStatus; String get ownerUserId; GroupConditionsModel get conditions; ApartamentModel get apartament;
 /// Create a copy of GroupModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $GroupModelCopyWith<GroupModel> get copyWith => _$GroupModelCopyWithImpl<GroupMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroupModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&(identical(other.apartament, apartament) || other.apartament == apartament));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroupModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&const DeepCollectionEquality().equals(other.participantAvatars, participantAvatars)&&(identical(other.price, price) || other.price == price)&&(identical(other.status, status) || other.status == status)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.ownerUserId, ownerUserId) || other.ownerUserId == ownerUserId)&&(identical(other.conditions, conditions) || other.conditions == conditions)&&(identical(other.apartament, apartament) || other.apartament == apartament));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,matchPercent,participantsCount,maxParticipantsCount,apartament);
+int get hashCode => Object.hash(runtimeType,id,title,description,matchPercent,participantsCount,maxParticipantsCount,const DeepCollectionEquality().hash(participantAvatars),price,status,applicationStatus,ownerUserId,conditions,apartament);
 
 @override
 String toString() {
-  return 'GroupModel(id: $id, title: $title, description: $description, matchPercent: $matchPercent, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, apartament: $apartament)';
+  return 'GroupModel(id: $id, title: $title, description: $description, matchPercent: $matchPercent, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, participantAvatars: $participantAvatars, price: $price, status: $status, applicationStatus: $applicationStatus, ownerUserId: $ownerUserId, conditions: $conditions, apartament: $apartament)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $GroupModelCopyWith<$Res>  {
   factory $GroupModelCopyWith(GroupModel value, $Res Function(GroupModel) _then) = _$GroupModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String description, int matchPercent, int participantsCount, int maxParticipantsCount, ApartamentModel apartament
+ String id, String title, String description, int matchPercent, int participantsCount, int maxParticipantsCount, List<String> participantAvatars, String price, String status, String applicationStatus, String ownerUserId, GroupConditionsModel conditions, ApartamentModel apartament
 });
 
 
-$ApartamentModelCopyWith<$Res> get apartament;
+$GroupConditionsModelCopyWith<$Res> get conditions;$ApartamentModelCopyWith<$Res> get apartament;
 
 }
 /// @nodoc
@@ -62,7 +62,7 @@ class _$GroupModelCopyWithImpl<$Res>
 
 /// Create a copy of GroupModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? matchPercent = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? apartament = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? matchPercent = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? participantAvatars = null,Object? price = null,Object? status = null,Object? applicationStatus = null,Object? ownerUserId = null,Object? conditions = null,Object? apartament = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -70,11 +70,26 @@ as String,description: null == description ? _self.description : description // 
 as String,matchPercent: null == matchPercent ? _self.matchPercent : matchPercent // ignore: cast_nullable_to_non_nullable
 as int,participantsCount: null == participantsCount ? _self.participantsCount : participantsCount // ignore: cast_nullable_to_non_nullable
 as int,maxParticipantsCount: null == maxParticipantsCount ? _self.maxParticipantsCount : maxParticipantsCount // ignore: cast_nullable_to_non_nullable
-as int,apartament: null == apartament ? _self.apartament : apartament // ignore: cast_nullable_to_non_nullable
+as int,participantAvatars: null == participantAvatars ? _self.participantAvatars : participantAvatars // ignore: cast_nullable_to_non_nullable
+as List<String>,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,applicationStatus: null == applicationStatus ? _self.applicationStatus : applicationStatus // ignore: cast_nullable_to_non_nullable
+as String,ownerUserId: null == ownerUserId ? _self.ownerUserId : ownerUserId // ignore: cast_nullable_to_non_nullable
+as String,conditions: null == conditions ? _self.conditions : conditions // ignore: cast_nullable_to_non_nullable
+as GroupConditionsModel,apartament: null == apartament ? _self.apartament : apartament // ignore: cast_nullable_to_non_nullable
 as ApartamentModel,
   ));
 }
 /// Create a copy of GroupModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GroupConditionsModelCopyWith<$Res> get conditions {
+  
+  return $GroupConditionsModelCopyWith<$Res>(_self.conditions, (value) {
+    return _then(_self.copyWith(conditions: value));
+  });
+}/// Create a copy of GroupModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -162,10 +177,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  int matchPercent,  int participantsCount,  int maxParticipantsCount,  ApartamentModel apartament)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  int matchPercent,  int participantsCount,  int maxParticipantsCount,  List<String> participantAvatars,  String price,  String status,  String applicationStatus,  String ownerUserId,  GroupConditionsModel conditions,  ApartamentModel apartament)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GroupModel() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.participantsCount,_that.maxParticipantsCount,_that.apartament);case _:
+return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.participantsCount,_that.maxParticipantsCount,_that.participantAvatars,_that.price,_that.status,_that.applicationStatus,_that.ownerUserId,_that.conditions,_that.apartament);case _:
   return orElse();
 
 }
@@ -183,10 +198,10 @@ return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  int matchPercent,  int participantsCount,  int maxParticipantsCount,  ApartamentModel apartament)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  int matchPercent,  int participantsCount,  int maxParticipantsCount,  List<String> participantAvatars,  String price,  String status,  String applicationStatus,  String ownerUserId,  GroupConditionsModel conditions,  ApartamentModel apartament)  $default,) {final _that = this;
 switch (_that) {
 case _GroupModel():
-return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.participantsCount,_that.maxParticipantsCount,_that.apartament);}
+return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.participantsCount,_that.maxParticipantsCount,_that.participantAvatars,_that.price,_that.status,_that.applicationStatus,_that.ownerUserId,_that.conditions,_that.apartament);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -200,10 +215,10 @@ return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  int matchPercent,  int participantsCount,  int maxParticipantsCount,  ApartamentModel apartament)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  int matchPercent,  int participantsCount,  int maxParticipantsCount,  List<String> participantAvatars,  String price,  String status,  String applicationStatus,  String ownerUserId,  GroupConditionsModel conditions,  ApartamentModel apartament)?  $default,) {final _that = this;
 switch (_that) {
 case _GroupModel() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.participantsCount,_that.maxParticipantsCount,_that.apartament);case _:
+return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.participantsCount,_that.maxParticipantsCount,_that.participantAvatars,_that.price,_that.status,_that.applicationStatus,_that.ownerUserId,_that.conditions,_that.apartament);case _:
   return null;
 
 }
@@ -215,7 +230,7 @@ return $default(_that.id,_that.title,_that.description,_that.matchPercent,_that.
 
 
 class _GroupModel implements GroupModel {
-  const _GroupModel({this.id = '', this.title = '', this.description = '', this.matchPercent = 0, this.participantsCount = 0, this.maxParticipantsCount = 0, this.apartament = const ApartamentModel()});
+  const _GroupModel({this.id = '', this.title = '', this.description = '', this.matchPercent = 0, this.participantsCount = 0, this.maxParticipantsCount = 0, final  List<String> participantAvatars = const [], this.price = '', this.status = '', this.applicationStatus = '', this.ownerUserId = '', this.conditions = const GroupConditionsModel(), this.apartament = const ApartamentModel()}): _participantAvatars = participantAvatars;
   
 
 @override@JsonKey() final  String id;
@@ -224,6 +239,18 @@ class _GroupModel implements GroupModel {
 @override@JsonKey() final  int matchPercent;
 @override@JsonKey() final  int participantsCount;
 @override@JsonKey() final  int maxParticipantsCount;
+ final  List<String> _participantAvatars;
+@override@JsonKey() List<String> get participantAvatars {
+  if (_participantAvatars is EqualUnmodifiableListView) return _participantAvatars;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_participantAvatars);
+}
+
+@override@JsonKey() final  String price;
+@override@JsonKey() final  String status;
+@override@JsonKey() final  String applicationStatus;
+@override@JsonKey() final  String ownerUserId;
+@override@JsonKey() final  GroupConditionsModel conditions;
 @override@JsonKey() final  ApartamentModel apartament;
 
 /// Create a copy of GroupModel
@@ -236,16 +263,16 @@ _$GroupModelCopyWith<_GroupModel> get copyWith => __$GroupModelCopyWithImpl<_Gro
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroupModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&(identical(other.apartament, apartament) || other.apartament == apartament));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroupModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&const DeepCollectionEquality().equals(other._participantAvatars, _participantAvatars)&&(identical(other.price, price) || other.price == price)&&(identical(other.status, status) || other.status == status)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.ownerUserId, ownerUserId) || other.ownerUserId == ownerUserId)&&(identical(other.conditions, conditions) || other.conditions == conditions)&&(identical(other.apartament, apartament) || other.apartament == apartament));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,matchPercent,participantsCount,maxParticipantsCount,apartament);
+int get hashCode => Object.hash(runtimeType,id,title,description,matchPercent,participantsCount,maxParticipantsCount,const DeepCollectionEquality().hash(_participantAvatars),price,status,applicationStatus,ownerUserId,conditions,apartament);
 
 @override
 String toString() {
-  return 'GroupModel(id: $id, title: $title, description: $description, matchPercent: $matchPercent, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, apartament: $apartament)';
+  return 'GroupModel(id: $id, title: $title, description: $description, matchPercent: $matchPercent, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, participantAvatars: $participantAvatars, price: $price, status: $status, applicationStatus: $applicationStatus, ownerUserId: $ownerUserId, conditions: $conditions, apartament: $apartament)';
 }
 
 
@@ -256,11 +283,11 @@ abstract mixin class _$GroupModelCopyWith<$Res> implements $GroupModelCopyWith<$
   factory _$GroupModelCopyWith(_GroupModel value, $Res Function(_GroupModel) _then) = __$GroupModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String description, int matchPercent, int participantsCount, int maxParticipantsCount, ApartamentModel apartament
+ String id, String title, String description, int matchPercent, int participantsCount, int maxParticipantsCount, List<String> participantAvatars, String price, String status, String applicationStatus, String ownerUserId, GroupConditionsModel conditions, ApartamentModel apartament
 });
 
 
-@override $ApartamentModelCopyWith<$Res> get apartament;
+@override $GroupConditionsModelCopyWith<$Res> get conditions;@override $ApartamentModelCopyWith<$Res> get apartament;
 
 }
 /// @nodoc
@@ -273,7 +300,7 @@ class __$GroupModelCopyWithImpl<$Res>
 
 /// Create a copy of GroupModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? matchPercent = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? apartament = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? matchPercent = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? participantAvatars = null,Object? price = null,Object? status = null,Object? applicationStatus = null,Object? ownerUserId = null,Object? conditions = null,Object? apartament = null,}) {
   return _then(_GroupModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -281,12 +308,27 @@ as String,description: null == description ? _self.description : description // 
 as String,matchPercent: null == matchPercent ? _self.matchPercent : matchPercent // ignore: cast_nullable_to_non_nullable
 as int,participantsCount: null == participantsCount ? _self.participantsCount : participantsCount // ignore: cast_nullable_to_non_nullable
 as int,maxParticipantsCount: null == maxParticipantsCount ? _self.maxParticipantsCount : maxParticipantsCount // ignore: cast_nullable_to_non_nullable
-as int,apartament: null == apartament ? _self.apartament : apartament // ignore: cast_nullable_to_non_nullable
+as int,participantAvatars: null == participantAvatars ? _self._participantAvatars : participantAvatars // ignore: cast_nullable_to_non_nullable
+as List<String>,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,applicationStatus: null == applicationStatus ? _self.applicationStatus : applicationStatus // ignore: cast_nullable_to_non_nullable
+as String,ownerUserId: null == ownerUserId ? _self.ownerUserId : ownerUserId // ignore: cast_nullable_to_non_nullable
+as String,conditions: null == conditions ? _self.conditions : conditions // ignore: cast_nullable_to_non_nullable
+as GroupConditionsModel,apartament: null == apartament ? _self.apartament : apartament // ignore: cast_nullable_to_non_nullable
 as ApartamentModel,
   ));
 }
 
 /// Create a copy of GroupModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GroupConditionsModelCopyWith<$Res> get conditions {
+  
+  return $GroupConditionsModelCopyWith<$Res>(_self.conditions, (value) {
+    return _then(_self.copyWith(conditions: value));
+  });
+}/// Create a copy of GroupModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

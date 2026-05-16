@@ -1024,6 +1024,24 @@ abstract class AppLocalizations {
   /// **'Новое объявление'**
   String get newAdvertisement;
 
+  /// No description provided for @createAdvertisementTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать объявление'**
+  String get createAdvertisementTitle;
+
+  /// No description provided for @continueDraft.
+  ///
+  /// In ru, this message translates to:
+  /// **'Продолжить черновик'**
+  String get continueDraft;
+
+  /// No description provided for @createNewAdvertisement.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать новое объявление'**
+  String get createNewAdvertisement;
+
   /// No description provided for @propertyData.
   ///
   /// In ru, this message translates to:
@@ -1762,6 +1780,30 @@ abstract class AppLocalizations {
   /// **'Участники'**
   String get groupConditionsParticipantsTitle;
 
+  /// No description provided for @groupApply.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подать заявку'**
+  String get groupApply;
+
+  /// No description provided for @groupApplicationSending.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправка заявки...'**
+  String get groupApplicationSending;
+
+  /// No description provided for @groupApplicationSent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заявка отправлена'**
+  String get groupApplicationSent;
+
+  /// No description provided for @groupApplicationSubmitError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось отправить заявку'**
+  String get groupApplicationSubmitError;
+
   /// No description provided for @groupParticipantProfileTitle.
   ///
   /// In ru, this message translates to:
@@ -1989,6 +2031,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'По дате добавления (сначала старые)'**
   String get sortByDateAsc;
+
+  /// No description provided for @sortByGroupSizeDesc.
+  ///
+  /// In ru, this message translates to:
+  /// **'По размеру группы (сначала больше)'**
+  String get sortByGroupSizeDesc;
+
+  /// No description provided for @sortByGroupSizeAsc.
+  ///
+  /// In ru, this message translates to:
+  /// **'По размеру группы (сначала меньше)'**
+  String get sortByGroupSizeAsc;
 
   /// No description provided for @tenantApplications.
   ///

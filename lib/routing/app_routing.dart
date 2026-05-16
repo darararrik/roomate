@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:roomate/routing/create_ad_routes.dart';
+import 'package:roomate/routing/create_group_routes.dart';
 import 'package:roomate/routing/create_profile_routes.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
@@ -46,7 +47,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: LocationRoute.page),
     AutoRoute(page: SettingsRoute.page),
     AutoRoute(page: WhoSearchRoute.page),
-    AutoRoute(page: CreateGroupRoute.page),
+    AutoRoute(page: NeighboursFiltersRoute.page),
+    CreateGroupRoutes.routes,
     CreateAdRoutes.routes,
     CreateProfile.routes,
   ];

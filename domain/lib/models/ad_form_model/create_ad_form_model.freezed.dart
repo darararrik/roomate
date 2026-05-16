@@ -11,6 +11,7 @@ part of 'create_ad_form_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$CreateAdFormModel {
 
@@ -49,7 +50,8 @@ mixin _$CreateAdFormModel {
  double get apartmentArea;/// Текущий этаж
  int get floor;/// Всего этажей в здании
  int get totalFloors;/// Полный адрес строкой
- String get address;/// Выбранная из справочника улица (0 — не выбрана)
+ String get address;/// Полные данные адреса из DaData
+ LocationSuggestionModel get addressDetails;/// Выбранная из справочника улица (0 — не выбрана)
  int get selectedStreetId;/// Номер квартиры
  int get apartmentNumber;/// Заголовок объявления
  String get title;/// Подробное описание
@@ -62,20 +64,22 @@ mixin _$CreateAdFormModel {
 @pragma('vm:prefer-inline')
 $CreateAdFormModelCopyWith<CreateAdFormModel> get copyWith => _$CreateAdFormModelCopyWithImpl<CreateAdFormModel>(this as CreateAdFormModel, _$identity);
 
+  /// Serializes this CreateAdFormModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateAdFormModel&&(identical(other.rentGoalId, rentGoalId) || other.rentGoalId == rentGoalId)&&(identical(other.rentPeriodId, rentPeriodId) || other.rentPeriodId == rentPeriodId)&&const DeepCollectionEquality().equals(other.whoCanRentIds, whoCanRentIds)&&(identical(other.premisesTypeId, premisesTypeId) || other.premisesTypeId == premisesTypeId)&&(identical(other.propertyTypeId, propertyTypeId) || other.propertyTypeId == propertyTypeId)&&(identical(other.roomsCountId, roomsCountId) || other.roomsCountId == roomsCountId)&&(identical(other.layoutId, layoutId) || other.layoutId == layoutId)&&(identical(other.renovationId, renovationId) || other.renovationId == renovationId)&&(identical(other.elevatorsId, elevatorsId) || other.elevatorsId == elevatorsId)&&(identical(other.balconiesId, balconiesId) || other.balconiesId == balconiesId)&&(identical(other.furnitureId, furnitureId) || other.furnitureId == furnitureId)&&const DeepCollectionEquality().equals(other.amenitiesIds, amenitiesIds)&&const DeepCollectionEquality().equals(other.bathroomIds, bathroomIds)&&const DeepCollectionEquality().equals(other.appliancesIds, appliancesIds)&&(identical(other.stoveId, stoveId) || other.stoveId == stoveId)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&(identical(other.prepaymentId, prepaymentId) || other.prepaymentId == prepaymentId)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other.rentConditionsIds, rentConditionsIds)&&(identical(other.contactMethodId, contactMethodId) || other.contactMethodId == contactMethodId)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.selectedStreetId, selectedStreetId) || other.selectedStreetId == selectedStreetId)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.mainPhone, mainPhone) || other.mainPhone == mainPhone)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateAdFormModel&&(identical(other.rentGoalId, rentGoalId) || other.rentGoalId == rentGoalId)&&(identical(other.rentPeriodId, rentPeriodId) || other.rentPeriodId == rentPeriodId)&&const DeepCollectionEquality().equals(other.whoCanRentIds, whoCanRentIds)&&(identical(other.premisesTypeId, premisesTypeId) || other.premisesTypeId == premisesTypeId)&&(identical(other.propertyTypeId, propertyTypeId) || other.propertyTypeId == propertyTypeId)&&(identical(other.roomsCountId, roomsCountId) || other.roomsCountId == roomsCountId)&&(identical(other.layoutId, layoutId) || other.layoutId == layoutId)&&(identical(other.renovationId, renovationId) || other.renovationId == renovationId)&&(identical(other.elevatorsId, elevatorsId) || other.elevatorsId == elevatorsId)&&(identical(other.balconiesId, balconiesId) || other.balconiesId == balconiesId)&&(identical(other.furnitureId, furnitureId) || other.furnitureId == furnitureId)&&const DeepCollectionEquality().equals(other.amenitiesIds, amenitiesIds)&&const DeepCollectionEquality().equals(other.bathroomIds, bathroomIds)&&const DeepCollectionEquality().equals(other.appliancesIds, appliancesIds)&&(identical(other.stoveId, stoveId) || other.stoveId == stoveId)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&(identical(other.prepaymentId, prepaymentId) || other.prepaymentId == prepaymentId)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other.rentConditionsIds, rentConditionsIds)&&(identical(other.contactMethodId, contactMethodId) || other.contactMethodId == contactMethodId)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.addressDetails, addressDetails) || other.addressDetails == addressDetails)&&(identical(other.selectedStreetId, selectedStreetId) || other.selectedStreetId == selectedStreetId)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.mainPhone, mainPhone) || other.mainPhone == mainPhone)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,rentGoalId,rentPeriodId,const DeepCollectionEquality().hash(whoCanRentIds),premisesTypeId,propertyTypeId,roomsCountId,layoutId,renovationId,elevatorsId,balconiesId,furnitureId,const DeepCollectionEquality().hash(amenitiesIds),const DeepCollectionEquality().hash(bathroomIds),const DeepCollectionEquality().hash(appliancesIds),stoveId,currencyId,prepaymentId,rentDurationId,const DeepCollectionEquality().hash(rentConditionsIds),contactMethodId,selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,selectedStreetId,apartmentNumber,title,description,mainPhone,additionalNumber]);
+int get hashCode => Object.hashAll([runtimeType,rentGoalId,rentPeriodId,const DeepCollectionEquality().hash(whoCanRentIds),premisesTypeId,propertyTypeId,roomsCountId,layoutId,renovationId,elevatorsId,balconiesId,furnitureId,const DeepCollectionEquality().hash(amenitiesIds),const DeepCollectionEquality().hash(bathroomIds),const DeepCollectionEquality().hash(appliancesIds),stoveId,currencyId,prepaymentId,rentDurationId,const DeepCollectionEquality().hash(rentConditionsIds),contactMethodId,selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,addressDetails,selectedStreetId,apartmentNumber,title,description,mainPhone,additionalNumber]);
 
 @override
 String toString() {
-  return 'CreateAdFormModel(rentGoalId: $rentGoalId, rentPeriodId: $rentPeriodId, whoCanRentIds: $whoCanRentIds, premisesTypeId: $premisesTypeId, propertyTypeId: $propertyTypeId, roomsCountId: $roomsCountId, layoutId: $layoutId, renovationId: $renovationId, elevatorsId: $elevatorsId, balconiesId: $balconiesId, furnitureId: $furnitureId, amenitiesIds: $amenitiesIds, bathroomIds: $bathroomIds, appliancesIds: $appliancesIds, stoveId: $stoveId, currencyId: $currencyId, prepaymentId: $prepaymentId, rentDurationId: $rentDurationId, rentConditionsIds: $rentConditionsIds, contactMethodId: $contactMethodId, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, selectedStreetId: $selectedStreetId, apartmentNumber: $apartmentNumber, title: $title, description: $description, mainPhone: $mainPhone, additionalNumber: $additionalNumber)';
+  return 'CreateAdFormModel(rentGoalId: $rentGoalId, rentPeriodId: $rentPeriodId, whoCanRentIds: $whoCanRentIds, premisesTypeId: $premisesTypeId, propertyTypeId: $propertyTypeId, roomsCountId: $roomsCountId, layoutId: $layoutId, renovationId: $renovationId, elevatorsId: $elevatorsId, balconiesId: $balconiesId, furnitureId: $furnitureId, amenitiesIds: $amenitiesIds, bathroomIds: $bathroomIds, appliancesIds: $appliancesIds, stoveId: $stoveId, currencyId: $currencyId, prepaymentId: $prepaymentId, rentDurationId: $rentDurationId, rentConditionsIds: $rentConditionsIds, contactMethodId: $contactMethodId, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, addressDetails: $addressDetails, selectedStreetId: $selectedStreetId, apartmentNumber: $apartmentNumber, title: $title, description: $description, mainPhone: $mainPhone, additionalNumber: $additionalNumber)';
 }
 
 
@@ -86,11 +90,11 @@ abstract mixin class $CreateAdFormModelCopyWith<$Res>  {
   factory $CreateAdFormModelCopyWith(CreateAdFormModel value, $Res Function(CreateAdFormModel) _then) = _$CreateAdFormModelCopyWithImpl;
 @useResult
 $Res call({
- int rentGoalId, int rentPeriodId, Set<int> whoCanRentIds, int premisesTypeId, int propertyTypeId, int roomsCountId, int layoutId, int renovationId, int elevatorsId, int balconiesId, int furnitureId, Set<int> amenitiesIds, Set<int> bathroomIds, Set<int> appliancesIds, int stoveId, int currencyId, int prepaymentId, int rentDurationId, Set<int> rentConditionsIds, int contactMethodId, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, int selectedStreetId, int apartmentNumber, String title, String description, String mainPhone, String additionalNumber
+ int rentGoalId, int rentPeriodId, Set<int> whoCanRentIds, int premisesTypeId, int propertyTypeId, int roomsCountId, int layoutId, int renovationId, int elevatorsId, int balconiesId, int furnitureId, Set<int> amenitiesIds, Set<int> bathroomIds, Set<int> appliancesIds, int stoveId, int currencyId, int prepaymentId, int rentDurationId, Set<int> rentConditionsIds, int contactMethodId, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, LocationSuggestionModel addressDetails, int selectedStreetId, int apartmentNumber, String title, String description, String mainPhone, String additionalNumber
 });
 
 
-
+$LocationSuggestionModelCopyWith<$Res> get addressDetails;
 
 }
 /// @nodoc
@@ -103,7 +107,7 @@ class _$CreateAdFormModelCopyWithImpl<$Res>
 
 /// Create a copy of CreateAdFormModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? rentGoalId = null,Object? rentPeriodId = null,Object? whoCanRentIds = null,Object? premisesTypeId = null,Object? propertyTypeId = null,Object? roomsCountId = null,Object? layoutId = null,Object? renovationId = null,Object? elevatorsId = null,Object? balconiesId = null,Object? furnitureId = null,Object? amenitiesIds = null,Object? bathroomIds = null,Object? appliancesIds = null,Object? stoveId = null,Object? currencyId = null,Object? prepaymentId = null,Object? rentDurationId = null,Object? rentConditionsIds = null,Object? contactMethodId = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? selectedStreetId = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? mainPhone = null,Object? additionalNumber = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? rentGoalId = null,Object? rentPeriodId = null,Object? whoCanRentIds = null,Object? premisesTypeId = null,Object? propertyTypeId = null,Object? roomsCountId = null,Object? layoutId = null,Object? renovationId = null,Object? elevatorsId = null,Object? balconiesId = null,Object? furnitureId = null,Object? amenitiesIds = null,Object? bathroomIds = null,Object? appliancesIds = null,Object? stoveId = null,Object? currencyId = null,Object? prepaymentId = null,Object? rentDurationId = null,Object? rentConditionsIds = null,Object? contactMethodId = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? addressDetails = null,Object? selectedStreetId = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? mainPhone = null,Object? additionalNumber = null,}) {
   return _then(_self.copyWith(
 rentGoalId: null == rentGoalId ? _self.rentGoalId : rentGoalId // ignore: cast_nullable_to_non_nullable
 as int,rentPeriodId: null == rentPeriodId ? _self.rentPeriodId : rentPeriodId // ignore: cast_nullable_to_non_nullable
@@ -132,7 +136,8 @@ as double,apartmentArea: null == apartmentArea ? _self.apartmentArea : apartment
 as double,floor: null == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
 as int,totalFloors: null == totalFloors ? _self.totalFloors : totalFloors // ignore: cast_nullable_to_non_nullable
 as int,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,selectedStreetId: null == selectedStreetId ? _self.selectedStreetId : selectedStreetId // ignore: cast_nullable_to_non_nullable
+as String,addressDetails: null == addressDetails ? _self.addressDetails : addressDetails // ignore: cast_nullable_to_non_nullable
+as LocationSuggestionModel,selectedStreetId: null == selectedStreetId ? _self.selectedStreetId : selectedStreetId // ignore: cast_nullable_to_non_nullable
 as int,apartmentNumber: null == apartmentNumber ? _self.apartmentNumber : apartmentNumber // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
@@ -141,7 +146,16 @@ as String,additionalNumber: null == additionalNumber ? _self.additionalNumber : 
 as String,
   ));
 }
-
+/// Create a copy of CreateAdFormModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LocationSuggestionModelCopyWith<$Res> get addressDetails {
+  
+  return $LocationSuggestionModelCopyWith<$Res>(_self.addressDetails, (value) {
+    return _then(_self.copyWith(addressDetails: value));
+  });
+}
 }
 
 
@@ -220,10 +234,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int rentGoalId,  int rentPeriodId,  Set<int> whoCanRentIds,  int premisesTypeId,  int propertyTypeId,  int roomsCountId,  int layoutId,  int renovationId,  int elevatorsId,  int balconiesId,  int furnitureId,  Set<int> amenitiesIds,  Set<int> bathroomIds,  Set<int> appliancesIds,  int stoveId,  int currencyId,  int prepaymentId,  int rentDurationId,  Set<int> rentConditionsIds,  int contactMethodId,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int selectedStreetId,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int rentGoalId,  int rentPeriodId,  Set<int> whoCanRentIds,  int premisesTypeId,  int propertyTypeId,  int roomsCountId,  int layoutId,  int renovationId,  int elevatorsId,  int balconiesId,  int furnitureId,  Set<int> amenitiesIds,  Set<int> bathroomIds,  Set<int> appliancesIds,  int stoveId,  int currencyId,  int prepaymentId,  int rentDurationId,  Set<int> rentConditionsIds,  int contactMethodId,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  LocationSuggestionModel addressDetails,  int selectedStreetId,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateAdFormModel() when $default != null:
-return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.premisesTypeId,_that.propertyTypeId,_that.roomsCountId,_that.layoutId,_that.renovationId,_that.elevatorsId,_that.balconiesId,_that.furnitureId,_that.amenitiesIds,_that.bathroomIds,_that.appliancesIds,_that.stoveId,_that.currencyId,_that.prepaymentId,_that.rentDurationId,_that.rentConditionsIds,_that.contactMethodId,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.selectedStreetId,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);case _:
+return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.premisesTypeId,_that.propertyTypeId,_that.roomsCountId,_that.layoutId,_that.renovationId,_that.elevatorsId,_that.balconiesId,_that.furnitureId,_that.amenitiesIds,_that.bathroomIds,_that.appliancesIds,_that.stoveId,_that.currencyId,_that.prepaymentId,_that.rentDurationId,_that.rentConditionsIds,_that.contactMethodId,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.addressDetails,_that.selectedStreetId,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);case _:
   return orElse();
 
 }
@@ -241,10 +255,10 @@ return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.pr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int rentGoalId,  int rentPeriodId,  Set<int> whoCanRentIds,  int premisesTypeId,  int propertyTypeId,  int roomsCountId,  int layoutId,  int renovationId,  int elevatorsId,  int balconiesId,  int furnitureId,  Set<int> amenitiesIds,  Set<int> bathroomIds,  Set<int> appliancesIds,  int stoveId,  int currencyId,  int prepaymentId,  int rentDurationId,  Set<int> rentConditionsIds,  int contactMethodId,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int selectedStreetId,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int rentGoalId,  int rentPeriodId,  Set<int> whoCanRentIds,  int premisesTypeId,  int propertyTypeId,  int roomsCountId,  int layoutId,  int renovationId,  int elevatorsId,  int balconiesId,  int furnitureId,  Set<int> amenitiesIds,  Set<int> bathroomIds,  Set<int> appliancesIds,  int stoveId,  int currencyId,  int prepaymentId,  int rentDurationId,  Set<int> rentConditionsIds,  int contactMethodId,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  LocationSuggestionModel addressDetails,  int selectedStreetId,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdFormModel():
-return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.premisesTypeId,_that.propertyTypeId,_that.roomsCountId,_that.layoutId,_that.renovationId,_that.elevatorsId,_that.balconiesId,_that.furnitureId,_that.amenitiesIds,_that.bathroomIds,_that.appliancesIds,_that.stoveId,_that.currencyId,_that.prepaymentId,_that.rentDurationId,_that.rentConditionsIds,_that.contactMethodId,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.selectedStreetId,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);}
+return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.premisesTypeId,_that.propertyTypeId,_that.roomsCountId,_that.layoutId,_that.renovationId,_that.elevatorsId,_that.balconiesId,_that.furnitureId,_that.amenitiesIds,_that.bathroomIds,_that.appliancesIds,_that.stoveId,_that.currencyId,_that.prepaymentId,_that.rentDurationId,_that.rentConditionsIds,_that.contactMethodId,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.addressDetails,_that.selectedStreetId,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -258,10 +272,10 @@ return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.pr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int rentGoalId,  int rentPeriodId,  Set<int> whoCanRentIds,  int premisesTypeId,  int propertyTypeId,  int roomsCountId,  int layoutId,  int renovationId,  int elevatorsId,  int balconiesId,  int furnitureId,  Set<int> amenitiesIds,  Set<int> bathroomIds,  Set<int> appliancesIds,  int stoveId,  int currencyId,  int prepaymentId,  int rentDurationId,  Set<int> rentConditionsIds,  int contactMethodId,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  int selectedStreetId,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int rentGoalId,  int rentPeriodId,  Set<int> whoCanRentIds,  int premisesTypeId,  int propertyTypeId,  int roomsCountId,  int layoutId,  int renovationId,  int elevatorsId,  int balconiesId,  int furnitureId,  Set<int> amenitiesIds,  Set<int> bathroomIds,  Set<int> appliancesIds,  int stoveId,  int currencyId,  int prepaymentId,  int rentDurationId,  Set<int> rentConditionsIds,  int contactMethodId,  Currency selectedCurrency,  double cost,  double deposit,  double apartmentArea,  int floor,  int totalFloors,  String address,  LocationSuggestionModel addressDetails,  int selectedStreetId,  int apartmentNumber,  String title,  String description,  String mainPhone,  String additionalNumber)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateAdFormModel() when $default != null:
-return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.premisesTypeId,_that.propertyTypeId,_that.roomsCountId,_that.layoutId,_that.renovationId,_that.elevatorsId,_that.balconiesId,_that.furnitureId,_that.amenitiesIds,_that.bathroomIds,_that.appliancesIds,_that.stoveId,_that.currencyId,_that.prepaymentId,_that.rentDurationId,_that.rentConditionsIds,_that.contactMethodId,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.selectedStreetId,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);case _:
+return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.premisesTypeId,_that.propertyTypeId,_that.roomsCountId,_that.layoutId,_that.renovationId,_that.elevatorsId,_that.balconiesId,_that.furnitureId,_that.amenitiesIds,_that.bathroomIds,_that.appliancesIds,_that.stoveId,_that.currencyId,_that.prepaymentId,_that.rentDurationId,_that.rentConditionsIds,_that.contactMethodId,_that.selectedCurrency,_that.cost,_that.deposit,_that.apartmentArea,_that.floor,_that.totalFloors,_that.address,_that.addressDetails,_that.selectedStreetId,_that.apartmentNumber,_that.title,_that.description,_that.mainPhone,_that.additionalNumber);case _:
   return null;
 
 }
@@ -271,10 +285,10 @@ return $default(_that.rentGoalId,_that.rentPeriodId,_that.whoCanRentIds,_that.pr
 
 /// @nodoc
 
-
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class _CreateAdFormModel implements CreateAdFormModel {
-  const _CreateAdFormModel({this.rentGoalId = 0, this.rentPeriodId = 0, final  Set<int> whoCanRentIds = const <int>{}, this.premisesTypeId = 0, this.propertyTypeId = 0, this.roomsCountId = 0, this.layoutId = 0, this.renovationId = 0, this.elevatorsId = 0, this.balconiesId = 0, this.furnitureId = 0, final  Set<int> amenitiesIds = const <int>{}, final  Set<int> bathroomIds = const <int>{}, final  Set<int> appliancesIds = const <int>{}, this.stoveId = 0, this.currencyId = 0, this.prepaymentId = 0, this.rentDurationId = 0, final  Set<int> rentConditionsIds = const <int>{}, this.contactMethodId = 0, this.selectedCurrency = Currency.rub, this.cost = 0, this.deposit = 0, this.apartmentArea = 0, this.floor = 0, this.totalFloors = 0, this.address = "", this.selectedStreetId = 0, this.apartmentNumber = 0, this.title = "", this.description = "", this.mainPhone = "", this.additionalNumber = ""}): _whoCanRentIds = whoCanRentIds,_amenitiesIds = amenitiesIds,_bathroomIds = bathroomIds,_appliancesIds = appliancesIds,_rentConditionsIds = rentConditionsIds;
-  
+  const _CreateAdFormModel({this.rentGoalId = 0, this.rentPeriodId = 0, final  Set<int> whoCanRentIds = const <int>{}, this.premisesTypeId = 0, this.propertyTypeId = 0, this.roomsCountId = 0, this.layoutId = 0, this.renovationId = 0, this.elevatorsId = 0, this.balconiesId = 0, this.furnitureId = 0, final  Set<int> amenitiesIds = const <int>{}, final  Set<int> bathroomIds = const <int>{}, final  Set<int> appliancesIds = const <int>{}, this.stoveId = 0, this.currencyId = 0, this.prepaymentId = 0, this.rentDurationId = 0, final  Set<int> rentConditionsIds = const <int>{}, this.contactMethodId = 0, this.selectedCurrency = Currency.rub, this.cost = 0, this.deposit = 0, this.apartmentArea = 0, this.floor = 0, this.totalFloors = 0, this.address = "", this.addressDetails = const LocationSuggestionModel(), this.selectedStreetId = 0, this.apartmentNumber = 0, this.title = "", this.description = "", this.mainPhone = "", this.additionalNumber = ""}): _whoCanRentIds = whoCanRentIds,_amenitiesIds = amenitiesIds,_bathroomIds = bathroomIds,_appliancesIds = appliancesIds,_rentConditionsIds = rentConditionsIds;
+  factory _CreateAdFormModel.fromJson(Map<String, dynamic> json) => _$CreateAdFormModelFromJson(json);
 
 // --- Основные параметры аренды ---
 /// Цель аренды (например: снять, сдать)
@@ -373,6 +387,8 @@ class _CreateAdFormModel implements CreateAdFormModel {
 @override@JsonKey() final  int totalFloors;
 /// Полный адрес строкой
 @override@JsonKey() final  String address;
+/// Полные данные адреса из DaData
+@override@JsonKey() final  LocationSuggestionModel addressDetails;
 /// Выбранная из справочника улица (0 — не выбрана)
 @override@JsonKey() final  int selectedStreetId;
 /// Номер квартиры
@@ -392,20 +408,23 @@ class _CreateAdFormModel implements CreateAdFormModel {
 @pragma('vm:prefer-inline')
 _$CreateAdFormModelCopyWith<_CreateAdFormModel> get copyWith => __$CreateAdFormModelCopyWithImpl<_CreateAdFormModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$CreateAdFormModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateAdFormModel&&(identical(other.rentGoalId, rentGoalId) || other.rentGoalId == rentGoalId)&&(identical(other.rentPeriodId, rentPeriodId) || other.rentPeriodId == rentPeriodId)&&const DeepCollectionEquality().equals(other._whoCanRentIds, _whoCanRentIds)&&(identical(other.premisesTypeId, premisesTypeId) || other.premisesTypeId == premisesTypeId)&&(identical(other.propertyTypeId, propertyTypeId) || other.propertyTypeId == propertyTypeId)&&(identical(other.roomsCountId, roomsCountId) || other.roomsCountId == roomsCountId)&&(identical(other.layoutId, layoutId) || other.layoutId == layoutId)&&(identical(other.renovationId, renovationId) || other.renovationId == renovationId)&&(identical(other.elevatorsId, elevatorsId) || other.elevatorsId == elevatorsId)&&(identical(other.balconiesId, balconiesId) || other.balconiesId == balconiesId)&&(identical(other.furnitureId, furnitureId) || other.furnitureId == furnitureId)&&const DeepCollectionEquality().equals(other._amenitiesIds, _amenitiesIds)&&const DeepCollectionEquality().equals(other._bathroomIds, _bathroomIds)&&const DeepCollectionEquality().equals(other._appliancesIds, _appliancesIds)&&(identical(other.stoveId, stoveId) || other.stoveId == stoveId)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&(identical(other.prepaymentId, prepaymentId) || other.prepaymentId == prepaymentId)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other._rentConditionsIds, _rentConditionsIds)&&(identical(other.contactMethodId, contactMethodId) || other.contactMethodId == contactMethodId)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.selectedStreetId, selectedStreetId) || other.selectedStreetId == selectedStreetId)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.mainPhone, mainPhone) || other.mainPhone == mainPhone)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateAdFormModel&&(identical(other.rentGoalId, rentGoalId) || other.rentGoalId == rentGoalId)&&(identical(other.rentPeriodId, rentPeriodId) || other.rentPeriodId == rentPeriodId)&&const DeepCollectionEquality().equals(other._whoCanRentIds, _whoCanRentIds)&&(identical(other.premisesTypeId, premisesTypeId) || other.premisesTypeId == premisesTypeId)&&(identical(other.propertyTypeId, propertyTypeId) || other.propertyTypeId == propertyTypeId)&&(identical(other.roomsCountId, roomsCountId) || other.roomsCountId == roomsCountId)&&(identical(other.layoutId, layoutId) || other.layoutId == layoutId)&&(identical(other.renovationId, renovationId) || other.renovationId == renovationId)&&(identical(other.elevatorsId, elevatorsId) || other.elevatorsId == elevatorsId)&&(identical(other.balconiesId, balconiesId) || other.balconiesId == balconiesId)&&(identical(other.furnitureId, furnitureId) || other.furnitureId == furnitureId)&&const DeepCollectionEquality().equals(other._amenitiesIds, _amenitiesIds)&&const DeepCollectionEquality().equals(other._bathroomIds, _bathroomIds)&&const DeepCollectionEquality().equals(other._appliancesIds, _appliancesIds)&&(identical(other.stoveId, stoveId) || other.stoveId == stoveId)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&(identical(other.prepaymentId, prepaymentId) || other.prepaymentId == prepaymentId)&&(identical(other.rentDurationId, rentDurationId) || other.rentDurationId == rentDurationId)&&const DeepCollectionEquality().equals(other._rentConditionsIds, _rentConditionsIds)&&(identical(other.contactMethodId, contactMethodId) || other.contactMethodId == contactMethodId)&&(identical(other.selectedCurrency, selectedCurrency) || other.selectedCurrency == selectedCurrency)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.deposit, deposit) || other.deposit == deposit)&&(identical(other.apartmentArea, apartmentArea) || other.apartmentArea == apartmentArea)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.totalFloors, totalFloors) || other.totalFloors == totalFloors)&&(identical(other.address, address) || other.address == address)&&(identical(other.addressDetails, addressDetails) || other.addressDetails == addressDetails)&&(identical(other.selectedStreetId, selectedStreetId) || other.selectedStreetId == selectedStreetId)&&(identical(other.apartmentNumber, apartmentNumber) || other.apartmentNumber == apartmentNumber)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.mainPhone, mainPhone) || other.mainPhone == mainPhone)&&(identical(other.additionalNumber, additionalNumber) || other.additionalNumber == additionalNumber));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,rentGoalId,rentPeriodId,const DeepCollectionEquality().hash(_whoCanRentIds),premisesTypeId,propertyTypeId,roomsCountId,layoutId,renovationId,elevatorsId,balconiesId,furnitureId,const DeepCollectionEquality().hash(_amenitiesIds),const DeepCollectionEquality().hash(_bathroomIds),const DeepCollectionEquality().hash(_appliancesIds),stoveId,currencyId,prepaymentId,rentDurationId,const DeepCollectionEquality().hash(_rentConditionsIds),contactMethodId,selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,selectedStreetId,apartmentNumber,title,description,mainPhone,additionalNumber]);
+int get hashCode => Object.hashAll([runtimeType,rentGoalId,rentPeriodId,const DeepCollectionEquality().hash(_whoCanRentIds),premisesTypeId,propertyTypeId,roomsCountId,layoutId,renovationId,elevatorsId,balconiesId,furnitureId,const DeepCollectionEquality().hash(_amenitiesIds),const DeepCollectionEquality().hash(_bathroomIds),const DeepCollectionEquality().hash(_appliancesIds),stoveId,currencyId,prepaymentId,rentDurationId,const DeepCollectionEquality().hash(_rentConditionsIds),contactMethodId,selectedCurrency,cost,deposit,apartmentArea,floor,totalFloors,address,addressDetails,selectedStreetId,apartmentNumber,title,description,mainPhone,additionalNumber]);
 
 @override
 String toString() {
-  return 'CreateAdFormModel(rentGoalId: $rentGoalId, rentPeriodId: $rentPeriodId, whoCanRentIds: $whoCanRentIds, premisesTypeId: $premisesTypeId, propertyTypeId: $propertyTypeId, roomsCountId: $roomsCountId, layoutId: $layoutId, renovationId: $renovationId, elevatorsId: $elevatorsId, balconiesId: $balconiesId, furnitureId: $furnitureId, amenitiesIds: $amenitiesIds, bathroomIds: $bathroomIds, appliancesIds: $appliancesIds, stoveId: $stoveId, currencyId: $currencyId, prepaymentId: $prepaymentId, rentDurationId: $rentDurationId, rentConditionsIds: $rentConditionsIds, contactMethodId: $contactMethodId, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, selectedStreetId: $selectedStreetId, apartmentNumber: $apartmentNumber, title: $title, description: $description, mainPhone: $mainPhone, additionalNumber: $additionalNumber)';
+  return 'CreateAdFormModel(rentGoalId: $rentGoalId, rentPeriodId: $rentPeriodId, whoCanRentIds: $whoCanRentIds, premisesTypeId: $premisesTypeId, propertyTypeId: $propertyTypeId, roomsCountId: $roomsCountId, layoutId: $layoutId, renovationId: $renovationId, elevatorsId: $elevatorsId, balconiesId: $balconiesId, furnitureId: $furnitureId, amenitiesIds: $amenitiesIds, bathroomIds: $bathroomIds, appliancesIds: $appliancesIds, stoveId: $stoveId, currencyId: $currencyId, prepaymentId: $prepaymentId, rentDurationId: $rentDurationId, rentConditionsIds: $rentConditionsIds, contactMethodId: $contactMethodId, selectedCurrency: $selectedCurrency, cost: $cost, deposit: $deposit, apartmentArea: $apartmentArea, floor: $floor, totalFloors: $totalFloors, address: $address, addressDetails: $addressDetails, selectedStreetId: $selectedStreetId, apartmentNumber: $apartmentNumber, title: $title, description: $description, mainPhone: $mainPhone, additionalNumber: $additionalNumber)';
 }
 
 
@@ -416,11 +435,11 @@ abstract mixin class _$CreateAdFormModelCopyWith<$Res> implements $CreateAdFormM
   factory _$CreateAdFormModelCopyWith(_CreateAdFormModel value, $Res Function(_CreateAdFormModel) _then) = __$CreateAdFormModelCopyWithImpl;
 @override @useResult
 $Res call({
- int rentGoalId, int rentPeriodId, Set<int> whoCanRentIds, int premisesTypeId, int propertyTypeId, int roomsCountId, int layoutId, int renovationId, int elevatorsId, int balconiesId, int furnitureId, Set<int> amenitiesIds, Set<int> bathroomIds, Set<int> appliancesIds, int stoveId, int currencyId, int prepaymentId, int rentDurationId, Set<int> rentConditionsIds, int contactMethodId, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, int selectedStreetId, int apartmentNumber, String title, String description, String mainPhone, String additionalNumber
+ int rentGoalId, int rentPeriodId, Set<int> whoCanRentIds, int premisesTypeId, int propertyTypeId, int roomsCountId, int layoutId, int renovationId, int elevatorsId, int balconiesId, int furnitureId, Set<int> amenitiesIds, Set<int> bathroomIds, Set<int> appliancesIds, int stoveId, int currencyId, int prepaymentId, int rentDurationId, Set<int> rentConditionsIds, int contactMethodId, Currency selectedCurrency, double cost, double deposit, double apartmentArea, int floor, int totalFloors, String address, LocationSuggestionModel addressDetails, int selectedStreetId, int apartmentNumber, String title, String description, String mainPhone, String additionalNumber
 });
 
 
-
+@override $LocationSuggestionModelCopyWith<$Res> get addressDetails;
 
 }
 /// @nodoc
@@ -433,7 +452,7 @@ class __$CreateAdFormModelCopyWithImpl<$Res>
 
 /// Create a copy of CreateAdFormModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? rentGoalId = null,Object? rentPeriodId = null,Object? whoCanRentIds = null,Object? premisesTypeId = null,Object? propertyTypeId = null,Object? roomsCountId = null,Object? layoutId = null,Object? renovationId = null,Object? elevatorsId = null,Object? balconiesId = null,Object? furnitureId = null,Object? amenitiesIds = null,Object? bathroomIds = null,Object? appliancesIds = null,Object? stoveId = null,Object? currencyId = null,Object? prepaymentId = null,Object? rentDurationId = null,Object? rentConditionsIds = null,Object? contactMethodId = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? selectedStreetId = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? mainPhone = null,Object? additionalNumber = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? rentGoalId = null,Object? rentPeriodId = null,Object? whoCanRentIds = null,Object? premisesTypeId = null,Object? propertyTypeId = null,Object? roomsCountId = null,Object? layoutId = null,Object? renovationId = null,Object? elevatorsId = null,Object? balconiesId = null,Object? furnitureId = null,Object? amenitiesIds = null,Object? bathroomIds = null,Object? appliancesIds = null,Object? stoveId = null,Object? currencyId = null,Object? prepaymentId = null,Object? rentDurationId = null,Object? rentConditionsIds = null,Object? contactMethodId = null,Object? selectedCurrency = null,Object? cost = null,Object? deposit = null,Object? apartmentArea = null,Object? floor = null,Object? totalFloors = null,Object? address = null,Object? addressDetails = null,Object? selectedStreetId = null,Object? apartmentNumber = null,Object? title = null,Object? description = null,Object? mainPhone = null,Object? additionalNumber = null,}) {
   return _then(_CreateAdFormModel(
 rentGoalId: null == rentGoalId ? _self.rentGoalId : rentGoalId // ignore: cast_nullable_to_non_nullable
 as int,rentPeriodId: null == rentPeriodId ? _self.rentPeriodId : rentPeriodId // ignore: cast_nullable_to_non_nullable
@@ -462,7 +481,8 @@ as double,apartmentArea: null == apartmentArea ? _self.apartmentArea : apartment
 as double,floor: null == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
 as int,totalFloors: null == totalFloors ? _self.totalFloors : totalFloors // ignore: cast_nullable_to_non_nullable
 as int,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,selectedStreetId: null == selectedStreetId ? _self.selectedStreetId : selectedStreetId // ignore: cast_nullable_to_non_nullable
+as String,addressDetails: null == addressDetails ? _self.addressDetails : addressDetails // ignore: cast_nullable_to_non_nullable
+as LocationSuggestionModel,selectedStreetId: null == selectedStreetId ? _self.selectedStreetId : selectedStreetId // ignore: cast_nullable_to_non_nullable
 as int,apartmentNumber: null == apartmentNumber ? _self.apartmentNumber : apartmentNumber // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
@@ -472,7 +492,16 @@ as String,
   ));
 }
 
-
+/// Create a copy of CreateAdFormModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LocationSuggestionModelCopyWith<$Res> get addressDetails {
+  
+  return $LocationSuggestionModelCopyWith<$Res>(_self.addressDetails, (value) {
+    return _then(_self.copyWith(addressDetails: value));
+  });
+}
 }
 
 // dart format on

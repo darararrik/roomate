@@ -50,12 +50,7 @@ class CreateGroupDescriptionStepScreen extends HookConsumerWidget {
           controller: descriptionController,
           onChanged: notifier.updateDescription,
           errorText: flow.descriptionError,
-        ),
-        Text(
-          l10n.minimumCharactersRequired,
-          style: context.typography.bodyDescription.copyWith(
-            color: context.colors.graysText400,
-          ),
+          subtitle: l10n.minimumCharactersRequired,
         ),
       ].separated(const SizedBox(height: S.p12)),
     );

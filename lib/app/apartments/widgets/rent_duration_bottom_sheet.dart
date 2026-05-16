@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 class RentDurationBottomSheet extends HookConsumerWidget {
@@ -11,18 +9,12 @@ class RentDurationBottomSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filtersAsync = ref.watch(filtersProvider);
-    final currentRentDurationId = ref
-        .watch(apartamentFilterProvider)
-        .rentDurationId;
+    final currentRentDurationId = ref.watch(apartamentFilterProvider).rentDurationId;
     final selectedRentDurationId = useState(currentRentDurationId);
 
     return filtersAsync.when(
-      loading: () => const SizedBox(
-        height: 200,
-        child: Center(child: CircularProgressIndicator()),
-      ),
-      error: (error, stack) =>
-          SizedBox(height: 200, child: Center(child: Text(error.toString()))),
+      loading: () => const SizedBox(height: 200, child: Center(child: CircularProgressIndicator())),
+      error: (error, stack) => SizedBox(height: 200, child: Center(child: Text(error.toString()))),
       data: (filters) {
         final rentDurations = filters.rentDuration;
 
@@ -44,38 +36,29 @@ class RentDurationBottomSheet extends HookConsumerWidget {
                         child: ListView.separated(
                           controller: controller,
                           itemCount: rentDurations.length,
-                          separatorBuilder: (_, _) =>
-                              const SizedBox(height: S.p4),
+                          separatorBuilder: (_, _) => const SizedBox(height: S.p4),
                           itemBuilder: (context, index) {
                             final rentDuration = rentDurations[index];
-                            final isSelected =
-                                selectedRentDurationId.value == rentDuration.id;
+                            final isSelected = selectedRentDurationId.value == rentDuration.id;
 
-                            return InkWell(
+                            return GestureDetector(
                               onTap: () {
-                                selectedRentDurationId.value = isSelected
-                                    ? 0
-                                    : rentDuration.id;
+                                selectedRentDurationId.value = isSelected ? 0 : rentDuration.id;
                               },
                               child: Padding(
                                 padding: const P(all: S.p12),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Text(
                                         rentDuration.title,
-                                        style: context
-                                            .typography
-                                            .bodyDescription
-                                            .copyWith(height: 17 / 14),
+                                        style: context.typography.bodyDescription.copyWith(
+                                          height: 17 / 14,
+                                        ),
                                       ),
                                     ),
-                                    SelectionButton(
-                                      isSelected: isSelected,
-                                      isRadio: true,
-                                    ),
+                                    SelectionButton(isSelected: isSelected, isRadio: true),
                                   ],
                                 ),
                               ),
@@ -88,12 +71,8 @@ class RentDurationBottomSheet extends HookConsumerWidget {
                         child: PrimaryButton(
                           text: context.l10n.apply,
                           onPressed: () {
-                            final notifier = ref.read(
-                              apartamentFilterProvider.notifier,
-                            );
-                            notifier.setRentDuration(
-                              selectedRentDurationId.value,
-                            );
+                            final notifier = ref.read(apartamentFilterProvider.notifier);
+                            notifier.setRentDuration(selectedRentDurationId.value);
                             notifier.apply();
                             Navigator.of(context).pop();
                           },

@@ -7,7 +7,7 @@ import 'package:roomate/widgets/widgets.dart';
 class NeighbourCard extends StatelessWidget {
   const NeighbourCard({super.key, required this.onTap, required this.group});
   final VoidCallback onTap;
-  final GroupModel group;
+  final GroupListItemModel group;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,8 +28,9 @@ class NeighbourCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ChipMatch(matchPercent: group.matchPercent),
-                    const SizedBox(height: S.p12),
+                    if (group.matchPercent > 0)
+                      ChipMatch(matchPercent: group.matchPercent),
+                    if (group.matchPercent > 0) const SizedBox(height: S.p12),
                     Text(group.title, style: context.typography.headline1),
                     const SizedBox(height: S.p8),
                     Text(
@@ -51,7 +52,10 @@ class NeighbourCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const OverlappingAvatars(avatarSize: S.p36),
+                      OverlappingAvatars(
+                        avatarSize: S.p36,
+                        avatarUrls: group.participantAvatars,
+                      ),
                       const SizedBox(height: S.p8),
                       //TODO: l10n cделать склонение участников
                       Text(
@@ -65,7 +69,7 @@ class NeighbourCard extends StatelessWidget {
                   Padding(
                     padding: const P(right: S.p8),
                     child: Text(
-                      "${group.apartament.price} Руб/месяц",
+                      group.price,
                       style: context.typography.headline2.copyWith(),
                     ),
                   ),

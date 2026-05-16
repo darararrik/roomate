@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_ad_form_request_data.freezed.dart';
@@ -6,6 +5,7 @@ part 'create_ad_form_request_data.g.dart';
 
 @freezed
 sealed class CreateAdFormRequestData with _$CreateAdFormRequestData {
+  @JsonSerializable(explicitToJson: true, includeIfNull: false)
   const factory CreateAdFormRequestData({
     @JsonKey(name: 'rent_goal_id') int? rentGoalId,
     @JsonKey(name: 'rent_period_id') int? rentPeriodId,
@@ -27,13 +27,15 @@ sealed class CreateAdFormRequestData with _$CreateAdFormRequestData {
     @JsonKey(name: 'rent_duration_id') int? rentDurationId,
     @JsonKey(name: 'rent_conditions_ids') Set<int>? rentConditionsIds,
     @JsonKey(name: 'contact_method_id') int? contactMethodId,
-    @JsonKey(name: 'selected_currency') Currency? selectedCurrency,
+    @JsonKey(name: 'selected_currency')
+    CreateAdSelectedCurrencyRequestData? selectedCurrency,
     @JsonKey(name: 'cost') double? cost,
     @JsonKey(name: 'deposit') double? deposit,
     @JsonKey(name: 'apartment_area') double? apartmentArea,
     @JsonKey(name: 'floor') int? floor,
     @JsonKey(name: 'total_floors') int? totalFloors,
-    @JsonKey(name: 'address') String? address,
+    @JsonKey(name: 'address_details')
+    CreateAdAddressDetailsRequestData? addressDetails,
     @JsonKey(name: 'apartment_number') int? apartmentNumber,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'description') String? description,
@@ -42,4 +44,43 @@ sealed class CreateAdFormRequestData with _$CreateAdFormRequestData {
   }) = _CreateAdFormRequestData;
   factory CreateAdFormRequestData.fromJson(Map<String, dynamic> json) =>
       _$CreateAdFormRequestDataFromJson(json);
+}
+
+@freezed
+sealed class CreateAdSelectedCurrencyRequestData
+    with _$CreateAdSelectedCurrencyRequestData {
+  @JsonSerializable(includeIfNull: false)
+  const factory CreateAdSelectedCurrencyRequestData({
+    String? code,
+    String? symbol,
+  }) = _CreateAdSelectedCurrencyRequestData;
+
+  factory CreateAdSelectedCurrencyRequestData.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CreateAdSelectedCurrencyRequestDataFromJson(json);
+}
+
+@freezed
+sealed class CreateAdAddressDetailsRequestData
+    with _$CreateAdAddressDetailsRequestData {
+  @JsonSerializable(includeIfNull: false)
+  const factory CreateAdAddressDetailsRequestData({
+    String? value,
+    @JsonKey(name: 'unrestricted_value') String? unrestrictedValue,
+    String? country,
+    String? region,
+    String? city,
+    @JsonKey(name: 'city_fias_id') String? cityFiasId,
+    String? district,
+    String? street,
+    @JsonKey(name: 'street_fias_id') String? streetFiasId,
+    String? house,
+    @JsonKey(name: 'house_fias_id') String? houseFiasId,
+    @JsonKey(name: 'geo_lat') double? geoLat,
+    @JsonKey(name: 'geo_lon') double? geoLon,
+  }) = _CreateAdAddressDetailsRequestData;
+
+  factory CreateAdAddressDetailsRequestData.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CreateAdAddressDetailsRequestDataFromJson(json);
 }

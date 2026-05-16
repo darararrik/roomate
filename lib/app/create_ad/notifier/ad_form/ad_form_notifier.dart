@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -20,10 +22,14 @@ String selectedStreetName(Ref ref) {
   return ref.watch(adFormProvider.select((state) => state.address));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class AdFormNotifier extends _$AdFormNotifier {
   @override
   CreateAdFormModel build() {
+    listenSelf((_, next) {
+      unawaited(_syncDraft(next));
+    });
+
     // Слушаем изменение профиля для автоматического обновления телефона
     ref.listen(globalProfileProvider, (prev, next) {
       final newPhone = next.value?.phone;
@@ -32,8 +38,29 @@ class AdFormNotifier extends _$AdFormNotifier {
       }
     });
 
+    return _initialState();
+  }
+
+  CreateAdFormModel _initialState() {
     final initialPhone = ref.read(globalProfileProvider).value?.phone ?? '';
     return CreateAdFormModel(mainPhone: initialPhone);
+  }
+
+  Future<void> reset() async {
+    final draftService = ref.read(createDraftServiceProvider);
+    state = _initialState();
+    await draftService.clearAdDraft();
+    if (!ref.mounted) {
+      return;
+    }
+    ref.invalidate(createAdDraftProvider);
+  }
+
+  void restoreDraft(CreateAdFormModel draft) {
+    final initialPhone = ref.read(globalProfileProvider).value?.phone ?? '';
+    state = draft.copyWith(
+      mainPhone: draft.mainPhone.isEmpty ? initialPhone : draft.mainPhone,
+    );
   }
 
   void selectCity(CityModel city) {
@@ -44,6 +71,7 @@ class AdFormNotifier extends _$AdFormNotifier {
     state = state.copyWith(
       selectedStreetId: selection.cityId,
       address: selection.displayTitle,
+      addressDetails: selection.addressDetails,
     );
   }
 
@@ -170,9 +198,69 @@ class AdFormNotifier extends _$AdFormNotifier {
       state = state.copyWith(additionalNumber: val);
 
   Future<RemoteException?> createAd() async {
+    final draftService = ref.read(createDraftServiceProvider);
     final result = await ref
         .read(apartamentsRepositoryProvider)
         .createAd(state);
-    return result.fold((error) => error, (_) => null);
+    if (!ref.mounted) {
+      return null;
+    }
+
+    return await result.fold((error) async => error, (_) async {
+      await draftService.clearAdDraft();
+      if (!ref.mounted) {
+        return null;
+      }
+
+      ref.invalidate(createAdDraftProvider);
+      return null;
+    });
+  }
+
+  bool _hasDraft(CreateAdFormModel form) {
+    return form.rentGoalId != 0 ||
+        form.rentPeriodId != 0 ||
+        form.whoCanRentIds.isNotEmpty ||
+        form.premisesTypeId != 0 ||
+        form.propertyTypeId != 0 ||
+        form.roomsCountId != 0 ||
+        form.layoutId != 0 ||
+        form.renovationId != 0 ||
+        form.elevatorsId != 0 ||
+        form.balconiesId != 0 ||
+        form.furnitureId != 0 ||
+        form.amenitiesIds.isNotEmpty ||
+        form.bathroomIds.isNotEmpty ||
+        form.appliancesIds.isNotEmpty ||
+        form.stoveId != 0 ||
+        form.currencyId != 0 ||
+        form.prepaymentId != 0 ||
+        form.rentDurationId != 0 ||
+        form.rentConditionsIds.isNotEmpty ||
+        form.contactMethodId != 0 ||
+        form.cost > 0 ||
+        form.deposit > 0 ||
+        form.apartmentArea > 0 ||
+        form.floor > 0 ||
+        form.totalFloors > 0 ||
+        form.addressDetails.value.trim().isNotEmpty ||
+        form.apartmentNumber > 0 ||
+        form.title.trim().isNotEmpty ||
+        form.description.trim().isNotEmpty ||
+        form.additionalNumber.trim().isNotEmpty;
+  }
+
+  Future<void> _syncDraft(CreateAdFormModel form) async {
+    final draftService = ref.read(createDraftServiceProvider);
+    if (_hasDraft(form)) {
+      await draftService.saveAdDraft(form);
+    } else {
+      await draftService.clearAdDraft();
+    }
+
+    if (!ref.mounted) {
+      return;
+    }
+    ref.invalidate(createAdDraftProvider);
   }
 }

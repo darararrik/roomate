@@ -12,11 +12,12 @@ class LocationStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(adFormProvider);
     final flow = ref.watch(createAdFlowProvider);
     final flowNotifier = ref.read(createAdFlowProvider.notifier);
     final notifier = ref.read(adFormProvider.notifier);
     final profileCity = ref.watch(
-      globalProfileProvider.select((state) => state.value?.city ?? ''),
+      globalProfileProvider.select((value) => value.value?.city ?? ''),
     );
     final citiesState = ref.watch(citiesProvider);
     final cityTitle = citiesState.maybeWhen(
@@ -26,56 +27,48 @@ class LocationStepScreen extends HookConsumerWidget {
       },
       orElse: () => profileCity,
     );
-    final apartmentController = useTextEditingController();
+    final apartmentController = useTextEditingController(
+      text: state.apartmentNumber == 0 ? '' : '${state.apartmentNumber}',
+    );
+
+    useEffect(() {
+      final apartmentNumber = state.apartmentNumber == 0
+          ? ''
+          : '${state.apartmentNumber}';
+      if (apartmentController.text != apartmentNumber) {
+        apartmentController.text = apartmentNumber;
+      }
+      return null;
+    }, [state.apartmentNumber]);
+
     return ListView(
+      padding: const P(horizontal: S.p16),
       children: [
+        Text(context.l10n.location, style: context.typography.headline1),
         Padding(
-          padding: const P(vertical: S.p4, horizontal: S.p16),
-          child: Column(
-            crossAxisAlignment: .start,
-            spacing: S.p12,
-            children: [
-              Text(context.l10n.location, style: context.typography.headline1),
-              Text(
-                context.l10n.whatIsYourAddress,
-                style: context.typography.bodyDescription.copyWith(
-                  color: context.colors.graysText400,
-                ),
-              ),
-            ],
+          padding: const P(vertical: S.p4),
+          child: Text(
+            context.l10n.whatIsYourAddress,
+            style: context.typography.bodyDescription.copyWith(
+              color: context.colors.graysText400,
+            ),
           ),
         ),
         RegionListItem(
           iconPath: AppIcons.city,
-          onTap: () => flowNotifier.openCityPickerScreen(),
+          onTap: flowNotifier.openCityPickerScreen,
           title: cityTitle.isNotEmpty ? cityTitle : context.l10n.selectRegion,
           subTitle: ref.watch(selectedStreetNameProvider),
         ),
-        Padding(
-          padding: const P(horizontal: S.p16),
-          child: Column(
-            crossAxisAlignment: .start,
-            children: [
-              FieldErrorText(text: flow.streetError),
-              const SizedBox(height: S.p12),
-              TextFieldWithTitle.number(
-                title: context.l10n.apartmentNumber,
-                hintText: context.l10n.enterApartmentNumber,
-                controller: apartmentController,
-                onChanged: notifier.updateApartmentNumber,
-              ),
-              Padding(
-                padding: const P(vertical: S.p4),
-                child: Text(
-                  context.l10n.notVisibleInAd,
-                  style: context.typography.bodyDescription.copyWith(
-                    color: context.colors.graysText400,
-                  ),
-                ),
-              ),
-              FieldErrorText(text: flow.apartmentNumberError),
-            ],
-          ),
+        FieldErrorText(text: flow.streetError),
+        const SizedBox(height: S.p12),
+        TextFieldWithTitle.number(
+          title: context.l10n.apartmentNumber,
+          hintText: context.l10n.enterApartmentNumber,
+          controller: apartmentController,
+          onChanged: notifier.updateApartmentNumber,
+          errorText: flow.apartmentNumberError,
+          subtitle: context.l10n.notVisibleInAd,
         ),
       ],
     );

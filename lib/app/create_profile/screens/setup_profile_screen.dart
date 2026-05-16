@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -116,6 +117,10 @@ class SetupProfileScreen extends HookConsumerWidget {
                               onSelected: (gender, index, isSelected) =>
                                   notifier.setGender(gender),
                               selectedGender: state.gender,
+                              genders: const [
+                                GenderEnum.male,
+                                GenderEnum.female,
+                              ],
                             ),
                           ),
                     ),
@@ -168,12 +173,21 @@ _ProfileSetupHooks _useProfileSetupLogic(
   final genderFocusNode = useFocusNode();
 
   useEffect(() {
+    if (firstNameController.text != state.firstName) {
+      firstNameController.text = state.firstName;
+    }
+    if (lastNameController.text != state.lastName) {
+      lastNameController.text = state.lastName;
+    }
+    if (ageController.text != state.age) {
+      ageController.text = state.age;
+    }
     final newText = state.gender?.localizedName(locale) ?? '';
     if (genderController.text != newText) {
       genderController.text = newText;
     }
     return null;
-  }, [state.gender, locale]);
+  }, [state.firstName, state.lastName, state.age, state.gender, locale]);
 
   useClearErrorOnFocus(firstNameFocusNode, notifier.clearFirstNameError);
   useClearErrorOnFocus(lastNameFocusNode, notifier.clearLastNameError);

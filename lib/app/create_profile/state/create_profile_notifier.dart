@@ -12,7 +12,17 @@ class CreateProfileNotifier extends _$CreateProfileNotifier {
 
   @override
   UserState build() {
-    return UserState();
+    final profile = ref.read(globalProfileProvider).value;
+    return UserState(
+      firstName: profile?.firstName ?? '',
+      lastName: profile?.lastName ?? '',
+      avatarUrl: (profile != null && profile.avatarUrl.isNotEmpty)
+          ? profile.avatarUrl
+          : UserState().avatarUrl,
+      gender: profile?.gender,
+      age: profile != null && profile.age > 0 ? profile.age.toString() : '',
+      isVerified: profile?.isVerified ?? false,
+    );
   }
 
   void onChangedFirstName(String value) {

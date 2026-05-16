@@ -48,6 +48,39 @@ extension AdFormOptionsDtoX on AdFormOptionsData {
   AdFormOptionsModel toModel() => AdFormMapper.toModel(this);
 }
 
+abstract class CreateGroupFormOptionsMapper {
+  static List<OptionModel> _toOptionList(List<OptionData>? dtos) =>
+      dtos?.map(OptionMapper.toModel).toList() ?? [];
+
+  static CreateGroupFormOptionsModel toModel(CreateGroupFormOptionsData dto) =>
+      CreateGroupFormOptionsModel(
+        lookingForGender: _toOptionList(dto.lookingForGender),
+        communication: _toOptionList(dto.communication),
+        sleep: _toOptionList(dto.sleep),
+        employment: _toOptionList(dto.employment),
+        badHabits: _toOptionList(dto.badHabits),
+        guests: _toOptionList(dto.guests),
+        noiseLevel: _toOptionList(dto.noiseLevel),
+        cleaning: _toOptionList(dto.cleaning),
+        pets: _toOptionList(dto.pets),
+        petsAttitude: _toOptionList(dto.petsAttitude),
+        propertyType: _toOptionList(dto.propertyType),
+        roomsCount: _toOptionList(dto.roomsCount),
+        furniture: _toOptionList(dto.furniture),
+        amenities: _toOptionList(dto.amenities),
+        bathroom: _toOptionList(dto.bathroom),
+        appliances: _toOptionList(dto.appliances),
+        currency: _toOptionList(dto.currency),
+        rentDuration: _toOptionList(dto.rentDuration),
+        utilitiesPayment: _toOptionList(dto.utilitiesPayment),
+      );
+}
+
+extension CreateGroupFormOptionsDtoX on CreateGroupFormOptionsData {
+  CreateGroupFormOptionsModel toModel() =>
+      CreateGroupFormOptionsMapper.toModel(this);
+}
+
 abstract class PreferenceTagsCatalogMapper {
   static PreferenceTagsCatalogModel toModel(PreferencesTagsData dto) {
     List<OptionModel> mapList(List<OptionData>? list) =>

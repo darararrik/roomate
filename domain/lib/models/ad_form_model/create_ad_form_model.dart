@@ -1,11 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../enums/currency_enum.dart';
+import '../location/location_suggestion_model.dart';
 
 part 'create_ad_form_model.freezed.dart';
+part 'create_ad_form_model.g.dart';
 
 @freezed
 sealed class CreateAdFormModel with _$CreateAdFormModel {
+  @JsonSerializable(explicitToJson: true, includeIfNull: false)
   const factory CreateAdFormModel({
     // --- Основные параметры аренды ---
     /// Цель аренды (например: снять, сдать)
@@ -96,6 +99,9 @@ sealed class CreateAdFormModel with _$CreateAdFormModel {
     /// Полный адрес строкой
     @Default("") String address,
 
+    /// Полные данные адреса из DaData
+    @Default(LocationSuggestionModel()) LocationSuggestionModel addressDetails,
+
     /// Выбранная из справочника улица (0 — не выбрана)
     @Default(0) int selectedStreetId,
 
@@ -114,4 +120,7 @@ sealed class CreateAdFormModel with _$CreateAdFormModel {
     /// Дополнительный номер телефона
     @Default("") String additionalNumber,
   }) = _CreateAdFormModel;
+
+  factory CreateAdFormModel.fromJson(Map<String, dynamic> json) =>
+      _$CreateAdFormModelFromJson(json);
 }

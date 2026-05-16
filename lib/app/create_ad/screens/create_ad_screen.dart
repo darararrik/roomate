@@ -50,6 +50,7 @@ class CreateAdScreen extends ConsumerWidget {
               CancelButton(
                 title: context.l10n.exit,
                 content: context.l10n.draftWillBeSaved,
+                onConfirm: () => context.router.maybePop(),
               ),
             ],
             leading: BB(onPressed: () => notifier.previousStep(tabsRouter)),

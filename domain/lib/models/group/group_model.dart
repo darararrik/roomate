@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../apartaments/apartament_model.dart';
+import 'group_conditions_model.dart';
 
 part 'group_model.freezed.dart';
 
@@ -13,6 +14,12 @@ sealed class GroupModel with _$GroupModel {
     @Default(0) int matchPercent,
     @Default(0) int participantsCount,
     @Default(0) int maxParticipantsCount,
+    @Default([]) List<String> participantAvatars,
+    @Default('') String price,
+    @Default('') String status,
+    @Default('') String applicationStatus,
+    @Default('') String ownerUserId,
+    @Default(GroupConditionsModel()) GroupConditionsModel conditions,
     @Default(ApartamentModel()) ApartamentModel apartament,
   }) = _GroupModel;
 }

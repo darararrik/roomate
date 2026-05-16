@@ -6,20 +6,30 @@ import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
 
 class CancelButton extends StatelessWidget {
-  const CancelButton({super.key, required this.title, required this.content});
+  const CancelButton({
+    super.key,
+    required this.title,
+    required this.content,
+    this.onConfirm,
+  });
   final String title;
   final String content;
+  final VoidCallback? onConfirm;
 
   @override
   Widget build(BuildContext context) {
+    final parentContext = context;
     return TextButton(
       onPressed: () => showDialog(
-        context: context,
+        context: parentContext,
         builder: (BuildContext context) {
           return AlertWidget(
             title: title,
             content: content,
-            onConfirm: () => context.pop(),
+            onConfirm: () {
+              context.pop();
+              onConfirm?.call();
+            },
             onCancel: () => context.pop(),
           );
         },

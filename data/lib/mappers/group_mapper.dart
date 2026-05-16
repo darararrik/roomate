@@ -1,80 +1,119 @@
+import 'package:data/data.dart';
+import 'package:data/entity/group_list_item/group_list_item_data.dart';
 import 'package:domain/domain.dart';
 
-import 'package:data/data.dart';
-
 class GroupMapper {
-  static GroupModel toModel(GroupData dto) {
-    return GroupModel(
-      id: dto.id ?? '',
-      title: dto.title ?? '',
-      description: dto.description ?? '',
-      matchPercent: dto.matchPercent ?? 0,
-      participantsCount: dto.participantsCount ?? 0,
-      maxParticipantsCount: dto.maxParticipantsCount ?? 0,
-      apartament: dto.apartament != null
-          ? ApartamentMapper.toModel(dto.apartament!)
-          : const ApartamentModel(),
+  static GroupListItemModel toListItemModel(GroupListItemData dto) {
+    return GroupListItemModel(
+      id: dto.id,
+      title: dto.title,
+      description: dto.description,
+      matchPercent: dto.matchPercent,
+      participantsCount: dto.participantsCount,
+      maxParticipantsCount: dto.maxParticipantsCount,
+      participantAvatars: dto.participantAvatars,
+      price: dto.price.isNotEmpty ? dto.price : dto.apartament.price ?? '',
+      apartament: ApartamentMapper.toPreviewModel(dto.apartament),
     );
   }
 
-  static GroupConditionsModel toConditionsModel(GroupConditionsData dto) {
-    return GroupConditionsModel(
+  static GroupDetailModel toDetailModel(GroupDetailData dto) {
+    final participants = dto.participants.map(toParticipantModel).toList();
+
+    return GroupDetailModel(
+      id: dto.id,
+      title: dto.title,
+      description: dto.description,
+      status: dto.status,
+      applicationStatus: dto.applicationStatus,
+      matchPercent: dto.matchPercent,
+      ownerUserId: dto.ownerUserId,
+      participantsCount: dto.participantsCount,
+      maxParticipantsCount: dto.maxParticipantsCount,
+      conditions: GroupDetailConditionsMapper.toModel(
+        groupId: dto.id,
+        conditions: dto.conditions,
+        preferences: dto.preferences,
+        participantsCount: dto.participantsCount,
+        maxParticipantsCount: dto.maxParticipantsCount,
+        participants: participants,
+      ),
+      apartament: ApartamentMapper.toModel(dto.apartament),
+    );
+  }
+
+  static GroupApplicationModel toApplicationModel(GroupApplicationData dto) {
+    return GroupApplicationModel(
+      id: dto.id ?? '',
       groupId: dto.groupId ?? '',
-      whoGroupIsLookingFor: dto.whoGroupIsLookingFor ?? const [],
-      livingRules: dto.livingRules ?? const [],
-      apartmentLifestyle: (dto.apartmentLifestyle ?? const [])
-          .map(toPreferenceItemModel)
-          .toList(),
-      apartmentAtmosphere: (dto.apartmentAtmosphere ?? const [])
-          .map(toPreferenceItemModel)
-          .toList(),
-      participantsCount: dto.participantsCount ?? 0,
-      maxParticipantsCount: dto.maxParticipantsCount ?? 0,
-      participants: (dto.participants ?? const [])
-          .map(toParticipantModel)
-          .toList(),
+      status: dto.status ?? '',
+      createdAt: dto.createdAt ?? '',
     );
   }
 
   static ParticipantModel toParticipantModel(ParticipantData dto) {
     return ParticipantModel(
       id: dto.id ?? '',
-      fullName: dto.fullName ?? '',
+      fullName: dto.fullName ?? _joinName(dto.firstName, dto.lastName),
       avatarUrl: dto.avatarUrl ?? '',
       isVerified: dto.isVerified ?? false,
-      role: dto.role ?? '',
+      role: _participantRoleTitle(dto.role) ?? '',
     );
   }
 
-  static ParticipantProfileModel toParticipantProfileModel(
-    ParticipantProfileData dto,
-  ) {
+  static ParticipantProfileModel toParticipantProfileModel(ParticipantProfileData dto) {
     return ParticipantProfileModel(
-      id: dto.id ?? '',
-      fullName: dto.fullName ?? '',
-      avatarUrl: dto.avatarUrl ?? '',
-      isVerified: dto.isVerified ?? false,
-      age: dto.age ?? 0,
-      gender: dto.gender ?? '',
-      role: dto.role ?? '',
-      rating: dto.rating ?? '',
-      reviewsCount: dto.reviewsCount ?? 0,
-      personalQualities: (dto.personalQualities ?? const [])
-          .map(toPreferenceItemModel)
-          .toList(),
-      householdHabits: (dto.householdHabits ?? const [])
-          .map(toPreferenceItemModel)
-          .toList(),
-      pets: (dto.pets ?? const []).map(toPreferenceItemModel).toList(),
+      id: dto.id,
+      fullName: dto.fullName.isNotEmpty ? dto.fullName : _joinName(dto.firstName, dto.lastName),
+      avatarUrl: dto.avatarUrl,
+      isVerified: false,
+      age: dto.age,
+      gender: _genderTitle(dto.gender),
+      role: _participantRoleTitle(dto.role) ?? dto.role,
+      rating: dto.rating.toString(),
+      reviewsCount: dto.reviewsCount,
+      personalQualities: _questionnaireItems(dto.questionnaire.personalTraits),
+      householdHabits: _questionnaireItems(dto.questionnaire.householdHabits),
+      pets: _questionnaireItems(dto.questionnaire.pets),
     );
   }
 
-  static GroupPreferenceItemModel toPreferenceItemModel(
-    GroupPreferenceItemData dto,
-  ) {
-    return GroupPreferenceItemModel(
-      title: dto.title ?? '',
-      value: dto.value ?? '',
-    );
+  static List<GroupPreferenceItemModel> _questionnaireItems(List<ParticipantQuestionnaireItemData> items) {
+    return items
+        .map((item) {
+          final values = item.values
+              .map((value) => value.title ?? '')
+              .where((value) => value.trim().isNotEmpty)
+              .join(', ');
+          return GroupPreferenceItemModel(title: item.title, value: values);
+        })
+        .where((item) {
+          return item.title.trim().isNotEmpty || item.value.trim().isNotEmpty;
+        })
+        .toList();
+  }
+
+  static String _joinName(String? firstName, String? lastName) {
+    return [firstName ?? '', lastName ?? ''].where((item) => item.trim().isNotEmpty).join(' ');
+  }
+
+  static String? _participantRoleTitle(String? role) {
+    return switch (role) {
+      'owner' => 'Владелец',
+      'member' => 'Участник',
+      'tenant' => 'Арендатор',
+      final value? when value.trim().isNotEmpty => value,
+      _ => null,
+    };
+  }
+
+  static String _genderTitle(String? value) {
+    return switch (value) {
+      'male' => 'мужчина',
+      'female' => 'женщина',
+      'other' => 'другой',
+      final gender? => gender,
+      _ => '',
+    };
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,12 +14,13 @@ class CreateGroupFlow extends _$CreateGroupFlow {
     return const CreateGroupFlowState();
   }
 
+  void reset() {
+    state = const CreateGroupFlowState();
+  }
+
   late CreateGroupFormModel _formState;
 
   AppLocalizations get _locale => ref.l10n;
-  int get _step => ref.read(createGroupStepIndexProvider);
-  set _step(int value) =>
-      ref.read(createGroupStepIndexProvider.notifier).state = value;
 
   String getStepTitle(int index) {
     return switch (index) {
@@ -45,13 +47,13 @@ class CreateGroupFlow extends _$CreateGroupFlow {
     ),
   );
 
-  Future<void> nextStep() async {
+  Future<void> nextStep(TabsRouter tabsRouter) async {
     if (state.isSubmitting) {
       return;
     }
 
     _formState = ref.read(groupFormProvider);
-    final step = _step;
+    final step = tabsRouter.activeIndex;
     validateStep(step);
     if (!_isStepValid(step)) {
       return;
@@ -62,10 +64,10 @@ class CreateGroupFlow extends _$CreateGroupFlow {
       return;
     }
 
-    _step = step + 1;
+    tabsRouter.setActiveIndex(step + 1);
   }
 
-  Future<void> submitReview() async {
+  Future<void> submitReview(TabsRouter tabsRouter) async {
     if (state.isSubmitting) {
       return;
     }
@@ -75,14 +77,14 @@ class CreateGroupFlow extends _$CreateGroupFlow {
       return;
     }
 
-    _step = 10;
+    tabsRouter.setActiveIndex(10);
   }
 
-  void previousStep() {
+  void previousStep(TabsRouter tabsRouter) {
     clearValidation();
-    final previousIndex = _step - 1;
+    final previousIndex = tabsRouter.activeIndex - 1;
     if (previousIndex >= 0) {
-      _step = previousIndex;
+      tabsRouter.setActiveIndex(previousIndex);
       return;
     }
 
@@ -180,8 +182,7 @@ class CreateGroupFlow extends _$CreateGroupFlow {
   void _validateGroupStep() {
     if (_formState.lookingForGenderId == 0) {
       state = state.copyWith(
-        lookingForGenderError:
-            _locale.createGroupValidationSelectRoommateGender,
+        lookingForGenderError: _locale.validationSelectOption,
       );
     }
     if (_formState.participantsCount <= 0) {
@@ -225,14 +226,13 @@ class CreateGroupFlow extends _$CreateGroupFlow {
 
   void _validatePropertyDataStep() {
     if (_formState.propertyTypeId == 0) {
-      state = state.copyWith(
-        propertyTypeError: _locale.createGroupValidationSelectPropertyType,
-      );
+      state = state.copyWith(propertyTypeError: _locale.validationSelectOption);
     }
-    if (_formState.address.trim().isEmpty) {
+    if (_formState.addressDetails.value.trim().isEmpty) {
       state = state.copyWith(locationError: _locale.validationPickStreet);
     }
-    if (_formState.apartmentNumber.trim().isEmpty) {
+    final apartmentNumber = _formState.apartmentNumber.trim();
+    if (apartmentNumber.isEmpty || int.tryParse(apartmentNumber) == null) {
       state = state.copyWith(
         apartmentNumberError: _locale.validationEnterApartmentNumber,
       );
@@ -241,9 +241,7 @@ class CreateGroupFlow extends _$CreateGroupFlow {
 
   void _validatePropertyParamsStep() {
     if (_formState.roomsCountId == 0) {
-      state = state.copyWith(
-        roomsError: _locale.createGroupValidationSelectRoomsCount,
-      );
+      state = state.copyWith(roomsError: _locale.validationSelectOption);
     }
     if (_formState.apartmentArea <= 0) {
       state = state.copyWith(areaError: _locale.validationEnterArea);
@@ -252,8 +250,11 @@ class CreateGroupFlow extends _$CreateGroupFlow {
       state = state.copyWith(floorError: _locale.validationEnterFloor);
     }
     if (_formState.totalFloors <= 0) {
+      state = state.copyWith(totalFloorsError: _locale.validationEnterFloor);
+    }
+    if (_formState.floor > _formState.totalFloors) {
       state = state.copyWith(
-        totalFloorsError: _locale.createGroupValidationEnterTotalFloors,
+        floorError: _locale.validationFloorMustBeLessThenTotalFloors,
       );
     }
   }
@@ -266,30 +267,23 @@ class CreateGroupFlow extends _$CreateGroupFlow {
 
   void _validateApartmentItemsStep() {
     if (_formState.furnitureId == 0) {
-      state = state.copyWith(
-        furnitureError: _locale.createGroupValidationSelectFurniture,
-      );
+      state = state.copyWith(furnitureError: _locale.validationSelectOption);
     }
   }
 
   void _validateFinanceStep() {
     if (_formState.currencyId == 0) {
-      state = state.copyWith(
-        currencyError: _locale.createGroupValidationSelectCurrency,
-      );
+      state = state.copyWith(currencyError: _locale.validationSelectOption);
     }
     if (_formState.pricePerPerson <= 0) {
       state = state.copyWith(priceError: _locale.validationEnterPrice);
     }
     if (_formState.rentDurationId == 0) {
-      state = state.copyWith(
-        rentDurationError: _locale.createGroupValidationSelectRentDuration,
-      );
+      state = state.copyWith(rentDurationError: _locale.validationSelectOption);
     }
     if (_formState.utilitiesPaymentId == 0) {
       state = state.copyWith(
-        utilitiesPaymentError:
-            _locale.createGroupValidationSelectUtilitiesPayment,
+        utilitiesPaymentError: _locale.validationSelectOption,
       );
     }
   }

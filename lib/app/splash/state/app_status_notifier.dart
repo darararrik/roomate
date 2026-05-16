@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:roomate/lib.dart';
@@ -45,9 +46,23 @@ class AppStatusNotifier extends _$AppStatusNotifier {
 
     final snapshot = await ref.read(appStatusStorageServiceProvider).read();
     if (!snapshot.hasCompletedForm) {
-      return AuthStatus.noForm;
+      return _statusFromProfile(profile);
     }
     if (!snapshot.hasCompletedProfile) {
+      return profile.hasCompletedPreferences
+          ? AuthStatus.ready
+          : AuthStatus.noProfile;
+    }
+
+    return AuthStatus.ready;
+  }
+
+  AuthStatus _statusFromProfile(ProfileModel profile) {
+    if (!profile.hasCompletedBasicProfile) {
+      return AuthStatus.noForm;
+    }
+
+    if (!profile.hasCompletedPreferences) {
       return AuthStatus.noProfile;
     }
 

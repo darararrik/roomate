@@ -1,4 +1,7 @@
+export 'group_detail_model.dart';
+export 'group_application_model.dart';
 export 'group_conditions_model.dart';
+export 'group_list_item_model.dart';
 export 'group_model.dart';
 export 'group_preference_item_model.dart';
 export 'participant_model.dart';

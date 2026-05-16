@@ -12,12 +12,28 @@ class DescriptionAdStepScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(adFormProvider);
+    final form = ref.watch(adFormProvider);
     final flow = ref.watch(createAdFlowProvider);
 
-    final titleController = useTextEditingController();
-    final descriptionController = useTextEditingController();
+    final titleController = useTextEditingController(text: form.title);
+    final descriptionController = useTextEditingController(
+      text: form.description,
+    );
     final notifier = ref.read(adFormProvider.notifier);
+
+    useEffect(() {
+      if (titleController.text != form.title) {
+        titleController.text = form.title;
+      }
+      return null;
+    }, [form.title]);
+
+    useEffect(() {
+      if (descriptionController.text != form.description) {
+        descriptionController.text = form.description;
+      }
+      return null;
+    }, [form.description]);
 
     return ListView(
       padding: const P(horizontal: S.p16),
@@ -35,12 +51,7 @@ class DescriptionAdStepScreen extends HookConsumerWidget {
           controller: descriptionController,
           onChanged: notifier.updateDescription,
           errorText: flow.descriptionError,
-        ),
-        Text(
-          context.l10n.minimumCharactersRequired,
-          style: context.typography.bodyDescription.copyWith(
-            color: context.colors.graysText400,
-          ),
+          subtitle: context.l10n.minimumCharactersRequired,
         ),
       ].separated(const SizedBox(height: S.p12)),
     );

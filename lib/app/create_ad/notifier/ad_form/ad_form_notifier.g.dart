@@ -103,7 +103,7 @@ final class AdFormNotifierProvider
         argument: null,
         retry: null,
         name: r'adFormProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -124,7 +124,7 @@ final class AdFormNotifierProvider
   }
 }
 
-String _$adFormNotifierHash() => r'd36902c8a27e4a876ac84e1c3c73eb6286e29286';
+String _$adFormNotifierHash() => r'c872c3249c5e10dbef85bfec53559c3bb8b1e425';
 
 abstract class _$AdFormNotifier extends $Notifier<CreateAdFormModel> {
   CreateAdFormModel build();

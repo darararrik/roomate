@@ -11,13 +11,18 @@ class GenderBottomSheet extends StatelessWidget {
     super.key,
     required this.onSelected,
     this.selectedGender,
+    this.genders = GenderEnum.values,
   });
   final void Function(GenderEnum gender, int index, bool isSelected) onSelected;
   final GenderEnum? selectedGender;
+  final List<GenderEnum> genders;
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
     final isRadio = true;
+    final selectedIndex = selectedGender == null
+        ? null
+        : genders.indexOf(selectedGender!);
     return BaseBottomSheet(
       title: locale.yourGender,
       child: Column(
@@ -25,9 +30,11 @@ class GenderBottomSheet extends StatelessWidget {
         children: [
           GroupButton<GenderEnum>(
             controller: GroupButtonController(
-              selectedIndex: selectedGender?.index,
+              selectedIndex: selectedIndex != null && selectedIndex >= 0
+                  ? selectedIndex
+                  : null,
             ),
-            buttons: GenderEnum.values,
+            buttons: genders,
             isRadio: isRadio,
             onSelected: onSelected,
             buttonBuilder: (selected, gender, context) {

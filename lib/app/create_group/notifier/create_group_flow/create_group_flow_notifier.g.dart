@@ -41,7 +41,7 @@ final class CreateGroupFlowProvider
   }
 }
 
-String _$createGroupFlowHash() => r'b334f156030b645bd435af1f7b3d27e476f6a34b';
+String _$createGroupFlowHash() => r'125fa7189b55b845f387c70d3f67e25a19bc288c';
 
 abstract class _$CreateGroupFlow extends $Notifier<CreateGroupFlowState> {
   CreateGroupFlowState build();

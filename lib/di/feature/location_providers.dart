@@ -15,13 +15,18 @@ Future<List<CityModel>> cities(Ref ref) async {
 }
 
 @riverpod
-Future<List<LocationSuggestionModel>> locationSuggestions(Ref ref, String addressQuery) async {
+Future<List<LocationSuggestionModel>> locationSuggestions(
+  Ref ref,
+  String addressQuery,
+) async {
   final trimmedQuery = addressQuery.trim();
   if (trimmedQuery.isEmpty) {
     return const [];
   }
 
-  final result = await ref.read(locationRepositoryProvider).suggestLocations(trimmedQuery);
+  final result = await ref
+      .read(locationRepositoryProvider)
+      .suggestLocations(trimmedQuery);
   return result.fold((error) => throw error, (suggestions) => suggestions);
 }
 
@@ -82,7 +87,8 @@ LocationSelectionModel resolveLocationSelection({
   final suggestionCityTitle = _sanitizeCityTitle(suggestion.city);
   if (matchedCity == null && suggestionCityTitle.isNotEmpty) {
     for (final city in cities) {
-      if (city.title.trim().toLowerCase() == suggestionCityTitle.toLowerCase()) {
+      if (city.title.trim().toLowerCase() ==
+          suggestionCityTitle.toLowerCase()) {
         matchedCity = city;
         break;
       }
@@ -105,6 +111,7 @@ LocationSelectionModel resolveLocationSelection({
         : fallbackCity?.fiasId ?? '',
     addressQuery: suggestion.value,
     displayTitle: suggestion.value,
+    addressDetails: suggestion,
   );
 }
 

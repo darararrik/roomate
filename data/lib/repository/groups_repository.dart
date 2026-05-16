@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
-
-import 'package:data/data.dart';
 
 class GroupsRepositoryImpl implements IGroupsRepository {
   GroupsRepositoryImpl(this._dataSource);
@@ -10,38 +9,27 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   final GroupsDataSource _dataSource;
 
   @override
-  Future<Either<RemoteException, List<GroupModel>>> fetchGroups({
-    WhoSearchFilterModel? filter,
-  }) {
+  Future<Either<RemoteException, List<GroupListItemModel>>> fetchGroups({WhoSearchFilterModel? filter}) {
     return _dataSource.fetchGroups(filter: filter);
   }
 
   @override
-  Future<Either<RemoteException, GroupModel>> fetchGroupById(String groupId) {
+  Future<Either<RemoteException, GroupDetailModel>> fetchGroupById(String groupId) {
     return _dataSource.fetchGroupById(groupId);
   }
 
   @override
-  Future<Either<RemoteException, CreateGroupFormOptionsModel>>
-  fetchCreateGroupFormOptions() {
-    return _dataSource.fetchCreateGroupFormOptions();
+  Future<Either<RemoteException, CreateGroupFormOptionsModel>> fetchTags() {
+    return _dataSource.fetchTags();
   }
 
   @override
-  Future<Either<RemoteException, GroupConditionsModel>> fetchGroupConditions(
-    String groupId,
-  ) {
-    return _dataSource.fetchGroupConditions(groupId);
-  }
-
-  @override
-  Future<Either<RemoteException, ParticipantProfileModel>>
-  fetchGroupParticipantById(String participantId) {
+  Future<Either<RemoteException, ParticipantProfileModel>> fetchGroupParticipantById(String participantId) {
     return _dataSource.fetchGroupParticipantById(participantId);
   }
 
   @override
-  Future<Either<RemoteException, void>> applyToGroup(String groupId) {
+  Future<Either<RemoteException, GroupApplicationModel>> applyToGroup(String groupId) {
     return _dataSource.applyToGroup(groupId);
   }
 
@@ -51,9 +39,7 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   }
 
   @override
-  Future<Either<RemoteException, void>> removeGroupFromFavorites(
-    String groupId,
-  ) {
+  Future<Either<RemoteException, void>> removeGroupFromFavorites(String groupId) {
     return _dataSource.removeGroupFromFavorites(groupId);
   }
 
