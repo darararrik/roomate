@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/profile/widgets/overview_profile_menu.dart';
 import 'package:roomate/app/profile/widgets/profile_header.dart';
 import 'package:roomate/lib.dart';
@@ -22,24 +20,16 @@ class TenantOverviewProfile extends ConsumerWidget {
             ProfileMenuItem(
               iconPath: AppIcons.personSettings,
               title: context.l10n.myAccount,
-              onTap: () =>
-                  ref.read(globalProfileProvider.notifier).openMyAccount(),
+              onTap: () => ref.read(globalProfileProvider.notifier).openMyAccount(),
             ),
-            ProfileMenuItem(
-              iconPath: AppIcons.docs,
-              title: context.l10n.myTransactions,
-              onTap: () {},
-            ),
+            ProfileMenuItem(iconPath: AppIcons.docs, title: context.l10n.myTransactions, onTap: () {}),
+            ProfileMenuItem(iconPath: AppIcons.docs, title: context.l10n.applicattions, onTap: () {}),
             ProfileMenuItem(
               iconPath: AppIcons.settings,
               title: context.l10n.settings,
               onTap: ref.read(globalProfileProvider.notifier).openSettings,
             ),
-            ProfileMenuItem(
-              iconPath: AppIcons.help,
-              title: context.l10n.support,
-              onTap: () {},
-            ),
+            ProfileMenuItem(iconPath: AppIcons.help, title: context.l10n.support, onTap: () {}),
           ],
         ),
       ]),

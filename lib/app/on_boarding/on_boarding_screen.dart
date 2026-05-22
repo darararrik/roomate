@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/on_boarding/state/on_boarding_notifier.dart';
 import 'package:roomate/app/on_boarding/state/on_boarding_state.dart';
 import 'package:roomate/constants/constants.dart';
@@ -31,18 +29,14 @@ class OnBoardingScreen extends ConsumerWidget {
           child: SafeArea(
             child: Column(
               children: [
-                _QuizAppBar(
-                  showBackButton: !state.isFirstStep,
-                  onBack: notifier.stepBack,
-                ),
+                _QuizAppBar(showBackButton: !state.isFirstStep, onBack: notifier.stepBack),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: S.p64),
                     child: Center(
                       child: _QuizStepContent(
                         state: state,
-                        onOptionSelected: (index) =>
-                            notifier.handleSelection(optionIndex: index),
+                        onOptionSelected: (index) => notifier.handleSelection(optionIndex: index),
                       ),
                     ),
                   ),
@@ -74,14 +68,8 @@ class _QuizAppBar extends StatelessWidget {
             Consumer(
               builder: (context, ref, child) {
                 return IconButton(
-                  onPressed: () =>
-                      ref.read(onBoardingProvider.notifier).skipByOwner(),
-                  icon: AppIcon(
-                    AppIcons.xBig,
-                    width: S.p32,
-                    height: S.p32,
-                    color: context.colors.graysWhite,
-                  ),
+                  onPressed: () => ref.read(onBoardingProvider.notifier).skipByOwner(),
+                  icon: AppIcon(AppIcons.xBig, width: S.p32, height: S.p32, color: context.colors.graysWhite),
                 );
               },
             ),
@@ -105,10 +93,7 @@ class _QuizStepContent extends StatelessWidget {
     return Padding(
       padding: const P(horizontal: S.p12),
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colors.graysWhite,
-          borderRadius: BorderRadius.circular(S.p28),
-        ),
+        decoration: BoxDecoration(color: context.colors.graysWhite, borderRadius: BorderRadius.circular(S.p28)),
         child: AnimatedSize(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOutCubic,
@@ -117,27 +102,18 @@ class _QuizStepContent extends StatelessWidget {
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
               layoutBuilder: (currentChild, previousChildren) {
-                return Stack(
-                  alignment: Alignment.topCenter,
-                  children: [...previousChildren, ?currentChild],
-                );
+                return Stack(alignment: Alignment.topCenter, children: [...previousChildren, ?currentChild]);
               },
               child: Column(
                 key: ValueKey<int>(state.currentIndex),
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    step.question,
-                    style: context.typography.headline0,
-                    textAlign: TextAlign.center,
-                  ),
+                  Text(step.question, style: context.typography.headline0, textAlign: TextAlign.center),
                   const SizedBox(height: S.p12),
                   Text(
                     step.subQuestion,
-                    style: context.typography.headline2.copyWith(
-                      color: context.colors.graysText700,
-                    ),
+                    style: context.typography.headline2.copyWith(color: context.colors.graysText700),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: S.p24),
@@ -148,12 +124,7 @@ class _QuizStepContent extends StatelessWidget {
                         radius: S.p16,
                         onPressed: () => onOptionSelected(index),
                         bgColor: context.colors.opacityOrange20,
-                        child: Text(
-                          step.options[index],
-                          style: context.typography.activesButton.copyWith(
-                            color: context.colors.orange,
-                          ),
-                        ),
+                        text: step.options[index],
                       ),
                     );
                   }),
@@ -162,16 +133,9 @@ class _QuizStepContent extends StatelessWidget {
                       builder: (context, ref, child) {
                         return OpacityButton(
                           radius: S.p16,
-                          onPressed: () => ref
-                              .read(onBoardingProvider.notifier)
-                              .skipByOwner(),
+                          onPressed: () => ref.read(onBoardingProvider.notifier).skipByOwner(),
                           bgColor: context.colors.graysLight100,
-                          child: Text(
-                            step.cancel!,
-                            style: context.typography.activesButton.copyWith(
-                              color: context.colors.graysText400,
-                            ),
-                          ),
+                          text: step.cancel!,
                         );
                       },
                     ),

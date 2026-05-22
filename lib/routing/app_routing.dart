@@ -24,7 +24,22 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: ApartamentsRoute.page),
-    AutoRoute(page: MyAdvertisementsRoute.page),
+    AutoRoute(
+      page: MyAdvertisementsRoute.page,
+      children: [
+        AutoRoute(page: ActiveMyAdvertisementsRoute.page, initial: true),
+        AutoRoute(page: ModerationMyAdvertisementsRoute.page),
+        AutoRoute(page: ArchivedMyAdvertisementsRoute.page),
+      ],
+    ),
+    AutoRoute(
+      page: ApplicationsTabViewRoute.page,
+      children: [
+        AutoRoute(page: NewApplicationsRoute.page, initial: true),
+        AutoRoute(page: ArchivedApplicationsRoute.page),
+      ],
+    ),
+    AutoRoute(page: MyAdApplicationDetailRoute.page),
     AutoRoute(page: NeighboursRoute.page),
     AutoRoute(page: CoworkingRoute.page),
     AutoRoute(page: ChatRoute.page),

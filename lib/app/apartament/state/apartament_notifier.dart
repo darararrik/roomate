@@ -6,6 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/app/apartament/widgets/more_action_bottom_sheet.dart';
 import 'package:roomate/app/favorites/state/favorites_notifier.dart';
 import 'package:roomate/di/repository/repository_providers.dart';
+import 'package:roomate/routing/app_routing.gr.dart';
 import 'package:roomate/utils/extensions.dart';
 
 part 'apartament_notifier.freezed.dart';
@@ -83,7 +84,8 @@ class Apartament extends _$Apartament {
   }
 
   void onWritePressed() {
-    ref.nav.showSnackBar(message: 'Чат будет доступен позже');
+    final apartment = state.requireValue.apartment;
+    ref.nav.push(ChatRoute(apartment: apartment));
   }
 
   void onMorePressed(BuildContext context) {

@@ -13,9 +13,7 @@ class GroupParticipantProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncState = ref.watch(
-      groupParticipantProfileProvider(participantId),
-    );
+    final asyncState = ref.watch(groupParticipantProfileProvider(participantId));
     final l10n = context.l10n;
 
     return asyncState.when(
@@ -36,7 +34,7 @@ class GroupParticipantProfileScreen extends ConsumerWidget {
                   padding: const P(horizontal: S.p16, vertical: S.p12),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate([
-                      GroupParticipantProfileCard(participant: participant),
+                      ProfileCard(participant: participant),
                       const SizedBox(height: S.p12),
                       Padding(
                         padding: const P(vertical: S.p12),
@@ -44,23 +42,16 @@ class GroupParticipantProfileScreen extends ConsumerWidget {
                           spacing: S.p12,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              l10n.groupParticipantProfileQuestionnaireTitle,
-                              style: context.typography.headline1,
-                            ),
+                            Text(l10n.groupParticipantProfileQuestionnaireTitle, style: context.typography.headline1),
                             _ProfileInfoSection(
-                              title: l10n
-                                  .groupParticipantProfilePersonalQualitiesTitle,
+                              title: l10n.groupParticipantProfilePersonalQualitiesTitle,
                               items: participant.personalQualities,
                             ),
                             _ProfileInfoSection(
                               title: l10n.preferencesHouseholdTitle,
                               items: participant.householdHabits,
                             ),
-                            _ProfileInfoSection(
-                              title: l10n.groupParticipantProfilePetsTitle,
-                              items: participant.pets,
-                            ),
+                            _ProfileInfoSection(title: l10n.groupParticipantProfilePetsTitle, items: participant.pets),
                           ],
                         ),
                       ),

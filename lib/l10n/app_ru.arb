@@ -18,6 +18,20 @@
   "optionsFound": "Найдено вариантов",
   "rentApartment": "Снять в аренду",
   "myAdvertisements": "Мои объявления",
+  "createShort": "Создать",
+  "myAdsActive": "Активные",
+  "myAdsModeration": "На модерации",
+  "myAdsArchive": "Архив",
+  "myAdApplicationsTitle": "Заявки от арендаторов",
+  "adApplicationNewTabTitle": "Новые",
+  "adApplicationAccept": "Принять",
+  "adApplicationReject": "Отклонить",
+  "adApplicationNoItems": "Пока нет заявок",
+  "adApplicationInfoTitle": "Заявки на проживание",
+  "adApplicationInfoDescription": "Эти люди хотят снять ваше жилье. Просмотрите их анкеты и примите решение по заселению.",
+  "myAdsNoItems": "Пока нет объявлений",
+  "adApplicationApartmentTitle": "Объявление",
+  "adApplicationQuestionnaireTitle": "Анкета арендатора",
   "findNeighbour": "Найти соседа",
   "recentAdvertisements": "Недавние объявления",
   "seeAll": "Смотреть все",
@@ -26,6 +40,7 @@
   "map": "Карта",
   "call": "Позвонить",
   "write": "Написать",
+  "chatWillBeAvailableLater": "Чат будет доступен позже",
   "join": "Присоединиться",
   "aboutTheGroup": "О группе",
   "match": "совпадения",
@@ -378,7 +393,9 @@
     "placeholders": {
       "error": {}
     }
-  }
+  },
+  "applicattions":"Заявки",
+  "exitTitle":"Хотите выйти?"
 
 
 }

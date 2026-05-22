@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/constants/constants.dart';
 import 'package:roomate/theme/theme_x/app_palette.dart';
 import 'package:roomate/theme/theme_x/app_typography.dart';
@@ -11,11 +10,7 @@ part 'app_text_style.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        overlayColor: WidgetStateColor.fromMap({
-          WidgetState.pressed: _appColors.graysLight100,
-        }),
-      ),
+      style: ButtonStyle(overlayColor: WidgetStateColor.fromMap({WidgetState.pressed: _appColors.graysLight100})),
     ),
     colorScheme: ColorScheme.fromSeed(seedColor: _appColors.graysWhite),
 
@@ -29,20 +24,14 @@ class AppTheme {
     //     borderRadius: BorderRadius.circular(S.p12),
     //     side: BorderSide(color: _appColors.input200),
     //   ),
-    // ),
+    // ),\
     primaryColor: _appColors.orange,
     useMaterial3: true,
     extensions: <ThemeExtension<dynamic>>[_appColors, _appTextStyle],
     scaffoldBackgroundColor: _appColors.graysWhite,
     dividerColor: _appColors.graysStroke300,
-    dividerTheme: DividerThemeData(
-      thickness: S.p1,
-      space: S.p1,
-      color: _appColors.graysStroke300,
-    ),
-    bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: _appColors.graysWhite,
-    ),
+    dividerTheme: DividerThemeData(thickness: S.p1, space: S.p1, color: _appColors.graysStroke300),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: _appColors.graysWhite),
     appBarTheme: AppBarTheme(
       surfaceTintColor: _appColors.graysWhite,
       backgroundColor: _appColors.graysWhite,
@@ -72,18 +61,14 @@ class AppTheme {
       unselectedLabelColor: _appColors.graysBlack,
       labelStyle: _appTextStyle.inputRegular,
       unselectedLabelStyle: _appTextStyle.inputRegular,
-      indicator: BoxDecoration(
-        color: _appColors.graysLight100,
-        borderRadius: BorderRadius.circular(S.p20),
-      ),
+      indicator: BoxDecoration(color: _appColors.graysLight100, borderRadius: BorderRadius.circular(S.p20)),
       splashBorderRadius: BorderRadius.circular(S.p20),
+      labelPadding: .zero,
     ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const P(horizontal: S.p16, vertical: S.p20),
       fillColor: _appColors.graysInput200,
-      hintStyle: _appTextStyle.inputRegular.copyWith(
-        color: _appColors.graysText400,
-      ),
+      hintStyle: _appTextStyle.inputRegular.copyWith(color: _appColors.graysText400),
       border: InputBorder.none,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
@@ -97,10 +82,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(S.p16),
         borderSide: const BorderSide(width: S.p2),
       ),
-      disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(S.p16),
-        borderSide: BorderSide.none,
-      ),
+      disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(S.p16), borderSide: BorderSide.none),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(S.p16),
         borderSide: const BorderSide(width: S.p2),
@@ -108,9 +90,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        shape: WidgetStatePropertyAll(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p16)),
-        ),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.p16))),
         textStyle: WidgetStatePropertyAll(_appTextStyle.activesButton),
         minimumSize: const WidgetStatePropertyAll(Size.fromHeight(S.p48)),
         elevation: const WidgetStatePropertyAll(0),

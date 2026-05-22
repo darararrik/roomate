@@ -11,6 +11,15 @@ class ApiUrlConstants {
   static const groupFormOptions = '/groups/tags';
   static const ads = '/ads';
   static String adsId(String id) => '/ads/$id';
+  static String adsApply(String adId) => '${adsId(adId)}/apply';
+  static const myAds = '/my/ads';
+  static const myAdApplications = '/my/ad-applications';
+  static String myAdApplication(String applicationId) =>
+      '$myAdApplications/$applicationId';
+  static String myAdApplicationReject(String applicationId) =>
+      '${myAdApplication(applicationId)}/reject';
+  static String myAdApplicationAccept(String applicationId) =>
+      '${myAdApplication(applicationId)}/accept';
 
   static const filters = '/ads/filters';
   static const groups = '/groups';

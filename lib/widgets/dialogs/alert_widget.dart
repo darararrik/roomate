@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:roomate/utils/utils.dart';
 
 class AlertWidget extends StatelessWidget {
@@ -24,22 +23,14 @@ class AlertWidget extends StatelessWidget {
           onPressed: onCancel,
           child: Text(
             context.l10n.stay,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
-              color: CupertinoColors.systemBlue,
-            ),
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: CupertinoColors.systemBlue),
           ),
         ),
         CupertinoDialogAction(
           onPressed: onConfirm,
           child: Text(
             context.l10n.exit,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w600,
-              color: CupertinoColors.destructiveRed,
-            ),
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: CupertinoColors.destructiveRed),
           ),
         ),
       ],

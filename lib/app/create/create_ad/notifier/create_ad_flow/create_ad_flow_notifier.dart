@@ -1,0 +1,437 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:domain/domain.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'package:roomate/lib.dart';
+import 'package:roomate/routing/app_routing.gr.dart';
+
+part 'create_ad_flow_notifier.g.dart';
+
+@riverpod
+class CreateAdFlow extends _$CreateAdFlow {
+  @override
+  CreateAdFlowState build() {
+    return const CreateAdFlowState();
+  }
+
+  void reset() {
+    state = const CreateAdFlowState();
+  }
+
+  late CreateAdFormModel _formState;
+  AppLocalizations get _locale => ref.l10n;
+
+  String getStepTitle(int index) {
+    return switch (index) {
+      0 || 1 || 2 => _locale.newAdvertisement,
+      3 => _locale.apartmentRent,
+      4 => _locale.propertyData,
+      5 => _locale.photoAndVideo,
+      6 => _locale.apartmentFeatures,
+      7 => _locale.apartmentItems,
+      8 => _locale.dealTerms,
+      9 => _locale.advertisementDescription,
+      10 => _locale.contacts,
+      11 => _locale.checkAdvertisement,
+      _ => _locale.newAdvertisement,
+    };
+  }
+
+  void openCityPickerScreen() => ref.nav.push(
+    LocationRoute(
+      onSelected: (selection) {
+        ref.read(adFormProvider.notifier).selectLocation(selection);
+        ref.nav.pop();
+      },
+    ),
+  );
+
+  Future<void> nextStep(TabsRouter tabsRouter) async {
+    if (state.isSubmitting) return;
+
+    _formState = ref.read(adFormProvider);
+    final step = tabsRouter.activeIndex;
+
+    validateStep(step);
+
+    if (!_isStepValid(step)) return;
+
+    if (step == 11) {
+      final isSubmitted = await _submitForm();
+      if (!isSubmitted) return;
+    }
+    if (step == 12) {
+      ref.nav.replaceAll([const MainFlowRoute()]);
+      return;
+    }
+
+    tabsRouter.setActiveIndex(step + 1);
+  }
+
+  void previousStep(TabsRouter tabsRouter) {
+    clearValidation();
+    final prevIndex = tabsRouter.activeIndex - 1;
+    if (prevIndex >= 0) {
+      tabsRouter.setActiveIndex(prevIndex);
+    } else if (ref.nav.canPop()) {
+      ref.nav.pop();
+    }
+  }
+
+  Future<bool> _submitForm() async {
+    state = state.copyWith(isSubmitting: true);
+
+    final error = await ref.read(adFormProvider.notifier).createAd();
+    if (error != null) {
+      state = state.copyWith(isSubmitting: false);
+      final message = error.messages.isNotEmpty
+          ? error.messages
+          : ref.l10n.createAdSubmitFailed;
+      ref.nav.showSnackBar(message: message);
+      return false;
+    }
+
+    state = state.copyWith(isSubmitting: false);
+    return true;
+  }
+
+  void clearValidation() => state = state.copyWith(
+    validationStepIndex: -1,
+    rentGoalError: '',
+    rentPeriodError: '',
+    whoCanRentError: '',
+    premisesError: '',
+    propertyError: '',
+    streetError: '',
+    apartmentNumberError: '',
+    roomsError: '',
+    layoutError: '',
+    areaError: '',
+    floorError: '',
+    totalFloorsError: '',
+    renovationError: '',
+    elevatorsError: '',
+    balconiesError: '',
+    furnitureError: '',
+    amenitiesError: '',
+    bathroomError: '',
+    appliancesError: '',
+    stoveError: '',
+    currencyError: '',
+    priceError: '',
+    depositError: '',
+    prepaymentError: '',
+    rentDurationError: '',
+    rentConditionsError: '',
+    titleError: '',
+    descriptionError: '',
+    additionalPhoneError: '',
+    contactMethodError: '',
+  );
+
+  void validateStep(int step) {
+    clearValidation();
+
+    switch (step) {
+      case 0:
+        _validateRentType();
+        break;
+
+      case 1:
+        _validatePremisesType();
+        break;
+
+      case 2:
+        _validatePropertyType();
+        break;
+
+      case 3:
+        _validateLocation();
+        break;
+
+      case 4:
+        _validateApartmentDetails();
+        break;
+
+      case 6:
+        _validateFeatures();
+        break;
+
+      case 7:
+        _validateItems();
+        break;
+
+      case 8:
+        _validateDealTerms();
+        break;
+
+      case 9:
+        _validateDescription();
+        break;
+
+      case 10:
+        _validateContacts();
+        break;
+    }
+  }
+
+  void _validateRentType() {
+    final rentType = _formState.rentGoalId;
+    final rentPeriod = _formState.rentPeriodId;
+
+    if (rentType == 0) {
+      state = state.copyWith(rentGoalError: _locale.validationSelectOption);
+    }
+    if (rentPeriod == 0) {
+      state = state.copyWith(rentPeriodError: _locale.validationSelectOption);
+    }
+  }
+
+  void _validatePremisesType() {
+    if (_formState.premisesTypeId == 0) {
+      state = state.copyWith(premisesError: _locale.validationSelectOption);
+    }
+  }
+
+  void _validatePropertyType() {
+    if (_formState.propertyTypeId == 0) {
+      state = state.copyWith(propertyError: _locale.validationSelectOption);
+    }
+  }
+
+  void _validateLocation() {
+    if (_formState.addressDetails.value.trim().isEmpty) {
+      state = state.copyWith(streetError: _locale.validationPickStreet);
+    }
+    if (_formState.apartmentNumber == 0) {
+      state = state.copyWith(
+        apartmentNumberError: _locale.validationEnterApartmentNumber,
+      );
+    }
+  }
+
+  void _validateApartmentDetails() {
+    if (_formState.roomsCountId == 0) {
+      state = state.copyWith(roomsError: _locale.validationSelectOption);
+    }
+
+    if (_formState.layoutId == 0) {
+      state = state.copyWith(layoutError: _locale.validationSelectOption);
+    }
+
+    if (_formState.apartmentArea <= 0) {
+      state = state.copyWith(areaError: _locale.validationEnterArea);
+    }
+
+    if (_formState.floor <= 0) {
+      state = state.copyWith(floorError: _locale.validationEnterFloor);
+    }
+
+    if (_formState.totalFloors <= 0) {
+      state = state.copyWith(totalFloorsError: _locale.validationEnterFloor);
+    }
+    if (_formState.floor > _formState.totalFloors) {
+      state = state.copyWith(
+        floorError: _locale.validationFloorMustBeLessThenTotalFloors,
+      );
+    }
+  }
+
+  void _validateFeatures() {
+    if (_formState.renovationId == 0) {
+      state = state.copyWith(renovationError: _locale.validationSelectOption);
+    }
+
+    if (_formState.elevatorsId == 0) {
+      state = state.copyWith(elevatorsError: _locale.validationSelectOption);
+    }
+
+    if (_formState.balconiesId == 0) {
+      state = state.copyWith(balconiesError: _locale.validationSelectOption);
+    }
+  }
+
+  void _validateItems() {
+    if (_formState.furnitureId == 0) {
+      state = state.copyWith(furnitureError: _locale.validationSelectOption);
+    }
+
+    if (_formState.stoveId == 0) {
+      state = state.copyWith(stoveError: _locale.validationSelectOption);
+    }
+  }
+
+  void _validateDealTerms() {
+    if (_formState.currencyId == 0) {
+      state = state.copyWith(currencyError: _locale.validationSelectOption);
+    }
+
+    if (_formState.cost <= 0) {
+      state = state.copyWith(priceError: _locale.validationEnterPrice);
+    }
+
+    if (_formState.prepaymentId == 0) {
+      state = state.copyWith(prepaymentError: _locale.validationSelectOption);
+    }
+
+    if (_formState.rentDurationId == 0) {
+      state = state.copyWith(rentDurationError: _locale.validationSelectOption);
+    }
+  }
+
+  void _validateDescription() {
+    if (_formState.title.trim().isEmpty) {
+      state = state.copyWith(titleError: _locale.validationEnterTitle);
+    }
+
+    if (_formState.description.trim().length < 50) {
+      state = state.copyWith(
+        descriptionError: _locale.minimumCharactersRequired,
+      );
+    }
+  }
+
+  void _validateContacts() {
+    final contactMethodId = _formState.contactMethodId;
+
+    final options = ref.read(getAdFormOptionsProvider);
+    final firstOptionId = options.maybeWhen(
+      data: (data) =>
+          data.contactMethod.isNotEmpty ? data.contactMethod.first.id : null,
+      orElse: () => null,
+    );
+
+    if (contactMethodId == 0) {
+      state = state.copyWith(
+        contactMethodError: _locale.validationContactMethod,
+      );
+      return;
+    }
+
+    if (contactMethodId == firstOptionId) {
+      if (_formState.additionalNumber.trim().isEmpty) {
+        state = state.copyWith(
+          additionalPhoneError: _locale.validationAdditionalPhone,
+        );
+      }
+    } else {
+      ref.read(adFormProvider.notifier).updateAdditionalPhone('');
+    }
+  }
+
+  bool _isStepValid(int step) {
+    switch (step) {
+      case 0:
+        return state.rentGoalError.isEmpty && state.rentPeriodError.isEmpty;
+
+      case 1:
+        return state.premisesError.isEmpty;
+
+      case 2:
+        return state.propertyError.isEmpty;
+
+      case 3:
+        return state.streetError.isEmpty && state.apartmentNumberError.isEmpty;
+
+      case 4:
+        return state.roomsError.isEmpty &&
+            state.layoutError.isEmpty &&
+            state.areaError.isEmpty &&
+            state.floorError.isEmpty &&
+            state.totalFloorsError.isEmpty;
+
+      case 6:
+        return state.renovationError.isEmpty &&
+            state.elevatorsError.isEmpty &&
+            state.balconiesError.isEmpty;
+
+      case 7:
+        return state.furnitureError.isEmpty && state.stoveError.isEmpty;
+
+      case 8:
+        return state.currencyError.isEmpty &&
+            state.priceError.isEmpty &&
+            state.prepaymentError.isEmpty &&
+            state.rentDurationError.isEmpty;
+
+      case 9:
+        return state.titleError.isEmpty && state.descriptionError.isEmpty;
+
+      case 10:
+        return state.contactMethodError.isEmpty &&
+            state.additionalPhoneError.isEmpty;
+    }
+
+    return true;
+  } // --- Методы для получения текстовых представлений (Геттеры для UI) ---
+
+  /// Возвращает текстовое описание типа недвижимости (напр. "Жилое, Квартира")
+  String getPropertyTypeText(CreateAdFormModel form) {
+    final options = ref.read(getAdFormOptionsProvider).requireValue;
+    final premises = resolvePreferenceTitle(
+      options: options.premisesType,
+      selectedId: form.premisesTypeId,
+    );
+    final property = resolvePreferenceTitle(
+      options: options.propertyType,
+      selectedId: form.propertyTypeId,
+    );
+
+    return [premises, property].where((s) => s.isNotEmpty).join(', ');
+  }
+
+  /// Возвращает тип аренды (напр. "Сдать, Длительно")
+  String getRentTypeText(CreateAdFormModel form) {
+    final options = ref.read(getAdFormOptionsProvider).value;
+    if (options == null) return '';
+    final goal = resolvePreferenceTitle(
+      options: options.rentGoal,
+      selectedId: form.rentGoalId,
+    );
+    final period = resolvePreferenceTitle(
+      options: options.rentPeriod,
+      selectedId: form.rentPeriodId,
+    );
+
+    return [goal, period].where((s) => s.isNotEmpty).join(', ');
+  }
+
+  /// Возвращает отформатированную цену (напр. "50 000 ₽")
+  String getFormattedPrice(CreateAdFormModel form) {
+    if (form.cost <= 0) return '';
+    // Можно добавить Intl для форматирования тысяч
+    return '${form.cost.toInt()} ${form.selectedCurrency.symbol}';
+  }
+
+  /// Возвращает адрес текстом (Улица + Номер квартиры)
+  String getFullAddressText(CreateAdFormModel form) {
+    if (form.address.isEmpty) return _locale.notSpecified;
+    final flat = form.apartmentNumber > 0
+        ? ', кв. ${form.apartmentNumber}'
+        : '';
+    return '${form.address}$flat';
+  }
+
+  /// Возвращает номер телефона (основной или дополнительный в зависимости от метода связи)
+  String getContactPhone(CreateAdFormModel form) {
+    // Создаем список только из тех номеров, которые не пусты
+    final phones = [
+      form.mainPhone,
+      form.additionalNumber,
+    ].where((phone) => phone.trim().isNotEmpty);
+
+    // Соединяем их через перенос строки
+    return phones.join('\n');
+  }
+
+  /// Возвращает краткие характеристики (Комнаты, Площадь, Этаж)
+  String getApartmentSummary(CreateAdFormModel form) {
+    final options = ref.read(getAdFormOptionsProvider).requireValue;
+    final rooms = resolvePreferenceTitle(
+      options: options.roomsCount,
+      selectedId: form.roomsCountId,
+    );
+
+    return '$rooms • ${form.apartmentArea} м² • ${form.floor}/${form.totalFloors} эт.';
+  }
+}

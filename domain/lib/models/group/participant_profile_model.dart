@@ -14,7 +14,7 @@ sealed class ParticipantProfileModel with _$ParticipantProfileModel {
     @Default(0) int age,
     @Default('') String gender,
     @Default('') String role,
-    @Default('') String rating,
+    @Default('0') String rating,
     @Default(0) int reviewsCount,
     @Default([]) List<GroupPreferenceItemModel> personalQualities,
     @Default([]) List<GroupPreferenceItemModel> householdHabits,

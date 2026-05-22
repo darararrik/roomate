@@ -146,22 +146,11 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
     List<int> selectedIds, {
     String? emptyTitle,
   }) {
-    final resolvedEmptyTitle = emptyTitle ?? ref.l10n.notSelectedPlural;
-    if (selectedIds.isEmpty) {
-      return resolvedEmptyTitle;
-    }
-
-    final titlesById = {for (final option in catalog) option.id: option.title};
-    final titles = <String>[];
-
-    for (final id in selectedIds) {
-      final title = titlesById[id];
-      if (title != null && title.isNotEmpty) {
-        titles.add(title);
-      }
-    }
-
-    return titles.isEmpty ? resolvedEmptyTitle : titles.join(', ');
+    return resolvePreferenceValue(
+      options: catalog,
+      selectedIds: selectedIds,
+      emptyTitle: emptyTitle ?? ref.l10n.notSelectedPlural,
+    );
   }
 
   void _showFetchProfileError(RemoteException error) {

@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/app/auth/notifier/auth_notifier.dart';
 import 'package:roomate/lib.dart';
 
@@ -31,15 +29,11 @@ class WelcomeScreen extends ConsumerWidget {
                         children: [
                           Text(
                             context.l10n.aboutServiceTitle,
-                            style: context.typography.headline0.copyWith(
-                              color: context.colors.graysWhite,
-                            ),
+                            style: context.typography.headline0.copyWith(color: context.colors.graysWhite),
                           ),
                           Text(
                             context.l10n.aboutServiceDescription,
-                            style: context.typography.headline1.copyWith(
-                              color: context.colors.opacityWhite60,
-                            ),
+                            style: context.typography.headline1.copyWith(color: context.colors.opacityWhite60),
                           ),
                         ],
                       ),
@@ -51,14 +45,12 @@ class WelcomeScreen extends ConsumerWidget {
                           OpacityButton(
                             bgColor: context.colors.opacityWhite10,
                             onPressed: () => authNotifier.enterByPhoneNumber(),
-
-                            child: Text(context.l10n.loginByPhoneNumber),
+                            text: context.l10n.loginByPhoneNumber,
                           ),
                           OpacityButton(
                             bgColor: context.colors.opacityWhite10,
                             onPressed: () => authNotifier.enterAsGuest(),
-
-                            child: Text(context.l10n.loginByGuest),
+                            text: context.l10n.loginByGuest,
                           ),
                           IntrinsicWidth(
                             child: Column(
@@ -69,23 +61,16 @@ class WelcomeScreen extends ConsumerWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Expanded(
-                                      child: Divider(
-                                        color: context.colors.graysWhite,
-                                        thickness: S.p1,
-                                      ),
+                                      child: Divider(color: context.colors.graysWhite, thickness: S.p1),
                                     ),
                                     Text(
                                       context.l10n.loginViaSocialNetworks,
-                                      style: context.typography.activesLabel
-                                          .copyWith(
-                                            color: context.colors.graysInput200,
-                                          ),
+                                      style: context.typography.activesLabel.copyWith(
+                                        color: context.colors.graysInput200,
+                                      ),
                                     ),
                                     Expanded(
-                                      child: Divider(
-                                        color: context.colors.graysWhite,
-                                        thickness: S.p1,
-                                      ),
+                                      child: Divider(color: context.colors.graysWhite, thickness: S.p1),
                                     ),
                                   ].separated(const SizedBox(width: S.p10)),
                                 ),
@@ -94,22 +79,10 @@ class WelcomeScreen extends ConsumerWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.vk,
-                                      ),
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.gos,
-                                      ),
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.sber,
-                                      ),
-                                      SocialButton(
-                                        onPressed: () {},
-                                        iconPath: AppIcons.yandex,
-                                      ),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.vk),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.gos),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.sber),
+                                      SocialButton(onPressed: () {}, iconPath: AppIcons.yandex),
                                     ].separated(const SizedBox(width: S.p16)),
                                   ),
                                 ),

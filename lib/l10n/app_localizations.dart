@@ -202,6 +202,90 @@ abstract class AppLocalizations {
   /// **'Мои объявления'**
   String get myAdvertisements;
 
+  /// No description provided for @createShort.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать'**
+  String get createShort;
+
+  /// No description provided for @myAdsActive.
+  ///
+  /// In ru, this message translates to:
+  /// **'Активные'**
+  String get myAdsActive;
+
+  /// No description provided for @myAdsModeration.
+  ///
+  /// In ru, this message translates to:
+  /// **'На модерации'**
+  String get myAdsModeration;
+
+  /// No description provided for @myAdsArchive.
+  ///
+  /// In ru, this message translates to:
+  /// **'Архив'**
+  String get myAdsArchive;
+
+  /// No description provided for @myAdApplicationsTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заявки от арендаторов'**
+  String get myAdApplicationsTitle;
+
+  /// No description provided for @adApplicationNewTabTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новые'**
+  String get adApplicationNewTabTitle;
+
+  /// No description provided for @adApplicationAccept.
+  ///
+  /// In ru, this message translates to:
+  /// **'Принять'**
+  String get adApplicationAccept;
+
+  /// No description provided for @adApplicationReject.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отклонить'**
+  String get adApplicationReject;
+
+  /// No description provided for @adApplicationNoItems.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пока нет заявок'**
+  String get adApplicationNoItems;
+
+  /// No description provided for @adApplicationInfoTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заявки на проживание'**
+  String get adApplicationInfoTitle;
+
+  /// No description provided for @adApplicationInfoDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Эти люди хотят снять ваше жилье. Просмотрите их анкеты и примите решение по заселению.'**
+  String get adApplicationInfoDescription;
+
+  /// No description provided for @myAdsNoItems.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пока нет объявлений'**
+  String get myAdsNoItems;
+
+  /// No description provided for @adApplicationApartmentTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Объявление'**
+  String get adApplicationApartmentTitle;
+
+  /// No description provided for @adApplicationQuestionnaireTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Анкета арендатора'**
+  String get adApplicationQuestionnaireTitle;
+
   /// No description provided for @findNeighbour.
   ///
   /// In ru, this message translates to:
@@ -249,6 +333,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Написать'**
   String get write;
+
+  /// No description provided for @chatWillBeAvailableLater.
+  ///
+  /// In ru, this message translates to:
+  /// **'Чат будет доступен позже'**
+  String get chatWillBeAvailableLater;
 
   /// No description provided for @join.
   ///
@@ -2217,6 +2307,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ошибка загрузки: {error}'**
   String profileLoadErrorWithDetails(Object error);
+
+  /// No description provided for @applicattions.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заявки'**
+  String get applicattions;
+
+  /// No description provided for @exitTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Хотите выйти?'**
+  String get exitTitle;
 }
 
 class _AppLocalizationsDelegate

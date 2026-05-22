@@ -135,6 +135,87 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
     return const Right(null);
   }
 
+  @override
+  Future<Either<RemoteException, AdApplicationSubmitModel>> applyToAd(
+    String adId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    return Right(
+      AdApplicationMapper.toSubmitModel(
+        AdApplicationSubmitData(
+          id: 'ad-application-$adId',
+          adId: adId,
+          status: 'pending',
+          createdAt: DateTime.now().toIso8601String(),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Future<Either<RemoteException, List<MyAdModel>>> fetchMyAds() async {
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    final rawItems = [
+      ...MockStorage.createAds,
+      ...ApartmentsMockJson.fetchApartments.take(3),
+    ];
+
+    final statuses = ['active', 'on_moderation', 'archived'];
+    final items = rawItems.asMap().entries.map((entry) {
+      final dto = MyAdData.fromJson({
+        ...entry.value,
+        'status': statuses[entry.key % statuses.length],
+      });
+      return OwnerAdsMapper.toMyAdModel(dto);
+    }).toList();
+
+    return Right(items);
+  }
+
+  @override
+  Future<Either<RemoteException, List<AdApplicationModel>>>
+  fetchIncomingAdApplications({String? status}) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    final items = _mockApplications()
+        .where((item) => status == null || item.status == status)
+        .map(OwnerAdsMapper.toApplicationModel)
+        .toList();
+
+    return Right(items);
+  }
+
+  @override
+  Future<Either<RemoteException, AdApplicationDetailModel>>
+  fetchIncomingAdApplicationDetails(String applicationId) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    final item = _mockApplications().firstWhere(
+      (application) => application.id == applicationId,
+      orElse: () => const AdApplicationData(),
+    );
+
+    return Right(OwnerAdsMapper.toApplicationDetailModel(item));
+  }
+
+  @override
+  Future<Either<RemoteException, void>> rejectIncomingAdApplication(
+    String applicationId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    return const Right(null);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> acceptIncomingAdApplication(
+    String applicationId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    return const Right(null);
+  }
+
   String _resolveOwnerName() {
     final profile = MockStorage.userProfile;
     if (profile == null) {
@@ -155,6 +236,64 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
     }
 
     return 'Пользователь';
+  }
+
+  List<AdApplicationData> _mockApplications() {
+    final apartments = [
+      ...MockStorage.createAds,
+      ...ApartmentsMockJson.fetchApartments,
+    ];
+
+    final adJson = apartments.isNotEmpty
+        ? apartments.first
+        : <String, dynamic>{};
+
+    return [
+      AdApplicationData.fromJson({
+        'id': 'app-1',
+        'status': 'pending',
+        'created_at': DateTime.now().toIso8601String(),
+        'updated_at': DateTime.now().toIso8601String(),
+        'ad': {
+          'id': '${adJson['id'] ?? '1'}',
+          'title': adJson['title'] ?? 'Аренда квартиры',
+          'description': adJson['description'] ?? '',
+          'image_urls': adJson['image_urls'] ?? const <String>[],
+          'price': adJson['price'] ?? '10 000',
+          'rooms_count': adJson['rooms_count'] ?? '1 комн.',
+          'area': adJson['area'] ?? '39м²',
+          'floor': adJson['floor'] ?? 3,
+          'total_floor': adJson['total_floor'] ?? 17,
+          'address': adJson['address'] ?? 'Омск, улица Красный путь, 101к1',
+          'status': 'active',
+        },
+        'tenant': {
+          'id': 'participant-1',
+          'first_name': 'Марина',
+          'last_name': 'Петрова',
+          'age': 24,
+          'gender': 'female',
+          'city': 'Омск',
+          'photo':
+              'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80',
+          'phone': '+79999999999',
+        },
+        'tenant_profile': {
+          'about': 'Работаю удаленно, ценю порядок и спокойную атмосферу.',
+          'preferences': {
+            'communication': [2],
+            'sleep': [11],
+            'employment': [20],
+            'bad_habits': [30],
+            'guests': [41],
+            'noise_level': [50],
+            'cleaning': [60],
+            'pets': [70],
+            'pets_attitude': [80],
+          },
+        },
+      }),
+    ];
   }
 
   @override

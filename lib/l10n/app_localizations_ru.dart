@@ -63,6 +63,49 @@ class AppLocalizationsRu extends AppLocalizations {
   String get myAdvertisements => 'Мои объявления';
 
   @override
+  String get createShort => 'Создать';
+
+  @override
+  String get myAdsActive => 'Активные';
+
+  @override
+  String get myAdsModeration => 'На модерации';
+
+  @override
+  String get myAdsArchive => 'Архив';
+
+  @override
+  String get myAdApplicationsTitle => 'Заявки от арендаторов';
+
+  @override
+  String get adApplicationNewTabTitle => 'Новые';
+
+  @override
+  String get adApplicationAccept => 'Принять';
+
+  @override
+  String get adApplicationReject => 'Отклонить';
+
+  @override
+  String get adApplicationNoItems => 'Пока нет заявок';
+
+  @override
+  String get adApplicationInfoTitle => 'Заявки на проживание';
+
+  @override
+  String get adApplicationInfoDescription =>
+      'Эти люди хотят снять ваше жилье. Просмотрите их анкеты и примите решение по заселению.';
+
+  @override
+  String get myAdsNoItems => 'Пока нет объявлений';
+
+  @override
+  String get adApplicationApartmentTitle => 'Объявление';
+
+  @override
+  String get adApplicationQuestionnaireTitle => 'Анкета арендатора';
+
+  @override
   String get findNeighbour => 'Найти соседа';
 
   @override
@@ -85,6 +128,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get write => 'Написать';
+
+  @override
+  String get chatWillBeAvailableLater => 'Чат будет доступен позже';
 
   @override
   String get join => 'Присоединиться';
@@ -1104,4 +1150,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String profileLoadErrorWithDetails(Object error) {
     return 'Ошибка загрузки: $error';
   }
+
+  @override
+  String get applicattions => 'Заявки';
+
+  @override
+  String get exitTitle => 'Хотите выйти?';
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/widgets/buttons/b_b.dart';
 
 class AB extends StatelessWidget {
@@ -13,6 +12,8 @@ class AB extends StatelessWidget {
     this.canPop = true,
     this.onBackButtonPressed,
     this.pinned = false,
+    this.snap = false,
+    this.floating = false,
   });
   final Widget title;
   final EdgeInsets? actionsPadding;
@@ -22,9 +23,13 @@ class AB extends StatelessWidget {
   final bool canPop;
   final VoidCallback? onBackButtonPressed;
   final bool pinned;
+  final bool snap;
+  final bool floating;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      floating: floating,
+      snap: snap,
       pinned: pinned,
       automaticallyImplyLeading: false,
       actions: actions,

@@ -211,7 +211,7 @@ return $default(_that.id,_that.fullName,_that.avatarUrl,_that.isVerified,_that.a
 
 
 class _ParticipantProfileModel implements ParticipantProfileModel {
-  const _ParticipantProfileModel({this.id = '', this.fullName = '', this.avatarUrl = '', this.isVerified = false, this.age = 0, this.gender = '', this.role = '', this.rating = '', this.reviewsCount = 0, final  List<GroupPreferenceItemModel> personalQualities = const [], final  List<GroupPreferenceItemModel> householdHabits = const [], final  List<GroupPreferenceItemModel> pets = const []}): _personalQualities = personalQualities,_householdHabits = householdHabits,_pets = pets;
+  const _ParticipantProfileModel({this.id = '', this.fullName = '', this.avatarUrl = '', this.isVerified = false, this.age = 0, this.gender = '', this.role = '', this.rating = '0', this.reviewsCount = 0, final  List<GroupPreferenceItemModel> personalQualities = const [], final  List<GroupPreferenceItemModel> householdHabits = const [], final  List<GroupPreferenceItemModel> pets = const []}): _personalQualities = personalQualities,_householdHabits = householdHabits,_pets = pets;
   
 
 @override@JsonKey() final  String id;

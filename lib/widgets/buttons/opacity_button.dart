@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/constants/constants.dart';
+import 'package:roomate/utils/extensions.dart';
 
 class OpacityButton extends StatelessWidget {
   const OpacityButton({
     super.key,
-    required this.child,
+    required this.text,
     this.onPressed,
     this.bgColor,
     this.color,
@@ -14,7 +14,7 @@ class OpacityButton extends StatelessWidget {
     this.radius,
   });
 
-  final Widget child;
+  final String text;
   final VoidCallback? onPressed;
   final double? height;
   final Color? bgColor;
@@ -24,14 +24,22 @@ class OpacityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = child;
+    Widget content = Text(
+      text,
+      style: context.typography.activesLabel.copyWith(color: color ?? context.colors.graysWhite),
+    );
     if (icon != null) {
       content = Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           icon!,
           const SizedBox(width: S.p12),
-          Flexible(child: child),
+          Flexible(
+            child: Text(
+              text,
+              style: context.typography.activesLabel.copyWith(color: color ?? context.colors.graysText400),
+            ),
+          ),
         ],
       );
     }
@@ -42,9 +50,7 @@ class OpacityButton extends StatelessWidget {
         backgroundColor: bgColor,
         foregroundColor: color,
         minimumSize: height != null ? Size(double.infinity, height!) : null,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radius ?? S.p16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius ?? S.p16)),
       ),
       child: content,
     );

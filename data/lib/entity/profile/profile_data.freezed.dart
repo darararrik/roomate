@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileData {
 
-@JsonKey(name: "id") String? get id;@JsonKey(name: "first_name") String? get firstName;@JsonKey(name: "last_name") String? get lastName;@JsonKey(name: "phone") String? get phone;@JsonKey(name: "gender") String? get gender;@JsonKey(name: "age") int? get age;//TODO: сказать бэку сменить на snake
-@JsonKey(name: "cityFiasId") String? get cityFiasId;@JsonKey(name: "city") String? get city;@JsonKey(name: "photo") String? get avatarUrl;@JsonKey(name: "status") bool? get isVerified;@JsonKey(name: "preferences") SelectedUserPreferencesData? get preferences;@JsonKey(name: "is_owner") bool? get isOwner;@JsonKey(name: "is_new_user") bool? get isNewUser;
+@JsonKey(name: "id") String? get id;@JsonKey(name: "first_name") String? get firstName;@JsonKey(name: "last_name") String? get lastName;@JsonKey(name: "phone") String? get phone;@JsonKey(name: "gender") String? get gender;@JsonKey(name: "age") int? get age;@JsonKey(name: "city_fias_id") String? get cityFiasId;@JsonKey(name: "city") String? get city;@JsonKey(name: "photo") String? get avatarUrl;@JsonKey(name: "status") bool? get isVerified;@JsonKey(name: "preferences") SelectedUserPreferencesData? get preferences;@JsonKey(name: "is_owner") bool? get isOwner;@JsonKey(name: "is_new_user") bool? get isNewUser;
 /// Create a copy of ProfileData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +48,7 @@ abstract mixin class $ProfileDataCopyWith<$Res>  {
   factory $ProfileDataCopyWith(ProfileData value, $Res Function(ProfileData) _then) = _$ProfileDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") String? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "cityFiasId") String? cityFiasId,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "preferences") SelectedUserPreferencesData? preferences,@JsonKey(name: "is_owner") bool? isOwner,@JsonKey(name: "is_new_user") bool? isNewUser
+@JsonKey(name: "id") String? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "city_fias_id") String? cityFiasId,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "preferences") SelectedUserPreferencesData? preferences,@JsonKey(name: "is_owner") bool? isOwner,@JsonKey(name: "is_new_user") bool? isNewUser
 });
 
 
@@ -175,7 +174,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "cityFiasId")  String? cityFiasId, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "preferences")  SelectedUserPreferencesData? preferences, @JsonKey(name: "is_owner")  bool? isOwner, @JsonKey(name: "is_new_user")  bool? isNewUser)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city_fias_id")  String? cityFiasId, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "preferences")  SelectedUserPreferencesData? preferences, @JsonKey(name: "is_owner")  bool? isOwner, @JsonKey(name: "is_new_user")  bool? isNewUser)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileData() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender,_that.age,_that.cityFiasId,_that.city,_that.avatarUrl,_that.isVerified,_that.preferences,_that.isOwner,_that.isNewUser);case _:
@@ -196,7 +195,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "cityFiasId")  String? cityFiasId, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "preferences")  SelectedUserPreferencesData? preferences, @JsonKey(name: "is_owner")  bool? isOwner, @JsonKey(name: "is_new_user")  bool? isNewUser)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city_fias_id")  String? cityFiasId, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "preferences")  SelectedUserPreferencesData? preferences, @JsonKey(name: "is_owner")  bool? isOwner, @JsonKey(name: "is_new_user")  bool? isNewUser)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileData():
 return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender,_that.age,_that.cityFiasId,_that.city,_that.avatarUrl,_that.isVerified,_that.preferences,_that.isOwner,_that.isNewUser);}
@@ -213,7 +212,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "cityFiasId")  String? cityFiasId, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "preferences")  SelectedUserPreferencesData? preferences, @JsonKey(name: "is_owner")  bool? isOwner, @JsonKey(name: "is_new_user")  bool? isNewUser)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String? id, @JsonKey(name: "first_name")  String? firstName, @JsonKey(name: "last_name")  String? lastName, @JsonKey(name: "phone")  String? phone, @JsonKey(name: "gender")  String? gender, @JsonKey(name: "age")  int? age, @JsonKey(name: "city_fias_id")  String? cityFiasId, @JsonKey(name: "city")  String? city, @JsonKey(name: "photo")  String? avatarUrl, @JsonKey(name: "status")  bool? isVerified, @JsonKey(name: "preferences")  SelectedUserPreferencesData? preferences, @JsonKey(name: "is_owner")  bool? isOwner, @JsonKey(name: "is_new_user")  bool? isNewUser)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileData() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender,_that.age,_that.cityFiasId,_that.city,_that.avatarUrl,_that.isVerified,_that.preferences,_that.isOwner,_that.isNewUser);case _:
@@ -228,7 +227,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phone,_that.gender
 @JsonSerializable()
 
 class _ProfileData implements ProfileData {
-  const _ProfileData({@JsonKey(name: "id") this.id, @JsonKey(name: "first_name") this.firstName, @JsonKey(name: "last_name") this.lastName, @JsonKey(name: "phone") this.phone, @JsonKey(name: "gender") this.gender, @JsonKey(name: "age") this.age, @JsonKey(name: "cityFiasId") this.cityFiasId, @JsonKey(name: "city") this.city, @JsonKey(name: "photo") this.avatarUrl, @JsonKey(name: "status") this.isVerified, @JsonKey(name: "preferences") this.preferences, @JsonKey(name: "is_owner") this.isOwner, @JsonKey(name: "is_new_user") this.isNewUser});
+  const _ProfileData({@JsonKey(name: "id") this.id, @JsonKey(name: "first_name") this.firstName, @JsonKey(name: "last_name") this.lastName, @JsonKey(name: "phone") this.phone, @JsonKey(name: "gender") this.gender, @JsonKey(name: "age") this.age, @JsonKey(name: "city_fias_id") this.cityFiasId, @JsonKey(name: "city") this.city, @JsonKey(name: "photo") this.avatarUrl, @JsonKey(name: "status") this.isVerified, @JsonKey(name: "preferences") this.preferences, @JsonKey(name: "is_owner") this.isOwner, @JsonKey(name: "is_new_user") this.isNewUser});
   factory _ProfileData.fromJson(Map<String, dynamic> json) => _$ProfileDataFromJson(json);
 
 @override@JsonKey(name: "id") final  String? id;
@@ -237,8 +236,7 @@ class _ProfileData implements ProfileData {
 @override@JsonKey(name: "phone") final  String? phone;
 @override@JsonKey(name: "gender") final  String? gender;
 @override@JsonKey(name: "age") final  int? age;
-//TODO: сказать бэку сменить на snake
-@override@JsonKey(name: "cityFiasId") final  String? cityFiasId;
+@override@JsonKey(name: "city_fias_id") final  String? cityFiasId;
 @override@JsonKey(name: "city") final  String? city;
 @override@JsonKey(name: "photo") final  String? avatarUrl;
 @override@JsonKey(name: "status") final  bool? isVerified;
@@ -279,7 +277,7 @@ abstract mixin class _$ProfileDataCopyWith<$Res> implements $ProfileDataCopyWith
   factory _$ProfileDataCopyWith(_ProfileData value, $Res Function(_ProfileData) _then) = __$ProfileDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") String? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "cityFiasId") String? cityFiasId,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "preferences") SelectedUserPreferencesData? preferences,@JsonKey(name: "is_owner") bool? isOwner,@JsonKey(name: "is_new_user") bool? isNewUser
+@JsonKey(name: "id") String? id,@JsonKey(name: "first_name") String? firstName,@JsonKey(name: "last_name") String? lastName,@JsonKey(name: "phone") String? phone,@JsonKey(name: "gender") String? gender,@JsonKey(name: "age") int? age,@JsonKey(name: "city_fias_id") String? cityFiasId,@JsonKey(name: "city") String? city,@JsonKey(name: "photo") String? avatarUrl,@JsonKey(name: "status") bool? isVerified,@JsonKey(name: "preferences") SelectedUserPreferencesData? preferences,@JsonKey(name: "is_owner") bool? isOwner,@JsonKey(name: "is_new_user") bool? isNewUser
 });
 
 

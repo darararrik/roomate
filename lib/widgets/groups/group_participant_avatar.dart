@@ -14,28 +14,19 @@ class GroupParticipantAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasAvatar = avatarUrl.trim().isNotEmpty;
-
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: context.colors.graysLight100,
-        borderRadius: BorderRadius.circular(size / 2),
-        image: hasAvatar
-            ? DecorationImage(image: NetworkImage(avatarUrl), fit: BoxFit.cover)
-            : null,
+    return NetworkAvatar(
+      imageUrl: avatarUrl,
+      size: size,
+      shape: BoxShape.circle,
+      backgroundColor: context.colors.graysLight100,
+      placeholder: Center(
+        child: AppIcon(
+          AppIcons.defaultAvatar,
+          width: size / 2,
+          height: size / 2,
+          color: context.colors.graysText400,
+        ),
       ),
-      child: hasAvatar
-          ? null
-          : Center(
-              child: AppIcon(
-                AppIcons.defaultAvatar,
-                width: size / 2,
-                height: size / 2,
-                color: context.colors.graysText400,
-              ),
-            ),
     );
   }
 }

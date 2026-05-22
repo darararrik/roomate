@@ -13,8 +13,7 @@ sealed class ProfileData with _$ProfileData {
     @JsonKey(name: "phone") String? phone,
     @JsonKey(name: "gender") String? gender,
     @JsonKey(name: "age") int? age,
-    //TODO: сказать бэку сменить на snake
-    @JsonKey(name: "cityFiasId") String? cityFiasId,
+    @JsonKey(name: "city_fias_id") String? cityFiasId,
     @JsonKey(name: "city") String? city,
     @JsonKey(name: "photo") String? avatarUrl,
     @JsonKey(name: "status") bool? isVerified,
@@ -22,6 +21,5 @@ sealed class ProfileData with _$ProfileData {
     @JsonKey(name: "is_owner") bool? isOwner,
     @JsonKey(name: "is_new_user") bool? isNewUser,
   }) = _ProfileData;
-  factory ProfileData.fromJson(Map<String, dynamic> json) =>
-      _$ProfileDataFromJson(json);
+  factory ProfileData.fromJson(Map<String, dynamic> json) => _$ProfileDataFromJson(json);
 }

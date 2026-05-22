@@ -25,10 +25,7 @@ class ApartamnetScreen extends ConsumerWidget {
 
         return Scaffold(
           backgroundColor: colors.graysWhite,
-          bottomNavigationBar: Buttons(
-            onCallPressed: notifier.onCallPressed,
-            onWritePressed: notifier.onWritePressed,
-          ),
+          bottomNavigationBar: Buttons(onCallPressed: notifier.onCallPressed, onWritePressed: notifier.onWritePressed),
           body: CustomScrollView(
             slivers: [
               DetailAppBarAndPhoto(
@@ -38,11 +35,7 @@ class ApartamnetScreen extends ConsumerWidget {
                 onPageChanged: notifier.onPageChanged,
                 onPreviousImagePressed: notifier.onPreviousImagePressed,
                 onNextImagePressed: notifier.onNextImagePressed,
-                centerAction: Icon(
-                  Icons.play_arrow_rounded,
-                  color: colors.graysWhite,
-                  size: S.p28,
-                ),
+                centerAction: Icon(Icons.play_arrow_rounded, color: colors.graysWhite, size: S.p28),
                 actions: [
                   IconButtonWidget(
                     icon: AppIcons.more,
@@ -56,212 +49,167 @@ class ApartamnetScreen extends ConsumerWidget {
               SliverPadding(
                 padding: const P(all: S.p16),
                 sliver: SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      Column(
-                        crossAxisAlignment: .start,
-                        spacing: S.p12,
+                  delegate: SliverChildListDelegate([
+                    Column(
+                      crossAxisAlignment: .start,
+                      spacing: S.p12,
+                      children: [
+                        Wrap(
+                          spacing: S.p12,
+                          runSpacing: S.p8,
+                          children: [
+                            LabelChip(
+                              title: apartament.verifiedTitle,
+                              backgroundColor: context.colors.lightGreen100,
+                              color: context.colors.labelGreen,
+                              iconPath: AppIcons.verified,
+                            ),
+                            LabelChip(
+                              title: apartament.companyTitle,
+                              backgroundColor: context.colors.lightBlue100,
+                              color: context.colors.labelBlue,
+                              iconPath: AppIcons.company,
+                            ),
+                          ],
+                        ),
+                        DetailPriceAndFavoriteIcon(
+                          title: "${apartment.price} ${context.l10n.currencyPerMonth}",
+                          onFavoritePressed: notifier.onFavoritePressed,
+                          isFavorite: apartament.isFavorite,
+                        ),
+                        Text(apartment.title, style: context.typography.headline1, softWrap: true),
+                        DetailMetricsRow(
+                          items: [
+                            DetailMetricItemData(
+                              value: "${apartment.roomsCount}-${locale.apartmentRoomsShort}",
+                              label: locale.apartment,
+                            ),
+                            DetailMetricItemData(
+                              value: "${apartment.area} ${locale.squareMeters}",
+                              label: locale.apartmentArea,
+                            ),
+                            DetailMetricItemData(
+                              value: "${apartment.floor}/${apartment.totalFloor}",
+                              label: locale.floor,
+                            ),
+                          ],
+                        ),
+                        const Divider(),
+                      ],
+                    ),
+                    DetailSection(
+                      title: locale.location,
+                      child: Text(
+                        apartment.address,
+                        style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
+                      ),
+                    ),
+                    DetailSection(
+                      title: context.l10n.contactTitle,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Wrap(
-                            spacing: S.p12,
-                            runSpacing: S.p8,
-                            children: [
-                              LabelChip(
-                                title: apartament.verifiedTitle,
-                                backgroundColor: context.colors.lightGreen100,
-                                color: context.colors.labelGreen,
-                                iconPath: AppIcons.verified,
-                              ),
-                              LabelChip(
-                                title: apartament.companyTitle,
-                                backgroundColor: context.colors.lightBlue100,
-                                color: context.colors.labelBlue,
-                                iconPath: AppIcons.company,
-                              ),
-                            ],
-                          ),
-                          DetailPriceAndFavoriteIcon(
-                            title:
-                                "${apartment.price} ${context.l10n.currencyPerMonth}",
-                            onFavoritePressed: notifier.onFavoritePressed,
-                            isFavorite: apartament.isFavorite,
-                          ),
+                          OwnerCard(apartment: apartment),
+                          const SizedBox(height: S.p24),
                           Text(
-                            apartment.title,
-                            style: context.typography.headline1,
-                            softWrap: true,
+                            'Размещено: ${apartament.publishedAt}',
+                            style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
                           ),
-                          DetailMetricsRow(
-                            items: [
-                              DetailMetricItemData(
-                                value:
-                                    "${apartment.roomsCount}-${locale.apartmentRoomsShort}",
-                                label: locale.apartment,
-                              ),
-                              DetailMetricItemData(
-                                value:
-                                    "${apartment.area} ${locale.squareMeters}",
-                                label: locale.apartmentArea,
-                              ),
-                              DetailMetricItemData(
-                                value:
-                                    "${apartment.floor}/${apartment.totalFloor}",
-                                label: locale.floor,
-                              ),
-                            ],
+                          const SizedBox(height: S.p8),
+                          Text(
+                            apartament.viewsText,
+                            style: context.typography.bodyDescription.copyWith(color: colors.graysText400),
                           ),
-                          const Divider(),
                         ],
                       ),
-                      DetailSection(
-                        title: locale.location,
-                        child: Text(
-                          apartment.address,
-                          style: context.typography.bodyDescription.copyWith(
-                            color: colors.graysText400,
-                          ),
-                        ),
-                      ),
-                      DetailSection(
-                        title: context.l10n.contactTitle,
+                    ),
+                    DetailSection(
+                      title: locale.aboutHouse,
+                      child: Padding(
+                        padding: const P(vertical: S.p8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: S.p12,
                           children: [
-                            OwnerCard(apartment: apartment),
-                            const SizedBox(height: S.p24),
-                            Text(
-                              'Размещено: ${apartament.publishedAt}',
-                              style: context.typography.bodyDescription
-                                  .copyWith(color: colors.graysText400),
+                            DetailInfoRow(title: locale.layout, value: apartment.layout?.title ?? locale.notSpecified),
+                            DetailInfoRow(
+                              title: locale.renovationLabel,
+                              value: apartment.renovation?.title ?? locale.notSpecified,
                             ),
-                            const SizedBox(height: S.p8),
-                            Text(
-                              apartament.viewsText,
-                              style: context.typography.bodyDescription
-                                  .copyWith(color: colors.graysText400),
+                            DetailInfoRow(
+                              title: locale.elevator,
+                              value: apartment.elevatorType?.title ?? locale.notSpecified,
+                            ),
+                            DetailInfoRow(
+                              title: locale.balconies,
+                              value: apartment.balconyType?.title ?? locale.notSpecified,
+                            ),
+                            DetailInfoRow(
+                              title: locale.furniture,
+                              value: apartment.furnitureType?.title ?? locale.notSpecified,
+                            ),
+                            DetailInfoRow(
+                              title: locale.stove,
+                              value: apartment.stoveType?.title ?? locale.notSpecified,
                             ),
                           ],
                         ),
                       ),
-                      DetailSection(
-                        title: locale.aboutHouse,
-                        child: Padding(
-                          padding: const P(vertical: S.p8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            spacing: S.p12,
-                            children: [
-                              DetailInfoRow(
-                                title: locale.layout,
-                                value:
-                                    apartment.layout?.title ??
-                                    locale.notSpecified,
-                              ),
-                              DetailInfoRow(
-                                title: locale.renovationLabel,
-                                value:
-                                    apartment.renovation?.title ??
-                                    locale.notSpecified,
-                              ),
-                              DetailInfoRow(
-                                title: locale.elevator,
-                                value:
-                                    apartment.elevatorType?.title ??
-                                    locale.notSpecified,
-                              ),
-                              DetailInfoRow(
-                                title: locale.balconies,
-                                value:
-                                    apartment.balconyType?.title ??
-                                    locale.notSpecified,
-                              ),
-                              DetailInfoRow(
-                                title: locale.furniture,
-                                value:
-                                    apartment.furnitureType?.title ??
-                                    locale.notSpecified,
-                              ),
-                              DetailInfoRow(
-                                title: locale.stove,
-                                value:
-                                    apartment.stoveType?.title ??
-                                    locale.notSpecified,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      LayoutBuilder(
-                        builder: (context, constraints) {
-                          final itemWidth = (constraints.maxWidth - S.p12) / 2;
-                          return DetailSection(
-                            title: locale.amenities,
-                            child: Padding(
-                              padding: const P(vertical: S.p8),
-                              child: Wrap(
-                                spacing: S.p12,
-                                runSpacing: S.p12,
-                                children: apartment.amenities.map((item) {
-                                  return SizedBox(
-                                    width: itemWidth,
-                                    child: DetailFeatureChip(
-                                      title: item.title,
-                                      iconPath: item.iconPath,
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      DetailSection(
-                        title: locale.rentalConditionsTitle,
-                        child: Padding(
-                          padding: const P(vertical: S.p8),
-                          child: Column(
-                            spacing: S.p12,
-                            children: [
-                              DetailInfoRow(
-                                title: locale.prepayment,
-                                value:
-                                    apartment.prepaymentType?.title ??
-                                    locale.notSpecified,
-                              ),
-                              DetailInfoRow(
-                                title: locale.deposit,
-                                value: apartment.deposit,
-                              ),
-                              DetailInfoRow(
-                                title: locale.rentalPeriod,
-                                value:
-                                    apartment.rentalPeriod?.title ??
-                                    locale.notSpecified,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            context.l10n.adDescription,
-                            style: context.typography.headline1,
-                          ),
-                          const SizedBox(height: S.p12),
-                          Padding(
+                    ),
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        final itemWidth = (constraints.maxWidth - S.p12) / 2;
+                        return DetailSection(
+                          title: locale.amenities,
+                          child: Padding(
                             padding: const P(vertical: S.p8),
-                            child: Text(
-                              apartment.description,
-                              style: context.typography.bodyDescription,
+                            child: Wrap(
+                              spacing: S.p12,
+                              runSpacing: S.p12,
+                              children: apartment.amenities.map((item) {
+                                return SizedBox(
+                                  width: itemWidth,
+                                  child: DetailFeatureChip(title: item.title, iconPath: item.iconPath),
+                                );
+                              }).toList(),
                             ),
                           ),
-                          const SizedBox(height: S.p32),
-                        ],
+                        );
+                      },
+                    ),
+                    DetailSection(
+                      title: locale.rentalConditionsTitle,
+                      child: Padding(
+                        padding: const P(vertical: S.p8),
+                        child: Column(
+                          spacing: S.p12,
+                          children: [
+                            DetailInfoRow(
+                              title: locale.prepayment,
+                              value: apartment.prepaymentType?.title ?? locale.notSpecified,
+                            ),
+                            DetailInfoRow(title: locale.deposit, value: apartment.deposit),
+                            DetailInfoRow(
+                              title: locale.rentalPeriod,
+                              value: apartment.rentalPeriod?.title ?? locale.notSpecified,
+                            ),
+                          ],
+                        ),
                       ),
-                    ].separated(const SizedBox(height: S.p24)),
-                  ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(context.l10n.adDescription, style: context.typography.headline1),
+                        const SizedBox(height: S.p12),
+                        Padding(
+                          padding: const P(vertical: S.p8),
+                          child: Text(apartment.description, style: context.typography.bodyDescription),
+                        ),
+                        const SizedBox(height: S.p32),
+                      ],
+                    ),
+                  ]),
                 ),
               ),
             ],

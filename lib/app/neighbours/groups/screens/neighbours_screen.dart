@@ -27,10 +27,7 @@ class NeighboursScreen extends ConsumerWidget {
               surfaceTintColor: Colors.transparent,
             ),
             SliverToBoxAdapter(
-              child: ColoredBox(
-                color: context.colors.graysWhite,
-                child: const NeighboursSearchCard(),
-              ),
+              child: ColoredBox(color: context.colors.graysWhite, child: const WhoSearchCard()),
             ),
             SliverPersistentHeader(
               pinned: true,
@@ -40,8 +37,7 @@ class NeighboursScreen extends ConsumerWidget {
                   color: context.colors.graysWhite,
                   child: NeighboursFiltersRow(
                     optionsCount: asyncState.value?.length ?? 0,
-                    onFiltersTap: () =>
-                        context.router.push(const NeighboursFiltersRoute()),
+                    onFiltersTap: () => context.router.push(const NeighboursFiltersRoute()),
                   ),
                 ),
               ),
@@ -54,10 +50,7 @@ class NeighboursScreen extends ConsumerWidget {
                     itemCount: groups.length,
                     itemBuilder: (context, index) {
                       final group = groups[index];
-                      return NeighbourCard(
-                        onTap: () => notifier.openGroup(group.id),
-                        group: group,
-                      );
+                      return NeighbourCard(onTap: () => notifier.openGroup(group.id), group: group);
                     },
                     separatorBuilder: (context, index) {
                       return const SizedBox(height: S.p12);
@@ -80,10 +73,7 @@ class NeighboursScreen extends ConsumerWidget {
 }
 
 class _NeighboursControlsHeaderDelegate extends SliverPersistentHeaderDelegate {
-  _NeighboursControlsHeaderDelegate({
-    required this.child,
-    required this.height,
-  });
+  _NeighboursControlsHeaderDelegate({required this.child, required this.height});
 
   final Widget child;
   final double height;
@@ -95,11 +85,7 @@ class _NeighboursControlsHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return SizedBox.expand(child: child);
   }
 

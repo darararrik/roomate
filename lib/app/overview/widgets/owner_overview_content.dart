@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 class OwnerOverviewContent extends ConsumerWidget {
@@ -26,18 +24,14 @@ class OwnerOverviewContent extends ConsumerWidget {
               imagePath: AppIcons.request,
               imageWidth: 86,
               imageHeight: 86,
-              onTap: notifier.openMyAdvertisements,
+              onTap: notifier.openIncomingAdApplications,
             ),
             HomeActionCard(
               title: context.l10n.myTransactions,
               imagePath: AppIcons.deal,
               onTap: notifier.openApartments,
             ),
-            HomeActionCard(
-              title: context.l10n.analytics,
-              imagePath: AppIcons.deal,
-              onTap: notifier.openCoworking,
-            ),
+            HomeActionCard(title: context.l10n.analytics, imagePath: AppIcons.deal, onTap: notifier.openCoworking),
           ],
         ),
         SliverPadding(
@@ -49,7 +43,7 @@ class OwnerOverviewContent extends ConsumerWidget {
               color: context.colors.orange,
               bgColor: context.colors.opacityOrange20,
               icon: AppIcon(AppIcons.edit2, color: context.colors.orange),
-              child: const Text("Разместить объявление"),
+              text: "Разместить объявление",
             ),
           ),
         ),
