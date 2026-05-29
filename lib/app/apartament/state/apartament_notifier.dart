@@ -16,6 +16,10 @@ part 'apartament_notifier.g.dart';
 class Apartament extends _$Apartament {
   late final PageController pageController = PageController();
 
+  IApartamentsRepository get _apartamentsRepository =>
+      ref.read(apartamentsRepositoryProvider);
+  IChatsRepository get _chatsRepository => ref.read(chatsRepositoryProvider);
+
   @override
   Future<ApartamentState> build(String apartmentId) async {
     ref.onDispose(pageController.dispose);
@@ -48,9 +52,7 @@ class Apartament extends _$Apartament {
   }
 
   Future<ApartamentModel> fetchApartament(String apartmentId) async {
-    final res = await ref
-        .read(apartamentsRepositoryProvider)
-        .fetchApartamentById(apartmentId);
+    final res = await _apartamentsRepository.fetchApartamentById(apartmentId);
     return res.fold((l) => throw l, (r) => r);
   }
 
@@ -89,9 +91,38 @@ class Apartament extends _$Apartament {
     ref.nav.showSnackBar(message: 'Звонок будет доступен позже');
   }
 
-  void onWritePressed() {
+  Future<void> onWritePressed() async {
     final apartment = state.requireValue.apartment;
-    ref.nav.push(ChatRoute(apartment: apartment));
+    final result = await _chatsRepository.fetchChats();
+    if (!ref.mounted) {
+      return;
+    }
+
+    result.fold(
+      (error) {
+        ref.nav.showSnackBar(
+          message: error.messages.isNotEmpty
+              ? error.messages
+              : ref.l10n.errorGeneric,
+        );
+      },
+      (chats) {
+        ChatSummaryModel? chat;
+        for (final item in chats) {
+          if (item.apartament.id == apartment.id) {
+            chat = item;
+            break;
+          }
+        }
+
+        if (chat == null) {
+          ref.nav.showSnackBar(message: ref.l10n.chatWillBeAvailableLater);
+          return;
+        }
+
+        ref.nav.push(ChatRoute(chat: chat));
+      },
+    );
   }
 
   void onMorePressed(BuildContext context) {

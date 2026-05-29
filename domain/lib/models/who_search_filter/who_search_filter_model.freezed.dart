@@ -222,7 +222,7 @@ return $default(_that.limit,_that.offset,_that.smartQuery,_that.cityFiasId,_that
 
 
 class _WhoSearchFilterModel implements WhoSearchFilterModel {
-  const _WhoSearchFilterModel({this.limit = 20, this.offset = 0, this.smartQuery = '', this.cityFiasId = '', this.district = '', this.desiredGender, this.minAge, this.maxAge, this.minParticipantsCount, this.maxParticipantsCount, final  List<int> propertyTypeIds = const [], final  List<int> roomsCountIds = const [], this.minPrice, this.maxPrice, this.rentDurationId = 0, this.childrenAllowed = false, this.partnerAllowed = false, this.petsAllowed = false, this.smokingAllowed = false, this.sortType = WhoSearchSortType.publishDateDesc, this.locationTitle = '', this.addressQuery = '', this.utilitiesPayment = false}): _propertyTypeIds = propertyTypeIds,_roomsCountIds = roomsCountIds;
+  const _WhoSearchFilterModel({this.limit = 20, this.offset = 0, this.smartQuery = '', this.cityFiasId = '', this.district = '', this.desiredGender, this.minAge, this.maxAge, this.minParticipantsCount, this.maxParticipantsCount, final  List<int> propertyTypeIds = const [], final  List<int> roomsCountIds = const [], this.minPrice, this.maxPrice, this.rentDurationId = 0, this.childrenAllowed = false, this.partnerAllowed = false, this.petsAllowed = false, this.smokingAllowed = false, this.sortType = WhoSearchSortType.matchPercentDesc, this.locationTitle = '', this.addressQuery = '', this.utilitiesPayment = false}): _propertyTypeIds = propertyTypeIds,_roomsCountIds = roomsCountIds;
   
 
 @override@JsonKey() final  int limit;

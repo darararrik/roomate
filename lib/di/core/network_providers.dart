@@ -1,6 +1,7 @@
 import 'package:data/services/api_client.dart';
 import 'package:data/services/app_status_storage_service.dart';
 import 'package:data/services/auth_interceptor.dart';
+import 'package:data/services/chat_socket_service.dart';
 import 'package:data/services/network_module.dart';
 import 'package:data/services/preferences_service.dart';
 import 'package:data/services/token_service.dart';
@@ -33,6 +34,16 @@ Dio dio(Ref ref) {
 @Riverpod(keepAlive: true)
 ApiClient apiClient(Ref ref) {
   return ApiClient(ref.watch(dioProvider), ref.watch(talkerProvider));
+}
+
+@Riverpod(keepAlive: true)
+ChatSocketService chatSocketService(Ref ref) {
+  final config = ref.watch(configProvider);
+  return ChatSocketService(
+    apiBaseUrl: config.baseUrl,
+    tokenService: ref.watch(tokenServiceProvider),
+    talker: ref.watch(talkerProvider),
+  );
 }
 
 @Riverpod(keepAlive: true)

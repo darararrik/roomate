@@ -12,10 +12,10 @@ part of 'chat_notifier.dart';
 @ProviderFor(Chat)
 final chatProvider = ChatFamily._();
 
-final class ChatProvider extends $NotifierProvider<Chat, ChatState> {
+final class ChatProvider extends $AsyncNotifierProvider<Chat, ChatState> {
   ChatProvider._({
     required ChatFamily super.from,
-    required ApartamentModel super.argument,
+    required ChatSummaryModel super.argument,
   }) : super(
          retry: null,
          name: r'chatProvider',
@@ -38,14 +38,6 @@ final class ChatProvider extends $NotifierProvider<Chat, ChatState> {
   @override
   Chat create() => Chat();
 
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ChatState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ChatState>(value),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is ChatProvider && other.argument == argument;
@@ -57,16 +49,16 @@ final class ChatProvider extends $NotifierProvider<Chat, ChatState> {
   }
 }
 
-String _$chatHash() => r'7a9a3ad01361479bd674dcb67d9c36cb3c06ecd2';
+String _$chatHash() => r'c56a7aa843e7a06c619971224ef80a7cef7e1d9a';
 
 final class ChatFamily extends $Family
     with
         $ClassFamilyOverride<
           Chat,
+          AsyncValue<ChatState>,
           ChatState,
-          ChatState,
-          ChatState,
-          ApartamentModel
+          FutureOr<ChatState>,
+          ChatSummaryModel
         > {
   ChatFamily._()
     : super(
@@ -77,27 +69,27 @@ final class ChatFamily extends $Family
         isAutoDispose: true,
       );
 
-  ChatProvider call(ApartamentModel apartment) =>
-      ChatProvider._(argument: apartment, from: this);
+  ChatProvider call(ChatSummaryModel chat) =>
+      ChatProvider._(argument: chat, from: this);
 
   @override
   String toString() => r'chatProvider';
 }
 
-abstract class _$Chat extends $Notifier<ChatState> {
-  late final _$args = ref.$arg as ApartamentModel;
-  ApartamentModel get apartment => _$args;
+abstract class _$Chat extends $AsyncNotifier<ChatState> {
+  late final _$args = ref.$arg as ChatSummaryModel;
+  ChatSummaryModel get chat => _$args;
 
-  ChatState build(ApartamentModel apartment);
+  FutureOr<ChatState> build(ChatSummaryModel chat);
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<ChatState, ChatState>;
+    final ref = this.ref as $Ref<AsyncValue<ChatState>, ChatState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<ChatState, ChatState>,
-              ChatState,
+              AnyNotifier<AsyncValue<ChatState>, ChatState>,
+              AsyncValue<ChatState>,
               Object?,
               Object?
             >;

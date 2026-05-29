@@ -4,6 +4,7 @@ export 'ad_form_options/ad_form_options.dart';
 export 'apartament_filter/apartament_filter_model.dart';
 export 'apartaments/apartaments.dart';
 export 'chip_model.dart';
+export 'chat/chat.dart';
 export 'city/city_model.dart';
 export 'common/common.dart';
 export 'create_group_form_model/create_group_form_model.dart';

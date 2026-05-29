@@ -58,7 +58,7 @@ final class MediaUploadProvider
   }
 }
 
-String _$mediaUploadHash() => r'ff825986b1b1e9034ba43511041ffc9136dd0c77';
+String _$mediaUploadHash() => r'35e8442371a08fff9b950d328ad4a3fffb081d06';
 
 final class MediaUploadFamily extends $Family
     with

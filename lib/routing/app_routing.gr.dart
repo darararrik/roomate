@@ -9,85 +9,85 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i70;
-import 'package:domain/domain.dart' as _i12;
-import 'package:flutter/material.dart' as _i71;
+import 'package:auto_route/auto_route.dart' as _i69;
+import 'package:domain/domain.dart' as _i71;
+import 'package:flutter/material.dart' as _i70;
 import 'package:roomate/app/apartament/apartamnet_screen.dart' as _i6;
 import 'package:roomate/app/apartments/screens/apartments_screen.dart' as _i5;
-import 'package:roomate/app/apartments/screens/filters_screen.dart' as _i37;
-import 'package:roomate/app/auth/screens/enter_code_screen.dart' as _i32;
+import 'package:roomate/app/apartments/screens/filters_screen.dart' as _i36;
+import 'package:roomate/app/auth/screens/enter_code_screen.dart' as _i31;
 import 'package:roomate/app/auth/screens/enter_phone_number_screen.dart'
-    as _i33;
-import 'package:roomate/app/auth/screens/welcome_screen.dart' as _i68;
+    as _i32;
+import 'package:roomate/app/auth/screens/welcome_screen.dart' as _i67;
 import 'package:roomate/app/chats/chat_screen.dart' as _i11;
-import 'package:roomate/app/chats/chats_screen.dart' as _i13;
-import 'package:roomate/app/coworking/screens/coworking_screen.dart' as _i15;
+import 'package:roomate/app/chats/chats_screen.dart' as _i12;
+import 'package:roomate/app/coworking/screens/coworking_screen.dart' as _i14;
 import 'package:roomate/app/create/create_ad/screens/create_ad_screen.dart'
-    as _i16;
+    as _i15;
 import 'package:roomate/app/create/create_ad/screens/tabs/_10_description_ad_step_screen.dart'
-    as _i31;
+    as _i30;
 import 'package:roomate/app/create/create_ad/screens/tabs/_11_contacts_step_screen.dart'
-    as _i14;
+    as _i13;
 import 'package:roomate/app/create/create_ad/screens/tabs/_12_finish_screen.dart'
-    as _i38;
+    as _i37;
 import 'package:roomate/app/create/create_ad/screens/tabs/_1_rent_type_step_screen.dart'
-    as _i58;
-import 'package:roomate/app/create/create_ad/screens/tabs/_2_room_type_step_screen.dart'
-    as _i59;
-import 'package:roomate/app/create/create_ad/screens/tabs/_3_property_type_step_screen.dart'
     as _i57;
+import 'package:roomate/app/create/create_ad/screens/tabs/_2_room_type_step_screen.dart'
+    as _i58;
+import 'package:roomate/app/create/create_ad/screens/tabs/_3_property_type_step_screen.dart'
+    as _i56;
 import 'package:roomate/app/create/create_ad/screens/tabs/_4_location_step_screen.dart'
-    as _i43;
+    as _i42;
 import 'package:roomate/app/create/create_ad/screens/tabs/_5_input_details_step_screen.dart'
-    as _i41;
+    as _i40;
 import 'package:roomate/app/create/create_ad/screens/tabs/_6_add_media_step_screen.dart'
     as _i4;
 import 'package:roomate/app/create/create_ad/screens/tabs/_7_features_first_step_screen.dart'
-    as _i35;
+    as _i34;
 import 'package:roomate/app/create/create_ad/screens/tabs/_8_features_second_step_screen.dart'
-    as _i36;
+    as _i35;
 import 'package:roomate/app/create/create_ad/screens/tabs/_9_deal_terms_step_screen.dart'
-    as _i30;
+    as _i29;
 import 'package:roomate/app/create/create_ad/screens/tabs/ad_confirmation_screen.dart'
     as _i3;
 import 'package:roomate/app/create/create_group/screens/create_group_screen.dart'
-    as _i28;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_basic_info_step_screen.dart'
-    as _i17;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_confirmation_step_screen.dart'
-    as _i18;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_contacts_step_screen.dart'
-    as _i19;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_description_step_screen.dart'
-    as _i20;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_finance_step_screen.dart'
-    as _i21;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_finish_step_screen.dart'
-    as _i22;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_household_step_screen.dart'
-    as _i23;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_lifestyle_step_screen.dart'
-    as _i24;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_looking_for_step_screen.dart'
-    as _i25;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_media_step_screen.dart'
-    as _i26;
-import 'package:roomate/app/create/create_group/screens/steps/create_group_rules_step_screen.dart'
     as _i27;
-import 'package:roomate/app/create/create_screen.dart' as _i29;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_basic_info_step_screen.dart'
+    as _i16;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_confirmation_step_screen.dart'
+    as _i17;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_contacts_step_screen.dart'
+    as _i18;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_description_step_screen.dart'
+    as _i19;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_finance_step_screen.dart'
+    as _i20;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_finish_step_screen.dart'
+    as _i21;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_household_step_screen.dart'
+    as _i22;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_lifestyle_step_screen.dart'
+    as _i23;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_looking_for_step_screen.dart'
+    as _i24;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_media_step_screen.dart'
+    as _i25;
+import 'package:roomate/app/create/create_group/screens/steps/create_group_rules_step_screen.dart'
+    as _i26;
+import 'package:roomate/app/create/create_screen.dart' as _i28;
 import 'package:roomate/app/create_profile/screens/setup_profile_screen.dart'
-    as _i61;
+    as _i60;
 import 'package:roomate/app/create_profile/screens/tabs/verification_intro_screen.dart'
-    as _i66;
-import 'package:roomate/app/create_profile/screens/verification_status.dart'
-    as _i67;
-import 'package:roomate/app/create_profile/screens/verification_summary_screem.dart'
     as _i65;
-import 'package:roomate/app/favorites/favorites_screen.dart' as _i34;
-import 'package:roomate/app/location_screen.dart' as _i42;
-import 'package:roomate/app/main/main_flow.dart' as _i44;
+import 'package:roomate/app/create_profile/screens/verification_status.dart'
+    as _i66;
+import 'package:roomate/app/create_profile/screens/verification_summary_screem.dart'
+    as _i64;
+import 'package:roomate/app/favorites/favorites_screen.dart' as _i33;
+import 'package:roomate/app/location_screen.dart' as _i41;
+import 'package:roomate/app/main/main_flow.dart' as _i43;
 import 'package:roomate/app/my_ad_applications/screens/my_ad_application_detail_screen.dart'
-    as _i47;
+    as _i46;
 import 'package:roomate/app/my_ad_applications/screens/my_ad_applications_screen.dart'
     as _i7;
 import 'package:roomate/app/my_advertisements/screens/active_my_advertisements_screen.dart'
@@ -95,46 +95,46 @@ import 'package:roomate/app/my_advertisements/screens/active_my_advertisements_s
 import 'package:roomate/app/my_advertisements/screens/archived_my_advertisements_screen.dart'
     as _i9;
 import 'package:roomate/app/my_advertisements/screens/moderation_my_advertisements_screen.dart'
-    as _i45;
+    as _i44;
 import 'package:roomate/app/my_advertisements/screens/my_advertisements_screen.dart'
-    as _i48;
+    as _i47;
 import 'package:roomate/app/my_group_applications/screens/my_group_application_detail_screen.dart'
-    as _i49;
+    as _i48;
 import 'package:roomate/app/my_group_applications/screens/my_group_applications_screen.dart'
     as _i8;
 import 'package:roomate/app/neighbours/filters/screens/neighbours_filters_screen.dart'
-    as _i51;
+    as _i50;
 import 'package:roomate/app/neighbours/group_conditions/screens/group_conditions_and_participants_screen.dart'
-    as _i39;
+    as _i38;
 import 'package:roomate/app/neighbours/group_details/screens/about_group_screen.dart'
     as _i1;
 import 'package:roomate/app/neighbours/groups/screens/neighbours_screen.dart'
-    as _i52;
+    as _i51;
 import 'package:roomate/app/neighbours/participant_profile/screens/group_participant_profile_screen.dart'
-    as _i40;
+    as _i39;
 import 'package:roomate/app/neighbours/who_search/screens/who_search_screen.dart'
-    as _i69;
-import 'package:roomate/app/on_boarding/on_boarding_screen.dart' as _i53;
-import 'package:roomate/app/overview/screens/overview_screen.dart' as _i55;
-import 'package:roomate/app/profile/my_account_screen.dart' as _i46;
-import 'package:roomate/app/profile/my_questionnaire_screen.dart' as _i50;
-import 'package:roomate/app/profile/overview_profile_screen.dart' as _i54;
-import 'package:roomate/app/profile/profile_data_edit_screen.dart' as _i56;
-import 'package:roomate/app/settings/settings_screen.dart' as _i60;
-import 'package:roomate/app/splash/splash_screen.dart' as _i62;
+    as _i68;
+import 'package:roomate/app/on_boarding/on_boarding_screen.dart' as _i52;
+import 'package:roomate/app/overview/screens/overview_screen.dart' as _i54;
+import 'package:roomate/app/profile/my_account_screen.dart' as _i45;
+import 'package:roomate/app/profile/my_questionnaire_screen.dart' as _i49;
+import 'package:roomate/app/profile/overview_profile_screen.dart' as _i53;
+import 'package:roomate/app/profile/profile_data_edit_screen.dart' as _i55;
+import 'package:roomate/app/settings/settings_screen.dart' as _i59;
+import 'package:roomate/app/splash/splash_screen.dart' as _i61;
 import 'package:roomate/app/user_preferences/user_preferences_page_view.dart'
-    as _i64;
-import 'package:roomate/app/user_preferences/user_preferences_screen.dart'
     as _i63;
+import 'package:roomate/app/user_preferences/user_preferences_screen.dart'
+    as _i62;
 import 'package:roomate/routing/wrappers/auth_wrapper.dart' as _i10;
 
 /// generated route for
 /// [_i1.AboutGroupScreen]
-class AboutGroupRoute extends _i70.PageRouteInfo<AboutGroupRouteArgs> {
+class AboutGroupRoute extends _i69.PageRouteInfo<AboutGroupRouteArgs> {
   AboutGroupRoute({
-    _i71.Key? key,
+    _i70.Key? key,
     required String groupId,
-    List<_i70.PageRouteInfo>? children,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          AboutGroupRoute.name,
          args: AboutGroupRouteArgs(key: key, groupId: groupId),
@@ -143,7 +143,7 @@ class AboutGroupRoute extends _i70.PageRouteInfo<AboutGroupRouteArgs> {
 
   static const String name = 'AboutGroupRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AboutGroupRouteArgs>();
@@ -155,7 +155,7 @@ class AboutGroupRoute extends _i70.PageRouteInfo<AboutGroupRouteArgs> {
 class AboutGroupRouteArgs {
   const AboutGroupRouteArgs({this.key, required this.groupId});
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
   final String groupId;
 
@@ -177,13 +177,13 @@ class AboutGroupRouteArgs {
 
 /// generated route for
 /// [_i2.ActiveMyAdvertisementsScreen]
-class ActiveMyAdvertisementsRoute extends _i70.PageRouteInfo<void> {
-  const ActiveMyAdvertisementsRoute({List<_i70.PageRouteInfo>? children})
+class ActiveMyAdvertisementsRoute extends _i69.PageRouteInfo<void> {
+  const ActiveMyAdvertisementsRoute({List<_i69.PageRouteInfo>? children})
     : super(ActiveMyAdvertisementsRoute.name, initialChildren: children);
 
   static const String name = 'ActiveMyAdvertisementsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i2.ActiveMyAdvertisementsScreen();
@@ -193,13 +193,13 @@ class ActiveMyAdvertisementsRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AdConfirmationScreen]
-class AdConfirmationRoute extends _i70.PageRouteInfo<void> {
-  const AdConfirmationRoute({List<_i70.PageRouteInfo>? children})
+class AdConfirmationRoute extends _i69.PageRouteInfo<void> {
+  const AdConfirmationRoute({List<_i69.PageRouteInfo>? children})
     : super(AdConfirmationRoute.name, initialChildren: children);
 
   static const String name = 'AdConfirmationRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i3.AdConfirmationScreen();
@@ -209,13 +209,13 @@ class AdConfirmationRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.AddMediaStepScreen]
-class AddMediaStepRoute extends _i70.PageRouteInfo<void> {
-  const AddMediaStepRoute({List<_i70.PageRouteInfo>? children})
+class AddMediaStepRoute extends _i69.PageRouteInfo<void> {
+  const AddMediaStepRoute({List<_i69.PageRouteInfo>? children})
     : super(AddMediaStepRoute.name, initialChildren: children);
 
   static const String name = 'AddMediaStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i4.AddMediaStepScreen();
@@ -225,13 +225,13 @@ class AddMediaStepRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ApartamentsScreen]
-class ApartamentsRoute extends _i70.PageRouteInfo<void> {
-  const ApartamentsRoute({List<_i70.PageRouteInfo>? children})
+class ApartamentsRoute extends _i69.PageRouteInfo<void> {
+  const ApartamentsRoute({List<_i69.PageRouteInfo>? children})
     : super(ApartamentsRoute.name, initialChildren: children);
 
   static const String name = 'ApartamentsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i5.ApartamentsScreen();
@@ -241,11 +241,11 @@ class ApartamentsRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.ApartamnetScreen]
-class ApartamnetRoute extends _i70.PageRouteInfo<ApartamnetRouteArgs> {
+class ApartamnetRoute extends _i69.PageRouteInfo<ApartamnetRouteArgs> {
   ApartamnetRoute({
-    _i71.Key? key,
+    _i70.Key? key,
     required String apartmentId,
-    List<_i70.PageRouteInfo>? children,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          ApartamnetRoute.name,
          args: ApartamnetRouteArgs(key: key, apartmentId: apartmentId),
@@ -254,7 +254,7 @@ class ApartamnetRoute extends _i70.PageRouteInfo<ApartamnetRouteArgs> {
 
   static const String name = 'ApartamnetRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ApartamnetRouteArgs>();
@@ -266,7 +266,7 @@ class ApartamnetRoute extends _i70.PageRouteInfo<ApartamnetRouteArgs> {
 class ApartamnetRouteArgs {
   const ApartamnetRouteArgs({this.key, required this.apartmentId});
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
   final String apartmentId;
 
@@ -288,13 +288,13 @@ class ApartamnetRouteArgs {
 
 /// generated route for
 /// [_i7.ApplicationsTabViewScreen]
-class ApplicationsTabViewRoute extends _i70.PageRouteInfo<void> {
-  const ApplicationsTabViewRoute({List<_i70.PageRouteInfo>? children})
+class ApplicationsTabViewRoute extends _i69.PageRouteInfo<void> {
+  const ApplicationsTabViewRoute({List<_i69.PageRouteInfo>? children})
     : super(ApplicationsTabViewRoute.name, initialChildren: children);
 
   static const String name = 'ApplicationsTabViewRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i7.ApplicationsTabViewScreen();
@@ -304,13 +304,13 @@ class ApplicationsTabViewRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.ArchivedApplicationsScreen]
-class ArchivedApplicationsRoute extends _i70.PageRouteInfo<void> {
-  const ArchivedApplicationsRoute({List<_i70.PageRouteInfo>? children})
+class ArchivedApplicationsRoute extends _i69.PageRouteInfo<void> {
+  const ArchivedApplicationsRoute({List<_i69.PageRouteInfo>? children})
     : super(ArchivedApplicationsRoute.name, initialChildren: children);
 
   static const String name = 'ArchivedApplicationsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i7.ArchivedApplicationsScreen();
@@ -320,13 +320,13 @@ class ArchivedApplicationsRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.ArchivedGroupApplicationsScreen]
-class ArchivedGroupApplicationsRoute extends _i70.PageRouteInfo<void> {
-  const ArchivedGroupApplicationsRoute({List<_i70.PageRouteInfo>? children})
+class ArchivedGroupApplicationsRoute extends _i69.PageRouteInfo<void> {
+  const ArchivedGroupApplicationsRoute({List<_i69.PageRouteInfo>? children})
     : super(ArchivedGroupApplicationsRoute.name, initialChildren: children);
 
   static const String name = 'ArchivedGroupApplicationsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i8.ArchivedGroupApplicationsScreen();
@@ -336,13 +336,13 @@ class ArchivedGroupApplicationsRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.ArchivedMyAdvertisementsScreen]
-class ArchivedMyAdvertisementsRoute extends _i70.PageRouteInfo<void> {
-  const ArchivedMyAdvertisementsRoute({List<_i70.PageRouteInfo>? children})
+class ArchivedMyAdvertisementsRoute extends _i69.PageRouteInfo<void> {
+  const ArchivedMyAdvertisementsRoute({List<_i69.PageRouteInfo>? children})
     : super(ArchivedMyAdvertisementsRoute.name, initialChildren: children);
 
   static const String name = 'ArchivedMyAdvertisementsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i9.ArchivedMyAdvertisementsScreen();
@@ -352,497 +352,492 @@ class ArchivedMyAdvertisementsRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.AuthWrapper]
-class AuthWrapper extends _i70.PageRouteInfo<void> {
-  const AuthWrapper({List<_i70.PageRouteInfo>? children})
+class AuthWrapper extends _i69.PageRouteInfo<void> {
+  const AuthWrapper({List<_i69.PageRouteInfo>? children})
     : super(AuthWrapper.name, initialChildren: children);
 
   static const String name = 'AuthWrapper';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return _i70.WrappedRoute(child: const _i10.AuthWrapper());
+      return _i69.WrappedRoute(child: const _i10.AuthWrapper());
     },
   );
 }
 
 /// generated route for
 /// [_i11.ChatScreen]
-class ChatRoute extends _i70.PageRouteInfo<ChatRouteArgs> {
+class ChatRoute extends _i69.PageRouteInfo<ChatRouteArgs> {
   ChatRoute({
-    _i71.Key? key,
-    _i12.ApartamentModel apartment = const _i12.ApartamentModel(),
-    List<_i70.PageRouteInfo>? children,
+    _i70.Key? key,
+    required _i71.ChatSummaryModel chat,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          ChatRoute.name,
-         args: ChatRouteArgs(key: key, apartment: apartment),
+         args: ChatRouteArgs(key: key, chat: chat),
          initialChildren: children,
        );
 
   static const String name = 'ChatRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ChatRouteArgs>(
-        orElse: () => const ChatRouteArgs(),
-      );
-      return _i11.ChatScreen(key: args.key, apartment: args.apartment);
+      final args = data.argsAs<ChatRouteArgs>();
+      return _i11.ChatScreen(key: args.key, chat: args.chat);
     },
   );
 }
 
 class ChatRouteArgs {
-  const ChatRouteArgs({
-    this.key,
-    this.apartment = const _i12.ApartamentModel(),
-  });
+  const ChatRouteArgs({this.key, required this.chat});
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
-  final _i12.ApartamentModel apartment;
+  final _i71.ChatSummaryModel chat;
 
   @override
   String toString() {
-    return 'ChatRouteArgs{key: $key, apartment: $apartment}';
+    return 'ChatRouteArgs{key: $key, chat: $chat}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! ChatRouteArgs) return false;
-    return key == other.key && apartment == other.apartment;
+    return key == other.key && chat == other.chat;
   }
 
   @override
-  int get hashCode => key.hashCode ^ apartment.hashCode;
+  int get hashCode => key.hashCode ^ chat.hashCode;
 }
 
 /// generated route for
-/// [_i13.ChatsScreen]
-class ChatsRoute extends _i70.PageRouteInfo<void> {
-  const ChatsRoute({List<_i70.PageRouteInfo>? children})
+/// [_i12.ChatsScreen]
+class ChatsRoute extends _i69.PageRouteInfo<void> {
+  const ChatsRoute({List<_i69.PageRouteInfo>? children})
     : super(ChatsRoute.name, initialChildren: children);
 
   static const String name = 'ChatsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i13.ChatsScreen();
+      return const _i12.ChatsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i14.ContactsStepScreen]
-class ContactsStepRoute extends _i70.PageRouteInfo<void> {
-  const ContactsStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i13.ContactsStepScreen]
+class ContactsStepRoute extends _i69.PageRouteInfo<void> {
+  const ContactsStepRoute({List<_i69.PageRouteInfo>? children})
     : super(ContactsStepRoute.name, initialChildren: children);
 
   static const String name = 'ContactsStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i14.ContactsStepScreen();
+      return const _i13.ContactsStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i15.CoworkingScreen]
-class CoworkingRoute extends _i70.PageRouteInfo<void> {
-  const CoworkingRoute({List<_i70.PageRouteInfo>? children})
+/// [_i14.CoworkingScreen]
+class CoworkingRoute extends _i69.PageRouteInfo<void> {
+  const CoworkingRoute({List<_i69.PageRouteInfo>? children})
     : super(CoworkingRoute.name, initialChildren: children);
 
   static const String name = 'CoworkingRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i15.CoworkingScreen();
+      return const _i14.CoworkingScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i16.CreateAdScreen]
-class CreateAdRoute extends _i70.PageRouteInfo<void> {
-  const CreateAdRoute({List<_i70.PageRouteInfo>? children})
+/// [_i15.CreateAdScreen]
+class CreateAdRoute extends _i69.PageRouteInfo<void> {
+  const CreateAdRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateAdRoute.name, initialChildren: children);
 
   static const String name = 'CreateAdRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i16.CreateAdScreen();
+      return const _i15.CreateAdScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i17.CreateGroupBasicInfoStepScreen]
-class CreateGroupBasicInfoStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupBasicInfoStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i16.CreateGroupBasicInfoStepScreen]
+class CreateGroupBasicInfoStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupBasicInfoStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupBasicInfoStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupBasicInfoStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i17.CreateGroupBasicInfoStepScreen();
+      return const _i16.CreateGroupBasicInfoStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i18.CreateGroupConfirmationStepScreen]
-class CreateGroupConfirmationStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupConfirmationStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i17.CreateGroupConfirmationStepScreen]
+class CreateGroupConfirmationStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupConfirmationStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupConfirmationStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupConfirmationStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i18.CreateGroupConfirmationStepScreen();
+      return const _i17.CreateGroupConfirmationStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i19.CreateGroupContactsStepScreen]
-class CreateGroupContactsStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupContactsStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i18.CreateGroupContactsStepScreen]
+class CreateGroupContactsStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupContactsStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupContactsStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupContactsStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i19.CreateGroupContactsStepScreen();
+      return const _i18.CreateGroupContactsStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i20.CreateGroupDescriptionStepScreen]
-class CreateGroupDescriptionStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupDescriptionStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i19.CreateGroupDescriptionStepScreen]
+class CreateGroupDescriptionStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupDescriptionStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupDescriptionStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupDescriptionStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i20.CreateGroupDescriptionStepScreen();
+      return const _i19.CreateGroupDescriptionStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i21.CreateGroupFinanceStepScreen]
-class CreateGroupFinanceStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupFinanceStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i20.CreateGroupFinanceStepScreen]
+class CreateGroupFinanceStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupFinanceStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupFinanceStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupFinanceStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i21.CreateGroupFinanceStepScreen();
+      return const _i20.CreateGroupFinanceStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i22.CreateGroupFinishStepScreen]
-class CreateGroupFinishStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupFinishStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i21.CreateGroupFinishStepScreen]
+class CreateGroupFinishStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupFinishStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupFinishStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupFinishStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i22.CreateGroupFinishStepScreen();
+      return const _i21.CreateGroupFinishStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i23.CreateGroupHouseholdStepScreen]
-class CreateGroupHouseholdStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupHouseholdStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i22.CreateGroupHouseholdStepScreen]
+class CreateGroupHouseholdStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupHouseholdStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupHouseholdStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupHouseholdStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i23.CreateGroupHouseholdStepScreen();
+      return const _i22.CreateGroupHouseholdStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i24.CreateGroupLifestyleStepScreen]
-class CreateGroupLifestyleStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupLifestyleStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i23.CreateGroupLifestyleStepScreen]
+class CreateGroupLifestyleStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupLifestyleStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupLifestyleStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupLifestyleStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i24.CreateGroupLifestyleStepScreen();
+      return const _i23.CreateGroupLifestyleStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i25.CreateGroupLookingForStepScreen]
-class CreateGroupLookingForStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupLookingForStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i24.CreateGroupLookingForStepScreen]
+class CreateGroupLookingForStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupLookingForStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupLookingForStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupLookingForStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i25.CreateGroupLookingForStepScreen();
+      return const _i24.CreateGroupLookingForStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i26.CreateGroupMediaStepScreen]
-class CreateGroupMediaStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupMediaStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i25.CreateGroupMediaStepScreen]
+class CreateGroupMediaStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupMediaStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupMediaStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupMediaStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i26.CreateGroupMediaStepScreen();
+      return const _i25.CreateGroupMediaStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i27.CreateGroupRulesStepScreen]
-class CreateGroupRulesStepRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupRulesStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i26.CreateGroupRulesStepScreen]
+class CreateGroupRulesStepRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupRulesStepRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupRulesStepRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupRulesStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i27.CreateGroupRulesStepScreen();
+      return const _i26.CreateGroupRulesStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i28.CreateGroupScreen]
-class CreateGroupRoute extends _i70.PageRouteInfo<void> {
-  const CreateGroupRoute({List<_i70.PageRouteInfo>? children})
+/// [_i27.CreateGroupScreen]
+class CreateGroupRoute extends _i69.PageRouteInfo<void> {
+  const CreateGroupRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateGroupRoute.name, initialChildren: children);
 
   static const String name = 'CreateGroupRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i28.CreateGroupScreen();
+      return const _i27.CreateGroupScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i29.CreateScreen]
-class CreateRoute extends _i70.PageRouteInfo<void> {
-  const CreateRoute({List<_i70.PageRouteInfo>? children})
+/// [_i28.CreateScreen]
+class CreateRoute extends _i69.PageRouteInfo<void> {
+  const CreateRoute({List<_i69.PageRouteInfo>? children})
     : super(CreateRoute.name, initialChildren: children);
 
   static const String name = 'CreateRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i29.CreateScreen();
+      return const _i28.CreateScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i30.DealTermsStepScreen]
-class DealTermsStepRoute extends _i70.PageRouteInfo<void> {
-  const DealTermsStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i29.DealTermsStepScreen]
+class DealTermsStepRoute extends _i69.PageRouteInfo<void> {
+  const DealTermsStepRoute({List<_i69.PageRouteInfo>? children})
     : super(DealTermsStepRoute.name, initialChildren: children);
 
   static const String name = 'DealTermsStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i30.DealTermsStepScreen();
+      return const _i29.DealTermsStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i31.DescriptionAdStepScreen]
-class DescriptionAdStepRoute extends _i70.PageRouteInfo<void> {
-  const DescriptionAdStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i30.DescriptionAdStepScreen]
+class DescriptionAdStepRoute extends _i69.PageRouteInfo<void> {
+  const DescriptionAdStepRoute({List<_i69.PageRouteInfo>? children})
     : super(DescriptionAdStepRoute.name, initialChildren: children);
 
   static const String name = 'DescriptionAdStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i31.DescriptionAdStepScreen();
+      return const _i30.DescriptionAdStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i32.EnterCodeScreen]
-class EnterCodeRoute extends _i70.PageRouteInfo<void> {
-  const EnterCodeRoute({List<_i70.PageRouteInfo>? children})
+/// [_i31.EnterCodeScreen]
+class EnterCodeRoute extends _i69.PageRouteInfo<void> {
+  const EnterCodeRoute({List<_i69.PageRouteInfo>? children})
     : super(EnterCodeRoute.name, initialChildren: children);
 
   static const String name = 'EnterCodeRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i32.EnterCodeScreen();
+      return const _i31.EnterCodeScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i33.EnterPhoneNumberScreen]
-class EnterPhoneNumberRoute extends _i70.PageRouteInfo<void> {
-  const EnterPhoneNumberRoute({List<_i70.PageRouteInfo>? children})
+/// [_i32.EnterPhoneNumberScreen]
+class EnterPhoneNumberRoute extends _i69.PageRouteInfo<void> {
+  const EnterPhoneNumberRoute({List<_i69.PageRouteInfo>? children})
     : super(EnterPhoneNumberRoute.name, initialChildren: children);
 
   static const String name = 'EnterPhoneNumberRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i33.EnterPhoneNumberScreen();
+      return const _i32.EnterPhoneNumberScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i34.FavoritesScreen]
-class FavoritesRoute extends _i70.PageRouteInfo<void> {
-  const FavoritesRoute({List<_i70.PageRouteInfo>? children})
+/// [_i33.FavoritesScreen]
+class FavoritesRoute extends _i69.PageRouteInfo<void> {
+  const FavoritesRoute({List<_i69.PageRouteInfo>? children})
     : super(FavoritesRoute.name, initialChildren: children);
 
   static const String name = 'FavoritesRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i34.FavoritesScreen();
+      return const _i33.FavoritesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i35.FeaturesFirstStepScreen]
-class FeaturesFirstStepRoute extends _i70.PageRouteInfo<void> {
-  const FeaturesFirstStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i34.FeaturesFirstStepScreen]
+class FeaturesFirstStepRoute extends _i69.PageRouteInfo<void> {
+  const FeaturesFirstStepRoute({List<_i69.PageRouteInfo>? children})
     : super(FeaturesFirstStepRoute.name, initialChildren: children);
 
   static const String name = 'FeaturesFirstStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i35.FeaturesFirstStepScreen();
+      return const _i34.FeaturesFirstStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i36.FeaturesSecondStepScreen]
-class FeaturesSecondStepRoute extends _i70.PageRouteInfo<void> {
-  const FeaturesSecondStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i35.FeaturesSecondStepScreen]
+class FeaturesSecondStepRoute extends _i69.PageRouteInfo<void> {
+  const FeaturesSecondStepRoute({List<_i69.PageRouteInfo>? children})
     : super(FeaturesSecondStepRoute.name, initialChildren: children);
 
   static const String name = 'FeaturesSecondStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i36.FeaturesSecondStepScreen();
+      return const _i35.FeaturesSecondStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i37.FiltersScreen]
-class FiltersRoute extends _i70.PageRouteInfo<void> {
-  const FiltersRoute({List<_i70.PageRouteInfo>? children})
+/// [_i36.FiltersScreen]
+class FiltersRoute extends _i69.PageRouteInfo<void> {
+  const FiltersRoute({List<_i69.PageRouteInfo>? children})
     : super(FiltersRoute.name, initialChildren: children);
 
   static const String name = 'FiltersRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i37.FiltersScreen();
+      return const _i36.FiltersScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i38.FinishScreen]
-class FinishRoute extends _i70.PageRouteInfo<void> {
-  const FinishRoute({List<_i70.PageRouteInfo>? children})
+/// [_i37.FinishScreen]
+class FinishRoute extends _i69.PageRouteInfo<void> {
+  const FinishRoute({List<_i69.PageRouteInfo>? children})
     : super(FinishRoute.name, initialChildren: children);
 
   static const String name = 'FinishRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i38.FinishScreen();
+      return const _i37.FinishScreen();
     },
   );
 }
 
 /// generated route for
 /// [_i8.GroupApplicationsTabViewScreen]
-class GroupApplicationsTabViewRoute extends _i70.PageRouteInfo<void> {
-  const GroupApplicationsTabViewRoute({List<_i70.PageRouteInfo>? children})
+class GroupApplicationsTabViewRoute extends _i69.PageRouteInfo<void> {
+  const GroupApplicationsTabViewRoute({List<_i69.PageRouteInfo>? children})
     : super(GroupApplicationsTabViewRoute.name, initialChildren: children);
 
   static const String name = 'GroupApplicationsTabViewRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i8.GroupApplicationsTabViewScreen();
@@ -851,13 +846,13 @@ class GroupApplicationsTabViewRoute extends _i70.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i39.GroupConditionsAndParticipantsScreen]
+/// [_i38.GroupConditionsAndParticipantsScreen]
 class GroupConditionsAndParticipantsRoute
-    extends _i70.PageRouteInfo<GroupConditionsAndParticipantsRouteArgs> {
+    extends _i69.PageRouteInfo<GroupConditionsAndParticipantsRouteArgs> {
   GroupConditionsAndParticipantsRoute({
-    _i71.Key? key,
-    required _i12.GroupConditionsModel conditions,
-    List<_i70.PageRouteInfo>? children,
+    _i70.Key? key,
+    required _i71.GroupConditionsModel conditions,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          GroupConditionsAndParticipantsRoute.name,
          args: GroupConditionsAndParticipantsRouteArgs(
@@ -869,11 +864,11 @@ class GroupConditionsAndParticipantsRoute
 
   static const String name = 'GroupConditionsAndParticipantsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<GroupConditionsAndParticipantsRouteArgs>();
-      return _i39.GroupConditionsAndParticipantsScreen(
+      return _i38.GroupConditionsAndParticipantsScreen(
         key: args.key,
         conditions: args.conditions,
       );
@@ -887,9 +882,9 @@ class GroupConditionsAndParticipantsRouteArgs {
     required this.conditions,
   });
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
-  final _i12.GroupConditionsModel conditions;
+  final _i71.GroupConditionsModel conditions;
 
   @override
   String toString() {
@@ -908,13 +903,13 @@ class GroupConditionsAndParticipantsRouteArgs {
 }
 
 /// generated route for
-/// [_i40.GroupParticipantProfileScreen]
+/// [_i39.GroupParticipantProfileScreen]
 class GroupParticipantProfileRoute
-    extends _i70.PageRouteInfo<GroupParticipantProfileRouteArgs> {
+    extends _i69.PageRouteInfo<GroupParticipantProfileRouteArgs> {
   GroupParticipantProfileRoute({
-    _i71.Key? key,
+    _i70.Key? key,
     required String participantId,
-    List<_i70.PageRouteInfo>? children,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          GroupParticipantProfileRoute.name,
          args: GroupParticipantProfileRouteArgs(
@@ -926,11 +921,11 @@ class GroupParticipantProfileRoute
 
   static const String name = 'GroupParticipantProfileRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<GroupParticipantProfileRouteArgs>();
-      return _i40.GroupParticipantProfileScreen(
+      return _i39.GroupParticipantProfileScreen(
         key: args.key,
         participantId: args.participantId,
       );
@@ -944,7 +939,7 @@ class GroupParticipantProfileRouteArgs {
     required this.participantId,
   });
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
   final String participantId;
 
@@ -965,28 +960,28 @@ class GroupParticipantProfileRouteArgs {
 }
 
 /// generated route for
-/// [_i41.InputDetailsApStepScreen]
-class InputDetailsApStepRoute extends _i70.PageRouteInfo<void> {
-  const InputDetailsApStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i40.InputDetailsApStepScreen]
+class InputDetailsApStepRoute extends _i69.PageRouteInfo<void> {
+  const InputDetailsApStepRoute({List<_i69.PageRouteInfo>? children})
     : super(InputDetailsApStepRoute.name, initialChildren: children);
 
   static const String name = 'InputDetailsApStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i41.InputDetailsApStepScreen();
+      return const _i40.InputDetailsApStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i42.LocationScreen]
-class LocationRoute extends _i70.PageRouteInfo<LocationRouteArgs> {
+/// [_i41.LocationScreen]
+class LocationRoute extends _i69.PageRouteInfo<LocationRouteArgs> {
   LocationRoute({
-    _i71.Key? key,
-    required void Function(_i12.LocationSelectionModel) onSelected,
-    List<_i70.PageRouteInfo>? children,
+    _i70.Key? key,
+    required void Function(_i71.LocationSelectionModel) onSelected,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          LocationRoute.name,
          args: LocationRouteArgs(key: key, onSelected: onSelected),
@@ -995,11 +990,11 @@ class LocationRoute extends _i70.PageRouteInfo<LocationRouteArgs> {
 
   static const String name = 'LocationRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LocationRouteArgs>();
-      return _i42.LocationScreen(key: args.key, onSelected: args.onSelected);
+      return _i41.LocationScreen(key: args.key, onSelected: args.onSelected);
     },
   );
 }
@@ -1007,9 +1002,9 @@ class LocationRoute extends _i70.PageRouteInfo<LocationRouteArgs> {
 class LocationRouteArgs {
   const LocationRouteArgs({this.key, required this.onSelected});
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
-  final void Function(_i12.LocationSelectionModel) onSelected;
+  final void Function(_i71.LocationSelectionModel) onSelected;
 
   @override
   String toString() {
@@ -1028,77 +1023,77 @@ class LocationRouteArgs {
 }
 
 /// generated route for
-/// [_i43.LocationStepScreen]
-class LocationStepRoute extends _i70.PageRouteInfo<void> {
-  const LocationStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i42.LocationStepScreen]
+class LocationStepRoute extends _i69.PageRouteInfo<void> {
+  const LocationStepRoute({List<_i69.PageRouteInfo>? children})
     : super(LocationStepRoute.name, initialChildren: children);
 
   static const String name = 'LocationStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i43.LocationStepScreen();
+      return const _i42.LocationStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i44.MainFlow]
-class MainFlowRoute extends _i70.PageRouteInfo<void> {
-  const MainFlowRoute({List<_i70.PageRouteInfo>? children})
+/// [_i43.MainFlow]
+class MainFlowRoute extends _i69.PageRouteInfo<void> {
+  const MainFlowRoute({List<_i69.PageRouteInfo>? children})
     : super(MainFlowRoute.name, initialChildren: children);
 
   static const String name = 'MainFlowRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i44.MainFlow();
+      return const _i43.MainFlow();
     },
   );
 }
 
 /// generated route for
-/// [_i45.ModerationMyAdvertisementsScreen]
-class ModerationMyAdvertisementsRoute extends _i70.PageRouteInfo<void> {
-  const ModerationMyAdvertisementsRoute({List<_i70.PageRouteInfo>? children})
+/// [_i44.ModerationMyAdvertisementsScreen]
+class ModerationMyAdvertisementsRoute extends _i69.PageRouteInfo<void> {
+  const ModerationMyAdvertisementsRoute({List<_i69.PageRouteInfo>? children})
     : super(ModerationMyAdvertisementsRoute.name, initialChildren: children);
 
   static const String name = 'ModerationMyAdvertisementsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i45.ModerationMyAdvertisementsScreen();
+      return const _i44.ModerationMyAdvertisementsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i46.MyAccountScreen]
-class MyAccountRoute extends _i70.PageRouteInfo<void> {
-  const MyAccountRoute({List<_i70.PageRouteInfo>? children})
+/// [_i45.MyAccountScreen]
+class MyAccountRoute extends _i69.PageRouteInfo<void> {
+  const MyAccountRoute({List<_i69.PageRouteInfo>? children})
     : super(MyAccountRoute.name, initialChildren: children);
 
   static const String name = 'MyAccountRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i46.MyAccountScreen();
+      return const _i45.MyAccountScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i47.MyAdApplicationDetailScreen]
+/// [_i46.MyAdApplicationDetailScreen]
 class MyAdApplicationDetailRoute
-    extends _i70.PageRouteInfo<MyAdApplicationDetailRouteArgs> {
+    extends _i69.PageRouteInfo<MyAdApplicationDetailRouteArgs> {
   MyAdApplicationDetailRoute({
-    _i71.Key? key,
+    _i70.Key? key,
     required String applicationId,
-    List<_i70.PageRouteInfo>? children,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          MyAdApplicationDetailRoute.name,
          args: MyAdApplicationDetailRouteArgs(
@@ -1110,11 +1105,11 @@ class MyAdApplicationDetailRoute
 
   static const String name = 'MyAdApplicationDetailRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<MyAdApplicationDetailRouteArgs>();
-      return _i47.MyAdApplicationDetailScreen(
+      return _i46.MyAdApplicationDetailScreen(
         key: args.key,
         applicationId: args.applicationId,
       );
@@ -1125,7 +1120,7 @@ class MyAdApplicationDetailRoute
 class MyAdApplicationDetailRouteArgs {
   const MyAdApplicationDetailRouteArgs({this.key, required this.applicationId});
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
   final String applicationId;
 
@@ -1146,29 +1141,29 @@ class MyAdApplicationDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i48.MyAdvertisementsScreen]
-class MyAdvertisementsRoute extends _i70.PageRouteInfo<void> {
-  const MyAdvertisementsRoute({List<_i70.PageRouteInfo>? children})
+/// [_i47.MyAdvertisementsScreen]
+class MyAdvertisementsRoute extends _i69.PageRouteInfo<void> {
+  const MyAdvertisementsRoute({List<_i69.PageRouteInfo>? children})
     : super(MyAdvertisementsRoute.name, initialChildren: children);
 
   static const String name = 'MyAdvertisementsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i48.MyAdvertisementsScreen();
+      return const _i47.MyAdvertisementsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i49.MyGroupApplicationDetailScreen]
+/// [_i48.MyGroupApplicationDetailScreen]
 class MyGroupApplicationDetailRoute
-    extends _i70.PageRouteInfo<MyGroupApplicationDetailRouteArgs> {
+    extends _i69.PageRouteInfo<MyGroupApplicationDetailRouteArgs> {
   MyGroupApplicationDetailRoute({
-    _i71.Key? key,
+    _i70.Key? key,
     required String applicationId,
-    List<_i70.PageRouteInfo>? children,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          MyGroupApplicationDetailRoute.name,
          args: MyGroupApplicationDetailRouteArgs(
@@ -1180,11 +1175,11 @@ class MyGroupApplicationDetailRoute
 
   static const String name = 'MyGroupApplicationDetailRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<MyGroupApplicationDetailRouteArgs>();
-      return _i49.MyGroupApplicationDetailScreen(
+      return _i48.MyGroupApplicationDetailScreen(
         key: args.key,
         applicationId: args.applicationId,
       );
@@ -1198,7 +1193,7 @@ class MyGroupApplicationDetailRouteArgs {
     required this.applicationId,
   });
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
   final String applicationId;
 
@@ -1219,62 +1214,62 @@ class MyGroupApplicationDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i50.MyQuestionnaireScreen]
-class MyQuestionnaireRoute extends _i70.PageRouteInfo<void> {
-  const MyQuestionnaireRoute({List<_i70.PageRouteInfo>? children})
+/// [_i49.MyQuestionnaireScreen]
+class MyQuestionnaireRoute extends _i69.PageRouteInfo<void> {
+  const MyQuestionnaireRoute({List<_i69.PageRouteInfo>? children})
     : super(MyQuestionnaireRoute.name, initialChildren: children);
 
   static const String name = 'MyQuestionnaireRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i50.MyQuestionnaireScreen();
+      return const _i49.MyQuestionnaireScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i51.NeighboursFiltersScreen]
-class NeighboursFiltersRoute extends _i70.PageRouteInfo<void> {
-  const NeighboursFiltersRoute({List<_i70.PageRouteInfo>? children})
+/// [_i50.NeighboursFiltersScreen]
+class NeighboursFiltersRoute extends _i69.PageRouteInfo<void> {
+  const NeighboursFiltersRoute({List<_i69.PageRouteInfo>? children})
     : super(NeighboursFiltersRoute.name, initialChildren: children);
 
   static const String name = 'NeighboursFiltersRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i51.NeighboursFiltersScreen();
+      return const _i50.NeighboursFiltersScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i52.NeighboursScreen]
-class NeighboursRoute extends _i70.PageRouteInfo<void> {
-  const NeighboursRoute({List<_i70.PageRouteInfo>? children})
+/// [_i51.NeighboursScreen]
+class NeighboursRoute extends _i69.PageRouteInfo<void> {
+  const NeighboursRoute({List<_i69.PageRouteInfo>? children})
     : super(NeighboursRoute.name, initialChildren: children);
 
   static const String name = 'NeighboursRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i52.NeighboursScreen();
+      return const _i51.NeighboursScreen();
     },
   );
 }
 
 /// generated route for
 /// [_i7.NewApplicationsScreen]
-class NewApplicationsRoute extends _i70.PageRouteInfo<void> {
-  const NewApplicationsRoute({List<_i70.PageRouteInfo>? children})
+class NewApplicationsRoute extends _i69.PageRouteInfo<void> {
+  const NewApplicationsRoute({List<_i69.PageRouteInfo>? children})
     : super(NewApplicationsRoute.name, initialChildren: children);
 
   static const String name = 'NewApplicationsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i7.NewApplicationsScreen();
@@ -1284,13 +1279,13 @@ class NewApplicationsRoute extends _i70.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.NewGroupApplicationsScreen]
-class NewGroupApplicationsRoute extends _i70.PageRouteInfo<void> {
-  const NewGroupApplicationsRoute({List<_i70.PageRouteInfo>? children})
+class NewGroupApplicationsRoute extends _i69.PageRouteInfo<void> {
+  const NewGroupApplicationsRoute({List<_i69.PageRouteInfo>? children})
     : super(NewGroupApplicationsRoute.name, initialChildren: children);
 
   static const String name = 'NewGroupApplicationsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       return const _i8.NewGroupApplicationsScreen();
@@ -1299,173 +1294,173 @@ class NewGroupApplicationsRoute extends _i70.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i53.OnBoardingScreen]
-class OnBoardingRoute extends _i70.PageRouteInfo<void> {
-  const OnBoardingRoute({List<_i70.PageRouteInfo>? children})
+/// [_i52.OnBoardingScreen]
+class OnBoardingRoute extends _i69.PageRouteInfo<void> {
+  const OnBoardingRoute({List<_i69.PageRouteInfo>? children})
     : super(OnBoardingRoute.name, initialChildren: children);
 
   static const String name = 'OnBoardingRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i53.OnBoardingScreen();
+      return const _i52.OnBoardingScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i54.OverviewProfileScreen]
-class OverviewProfileRoute extends _i70.PageRouteInfo<void> {
-  const OverviewProfileRoute({List<_i70.PageRouteInfo>? children})
+/// [_i53.OverviewProfileScreen]
+class OverviewProfileRoute extends _i69.PageRouteInfo<void> {
+  const OverviewProfileRoute({List<_i69.PageRouteInfo>? children})
     : super(OverviewProfileRoute.name, initialChildren: children);
 
   static const String name = 'OverviewProfileRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i54.OverviewProfileScreen();
+      return const _i53.OverviewProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i55.OverviewScreen]
-class OverviewRoute extends _i70.PageRouteInfo<void> {
-  const OverviewRoute({List<_i70.PageRouteInfo>? children})
+/// [_i54.OverviewScreen]
+class OverviewRoute extends _i69.PageRouteInfo<void> {
+  const OverviewRoute({List<_i69.PageRouteInfo>? children})
     : super(OverviewRoute.name, initialChildren: children);
 
   static const String name = 'OverviewRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i55.OverviewScreen();
+      return const _i54.OverviewScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i56.ProfileDataEditScreen]
-class ProfileDataEditRoute extends _i70.PageRouteInfo<void> {
-  const ProfileDataEditRoute({List<_i70.PageRouteInfo>? children})
+/// [_i55.ProfileDataEditScreen]
+class ProfileDataEditRoute extends _i69.PageRouteInfo<void> {
+  const ProfileDataEditRoute({List<_i69.PageRouteInfo>? children})
     : super(ProfileDataEditRoute.name, initialChildren: children);
 
   static const String name = 'ProfileDataEditRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i56.ProfileDataEditScreen();
+      return const _i55.ProfileDataEditScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i57.PropertyTypeStepScreen]
-class PropertyTypeStepRoute extends _i70.PageRouteInfo<void> {
-  const PropertyTypeStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i56.PropertyTypeStepScreen]
+class PropertyTypeStepRoute extends _i69.PageRouteInfo<void> {
+  const PropertyTypeStepRoute({List<_i69.PageRouteInfo>? children})
     : super(PropertyTypeStepRoute.name, initialChildren: children);
 
   static const String name = 'PropertyTypeStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i57.PropertyTypeStepScreen();
+      return const _i56.PropertyTypeStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i58.RentTypeStepScreen]
-class RentTypeStepRoute extends _i70.PageRouteInfo<void> {
-  const RentTypeStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i57.RentTypeStepScreen]
+class RentTypeStepRoute extends _i69.PageRouteInfo<void> {
+  const RentTypeStepRoute({List<_i69.PageRouteInfo>? children})
     : super(RentTypeStepRoute.name, initialChildren: children);
 
   static const String name = 'RentTypeStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i58.RentTypeStepScreen();
+      return const _i57.RentTypeStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i59.RoomTypeStepScreen]
-class RoomTypeStepRoute extends _i70.PageRouteInfo<void> {
-  const RoomTypeStepRoute({List<_i70.PageRouteInfo>? children})
+/// [_i58.RoomTypeStepScreen]
+class RoomTypeStepRoute extends _i69.PageRouteInfo<void> {
+  const RoomTypeStepRoute({List<_i69.PageRouteInfo>? children})
     : super(RoomTypeStepRoute.name, initialChildren: children);
 
   static const String name = 'RoomTypeStepRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i59.RoomTypeStepScreen();
+      return const _i58.RoomTypeStepScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i60.SettingsScreen]
-class SettingsRoute extends _i70.PageRouteInfo<void> {
-  const SettingsRoute({List<_i70.PageRouteInfo>? children})
+/// [_i59.SettingsScreen]
+class SettingsRoute extends _i69.PageRouteInfo<void> {
+  const SettingsRoute({List<_i69.PageRouteInfo>? children})
     : super(SettingsRoute.name, initialChildren: children);
 
   static const String name = 'SettingsRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i60.SettingsScreen();
+      return const _i59.SettingsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i61.SetupProfileScreen]
-class SetupProfileRoute extends _i70.PageRouteInfo<void> {
-  const SetupProfileRoute({List<_i70.PageRouteInfo>? children})
+/// [_i60.SetupProfileScreen]
+class SetupProfileRoute extends _i69.PageRouteInfo<void> {
+  const SetupProfileRoute({List<_i69.PageRouteInfo>? children})
     : super(SetupProfileRoute.name, initialChildren: children);
 
   static const String name = 'SetupProfileRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i61.SetupProfileScreen();
+      return const _i60.SetupProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i62.SplashScreen]
-class SplashRoute extends _i70.PageRouteInfo<void> {
-  const SplashRoute({List<_i70.PageRouteInfo>? children})
+/// [_i61.SplashScreen]
+class SplashRoute extends _i69.PageRouteInfo<void> {
+  const SplashRoute({List<_i69.PageRouteInfo>? children})
     : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i62.SplashScreen();
+      return const _i61.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i63.UserPreferencesHouseholdScreen]
+/// [_i62.UserPreferencesHouseholdScreen]
 class UserPreferencesHouseholdRoute
-    extends _i70.PageRouteInfo<UserPreferencesHouseholdRouteArgs> {
+    extends _i69.PageRouteInfo<UserPreferencesHouseholdRouteArgs> {
   UserPreferencesHouseholdRoute({
-    _i71.Key? key,
-    required _i12.PreferenceTagsCatalogModel tags,
-    List<_i70.PageRouteInfo>? children,
+    _i70.Key? key,
+    required _i71.PreferenceTagsCatalogModel tags,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          UserPreferencesHouseholdRoute.name,
          args: UserPreferencesHouseholdRouteArgs(key: key, tags: tags),
@@ -1474,11 +1469,11 @@ class UserPreferencesHouseholdRoute
 
   static const String name = 'UserPreferencesHouseholdRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<UserPreferencesHouseholdRouteArgs>();
-      return _i63.UserPreferencesHouseholdScreen(
+      return _i62.UserPreferencesHouseholdScreen(
         key: args.key,
         tags: args.tags,
       );
@@ -1489,9 +1484,9 @@ class UserPreferencesHouseholdRoute
 class UserPreferencesHouseholdRouteArgs {
   const UserPreferencesHouseholdRouteArgs({this.key, required this.tags});
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
-  final _i12.PreferenceTagsCatalogModel tags;
+  final _i71.PreferenceTagsCatalogModel tags;
 
   @override
   String toString() {
@@ -1510,13 +1505,13 @@ class UserPreferencesHouseholdRouteArgs {
 }
 
 /// generated route for
-/// [_i63.UserPreferencesLifestyleScreen]
+/// [_i62.UserPreferencesLifestyleScreen]
 class UserPreferencesLifestyleRoute
-    extends _i70.PageRouteInfo<UserPreferencesLifestyleRouteArgs> {
+    extends _i69.PageRouteInfo<UserPreferencesLifestyleRouteArgs> {
   UserPreferencesLifestyleRoute({
-    _i71.Key? key,
-    required _i12.PreferenceTagsCatalogModel tags,
-    List<_i70.PageRouteInfo>? children,
+    _i70.Key? key,
+    required _i71.PreferenceTagsCatalogModel tags,
+    List<_i69.PageRouteInfo>? children,
   }) : super(
          UserPreferencesLifestyleRoute.name,
          args: UserPreferencesLifestyleRouteArgs(key: key, tags: tags),
@@ -1525,11 +1520,11 @@ class UserPreferencesLifestyleRoute
 
   static const String name = 'UserPreferencesLifestyleRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<UserPreferencesLifestyleRouteArgs>();
-      return _i63.UserPreferencesLifestyleScreen(
+      return _i62.UserPreferencesLifestyleScreen(
         key: args.key,
         tags: args.tags,
       );
@@ -1540,9 +1535,9 @@ class UserPreferencesLifestyleRoute
 class UserPreferencesLifestyleRouteArgs {
   const UserPreferencesLifestyleRouteArgs({this.key, required this.tags});
 
-  final _i71.Key? key;
+  final _i70.Key? key;
 
-  final _i12.PreferenceTagsCatalogModel tags;
+  final _i71.PreferenceTagsCatalogModel tags;
 
   @override
   String toString() {
@@ -1561,97 +1556,97 @@ class UserPreferencesLifestyleRouteArgs {
 }
 
 /// generated route for
-/// [_i64.UserPreferencesPageView]
-class UserPreferencesPageViewRoute extends _i70.PageRouteInfo<void> {
-  const UserPreferencesPageViewRoute({List<_i70.PageRouteInfo>? children})
+/// [_i63.UserPreferencesPageView]
+class UserPreferencesPageViewRoute extends _i69.PageRouteInfo<void> {
+  const UserPreferencesPageViewRoute({List<_i69.PageRouteInfo>? children})
     : super(UserPreferencesPageViewRoute.name, initialChildren: children);
 
   static const String name = 'UserPreferencesPageViewRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i64.UserPreferencesPageView();
+      return const _i63.UserPreferencesPageView();
     },
   );
 }
 
 /// generated route for
-/// [_i65.VerifcationSummaryScreen]
-class VerifcationSummaryRoute extends _i70.PageRouteInfo<void> {
-  const VerifcationSummaryRoute({List<_i70.PageRouteInfo>? children})
+/// [_i64.VerifcationSummaryScreen]
+class VerifcationSummaryRoute extends _i69.PageRouteInfo<void> {
+  const VerifcationSummaryRoute({List<_i69.PageRouteInfo>? children})
     : super(VerifcationSummaryRoute.name, initialChildren: children);
 
   static const String name = 'VerifcationSummaryRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i65.VerifcationSummaryScreen();
+      return const _i64.VerifcationSummaryScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i66.VerificationIntroScreen]
-class VerificationIntroRoute extends _i70.PageRouteInfo<void> {
-  const VerificationIntroRoute({List<_i70.PageRouteInfo>? children})
+/// [_i65.VerificationIntroScreen]
+class VerificationIntroRoute extends _i69.PageRouteInfo<void> {
+  const VerificationIntroRoute({List<_i69.PageRouteInfo>? children})
     : super(VerificationIntroRoute.name, initialChildren: children);
 
   static const String name = 'VerificationIntroRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i66.VerificationIntroScreen();
+      return const _i65.VerificationIntroScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i67.VerificationStatusScreen]
-class VerificationStatusRoute extends _i70.PageRouteInfo<void> {
-  const VerificationStatusRoute({List<_i70.PageRouteInfo>? children})
+/// [_i66.VerificationStatusScreen]
+class VerificationStatusRoute extends _i69.PageRouteInfo<void> {
+  const VerificationStatusRoute({List<_i69.PageRouteInfo>? children})
     : super(VerificationStatusRoute.name, initialChildren: children);
 
   static const String name = 'VerificationStatusRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i67.VerificationStatusScreen();
+      return const _i66.VerificationStatusScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i68.WelcomeScreen]
-class WelcomeRoute extends _i70.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i70.PageRouteInfo>? children})
+/// [_i67.WelcomeScreen]
+class WelcomeRoute extends _i69.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i69.PageRouteInfo>? children})
     : super(WelcomeRoute.name, initialChildren: children);
 
   static const String name = 'WelcomeRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i68.WelcomeScreen();
+      return const _i67.WelcomeScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i69.WhoSearchScreen]
-class WhoSearchRoute extends _i70.PageRouteInfo<void> {
-  const WhoSearchRoute({List<_i70.PageRouteInfo>? children})
+/// [_i68.WhoSearchScreen]
+class WhoSearchRoute extends _i69.PageRouteInfo<void> {
+  const WhoSearchRoute({List<_i69.PageRouteInfo>? children})
     : super(WhoSearchRoute.name, initialChildren: children);
 
   static const String name = 'WhoSearchRoute';
 
-  static _i70.PageInfo page = _i70.PageInfo(
+  static _i69.PageInfo page = _i69.PageInfo(
     name,
     builder: (data) {
-      return const _i69.WhoSearchScreen();
+      return const _i68.WhoSearchScreen();
     },
   );
 }

@@ -2,6 +2,7 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../core/network_providers.dart';
 import '../data_source/data_source_providers.dart';
 
 part 'repository_providers.g.dart';
@@ -9,6 +10,14 @@ part 'repository_providers.g.dart';
 @Riverpod(keepAlive: true)
 IApartamentsRepository apartamentsRepository(Ref ref) {
   return ApartamentsRepositoryImpl(ref.watch(apartamentsDataSourceProvider));
+}
+
+@Riverpod(keepAlive: true)
+IChatsRepository chatsRepository(Ref ref) {
+  return ChatsRepositoryImpl(
+    ref.watch(chatsDataSourceProvider),
+    baseUrl: ref.watch(apiClientProvider).publicBaseUrl,
+  );
 }
 
 @Riverpod(keepAlive: true)

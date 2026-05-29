@@ -90,6 +90,53 @@ final class ApiClientProvider
 
 String _$apiClientHash() => r'73b5ba9f78c393b3fb55277881312bcbfd3c5f64';
 
+@ProviderFor(chatSocketService)
+final chatSocketServiceProvider = ChatSocketServiceProvider._();
+
+final class ChatSocketServiceProvider
+    extends
+        $FunctionalProvider<
+          ChatSocketService,
+          ChatSocketService,
+          ChatSocketService
+        >
+    with $Provider<ChatSocketService> {
+  ChatSocketServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'chatSocketServiceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$chatSocketServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ChatSocketService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ChatSocketService create(Ref ref) {
+    return chatSocketService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ChatSocketService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ChatSocketService>(value),
+    );
+  }
+}
+
+String _$chatSocketServiceHash() => r'843bfaf05569925681fed956196fb4dc8562cfa6';
+
 @ProviderFor(tokenService)
 final tokenServiceProvider = TokenServiceProvider._();
 

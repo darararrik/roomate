@@ -57,6 +57,52 @@ final class ApartamentsRepositoryProvider
 String _$apartamentsRepositoryHash() =>
     r'4c758212f583701676f0194d36faf433c6e1f359';
 
+@ProviderFor(chatsRepository)
+final chatsRepositoryProvider = ChatsRepositoryProvider._();
+
+final class ChatsRepositoryProvider
+    extends
+        $FunctionalProvider<
+          IChatsRepository,
+          IChatsRepository,
+          IChatsRepository
+        >
+    with $Provider<IChatsRepository> {
+  ChatsRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'chatsRepositoryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$chatsRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<IChatsRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  IChatsRepository create(Ref ref) {
+    return chatsRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(IChatsRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<IChatsRepository>(value),
+    );
+  }
+}
+
+String _$chatsRepositoryHash() => r'e18d78c7a7082f5389066dbeda96c126515dbb7a';
+
 @ProviderFor(groupsRepository)
 final groupsRepositoryProvider = GroupsRepositoryProvider._();
 

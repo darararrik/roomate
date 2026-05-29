@@ -1,6 +1,7 @@
 export 'ad_application_mapper.dart';
 export 'apartament_mapper.dart';
 export 'apartament_filter_mapper.dart';
+export 'chat_mapper.dart';
 export 'create_ad_mapper.dart';
 export 'create_group_mapper.dart';
 export 'filter_mapper.dart';

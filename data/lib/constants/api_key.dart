@@ -16,6 +16,7 @@ class ApiUrlConstants {
   static const myAds = '/my/ads';
   static const myFavoriteAds = '/my/favorite-ads';
   static const uploadImages = '/my/uploads/images';
+  static const chats = '/chats';
   static const myAdApplications = '/my/ad-applications';
   static String myAdApplication(String applicationId) =>
       '$myAdApplications/$applicationId';
@@ -23,6 +24,8 @@ class ApiUrlConstants {
       '${myAdApplication(applicationId)}/reject';
   static String myAdApplicationAccept(String applicationId) =>
       '${myAdApplication(applicationId)}/accept';
+  static String chatMessages(String chatId) => '$chats/$chatId/messages';
+  static String chatRead(String chatId) => '$chats/$chatId/read';
   static const myGroupApplications = '/my/groups/applications';
   static String myGroupApplication(String applicationId) =>
       '$myGroupApplications/$applicationId';

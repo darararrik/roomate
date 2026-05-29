@@ -115,6 +115,7 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
       return;
     }
 
+    await ref.read(chatSocketServiceProvider).deactivate();
     resetToGuest();
     await ref.read(appStatusProvider.notifier).markLoggedOut();
     ref.nav.replaceAll([const AuthWrapper()]);

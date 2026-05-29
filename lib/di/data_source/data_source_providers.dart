@@ -23,6 +23,14 @@ ApartamentsDataSource apartamentsDataSource(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
+ChatsDataSource chatsDataSource(Ref ref) {
+  if (ref.watch(configProvider).useMocks) {
+    return ChatsMockDataSource();
+  }
+  return ChatsRemoteDataSource(ref.watch(apiClientProvider));
+}
+
+@Riverpod(keepAlive: true)
 GroupsDataSource groupsDataSource(Ref ref) {
   if (ref.watch(configProvider).useMocks) {
     return GroupsMockDataSource();

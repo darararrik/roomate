@@ -104,6 +104,48 @@ final class ApartamentsDataSourceProvider
 String _$apartamentsDataSourceHash() =>
     r'9676eab7e60accc0c0bfeb6d4b55eff233d0e20c';
 
+@ProviderFor(chatsDataSource)
+final chatsDataSourceProvider = ChatsDataSourceProvider._();
+
+final class ChatsDataSourceProvider
+    extends
+        $FunctionalProvider<ChatsDataSource, ChatsDataSource, ChatsDataSource>
+    with $Provider<ChatsDataSource> {
+  ChatsDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'chatsDataSourceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$chatsDataSourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ChatsDataSource> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ChatsDataSource create(Ref ref) {
+    return chatsDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ChatsDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ChatsDataSource>(value),
+    );
+  }
+}
+
+String _$chatsDataSourceHash() => r'62328febc0480aaec776c268d0fee2111e7ccaef';
+
 @ProviderFor(groupsDataSource)
 final groupsDataSourceProvider = GroupsDataSourceProvider._();
 

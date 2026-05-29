@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:data/services/chat_socket_service.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
@@ -12,33 +15,48 @@ part 'chat_notifier.g.dart';
 
 @riverpod
 class Chat extends _$Chat {
-  static const currentUserId = 'user1';
-  static const ownerUserId = 'owner';
-
-  IApartamentsRepository get _repository =>
-      ref.read(apartamentsRepositoryProvider);
+  IChatsRepository get _repository => ref.read(chatsRepositoryProvider);
+  ChatSocketService get _socketService => ref.read(chatSocketServiceProvider);
 
   late final InMemoryChatController chatController;
   late final TextEditingController textController;
+  StreamSubscription<ChatMessageModel>? _chatSubscription;
 
   @override
-  ChatState build(ApartamentModel apartment) {
-    final messages = _initialMessages();
-    chatController = InMemoryChatController(
-      messages: messages.map(_messageFromModel).toList(),
-    );
+  Future<ChatState> build(ChatSummaryModel chat) async {
+    final profile = await ref.read(globalProfileProvider.future);
+    final result = await _repository.fetchMessages(chat.id);
+    final messages = result.fold((error) => throw error, _sortMessages);
+
+    chatController = InMemoryChatController();
     textController = TextEditingController();
 
     ref.onDispose(() {
+      _chatSubscription?.cancel();
+      _socketService.releaseChat(chat.id);
       textController.dispose();
       chatController.dispose();
     });
 
-    return ChatState(apartment: apartment, messages: messages);
+    await chatController.setMessages(
+      messages.map(_messageFromModel).toList(growable: false),
+      animated: false,
+    );
+
+    final stream = await _socketService.watchChat(chat.id);
+    _chatSubscription = stream.listen(_handleIncomingMessage);
+
+    unawaited(_repository.markRead(chat.id));
+
+    return ChatState(
+      chat: chat.copyWith(unreadCount: 0),
+      messages: messages,
+      currentUserId: profile.id,
+    );
   }
 
   void onApartmentPressed() {
-    final apartmentId = state.apartment.id;
+    final apartmentId = state.requireValue.chat.apartament.id;
     if (apartmentId.isEmpty) {
       return;
     }
@@ -47,115 +65,170 @@ class Chat extends _$Chat {
   }
 
   Future<void> onMessageSend(String rawText) async {
+    final currentState = state.value;
+    if (currentState == null || currentState.isSending) {
+      return;
+    }
+
     final text = rawText.trim();
     if (text.isEmpty) {
       return;
     }
 
-    final message = ChatMessageModel(
-      id: DateTime.now().microsecondsSinceEpoch.toString(),
-      text: text,
-      createdAt: DateTime.now(),
-      isMine: true,
-    );
+    state = AsyncData(currentState.copyWith(isSending: true));
 
-    state = state.copyWith(messages: [...state.messages, message]);
-
-    await chatController.insertMessage(_messageFromModel(message));
-  }
-
-  Future<User> resolveUser(UserID id) async {
-    return User(id: id, name: id == currentUserId ? 'Вы' : 'Сергей О.');
-  }
-
-  Future<void> onApplyPressed() async {
-    final apartmentId = state.apartment.id;
-    if (apartmentId.isEmpty ||
-        state.isApplying ||
-        state.applicationStatus == 'pending') {
-      return;
-    }
-
-    state = state.copyWith(isApplying: true);
-
-    final result = await _repository.applyToAd(apartmentId);
+    final result = await _repository.sendMessage(currentState.chat.id, text);
     if (!ref.mounted) {
       return;
     }
 
     result.fold(
-      (_) {
-        state = state.copyWith(isApplying: false);
-        ref.nav.showSnackBar(message: ref.l10n.groupApplicationSubmitError);
-      },
-      (application) {
-        state = state.copyWith(
-          isApplying: false,
-          applicationStatus: application.status,
+      (error) {
+        state = AsyncData(currentState.copyWith(isSending: false));
+        ref.nav.showSnackBar(
+          message: error.messages.isNotEmpty
+              ? error.messages
+              : ref.l10n.errorGeneric,
         );
-        ref.nav.showSnackBar(message: ref.l10n.groupApplicationSent);
+      },
+      (message) {
+        textController.clear();
+        _applyState(
+          currentState.copyWith(
+            chat: _updateChat(currentState.chat, message),
+            messages: _mergeMessages(currentState.messages, message),
+            isSending: false,
+          ),
+        );
       },
     );
   }
 
-  List<ChatMessageModel> _initialMessages() {
-    return [
-      ChatMessageModel(
-        id: '1',
-        text: 'Здравствуйте! Понравилась ваша комната',
-        createdAt: DateTime(2026, 4, 11, 18, 26),
-        isMine: true,
-      ),
-      ChatMessageModel(
-        id: '2',
-        text: 'Добрый день! Спрашивайте',
-        createdAt: DateTime(2026, 4, 11, 18, 26),
-        isMine: false,
-        authorName: 'Сергей О.',
-      ),
-      ChatMessageModel(
-        id: '3',
-        text: 'Можно заселиться с 1 мая?',
-        createdAt: DateTime(2026, 4, 11, 18, 26),
-        isMine: true,
-      ),
-      ChatMessageModel(
-        id: '4',
-        text: 'Да, дата свободна!',
-        createdAt: DateTime(2026, 4, 11, 18, 26),
-        isMine: false,
-        authorName: 'Сергей О.',
-      ),
-    ];
+  Future<User> resolveUser(UserID id) async {
+    final currentState = state.value;
+    final profile = ref.read(globalProfileProvider).value;
+
+    if (currentState == null) {
+      return User(id: id);
+    }
+
+    if (id == currentState.currentUserId) {
+      final currentUserName =
+          '${profile?.firstName ?? ''} ${profile?.lastName ?? ''}'.trim();
+      return User(
+        id: id,
+        name: currentUserName.isNotEmpty ? currentUserName : 'Вы',
+        imageSource: profile?.avatarUrl,
+      );
+    }
+
+    final author = currentState.messages.lastWhere(
+      (message) => message.senderId == id,
+      orElse: () => ChatMessageModel(createdAt: DateTime.now()),
+    );
+    final fallbackName = currentState.chat.participantName.isNotEmpty
+        ? currentState.chat.participantName
+        : currentState.chat.title;
+
+    return User(
+      id: id,
+      name: author.senderName.isNotEmpty ? author.senderName : fallbackName,
+      imageSource: author.senderAvatarUrl.isNotEmpty
+          ? author.senderAvatarUrl
+          : currentState.chat.avatarUrl,
+    );
   }
 
   TextMessage _messageFromModel(ChatMessageModel message) {
     return TextMessage(
       id: message.id,
-      authorId: message.isMine ? currentUserId : ownerUserId,
+      authorId: message.senderId,
       createdAt: message.createdAt,
       text: message.text,
+      metadata: {
+        'authorName': message.senderName,
+        'authorAvatarUrl': message.senderAvatarUrl,
+      },
     );
+  }
+
+  void _handleIncomingMessage(ChatMessageModel message) {
+    final currentState = state.value;
+    if (currentState == null) {
+      return;
+    }
+
+    final normalizedMessage = message.chatId.isEmpty
+        ? message.copyWith(chatId: currentState.chat.id)
+        : message;
+
+    _applyState(
+      currentState.copyWith(
+        chat: _updateChat(currentState.chat, normalizedMessage),
+        messages: _mergeMessages(currentState.messages, normalizedMessage),
+      ),
+    );
+
+    if (normalizedMessage.senderId != currentState.currentUserId) {
+      unawaited(_repository.markRead(currentState.chat.id));
+    }
+  }
+
+  void _applyState(ChatState nextState) {
+    state = AsyncData(nextState);
+    unawaited(
+      chatController.setMessages(
+        nextState.messages.map(_messageFromModel).toList(growable: false),
+        animated: false,
+      ),
+    );
+  }
+
+  ChatSummaryModel _updateChat(
+    ChatSummaryModel chat,
+    ChatMessageModel message,
+  ) {
+    return chat.copyWith(
+      lastMessageText: message.text,
+      updatedAt: message.createdAt,
+      unreadCount: 0,
+    );
+  }
+
+  List<ChatMessageModel> _mergeMessages(
+    List<ChatMessageModel> currentMessages,
+    ChatMessageModel nextMessage,
+  ) {
+    final messages = [...currentMessages];
+    final index = messages.indexWhere((item) => item.id == nextMessage.id);
+
+    if (index == -1) {
+      messages.add(nextMessage);
+    } else {
+      messages[index] = nextMessage;
+    }
+
+    return _sortMessages(messages);
+  }
+
+  List<ChatMessageModel> _sortMessages(List<ChatMessageModel> items) {
+    final uniqueMessages = <String, ChatMessageModel>{};
+    for (final item in items) {
+      uniqueMessages[item.id] = item;
+    }
+
+    final messages = uniqueMessages.values.toList(growable: false);
+    messages.sort((left, right) => left.createdAt.compareTo(right.createdAt));
+    return messages;
   }
 }
 
 @freezed
 sealed class ChatState with _$ChatState {
   const factory ChatState({
-    @Default(ApartamentModel()) ApartamentModel apartment,
+    @Default(ChatSummaryModel()) ChatSummaryModel chat,
     @Default([]) List<ChatMessageModel> messages,
-    @Default('') String applicationStatus,
-    @Default(false) bool isApplying,
+    @Default('') String currentUserId,
+    @Default(false) bool isSending,
   }) = _ChatState;
-}
-
-@freezed
-sealed class ChatMessageModel with _$ChatMessageModel {
-  const factory ChatMessageModel({
-    @Default('') String id,
-    @Default('') String text,
-    required DateTime createdAt,
-    @Default(false) bool isMine,
-    @Default('') String authorName,
-  }) = _ChatMessageModel;
 }

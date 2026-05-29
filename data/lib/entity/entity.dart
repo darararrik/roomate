@@ -2,6 +2,7 @@ export 'ad_form_options/ad_form_options.dart';
 export 'ad_application/ad_application.dart';
 export 'apartaments/apartaments.dart';
 export 'auth_response/auth_response.dart';
+export 'chat/chat.dart';
 export 'city/city_data.dart';
 export 'create_ad_form_request/create_ad_form_request.dart';
 export 'create_group_form_options/create_group_form_options.dart';
