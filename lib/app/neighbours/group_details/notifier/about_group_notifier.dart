@@ -2,7 +2,6 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
 
@@ -22,10 +21,7 @@ class AboutGroup extends _$AboutGroup {
     final result = await _repository.fetchGroupById(groupId);
     return result.fold(
       (error) => throw error,
-      (group) => AboutGroupState(
-        group: group,
-        applicationStatus: group.applicationStatus,
-      ),
+      (group) => AboutGroupState(group: group, applicationStatus: group.applicationStatus),
     );
   }
 
@@ -40,10 +36,7 @@ class AboutGroup extends _$AboutGroup {
     final value = state.asData?.value;
     if (value == null || value.page == 0) return;
 
-    await pageController.previousPage(
-      duration: const Duration(milliseconds: 220),
-      curve: Curves.easeOut,
-    );
+    await pageController.previousPage(duration: const Duration(milliseconds: 220), curve: Curves.easeOut);
   }
 
   Future<void> onNextImagePressed() async {
@@ -53,47 +46,24 @@ class AboutGroup extends _$AboutGroup {
     final lastPage = value.group.apartament.imageUrls.length - 1;
     if (value.page >= lastPage) return;
 
-    await pageController.nextPage(
-      duration: const Duration(milliseconds: 220),
-      curve: Curves.easeOut,
-    );
+    await pageController.nextPage(duration: const Duration(milliseconds: 220), curve: Curves.easeOut);
   }
 
   Future<void> onFavoritePressed() async {
-    final value = state.asData?.value;
-    if (value == null) return;
-
-    final nextIsFavorite = !value.isFavorite;
-    state = AsyncData(value.copyWith(isFavorite: nextIsFavorite));
-
-    final result = nextIsFavorite
-        ? await _repository.addGroupToFavorites(value.group.id)
-        : await _repository.removeGroupFromFavorites(value.group.id);
-
-    result.fold((_) {
-      state = AsyncData(value);
-      ref.nav.showSnackBar(
-        message: nextIsFavorite
-            ? 'Не удалось добавить в избранное'
-            : 'Не удалось удалить из избранного',
-      );
-    }, (_) {});
+    //TODO: MVP
+    ref.nav.showSnackBar(message: 'Не удалось добавить в избранное');
   }
 
   void openConditionsAndParticipants() {
     final value = state.asData?.value;
     if (value == null) return;
 
-    ref.nav.push(
-      GroupConditionsAndParticipantsRoute(conditions: value.group.conditions),
-    );
+    ref.nav.push(GroupConditionsAndParticipantsRoute(conditions: value.group.conditions));
   }
 
   Future<void> onApplyPressed() async {
     final value = state.asData?.value;
-    if (value == null ||
-        value.isApplying ||
-        value.applicationStatus == 'pending') {
+    if (value == null || value.isApplying || value.applicationStatus == 'pending') {
       return;
     }
 

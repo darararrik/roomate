@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roomate/app/neighbours/groups/notifier/groups_notifier.dart';
+import 'package:roomate/constants/app_default_city.dart';
 import 'package:roomate/di/feature/location_providers.dart';
 import 'package:roomate/di/repository/repository_providers.dart';
 
@@ -10,6 +11,23 @@ part 'who_search_filter_notifier.g.dart';
 Future<CreateGroupFormOptionsModel> filtersNeighbours(Ref ref) async {
   final res = await ref.watch(groupsRepositoryProvider).fetchTags();
   return res.fold((e) => throw e, (data) => data);
+}
+
+@Riverpod(keepAlive: true)
+WhoSearchFilterLocationViewModel whoSearchFilterLocationViewModel(Ref ref) {
+  final filter = ref.watch(whoSearchFilterProvider);
+  final currentProfileCity = ref.watch(currentProfileCityProvider);
+  final effectiveCityTitle = filter.locationTitle.isNotEmpty
+      ? filter.locationTitle
+      : currentProfileCity?.title ?? AppDefaultCity.title;
+  final addressQuery = filter.addressQuery.trim();
+
+  return WhoSearchFilterLocationViewModel(
+    title: effectiveCityTitle,
+    subtitle: addressQuery.isNotEmpty
+        ? addressQuery
+        : 'Выберите адрес для точности',
+  );
 }
 
 @Riverpod(keepAlive: true)
@@ -112,4 +130,14 @@ class WhoSearchFilterNotifier extends _$WhoSearchFilterNotifier {
   Future<void> apply() {
     return ref.read(groupsProvider.notifier).fetchWithFilter(state);
   }
+}
+
+class WhoSearchFilterLocationViewModel {
+  const WhoSearchFilterLocationViewModel({
+    required this.title,
+    required this.subtitle,
+  });
+
+  final String title;
+  final String subtitle;
 }

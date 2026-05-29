@@ -59,6 +59,9 @@ _CreateAdFormRequestData _$CreateAdFormRequestDataFromJson(
   description: json['description'] as String?,
   mainPhone: json['main_phone'] as String?,
   additionalNumber: json['additional_number'] as String?,
+  imageUrls: (json['image_urls'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
 );
 
 Map<String, dynamic> _$CreateAdFormRequestDataToJson(
@@ -96,6 +99,7 @@ Map<String, dynamic> _$CreateAdFormRequestDataToJson(
   'description': ?instance.description,
   'main_phone': ?instance.mainPhone,
   'additional_number': ?instance.additionalNumber,
+  'image_urls': ?instance.imageUrls,
 };
 
 _CreateAdSelectedCurrencyRequestData

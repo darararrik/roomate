@@ -50,7 +50,7 @@ final class AboutGroupProvider
   }
 }
 
-String _$aboutGroupHash() => r'fbeeb20548c1ee764e52c84271901a641fef951a';
+String _$aboutGroupHash() => r'c88c614ef31123e7f5ad3d273c6ee777f54e5554';
 
 final class AboutGroupFamily extends $Family
     with

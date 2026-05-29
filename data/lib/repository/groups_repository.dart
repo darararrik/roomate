@@ -9,12 +9,16 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   final GroupsDataSource _dataSource;
 
   @override
-  Future<Either<RemoteException, List<GroupListItemModel>>> fetchGroups({WhoSearchFilterModel? filter}) {
+  Future<Either<RemoteException, List<GroupListItemModel>>> fetchGroups({
+    WhoSearchFilterModel? filter,
+  }) {
     return _dataSource.fetchGroups(filter: filter);
   }
 
   @override
-  Future<Either<RemoteException, GroupDetailModel>> fetchGroupById(String groupId) {
+  Future<Either<RemoteException, GroupDetailModel>> fetchGroupById(
+    String groupId,
+  ) {
     return _dataSource.fetchGroupById(groupId);
   }
 
@@ -24,13 +28,42 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   }
 
   @override
-  Future<Either<RemoteException, ParticipantProfileModel>> fetchGroupParticipantById(String participantId) {
+  Future<Either<RemoteException, ParticipantProfileModel>>
+  fetchGroupParticipantById(String participantId) {
     return _dataSource.fetchGroupParticipantById(participantId);
   }
 
   @override
-  Future<Either<RemoteException, GroupApplicationModel>> applyToGroup(String groupId) {
+  Future<Either<RemoteException, GroupApplicationModel>> applyToGroup(
+    String groupId,
+  ) {
     return _dataSource.applyToGroup(groupId);
+  }
+
+  @override
+  Future<Either<RemoteException, List<IncomingGroupApplicationModel>>>
+  fetchIncomingGroupApplications({AdApplicationStatus? status}) {
+    return _dataSource.fetchIncomingGroupApplications(status: status?.value);
+  }
+
+  @override
+  Future<Either<RemoteException, IncomingGroupApplicationDetailModel>>
+  fetchIncomingGroupApplicationDetails(String applicationId) {
+    return _dataSource.fetchIncomingGroupApplicationDetails(applicationId);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> rejectIncomingGroupApplication(
+    String applicationId,
+  ) {
+    return _dataSource.rejectIncomingGroupApplication(applicationId);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> acceptIncomingGroupApplication(
+    String applicationId,
+  ) {
+    return _dataSource.acceptIncomingGroupApplication(applicationId);
   }
 
   @override
@@ -39,7 +72,9 @@ class GroupsRepositoryImpl implements IGroupsRepository {
   }
 
   @override
-  Future<Either<RemoteException, void>> removeGroupFromFavorites(String groupId) {
+  Future<Either<RemoteException, void>> removeGroupFromFavorites(
+    String groupId,
+  ) {
     return _dataSource.removeGroupFromFavorites(groupId);
   }
 

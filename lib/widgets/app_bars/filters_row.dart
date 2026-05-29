@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class FiltersRow extends StatelessWidget implements PreferredSizeWidget {
-  const FiltersRow({
-    super.key,
-    required this.optionsCount,
-    required this.onFiltersTap,
-  });
+  const FiltersRow({super.key, required this.optionsCount, required this.onFiltersTap});
 
   final int optionsCount;
   final VoidCallback onFiltersTap;
@@ -27,20 +23,12 @@ class FiltersRow extends StatelessWidget implements PreferredSizeWidget {
             padding: const P(horizontal: S.p24),
             children: [
               FilterCard(
-                leading: const AppIcon(
-                  AppIcons.filter2,
-                  width: S.p24,
-                  height: S.p24,
-                ),
+                leading: const AppIcon(AppIcons.filter2, width: S.p24, height: S.p24),
                 title: context.l10n.filters,
                 onTap: onFiltersTap,
               ),
               FilterCard(
-                trailing: const AppIcon(
-                  AppIcons.arrowDown,
-                  width: S.p24,
-                  height: S.p24,
-                ),
+                trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
                 title: context.l10n.term,
                 onTap: () => showModalBottomSheet(
                   context: context,
@@ -49,11 +37,7 @@ class FiltersRow extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               FilterCard(
-                trailing: const AppIcon(
-                  AppIcons.arrowDown,
-                  width: S.p24,
-                  height: S.p24,
-                ),
+                trailing: const AppIcon(AppIcons.arrowDown, width: S.p24, height: S.p24),
                 title: context.l10n.district,
                 onTap: () => showModalBottomSheet(
                   context: context,
@@ -70,21 +54,14 @@ class FiltersRow extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "${context.l10n.optionsFound} $optionsCount",
-                style: context.typography.bodyTitle,
-              ),
+              Text("${context.l10n.optionsFound} $optionsCount", style: context.typography.bodyTitle),
               GestureDetector(
                 onTap: () => showModalBottomSheet(
                   context: context,
                   isScrollControlled: true,
                   builder: (context) => const SortBottomSheet(),
                 ),
-                child: const AppIcon(
-                  AppIcons.sort,
-                  width: S.p32,
-                  height: S.p32,
-                ),
+                child: const AppIcon(AppIcons.sort, width: S.p32, height: S.p32),
               ),
             ],
           ),

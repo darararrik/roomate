@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:roomate/lib.dart';
 
 class NetworkAvatar extends StatelessWidget {
   const NetworkAvatar({
@@ -8,7 +10,6 @@ class NetworkAvatar extends StatelessWidget {
     this.shape = BoxShape.rectangle,
     this.borderRadius = BorderRadius.zero,
     this.backgroundColor,
-    this.placeholder,
     this.border,
     this.fit = BoxFit.cover,
   });
@@ -18,7 +19,6 @@ class NetworkAvatar extends StatelessWidget {
   final BoxShape shape;
   final BorderRadius borderRadius;
   final Color? backgroundColor;
-  final Widget? placeholder;
   final BoxBorder? border;
   final BoxFit fit;
 
@@ -28,12 +28,14 @@ class NetworkAvatar extends StatelessWidget {
     final child = SizedBox.square(
       dimension: size,
       child: hasImage
-          ? Image.network(
-              imageUrl,
+          ? CachedNetworkImage(
+              imageUrl: imageUrl,
               fit: fit,
-              errorBuilder: (_, _, _) => _placeholder(),
+              fadeInDuration: Duration.zero,
+              fadeOutDuration: Duration.zero,
+              errorWidget: (_, _, _) => _fallback(context),
             )
-          : _placeholder(),
+          : _fallback(context),
     );
 
     return DecoratedBox(
@@ -42,16 +44,14 @@ class NetworkAvatar extends StatelessWidget {
         border: border,
         borderRadius: shape == BoxShape.circle ? null : borderRadius,
       ),
-      child: shape == BoxShape.circle
-          ? ClipOval(child: child)
-          : ClipRRect(borderRadius: borderRadius, child: child),
+      child: shape == BoxShape.circle ? ClipOval(child: child) : ClipRRect(borderRadius: borderRadius, child: child),
     );
   }
 
-  Widget _placeholder() {
-    return ColoredBox(
-      color: backgroundColor ?? Colors.transparent,
-      child: placeholder ?? const SizedBox.expand(),
+  Widget _fallback(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(color: context.colors.orange, borderRadius: BorderRadius.circular(S.p12)),
+      child: const AppIcon(AppIcons.defaultAvatar),
     );
   }
 }

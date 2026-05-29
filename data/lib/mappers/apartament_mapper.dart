@@ -2,10 +2,11 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class ApartamentMapper {
-  static ApartamentPreviewModel toPreviewModel(ApartamentData dto) {
+  static ApartamentPreviewModel toPreviewModel(ApartamentData dto, {String baseUrl = ''}) {
     return ApartamentPreviewModel(
       id: dto.id ?? '',
-      imageUrls: dto.imageUrls ?? const [],
+      //TODO: убрать отсюда baseUrl
+      imageUrls: resolveBackendMediaUrls(dto.imageUrls ?? const [], baseUrl: baseUrl),
       price: dto.price ?? '',
       roomsCount: dto.roomsCount ?? '',
       area: dto.area ?? '',
@@ -15,12 +16,12 @@ class ApartamentMapper {
     );
   }
 
-  static ApartamentModel toModel(ApartamentData dto) {
+  static ApartamentModel toModel(ApartamentData dto, {String baseUrl = ''}) {
     return ApartamentModel(
       id: dto.id ?? '',
       title: dto.title ?? '',
       description: dto.description ?? '',
-      imageUrls: dto.imageUrls ?? const [],
+      imageUrls: resolveBackendMediaUrls(dto.imageUrls ?? const [], baseUrl: baseUrl),
       isVerification: dto.isVerification ?? false,
       price: dto.price ?? '',
       roomsCount: dto.roomsCount ?? '',

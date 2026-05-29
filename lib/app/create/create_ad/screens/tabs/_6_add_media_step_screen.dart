@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:roomate/app/create/common/notifier/media_upload_notifier.dart';
+import 'package:roomate/app/create/common/widgets/upload_images_grid.dart';
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -9,7 +11,9 @@ class AddMediaStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(adFormProvider);
+    final uploadNotifier = ref.read(
+      mediaUploadProvider(MediaUploadScope.ad).notifier,
+    );
 
     return ListView(
       padding: const P(horizontal: S.p16),
@@ -21,10 +25,13 @@ class AddMediaStepScreen extends ConsumerWidget {
             Text(context.l10n.addPhotos, style: context.typography.headline1),
             Text(
               context.l10n.minPhotosCount,
-              style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+              style: context.typography.bodyDescription.copyWith(
+                color: context.colors.graysText400,
+              ),
             ),
           ],
         ),
+        const UploadImagesGrid(scope: MediaUploadScope.ad),
         OpacityButton(
           icon: AppIcon(AppIcons.camera, color: context.colors.orange),
           bgColor: context.colors.opacityOrange20,
@@ -34,7 +41,17 @@ class AddMediaStepScreen extends ConsumerWidget {
             FocusScope.of(context).requestFocus(FocusNode());
             showModalBottomSheet(
               context: context,
-              builder: (context) => AddMediaSheet(isPhoto: true, onCreatePhoto: () {}, onPickUpFromGallery: () {}),
+              builder: (context) => AddMediaSheet(
+                isPhoto: true,
+                onCreatePhoto: () {
+                  Navigator.of(context).pop();
+                  uploadNotifier.capturePhoto();
+                },
+                onPickUpFromGallery: () {
+                  Navigator.of(context).pop();
+                  uploadNotifier.pickFromGallery();
+                },
+              ),
             );
           },
           text: context.l10n.addPhoto,
@@ -45,7 +62,9 @@ class AddMediaStepScreen extends ConsumerWidget {
             Text(context.l10n.addVideos, style: context.typography.headline1),
             Text(
               context.l10n.oneVideoOnly,
-              style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+              style: context.typography.bodyDescription.copyWith(
+                color: context.colors.graysText400,
+              ),
             ),
           ].separated(const SizedBox(height: S.p12)),
         ),
@@ -58,7 +77,11 @@ class AddMediaStepScreen extends ConsumerWidget {
             FocusScope.of(context).requestFocus(FocusNode());
             showModalBottomSheet(
               context: context,
-              builder: (context) => AddMediaSheet(isPhoto: false, onCreatePhoto: () {}, onPickUpFromGallery: () {}),
+              builder: (context) => AddMediaSheet(
+                isPhoto: false,
+                onCreatePhoto: () {},
+                onPickUpFromGallery: () {},
+              ),
             );
           },
           text: context.l10n.addVideo,

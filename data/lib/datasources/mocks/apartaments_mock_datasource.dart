@@ -136,6 +136,39 @@ class ApartamentsMockDataSource implements ApartamentsDataSource {
   }
 
   @override
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>>
+  fetchFavoriteApartments() async {
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    final items =
+        [...ApartmentsMockJson.fetchApartments, ...MockStorage.createAds]
+            .map(ApartamentData.fromJson)
+            .where((item) => MockStorage.favoriteAdIds.contains(item.id))
+            .map(ApartamentMapper.toPreviewModel)
+            .toList(growable: false);
+
+    return Right(items);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> addApartmentToFavorites(
+    String adId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 150));
+    MockStorage.favoriteAdIds.add(adId);
+    return const Right(null);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> removeApartmentFromFavorites(
+    String adId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 150));
+    MockStorage.favoriteAdIds.remove(adId);
+    return const Right(null);
+  }
+
+  @override
   Future<Either<RemoteException, AdApplicationSubmitModel>> applyToAd(
     String adId,
   ) async {

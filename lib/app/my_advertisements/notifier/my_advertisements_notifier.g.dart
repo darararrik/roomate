@@ -50,7 +50,7 @@ final class MyAdsProvider
   }
 }
 
-String _$myAdsHash() => r'154210954b330311d8f1c275e40117e0d62acd9a';
+String _$myAdsHash() => r'b3a1a2e3153a0ae3be4a13573e62eff9c38ef1e8';
 
 /// Получить заявки от арендторов за собственника
 

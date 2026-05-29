@@ -10,10 +10,24 @@ class ChipMatch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _resolveColors(context);
+
     return LabelChip(
       title: "$matchPercent${context.l10n.percent} ${context.l10n.match}",
-      backgroundColor: context.colors.lightGreen100,
-      color: context.colors.green700,
+      backgroundColor: colors.$1,
+      color: colors.$2,
     );
+  }
+
+  (Color, Color) _resolveColors(BuildContext context) {
+    if (matchPercent >= 75) {
+      return (context.colors.lightGreen100, context.colors.labelGreen);
+    }
+
+    if (matchPercent >= 50) {
+      return (context.colors.lightYellow100, context.colors.labelYellow);
+    }
+
+    return (context.colors.lightRed100, context.colors.labelRed);
   }
 }

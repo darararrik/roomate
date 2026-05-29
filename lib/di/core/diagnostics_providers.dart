@@ -8,5 +8,4 @@ part 'diagnostics_providers.g.dart';
 // helpers here.
 
 @Riverpod(keepAlive: true)
-Talker talker(Ref ref) =>
-    TalkerFlutter.init(settings: TalkerSettings(useHistory: true));
+Talker talker(Ref ref) => TalkerFlutter.init(settings: TalkerSettings(useHistory: true, maxHistoryItems: 2000));

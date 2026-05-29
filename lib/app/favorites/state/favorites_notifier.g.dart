@@ -9,115 +9,52 @@ part of 'favorites_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(FavoriteApartmentIdsNotifier)
-final favoriteApartmentIdsProvider = FavoriteApartmentIdsNotifierProvider._();
+@ProviderFor(Favorites)
+final favoritesProvider = FavoritesProvider._();
 
-final class FavoriteApartmentIdsNotifierProvider
-    extends $NotifierProvider<FavoriteApartmentIdsNotifier, Set<String>> {
-  FavoriteApartmentIdsNotifierProvider._()
+final class FavoritesProvider
+    extends $AsyncNotifierProvider<Favorites, List<ApartamentPreviewModel>> {
+  FavoritesProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'favoriteApartmentIdsProvider',
+        name: r'favoritesProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$favoriteApartmentIdsNotifierHash();
+  String debugGetCreateSourceHash() => _$favoritesHash();
 
   @$internal
   @override
-  FavoriteApartmentIdsNotifier create() => FavoriteApartmentIdsNotifier();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(Set<String> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<Set<String>>(value),
-    );
-  }
+  Favorites create() => Favorites();
 }
 
-String _$favoriteApartmentIdsNotifierHash() =>
-    r'ba33a4970d955f60abde77916d551e0eea643678';
+String _$favoritesHash() => r'8ee6d5b9c16f1bc4ca9eaa00c9689683bd5b5988';
 
-abstract class _$FavoriteApartmentIdsNotifier extends $Notifier<Set<String>> {
-  Set<String> build();
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final ref = this.ref as $Ref<Set<String>, Set<String>>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<Set<String>, Set<String>>,
-              Set<String>,
-              Object?,
-              Object?
-            >;
-    element.handleCreate(ref, build);
-  }
-}
-
-@ProviderFor(FavoritesScreenNotifier)
-final favoritesScreenProvider = FavoritesScreenNotifierProvider._();
-
-final class FavoritesScreenNotifierProvider
-    extends
-        $NotifierProvider<
-          FavoritesScreenNotifier,
-          List<ApartamentPreviewModel>
-        > {
-  FavoritesScreenNotifierProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'favoritesScreenProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$favoritesScreenNotifierHash();
-
-  @$internal
-  @override
-  FavoritesScreenNotifier create() => FavoritesScreenNotifier();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<ApartamentPreviewModel> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<List<ApartamentPreviewModel>>(value),
-    );
-  }
-}
-
-String _$favoritesScreenNotifierHash() =>
-    r'882abf058fd6fdf43ff87d73839374980bc26659';
-
-abstract class _$FavoritesScreenNotifier
-    extends $Notifier<List<ApartamentPreviewModel>> {
-  List<ApartamentPreviewModel> build();
+abstract class _$Favorites
+    extends $AsyncNotifier<List<ApartamentPreviewModel>> {
+  FutureOr<List<ApartamentPreviewModel>> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final ref =
         this.ref
-            as $Ref<List<ApartamentPreviewModel>, List<ApartamentPreviewModel>>;
+            as $Ref<
+              AsyncValue<List<ApartamentPreviewModel>>,
+              List<ApartamentPreviewModel>
+            >;
     final element =
         ref.element
             as $ClassProviderElement<
               AnyNotifier<
-                List<ApartamentPreviewModel>,
+                AsyncValue<List<ApartamentPreviewModel>>,
                 List<ApartamentPreviewModel>
               >,
-              List<ApartamentPreviewModel>,
+              AsyncValue<List<ApartamentPreviewModel>>,
               Object?,
               Object?
             >;

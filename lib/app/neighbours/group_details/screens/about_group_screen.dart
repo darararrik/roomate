@@ -18,6 +18,7 @@ class AboutGroupScreen extends ConsumerWidget {
 
     return asyncState.when(
       data: (state) {
+        //TODO: вынести в отдельные виджеты, чтобы не было такого огромного метода билда
         final group = state.group;
         final apartament = group.apartament;
         final colors = context.colors;
@@ -54,8 +55,8 @@ class AboutGroupScreen extends ConsumerWidget {
             .map((item) => item.avatarUrl)
             .where((item) => item.trim().isNotEmpty)
             .toList();
-        final publishedText = apartament.publishDate.isNotEmpty
-            ? 'Размещено: ${apartament.publishDate.toRuLongPublishedDate()}'
+        final publishedText = state.group.createdAt.isNotEmpty
+            ? 'Размещено: ${state.group.createdAt.toRuLongPublishedDate()}'
             : 'Размещено: ${locale.notSpecified}';
         final viewsText = apartament.totalViewers.isNotEmpty
             ? context.l10n.viewsCount(apartament.totalViewers)

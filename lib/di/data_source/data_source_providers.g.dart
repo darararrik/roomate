@@ -150,6 +150,53 @@ final class GroupsDataSourceProvider
 
 String _$groupsDataSourceHash() => r'76d417ecc2ed809005c18531965136ee86913bb2';
 
+@ProviderFor(uploadsDataSource)
+final uploadsDataSourceProvider = UploadsDataSourceProvider._();
+
+final class UploadsDataSourceProvider
+    extends
+        $FunctionalProvider<
+          UploadsDataSource,
+          UploadsDataSource,
+          UploadsDataSource
+        >
+    with $Provider<UploadsDataSource> {
+  UploadsDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'uploadsDataSourceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$uploadsDataSourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<UploadsDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UploadsDataSource create(Ref ref) {
+    return uploadsDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UploadsDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UploadsDataSource>(value),
+    );
+  }
+}
+
+String _$uploadsDataSourceHash() => r'0b9b36b62e82edce13322caad9f5aa20f99369b2';
+
 @ProviderFor(locationDataSource)
 final locationDataSourceProvider = LocationDataSourceProvider._();
 

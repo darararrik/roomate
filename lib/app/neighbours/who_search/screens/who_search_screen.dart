@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:roomate/app/neighbours/filters/notifier/who_search_filter_notifier.dart';
+import 'package:roomate/app/neighbours/filters/widgets/neighbours_sort_bottom_sheet.dart';
 import 'package:roomate/app/neighbours/groups/notifier/groups_notifier.dart';
 import 'package:roomate/lib.dart';
 
@@ -17,21 +18,12 @@ class WhoSearchScreen extends HookConsumerWidget {
     final notifier = ref.read(whoSearchFilterProvider.notifier);
     final groupsState = ref.watch(groupsProvider);
     final options = ref.watch(filtersNeighboursProvider);
-    final minGroupSizeController = useTextEditingController(
-      text: filter.minParticipantsCount?.toString() ?? '',
-    );
-    final maxGroupSizeController = useTextEditingController(
-      text: filter.maxParticipantsCount?.toString() ?? '',
-    );
-    final considerationController = useTextEditingController(
-      text: filter.smartQuery,
-    );
+    final minGroupSizeController = useTextEditingController(text: filter.minParticipantsCount?.toString() ?? '');
+    final maxGroupSizeController = useTextEditingController(text: filter.maxParticipantsCount?.toString() ?? '');
+    final considerationController = useTextEditingController(text: filter.smartQuery);
     final l10n = context.l10n;
     final groupsCount = groupsState.value?.length ?? 0;
-    final ageRange = RangeValues(
-      (filter.minAge ?? 18).toDouble(),
-      (filter.maxAge ?? 35).toDouble(),
-    );
+    final ageRange = RangeValues((filter.minAge ?? 18).toDouble(), (filter.maxAge ?? 35).toDouble());
 
     return options.when(
       data: (data) => Scaffold(
@@ -48,9 +40,7 @@ class WhoSearchScreen extends HookConsumerWidget {
                     onPressed: notifier.reset,
                     child: Text(
                       l10n.reset,
-                      style: context.typography.activesButton.copyWith(
-                        color: context.colors.lightOrange100,
-                      ),
+                      style: context.typography.activesButton.copyWith(color: context.colors.lightOrange100),
                     ),
                   ),
                 ],
@@ -61,10 +51,7 @@ class WhoSearchScreen extends HookConsumerWidget {
                   children: [
                     Padding(
                       padding: const P(vertical: S.p12),
-                      child: Text(
-                        l10n.whoSearchRoommatesTitle,
-                        style: context.typography.headline1,
-                      ),
+                      child: Text(l10n.whoSearchRoommatesTitle, style: context.typography.headline1),
                     ),
                     ChipWrap(
                       title: l10n.gender,
@@ -91,10 +78,8 @@ class WhoSearchScreen extends HookConsumerWidget {
                             divisions: 42,
                             activeColor: context.colors.orange,
                             inactiveColor: context.colors.opacityOrange20,
-                            onChanged: (value) => notifier.setAgeRange(
-                              minAge: value.start.round(),
-                              maxAge: value.end.round(),
-                            ),
+                            onChanged: (value) =>
+                                notifier.setAgeRange(minAge: value.start.round(), maxAge: value.end.round()),
                           ),
                         ),
                         const SizedBox(width: S.p12),
@@ -112,8 +97,7 @@ class WhoSearchScreen extends HookConsumerWidget {
                             hintText: l10n.priceFromHint,
                             needSuffixIcon: false,
                             keyboardType: TextInputType.number,
-                            onChanged: (value) =>
-                                notifier.setMinGroupSize(_parseInt(value)),
+                            onChanged: (value) => notifier.setMinGroupSize(_parseInt(value)),
                           ),
                         ),
                         const SizedBox(width: S.p12),
@@ -123,23 +107,17 @@ class WhoSearchScreen extends HookConsumerWidget {
                             hintText: l10n.priceToHint,
                             needSuffixIcon: false,
                             keyboardType: TextInputType.number,
-                            onChanged: (value) =>
-                                notifier.setMaxGroupSize(_parseInt(value)),
+                            onChanged: (value) => notifier.setMaxGroupSize(_parseInt(value)),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: S.p24),
-                    Text(
-                      l10n.whoSearchConsiderTitle,
-                      style: context.typography.headline0,
-                    ),
+                    Text(l10n.whoSearchConsiderTitle, style: context.typography.headline0),
                     const SizedBox(height: S.p8),
                     Text(
                       l10n.whoSearchConsiderHint,
-                      style: context.typography.bodyDescription.copyWith(
-                        color: context.colors.graysText400,
-                      ),
+                      style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
                     ),
                     const SizedBox(height: S.p12),
                     InputWidget(
@@ -152,16 +130,23 @@ class WhoSearchScreen extends HookConsumerWidget {
                         height: S.p20,
                         color: context.colors.graysIcon500,
                       ),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: context.colors.graysLight50,
-                      ),
+                      decoration: InputDecoration(filled: true, fillColor: context.colors.graysLight50),
                     ),
                     const SizedBox(height: S.p24),
-                    Text(
-                      l10n.createGroupLivingConditions,
-                      style: context.typography.headline0,
+                    _SectionLabel(title: l10n.toSort),
+                    const SizedBox(height: S.p12),
+                    RegionListItem(
+                      iconPath: AppIcons.sort,
+                      onTap: () => showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => const NeighboursSortBottomSheet(),
+                      ),
+                      title: whoSearchSortTypeTitle(context, filter.sortType),
+                      subTitle: '',
                     ),
+                    const SizedBox(height: S.p24),
+                    Text(l10n.createGroupLivingConditions, style: context.typography.headline0),
                     const SizedBox(height: S.p12),
                     _ConditionSwitchRow(
                       title: l10n.childrenAllowedFilter,
@@ -207,10 +192,10 @@ class WhoSearchScreen extends HookConsumerWidget {
             child: PrimaryButton(
               text: l10n.whoSearchShowGroupsCount(groupsCount),
               onPressed: () async {
-                await notifier.apply();
                 if (context.mounted) {
                   context.router.pop();
                 }
+                await notifier.apply();
               },
             ),
           ),
@@ -241,29 +226,17 @@ class _ValueBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colors.graysLight100,
-        borderRadius: BorderRadius.circular(S.p8),
-      ),
+      decoration: BoxDecoration(color: context.colors.graysLight100, borderRadius: BorderRadius.circular(S.p8)),
       child: Padding(
         padding: const P(horizontal: S.p12, vertical: S.p8),
-        child: Text(
-          '$value',
-          style: context.typography.bodyDescription.copyWith(
-            color: context.colors.graysText400,
-          ),
-        ),
+        child: Text('$value', style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400)),
       ),
     );
   }
 }
 
 class _ConditionSwitchRow extends StatelessWidget {
-  const _ConditionSwitchRow({
-    required this.title,
-    required this.value,
-    required this.onChanged,
-  });
+  const _ConditionSwitchRow({required this.title, required this.value, required this.onChanged});
 
   final String title;
   final bool value;
@@ -276,11 +249,7 @@ class _ConditionSwitchRow extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: Text(title, style: context.typography.headline2)),
-          Switch.adaptive(
-            value: value,
-            activeTrackColor: context.colors.lightOrange100,
-            onChanged: onChanged,
-          ),
+          Switch.adaptive(value: value, activeTrackColor: context.colors.lightOrange100, onChanged: onChanged),
         ],
       ),
     );

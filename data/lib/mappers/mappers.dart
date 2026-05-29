@@ -15,3 +15,4 @@ export 'owner_ads_mapper.dart';
 export 'profile_mapper.dart';
 export 'sing_in_response_mapper.dart';
 export 'tenant_mapper.dart';
+export 'uploads_mapper.dart';

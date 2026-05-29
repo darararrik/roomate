@@ -48,6 +48,7 @@ export 'favorites/state/favorites_notifier.dart';
 export 'main/main.dart';
 export 'main/main_flow.dart';
 export 'my_advertisements/my_advertisements.dart';
+export 'my_group_applications/my_group_applications.dart';
 export 'neighbours/neighbours.dart';
 export 'on_boarding/on_boarding.dart';
 export 'on_boarding/on_boarding_screen.dart';

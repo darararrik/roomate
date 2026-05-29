@@ -14,6 +14,12 @@ abstract interface class ApartamentsDataSource {
   Future<Either<RemoteException, void>> createAd(
     CreateAdFormRequestData request,
   );
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>>
+  fetchFavoriteApartments();
+  Future<Either<RemoteException, void>> addApartmentToFavorites(String adId);
+  Future<Either<RemoteException, void>> removeApartmentFromFavorites(
+    String adId,
+  );
   Future<Either<RemoteException, AdApplicationSubmitModel>> applyToAd(
     String adId,
   );

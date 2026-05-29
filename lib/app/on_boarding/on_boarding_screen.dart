@@ -124,6 +124,7 @@ class _QuizStepContent extends StatelessWidget {
                         radius: S.p16,
                         onPressed: () => onOptionSelected(index),
                         bgColor: context.colors.opacityOrange20,
+                        color: context.colors.orange,
                         text: step.options[index],
                       ),
                     );
@@ -136,6 +137,7 @@ class _QuizStepContent extends StatelessWidget {
                           onPressed: () => ref.read(onBoardingProvider.notifier).skipByOwner(),
                           bgColor: context.colors.graysLight100,
                           text: step.cancel!,
+                          color: context.colors.graysText400,
                         );
                       },
                     ),

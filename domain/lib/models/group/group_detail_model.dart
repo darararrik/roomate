@@ -19,5 +19,8 @@ sealed class GroupDetailModel with _$GroupDetailModel {
     @Default('') String ownerUserId,
     @Default(GroupConditionsModel()) GroupConditionsModel conditions,
     @Default(ApartamentModel()) ApartamentModel apartament,
+    @Default('') String createdAt,
+    @Default('') String updatedAt,
+    @Default(false) bool isFavorite,
   }) = _GroupDetailModel;
 }

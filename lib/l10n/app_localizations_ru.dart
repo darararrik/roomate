@@ -538,6 +538,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get createNewAdvertisement => 'Создать новое объявление';
 
   @override
+  String get createNewGroup => 'Создать объявление группы';
+
+  @override
   String get propertyData => 'Параметры недвижимости';
 
   @override
@@ -1024,6 +1027,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get errorGeneric => 'Ошибка загрузки';
 
   @override
+  String get uploadPhotosMaxCountError =>
+      'Можно загрузить не более 10 фотографий';
+
+  @override
+  String get uploadPhotoMaxSizeError =>
+      'Фотография слишком большая. Выберите файл меньшего размера.';
+
+  @override
+  String get uploadPhotoReduceSizeError =>
+      'Не удалось загрузить фотографию. Попробуйте выбрать изображение меньшего размера.';
+
+  @override
   String get yourGoal => 'Ваша цель';
 
   @override
@@ -1052,6 +1067,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get sortByDateAsc => 'По дате добавления (сначала старые)';
+
+  @override
+  String get sortByMatchPercentDesc => 'По совпадению (сначала выше)';
 
   @override
   String get sortByGroupSizeDesc => 'По размеру группы (сначала больше)';

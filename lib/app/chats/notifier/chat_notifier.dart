@@ -1,4 +1,6 @@
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,12 +12,29 @@ part 'chat_notifier.g.dart';
 
 @riverpod
 class Chat extends _$Chat {
+  static const currentUserId = 'user1';
+  static const ownerUserId = 'owner';
+
   IApartamentsRepository get _repository =>
       ref.read(apartamentsRepositoryProvider);
 
+  late final InMemoryChatController chatController;
+  late final TextEditingController textController;
+
   @override
   ChatState build(ApartamentModel apartment) {
-    return ChatState(apartment: apartment, messages: _initialMessages());
+    final messages = _initialMessages();
+    chatController = InMemoryChatController(
+      messages: messages.map(_messageFromModel).toList(),
+    );
+    textController = TextEditingController();
+
+    ref.onDispose(() {
+      textController.dispose();
+      chatController.dispose();
+    });
+
+    return ChatState(apartment: apartment, messages: messages);
   }
 
   void onApartmentPressed() {
@@ -27,23 +46,26 @@ class Chat extends _$Chat {
     ref.nav.push(ApartamnetRoute(apartmentId: apartmentId));
   }
 
-  void sendMessage(String rawText) {
+  Future<void> onMessageSend(String rawText) async {
     final text = rawText.trim();
     if (text.isEmpty) {
       return;
     }
 
-    state = state.copyWith(
-      messages: [
-        ...state.messages,
-        ChatMessageModel(
-          id: DateTime.now().microsecondsSinceEpoch.toString(),
-          text: text,
-          createdAt: DateTime.now(),
-          isMine: true,
-        ),
-      ],
+    final message = ChatMessageModel(
+      id: DateTime.now().microsecondsSinceEpoch.toString(),
+      text: text,
+      createdAt: DateTime.now(),
+      isMine: true,
     );
+
+    state = state.copyWith(messages: [...state.messages, message]);
+
+    await chatController.insertMessage(_messageFromModel(message));
+  }
+
+  Future<User> resolveUser(UserID id) async {
+    return User(id: id, name: id == currentUserId ? 'Вы' : 'Сергей О.');
   }
 
   Future<void> onApplyPressed() async {
@@ -105,6 +127,15 @@ class Chat extends _$Chat {
         authorName: 'Сергей О.',
       ),
     ];
+  }
+
+  TextMessage _messageFromModel(ChatMessageModel message) {
+    return TextMessage(
+      id: message.id,
+      authorId: message.isMine ? currentUserId : ownerUserId,
+      createdAt: message.createdAt,
+      text: message.text,
+    );
   }
 }
 

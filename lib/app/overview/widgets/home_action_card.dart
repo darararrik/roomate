@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/lib.dart';
 
 class HomeActionCard extends StatelessWidget {
@@ -20,32 +19,22 @@ class HomeActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colors.graysLight50,
-          borderRadius: BorderRadius.circular(S.p32),
-        ),
+    return Material(
+      borderRadius: BorderRadius.circular(S.p32),
+      color: context.colors.graysLight50,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(S.p32),
+        onTap: onTap,
         child: Padding(
           padding: const P(horizontal: S.p16, top: S.p24, bottom: S.p8),
           child: Column(
             spacing: S.p12,
             crossAxisAlignment: .start,
             children: [
-              Text(
-                title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: context.typography.bodyDescription,
-              ),
+              Text(title, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.typography.bodyDescription),
               Align(
                 alignment: .bottomRight,
-                child: ActionCardImage(
-                  imagePath: imagePath,
-                  width: imageWidth,
-                  height: imageHeight,
-                ),
+                child: ActionCardImage(imagePath: imagePath, width: imageWidth, height: imageHeight),
               ),
             ],
           ),

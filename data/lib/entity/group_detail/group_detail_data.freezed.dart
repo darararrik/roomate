@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GroupDetailData {
 
-@JsonKey(name: 'id') String get id;@JsonKey(name: 'title') String get title;@JsonKey(name: 'description') String get description;@JsonKey(name: 'status') String get status;@JsonKey(name: 'match_percent') int get matchPercent;@JsonKey(name: 'application_status') String get applicationStatus;@JsonKey(name: 'owner_user_id') String get ownerUserId;@JsonKey(name: 'participants_count') int get participantsCount;@JsonKey(name: 'max_participants_count') int get maxParticipantsCount;@JsonKey(name: 'apartment') ApartamentData get apartament;@JsonKey(name: 'conditions') GroupDetailConditionsData get conditions;@JsonKey(name: 'preferences') GroupDetailPreferencesData get preferences;@JsonKey(name: 'participants') List<ParticipantData> get participants;@JsonKey(name: 'created_at') String get createdAt;@JsonKey(name: 'updated_at') String get updatedAt;
+@JsonKey(name: 'id') String get id;@JsonKey(name: 'title') String get title;@JsonKey(name: 'description') String get description;@JsonKey(name: 'status') String get status;@JsonKey(name: 'match_percent') int get matchPercent;@JsonKey(name: 'application_status') String get applicationStatus;@JsonKey(name: 'owner_user_id') String get ownerUserId;@JsonKey(name: 'participants_count') int get participantsCount;@JsonKey(name: 'max_participants_count') int get maxParticipantsCount;@JsonKey(name: 'apartment') ApartamentData get apartament;@JsonKey(name: 'conditions') GroupDetailConditionsData get conditions;@JsonKey(name: 'preferences') GroupDetailPreferencesData get preferences;@JsonKey(name: 'participants') List<ParticipantData> get participants;@JsonKey(name: 'created_at') String get createdAt;@JsonKey(name: 'updated_at') String get updatedAt;@JsonKey(name: 'favorite') bool get isFavorite;
 /// Create a copy of GroupDetailData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $GroupDetailDataCopyWith<GroupDetailData> get copyWith => _$GroupDetailDataCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroupDetailData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.status, status) || other.status == status)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.ownerUserId, ownerUserId) || other.ownerUserId == ownerUserId)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.conditions, conditions) || other.conditions == conditions)&&(identical(other.preferences, preferences) || other.preferences == preferences)&&const DeepCollectionEquality().equals(other.participants, participants)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroupDetailData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.status, status) || other.status == status)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.ownerUserId, ownerUserId) || other.ownerUserId == ownerUserId)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.conditions, conditions) || other.conditions == conditions)&&(identical(other.preferences, preferences) || other.preferences == preferences)&&const DeepCollectionEquality().equals(other.participants, participants)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,status,matchPercent,applicationStatus,ownerUserId,participantsCount,maxParticipantsCount,apartament,conditions,preferences,const DeepCollectionEquality().hash(participants),createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,title,description,status,matchPercent,applicationStatus,ownerUserId,participantsCount,maxParticipantsCount,apartament,conditions,preferences,const DeepCollectionEquality().hash(participants),createdAt,updatedAt,isFavorite);
 
 @override
 String toString() {
-  return 'GroupDetailData(id: $id, title: $title, description: $description, status: $status, matchPercent: $matchPercent, applicationStatus: $applicationStatus, ownerUserId: $ownerUserId, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, apartament: $apartament, conditions: $conditions, preferences: $preferences, participants: $participants, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'GroupDetailData(id: $id, title: $title, description: $description, status: $status, matchPercent: $matchPercent, applicationStatus: $applicationStatus, ownerUserId: $ownerUserId, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, apartament: $apartament, conditions: $conditions, preferences: $preferences, participants: $participants, createdAt: $createdAt, updatedAt: $updatedAt, isFavorite: $isFavorite)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $GroupDetailDataCopyWith<$Res>  {
   factory $GroupDetailDataCopyWith(GroupDetailData value, $Res Function(GroupDetailData) _then) = _$GroupDetailDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') String id,@JsonKey(name: 'title') String title,@JsonKey(name: 'description') String description,@JsonKey(name: 'status') String status,@JsonKey(name: 'match_percent') int matchPercent,@JsonKey(name: 'application_status') String applicationStatus,@JsonKey(name: 'owner_user_id') String ownerUserId,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'max_participants_count') int maxParticipantsCount,@JsonKey(name: 'apartment') ApartamentData apartament,@JsonKey(name: 'conditions') GroupDetailConditionsData conditions,@JsonKey(name: 'preferences') GroupDetailPreferencesData preferences,@JsonKey(name: 'participants') List<ParticipantData> participants,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt
+@JsonKey(name: 'id') String id,@JsonKey(name: 'title') String title,@JsonKey(name: 'description') String description,@JsonKey(name: 'status') String status,@JsonKey(name: 'match_percent') int matchPercent,@JsonKey(name: 'application_status') String applicationStatus,@JsonKey(name: 'owner_user_id') String ownerUserId,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'max_participants_count') int maxParticipantsCount,@JsonKey(name: 'apartment') ApartamentData apartament,@JsonKey(name: 'conditions') GroupDetailConditionsData conditions,@JsonKey(name: 'preferences') GroupDetailPreferencesData preferences,@JsonKey(name: 'participants') List<ParticipantData> participants,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt,@JsonKey(name: 'favorite') bool isFavorite
 });
 
 
@@ -65,7 +65,7 @@ class _$GroupDetailDataCopyWithImpl<$Res>
 
 /// Create a copy of GroupDetailData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? status = null,Object? matchPercent = null,Object? applicationStatus = null,Object? ownerUserId = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? apartament = null,Object? conditions = null,Object? preferences = null,Object? participants = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? status = null,Object? matchPercent = null,Object? applicationStatus = null,Object? ownerUserId = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? apartament = null,Object? conditions = null,Object? preferences = null,Object? participants = null,Object? createdAt = null,Object? updatedAt = null,Object? isFavorite = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -82,7 +82,8 @@ as GroupDetailConditionsData,preferences: null == preferences ? _self.preference
 as GroupDetailPreferencesData,participants: null == participants ? _self.participants : participants // ignore: cast_nullable_to_non_nullable
 as List<ParticipantData>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as String,
+as String,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 /// Create a copy of GroupDetailData
@@ -194,10 +195,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'status')  String status, @JsonKey(name: 'match_percent')  int matchPercent, @JsonKey(name: 'application_status')  String applicationStatus, @JsonKey(name: 'owner_user_id')  String ownerUserId, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'max_participants_count')  int maxParticipantsCount, @JsonKey(name: 'apartment')  ApartamentData apartament, @JsonKey(name: 'conditions')  GroupDetailConditionsData conditions, @JsonKey(name: 'preferences')  GroupDetailPreferencesData preferences, @JsonKey(name: 'participants')  List<ParticipantData> participants, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'status')  String status, @JsonKey(name: 'match_percent')  int matchPercent, @JsonKey(name: 'application_status')  String applicationStatus, @JsonKey(name: 'owner_user_id')  String ownerUserId, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'max_participants_count')  int maxParticipantsCount, @JsonKey(name: 'apartment')  ApartamentData apartament, @JsonKey(name: 'conditions')  GroupDetailConditionsData conditions, @JsonKey(name: 'preferences')  GroupDetailPreferencesData preferences, @JsonKey(name: 'participants')  List<ParticipantData> participants, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt, @JsonKey(name: 'favorite')  bool isFavorite)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GroupDetailData() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.status,_that.matchPercent,_that.applicationStatus,_that.ownerUserId,_that.participantsCount,_that.maxParticipantsCount,_that.apartament,_that.conditions,_that.preferences,_that.participants,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.status,_that.matchPercent,_that.applicationStatus,_that.ownerUserId,_that.participantsCount,_that.maxParticipantsCount,_that.apartament,_that.conditions,_that.preferences,_that.participants,_that.createdAt,_that.updatedAt,_that.isFavorite);case _:
   return orElse();
 
 }
@@ -215,10 +216,10 @@ return $default(_that.id,_that.title,_that.description,_that.status,_that.matchP
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'status')  String status, @JsonKey(name: 'match_percent')  int matchPercent, @JsonKey(name: 'application_status')  String applicationStatus, @JsonKey(name: 'owner_user_id')  String ownerUserId, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'max_participants_count')  int maxParticipantsCount, @JsonKey(name: 'apartment')  ApartamentData apartament, @JsonKey(name: 'conditions')  GroupDetailConditionsData conditions, @JsonKey(name: 'preferences')  GroupDetailPreferencesData preferences, @JsonKey(name: 'participants')  List<ParticipantData> participants, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'status')  String status, @JsonKey(name: 'match_percent')  int matchPercent, @JsonKey(name: 'application_status')  String applicationStatus, @JsonKey(name: 'owner_user_id')  String ownerUserId, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'max_participants_count')  int maxParticipantsCount, @JsonKey(name: 'apartment')  ApartamentData apartament, @JsonKey(name: 'conditions')  GroupDetailConditionsData conditions, @JsonKey(name: 'preferences')  GroupDetailPreferencesData preferences, @JsonKey(name: 'participants')  List<ParticipantData> participants, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt, @JsonKey(name: 'favorite')  bool isFavorite)  $default,) {final _that = this;
 switch (_that) {
 case _GroupDetailData():
-return $default(_that.id,_that.title,_that.description,_that.status,_that.matchPercent,_that.applicationStatus,_that.ownerUserId,_that.participantsCount,_that.maxParticipantsCount,_that.apartament,_that.conditions,_that.preferences,_that.participants,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.status,_that.matchPercent,_that.applicationStatus,_that.ownerUserId,_that.participantsCount,_that.maxParticipantsCount,_that.apartament,_that.conditions,_that.preferences,_that.participants,_that.createdAt,_that.updatedAt,_that.isFavorite);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -235,10 +236,10 @@ return $default(_that.id,_that.title,_that.description,_that.status,_that.matchP
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  String id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'status')  String status, @JsonKey(name: 'match_percent')  int matchPercent, @JsonKey(name: 'application_status')  String applicationStatus, @JsonKey(name: 'owner_user_id')  String ownerUserId, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'max_participants_count')  int maxParticipantsCount, @JsonKey(name: 'apartment')  ApartamentData apartament, @JsonKey(name: 'conditions')  GroupDetailConditionsData conditions, @JsonKey(name: 'preferences')  GroupDetailPreferencesData preferences, @JsonKey(name: 'participants')  List<ParticipantData> participants, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  String id, @JsonKey(name: 'title')  String title, @JsonKey(name: 'description')  String description, @JsonKey(name: 'status')  String status, @JsonKey(name: 'match_percent')  int matchPercent, @JsonKey(name: 'application_status')  String applicationStatus, @JsonKey(name: 'owner_user_id')  String ownerUserId, @JsonKey(name: 'participants_count')  int participantsCount, @JsonKey(name: 'max_participants_count')  int maxParticipantsCount, @JsonKey(name: 'apartment')  ApartamentData apartament, @JsonKey(name: 'conditions')  GroupDetailConditionsData conditions, @JsonKey(name: 'preferences')  GroupDetailPreferencesData preferences, @JsonKey(name: 'participants')  List<ParticipantData> participants, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt, @JsonKey(name: 'favorite')  bool isFavorite)?  $default,) {final _that = this;
 switch (_that) {
 case _GroupDetailData() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.status,_that.matchPercent,_that.applicationStatus,_that.ownerUserId,_that.participantsCount,_that.maxParticipantsCount,_that.apartament,_that.conditions,_that.preferences,_that.participants,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.status,_that.matchPercent,_that.applicationStatus,_that.ownerUserId,_that.participantsCount,_that.maxParticipantsCount,_that.apartament,_that.conditions,_that.preferences,_that.participants,_that.createdAt,_that.updatedAt,_that.isFavorite);case _:
   return null;
 
 }
@@ -250,7 +251,7 @@ return $default(_that.id,_that.title,_that.description,_that.status,_that.matchP
 @JsonSerializable()
 
 class _GroupDetailData implements GroupDetailData {
-  const _GroupDetailData({@JsonKey(name: 'id') this.id = '', @JsonKey(name: 'title') this.title = '', @JsonKey(name: 'description') this.description = '', @JsonKey(name: 'status') this.status = '', @JsonKey(name: 'match_percent') this.matchPercent = 0, @JsonKey(name: 'application_status') this.applicationStatus = '', @JsonKey(name: 'owner_user_id') this.ownerUserId = '', @JsonKey(name: 'participants_count') this.participantsCount = 0, @JsonKey(name: 'max_participants_count') this.maxParticipantsCount = 0, @JsonKey(name: 'apartment') this.apartament = const ApartamentData(), @JsonKey(name: 'conditions') this.conditions = const GroupDetailConditionsData(), @JsonKey(name: 'preferences') this.preferences = const GroupDetailPreferencesData(), @JsonKey(name: 'participants') final  List<ParticipantData> participants = const <ParticipantData>[], @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _participants = participants;
+  const _GroupDetailData({@JsonKey(name: 'id') this.id = '', @JsonKey(name: 'title') this.title = '', @JsonKey(name: 'description') this.description = '', @JsonKey(name: 'status') this.status = '', @JsonKey(name: 'match_percent') this.matchPercent = 0, @JsonKey(name: 'application_status') this.applicationStatus = '', @JsonKey(name: 'owner_user_id') this.ownerUserId = '', @JsonKey(name: 'participants_count') this.participantsCount = 0, @JsonKey(name: 'max_participants_count') this.maxParticipantsCount = 0, @JsonKey(name: 'apartment') this.apartament = const ApartamentData(), @JsonKey(name: 'conditions') this.conditions = const GroupDetailConditionsData(), @JsonKey(name: 'preferences') this.preferences = const GroupDetailPreferencesData(), @JsonKey(name: 'participants') final  List<ParticipantData> participants = const <ParticipantData>[], @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = '', @JsonKey(name: 'favorite') this.isFavorite = false}): _participants = participants;
   factory _GroupDetailData.fromJson(Map<String, dynamic> json) => _$GroupDetailDataFromJson(json);
 
 @override@JsonKey(name: 'id') final  String id;
@@ -274,6 +275,7 @@ class _GroupDetailData implements GroupDetailData {
 
 @override@JsonKey(name: 'created_at') final  String createdAt;
 @override@JsonKey(name: 'updated_at') final  String updatedAt;
+@override@JsonKey(name: 'favorite') final  bool isFavorite;
 
 /// Create a copy of GroupDetailData
 /// with the given fields replaced by the non-null parameter values.
@@ -288,16 +290,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroupDetailData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.status, status) || other.status == status)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.ownerUserId, ownerUserId) || other.ownerUserId == ownerUserId)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.conditions, conditions) || other.conditions == conditions)&&(identical(other.preferences, preferences) || other.preferences == preferences)&&const DeepCollectionEquality().equals(other._participants, _participants)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroupDetailData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.status, status) || other.status == status)&&(identical(other.matchPercent, matchPercent) || other.matchPercent == matchPercent)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.ownerUserId, ownerUserId) || other.ownerUserId == ownerUserId)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.maxParticipantsCount, maxParticipantsCount) || other.maxParticipantsCount == maxParticipantsCount)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.conditions, conditions) || other.conditions == conditions)&&(identical(other.preferences, preferences) || other.preferences == preferences)&&const DeepCollectionEquality().equals(other._participants, _participants)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,status,matchPercent,applicationStatus,ownerUserId,participantsCount,maxParticipantsCount,apartament,conditions,preferences,const DeepCollectionEquality().hash(_participants),createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,title,description,status,matchPercent,applicationStatus,ownerUserId,participantsCount,maxParticipantsCount,apartament,conditions,preferences,const DeepCollectionEquality().hash(_participants),createdAt,updatedAt,isFavorite);
 
 @override
 String toString() {
-  return 'GroupDetailData(id: $id, title: $title, description: $description, status: $status, matchPercent: $matchPercent, applicationStatus: $applicationStatus, ownerUserId: $ownerUserId, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, apartament: $apartament, conditions: $conditions, preferences: $preferences, participants: $participants, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'GroupDetailData(id: $id, title: $title, description: $description, status: $status, matchPercent: $matchPercent, applicationStatus: $applicationStatus, ownerUserId: $ownerUserId, participantsCount: $participantsCount, maxParticipantsCount: $maxParticipantsCount, apartament: $apartament, conditions: $conditions, preferences: $preferences, participants: $participants, createdAt: $createdAt, updatedAt: $updatedAt, isFavorite: $isFavorite)';
 }
 
 
@@ -308,7 +310,7 @@ abstract mixin class _$GroupDetailDataCopyWith<$Res> implements $GroupDetailData
   factory _$GroupDetailDataCopyWith(_GroupDetailData value, $Res Function(_GroupDetailData) _then) = __$GroupDetailDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') String id,@JsonKey(name: 'title') String title,@JsonKey(name: 'description') String description,@JsonKey(name: 'status') String status,@JsonKey(name: 'match_percent') int matchPercent,@JsonKey(name: 'application_status') String applicationStatus,@JsonKey(name: 'owner_user_id') String ownerUserId,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'max_participants_count') int maxParticipantsCount,@JsonKey(name: 'apartment') ApartamentData apartament,@JsonKey(name: 'conditions') GroupDetailConditionsData conditions,@JsonKey(name: 'preferences') GroupDetailPreferencesData preferences,@JsonKey(name: 'participants') List<ParticipantData> participants,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt
+@JsonKey(name: 'id') String id,@JsonKey(name: 'title') String title,@JsonKey(name: 'description') String description,@JsonKey(name: 'status') String status,@JsonKey(name: 'match_percent') int matchPercent,@JsonKey(name: 'application_status') String applicationStatus,@JsonKey(name: 'owner_user_id') String ownerUserId,@JsonKey(name: 'participants_count') int participantsCount,@JsonKey(name: 'max_participants_count') int maxParticipantsCount,@JsonKey(name: 'apartment') ApartamentData apartament,@JsonKey(name: 'conditions') GroupDetailConditionsData conditions,@JsonKey(name: 'preferences') GroupDetailPreferencesData preferences,@JsonKey(name: 'participants') List<ParticipantData> participants,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt,@JsonKey(name: 'favorite') bool isFavorite
 });
 
 
@@ -325,7 +327,7 @@ class __$GroupDetailDataCopyWithImpl<$Res>
 
 /// Create a copy of GroupDetailData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? status = null,Object? matchPercent = null,Object? applicationStatus = null,Object? ownerUserId = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? apartament = null,Object? conditions = null,Object? preferences = null,Object? participants = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? status = null,Object? matchPercent = null,Object? applicationStatus = null,Object? ownerUserId = null,Object? participantsCount = null,Object? maxParticipantsCount = null,Object? apartament = null,Object? conditions = null,Object? preferences = null,Object? participants = null,Object? createdAt = null,Object? updatedAt = null,Object? isFavorite = null,}) {
   return _then(_GroupDetailData(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -342,7 +344,8 @@ as GroupDetailConditionsData,preferences: null == preferences ? _self.preference
 as GroupDetailPreferencesData,participants: null == participants ? _self._participants : participants // ignore: cast_nullable_to_non_nullable
 as List<ParticipantData>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as String,
+as String,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

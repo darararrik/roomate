@@ -57,7 +57,7 @@ final class ChatProvider extends $NotifierProvider<Chat, ChatState> {
   }
 }
 
-String _$chatHash() => r'64295907c8f6c9e0f79b9f605cd0c007b287a231';
+String _$chatHash() => r'7a9a3ad01361479bd674dcb67d9c36cb3c06ecd2';
 
 final class ChatFamily extends $Family
     with

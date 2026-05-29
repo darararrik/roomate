@@ -17,6 +17,11 @@ IGroupsRepository groupsRepository(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
+IUploadsRepository uploadsRepository(Ref ref) {
+  return UploadsRepositoryImpl(ref.watch(uploadsDataSourceProvider));
+}
+
+@Riverpod(keepAlive: true)
 ILocationRepository locationRepository(Ref ref) {
   return LocationRepositoryImpl(ref.watch(locationDataSourceProvider));
 }

@@ -68,6 +68,11 @@ _CreateAdFormModel _$CreateAdFormModelFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String? ?? "",
       mainPhone: json['mainPhone'] as String? ?? "",
       additionalNumber: json['additionalNumber'] as String? ?? "",
+      imageUrls:
+          (json['imageUrls'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
     );
 
 Map<String, dynamic> _$CreateAdFormModelToJson(_CreateAdFormModel instance) =>
@@ -106,6 +111,7 @@ Map<String, dynamic> _$CreateAdFormModelToJson(_CreateAdFormModel instance) =>
       'description': instance.description,
       'mainPhone': instance.mainPhone,
       'additionalNumber': instance.additionalNumber,
+      'imageUrls': instance.imageUrls,
     };
 
 const _$CurrencyEnumMap = {

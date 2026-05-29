@@ -10,8 +10,6 @@ class ApplicationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = item.ad.imageUrls.isNotEmpty ? item.ad.imageUrls.first : '';
-
     return Material(
       color: context.colors.graysWhite,
       borderRadius: BorderRadius.circular(S.p28),
@@ -32,7 +30,7 @@ class ApplicationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: S.p12,
                   children: [
-                    _CardImage(imageUrl: imageUrl),
+                    NetworkAvatar(imageUrl: item.tenant.avatarUrl, size: S.p48),
                     Expanded(
                       child: Column(
                         spacing: S.p4,
@@ -77,36 +75,6 @@ class ApplicationCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-//TODO: вынести, поменять на cachedNetworkImage
-class _CardImage extends StatelessWidget {
-  const _CardImage({required this.imageUrl});
-
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(S.p12),
-      child: SizedBox(
-        width: S.p48,
-        height: S.p48,
-        child: imageUrl.isNotEmpty
-            ? Image.network(imageUrl, fit: BoxFit.cover, errorBuilder: (_, _, _) => _placeholder(context))
-            : _placeholder(context),
-      ),
-    );
-  }
-
-  Widget _placeholder(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(color: context.colors.graysLight100),
-      child: Center(
-        child: AppIcon(AppIcons.docs, color: context.colors.lightOrange100, width: S.p24, height: S.p24),
       ),
     );
   }

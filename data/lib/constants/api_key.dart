@@ -12,7 +12,10 @@ class ApiUrlConstants {
   static const ads = '/ads';
   static String adsId(String id) => '/ads/$id';
   static String adsApply(String adId) => '${adsId(adId)}/apply';
+  static String adsFavorite(String adId) => '${adsId(adId)}/favorite';
   static const myAds = '/my/ads';
+  static const myFavoriteAds = '/my/favorite-ads';
+  static const uploadImages = '/my/uploads/images';
   static const myAdApplications = '/my/ad-applications';
   static String myAdApplication(String applicationId) =>
       '$myAdApplications/$applicationId';
@@ -20,6 +23,13 @@ class ApiUrlConstants {
       '${myAdApplication(applicationId)}/reject';
   static String myAdApplicationAccept(String applicationId) =>
       '${myAdApplication(applicationId)}/accept';
+  static const myGroupApplications = '/my/groups/applications';
+  static String myGroupApplication(String applicationId) =>
+      '$myGroupApplications/$applicationId';
+  static String myGroupApplicationReject(String applicationId) =>
+      '${myGroupApplication(applicationId)}/reject';
+  static String myGroupApplicationAccept(String applicationId) =>
+      '${myGroupApplication(applicationId)}/accept';
 
   static const filters = '/ads/filters';
   static const groups = '/groups';

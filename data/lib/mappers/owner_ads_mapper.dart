@@ -2,12 +2,12 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class OwnerAdsMapper {
-  static MyAdModel toMyAdModel(MyAdData dto) {
+  static MyAdModel toMyAdModel(MyAdData dto, {String baseUrl = ''}) {
     return MyAdModel(
       id: dto.id,
       title: dto.title,
       description: dto.description,
-      imageUrls: dto.imageUrls,
+      imageUrls: resolveBackendMediaUrls(dto.imageUrls, baseUrl: baseUrl),
       price: dto.price,
       roomsCount: dto.roomsCount,
       area: dto.area,
@@ -18,7 +18,10 @@ class OwnerAdsMapper {
     );
   }
 
-  static AdApplicationModel toApplicationModel(AdApplicationData dto) {
+  static AdApplicationModel toApplicationModel(
+    AdApplicationData dto, {
+    String baseUrl = '',
+  }) {
     final ad = dto.ad ?? const MyAdData();
     final tenant = TenantMapper.toModel(dto.tenant);
 
@@ -26,13 +29,14 @@ class OwnerAdsMapper {
       id: dto.id,
       status: AdApplicationStatus.fromValue(dto.status),
       createdAt: dto.createdAt,
-      ad: toMyAdModel(ad),
+      ad: toMyAdModel(ad, baseUrl: baseUrl),
       tenant: tenant,
     );
   }
 
   static AdApplicationDetailModel toApplicationDetailModel(
     AdApplicationData dto,
+    {String baseUrl = ''}
   ) {
     final ad = dto.ad ?? const MyAdData();
 
@@ -41,7 +45,7 @@ class OwnerAdsMapper {
       status: AdApplicationStatus.fromValue(dto.status),
       createdAt: dto.createdAt,
       updatedAt: dto.updatedAt,
-      ad: toMyAdModel(ad),
+      ad: toMyAdModel(ad, baseUrl: baseUrl),
       tenant: TenantMapper.toModel(dto.tenant),
       tenantProfile: TenantMapper.toProfileModel(dto.tenantProfile),
     );

@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:roomate/app/splash/state/app_status_notifier.dart';
 import 'package:roomate/app/splash/state/auth_status.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
+
+import '../../lib.dart';
 
 @RoutePage()
 class SplashScreen extends ConsumerWidget {
@@ -42,17 +43,6 @@ class SplashScreen extends ConsumerWidget {
 
     ref.watch(appStatusProvider);
 
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Splash Screen',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF111111),
-          ),
-        ),
-      ),
-    );
+    return const Scaffold(body: Center(child: AppIcon(AppIcons.logo, width: 128, height: 128)));
   }
 }

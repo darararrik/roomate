@@ -50,7 +50,7 @@ final class ApartamentProvider
   }
 }
 
-String _$apartamentHash() => r'38c8571852d06e4f8c2f0a8cd088d47f8579d52f';
+String _$apartamentHash() => r'866edfca704dafc46bfbefe8e40dc4fb87351718';
 
 final class ApartamentFamily extends $Family
     with

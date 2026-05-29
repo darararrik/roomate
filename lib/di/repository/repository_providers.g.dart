@@ -104,6 +104,53 @@ final class GroupsRepositoryProvider
 
 String _$groupsRepositoryHash() => r'3a321dc39cc0099bc1b19062164f75001dc859fe';
 
+@ProviderFor(uploadsRepository)
+final uploadsRepositoryProvider = UploadsRepositoryProvider._();
+
+final class UploadsRepositoryProvider
+    extends
+        $FunctionalProvider<
+          IUploadsRepository,
+          IUploadsRepository,
+          IUploadsRepository
+        >
+    with $Provider<IUploadsRepository> {
+  UploadsRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'uploadsRepositoryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$uploadsRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<IUploadsRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  IUploadsRepository create(Ref ref) {
+    return uploadsRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(IUploadsRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<IUploadsRepository>(value),
+    );
+  }
+}
+
+String _$uploadsRepositoryHash() => r'c9e697a2cd7d37c99fd9b79028239bbf054dd4c7';
+
 @ProviderFor(locationRepository)
 final locationRepositoryProvider = LocationRepositoryProvider._();
 

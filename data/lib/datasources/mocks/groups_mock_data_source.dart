@@ -211,6 +211,48 @@ class GroupsMockDataSource implements GroupsDataSource {
   }
 
   @override
+  Future<Either<RemoteException, List<IncomingGroupApplicationModel>>>
+  fetchIncomingGroupApplications({String? status}) async {
+    await Future.delayed(const Duration(milliseconds: 250));
+
+    final items = _mockIncomingApplications()
+        .where((item) => status == null || item.status == status)
+        .map(GroupMapper.toIncomingApplicationModel)
+        .toList();
+
+    return Right(items);
+  }
+
+  @override
+  Future<Either<RemoteException, IncomingGroupApplicationDetailModel>>
+  fetchIncomingGroupApplicationDetails(String applicationId) async {
+    await Future.delayed(const Duration(milliseconds: 250));
+
+    final item = _mockIncomingApplications().firstWhere(
+      (application) => application.id == applicationId,
+      orElse: () => const IncomingGroupApplicationData(),
+    );
+
+    return Right(GroupMapper.toIncomingApplicationDetailModel(item));
+  }
+
+  @override
+  Future<Either<RemoteException, void>> rejectIncomingGroupApplication(
+    String applicationId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 250));
+    return const Right(null);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> acceptIncomingGroupApplication(
+    String applicationId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 250));
+    return const Right(null);
+  }
+
+  @override
   Future<Either<RemoteException, void>> addGroupToFavorites(
     String groupId,
   ) async {
@@ -232,5 +274,46 @@ class GroupsMockDataSource implements GroupsDataSource {
   ) async {
     await Future.delayed(const Duration(milliseconds: 300));
     return const Right(null);
+  }
+
+  List<IncomingGroupApplicationData> _mockIncomingApplications() {
+    final groupJson = GroupsMockJson.fetchGroups.isNotEmpty
+        ? GroupsMockJson.fetchGroups.first
+        : const <String, dynamic>{};
+
+    return [
+      IncomingGroupApplicationData.fromJson({
+        'id': 'group-app-1',
+        'status': 'pending',
+        'created_at': DateTime.now().toIso8601String(),
+        'updated_at': DateTime.now().toIso8601String(),
+        'group': groupJson,
+        'tenant': {
+          'id': 'participant-tenant-1',
+          'first_name': 'Марина',
+          'last_name': 'Петрова',
+          'age': 24,
+          'gender': 'female',
+          'city': 'Омск',
+          'photo':
+              'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80',
+          'phone': '+79999999999',
+        },
+        'tenant_profile': {
+          'about': 'Работаю удаленно, ценю порядок и спокойную атмосферу.',
+          'preferences': {
+            'communication': [2],
+            'sleep': [11],
+            'employment': [20],
+            'bad_habits': [30],
+            'guests': [41],
+            'noise_level': [50],
+            'cleaning': [60],
+            'pets': [70],
+            'pets_attitude': [80],
+          },
+        },
+      }),
+    ];
   }
 }

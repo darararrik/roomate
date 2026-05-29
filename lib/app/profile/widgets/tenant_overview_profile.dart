@@ -23,7 +23,14 @@ class TenantOverviewProfile extends ConsumerWidget {
               onTap: () => ref.read(globalProfileProvider.notifier).openMyAccount(),
             ),
             ProfileMenuItem(iconPath: AppIcons.docs, title: context.l10n.myTransactions, onTap: () {}),
-            ProfileMenuItem(iconPath: AppIcons.docs, title: context.l10n.applicattions, onTap: () {}),
+            ProfileMenuItem(
+              iconPath: AppIcons.docs,
+              title: context.l10n.applicattions,
+              onTap: () =>
+                  ref
+                      .read(globalProfileProvider.notifier)
+                      .openIncomingGroupApplications(),
+            ),
             ProfileMenuItem(
               iconPath: AppIcons.settings,
               title: context.l10n.settings,

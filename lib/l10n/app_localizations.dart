@@ -1132,6 +1132,12 @@ abstract class AppLocalizations {
   /// **'Создать новое объявление'**
   String get createNewAdvertisement;
 
+  /// No description provided for @createNewGroup.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать объявление группы'**
+  String get createNewGroup;
+
   /// No description provided for @propertyData.
   ///
   /// In ru, this message translates to:
@@ -2062,6 +2068,24 @@ abstract class AppLocalizations {
   /// **'Ошибка загрузки'**
   String get errorGeneric;
 
+  /// No description provided for @uploadPhotosMaxCountError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Можно загрузить не более 10 фотографий'**
+  String get uploadPhotosMaxCountError;
+
+  /// No description provided for @uploadPhotoMaxSizeError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фотография слишком большая. Выберите файл меньшего размера.'**
+  String get uploadPhotoMaxSizeError;
+
+  /// No description provided for @uploadPhotoReduceSizeError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось загрузить фотографию. Попробуйте выбрать изображение меньшего размера.'**
+  String get uploadPhotoReduceSizeError;
+
   /// No description provided for @yourGoal.
   ///
   /// In ru, this message translates to:
@@ -2121,6 +2145,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'По дате добавления (сначала старые)'**
   String get sortByDateAsc;
+
+  /// No description provided for @sortByMatchPercentDesc.
+  ///
+  /// In ru, this message translates to:
+  /// **'По совпадению (сначала выше)'**
+  String get sortByMatchPercentDesc;
 
   /// No description provided for @sortByGroupSizeDesc.
   ///

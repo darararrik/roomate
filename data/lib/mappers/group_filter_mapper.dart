@@ -43,6 +43,7 @@ abstract class GroupFilterMapper {
 
   static String _sortTypeToData(WhoSearchSortType sortType) {
     return switch (sortType) {
+      WhoSearchSortType.matchPercentDesc => 'match_percent',
       WhoSearchSortType.priceAsc || WhoSearchSortType.priceDesc => 'price',
       WhoSearchSortType.publishDateAsc ||
       WhoSearchSortType.publishDateDesc => 'publish_date',
@@ -53,6 +54,7 @@ abstract class GroupFilterMapper {
 
   static String _sortOrderToData(WhoSearchSortType sortType) {
     return switch (sortType) {
+      WhoSearchSortType.matchPercentDesc => 'desc',
       WhoSearchSortType.priceAsc ||
       WhoSearchSortType.publishDateAsc ||
       WhoSearchSortType.groupSizeAsc => 'asc',

@@ -37,13 +37,6 @@ class ProfileCard extends StatelessWidget {
                   size: S.p64,
                   borderRadius: BorderRadius.circular(S.p12),
                   backgroundColor: context.colors.orange,
-                  placeholder: const Center(
-                    child: AppIcon(
-                      AppIcons.defaultAvatar,
-                      width: S.p64,
-                      height: S.p64,
-                    ),
-                  ),
                 ),
                 const SizedBox(width: S.p12),
                 Expanded(

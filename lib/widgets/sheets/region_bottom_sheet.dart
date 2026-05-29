@@ -35,99 +35,94 @@ class RegionBottomSheet extends HookConsumerWidget {
             return BaseBottomSheet(
               title: context.l10n.selectRegion,
               child: Expanded(
-                child: Padding(
-                  padding: const P(horizontal: S.p24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const P(bottom: S.p12),
-                        child: InputWidget(
-                          controller: searchController,
-                          prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
-                          hintText: context.l10n.search,
-                        ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: const P(bottom: S.p12, horizontal: S.p24),
+                      child: InputWidget(
+                        controller: searchController,
+                        prefixIcon: AppIcon(AppIcons.search, color: context.colors.graysIcon500),
+                        hintText: context.l10n.search,
                       ),
-                      Expanded(
-                        child: ListView.separated(
-                          controller: controller,
-                          itemCount: filteredCities.length,
-                          separatorBuilder: (_, _) => const SizedBox(height: S.p4),
-                          itemBuilder: (context, index) {
-                            final city = filteredCities[index];
-                            final isSelected = effectiveSelectedCity?.id == city.id;
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                        controller: controller,
+                        itemCount: filteredCities.length,
+                        separatorBuilder: (_, _) => const SizedBox(height: S.p4),
+                        itemBuilder: (context, index) {
+                          final city = filteredCities[index];
+                          final isSelected = effectiveSelectedCity?.id == city.id;
 
-                            return InkWell(
-                              onTap: () => selectedCity.value = city,
-                              child: Padding(
-                                padding: const P(all: S.p12),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
+                          return InkWell(
+                            onTap: () => selectedCity.value = city,
+                            child: Padding(
+                              padding: const P(vertical: S.p12, horizontal: S.p36),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          city.title,
+                                          style: context.typography.bodyDescription.copyWith(height: 17 / 14),
+                                        ),
+                                        if (city.region.isNotEmpty) ...[
+                                          const SizedBox(height: S.p4),
                                           Text(
-                                            city.title,
+                                            city.region,
                                             style: context.typography.bodyDescription.copyWith(
+                                              color: context.colors.graysText400,
                                               height: 17 / 14,
                                             ),
                                           ),
-                                          if (city.region.isNotEmpty) ...[
-                                            const SizedBox(height: S.p4),
-                                            Text(
-                                              city.region,
-                                              style: context.typography.bodyDescription.copyWith(
-                                                color: context.colors.graysText400,
-                                                height: 17 / 14,
-                                              ),
-                                            ),
-                                          ],
                                         ],
-                                      ),
+                                      ],
                                     ),
-                                    SelectionButton(isSelected: isSelected, isRadio: true),
-                                  ],
-                                ),
+                                  ),
+                                  SelectionButton(isSelected: isSelected, isRadio: true),
+                                ],
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
-                      Padding(
-                        padding: const P(top: S.p16),
-                        child: PrimaryButton(
-                          text: context.l10n.apply,
-                          onPressed: () async {
-                            final city = selectedCity.value ?? currentCity;
-                            if (city == null) {
-                              Navigator.of(context).pop();
-                              return;
-                            }
+                    ),
+                    Padding(
+                      padding: const P(top: S.p16),
+                      child: PrimaryButton(
+                        text: context.l10n.apply,
+                        onPressed: () async {
+                          final city = selectedCity.value ?? currentCity;
+                          if (city == null) {
+                            Navigator.of(context).pop();
+                            return;
+                          }
 
-                            if (onCitySelected != null) {
-                              await onCitySelected!(city);
-
-                              if (!context.mounted) return;
-                              Navigator.of(context).pop();
-                              return;
-                            }
-
-                            final error = await ref
-                                .read(globalProfileProvider.notifier)
-                                .updateProfile(city: city.title, cityFiasId: city.fiasId);
+                          if (onCitySelected != null) {
+                            await onCitySelected!(city);
 
                             if (!context.mounted) return;
+                            Navigator.of(context).pop();
+                            return;
+                          }
 
-                            if (error == null) {
-                              Navigator.of(context).pop();
-                            }
-                          },
-                        ),
+                          final error = await ref
+                              .read(globalProfileProvider.notifier)
+                              .updateProfile(city: city.title, cityFiasId: city.fiasId);
+
+                          if (!context.mounted) return;
+
+                          if (error == null) {
+                            Navigator.of(context).pop();
+                          }
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             );
@@ -154,10 +149,7 @@ class RegionBottomSheet extends HookConsumerWidget {
     if (query.isEmpty) return cities;
 
     return cities
-        .where(
-          (city) =>
-              city.title.toLowerCase().contains(query) || city.region.toLowerCase().contains(query),
-        )
+        .where((city) => city.title.toLowerCase().contains(query) || city.region.toLowerCase().contains(query))
         .toList(growable: false);
   }
 }

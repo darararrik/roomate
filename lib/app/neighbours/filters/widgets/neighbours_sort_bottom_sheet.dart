@@ -15,6 +15,13 @@ class NeighboursSortBottomSheet extends HookConsumerWidget {
     final selectedSortType = useState(currentSortType);
     final sortOptions = [
       _SortOption(
+        title: whoSearchSortTypeTitle(
+          context,
+          WhoSearchSortType.matchPercentDesc,
+        ),
+        type: WhoSearchSortType.matchPercentDesc,
+      ),
+      _SortOption(
         title: context.l10n.sortByPriceAsc,
         type: WhoSearchSortType.priceAsc,
       ),
@@ -93,6 +100,21 @@ class NeighboursSortBottomSheet extends HookConsumerWidget {
       ),
     );
   }
+}
+
+String whoSearchSortTypeTitle(
+  BuildContext context,
+  WhoSearchSortType sortType,
+) {
+  return switch (sortType) {
+    WhoSearchSortType.matchPercentDesc => context.l10n.sortByMatchPercentDesc,
+    WhoSearchSortType.priceAsc => context.l10n.sortByPriceAsc,
+    WhoSearchSortType.priceDesc => context.l10n.sortByPriceDesc,
+    WhoSearchSortType.publishDateDesc => context.l10n.sortByDateDesc,
+    WhoSearchSortType.publishDateAsc => context.l10n.sortByDateAsc,
+    WhoSearchSortType.groupSizeDesc => context.l10n.sortByGroupSizeDesc,
+    WhoSearchSortType.groupSizeAsc => context.l10n.sortByGroupSizeAsc,
+  };
 }
 
 class _SortOption {

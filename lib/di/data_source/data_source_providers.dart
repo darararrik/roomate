@@ -31,6 +31,14 @@ GroupsDataSource groupsDataSource(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
+UploadsDataSource uploadsDataSource(Ref ref) {
+  if (ref.watch(configProvider).useMocks) {
+    return UploadsMockDataSource();
+  }
+  return UploadsRemoteDataSource(ref.watch(apiClientProvider));
+}
+
+@Riverpod(keepAlive: true)
 LocationDataSource locationDataSource(Ref ref) {
   if (ref.watch(configProvider).useMocks) {
     return LocationCatalogMockDataSource();

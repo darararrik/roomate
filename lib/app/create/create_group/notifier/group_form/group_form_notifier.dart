@@ -205,6 +205,16 @@ class GroupFormNotifier extends _$GroupFormNotifier {
   void updateDescription(String value) =>
       state = state.copyWith(description: value);
 
+  void setImageUrls(List<String> urls) =>
+      state = state.copyWith(imageUrls: urls);
+
+  void addImageUrl(String url) =>
+      state = state.copyWith(imageUrls: [...state.imageUrls, url]);
+
+  void removeImageUrl(String url) => state = state.copyWith(
+    imageUrls: state.imageUrls.where((item) => item != url).toList(),
+  );
+
   Future<RemoteException?> createGroup() async {
     final draftService = ref.read(createDraftServiceProvider);
     final result = await ref.read(groupsRepositoryProvider).createGroup(state);

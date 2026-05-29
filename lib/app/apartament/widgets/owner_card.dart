@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
-
+import 'package:flutter/material.dart';
 import 'package:roomate/lib.dart';
 
 class OwnerCard extends StatelessWidget {
@@ -21,39 +19,17 @@ class OwnerCard extends StatelessWidget {
         padding: const P(vertical: S.p20, horizontal: S.p12),
         child: Row(
           children: [
-            DecoratedBox(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [Color(0xFFF7AD95), Color(0xFFFF5343)],
-                ),
-              ),
-              child: Padding(
-                padding: const P(all: S.p14),
-                child: AppIcon(
-                  AppIcons.defaultAvatar,
-                  width: S.p24,
-                  height: S.p24,
-                  color: context.colors.graysWhite,
-                ),
-              ),
-            ),
+            const NetworkAvatar(imageUrl: '', size: S.p52),
             const SizedBox(width: S.p12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    apartment.name,
-                    style: context.typography.headline2,
-                    softWrap: true,
-                  ),
+                  Text(apartment.name, style: context.typography.headline2, softWrap: true),
                   const SizedBox(height: S.p12),
                   Text(
                     apartment.role,
-                    style: context.typography.bodyDescription.copyWith(
-                      color: context.colors.graysText700,
-                    ),
+                    style: context.typography.bodyDescription.copyWith(color: context.colors.graysText700),
                     softWrap: true,
                   ),
                 ],

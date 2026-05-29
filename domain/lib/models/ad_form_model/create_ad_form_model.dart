@@ -119,6 +119,9 @@ sealed class CreateAdFormModel with _$CreateAdFormModel {
 
     /// Дополнительный номер телефона
     @Default("") String additionalNumber,
+
+    /// Загруженные URL фотографий
+    @Default(<String>[]) List<String> imageUrls,
   }) = _CreateAdFormModel;
 
   factory CreateAdFormModel.fromJson(Map<String, dynamic> json) =>

@@ -36,13 +36,13 @@ class ApartamnetScreen extends ConsumerWidget {
                 onPreviousImagePressed: notifier.onPreviousImagePressed,
                 onNextImagePressed: notifier.onNextImagePressed,
                 centerAction: Icon(Icons.play_arrow_rounded, color: colors.graysWhite, size: S.p28),
-                actions: [
+                actions: const [
                   IconButtonWidget(
                     icon: AppIcons.more,
                     radius: S.p32,
                     size: S.p32,
                     iconSize: S.p32,
-                    onPressed: () => notifier.onMorePressed(context),
+                    // onPressed: () => notifier.onMorePressed(context),
                   ),
                 ],
               ),
@@ -74,7 +74,9 @@ class ApartamnetScreen extends ConsumerWidget {
                         ),
                         DetailPriceAndFavoriteIcon(
                           title: "${apartment.price} ${context.l10n.currencyPerMonth}",
-                          onFavoritePressed: notifier.onFavoritePressed,
+                          onFavoritePressed: () {
+                            notifier.onFavoritePressed();
+                          },
                           isFavorite: apartament.isFavorite,
                         ),
                         Text(apartment.title, style: context.typography.headline1, softWrap: true),

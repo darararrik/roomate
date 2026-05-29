@@ -32,18 +32,11 @@ class MyAdCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   NetworkAvatar(
+                    //TODO: сделай плейсхолдер для квартир бзе фото
                     imageUrl: imageUrl,
                     size: S.p64,
                     borderRadius: BorderRadius.circular(S.p12),
                     backgroundColor: context.colors.graysLight100,
-                    placeholder: Center(
-                      child: AppIcon(
-                        AppIcons.docs,
-                        color: context.colors.lightOrange100,
-                        width: S.p24,
-                        height: S.p24,
-                      ),
-                    ),
                   ),
                   Expanded(
                     child: Column(
@@ -56,23 +49,16 @@ class MyAdCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        Text(
-                          '${ad.price} ${context.l10n.currencyPerMonth}',
-                          style: context.typography.bodyDescription,
-                        ),
+                        Text('${ad.price} ${context.l10n.currencyPerMonth}', style: context.typography.bodyDescription),
                         Text(
                           '${ad.roomsCount}, ${ad.area}, ${context.l10n.floor} ${ad.floor}/${ad.totalFloor}',
-                          style: context.typography.bodySmall.copyWith(
-                            color: context.colors.graysText400,
-                          ),
+                          style: context.typography.bodySmall.copyWith(color: context.colors.graysText400),
                         ),
                         Text(
                           ad.address,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: context.typography.bodySmall.copyWith(
-                            color: context.colors.graysText400,
-                          ),
+                          style: context.typography.bodySmall.copyWith(color: context.colors.graysText400),
                         ),
                       ],
                     ),
@@ -81,10 +67,7 @@ class MyAdCard extends StatelessWidget {
 
                   //TODO: заменить иконку и виджет с макета
                   //и сдела боттом щит с Отправитт в архив и удалить
-                  Icon(
-                    Icons.more_vert_rounded,
-                    color: context.colors.graysIcon500,
-                  ),
+                  Icon(Icons.more_vert_rounded, color: context.colors.graysIcon500),
                 ],
               ),
             ),

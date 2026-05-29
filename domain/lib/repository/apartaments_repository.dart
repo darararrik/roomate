@@ -11,6 +11,12 @@ abstract interface class IApartamentsRepository {
   Future<Either<RemoteException, FilterModel>> fetchFilters();
   Future<Either<RemoteException, AdFormOptionsModel>> fetchAdFormOptions();
   Future<Either<RemoteException, void>> createAd(CreateAdFormModel request);
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>>
+  fetchFavoriteApartments();
+  Future<Either<RemoteException, void>> addApartmentToFavorites(String adId);
+  Future<Either<RemoteException, void>> removeApartmentFromFavorites(
+    String adId,
+  );
   Future<Either<RemoteException, AdApplicationSubmitModel>> applyToAd(
     String adId,
   );

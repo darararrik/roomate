@@ -40,6 +40,14 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: MyAdApplicationDetailRoute.page),
+    AutoRoute(
+      page: GroupApplicationsTabViewRoute.page,
+      children: [
+        AutoRoute(page: NewGroupApplicationsRoute.page, initial: true),
+        AutoRoute(page: ArchivedGroupApplicationsRoute.page),
+      ],
+    ),
+    AutoRoute(page: MyGroupApplicationDetailRoute.page),
     AutoRoute(page: NeighboursRoute.page),
     AutoRoute(page: CoworkingRoute.page),
     AutoRoute(page: ChatRoute.page),

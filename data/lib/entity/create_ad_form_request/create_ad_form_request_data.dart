@@ -41,6 +41,7 @@ sealed class CreateAdFormRequestData with _$CreateAdFormRequestData {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'main_phone') String? mainPhone,
     @JsonKey(name: 'additional_number') String? additionalNumber,
+    @JsonKey(name: 'image_urls') List<String>? imageUrls,
   }) = _CreateAdFormRequestData;
   factory CreateAdFormRequestData.fromJson(Map<String, dynamic> json) =>
       _$CreateAdFormRequestDataFromJson(json);

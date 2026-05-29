@@ -27,6 +27,24 @@ class ApartamentsRepositoryImpl implements IApartamentsRepository {
   }
 
   @override
+  Future<Either<RemoteException, List<ApartamentPreviewModel>>>
+  fetchFavoriteApartments() {
+    return _dataSource.fetchFavoriteApartments();
+  }
+
+  @override
+  Future<Either<RemoteException, void>> addApartmentToFavorites(String adId) {
+    return _dataSource.addApartmentToFavorites(adId);
+  }
+
+  @override
+  Future<Either<RemoteException, void>> removeApartmentFromFavorites(
+    String adId,
+  ) {
+    return _dataSource.removeApartmentFromFavorites(adId);
+  }
+
+  @override
   Future<Either<RemoteException, AdApplicationSubmitModel>> applyToAd(
     String adId,
   ) {

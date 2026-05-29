@@ -38,6 +38,7 @@ _GroupDetailData _$GroupDetailDataFromJson(Map<String, dynamic> json) =>
           const <ParticipantData>[],
       createdAt: json['created_at'] as String? ?? '',
       updatedAt: json['updated_at'] as String? ?? '',
+      isFavorite: json['favorite'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$GroupDetailDataToJson(_GroupDetailData instance) =>
@@ -57,6 +58,7 @@ Map<String, dynamic> _$GroupDetailDataToJson(_GroupDetailData instance) =>
       'participants': instance.participants,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
+      'favorite': instance.isFavorite,
     };
 
 _GroupDetailConditionsData _$GroupDetailConditionsDataFromJson(

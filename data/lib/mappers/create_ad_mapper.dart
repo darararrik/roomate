@@ -38,6 +38,7 @@ abstract class CreateAdFormMapper {
       description: model.description,
       mainPhone: model.mainPhone,
       additionalNumber: model.additionalNumber,
+      imageUrls: model.imageUrls,
     );
   }
 
@@ -74,7 +75,7 @@ abstract class CreateAdFormMapper {
           ? _buildFallbackTitle(request)
           : request.title!.trim(),
       description: (request.description ?? '').trim(),
-      imageUrls: const [],
+      imageUrls: request.imageUrls ?? const [],
       isVerification: false,
       price: _formatNumber(request.cost ?? 0),
       roomsCount:

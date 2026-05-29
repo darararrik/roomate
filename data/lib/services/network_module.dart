@@ -3,11 +3,7 @@ import 'package:talker/talker.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 
 class NetworkModule {
-  static Dio createDio({
-    required String baseUrl,
-    required Talker talker,
-    Interceptor? authInterceptor,
-  }) {
+  static Dio createDio({required String baseUrl, required Talker talker, Interceptor? authInterceptor}) {
     final dio = Dio(
       BaseOptions(
         baseUrl: baseUrl,

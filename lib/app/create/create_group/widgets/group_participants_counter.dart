@@ -17,19 +17,16 @@ class GroupParticipantsCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colors.graysLight50,
-        borderRadius: BorderRadius.circular(S.p12),
-      ),
+      decoration: BoxDecoration(color: context.colors.graysLight50, borderRadius: BorderRadius.circular(S.p12)),
       child: Padding(
         padding: const P(all: S.p12),
         child: Row(
           spacing: S.p12,
           children: [
-            GestureDetector(onTap: () {}, child: const Icon(Icons.remove_rounded)),
+            GestureDetector(onTap: onMinusPressed, child: const Icon(Icons.remove_rounded)),
             Text('$participantsCount', style: context.typography.headline1),
             GestureDetector(
-              onTap: () {},
+              onTap: onPlusPressed,
               child: Icon(Icons.add_rounded, color: colors.orange),
             ),
           ],

@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:roomate/lib.dart';
 
 extension BuildContextX on BuildContext {
@@ -11,6 +9,21 @@ extension BuildContextX on BuildContext {
   AppTypography get typography => Theme.of(this).extension<AppTypography>()!;
   ThemeData get appTheme => Theme.of(this);
   AppLocalizations get l10n => AppLocalizations.of(this)!;
+}
+
+extension StringGendreX on String {
+  String get toDisplayName {
+    switch (this) {
+      case 'male':
+        return 'Мужской';
+      case 'female':
+        return 'Женский';
+      case 'other':
+        return 'Другой';
+      default:
+        return this;
+    }
+  }
 }
 
 extension CurrencyX on Currency {
@@ -32,20 +45,7 @@ extension DateTimeX on DateTime {
   }
 
   String toRuLongDateString() {
-    const months = [
-      'янв.',
-      'февр.',
-      'мар.',
-      'апр.',
-      'мая',
-      'июн.',
-      'июл.',
-      'авг.',
-      'сент.',
-      'окт.',
-      'нояб.',
-      'дек.',
-    ];
+    const months = ['янв.', 'февр.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сент.', 'окт.', 'нояб.', 'дек.'];
     return '$day ${months[month - 1]}, $year г.';
   }
 

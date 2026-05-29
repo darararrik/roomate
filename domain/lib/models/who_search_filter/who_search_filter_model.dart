@@ -3,7 +3,15 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'who_search_filter_model.freezed.dart';
 
-enum WhoSearchSortType { priceAsc, priceDesc, publishDateDesc, publishDateAsc, groupSizeDesc, groupSizeAsc }
+enum WhoSearchSortType {
+  matchPercentDesc,
+  priceAsc,
+  priceDesc,
+  publishDateDesc,
+  publishDateAsc,
+  groupSizeDesc,
+  groupSizeAsc,
+}
 
 @freezed
 sealed class WhoSearchFilterModel with _$WhoSearchFilterModel {
@@ -27,7 +35,7 @@ sealed class WhoSearchFilterModel with _$WhoSearchFilterModel {
     @Default(false) bool partnerAllowed,
     @Default(false) bool petsAllowed,
     @Default(false) bool smokingAllowed,
-    @Default(WhoSearchSortType.publishDateDesc) WhoSearchSortType sortType,
+    @Default(WhoSearchSortType.matchPercentDesc) WhoSearchSortType sortType,
 
     @Default('') String locationTitle,
     @Default('') String addressQuery,

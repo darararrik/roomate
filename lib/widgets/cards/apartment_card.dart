@@ -1,18 +1,11 @@
-import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
 import 'package:roomate/lib.dart';
 
 class ApartmentCard extends HookWidget {
-  const ApartmentCard({
-    super.key,
-    required this.apartment,
-    required this.isFavorite,
-    this.onTap,
-    this.onFavoriteTap,
-  });
+  const ApartmentCard({super.key, required this.apartment, required this.isFavorite, this.onTap, this.onFavoriteTap});
 
   final ApartamentPreviewModel apartment;
   final bool isFavorite;
@@ -45,9 +38,7 @@ class ApartmentCard extends HookWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(S.p12),
-                ),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(S.p12)),
                 child: SizedBox(
                   height: S.p163,
                   child: Stack(
@@ -60,18 +51,15 @@ class ApartmentCard extends HookWidget {
                           return Stack(
                             fit: StackFit.expand,
                             children: [
-                              Image.network(
-                                imageUrls[index],
+                              CachedNetworkImage(
+                                imageUrl: imageUrls[index],
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, _, _) => DecoratedBox(
+                                errorWidget: (_, _, _) => DecoratedBox(
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight,
-                                      colors: [
-                                        colors.lightOrange100,
-                                        colors.graysLight100,
-                                      ],
+                                      colors: [colors.lightOrange100, colors.graysLight100],
                                     ),
                                   ),
                                 ),
@@ -82,13 +70,9 @@ class ApartmentCard extends HookWidget {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      colors.opacityBlack60.withValues(
-                                        alpha: .08,
-                                      ),
+                                      colors.opacityBlack60.withValues(alpha: .08),
                                       Colors.transparent,
-                                      colors.opacityBlack60.withValues(
-                                        alpha: .28,
-                                      ),
+                                      colors.opacityBlack60.withValues(alpha: .28),
                                     ],
                                   ),
                                 ),
@@ -110,20 +94,12 @@ class ApartmentCard extends HookWidget {
 
                               return AnimatedContainer(
                                 duration: const Duration(milliseconds: 180),
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: S.p4,
-                                ),
+                                margin: const EdgeInsets.symmetric(horizontal: S.p4),
                                 width: isActive ? S.p20 : S.p6,
                                 height: S.p6,
                                 decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                    .circular(S.p12),
-                                  ),
-                                  color: isActive
-                                      ? colors.graysWhite
-                                      : colors.graysWhite.withValues(
-                                          alpha: .45,
-                                        ),
+                                  borderRadius: const BorderRadius.all(.circular(S.p12)),
+                                  color: isActive ? colors.graysWhite : colors.graysWhite.withValues(alpha: .45),
                                 ),
                               );
                             }),
@@ -150,9 +126,7 @@ class ApartmentCard extends HookWidget {
                         IconButtonWidget(
                           icon: AppIcons.favourite,
                           onPressed: onFavoriteTap,
-                          iconColor: isFavorite
-                              ? colors.orange
-                              : colors.graysIcon500,
+                          iconColor: isFavorite ? colors.orange : colors.graysIcon500,
                           size: S.p24,
                           iconSize: S.p24,
                         ),
@@ -162,12 +136,7 @@ class ApartmentCard extends HookWidget {
                       "${apartment.roomsCount} ${context.l10n.apartmentRoomsShort}, ${apartment.area}${context.l10n.squareMeters}, ${context.l10n.floor} ${apartment.floor}/${apartment.totalFloor}",
                       style: context.typography.bodyDescription,
                     ),
-                    Text(
-                      apartment.address,
-                      style: context.typography.bodySmall.copyWith(
-                        color: colors.graysText400,
-                      ),
-                    ),
+                    Text(apartment.address, style: context.typography.bodySmall.copyWith(color: colors.graysText400)),
                   ],
                 ),
               ),

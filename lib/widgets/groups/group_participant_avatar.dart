@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/lib.dart';
 
 class GroupParticipantAvatar extends StatelessWidget {
@@ -19,14 +18,6 @@ class GroupParticipantAvatar extends StatelessWidget {
       size: size,
       shape: BoxShape.circle,
       backgroundColor: context.colors.graysLight100,
-      placeholder: Center(
-        child: AppIcon(
-          AppIcons.defaultAvatar,
-          width: size / 2,
-          height: size / 2,
-          color: context.colors.graysText400,
-        ),
-      ),
     );
   }
 }

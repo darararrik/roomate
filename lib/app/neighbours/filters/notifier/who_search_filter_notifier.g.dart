@@ -50,6 +50,57 @@ final class FiltersNeighboursProvider
 
 String _$filtersNeighboursHash() => r'4f5786711b7d55a5bcda8cefc1361327216bb863';
 
+@ProviderFor(whoSearchFilterLocationViewModel)
+final whoSearchFilterLocationViewModelProvider =
+    WhoSearchFilterLocationViewModelProvider._();
+
+final class WhoSearchFilterLocationViewModelProvider
+    extends
+        $FunctionalProvider<
+          WhoSearchFilterLocationViewModel,
+          WhoSearchFilterLocationViewModel,
+          WhoSearchFilterLocationViewModel
+        >
+    with $Provider<WhoSearchFilterLocationViewModel> {
+  WhoSearchFilterLocationViewModelProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'whoSearchFilterLocationViewModelProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$whoSearchFilterLocationViewModelHash();
+
+  @$internal
+  @override
+  $ProviderElement<WhoSearchFilterLocationViewModel> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WhoSearchFilterLocationViewModel create(Ref ref) {
+    return whoSearchFilterLocationViewModel(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WhoSearchFilterLocationViewModel value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WhoSearchFilterLocationViewModel>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$whoSearchFilterLocationViewModelHash() =>
+    r'c5b0284871e2ba9d8f37731a204fe614a0abc67f';
+
 @ProviderFor(WhoSearchFilterNotifier)
 final whoSearchFilterProvider = WhoSearchFilterNotifierProvider._();
 

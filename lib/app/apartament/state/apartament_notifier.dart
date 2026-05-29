@@ -25,7 +25,10 @@ class Apartament extends _$Apartament {
     final hasImages = apartment.imageUrls.isNotEmpty;
     final imagesCount = hasImages ? apartment.imageUrls.length : 1;
     final isFavorite = ref.watch(
-      favoriteApartmentIdsProvider.select((ids) => ids.contains(apartment.id)),
+      favoritesProvider.select(
+        (state) =>
+            state.asData?.value.any((item) => item.id == apartment.id) ?? false,
+      ),
     );
 
     return ApartamentState(
@@ -73,10 +76,13 @@ class Apartament extends _$Apartament {
     );
   }
 
-  void onFavoritePressed() {
-    ref
-        .read(favoriteApartmentIdsProvider.notifier)
-        .toggle(state.requireValue.apartment.id);
+  Future<void> onFavoritePressed() async {
+    final apartment = state.requireValue.apartment;
+    final favoritesNotifier = ref.read(favoritesProvider.notifier);
+    await favoritesNotifier.toggle(
+      apartment.id,
+      apartment: favoritesNotifier.fromDetails(apartment),
+    );
   }
 
   void onCallPressed() {

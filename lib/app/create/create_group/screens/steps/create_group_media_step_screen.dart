@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:roomate/app/create/common/notifier/media_upload_notifier.dart';
+import 'package:roomate/app/create/common/widgets/upload_images_grid.dart';
 import 'package:roomate/app/create/create_group/widgets/title.dart';
 import 'package:roomate/lib.dart';
 
@@ -10,9 +12,10 @@ class CreateGroupMediaStepScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final form = ref.watch(groupFormProvider);
     final flow = ref.watch(createGroupFlowProvider);
-    final notifier = ref.read(groupFormProvider.notifier);
+    final uploadNotifier = ref.read(
+      mediaUploadProvider(MediaUploadScope.group).notifier,
+    );
     final l10n = context.l10n;
 
     return ListView(
@@ -22,17 +25,12 @@ class CreateGroupMediaStepScreen extends ConsumerWidget {
         const SizedBox(height: S.p8),
         Text(
           l10n.createGroupMinPhotosCount,
-          style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+          style: context.typography.bodyDescription.copyWith(
+            color: context.colors.graysText400,
+          ),
         ),
         const SizedBox(height: S.p12),
-        if (form.imageUrls.isNotEmpty)
-          //TODO: реализовать нормальные карточкий 172х172 пикселя 1:1 фото, со стэком чтобы сделать иконку три точки в првом нижнем углу и там алерт дилаог  удалить опцияОТменить и Удалить
-          // DecoratedBox(
-          //   decoration: BoxDecoration(
-          //     image: DecorationImage(image: Image.network(form.imageUrls.first)),
-          //   ),
-          // ),
-          if (form.imageUrls.isNotEmpty) const SizedBox(height: S.p4),
+        const UploadImagesGrid(scope: MediaUploadScope.group),
         Padding(
           padding: const P(vertical: S.p4),
           child: OpacityButton(
@@ -46,8 +44,14 @@ class CreateGroupMediaStepScreen extends ConsumerWidget {
                 context: context,
                 builder: (context) => AddMediaSheet(
                   isPhoto: true,
-                  onCreatePhoto: notifier.addMockPhoto,
-                  onPickUpFromGallery: notifier.addMockPhoto,
+                  onCreatePhoto: () {
+                    Navigator.of(context).pop();
+                    uploadNotifier.capturePhoto();
+                  },
+                  onPickUpFromGallery: () {
+                    Navigator.of(context).pop();
+                    uploadNotifier.pickFromGallery();
+                  },
                 ),
               );
             },

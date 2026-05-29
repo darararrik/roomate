@@ -13,6 +13,20 @@ class ApiClient {
   final Dio _dio;
   final Talker _talker;
 
+  String get publicBaseUrl {
+    final uri = Uri.parse(_dio.options.baseUrl);
+    final segments = [...uri.pathSegments];
+    if (segments.isNotEmpty && segments.last == 'api') {
+      segments.removeLast();
+    }
+
+    final normalizedPath = segments.isEmpty ? '' : '/${segments.join('/')}';
+    return uri
+        .replace(path: normalizedPath)
+        .toString()
+        .replaceFirst(RegExp(r'/$'), '');
+  }
+
   Future<Either<RemoteException, T>> request<T>({
     required String path,
     required String method,
@@ -23,13 +37,22 @@ class ApiClient {
     ResponseTransformer<T>? transformer,
   }) async {
     try {
+      final isMultipart = body is FormData;
+      final requestHeaders = <String, String>{...?headers};
+      if (isMultipart) {
+        requestHeaders.remove('Content-Type');
+      }
+
       final response = await _dio.request(
         path,
         data: body,
         queryParameters: query,
         options: Options(
           method: method,
-          headers: headers,
+          headers: requestHeaders,
+          contentType: isMultipart
+              ? Headers.multipartFormDataContentType
+              : null,
           extra: {ApiKeyConstants.requiresAuth: needAuth},
         ),
       );

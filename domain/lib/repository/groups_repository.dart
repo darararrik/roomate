@@ -15,6 +15,16 @@ abstract interface class IGroupsRepository {
   Future<Either<RemoteException, GroupApplicationModel>> applyToGroup(
     String groupId,
   );
+  Future<Either<RemoteException, List<IncomingGroupApplicationModel>>>
+  fetchIncomingGroupApplications({AdApplicationStatus? status});
+  Future<Either<RemoteException, IncomingGroupApplicationDetailModel>>
+  fetchIncomingGroupApplicationDetails(String applicationId);
+  Future<Either<RemoteException, void>> rejectIncomingGroupApplication(
+    String applicationId,
+  );
+  Future<Either<RemoteException, void>> acceptIncomingGroupApplication(
+    String applicationId,
+  );
   Future<Either<RemoteException, void>> addGroupToFavorites(String groupId);
   Future<Either<RemoteException, void>> removeGroupFromFavorites(
     String groupId,

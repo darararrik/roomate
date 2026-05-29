@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,8 +14,10 @@ class RecentAdvertisementsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncState = ref.watch(homeProvider);
     final notifier = ref.read(homeProvider.notifier);
-    final favorites = ref.watch(favoriteApartmentIdsProvider);
-    final favoritesNotifier = ref.read(favoriteApartmentIdsProvider.notifier);
+    final favorites =
+        ref.watch(favoritesProvider).asData?.value ??
+        const <ApartamentPreviewModel>[];
+    final favoritesNotifier = ref.read(favoritesProvider.notifier);
 
     return SliverMainAxisGroup(
       slivers: [
@@ -34,8 +37,15 @@ class RecentAdvertisementsSection extends ConsumerWidget {
                   final apartment = apartaments[index];
                   return ApartmentCard(
                     apartment: apartment,
-                    isFavorite: favorites.contains(apartment.id),
-                    onFavoriteTap: () => favoritesNotifier.toggle(apartment.id),
+                    isFavorite: favorites.any(
+                      (item) => item.id == apartment.id,
+                    ),
+                    onFavoriteTap: () {
+                      favoritesNotifier.toggle(
+                        apartment.id,
+                        apartment: apartment,
+                      );
+                    },
                     onTap: () => notifier.openApartment(apartment),
                   );
                 },

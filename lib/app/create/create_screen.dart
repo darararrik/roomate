@@ -32,7 +32,7 @@ class CreateScreen extends ConsumerWidget {
             error: (_, _) => const ErrorView(),
             data: (draft) {
               return Padding(
-                padding: const P(horizontal: S.p16, top: S.p24),
+                padding: const P(horizontal: S.p16, top: S.p12),
                 child: Column(
                   spacing: S.p12,
                   children: [
@@ -43,7 +43,10 @@ class CreateScreen extends ConsumerWidget {
                         caption: notifier.draftSecondaryText(draft),
                         onTap: () => notifier.continueDraft(draft),
                       ),
-                    CreateActionCard(title: context.l10n.createNewAdvertisement, onTap: notifier.startNewCreation),
+                    CreateActionCard(
+                      title: profile.isOwner ? context.l10n.createNewAdvertisement : context.l10n.createNewGroup,
+                      onTap: notifier.startNewCreation,
+                    ),
                   ],
                 ),
               );

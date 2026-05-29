@@ -24,6 +24,7 @@ abstract class GroupDetailData with _$GroupDetailData {
     @JsonKey(name: 'participants') @Default(<ParticipantData>[]) List<ParticipantData> participants,
     @JsonKey(name: 'created_at') @Default('') String createdAt,
     @JsonKey(name: 'updated_at') @Default('') String updatedAt,
+    @JsonKey(name: 'favorite') @Default(false) bool isFavorite,
   }) = _GroupDetailData;
 
   factory GroupDetailData.fromJson(Map<String, dynamic> json) => _$GroupDetailDataFromJson(json);
