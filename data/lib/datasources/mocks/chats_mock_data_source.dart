@@ -8,6 +8,7 @@ class ChatsMockDataSource implements ChatsDataSource {
     ChatData(
       id: 'chat-1',
       title: 'Сергей О.',
+      participantsCount: 2,
       lastMessageText: 'Да, комната еще свободна',
       updatedAt: DateTime(2026, 5, 20, 18, 40),
       unreadCount: 1,
@@ -30,6 +31,7 @@ class ChatsMockDataSource implements ChatsDataSource {
     ChatData(
       id: 'chat-2',
       title: 'Анна П.',
+      participantsCount: 2,
       lastMessageText: 'Подъехать можно после 19:00',
       updatedAt: DateTime(2026, 5, 19, 12, 5),
       participant: const ChatParticipantData(
@@ -96,14 +98,26 @@ class ChatsMockDataSource implements ChatsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, List<ChatMessageData>>> fetchMessages(
+  Future<Either<RemoteException, ChatMessagesPageData>> fetchMessages(
     String chatId, {
     int limit = 50,
     String? before,
   }) async {
     await Future.delayed(const Duration(milliseconds: 150));
     final messages = _messages[chatId] ?? const <ChatMessageData>[];
-    return Right(List<ChatMessageData>.from(messages.take(limit)));
+    final chat = _chats.firstWhere(
+      (item) => item.id == chatId,
+      orElse: () => const ChatData(),
+    );
+
+    return Right(
+      ChatMessagesPageData(
+        chatId: chatId,
+        title: chat.title,
+        participantsCount: chat.participantsCount,
+        messages: List<ChatMessageData>.from(messages.take(limit)),
+      ),
+    );
   }
 
   @override

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatData {
 
- String get id; String get title; String get avatarUrl; String get lastMessageText; DateTime? get updatedAt; int get unreadCount; ChatParticipantData? get participant; ApartamentData? get apartament; ChatMessageData? get lastMessage;
+ String get id; String get title; String get avatarUrl; int get participantsCount; String get lastMessageText; DateTime? get updatedAt; int get unreadCount; ChatParticipantData? get participant; ApartamentData? get apartament; ChatMessageData? get lastMessage;
 /// Create a copy of ChatData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ChatDataCopyWith<ChatData> get copyWith => _$ChatDataCopyWithImpl<ChatData>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.participant, participant) || other.participant == participant)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.participant, participant) || other.participant == participant)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,avatarUrl,lastMessageText,updatedAt,unreadCount,participant,apartament,lastMessage);
+int get hashCode => Object.hash(runtimeType,id,title,avatarUrl,participantsCount,lastMessageText,updatedAt,unreadCount,participant,apartament,lastMessage);
 
 @override
 String toString() {
-  return 'ChatData(id: $id, title: $title, avatarUrl: $avatarUrl, lastMessageText: $lastMessageText, updatedAt: $updatedAt, unreadCount: $unreadCount, participant: $participant, apartament: $apartament, lastMessage: $lastMessage)';
+  return 'ChatData(id: $id, title: $title, avatarUrl: $avatarUrl, participantsCount: $participantsCount, lastMessageText: $lastMessageText, updatedAt: $updatedAt, unreadCount: $unreadCount, participant: $participant, apartament: $apartament, lastMessage: $lastMessage)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ChatDataCopyWith<$Res>  {
   factory $ChatDataCopyWith(ChatData value, $Res Function(ChatData) _then) = _$ChatDataCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String avatarUrl, String lastMessageText, DateTime? updatedAt, int unreadCount, ChatParticipantData? participant, ApartamentData? apartament, ChatMessageData? lastMessage
+ String id, String title, String avatarUrl, int participantsCount, String lastMessageText, DateTime? updatedAt, int unreadCount, ChatParticipantData? participant, ApartamentData? apartament, ChatMessageData? lastMessage
 });
 
 
@@ -62,12 +62,13 @@ class _$ChatDataCopyWithImpl<$Res>
 
 /// Create a copy of ChatData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? avatarUrl = null,Object? lastMessageText = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? participant = freezed,Object? apartament = freezed,Object? lastMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? avatarUrl = null,Object? participantsCount = null,Object? lastMessageText = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? participant = freezed,Object? apartament = freezed,Object? lastMessage = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
+as String,participantsCount: null == participantsCount ? _self.participantsCount : participantsCount // ignore: cast_nullable_to_non_nullable
+as int,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,participant: freezed == participant ? _self.participant : participant // ignore: cast_nullable_to_non_nullable
@@ -191,10 +192,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String avatarUrl,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ChatParticipantData? participant,  ApartamentData? apartament,  ChatMessageData? lastMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String avatarUrl,  int participantsCount,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ChatParticipantData? participant,  ApartamentData? apartament,  ChatMessageData? lastMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatData() when $default != null:
-return $default(_that.id,_that.title,_that.avatarUrl,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.participant,_that.apartament,_that.lastMessage);case _:
+return $default(_that.id,_that.title,_that.avatarUrl,_that.participantsCount,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.participant,_that.apartament,_that.lastMessage);case _:
   return orElse();
 
 }
@@ -212,10 +213,10 @@ return $default(_that.id,_that.title,_that.avatarUrl,_that.lastMessageText,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String avatarUrl,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ChatParticipantData? participant,  ApartamentData? apartament,  ChatMessageData? lastMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String avatarUrl,  int participantsCount,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ChatParticipantData? participant,  ApartamentData? apartament,  ChatMessageData? lastMessage)  $default,) {final _that = this;
 switch (_that) {
 case _ChatData():
-return $default(_that.id,_that.title,_that.avatarUrl,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.participant,_that.apartament,_that.lastMessage);}
+return $default(_that.id,_that.title,_that.avatarUrl,_that.participantsCount,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.participant,_that.apartament,_that.lastMessage);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -229,10 +230,10 @@ return $default(_that.id,_that.title,_that.avatarUrl,_that.lastMessageText,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String avatarUrl,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ChatParticipantData? participant,  ApartamentData? apartament,  ChatMessageData? lastMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String avatarUrl,  int participantsCount,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ChatParticipantData? participant,  ApartamentData? apartament,  ChatMessageData? lastMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatData() when $default != null:
-return $default(_that.id,_that.title,_that.avatarUrl,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.participant,_that.apartament,_that.lastMessage);case _:
+return $default(_that.id,_that.title,_that.avatarUrl,_that.participantsCount,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.participant,_that.apartament,_that.lastMessage);case _:
   return null;
 
 }
@@ -244,12 +245,13 @@ return $default(_that.id,_that.title,_that.avatarUrl,_that.lastMessageText,_that
 
 
 class _ChatData extends ChatData {
-  const _ChatData({this.id = '', this.title = '', this.avatarUrl = '', this.lastMessageText = '', this.updatedAt, this.unreadCount = 0, this.participant, this.apartament, this.lastMessage}): super._();
+  const _ChatData({this.id = '', this.title = '', this.avatarUrl = '', this.participantsCount = 0, this.lastMessageText = '', this.updatedAt, this.unreadCount = 0, this.participant, this.apartament, this.lastMessage}): super._();
   
 
 @override@JsonKey() final  String id;
 @override@JsonKey() final  String title;
 @override@JsonKey() final  String avatarUrl;
+@override@JsonKey() final  int participantsCount;
 @override@JsonKey() final  String lastMessageText;
 @override final  DateTime? updatedAt;
 @override@JsonKey() final  int unreadCount;
@@ -267,16 +269,16 @@ _$ChatDataCopyWith<_ChatData> get copyWith => __$ChatDataCopyWithImpl<_ChatData>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.participant, participant) || other.participant == participant)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatData&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.participant, participant) || other.participant == participant)&&(identical(other.apartament, apartament) || other.apartament == apartament)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,avatarUrl,lastMessageText,updatedAt,unreadCount,participant,apartament,lastMessage);
+int get hashCode => Object.hash(runtimeType,id,title,avatarUrl,participantsCount,lastMessageText,updatedAt,unreadCount,participant,apartament,lastMessage);
 
 @override
 String toString() {
-  return 'ChatData(id: $id, title: $title, avatarUrl: $avatarUrl, lastMessageText: $lastMessageText, updatedAt: $updatedAt, unreadCount: $unreadCount, participant: $participant, apartament: $apartament, lastMessage: $lastMessage)';
+  return 'ChatData(id: $id, title: $title, avatarUrl: $avatarUrl, participantsCount: $participantsCount, lastMessageText: $lastMessageText, updatedAt: $updatedAt, unreadCount: $unreadCount, participant: $participant, apartament: $apartament, lastMessage: $lastMessage)';
 }
 
 
@@ -287,7 +289,7 @@ abstract mixin class _$ChatDataCopyWith<$Res> implements $ChatDataCopyWith<$Res>
   factory _$ChatDataCopyWith(_ChatData value, $Res Function(_ChatData) _then) = __$ChatDataCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String avatarUrl, String lastMessageText, DateTime? updatedAt, int unreadCount, ChatParticipantData? participant, ApartamentData? apartament, ChatMessageData? lastMessage
+ String id, String title, String avatarUrl, int participantsCount, String lastMessageText, DateTime? updatedAt, int unreadCount, ChatParticipantData? participant, ApartamentData? apartament, ChatMessageData? lastMessage
 });
 
 
@@ -304,12 +306,13 @@ class __$ChatDataCopyWithImpl<$Res>
 
 /// Create a copy of ChatData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? avatarUrl = null,Object? lastMessageText = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? participant = freezed,Object? apartament = freezed,Object? lastMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? avatarUrl = null,Object? participantsCount = null,Object? lastMessageText = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? participant = freezed,Object? apartament = freezed,Object? lastMessage = freezed,}) {
   return _then(_ChatData(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
+as String,participantsCount: null == participantsCount ? _self.participantsCount : participantsCount // ignore: cast_nullable_to_non_nullable
+as int,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,participant: freezed == participant ? _self.participant : participant // ignore: cast_nullable_to_non_nullable

@@ -28,6 +28,8 @@ abstract class ChatMapper {
       avatarUrl: avatarUrl,
       participantId: participant?.id ?? data.lastMessage?.senderId ?? '',
       participantName: participant?.name ?? '',
+      participantsCount: data.participantsCount,
+      lastMessageSenderName: data.lastMessage?.senderName ?? '',
       lastMessageText: lastMessageText,
       updatedAt: data.updatedAt ?? data.lastMessage?.createdAt,
       unreadCount: data.unreadCount,
@@ -50,6 +52,20 @@ abstract class ChatMapper {
         baseUrl: baseUrl,
       ),
       createdAt: data.createdAt ?? DateTime.now(),
+    );
+  }
+
+  static ChatMessagesPageModel toMessagesPageModel(
+    ChatMessagesPageData data, {
+    String baseUrl = '',
+  }) {
+    return ChatMessagesPageModel(
+      chatId: data.chatId,
+      title: data.title,
+      participantsCount: data.participantsCount,
+      messages: data.messages
+          .map((item) => toMessageModel(item, baseUrl: baseUrl))
+          .toList(growable: false),
     );
   }
 

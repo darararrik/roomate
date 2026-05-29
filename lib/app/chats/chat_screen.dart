@@ -20,27 +20,36 @@ class ChatScreen extends ConsumerWidget {
 
     return asyncState.when(
       data: (state) {
-        final title = state.chat.title.trim().isNotEmpty
-            ? state.chat.title
-            : state.chat.apartament.address;
-
+        final title = state.chat.title;
+        final participantsText = _participantsText(
+          state.chat.participantsCount,
+        );
         return Scaffold(
           backgroundColor: colors.graysLight50,
           appBar: AppBar(
             centerTitle: true,
-            title: Text(title),
+            title: Column(
+              spacing: S.p4,
+              children: [
+                Text(title),
+                if (participantsText.isNotEmpty)
+                  Text(
+                    participantsText,
+                    style: context.typography.bodyDescription.copyWith(
+                      color: colors.graysText400,
+                    ),
+                  ),
+              ],
+            ),
             leading: const BB(),
           ),
           body: Column(
             children: [
-              _ChatListingHeader(
-                apartment: state.chat.apartament,
-                onApartmentPressed: notifier.onApartmentPressed,
-              ),
               Expanded(
                 child: chat_ui.Chat(
                   backgroundColor: colors.graysLight50,
                   builders: Builders(
+                    chatMessageBuilder: buildChatMessageItem,
                     textMessageBuilder: buildCustomTextMessage,
                     chatAnimatedListBuilder: (context, itemBuilder) {
                       return chat_ui.ChatAnimatedList(
@@ -146,77 +155,21 @@ class ChatScreen extends ConsumerWidget {
   }
 }
 
-class _ChatListingHeader extends StatelessWidget {
-  const _ChatListingHeader({
-    required this.apartment,
-    required this.onApartmentPressed,
-  });
-
-  final ApartamentPreviewModel apartment;
-  final VoidCallback onApartmentPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    final imageUrl = apartment.imageUrls.isNotEmpty
-        ? apartment.imageUrls.first
-        : '';
-    final priceText = apartment.price;
-    final roomsText = apartment.roomsCount;
-    final areaText = apartment.area;
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: colors.graysWhite,
-        boxShadow: [colors.shadow],
-      ),
-      child: Padding(
-        padding: const P(horizontal: S.p12, vertical: S.p12),
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: onApartmentPressed,
-          child: Row(
-            children: [
-              NetworkAvatar(
-                imageUrl: imageUrl,
-                size: S.p64,
-                borderRadius: BorderRadius.circular(S.p12),
-                backgroundColor: colors.graysLight100,
-              ),
-              const SizedBox(width: S.p12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '$priceText ${context.l10n.currencyPerMonth}',
-                      style: context.typography.bodyDescription,
-                    ),
-                    const SizedBox(height: S.p4),
-                    Text(
-                      '$roomsText, $areaText, ${context.l10n.floor} ${apartment.floor}/${apartment.totalFloor}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.typography.bodySmall.copyWith(
-                        color: colors.graysText400,
-                      ),
-                    ),
-                    const SizedBox(height: S.p4),
-                    Text(
-                      apartment.address,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.typography.bodySmall.copyWith(
-                        color: colors.graysText400,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+String _participantsText(int count) {
+  if (count <= 0) {
+    return '';
   }
+
+  final mod10 = count % 10;
+  final mod100 = count % 100;
+
+  if (mod10 == 1 && mod100 != 11) {
+    return '$count участник';
+  }
+
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
+    return '$count участника';
+  }
+
+  return '$count участников';
 }

@@ -4,7 +4,7 @@ import 'package:shared/shared.dart';
 
 abstract interface class ChatsDataSource {
   Future<Either<RemoteException, List<ChatData>>> fetchChats();
-  Future<Either<RemoteException, List<ChatMessageData>>> fetchMessages(
+  Future<Either<RemoteException, ChatMessagesPageData>> fetchMessages(
     String chatId, {
     int limit = 50,
     String? before,

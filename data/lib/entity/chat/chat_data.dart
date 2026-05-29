@@ -12,6 +12,7 @@ sealed class ChatData with _$ChatData {
     @Default('') String id,
     @Default('') String title,
     @Default('') String avatarUrl,
+    @Default(0) int participantsCount,
     @Default('') String lastMessageText,
     DateTime? updatedAt,
     @Default(0) int unreadCount,
@@ -41,6 +42,7 @@ sealed class ChatData with _$ChatData {
       id: _string(json['id'] ?? json['chat_id']),
       title: _string(json['title']),
       avatarUrl: _string(json['avatar_url']),
+      participantsCount: _int(json['participants_count']),
       lastMessageText: _string(
         json['last_message_text'] ??
             json['last_message_preview'] ??

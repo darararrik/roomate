@@ -24,8 +24,10 @@ sealed class ChatMessageData with _$ChatMessageData {
           json['user_id'] ??
           sender?['id'],
     );
-    final firstName = _string(sender?['first_name']);
-    final lastName = _string(sender?['last_name']);
+    final firstName = _string(
+      json['sender_first_name'] ?? sender?['first_name'],
+    );
+    final lastName = _string(json['sender_last_name'] ?? sender?['last_name']);
     final fallbackName = '$firstName $lastName'.trim();
 
     return ChatMessageData(
@@ -36,6 +38,7 @@ sealed class ChatMessageData with _$ChatMessageData {
       senderName: _string(
         json['sender_name'] ??
             json['author_name'] ??
+            json['sender_full_name'] ??
             sender?['full_name'] ??
             fallbackName,
       ),

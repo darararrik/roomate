@@ -11,6 +11,8 @@ sealed class ChatSummaryModel with _$ChatSummaryModel {
     @Default('') String avatarUrl,
     @Default('') String participantId,
     @Default('') String participantName,
+    @Default(0) int participantsCount,
+    @Default('') String lastMessageSenderName,
     @Default('') String lastMessageText,
     DateTime? updatedAt,
     @Default(0) int unreadCount,

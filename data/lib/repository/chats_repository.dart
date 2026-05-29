@@ -23,7 +23,7 @@ class ChatsRepositoryImpl implements IChatsRepository {
   }
 
   @override
-  Future<Either<RemoteException, List<ChatMessageModel>>> fetchMessages(
+  Future<Either<RemoteException, ChatMessagesPageModel>> fetchMessages(
     String chatId, {
     int limit = 50,
     String? before,
@@ -35,11 +35,7 @@ class ChatsRepositoryImpl implements IChatsRepository {
     );
     return result.fold(
       Left.new,
-      (items) => Right(
-        items
-            .map((item) => ChatMapper.toMessageModel(item, baseUrl: baseUrl))
-            .toList(growable: false),
-      ),
+      (page) => Right(ChatMapper.toMessagesPageModel(page, baseUrl: baseUrl)),
     );
   }
 

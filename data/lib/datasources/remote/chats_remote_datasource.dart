@@ -23,24 +23,19 @@ class ChatsRemoteDataSource implements ChatsDataSource {
   }
 
   @override
-  Future<Either<RemoteException, List<ChatMessageData>>> fetchMessages(
+  Future<Either<RemoteException, ChatMessagesPageData>> fetchMessages(
     String chatId, {
     int limit = 50,
     String? before,
   }) async {
-    final result = await _client.get<List<ChatMessageData>>(
+    final result = await _client.get<ChatMessagesPageData>(
       ApiUrlConstants.chatMessages(chatId),
       needAuth: true,
       query: {
         'limit': limit,
         if (before != null && before.trim().isNotEmpty) 'before': before,
       },
-      transformer: (json) => _parseList(
-        json,
-        keys: const ['items', 'messages'],
-        itemParser: (item) =>
-            ChatMessageData.fromJson(item as Map<String, dynamic>),
-      ),
+      transformer: (json) => _parseMessagesPage(json, chatId: chatId),
     );
 
     return result.fold(Left.new, Right.new);
@@ -102,5 +97,25 @@ class ChatsRemoteDataSource implements ChatsDataSource {
     }
 
     return ChatMessageData(createdAt: DateTime.now());
+  }
+
+  ChatMessagesPageData _parseMessagesPage(
+    dynamic json, {
+    required String chatId,
+  }) {
+    if (json is Map<String, dynamic>) {
+      return ChatMessagesPageData.fromJson(json);
+    }
+
+    if (json is List<dynamic>) {
+      return ChatMessagesPageData(
+        chatId: chatId,
+        messages: json
+            .map((item) => ChatMessageData.fromJson(item as Map<String, dynamic>))
+            .toList(growable: false),
+      );
+    }
+
+    return ChatMessagesPageData(chatId: chatId);
   }
 }

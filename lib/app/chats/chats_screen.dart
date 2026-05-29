@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 @RoutePage()
@@ -31,9 +30,7 @@ class ChatsScreen extends ConsumerWidget {
                         child: Text(
                           'История чатов пока пуста',
                           textAlign: TextAlign.center,
-                          style: context.typography.bodyDescription.copyWith(
-                            color: context.colors.graysText400,
-                          ),
+                          style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
                         ),
                       ),
                     ),
@@ -46,26 +43,15 @@ class ChatsScreen extends ConsumerWidget {
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final chat = chats[index];
                       return Padding(
-                        padding: EdgeInsets.only(
-                          bottom: index == chats.length - 1 ? 0 : S.p12,
-                        ),
-                        child: _ChatListTile(
-                          chat: chat,
-                          onTap: () => notifier.openChat(chat),
-                        ),
+                        padding: EdgeInsets.only(bottom: index == chats.length - 1 ? 0 : S.p12),
+                        child: _ChatListTile(chat: chat, onTap: () => notifier.openChat(chat)),
                       );
                     }, childCount: chats.length),
                   ),
                 );
               },
-              error: (error, _) => SliverFillRemaining(
-                hasScrollBody: false,
-                child: ErrorView(error: error),
-              ),
-              loading: () => const SliverFillRemaining(
-                hasScrollBody: false,
-                child: LoadingWidget(),
-              ),
+              error: (error, _) => SliverFillRemaining(hasScrollBody: false, child: ErrorView(error: error)),
+              loading: () => const SliverFillRemaining(hasScrollBody: false, child: LoadingWidget()),
             ),
           ],
         ),
@@ -96,59 +82,43 @@ class _ChatListTile extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              NetworkAvatar(
-                imageUrl: chat.avatarUrl,
-                size: S.p56,
-                shape: BoxShape.circle,
-              ),
+              NetworkAvatar(imageUrl: chat.avatarUrl, size: S.p56, shape: BoxShape.circle),
               const SizedBox(width: S.p12),
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: Text(
                             chat.title,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: context.typography.bodyDescription,
+                            style: context.typography.headline1,
                           ),
                         ),
                         if (updatedAt != null) ...[
-                          const SizedBox(width: S.p12),
                           Text(
                             _formatChatDate(updatedAt),
-                            style: context.typography.bodySmall.copyWith(
-                              color: colors.graysText400,
-                            ),
+                            style: context.typography.bodySmall.copyWith(color: colors.graysText400),
                           ),
                         ],
                       ],
                     ),
-                    const SizedBox(height: S.p4),
                     Text(
                       chat.apartament.address,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: context.typography.bodySmall.copyWith(
-                        color: colors.graysText400,
-                      ),
+                      style: context.typography.bodySmall.copyWith(color: colors.graysText400),
                     ),
-                    const SizedBox(height: S.p8),
                     Row(
                       children: [
-                        Expanded(
-                          child: Text(
-                            chat.lastMessageText,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.typography.bodySmall.copyWith(
-                              color: colors.graysText700,
-                            ),
-                          ),
+                        Text("${chat.lastMessageSenderName}: ", maxLines: 1, style: context.typography.bodyDescription),
+                        Text(
+                          chat.lastMessageText,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.typography.bodyDescription.copyWith(color: colors.graysText700),
                         ),
                         if (chat.unreadCount > 0) ...[
                           const SizedBox(width: S.p12),
@@ -168,10 +138,7 @@ class _ChatListTile extends StatelessWidget {
 
   String _formatChatDate(DateTime value) {
     final now = DateTime.now();
-    final isToday =
-        value.year == now.year &&
-        value.month == now.month &&
-        value.day == now.day;
+    final isToday = value.year == now.year && value.month == now.month && value.day == now.day;
 
     return isToday ? value.toNormalTimeString() : value.toFormattedString();
   }
