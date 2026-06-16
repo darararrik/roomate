@@ -23,6 +23,7 @@ sealed class ApartamentModel with _$ApartamentModel {
     @Default('') String district,
     @Default('') String name,
     @Default('') String role,
+    @Default('') String applicationStatus,
     @Default('') String publishDate,
     @Default('') String totalViewers,
     @Default(null) ApartmentLayout? layout,

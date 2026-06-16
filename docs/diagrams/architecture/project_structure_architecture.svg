@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1152" viewBox="0 0 2048 1152">
+  <defs>
+    <style>
+      .bg { fill: #f1f1f1; }
+      .card { fill: #ffffff; stroke: #d7d7d7; stroke-width: 2; }
+      .module { fill: #ffffff; stroke: #d9d9d9; stroke-width: 2; filter: url(#shadowSmall); }
+      .panel { fill: #ffffff; stroke: #d7d7d7; stroke-width: 2; filter: url(#shadowSmall); }
+      .orange { fill: #ff5a1f; }
+      .orangeStroke { stroke: #ff5a1f; stroke-width: 4; fill: none; }
+      .line { stroke: #ff5a1f; stroke-width: 4; fill: none; }
+      .treeLine { stroke: #8b8b8b; stroke-width: 2; fill: none; }
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: 700; fill: #111111; }
+      .subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 22px; font-weight: 700; fill: #ff5a1f; }
+      .text { font-family: Arial, Helvetica, sans-serif; font-size: 22px; fill: #1b1b1b; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 18px; fill: #555555; }
+      .bold { font-family: Arial, Helvetica, sans-serif; font-size: 25px; font-weight: 700; fill: #111111; }
+      .mono { font-family: Arial, Helvetica, sans-serif; font-size: 22px; font-weight: 700; fill: #111111; }
+      .muted { fill: #666666; }
+    </style>
+    <filter id="shadowSmall" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#ff5a1f"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="2048" height="1152"/>
+
+  <!-- Left: project packages -->
+  <rect class="card" x="40" y="58" width="560" height="1036" rx="18"/>
+  <text class="title" x="78" y="112">Структура проекта</text>
+
+  <g transform="translate(78 160)">
+    <!-- folder icon helper drawn inline -->
+    <path class="orange" d="M0 5 h30 l8 10 h38 a8 8 0 0 1 8 8 v50 a8 8 0 0 1-8 8 H8 a8 8 0 0 1-8-8 Z"/>
+    <text class="mono" x="108" y="45">roomate/</text>
+
+    <path class="treeLine" d="M30 82 V940"/>
+
+    <g transform="translate(38 100)">
+      <path class="orange" d="M0 5 h25 l7 9 h32 a7 7 0 0 1 7 7 v38 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/>
+      <text class="mono" x="88" y="40">lib/</text>
+      <path class="treeLine" d="M24 70 V462"/>
+    </g>
+
+    <g transform="translate(76 185)">
+      <path class="orange" d="M0 5 h22 l6 8 h28 a6 6 0 0 1 6 6 v34 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/>
+      <text class="text" x="76" y="36">app/</text>
+      <path class="treeLine" d="M22 62 V318"/>
+    </g>
+
+    <g class="text" transform="translate(118 260)">
+      <path class="orange" d="M0 4 h18 l5 7 h25 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/>
+      <text x="68" y="32">auth</text>
+      <path class="orange" d="M0 52 h18 l5 7 h25 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/>
+      <text x="68" y="80">apartments</text>
+      <path class="orange" d="M0 100 h18 l5 7 h25 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/>
+      <text x="68" y="128">neighbours</text>
+      <path class="orange" d="M0 148 h18 l5 7 h25 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/>
+      <text x="68" y="176">create</text>
+      <path class="orange" d="M0 196 h18 l5 7 h25 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/>
+      <text x="68" y="224">profile</text>
+      <path class="orange" d="M0 244 h18 l5 7 h25 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/>
+      <text x="68" y="272">chats</text>
+      <path class="orange" d="M0 292 h18 l5 7 h25 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/>
+      <text x="68" y="320">applications</text>
+    </g>
+
+    <g class="text" transform="translate(76 612)">
+      <path class="orange" d="M0 5 h22 l6 8 h28 a6 6 0 0 1 6 6 v34 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/>
+      <text x="76" y="36">routing</text>
+      <path class="orange" d="M0 62 h22 l6 8 h28 a6 6 0 0 1 6 6 v34 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/>
+      <text x="76" y="93">widgets</text>
+      <path class="orange" d="M0 119 h22 l6 8 h28 a6 6 0 0 1 6 6 v34 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/>
+      <text x="76" y="150">di</text>
+      <path class="orange" d="M0 176 h22 l6 8 h28 a6 6 0 0 1 6 6 v34 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/>
+      <text x="76" y="207">theme</text>
+    </g>
+
+    <g class="text" transform="translate(38 860)">
+      <path class="orange" d="M0 5 h25 l7 9 h32 a7 7 0 0 1 7 7 v38 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/>
+      <text x="88" y="40">domain/lib</text>
+      <path class="orange" d="M0 82 h25 l7 9 h32 a7 7 0 0 1 7 7 v38 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/>
+      <text x="88" y="117">data/lib</text>
+      <path class="orange" d="M0 159 h25 l7 9 h32 a7 7 0 0 1 7 7 v38 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/>
+      <text x="88" y="194">shared/lib</text>
+    </g>
+  </g>
+
+  <!-- Middle: feature modules -->
+  <text class="subtitle" x="690" y="86">Функциональные модули lib/app</text>
+  <g transform="translate(680 122)">
+    <rect class="module" x="0" y="0" width="500" height="90" rx="16"/>
+    <circle class="orange" cx="48" cy="45" r="26"/>
+    <text class="bold" x="96" y="38">auth</text>
+    <text class="small" x="96" y="66">авторизация, SMS-код, JWT</text>
+
+    <rect class="module" x="0" y="112" width="500" height="90" rx="16"/>
+    <rect class="orange" x="23" y="35" width="50" height="38" rx="6"/>
+    <polygon class="orange" points="18,38 48,12 78,38"/>
+    <text class="bold" x="96" y="150">apartments</text>
+    <text class="small" x="96" y="178">лента объявлений и фильтры</text>
+
+    <rect class="module" x="0" y="224" width="500" height="90" rx="16"/>
+    <circle class="orange" cx="34" cy="263" r="18"/>
+    <circle class="orange" cx="62" cy="263" r="18"/>
+    <circle class="orange" cx="48" cy="246" r="18"/>
+    <text class="bold" x="96" y="262">neighbours</text>
+    <text class="small" x="96" y="290">группы, условия, умный подбор</text>
+
+    <rect class="module" x="0" y="336" width="500" height="90" rx="16"/>
+    <rect class="orange" x="24" y="358" width="52" height="48" rx="8"/>
+    <path d="M38 374 H62 M38 388 H62" stroke="#fff" stroke-width="4"/>
+    <text class="bold" x="96" y="374">create</text>
+    <text class="small" x="96" y="402">создание объявления и группы</text>
+
+    <rect class="module" x="0" y="448" width="500" height="90" rx="16"/>
+    <circle class="orange" cx="50" cy="482" r="20"/>
+    <path class="orange" d="M18 526 c8-28 56-28 64 0 Z"/>
+    <text class="bold" x="96" y="486">profile</text>
+    <text class="small" x="96" y="514">анкета, предпочтения, профиль</text>
+
+    <rect class="module" x="0" y="560" width="500" height="90" rx="16"/>
+    <path class="orange" d="M22 583 h58 v40 H42 l-20 17 z"/>
+    <text class="bold" x="96" y="598">chats</text>
+    <text class="small" x="96" y="626">переход к коммуникации</text>
+
+    <rect class="module" x="0" y="672" width="500" height="90" rx="16"/>
+    <path class="orange" d="M28 694 h44 v56 H28 z"/>
+    <path d="M38 710 H62 M38 726 H62" stroke="#fff" stroke-width="4"/>
+    <text class="bold" x="96" y="710">applications</text>
+    <text class="small" x="96" y="738">отклики и входящие заявки</text>
+
+    <rect class="module" x="0" y="784" width="500" height="90" rx="16"/>
+    <path class="orange" d="M50 804 l12 26 29 3-22 19 7 29-26-15-26 15 7-29-22-19 29-3z"/>
+    <text class="bold" x="96" y="822">favorites</text>
+    <text class="small" x="96" y="850">избранные объявления</text>
+
+    <rect x="-8" y="910" width="516" height="104" rx="18" fill="#fff7f3" stroke="#ff8a5d" stroke-width="2" stroke-dasharray="8 7"/>
+    <circle class="orange" cx="42" cy="962" r="24"/>
+    <text x="34" y="970" font-family="Arial" font-size="25" font-weight="700" fill="#fff">i</text>
+    <text class="small" x="84" y="948">Внутри модуля логика не хранится в верстке:</text>
+    <text class="small" x="84" y="976">экран → notifier → сценарий → репозиторий</text>
+  </g>
+
+  <!-- Arrows from features to layers -->
+  <path class="line" d="M1184 165 C1230 165 1230 165 1270 165" marker-end="url(#arrow)"/>
+  <path class="line" d="M1184 278 C1228 278 1228 330 1270 330" marker-end="url(#arrow)"/>
+  <path class="line" d="M1184 390 C1230 390 1230 495 1270 495" marker-end="url(#arrow)"/>
+  <path class="line" d="M1184 502 C1230 502 1230 660 1270 660" marker-end="url(#arrow)"/>
+
+  <!-- Right: architecture layers -->
+  <text class="subtitle" x="1290" y="86">Поток вызовов</text>
+  <path class="line" d="M1425 78 H1945" marker-end="url(#arrow)"/>
+
+  <g transform="translate(1285 120)">
+    <rect class="panel" x="0" y="0" width="690" height="130" rx="18"/>
+    <rect class="orange" x="36" y="34" width="64" height="64" rx="10"/>
+    <text x="50" y="79" font-family="Arial" font-size="42" font-weight="700" fill="#fff">&lt;/&gt;</text>
+    <text class="bold" x="130" y="46">1. Слой представления</text>
+    <text class="small" x="130" y="78">экраны, виджеты, маршруты</text>
+    <line x1="465" y1="24" x2="465" y2="106" stroke="#d7d7d7" stroke-width="2"/>
+    <text class="small" x="490" y="45">Примеры:</text>
+    <text class="small" x="490" y="72">AuthScreen,</text>
+    <text class="small" x="490" y="98">WhoSearchScreen</text>
+
+    <path class="line" d="M345 145 V178" marker-end="url(#arrow)"/>
+
+    <rect class="panel" x="0" y="185" width="690" height="130" rx="18"/>
+    <circle class="orange" cx="68" cy="250" r="35"/>
+    <path d="M50 250 h36 M68 232 v36" stroke="#fff" stroke-width="8"/>
+    <text class="bold" x="130" y="231">2. Слой состояния</text>
+    <text class="small" x="130" y="263">Riverpod Notifier, состояния загрузки и ошибок</text>
+    <line x1="465" y1="209" x2="465" y2="291" stroke="#d7d7d7" stroke-width="2"/>
+    <text class="small" x="490" y="230">Примеры:</text>
+    <text class="small" x="490" y="257">AuthNotifier,</text>
+    <text class="small" x="490" y="283">GroupsNotifier</text>
+
+    <path class="line" d="M345 330 V363" marker-end="url(#arrow)"/>
+
+    <rect class="panel" x="0" y="370" width="690" height="130" rx="18"/>
+    <path class="orange" d="M68 405 l42 25 v49 l-42 25-42-25 v-49z"/>
+    <path d="M48 454 h40 M68 434 v40" stroke="#fff" stroke-width="7"/>
+    <text class="bold" x="130" y="416">3. Доменный слой</text>
+    <text class="small" x="130" y="448">модели, сценарии, контракты репозиториев</text>
+    <line x1="465" y1="394" x2="465" y2="476" stroke="#d7d7d7" stroke-width="2"/>
+    <text class="small" x="490" y="415">Примеры:</text>
+    <text class="small" x="490" y="442">GroupModel,</text>
+    <text class="small" x="490" y="468">AuthRepository</text>
+
+    <path class="line" d="M345 515 V548" marker-end="url(#arrow)"/>
+
+    <rect class="panel" x="0" y="555" width="690" height="130" rx="18"/>
+    <ellipse class="orange" cx="68" cy="586" rx="38" ry="16"/>
+    <path class="orange" d="M30 586 v52 c0 9 17 16 38 16s38-7 38-16v-52c0 9-17 16-38 16s-38-7-38-16z"/>
+    <text class="bold" x="130" y="601">4. Слой данных</text>
+    <text class="small" x="130" y="633">DTO, мапперы, источники данных, API-клиент</text>
+    <line x1="465" y1="579" x2="465" y2="661" stroke="#d7d7d7" stroke-width="2"/>
+    <text class="small" x="490" y="600">Примеры:</text>
+    <text class="small" x="490" y="627">RemoteDataSource,</text>
+    <text class="small" x="490" y="653">Mapper</text>
+  </g>
+
+  <!-- Bottom data flow -->
+  <path class="line" d="M1948 1015 H1288" marker-end="url(#arrow)"/>
+  <text class="subtitle" x="1515" y="1055">Поток данных</text>
+
+  <rect class="panel" x="650" y="1010" width="570" height="72" rx="14"/>
+  <text class="small" x="690" y="1040">domain хранит бизнес-модели и контракты,</text>
+  <text class="small" x="690" y="1064">data реализует запросы и маппинг, lib отображает состояние</text>
+</svg>

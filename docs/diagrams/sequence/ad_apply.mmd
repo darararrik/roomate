@@ -1,0 +1,29 @@
+sequenceDiagram
+    actor U as Арендатор
+    participant UI as Детальный экран объявления
+    participant N as AdApplicationNotifier
+    participant R as AdApplicationsRepository
+    participant DS as AdApplicationsRemoteDataSource
+    participant API as Backend API
+    participant O as Собственник
+
+    U->>UI: Открывает объявление
+    UI->>N: loadAdDetails(adId)
+    N->>R: fetchAdDetails(adId)
+    R->>DS: fetchAdDetails(adId)
+    DS->>API: GET /api/ads/{ad_id}
+    API-->>DS: JSON объявления
+    DS-->>N: Данные объявления
+    N-->>UI: Состояние loaded
+    UI-->>U: Отображает карточку и условия
+
+    U->>UI: Нажимает «Откликнуться»
+    UI->>N: applyToAd(adId)
+    N->>R: applyToAd(adId)
+    R->>DS: applyToAd(adId)
+    DS->>API: POST /api/ads/{ad_id}/apply
+    API-->>DS: 201 Created, status=pending
+    DS-->>N: ApplicationModel
+    N-->>UI: Состояние заявки обновлено
+    UI-->>U: Подтверждение отправки
+    API-->>O: Заявка доступна во входящих

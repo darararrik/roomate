@@ -11,11 +11,20 @@ class ChatsNotifier extends _$ChatsNotifier {
 
   @override
   Future<List<ChatSummaryModel>> build() async {
+    final profile = await ref.watch(globalProfileProvider.future);
+    if (profile.isGuest) {
+      return const [];
+    }
+
     final result = await _repository.fetchChats();
     return result.fold((error) => throw error, _sortChats);
   }
 
   Future<void> refresh() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
     state = const AsyncLoading();
     final result = await _repository.fetchChats();
     state = result.fold(

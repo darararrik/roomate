@@ -39,7 +39,8 @@ class AuthNotifier extends _$AuthNotifier {
 
   void enterByPhoneNumber() => ref.nav.push(const EnterPhoneNumberRoute());
 
-  void enterAsGuest() {
+  Future<void> enterAsGuest() async {
+    await ref.read(tokenServiceProvider).deleteTokens();
     ref.read(globalProfileProvider.notifier).enterAsGuest();
     ref.nav.replaceAll([const MainFlowRoute()]);
   }

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApartamentState {
 
- ApartamentModel get apartment; int get page; bool get hasImages; int get imagesCount; bool get isFavorite; String get verifiedTitle; String get companyTitle; String get publishedAt; String get viewsText;
+ ApartamentModel get apartment; int get page; bool get hasImages; int get imagesCount; bool get isFavorite; String get verifiedTitle; String get companyTitle; bool get isOwnerApartment; String get publishedAt; String get viewsText;
 /// Create a copy of ApartamentState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ApartamentStateCopyWith<ApartamentState> get copyWith => _$ApartamentStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApartamentState&&(identical(other.apartment, apartment) || other.apartment == apartment)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasImages, hasImages) || other.hasImages == hasImages)&&(identical(other.imagesCount, imagesCount) || other.imagesCount == imagesCount)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.verifiedTitle, verifiedTitle) || other.verifiedTitle == verifiedTitle)&&(identical(other.companyTitle, companyTitle) || other.companyTitle == companyTitle)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt)&&(identical(other.viewsText, viewsText) || other.viewsText == viewsText));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApartamentState&&(identical(other.apartment, apartment) || other.apartment == apartment)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasImages, hasImages) || other.hasImages == hasImages)&&(identical(other.imagesCount, imagesCount) || other.imagesCount == imagesCount)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.verifiedTitle, verifiedTitle) || other.verifiedTitle == verifiedTitle)&&(identical(other.companyTitle, companyTitle) || other.companyTitle == companyTitle)&&(identical(other.isOwnerApartment, isOwnerApartment) || other.isOwnerApartment == isOwnerApartment)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt)&&(identical(other.viewsText, viewsText) || other.viewsText == viewsText));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apartment,page,hasImages,imagesCount,isFavorite,verifiedTitle,companyTitle,publishedAt,viewsText);
+int get hashCode => Object.hash(runtimeType,apartment,page,hasImages,imagesCount,isFavorite,verifiedTitle,companyTitle,isOwnerApartment,publishedAt,viewsText);
 
 @override
 String toString() {
-  return 'ApartamentState(apartment: $apartment, page: $page, hasImages: $hasImages, imagesCount: $imagesCount, isFavorite: $isFavorite, verifiedTitle: $verifiedTitle, companyTitle: $companyTitle, publishedAt: $publishedAt, viewsText: $viewsText)';
+  return 'ApartamentState(apartment: $apartment, page: $page, hasImages: $hasImages, imagesCount: $imagesCount, isFavorite: $isFavorite, verifiedTitle: $verifiedTitle, companyTitle: $companyTitle, isOwnerApartment: $isOwnerApartment, publishedAt: $publishedAt, viewsText: $viewsText)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ApartamentStateCopyWith<$Res>  {
   factory $ApartamentStateCopyWith(ApartamentState value, $Res Function(ApartamentState) _then) = _$ApartamentStateCopyWithImpl;
 @useResult
 $Res call({
- ApartamentModel apartment, int page, bool hasImages, int imagesCount, bool isFavorite, String verifiedTitle, String companyTitle, String publishedAt, String viewsText
+ ApartamentModel apartment, int page, bool hasImages, int imagesCount, bool isFavorite, String verifiedTitle, String companyTitle, bool isOwnerApartment, String publishedAt, String viewsText
 });
 
 
@@ -62,7 +62,7 @@ class _$ApartamentStateCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? apartment = null,Object? page = null,Object? hasImages = null,Object? imagesCount = null,Object? isFavorite = null,Object? verifiedTitle = null,Object? companyTitle = null,Object? publishedAt = null,Object? viewsText = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? apartment = null,Object? page = null,Object? hasImages = null,Object? imagesCount = null,Object? isFavorite = null,Object? verifiedTitle = null,Object? companyTitle = null,Object? isOwnerApartment = null,Object? publishedAt = null,Object? viewsText = null,}) {
   return _then(_self.copyWith(
 apartment: null == apartment ? _self.apartment : apartment // ignore: cast_nullable_to_non_nullable
 as ApartamentModel,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,8 @@ as bool,imagesCount: null == imagesCount ? _self.imagesCount : imagesCount // ig
 as int,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool,verifiedTitle: null == verifiedTitle ? _self.verifiedTitle : verifiedTitle // ignore: cast_nullable_to_non_nullable
 as String,companyTitle: null == companyTitle ? _self.companyTitle : companyTitle // ignore: cast_nullable_to_non_nullable
-as String,publishedAt: null == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
+as String,isOwnerApartment: null == isOwnerApartment ? _self.isOwnerApartment : isOwnerApartment // ignore: cast_nullable_to_non_nullable
+as bool,publishedAt: null == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
 as String,viewsText: null == viewsText ? _self.viewsText : viewsText // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -164,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ApartamentModel apartment,  int page,  bool hasImages,  int imagesCount,  bool isFavorite,  String verifiedTitle,  String companyTitle,  String publishedAt,  String viewsText)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ApartamentModel apartment,  int page,  bool hasImages,  int imagesCount,  bool isFavorite,  String verifiedTitle,  String companyTitle,  bool isOwnerApartment,  String publishedAt,  String viewsText)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ApartamentState() when $default != null:
-return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_that.isFavorite,_that.verifiedTitle,_that.companyTitle,_that.publishedAt,_that.viewsText);case _:
+return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_that.isFavorite,_that.verifiedTitle,_that.companyTitle,_that.isOwnerApartment,_that.publishedAt,_that.viewsText);case _:
   return orElse();
 
 }
@@ -185,10 +186,10 @@ return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ApartamentModel apartment,  int page,  bool hasImages,  int imagesCount,  bool isFavorite,  String verifiedTitle,  String companyTitle,  String publishedAt,  String viewsText)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ApartamentModel apartment,  int page,  bool hasImages,  int imagesCount,  bool isFavorite,  String verifiedTitle,  String companyTitle,  bool isOwnerApartment,  String publishedAt,  String viewsText)  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentState():
-return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_that.isFavorite,_that.verifiedTitle,_that.companyTitle,_that.publishedAt,_that.viewsText);}
+return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_that.isFavorite,_that.verifiedTitle,_that.companyTitle,_that.isOwnerApartment,_that.publishedAt,_that.viewsText);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -202,10 +203,10 @@ return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ApartamentModel apartment,  int page,  bool hasImages,  int imagesCount,  bool isFavorite,  String verifiedTitle,  String companyTitle,  String publishedAt,  String viewsText)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ApartamentModel apartment,  int page,  bool hasImages,  int imagesCount,  bool isFavorite,  String verifiedTitle,  String companyTitle,  bool isOwnerApartment,  String publishedAt,  String viewsText)?  $default,) {final _that = this;
 switch (_that) {
 case _ApartamentState() when $default != null:
-return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_that.isFavorite,_that.verifiedTitle,_that.companyTitle,_that.publishedAt,_that.viewsText);case _:
+return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_that.isFavorite,_that.verifiedTitle,_that.companyTitle,_that.isOwnerApartment,_that.publishedAt,_that.viewsText);case _:
   return null;
 
 }
@@ -217,7 +218,7 @@ return $default(_that.apartment,_that.page,_that.hasImages,_that.imagesCount,_th
 
 
 class _ApartamentState implements ApartamentState {
-  const _ApartamentState({required this.apartment, this.page = 0, this.hasImages = false, this.imagesCount = 1, this.isFavorite = false, this.verifiedTitle = '', this.companyTitle = '', this.publishedAt = '', this.viewsText = ''});
+  const _ApartamentState({required this.apartment, this.page = 0, this.hasImages = false, this.imagesCount = 1, this.isFavorite = false, this.verifiedTitle = '', this.companyTitle = '', this.isOwnerApartment = false, this.publishedAt = '', this.viewsText = ''});
   
 
 @override final  ApartamentModel apartment;
@@ -227,6 +228,7 @@ class _ApartamentState implements ApartamentState {
 @override@JsonKey() final  bool isFavorite;
 @override@JsonKey() final  String verifiedTitle;
 @override@JsonKey() final  String companyTitle;
+@override@JsonKey() final  bool isOwnerApartment;
 @override@JsonKey() final  String publishedAt;
 @override@JsonKey() final  String viewsText;
 
@@ -240,16 +242,16 @@ _$ApartamentStateCopyWith<_ApartamentState> get copyWith => __$ApartamentStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApartamentState&&(identical(other.apartment, apartment) || other.apartment == apartment)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasImages, hasImages) || other.hasImages == hasImages)&&(identical(other.imagesCount, imagesCount) || other.imagesCount == imagesCount)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.verifiedTitle, verifiedTitle) || other.verifiedTitle == verifiedTitle)&&(identical(other.companyTitle, companyTitle) || other.companyTitle == companyTitle)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt)&&(identical(other.viewsText, viewsText) || other.viewsText == viewsText));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApartamentState&&(identical(other.apartment, apartment) || other.apartment == apartment)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasImages, hasImages) || other.hasImages == hasImages)&&(identical(other.imagesCount, imagesCount) || other.imagesCount == imagesCount)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.verifiedTitle, verifiedTitle) || other.verifiedTitle == verifiedTitle)&&(identical(other.companyTitle, companyTitle) || other.companyTitle == companyTitle)&&(identical(other.isOwnerApartment, isOwnerApartment) || other.isOwnerApartment == isOwnerApartment)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt)&&(identical(other.viewsText, viewsText) || other.viewsText == viewsText));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apartment,page,hasImages,imagesCount,isFavorite,verifiedTitle,companyTitle,publishedAt,viewsText);
+int get hashCode => Object.hash(runtimeType,apartment,page,hasImages,imagesCount,isFavorite,verifiedTitle,companyTitle,isOwnerApartment,publishedAt,viewsText);
 
 @override
 String toString() {
-  return 'ApartamentState(apartment: $apartment, page: $page, hasImages: $hasImages, imagesCount: $imagesCount, isFavorite: $isFavorite, verifiedTitle: $verifiedTitle, companyTitle: $companyTitle, publishedAt: $publishedAt, viewsText: $viewsText)';
+  return 'ApartamentState(apartment: $apartment, page: $page, hasImages: $hasImages, imagesCount: $imagesCount, isFavorite: $isFavorite, verifiedTitle: $verifiedTitle, companyTitle: $companyTitle, isOwnerApartment: $isOwnerApartment, publishedAt: $publishedAt, viewsText: $viewsText)';
 }
 
 
@@ -260,7 +262,7 @@ abstract mixin class _$ApartamentStateCopyWith<$Res> implements $ApartamentState
   factory _$ApartamentStateCopyWith(_ApartamentState value, $Res Function(_ApartamentState) _then) = __$ApartamentStateCopyWithImpl;
 @override @useResult
 $Res call({
- ApartamentModel apartment, int page, bool hasImages, int imagesCount, bool isFavorite, String verifiedTitle, String companyTitle, String publishedAt, String viewsText
+ ApartamentModel apartment, int page, bool hasImages, int imagesCount, bool isFavorite, String verifiedTitle, String companyTitle, bool isOwnerApartment, String publishedAt, String viewsText
 });
 
 
@@ -277,7 +279,7 @@ class __$ApartamentStateCopyWithImpl<$Res>
 
 /// Create a copy of ApartamentState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? apartment = null,Object? page = null,Object? hasImages = null,Object? imagesCount = null,Object? isFavorite = null,Object? verifiedTitle = null,Object? companyTitle = null,Object? publishedAt = null,Object? viewsText = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? apartment = null,Object? page = null,Object? hasImages = null,Object? imagesCount = null,Object? isFavorite = null,Object? verifiedTitle = null,Object? companyTitle = null,Object? isOwnerApartment = null,Object? publishedAt = null,Object? viewsText = null,}) {
   return _then(_ApartamentState(
 apartment: null == apartment ? _self.apartment : apartment // ignore: cast_nullable_to_non_nullable
 as ApartamentModel,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
@@ -286,7 +288,8 @@ as bool,imagesCount: null == imagesCount ? _self.imagesCount : imagesCount // ig
 as int,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool,verifiedTitle: null == verifiedTitle ? _self.verifiedTitle : verifiedTitle // ignore: cast_nullable_to_non_nullable
 as String,companyTitle: null == companyTitle ? _self.companyTitle : companyTitle // ignore: cast_nullable_to_non_nullable
-as String,publishedAt: null == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
+as String,isOwnerApartment: null == isOwnerApartment ? _self.isOwnerApartment : isOwnerApartment // ignore: cast_nullable_to_non_nullable
+as bool,publishedAt: null == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
 as String,viewsText: null == viewsText ? _self.viewsText : viewsText // ignore: cast_nullable_to_non_nullable
 as String,
   ));

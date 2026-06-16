@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatState {
 
- ChatSummaryModel get chat; List<ChatMessageModel> get messages; String get currentUserId; bool get isSending;
+ ChatSummaryModel get chat; List<ChatMessageModel> get messages; String get currentUserId; String get currentUserName; String get currentUserAvatarUrl; bool get isApplying; String get applicationStatus; bool get isSending;
 /// Create a copy of ChatState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ChatStateCopyWith<ChatState> get copyWith => _$ChatStateCopyWithImpl<ChatState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatState&&(identical(other.chat, chat) || other.chat == chat)&&const DeepCollectionEquality().equals(other.messages, messages)&&(identical(other.currentUserId, currentUserId) || other.currentUserId == currentUserId)&&(identical(other.isSending, isSending) || other.isSending == isSending));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatState&&(identical(other.chat, chat) || other.chat == chat)&&const DeepCollectionEquality().equals(other.messages, messages)&&(identical(other.currentUserId, currentUserId) || other.currentUserId == currentUserId)&&(identical(other.currentUserName, currentUserName) || other.currentUserName == currentUserName)&&(identical(other.currentUserAvatarUrl, currentUserAvatarUrl) || other.currentUserAvatarUrl == currentUserAvatarUrl)&&(identical(other.isApplying, isApplying) || other.isApplying == isApplying)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.isSending, isSending) || other.isSending == isSending));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,chat,const DeepCollectionEquality().hash(messages),currentUserId,isSending);
+int get hashCode => Object.hash(runtimeType,chat,const DeepCollectionEquality().hash(messages),currentUserId,currentUserName,currentUserAvatarUrl,isApplying,applicationStatus,isSending);
 
 @override
 String toString() {
-  return 'ChatState(chat: $chat, messages: $messages, currentUserId: $currentUserId, isSending: $isSending)';
+  return 'ChatState(chat: $chat, messages: $messages, currentUserId: $currentUserId, currentUserName: $currentUserName, currentUserAvatarUrl: $currentUserAvatarUrl, isApplying: $isApplying, applicationStatus: $applicationStatus, isSending: $isSending)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ChatStateCopyWith<$Res>  {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) _then) = _$ChatStateCopyWithImpl;
 @useResult
 $Res call({
- ChatSummaryModel chat, List<ChatMessageModel> messages, String currentUserId, bool isSending
+ ChatSummaryModel chat, List<ChatMessageModel> messages, String currentUserId, String currentUserName, String currentUserAvatarUrl, bool isApplying, String applicationStatus, bool isSending
 });
 
 
@@ -62,11 +62,15 @@ class _$ChatStateCopyWithImpl<$Res>
 
 /// Create a copy of ChatState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? chat = null,Object? messages = null,Object? currentUserId = null,Object? isSending = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? chat = null,Object? messages = null,Object? currentUserId = null,Object? currentUserName = null,Object? currentUserAvatarUrl = null,Object? isApplying = null,Object? applicationStatus = null,Object? isSending = null,}) {
   return _then(_self.copyWith(
 chat: null == chat ? _self.chat : chat // ignore: cast_nullable_to_non_nullable
 as ChatSummaryModel,messages: null == messages ? _self.messages : messages // ignore: cast_nullable_to_non_nullable
 as List<ChatMessageModel>,currentUserId: null == currentUserId ? _self.currentUserId : currentUserId // ignore: cast_nullable_to_non_nullable
+as String,currentUserName: null == currentUserName ? _self.currentUserName : currentUserName // ignore: cast_nullable_to_non_nullable
+as String,currentUserAvatarUrl: null == currentUserAvatarUrl ? _self.currentUserAvatarUrl : currentUserAvatarUrl // ignore: cast_nullable_to_non_nullable
+as String,isApplying: null == isApplying ? _self.isApplying : isApplying // ignore: cast_nullable_to_non_nullable
+as bool,applicationStatus: null == applicationStatus ? _self.applicationStatus : applicationStatus // ignore: cast_nullable_to_non_nullable
 as String,isSending: null == isSending ? _self.isSending : isSending // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -159,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ChatSummaryModel chat,  List<ChatMessageModel> messages,  String currentUserId,  bool isSending)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ChatSummaryModel chat,  List<ChatMessageModel> messages,  String currentUserId,  String currentUserName,  String currentUserAvatarUrl,  bool isApplying,  String applicationStatus,  bool isSending)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatState() when $default != null:
-return $default(_that.chat,_that.messages,_that.currentUserId,_that.isSending);case _:
+return $default(_that.chat,_that.messages,_that.currentUserId,_that.currentUserName,_that.currentUserAvatarUrl,_that.isApplying,_that.applicationStatus,_that.isSending);case _:
   return orElse();
 
 }
@@ -180,10 +184,10 @@ return $default(_that.chat,_that.messages,_that.currentUserId,_that.isSending);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ChatSummaryModel chat,  List<ChatMessageModel> messages,  String currentUserId,  bool isSending)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ChatSummaryModel chat,  List<ChatMessageModel> messages,  String currentUserId,  String currentUserName,  String currentUserAvatarUrl,  bool isApplying,  String applicationStatus,  bool isSending)  $default,) {final _that = this;
 switch (_that) {
 case _ChatState():
-return $default(_that.chat,_that.messages,_that.currentUserId,_that.isSending);}
+return $default(_that.chat,_that.messages,_that.currentUserId,_that.currentUserName,_that.currentUserAvatarUrl,_that.isApplying,_that.applicationStatus,_that.isSending);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +201,10 @@ return $default(_that.chat,_that.messages,_that.currentUserId,_that.isSending);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ChatSummaryModel chat,  List<ChatMessageModel> messages,  String currentUserId,  bool isSending)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ChatSummaryModel chat,  List<ChatMessageModel> messages,  String currentUserId,  String currentUserName,  String currentUserAvatarUrl,  bool isApplying,  String applicationStatus,  bool isSending)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatState() when $default != null:
-return $default(_that.chat,_that.messages,_that.currentUserId,_that.isSending);case _:
+return $default(_that.chat,_that.messages,_that.currentUserId,_that.currentUserName,_that.currentUserAvatarUrl,_that.isApplying,_that.applicationStatus,_that.isSending);case _:
   return null;
 
 }
@@ -212,7 +216,7 @@ return $default(_that.chat,_that.messages,_that.currentUserId,_that.isSending);c
 
 
 class _ChatState implements ChatState {
-  const _ChatState({this.chat = const ChatSummaryModel(), final  List<ChatMessageModel> messages = const [], this.currentUserId = '', this.isSending = false}): _messages = messages;
+  const _ChatState({this.chat = const ChatSummaryModel(), final  List<ChatMessageModel> messages = const [], this.currentUserId = '', this.currentUserName = '', this.currentUserAvatarUrl = '', this.isApplying = false, this.applicationStatus = '', this.isSending = false}): _messages = messages;
   
 
 @override@JsonKey() final  ChatSummaryModel chat;
@@ -224,6 +228,10 @@ class _ChatState implements ChatState {
 }
 
 @override@JsonKey() final  String currentUserId;
+@override@JsonKey() final  String currentUserName;
+@override@JsonKey() final  String currentUserAvatarUrl;
+@override@JsonKey() final  bool isApplying;
+@override@JsonKey() final  String applicationStatus;
 @override@JsonKey() final  bool isSending;
 
 /// Create a copy of ChatState
@@ -236,16 +244,16 @@ _$ChatStateCopyWith<_ChatState> get copyWith => __$ChatStateCopyWithImpl<_ChatSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatState&&(identical(other.chat, chat) || other.chat == chat)&&const DeepCollectionEquality().equals(other._messages, _messages)&&(identical(other.currentUserId, currentUserId) || other.currentUserId == currentUserId)&&(identical(other.isSending, isSending) || other.isSending == isSending));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatState&&(identical(other.chat, chat) || other.chat == chat)&&const DeepCollectionEquality().equals(other._messages, _messages)&&(identical(other.currentUserId, currentUserId) || other.currentUserId == currentUserId)&&(identical(other.currentUserName, currentUserName) || other.currentUserName == currentUserName)&&(identical(other.currentUserAvatarUrl, currentUserAvatarUrl) || other.currentUserAvatarUrl == currentUserAvatarUrl)&&(identical(other.isApplying, isApplying) || other.isApplying == isApplying)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.isSending, isSending) || other.isSending == isSending));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,chat,const DeepCollectionEquality().hash(_messages),currentUserId,isSending);
+int get hashCode => Object.hash(runtimeType,chat,const DeepCollectionEquality().hash(_messages),currentUserId,currentUserName,currentUserAvatarUrl,isApplying,applicationStatus,isSending);
 
 @override
 String toString() {
-  return 'ChatState(chat: $chat, messages: $messages, currentUserId: $currentUserId, isSending: $isSending)';
+  return 'ChatState(chat: $chat, messages: $messages, currentUserId: $currentUserId, currentUserName: $currentUserName, currentUserAvatarUrl: $currentUserAvatarUrl, isApplying: $isApplying, applicationStatus: $applicationStatus, isSending: $isSending)';
 }
 
 
@@ -256,7 +264,7 @@ abstract mixin class _$ChatStateCopyWith<$Res> implements $ChatStateCopyWith<$Re
   factory _$ChatStateCopyWith(_ChatState value, $Res Function(_ChatState) _then) = __$ChatStateCopyWithImpl;
 @override @useResult
 $Res call({
- ChatSummaryModel chat, List<ChatMessageModel> messages, String currentUserId, bool isSending
+ ChatSummaryModel chat, List<ChatMessageModel> messages, String currentUserId, String currentUserName, String currentUserAvatarUrl, bool isApplying, String applicationStatus, bool isSending
 });
 
 
@@ -273,11 +281,15 @@ class __$ChatStateCopyWithImpl<$Res>
 
 /// Create a copy of ChatState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? chat = null,Object? messages = null,Object? currentUserId = null,Object? isSending = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? chat = null,Object? messages = null,Object? currentUserId = null,Object? currentUserName = null,Object? currentUserAvatarUrl = null,Object? isApplying = null,Object? applicationStatus = null,Object? isSending = null,}) {
   return _then(_ChatState(
 chat: null == chat ? _self.chat : chat // ignore: cast_nullable_to_non_nullable
 as ChatSummaryModel,messages: null == messages ? _self._messages : messages // ignore: cast_nullable_to_non_nullable
 as List<ChatMessageModel>,currentUserId: null == currentUserId ? _self.currentUserId : currentUserId // ignore: cast_nullable_to_non_nullable
+as String,currentUserName: null == currentUserName ? _self.currentUserName : currentUserName // ignore: cast_nullable_to_non_nullable
+as String,currentUserAvatarUrl: null == currentUserAvatarUrl ? _self.currentUserAvatarUrl : currentUserAvatarUrl // ignore: cast_nullable_to_non_nullable
+as String,isApplying: null == isApplying ? _self.isApplying : isApplying // ignore: cast_nullable_to_non_nullable
+as bool,applicationStatus: null == applicationStatus ? _self.applicationStatus : applicationStatus // ignore: cast_nullable_to_non_nullable
 as String,isSending: null == isSending ? _self.isSending : isSending // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

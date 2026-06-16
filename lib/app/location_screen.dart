@@ -32,7 +32,7 @@ class LocationScreen extends HookConsumerWidget {
     }, [rawSearchQuery]);
 
     final citiesAsync = ref.watch(citiesProvider);
-    final currentCity = ref.watch(currentProfileCityProvider);
+    final currentCity = ref.watch(currentMainCityProvider);
     final suggestionsAsync = ref.watch(
       locationSuggestionsProvider(debouncedQuery.value),
     );

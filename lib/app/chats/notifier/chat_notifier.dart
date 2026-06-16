@@ -24,11 +24,6 @@ class Chat extends _$Chat {
   @override
   Future<ChatState> build(ChatSummaryModel chat) async {
     final profile = await ref.read(globalProfileProvider.future);
-    final result = await _repository.fetchMessages(chat.id);
-    final page = result.fold((error) => throw error, (page) => page);
-    final messages = _sortMessages(page.messages);
-    final resolvedTitle = page.title.trim().isNotEmpty ? page.title : chat.title;
-
     chatController = InMemoryChatController();
     textController = TextEditingController();
 
@@ -39,7 +34,37 @@ class Chat extends _$Chat {
       chatController.dispose();
     });
 
-    await chatController.setMessages(messages.map(_messageFromModel).toList(growable: false), animated: false);
+    if (chat.isLocal) {
+      return ChatState(
+        chat: chat,
+        currentUserId: profile.id,
+        currentUserName: _currentUserName(profile),
+        currentUserAvatarUrl: profile.avatarUrl,
+        applicationStatus: chat.applicationStatus,
+      );
+    }
+
+    if (profile.isGuest) {
+      return ChatState(
+        chat: chat,
+        currentUserId: profile.id,
+        currentUserName: _currentUserName(profile),
+        currentUserAvatarUrl: profile.avatarUrl,
+        applicationStatus: chat.applicationStatus,
+      );
+    }
+
+    final result = await _repository.fetchMessages(chat.id);
+    final page = result.fold((error) => throw error, (page) => page);
+    final messages = _sortMessages(page.messages);
+    final resolvedTitle = page.title.trim().isNotEmpty
+        ? page.title
+        : chat.title;
+
+    await chatController.setMessages(
+      messages.map(_messageFromModel).toList(growable: false),
+      animated: false,
+    );
 
     final stream = await _socketService.watchChat(chat.id);
     _chatSubscription = stream.listen(_handleIncomingMessage);
@@ -50,10 +75,14 @@ class Chat extends _$Chat {
       chat: chat.copyWith(
         unreadCount: 0,
         title: resolvedTitle,
-        participantsCount: page.participantsCount == 0 ? chat.participantsCount : page.participantsCount,
+        participantsCount: page.participantsCount == 0
+            ? chat.participantsCount
+            : page.participantsCount,
       ),
       messages: messages,
       currentUserId: profile.id,
+      currentUserName: _currentUserName(profile),
+      currentUserAvatarUrl: profile.avatarUrl,
     );
   }
 
@@ -67,6 +96,10 @@ class Chat extends _$Chat {
   }
 
   Future<void> onMessageSend(String rawText) async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
     final currentState = state.value;
     if (currentState == null || currentState.isSending) {
       return;
@@ -74,6 +107,26 @@ class Chat extends _$Chat {
 
     final text = rawText.trim();
     if (text.isEmpty) {
+      return;
+    }
+
+    if (currentState.chat.isLocal) {
+      final message = ChatMessageModel(
+        id: '${DateTime.now().microsecondsSinceEpoch}',
+        chatId: currentState.chat.id,
+        text: text,
+        senderId: currentState.currentUserId,
+        senderName: currentState.currentUserName,
+        senderAvatarUrl: currentState.currentUserAvatarUrl,
+        createdAt: DateTime.now(),
+      );
+      textController.clear();
+      _applyState(
+        currentState.copyWith(
+          chat: _updateChat(currentState.chat, message),
+          messages: _mergeMessages(currentState.messages, message),
+        ),
+      );
       return;
     }
 
@@ -87,7 +140,11 @@ class Chat extends _$Chat {
     result.fold(
       (error) {
         state = AsyncData(currentState.copyWith(isSending: false));
-        ref.nav.showSnackBar(message: error.messages.isNotEmpty ? error.messages : ref.l10n.errorGeneric);
+        ref.nav.showSnackBar(
+          message: error.messages.isNotEmpty
+              ? error.messages
+              : ref.l10n.errorGeneric,
+        );
       },
       (message) {
         textController.clear();
@@ -102,6 +159,49 @@ class Chat extends _$Chat {
     );
   }
 
+  Future<void> onApplyPressed() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
+    final currentState = state.value;
+    if (currentState == null ||
+        !currentState.chat.isLocal ||
+        currentState.isApplying ||
+        currentState.applicationStatus == 'pending') {
+      return;
+    }
+
+    state = AsyncData(currentState.copyWith(isApplying: true));
+
+    final result = await ref
+        .read(apartamentsRepositoryProvider)
+        .applyToAd(currentState.chat.apartament.id);
+    if (!ref.mounted) {
+      return;
+    }
+
+    result.fold(
+      (error) {
+        state = AsyncData(currentState.copyWith(isApplying: false));
+        ref.nav.showSnackBar(
+          message: error.messages.isNotEmpty
+              ? error.messages
+              : ref.l10n.groupApplicationSubmitError,
+        );
+      },
+      (application) {
+        state = AsyncData(
+          currentState.copyWith(
+            isApplying: false,
+            applicationStatus: application.status,
+          ),
+        );
+        ref.nav.showSnackBar(message: ref.l10n.groupApplicationSent);
+      },
+    );
+  }
+
   Future<User> resolveUser(UserID id) async {
     final currentState = state.value;
     final profile = ref.read(globalProfileProvider).value;
@@ -111,8 +211,13 @@ class Chat extends _$Chat {
     }
 
     if (id == currentState.currentUserId) {
-      final currentUserName = '${profile?.firstName ?? ''} ${profile?.lastName ?? ''}'.trim();
-      return User(id: id, name: currentUserName.isNotEmpty ? currentUserName : 'Вы', imageSource: profile?.avatarUrl);
+      final currentUserName =
+          '${profile?.firstName ?? ''} ${profile?.lastName ?? ''}'.trim();
+      return User(
+        id: id,
+        name: currentUserName.isNotEmpty ? currentUserName : 'Вы',
+        imageSource: profile?.avatarUrl,
+      );
     }
 
     final author = currentState.messages.lastWhere(
@@ -126,7 +231,9 @@ class Chat extends _$Chat {
     return User(
       id: id,
       name: author.senderName.isNotEmpty ? author.senderName : fallbackName,
-      imageSource: author.senderAvatarUrl.isNotEmpty ? author.senderAvatarUrl : currentState.chat.avatarUrl,
+      imageSource: author.senderAvatarUrl.isNotEmpty
+          ? author.senderAvatarUrl
+          : currentState.chat.avatarUrl,
     );
   }
 
@@ -136,7 +243,10 @@ class Chat extends _$Chat {
       authorId: message.senderId,
       createdAt: message.createdAt,
       text: message.text,
-      metadata: {'authorName': message.senderName, 'authorAvatarUrl': message.senderAvatarUrl},
+      metadata: {
+        'authorName': message.senderName,
+        'authorAvatarUrl': message.senderAvatarUrl,
+      },
     );
   }
 
@@ -146,7 +256,9 @@ class Chat extends _$Chat {
       return;
     }
 
-    final normalizedMessage = message.chatId.isEmpty ? message.copyWith(chatId: currentState.chat.id) : message;
+    final normalizedMessage = message.chatId.isEmpty
+        ? message.copyWith(chatId: currentState.chat.id)
+        : message;
 
     _applyState(
       currentState.copyWith(
@@ -163,15 +275,28 @@ class Chat extends _$Chat {
   void _applyState(ChatState nextState) {
     state = AsyncData(nextState);
     unawaited(
-      chatController.setMessages(nextState.messages.map(_messageFromModel).toList(growable: false), animated: false),
+      chatController.setMessages(
+        nextState.messages.map(_messageFromModel).toList(growable: false),
+        animated: false,
+      ),
     );
   }
 
-  ChatSummaryModel _updateChat(ChatSummaryModel chat, ChatMessageModel message) {
-    return chat.copyWith(lastMessageText: message.text, updatedAt: message.createdAt, unreadCount: 0);
+  ChatSummaryModel _updateChat(
+    ChatSummaryModel chat,
+    ChatMessageModel message,
+  ) {
+    return chat.copyWith(
+      lastMessageText: message.text,
+      updatedAt: message.createdAt,
+      unreadCount: 0,
+    );
   }
 
-  List<ChatMessageModel> _mergeMessages(List<ChatMessageModel> currentMessages, ChatMessageModel nextMessage) {
+  List<ChatMessageModel> _mergeMessages(
+    List<ChatMessageModel> currentMessages,
+    ChatMessageModel nextMessage,
+  ) {
     final messages = [...currentMessages];
     final index = messages.indexWhere((item) => item.id == nextMessage.id);
 
@@ -194,6 +319,11 @@ class Chat extends _$Chat {
     messages.sort((left, right) => left.createdAt.compareTo(right.createdAt));
     return messages;
   }
+
+  String _currentUserName(ProfileModel profile) {
+    final fullName = '${profile.firstName} ${profile.lastName}'.trim();
+    return fullName.isNotEmpty ? fullName : 'Вы';
+  }
 }
 
 @freezed
@@ -202,6 +332,10 @@ sealed class ChatState with _$ChatState {
     @Default(ChatSummaryModel()) ChatSummaryModel chat,
     @Default([]) List<ChatMessageModel> messages,
     @Default('') String currentUserId,
+    @Default('') String currentUserName,
+    @Default('') String currentUserAvatarUrl,
+    @Default(false) bool isApplying,
+    @Default('') String applicationStatus,
     @Default(false) bool isSending,
   }) = _ChatState;
 }

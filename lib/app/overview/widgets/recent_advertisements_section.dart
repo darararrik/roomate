@@ -1,8 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:roomate/lib.dart';
 
 class RecentAdvertisementsSection extends ConsumerWidget {
@@ -29,6 +27,18 @@ class RecentAdvertisementsSection extends ConsumerWidget {
         asyncState.when(
           data: (state) {
             final apartaments = state.recentApartments;
+            if (apartaments.isEmpty) {
+              return SliverPadding(
+                padding: const P(horizontal: S.p16, bottom: S.p24),
+                sliver: SliverToBoxAdapter(
+                  child: _RecentEmptyState(
+                    title: context.l10n.myAdsNoItems,
+                    subtitle: 'В выбранном городе пока нет объявлений',
+                  ),
+                ),
+              );
+            }
+
             return SliverPadding(
               padding: const P(horizontal: S.p16, bottom: S.p24),
               sliver: SliverList.separated(
@@ -60,6 +70,43 @@ class RecentAdvertisementsSection extends ConsumerWidget {
               SliverToBoxAdapter(child: ErrorView(error: error)),
         ),
       ],
+    );
+  }
+}
+
+class _RecentEmptyState extends StatelessWidget {
+  const _RecentEmptyState({required this.title, required this.subtitle});
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: context.colors.graysLight50,
+        borderRadius: BorderRadius.circular(S.p16),
+      ),
+      child: Padding(
+        padding: const P(horizontal: S.p20, vertical: S.p24),
+        child: Column(
+          children: [
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: context.typography.headline1,
+            ),
+            const SizedBox(height: S.p8),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: context.typography.bodyDescription.copyWith(
+                color: context.colors.graysText400,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

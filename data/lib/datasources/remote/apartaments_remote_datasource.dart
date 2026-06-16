@@ -5,30 +5,35 @@ import 'package:domain/domain.dart';
 import 'package:shared/exception/remote_exception.dart';
 
 class ApartamentsRemoteDataSource implements ApartamentsDataSource {
-  ApartamentsRemoteDataSource(ApiClient client) : _client = client;
+  ApartamentsRemoteDataSource(ApiClient client, TokenService tokenService)
+    : _client = client,
+      _tokenService = tokenService;
+
   final ApiClient _client;
+  final TokenService _tokenService;
 
   @override
   Future<Either<RemoteException, List<ApartamentPreviewModel>>>
   fetchApartaments(ApartamentFilterModel filter) async {
+    final hasSession = await _tokenService.hasSession();
     final result = await _client.get<ApartamentsResponseData>(
       ApiUrlConstants.ads,
       query: ApartamentFilterMapper.toData(filter).toJson(),
+      needAuth: hasSession,
       transformer: (json) => ApartamentsResponseData.fromJson(json),
     );
     return result.fold(
       (result) => Left(result),
-      (result) =>
-          Right(
-            result.items
-                .map(
-                  (item) => ApartamentMapper.toPreviewModel(
-                    item,
-                    baseUrl: _client.publicBaseUrl,
-                  ),
-                )
-                .toList(),
-          ),
+      (result) => Right(
+        result.items
+            .map(
+              (item) => ApartamentMapper.toPreviewModel(
+                item,
+                baseUrl: _client.publicBaseUrl,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
@@ -36,9 +41,11 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
   Future<Either<RemoteException, ApartamentModel>> fetchApartamentById(
     String id,
   ) async {
+    final hasSession = await _tokenService.hasSession();
     final result = await _client.get<ApartamentData>(
       ApiUrlConstants.adsId(id),
       transformer: (json) => ApartamentData.fromJson(json),
+      needAuth: hasSession,
     );
     return result.fold(
       (result) => Left(result),
@@ -66,7 +73,6 @@ class ApartamentsRemoteDataSource implements ApartamentsDataSource {
     final result = await _client.get(
       ApiUrlConstants.filters,
       transformer: (json) => FilterData.fromJson(json),
-      needAuth: true,
     );
     return result.fold(
       (error) => Left(error),

@@ -5,11 +5,20 @@ import 'package:roomate/utils/utils.dart';
 import 'package:roomate/widgets/widgets.dart';
 
 class NeighbourCard extends StatelessWidget {
-  const NeighbourCard({super.key, required this.onTap, required this.group});
+  const NeighbourCard({
+    super.key,
+    required this.onTap,
+    required this.group,
+    this.showMatchPercent = true,
+  });
+
   final VoidCallback onTap;
   final GroupListItemModel group;
+  final bool showMatchPercent;
+
   @override
   Widget build(BuildContext context) {
+    final hasMatchPercent = showMatchPercent && group.matchPercent > 0;
     return GestureDetector(
       onTap: onTap,
       child: DecoratedBox(
@@ -28,9 +37,9 @@ class NeighbourCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (group.matchPercent > 0)
+                    if (hasMatchPercent)
                       ChipMatch(matchPercent: group.matchPercent),
-                    if (group.matchPercent > 0) const SizedBox(height: S.p12),
+                    if (hasMatchPercent) const SizedBox(height: S.p12),
                     Text(group.title, style: context.typography.headline1),
                     const SizedBox(height: S.p8),
                     Text(

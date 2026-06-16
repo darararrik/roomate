@@ -99,11 +99,11 @@ class ApartamentFilterNotifier extends _$ApartamentFilterNotifier {
   }
 
   void reset() {
-    final profileCity = ref.read(currentProfileCityProvider);
+    final city = ref.read(currentMainCityProvider);
 
     state = ApartamentFilterModel(
-      cityFiasId: profileCity?.fiasId ?? '',
-      locationTitle: profileCity?.title ?? '',
+      cityFiasId: city?.fiasId ?? '',
+      locationTitle: city?.title ?? '',
     );
   }
 

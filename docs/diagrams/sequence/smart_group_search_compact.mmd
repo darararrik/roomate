@@ -1,0 +1,16 @@
+sequenceDiagram
+    actor U as Пользователь
+    participant C as Клиентский модуль поиска
+    participant DS as DataSource групп
+    participant API as Backend API
+    participant S as Умный поиск
+
+    U->>C: Задает параметры подбора
+    C->>C: Объединяет фильтры двух экранов
+    C->>DS: Передает общую модель фильтра
+    DS->>API: GET /api/groups?sort_by=match_percent
+    API->>S: Фильтрация и ранжирование
+    S-->>API: Релевантные группы
+    API-->>DS: JSON-ответ
+    DS-->>C: Модели групп
+    C-->>U: Выдача по совпадению

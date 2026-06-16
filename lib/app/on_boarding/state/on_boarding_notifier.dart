@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared/shared.dart';
 
 import 'package:roomate/lib.dart';
 import 'package:roomate/routing/app_routing.gr.dart';
@@ -56,8 +57,16 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
   // }
 
   void skipByOwner() async {
-    await ref.read(appStatusProvider.notifier).markProfileCompleted();
-    await ref.read(globalProfileProvider.notifier).updateProfile(isOwner: true);
+    final error = await _markOwnerProfileCompleted();
+    if (error != null) {
+      ref.nav.showSnackBar(
+        message: error.messages.isNotEmpty
+            ? error.messages
+            : ref.l10n.profileUpdateFailed,
+      );
+      return;
+    }
+
     ref.nav.replaceAll([const MainFlowRoute()]);
   }
 
@@ -65,7 +74,25 @@ class OnBoardingNotifier extends _$OnBoardingNotifier {
       ref.nav.push(const UserPreferencesPageViewRoute());
 
   Future<void> toCreateAd() async {
+    final error = await _markOwnerProfileCompleted();
+    if (error != null) {
+      ref.nav.showSnackBar(
+        message: error.messages.isNotEmpty
+            ? error.messages
+            : ref.l10n.profileUpdateFailed,
+      );
+      return;
+    }
+
+    await ref.read(adFormProvider.notifier).reset();
+    ref.read(createAdFlowProvider.notifier).reset();
+    await ref.nav.replaceAll([const MainFlowRoute(), const CreateAdRoute()]);
+  }
+
+  Future<RemoteException?> _markOwnerProfileCompleted() async {
     await ref.read(appStatusProvider.notifier).markProfileCompleted();
-    ref.nav.replace(const VerificationIntroRoute());
+    return ref
+        .read(globalProfileProvider.notifier)
+        .updateProfile(isOwner: true, showLoading: false);
   }
 }

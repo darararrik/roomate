@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatSummaryModel {
 
- String get id; String get title; String get avatarUrl; String get participantId; String get participantName; int get participantsCount; String get lastMessageSenderName; String get lastMessageText; DateTime? get updatedAt; int get unreadCount; ApartamentPreviewModel get apartament;
+ String get id; String get title; String get listingTitle; String get avatarUrl; String get participantId; String get participantName; int get participantsCount; String get lastMessageSenderName; String get lastMessageText; String get applicationStatus; bool get isLocal; DateTime? get updatedAt; int get unreadCount; ApartamentPreviewModel get apartament;
 /// Create a copy of ChatSummaryModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ChatSummaryModelCopyWith<ChatSummaryModel> get copyWith => _$ChatSummaryModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatSummaryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.participantId, participantId) || other.participantId == participantId)&&(identical(other.participantName, participantName) || other.participantName == participantName)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.lastMessageSenderName, lastMessageSenderName) || other.lastMessageSenderName == lastMessageSenderName)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.apartament, apartament) || other.apartament == apartament));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatSummaryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.listingTitle, listingTitle) || other.listingTitle == listingTitle)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.participantId, participantId) || other.participantId == participantId)&&(identical(other.participantName, participantName) || other.participantName == participantName)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.lastMessageSenderName, lastMessageSenderName) || other.lastMessageSenderName == lastMessageSenderName)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.isLocal, isLocal) || other.isLocal == isLocal)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.apartament, apartament) || other.apartament == apartament));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,avatarUrl,participantId,participantName,participantsCount,lastMessageSenderName,lastMessageText,updatedAt,unreadCount,apartament);
+int get hashCode => Object.hash(runtimeType,id,title,listingTitle,avatarUrl,participantId,participantName,participantsCount,lastMessageSenderName,lastMessageText,applicationStatus,isLocal,updatedAt,unreadCount,apartament);
 
 @override
 String toString() {
-  return 'ChatSummaryModel(id: $id, title: $title, avatarUrl: $avatarUrl, participantId: $participantId, participantName: $participantName, participantsCount: $participantsCount, lastMessageSenderName: $lastMessageSenderName, lastMessageText: $lastMessageText, updatedAt: $updatedAt, unreadCount: $unreadCount, apartament: $apartament)';
+  return 'ChatSummaryModel(id: $id, title: $title, listingTitle: $listingTitle, avatarUrl: $avatarUrl, participantId: $participantId, participantName: $participantName, participantsCount: $participantsCount, lastMessageSenderName: $lastMessageSenderName, lastMessageText: $lastMessageText, applicationStatus: $applicationStatus, isLocal: $isLocal, updatedAt: $updatedAt, unreadCount: $unreadCount, apartament: $apartament)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ChatSummaryModelCopyWith<$Res>  {
   factory $ChatSummaryModelCopyWith(ChatSummaryModel value, $Res Function(ChatSummaryModel) _then) = _$ChatSummaryModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String avatarUrl, String participantId, String participantName, int participantsCount, String lastMessageSenderName, String lastMessageText, DateTime? updatedAt, int unreadCount, ApartamentPreviewModel apartament
+ String id, String title, String listingTitle, String avatarUrl, String participantId, String participantName, int participantsCount, String lastMessageSenderName, String lastMessageText, String applicationStatus, bool isLocal, DateTime? updatedAt, int unreadCount, ApartamentPreviewModel apartament
 });
 
 
@@ -62,17 +62,20 @@ class _$ChatSummaryModelCopyWithImpl<$Res>
 
 /// Create a copy of ChatSummaryModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? avatarUrl = null,Object? participantId = null,Object? participantName = null,Object? participantsCount = null,Object? lastMessageSenderName = null,Object? lastMessageText = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? apartament = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? listingTitle = null,Object? avatarUrl = null,Object? participantId = null,Object? participantName = null,Object? participantsCount = null,Object? lastMessageSenderName = null,Object? lastMessageText = null,Object? applicationStatus = null,Object? isLocal = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? apartament = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,listingTitle: null == listingTitle ? _self.listingTitle : listingTitle // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String,participantId: null == participantId ? _self.participantId : participantId // ignore: cast_nullable_to_non_nullable
 as String,participantName: null == participantName ? _self.participantName : participantName // ignore: cast_nullable_to_non_nullable
 as String,participantsCount: null == participantsCount ? _self.participantsCount : participantsCount // ignore: cast_nullable_to_non_nullable
 as int,lastMessageSenderName: null == lastMessageSenderName ? _self.lastMessageSenderName : lastMessageSenderName // ignore: cast_nullable_to_non_nullable
 as String,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
-as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,applicationStatus: null == applicationStatus ? _self.applicationStatus : applicationStatus // ignore: cast_nullable_to_non_nullable
+as String,isLocal: null == isLocal ? _self.isLocal : isLocal // ignore: cast_nullable_to_non_nullable
+as bool,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,apartament: null == apartament ? _self.apartament : apartament // ignore: cast_nullable_to_non_nullable
 as ApartamentPreviewModel,
@@ -166,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String avatarUrl,  String participantId,  String participantName,  int participantsCount,  String lastMessageSenderName,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ApartamentPreviewModel apartament)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String listingTitle,  String avatarUrl,  String participantId,  String participantName,  int participantsCount,  String lastMessageSenderName,  String lastMessageText,  String applicationStatus,  bool isLocal,  DateTime? updatedAt,  int unreadCount,  ApartamentPreviewModel apartament)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatSummaryModel() when $default != null:
-return $default(_that.id,_that.title,_that.avatarUrl,_that.participantId,_that.participantName,_that.participantsCount,_that.lastMessageSenderName,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.apartament);case _:
+return $default(_that.id,_that.title,_that.listingTitle,_that.avatarUrl,_that.participantId,_that.participantName,_that.participantsCount,_that.lastMessageSenderName,_that.lastMessageText,_that.applicationStatus,_that.isLocal,_that.updatedAt,_that.unreadCount,_that.apartament);case _:
   return orElse();
 
 }
@@ -187,10 +190,10 @@ return $default(_that.id,_that.title,_that.avatarUrl,_that.participantId,_that.p
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String avatarUrl,  String participantId,  String participantName,  int participantsCount,  String lastMessageSenderName,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ApartamentPreviewModel apartament)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String listingTitle,  String avatarUrl,  String participantId,  String participantName,  int participantsCount,  String lastMessageSenderName,  String lastMessageText,  String applicationStatus,  bool isLocal,  DateTime? updatedAt,  int unreadCount,  ApartamentPreviewModel apartament)  $default,) {final _that = this;
 switch (_that) {
 case _ChatSummaryModel():
-return $default(_that.id,_that.title,_that.avatarUrl,_that.participantId,_that.participantName,_that.participantsCount,_that.lastMessageSenderName,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.apartament);}
+return $default(_that.id,_that.title,_that.listingTitle,_that.avatarUrl,_that.participantId,_that.participantName,_that.participantsCount,_that.lastMessageSenderName,_that.lastMessageText,_that.applicationStatus,_that.isLocal,_that.updatedAt,_that.unreadCount,_that.apartament);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -204,10 +207,10 @@ return $default(_that.id,_that.title,_that.avatarUrl,_that.participantId,_that.p
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String avatarUrl,  String participantId,  String participantName,  int participantsCount,  String lastMessageSenderName,  String lastMessageText,  DateTime? updatedAt,  int unreadCount,  ApartamentPreviewModel apartament)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String listingTitle,  String avatarUrl,  String participantId,  String participantName,  int participantsCount,  String lastMessageSenderName,  String lastMessageText,  String applicationStatus,  bool isLocal,  DateTime? updatedAt,  int unreadCount,  ApartamentPreviewModel apartament)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatSummaryModel() when $default != null:
-return $default(_that.id,_that.title,_that.avatarUrl,_that.participantId,_that.participantName,_that.participantsCount,_that.lastMessageSenderName,_that.lastMessageText,_that.updatedAt,_that.unreadCount,_that.apartament);case _:
+return $default(_that.id,_that.title,_that.listingTitle,_that.avatarUrl,_that.participantId,_that.participantName,_that.participantsCount,_that.lastMessageSenderName,_that.lastMessageText,_that.applicationStatus,_that.isLocal,_that.updatedAt,_that.unreadCount,_that.apartament);case _:
   return null;
 
 }
@@ -219,17 +222,20 @@ return $default(_that.id,_that.title,_that.avatarUrl,_that.participantId,_that.p
 
 
 class _ChatSummaryModel implements ChatSummaryModel {
-  const _ChatSummaryModel({this.id = '', this.title = '', this.avatarUrl = '', this.participantId = '', this.participantName = '', this.participantsCount = 0, this.lastMessageSenderName = '', this.lastMessageText = '', this.updatedAt, this.unreadCount = 0, this.apartament = const ApartamentPreviewModel()});
+  const _ChatSummaryModel({this.id = '', this.title = '', this.listingTitle = '', this.avatarUrl = '', this.participantId = '', this.participantName = '', this.participantsCount = 0, this.lastMessageSenderName = '', this.lastMessageText = '', this.applicationStatus = '', this.isLocal = false, this.updatedAt, this.unreadCount = 0, this.apartament = const ApartamentPreviewModel()});
   
 
 @override@JsonKey() final  String id;
 @override@JsonKey() final  String title;
+@override@JsonKey() final  String listingTitle;
 @override@JsonKey() final  String avatarUrl;
 @override@JsonKey() final  String participantId;
 @override@JsonKey() final  String participantName;
 @override@JsonKey() final  int participantsCount;
 @override@JsonKey() final  String lastMessageSenderName;
 @override@JsonKey() final  String lastMessageText;
+@override@JsonKey() final  String applicationStatus;
+@override@JsonKey() final  bool isLocal;
 @override final  DateTime? updatedAt;
 @override@JsonKey() final  int unreadCount;
 @override@JsonKey() final  ApartamentPreviewModel apartament;
@@ -244,16 +250,16 @@ _$ChatSummaryModelCopyWith<_ChatSummaryModel> get copyWith => __$ChatSummaryMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatSummaryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.participantId, participantId) || other.participantId == participantId)&&(identical(other.participantName, participantName) || other.participantName == participantName)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.lastMessageSenderName, lastMessageSenderName) || other.lastMessageSenderName == lastMessageSenderName)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.apartament, apartament) || other.apartament == apartament));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatSummaryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.listingTitle, listingTitle) || other.listingTitle == listingTitle)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.participantId, participantId) || other.participantId == participantId)&&(identical(other.participantName, participantName) || other.participantName == participantName)&&(identical(other.participantsCount, participantsCount) || other.participantsCount == participantsCount)&&(identical(other.lastMessageSenderName, lastMessageSenderName) || other.lastMessageSenderName == lastMessageSenderName)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.applicationStatus, applicationStatus) || other.applicationStatus == applicationStatus)&&(identical(other.isLocal, isLocal) || other.isLocal == isLocal)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.apartament, apartament) || other.apartament == apartament));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,avatarUrl,participantId,participantName,participantsCount,lastMessageSenderName,lastMessageText,updatedAt,unreadCount,apartament);
+int get hashCode => Object.hash(runtimeType,id,title,listingTitle,avatarUrl,participantId,participantName,participantsCount,lastMessageSenderName,lastMessageText,applicationStatus,isLocal,updatedAt,unreadCount,apartament);
 
 @override
 String toString() {
-  return 'ChatSummaryModel(id: $id, title: $title, avatarUrl: $avatarUrl, participantId: $participantId, participantName: $participantName, participantsCount: $participantsCount, lastMessageSenderName: $lastMessageSenderName, lastMessageText: $lastMessageText, updatedAt: $updatedAt, unreadCount: $unreadCount, apartament: $apartament)';
+  return 'ChatSummaryModel(id: $id, title: $title, listingTitle: $listingTitle, avatarUrl: $avatarUrl, participantId: $participantId, participantName: $participantName, participantsCount: $participantsCount, lastMessageSenderName: $lastMessageSenderName, lastMessageText: $lastMessageText, applicationStatus: $applicationStatus, isLocal: $isLocal, updatedAt: $updatedAt, unreadCount: $unreadCount, apartament: $apartament)';
 }
 
 
@@ -264,7 +270,7 @@ abstract mixin class _$ChatSummaryModelCopyWith<$Res> implements $ChatSummaryMod
   factory _$ChatSummaryModelCopyWith(_ChatSummaryModel value, $Res Function(_ChatSummaryModel) _then) = __$ChatSummaryModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String avatarUrl, String participantId, String participantName, int participantsCount, String lastMessageSenderName, String lastMessageText, DateTime? updatedAt, int unreadCount, ApartamentPreviewModel apartament
+ String id, String title, String listingTitle, String avatarUrl, String participantId, String participantName, int participantsCount, String lastMessageSenderName, String lastMessageText, String applicationStatus, bool isLocal, DateTime? updatedAt, int unreadCount, ApartamentPreviewModel apartament
 });
 
 
@@ -281,17 +287,20 @@ class __$ChatSummaryModelCopyWithImpl<$Res>
 
 /// Create a copy of ChatSummaryModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? avatarUrl = null,Object? participantId = null,Object? participantName = null,Object? participantsCount = null,Object? lastMessageSenderName = null,Object? lastMessageText = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? apartament = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? listingTitle = null,Object? avatarUrl = null,Object? participantId = null,Object? participantName = null,Object? participantsCount = null,Object? lastMessageSenderName = null,Object? lastMessageText = null,Object? applicationStatus = null,Object? isLocal = null,Object? updatedAt = freezed,Object? unreadCount = null,Object? apartament = null,}) {
   return _then(_ChatSummaryModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,listingTitle: null == listingTitle ? _self.listingTitle : listingTitle // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String,participantId: null == participantId ? _self.participantId : participantId // ignore: cast_nullable_to_non_nullable
 as String,participantName: null == participantName ? _self.participantName : participantName // ignore: cast_nullable_to_non_nullable
 as String,participantsCount: null == participantsCount ? _self.participantsCount : participantsCount // ignore: cast_nullable_to_non_nullable
 as int,lastMessageSenderName: null == lastMessageSenderName ? _self.lastMessageSenderName : lastMessageSenderName // ignore: cast_nullable_to_non_nullable
 as String,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
-as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,applicationStatus: null == applicationStatus ? _self.applicationStatus : applicationStatus // ignore: cast_nullable_to_non_nullable
+as String,isLocal: null == isLocal ? _self.isLocal : isLocal // ignore: cast_nullable_to_non_nullable
+as bool,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,apartament: null == apartament ? _self.apartament : apartament // ignore: cast_nullable_to_non_nullable
 as ApartamentPreviewModel,

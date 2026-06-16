@@ -15,6 +15,10 @@ class CreateScreenNotifier extends _$CreateScreenNotifier {
   AppLocalizations get _locale => ref.l10n;
 
   Future<void> startNewCreation() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
     final profile = ref.read(globalProfileProvider).value;
     if (profile == null) {
       return;
@@ -33,6 +37,10 @@ class CreateScreenNotifier extends _$CreateScreenNotifier {
   }
 
   Future<void> continueDraft(Object draft) async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
     final profile = ref.read(globalProfileProvider).value;
     if (profile == null) {
       return;
@@ -96,7 +104,9 @@ class CreateScreenNotifier extends _$CreateScreenNotifier {
     }
 
     if (draft case final CreateGroupFormModel groupDraft) {
-      return _locale.createGroupParticipantsSummary(groupDraft.participantsCount);
+      return _locale.createGroupParticipantsSummary(
+        groupDraft.participantsCount,
+      );
     }
 
     return null;

@@ -9,6 +9,99 @@ part of 'location_providers.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
+@ProviderFor(SelectedMainCity)
+final selectedMainCityProvider = SelectedMainCityProvider._();
+
+final class SelectedMainCityProvider
+    extends $NotifierProvider<SelectedMainCity, CityModel?> {
+  SelectedMainCityProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'selectedMainCityProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedMainCityHash();
+
+  @$internal
+  @override
+  SelectedMainCity create() => SelectedMainCity();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CityModel? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CityModel?>(value),
+    );
+  }
+}
+
+String _$selectedMainCityHash() => r'dc4865591e60672f96c7d623758a10834d5f867a';
+
+abstract class _$SelectedMainCity extends $Notifier<CityModel?> {
+  CityModel? build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<CityModel?, CityModel?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<CityModel?, CityModel?>,
+              CityModel?,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(currentMainCity)
+final currentMainCityProvider = CurrentMainCityProvider._();
+
+final class CurrentMainCityProvider
+    extends $FunctionalProvider<CityModel?, CityModel?, CityModel?>
+    with $Provider<CityModel?> {
+  CurrentMainCityProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'currentMainCityProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$currentMainCityHash();
+
+  @$internal
+  @override
+  $ProviderElement<CityModel?> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  CityModel? create(Ref ref) {
+    return currentMainCity(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CityModel? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CityModel?>(value),
+    );
+  }
+}
+
+String _$currentMainCityHash() => r'eb774c2ac27a999d1487a1da67d6d061ecfdb8a5';
+
 @ProviderFor(cities)
 final citiesProvider = CitiesProvider._();
 

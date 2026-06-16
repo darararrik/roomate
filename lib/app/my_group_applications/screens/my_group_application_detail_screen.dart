@@ -18,6 +18,18 @@ class MyGroupApplicationDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
+    if (isGuest) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          ref.redirectToAuthIfGuest();
+        }
+      });
+      return const Scaffold(body: LoadingWidget());
+    }
+
     final asyncState = ref.watch(
       myGroupApplicationDetailProvider(applicationId),
     );

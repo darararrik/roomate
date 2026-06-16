@@ -28,6 +28,7 @@ class Apartament extends _$Apartament {
     final apartment = await fetchApartament(apartmentId);
     final hasImages = apartment.imageUrls.isNotEmpty;
     final imagesCount = hasImages ? apartment.imageUrls.length : 1;
+    final isOwnerApartment = _isOwnerApartment(apartment);
     final isFavorite = ref.watch(
       favoritesProvider.select(
         (state) =>
@@ -46,6 +47,7 @@ class Apartament extends _$Apartament {
       companyTitle: apartment.whoToRent.contains(WhoToRent.company)
           ? locale.apartmentCompanyAllowed
           : locale.apartmentCompanyNotAllowed,
+      isOwnerApartment: isOwnerApartment,
       publishedAt: apartment.publishDate.toRuLongPublishedDate(),
       viewsText: locale.viewsCount(apartment.totalViewers),
     );
@@ -92,7 +94,17 @@ class Apartament extends _$Apartament {
   }
 
   Future<void> onWritePressed() async {
-    final apartment = state.requireValue.apartment;
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
+    final value = state.requireValue;
+    if (value.isOwnerApartment) {
+      _openLocalOwnerChat(value.apartment);
+      return;
+    }
+
+    final apartment = value.apartment;
     final result = await _chatsRepository.fetchChats();
     if (!ref.mounted) {
       return;
@@ -125,6 +137,27 @@ class Apartament extends _$Apartament {
     );
   }
 
+  void _openLocalOwnerChat(ApartamentModel apartment) {
+    final apartamentPreview = ref
+        .read(favoritesProvider.notifier)
+        .fromDetails(apartment);
+    ref.nav.push(
+      ChatRoute(
+        chat: ChatSummaryModel(
+          id: 'local-ad-${apartment.id}',
+          title: apartment.name.isNotEmpty ? apartment.name : apartment.title,
+          listingTitle: apartment.title,
+          participantName: apartment.name.isNotEmpty
+              ? apartment.name
+              : apartment.title,
+          applicationStatus: apartment.applicationStatus,
+          isLocal: true,
+          apartament: apartamentPreview,
+        ),
+      ),
+    );
+  }
+
   void onMorePressed(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -133,6 +166,11 @@ class Apartament extends _$Apartament {
       },
     );
   }
+}
+
+bool _isOwnerApartment(ApartamentModel apartment) {
+  final role = apartment.role.trim().toLowerCase();
+  return role == 'owner' || role == 'владелец' || role == 'собственник';
 }
 
 @freezed
@@ -145,6 +183,7 @@ sealed class ApartamentState with _$ApartamentState {
     @Default(false) bool isFavorite,
     @Default('') String verifiedTitle,
     @Default('') String companyTitle,
+    @Default(false) bool isOwnerApartment,
     @Default('') String publishedAt,
     @Default('') String viewsText,
   }) = _ApartamentState;

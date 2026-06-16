@@ -10,6 +10,17 @@ class ChatsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
+    if (isGuest) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          ref.redirectToAuthIfGuest();
+        }
+      });
+    }
+
     final asyncState = ref.watch(chatsProvider);
     final notifier = ref.read(chatsProvider.notifier);
 
@@ -30,7 +41,9 @@ class ChatsScreen extends ConsumerWidget {
                         child: Text(
                           'История чатов пока пуста',
                           textAlign: TextAlign.center,
-                          style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+                          style: context.typography.bodyDescription.copyWith(
+                            color: context.colors.graysText400,
+                          ),
                         ),
                       ),
                     ),
@@ -42,16 +55,32 @@ class ChatsScreen extends ConsumerWidget {
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final chat = chats[index];
+                      //TODO: убрать
+                      if (index == 1) return const SizedBox.shrink();
+                      if (index == 2) return const SizedBox.shrink();
+                      if (index == 3) return const SizedBox.shrink();
+
                       return Padding(
-                        padding: EdgeInsets.only(bottom: index == chats.length - 1 ? 0 : S.p12),
-                        child: _ChatListTile(chat: chat, onTap: () => notifier.openChat(chat)),
+                        padding: EdgeInsets.only(
+                          bottom: index == chats.length - 1 ? 0 : S.p12,
+                        ),
+                        child: _ChatListTile(
+                          chat: chat,
+                          onTap: () => notifier.openChat(chat),
+                        ),
                       );
                     }, childCount: chats.length),
                   ),
                 );
               },
-              error: (error, _) => SliverFillRemaining(hasScrollBody: false, child: ErrorView(error: error)),
-              loading: () => const SliverFillRemaining(hasScrollBody: false, child: LoadingWidget()),
+              error: (error, _) => SliverFillRemaining(
+                hasScrollBody: false,
+                child: ErrorView(error: error),
+              ),
+              loading: () => const SliverFillRemaining(
+                hasScrollBody: false,
+                child: LoadingWidget(),
+              ),
             ),
           ],
         ),
@@ -80,52 +109,66 @@ class _ChatListTile extends StatelessWidget {
         child: Padding(
           padding: const P(all: S.p12),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              NetworkAvatar(imageUrl: chat.avatarUrl, size: S.p56, shape: BoxShape.circle),
+              NetworkAvatar(
+                imageUrl: chat.avatarUrl,
+                size: S.p56,
+                shape: BoxShape.circle,
+              ),
               const SizedBox(width: S.p12),
               Expanded(
                 child: Column(
+                  spacing: S.p8,
+                  mainAxisAlignment: .center,
+                  crossAxisAlignment: .center,
                   children: [
                     Row(
                       children: [
                         Expanded(
                           child: Text(
                             chat.title,
-                            maxLines: 1,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: context.typography.headline1,
+                            style: context.typography.headline1.copyWith(
+                              height: 1.2,
+                            ),
                           ),
                         ),
                         if (updatedAt != null) ...[
                           Text(
                             _formatChatDate(updatedAt),
-                            style: context.typography.bodySmall.copyWith(color: colors.graysText400),
+                            style: context.typography.bodySmall.copyWith(
+                              color: colors.graysText400,
+                            ),
                           ),
                         ],
                       ],
                     ),
-                    Text(
-                      chat.apartament.address,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.typography.bodySmall.copyWith(color: colors.graysText400),
-                    ),
-                    Row(
-                      children: [
-                        Text("${chat.lastMessageSenderName}: ", maxLines: 1, style: context.typography.bodyDescription),
-                        Text(
-                          chat.lastMessageText,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: context.typography.bodyDescription.copyWith(color: colors.graysText700),
-                        ),
-                        if (chat.unreadCount > 0) ...[
+                    if (chat.lastMessageText.isNotEmpty) ...[
+                      Row(
+                        children: [
+                          Text(
+                            "${chat.lastMessageSenderName}: ",
+                            maxLines: 1,
+                            style: context.typography.bodyDescription,
+                          ),
+                          Expanded(
+                            child: Text(
+                              chat.lastMessageText,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: context.typography.bodyDescription
+                                  .copyWith(color: colors.graysText700),
+                            ),
+                          ),
                           const SizedBox(width: S.p12),
-                          MessageCountBadge(count: chat.unreadCount),
+                          if (chat.unreadCount > 0) ...[
+                            MessageCountBadge(count: chat.unreadCount),
+                          ],
                         ],
-                      ],
-                    ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -138,7 +181,10 @@ class _ChatListTile extends StatelessWidget {
 
   String _formatChatDate(DateTime value) {
     final now = DateTime.now();
-    final isToday = value.year == now.year && value.month == now.month && value.day == now.day;
+    final isToday =
+        value.year == now.year &&
+        value.month == now.month &&
+        value.day == now.day;
 
     return isToday ? value.toNormalTimeString() : value.toFormattedString();
   }

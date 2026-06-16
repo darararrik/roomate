@@ -21,7 +21,10 @@ class AboutGroup extends _$AboutGroup {
     final result = await _repository.fetchGroupById(groupId);
     return result.fold(
       (error) => throw error,
-      (group) => AboutGroupState(group: group, applicationStatus: group.applicationStatus),
+      (group) => AboutGroupState(
+        group: group,
+        applicationStatus: group.applicationStatus,
+      ),
     );
   }
 
@@ -36,7 +39,10 @@ class AboutGroup extends _$AboutGroup {
     final value = state.asData?.value;
     if (value == null || value.page == 0) return;
 
-    await pageController.previousPage(duration: const Duration(milliseconds: 220), curve: Curves.easeOut);
+    await pageController.previousPage(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeOut,
+    );
   }
 
   Future<void> onNextImagePressed() async {
@@ -46,7 +52,10 @@ class AboutGroup extends _$AboutGroup {
     final lastPage = value.group.apartament.imageUrls.length - 1;
     if (value.page >= lastPage) return;
 
-    await pageController.nextPage(duration: const Duration(milliseconds: 220), curve: Curves.easeOut);
+    await pageController.nextPage(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeOut,
+    );
   }
 
   Future<void> onFavoritePressed() async {
@@ -58,12 +67,20 @@ class AboutGroup extends _$AboutGroup {
     final value = state.asData?.value;
     if (value == null) return;
 
-    ref.nav.push(GroupConditionsAndParticipantsRoute(conditions: value.group.conditions));
+    ref.nav.push(
+      GroupConditionsAndParticipantsRoute(conditions: value.group.conditions),
+    );
   }
 
   Future<void> onApplyPressed() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
     final value = state.asData?.value;
-    if (value == null || value.isApplying || value.applicationStatus == 'pending') {
+    if (value == null ||
+        value.isApplying ||
+        value.applicationStatus == 'pending') {
       return;
     }
 

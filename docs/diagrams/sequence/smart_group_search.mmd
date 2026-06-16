@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor U as Пользователь
+    participant W as WhoSearchScreen
+    participant FS as Экран фильтров групп
+    participant F as WhoSearchFilterNotifier
+    participant GN as GroupsNotifier
+    participant R as GroupsRepository
+    participant DS as GroupsRemoteDataSource
+    participant API as Backend API
+    participant S as Механизм интеллектуального поиска
+
+    U->>W: Указывает условия поиска соседей
+    W->>F: Пол, возраст, условия проживания
+    U->>FS: Уточняет фильтры жилья
+    FS->>F: Тип жилья, комнаты, цена, город
+    F->>F: Формирует общую модель фильтра
+    F->>GN: applyFilter(filter)
+    GN->>R: fetchGroups(filter)
+    R->>DS: fetchGroups(filter)
+    DS->>DS: Маппинг фильтра в query-параметры
+    DS->>API: GET /api/groups?sort_by=match_percent
+    API->>S: Фильтрация и ранжирование групп
+    S-->>API: Отсортированный список групп
+    API-->>DS: JSON-ответ
+    DS-->>R: List<GroupListItemModel>
+    R-->>GN: Данные групп
+    GN-->>W: Состояние списка обновлено
+    W-->>U: Отображение релевантной выдачи

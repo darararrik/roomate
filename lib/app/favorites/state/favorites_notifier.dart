@@ -29,6 +29,10 @@ class Favorites extends _$Favorites {
     String apartmentId, {
     ApartamentPreviewModel? apartment,
   }) async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
     final current = state.asData?.value ?? const <ApartamentPreviewModel>[];
     final hasFavorite = current.any((item) => item.id == apartmentId);
 

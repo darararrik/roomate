@@ -204,6 +204,10 @@ class AdFormNotifier extends _$AdFormNotifier {
       state = state.copyWith(additionalNumber: val);
 
   Future<RemoteException?> createAd() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return const RemoteException(kind: RemoteExceptionKind.unauthorized);
+    }
+
     final draftService = ref.read(createDraftServiceProvider);
     final result = await ref
         .read(apartamentsRepositoryProvider)

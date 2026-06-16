@@ -16,10 +16,10 @@ Future<CreateGroupFormOptionsModel> filtersNeighbours(Ref ref) async {
 @Riverpod(keepAlive: true)
 WhoSearchFilterLocationViewModel whoSearchFilterLocationViewModel(Ref ref) {
   final filter = ref.watch(whoSearchFilterProvider);
-  final currentProfileCity = ref.watch(currentProfileCityProvider);
+  final currentCity = ref.watch(currentMainCityProvider);
   final effectiveCityTitle = filter.locationTitle.isNotEmpty
       ? filter.locationTitle
-      : currentProfileCity?.title ?? AppDefaultCity.title;
+      : currentCity?.title ?? AppDefaultCity.title;
   final addressQuery = filter.addressQuery.trim();
 
   return WhoSearchFilterLocationViewModel(
@@ -34,11 +34,19 @@ WhoSearchFilterLocationViewModel whoSearchFilterLocationViewModel(Ref ref) {
 class WhoSearchFilterNotifier extends _$WhoSearchFilterNotifier {
   @override
   WhoSearchFilterModel build() {
-    final profileCity = ref.read(currentProfileCityProvider);
+    final city = ref.watch(currentMainCityProvider);
 
     return WhoSearchFilterModel(
-      cityFiasId: profileCity?.fiasId ?? '',
-      locationTitle: profileCity?.title ?? '',
+      cityFiasId: city?.fiasId ?? '',
+      locationTitle: city?.title ?? '',
+    );
+  }
+
+  void setCity(CityModel city) {
+    state = state.copyWith(
+      cityFiasId: city.fiasId,
+      locationTitle: city.title,
+      addressQuery: '',
     );
   }
 
@@ -119,11 +127,11 @@ class WhoSearchFilterNotifier extends _$WhoSearchFilterNotifier {
   // }
 
   void reset() {
-    final profileCity = ref.read(currentProfileCityProvider);
+    final city = ref.read(currentMainCityProvider);
 
     state = WhoSearchFilterModel(
-      cityFiasId: profileCity?.fiasId ?? '',
-      locationTitle: profileCity?.title ?? '',
+      cityFiasId: city?.fiasId ?? '',
+      locationTitle: city?.title ?? '',
     );
   }
 

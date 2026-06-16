@@ -42,7 +42,7 @@ final class CreateScreenNotifierProvider
 }
 
 String _$createScreenNotifierHash() =>
-    r'9687ab82ad7da5c4f9f87e92c8308795f38c0d3b';
+    r'7575daad4cbbfb8b50f643ca3f30485192f0ef73';
 
 abstract class _$CreateScreenNotifier extends $Notifier<bool> {
   bool build();

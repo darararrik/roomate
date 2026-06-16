@@ -19,7 +19,10 @@ ApartamentsDataSource apartamentsDataSource(Ref ref) {
   if (ref.watch(configProvider).useMocks) {
     return ApartamentsMockDataSource();
   }
-  return ApartamentsRemoteDataSource(ref.watch(apiClientProvider));
+  return ApartamentsRemoteDataSource(
+    ref.watch(apiClientProvider),
+    ref.watch(tokenServiceProvider),
+  );
 }
 
 @Riverpod(keepAlive: true)
@@ -35,7 +38,10 @@ GroupsDataSource groupsDataSource(Ref ref) {
   if (ref.watch(configProvider).useMocks) {
     return GroupsMockDataSource();
   }
-  return GroupsRemoteDataSource(ref.watch(apiClientProvider));
+  return GroupsRemoteDataSource(
+    ref.watch(apiClientProvider),
+    ref.watch(tokenServiceProvider),
+  );
 }
 
 @Riverpod(keepAlive: true)

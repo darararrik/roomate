@@ -8,6 +8,27 @@ import '../repository/repository_providers.dart';
 part 'location_providers.g.dart';
 
 @Riverpod(keepAlive: true)
+class SelectedMainCity extends _$SelectedMainCity {
+  @override
+  CityModel? build() => null;
+
+  void select(CityModel city) {
+    state = city;
+  }
+}
+
+@Riverpod(keepAlive: true)
+CityModel? currentMainCity(Ref ref) {
+  final profile = ref.watch(globalProfileProvider).value;
+  if (profile?.isGuest == true) {
+    return ref.watch(selectedMainCityProvider) ??
+        ref.watch(currentProfileCityProvider);
+  }
+
+  return ref.watch(currentProfileCityProvider);
+}
+
+@Riverpod(keepAlive: true)
 Future<List<CityModel>> cities(Ref ref) async {
   final result = await ref.read(locationRepositoryProvider).fetchCities();
 

@@ -10,6 +10,18 @@ class CreateGroupScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
+    if (isGuest) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          ref.redirectToAuthIfGuest();
+        }
+      });
+      return const Scaffold(body: LoadingWidget());
+    }
+
     final optionsAsync = ref.watch(getCreateGroupFormOptionsProvider);
     final flowState = ref.watch(createGroupFlowProvider);
     final notifier = ref.read(createGroupFlowProvider.notifier);
@@ -39,7 +51,9 @@ class CreateGroupScreen extends ConsumerWidget {
               : SafeArea(
                   child: BottomNextButton(
                     text: flowState.isSubmitting ? l10n.saving : l10n.next,
-                    onPressed: flowState.isSubmitting ? null : () => notifier.nextStep(tabsRouter),
+                    onPressed: flowState.isSubmitting
+                        ? null
+                        : () => notifier.nextStep(tabsRouter),
                   ),
                 ),
           appBar: AppBar(
@@ -57,7 +71,10 @@ class CreateGroupScreen extends ConsumerWidget {
               preferredSize: const Size.fromHeight(S.p16),
               child: Padding(
                 padding: const P(horizontal: S.p32),
-                child: ProgressBarWidget(tabsRouter: tabsRouter, totalPages: tabsRouter.pageCount),
+                child: ProgressBarWidget(
+                  tabsRouter: tabsRouter,
+                  totalPages: tabsRouter.pageCount,
+                ),
               ),
             ),
           ),

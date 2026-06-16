@@ -90,8 +90,13 @@ class GlobalProfileNotifier extends _$GlobalProfileNotifier {
 
   void openMyAccount() => ref.nav.push(const MyAccountRoute());
 
-  void openIncomingGroupApplications() =>
-      ref.nav.push(const GroupApplicationsTabViewRoute());
+  Future<void> openIncomingGroupApplications() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
+    ref.nav.push(const GroupApplicationsTabViewRoute());
+  }
 
   Future<void> logout() async {
     final shouldLogout = await ref.nav.showAlertDialog<bool>(

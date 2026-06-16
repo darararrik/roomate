@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:roomate/utils/extensions.dart';
 
 class ErrorView extends StatelessWidget {
@@ -8,13 +7,10 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Text(context.l10n.errorGeneric),
-          if (error != null) Text(error.toString()),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: .center,
+      crossAxisAlignment: .center,
+      children: [Text(context.l10n.errorGeneric), if (error != null) Text(error.toString())],
     );
   }
 }

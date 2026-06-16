@@ -17,10 +17,10 @@ class FiltersScreen extends HookConsumerWidget {
     final filter = ref.watch(apartamentFilterProvider);
     final filterNotifier = ref.read(apartamentFilterProvider.notifier);
     final filtersState = ref.watch(filtersProvider);
-    final currentProfileCity = ref.watch(currentProfileCityProvider);
+    final currentCity = ref.watch(currentMainCityProvider);
     final effectiveCityTitle = filter.locationTitle.isNotEmpty
         ? filter.locationTitle
-        : currentProfileCity?.title ?? AppDefaultCity.title;
+        : currentCity?.title ?? AppDefaultCity.title;
     final effectiveLocationSubtitle = filter.addressQuery.isNotEmpty
         ? filter.addressQuery
         : effectiveCityTitle.isEmpty

@@ -1,8 +1,9 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:roomate/lib.dart';
+import 'package:roomate/routing/app_routing.gr.dart';
 
 extension BuildContextX on BuildContext {
   AppPalette get colors => Theme.of(this).extension<AppPalette>()!;
@@ -45,7 +46,20 @@ extension DateTimeX on DateTime {
   }
 
   String toRuLongDateString() {
-    const months = ['янв.', 'февр.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сент.', 'окт.', 'нояб.', 'дек.'];
+    const months = [
+      'янв.',
+      'февр.',
+      'мар.',
+      'апр.',
+      'мая',
+      'июн.',
+      'июл.',
+      'авг.',
+      'сент.',
+      'окт.',
+      'нояб.',
+      'дек.',
+    ];
     return '$day ${months[month - 1]}, $year г.';
   }
 
@@ -101,4 +115,48 @@ extension ListX on List<Widget> {
 extension RefX on Ref {
   NavigationService get nav => read(navigationServiceProvider);
   AppLocalizations get l10n => read(l10nProvider);
+
+  Future<bool> redirectToAuthIfGuest() async {
+    final hasSession = await read(tokenServiceProvider).hasSession();
+    if (!hasSession) {
+      await nav.push(const AuthWrapper());
+      return true;
+    }
+
+    final currentProfile = read(globalProfileProvider).value;
+    final profile = currentProfile ?? await read(globalProfileProvider.future);
+    if (profile == null) {
+      return false;
+    }
+
+    if (!profile.isGuest) {
+      return false;
+    }
+
+    await nav.push(const AuthWrapper());
+    return true;
+  }
+}
+
+extension WidgetRefX on WidgetRef {
+  Future<bool> redirectToAuthIfGuest() async {
+    final hasSession = await read(tokenServiceProvider).hasSession();
+    if (!hasSession) {
+      await read(navigationServiceProvider).push(const AuthWrapper());
+      return true;
+    }
+
+    final currentProfile = read(globalProfileProvider).value;
+    final profile = currentProfile ?? await read(globalProfileProvider.future);
+    if (profile == null) {
+      return false;
+    }
+
+    if (!profile.isGuest) {
+      return false;
+    }
+
+    await read(navigationServiceProvider).push(const AuthWrapper());
+    return true;
+  }
 }

@@ -9,6 +9,18 @@ class FavoritesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
+    if (isGuest) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          ref.redirectToAuthIfGuest();
+        }
+      });
+      return const Scaffold(body: LoadingWidget());
+    }
+
     final favoriteApartmentsState = ref.watch(favoritesProvider);
     final favoriteNotifier = ref.read(favoritesProvider.notifier);
 
@@ -24,7 +36,9 @@ class FavoritesScreen extends ConsumerWidget {
                   child: Center(
                     child: Text(
                       "Нет сохранённых объявлений",
-                      style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+                      style: context.typography.bodyDescription.copyWith(
+                        color: context.colors.graysText400,
+                      ),
                     ),
                   ),
                 );
@@ -41,7 +55,10 @@ class FavoritesScreen extends ConsumerWidget {
                       apartment: apartment,
                       isFavorite: true,
                       onFavoriteTap: () {
-                        favoriteNotifier.toggle(apartment.id, apartment: apartment);
+                        favoriteNotifier.toggle(
+                          apartment.id,
+                          apartment: apartment,
+                        );
                       },
                       //TODO: вынести в нотифаер
                       // onTap: () => context.pushRoute(ApartamnetRoute(apartment: apartment)),
@@ -51,8 +68,14 @@ class FavoritesScreen extends ConsumerWidget {
                 ),
               );
             },
-            loading: () => const SliverFillRemaining(hasScrollBody: false, child: LoadingWidget()),
-            error: (error, stackTrace) => SliverFillRemaining(hasScrollBody: false, child: ErrorView(error: error)),
+            loading: () => const SliverFillRemaining(
+              hasScrollBody: false,
+              child: LoadingWidget(),
+            ),
+            error: (error, stackTrace) => SliverFillRemaining(
+              hasScrollBody: false,
+              child: ErrorView(error: error),
+            ),
           ),
         ],
       ),

@@ -1,0 +1,22 @@
+sequenceDiagram
+    actor U as Собственник
+    participant UI as Экраны создания объявления
+    participant N as CreateAdFlowNotifier
+    participant R as AdsRepository
+    participant DS as AdsRemoteDataSource
+    participant API as Backend API
+
+    U->>UI: Заполняет шаги формы объявления
+    UI->>N: Передает данные текущего шага
+    N->>N: Накопление и валидация формы
+    U->>UI: Нажимает «Опубликовать»
+    UI->>N: createAd()
+    N->>R: createAd(formModel)
+    R->>DS: createAd(dto)
+    DS->>DS: Маппинг формы в JSON
+    DS->>API: POST /api/ads
+    API-->>DS: 201 Created
+    DS-->>R: Данные объявления
+    R-->>N: Успешный результат
+    N-->>UI: Состояние success
+    UI-->>U: Экран успешной публикации

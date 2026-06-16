@@ -14,6 +14,18 @@ class ChatScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
+    if (isGuest) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          ref.redirectToAuthIfGuest();
+        }
+      });
+      return const Scaffold(body: LoadingWidget());
+    }
+
     final colors = context.colors;
     final asyncState = ref.watch(chatProvider(chat));
     final notifier = ref.read(chatProvider(chat).notifier);
@@ -24,6 +36,7 @@ class ChatScreen extends ConsumerWidget {
         final participantsText = _participantsText(
           state.chat.participantsCount,
         );
+        final isLocalOwnerChat = state.chat.isLocal;
         return Scaffold(
           backgroundColor: colors.graysLight50,
           appBar: AppBar(
@@ -45,10 +58,24 @@ class ChatScreen extends ConsumerWidget {
           ),
           body: Column(
             children: [
+              if (isLocalOwnerChat)
+                _LocalChatListingHeader(
+                  chat: state.chat,
+                  isApplying: state.isApplying,
+                  applicationStatus: state.applicationStatus,
+                  onApartmentPressed: notifier.onApartmentPressed,
+                  onApplyPressed: notifier.onApplyPressed,
+                ),
               Expanded(
                 child: chat_ui.Chat(
                   backgroundColor: colors.graysLight50,
                   builders: Builders(
+                    emptyChatListBuilder: (p0) => Center(
+                      child: Text(
+                        "Сообщений пока нет",
+                        style: context.typography.bodyDescription,
+                      ),
+                    ),
                     chatMessageBuilder: buildChatMessageItem,
                     textMessageBuilder: buildCustomTextMessage,
                     chatAnimatedListBuilder: (context, itemBuilder) {
@@ -153,6 +180,128 @@ class ChatScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+class _LocalChatListingHeader extends StatelessWidget {
+  const _LocalChatListingHeader({
+    required this.chat,
+    required this.isApplying,
+    required this.applicationStatus,
+    required this.onApartmentPressed,
+    required this.onApplyPressed,
+  });
+
+  final ChatSummaryModel chat;
+  final bool isApplying;
+  final String applicationStatus;
+  final VoidCallback onApartmentPressed;
+  final VoidCallback onApplyPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final apartment = chat.apartament;
+    final imageUrl = apartment.imageUrls.isNotEmpty
+        ? apartment.imageUrls.first
+        : '';
+    final priceText = apartment.price;
+    final roomsText = apartment.roomsCount;
+    final areaText = apartment.area;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colors.graysWhite,
+        boxShadow: [colors.shadow],
+      ),
+      child: Padding(
+        padding: const P(horizontal: S.p12, vertical: S.p12),
+        child: Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: onApartmentPressed,
+                child: Row(
+                  children: [
+                    NetworkAvatar(
+                      imageUrl: imageUrl,
+                      size: S.p64,
+                      borderRadius: BorderRadius.circular(S.p12),
+                      backgroundColor: colors.graysLight100,
+                    ),
+                    const SizedBox(width: S.p12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '$priceText ${context.l10n.currencyPerMonth}',
+                            style: context.typography.bodyDescription,
+                          ),
+                          const SizedBox(height: S.p4),
+                          Text(
+                            '$roomsText, $areaText, ${context.l10n.floor} ${apartment.floor}/${apartment.totalFloor}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.typography.bodySmall.copyWith(
+                              color: colors.graysText400,
+                            ),
+                          ),
+                          const SizedBox(height: S.p4),
+                          Text(
+                            apartment.address,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.typography.bodySmall.copyWith(
+                              color: colors.graysText400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(width: S.p12),
+            Expanded(
+              child: Padding(
+                padding: const P(vertical: S.p8),
+                child: OpacityButton(
+                  onPressed: isApplying || applicationStatus == 'pending'
+                      ? null
+                      : onApplyPressed,
+                  bgColor: colors.opacityOrange20,
+                  color: colors.orange,
+                  text: _applyButtonText(
+                    locale: context.l10n,
+                    isApplying: isApplying,
+                    applicationStatus: applicationStatus,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+String _applyButtonText({
+  required AppLocalizations locale,
+  required bool isApplying,
+  required String applicationStatus,
+}) {
+  if (isApplying) {
+    return locale.groupApplicationSending;
+  }
+
+  if (applicationStatus == 'pending') {
+    return locale.groupApplicationSent;
+  }
+
+  return locale.groupApply;
 }
 
 String _participantsText(int count) {

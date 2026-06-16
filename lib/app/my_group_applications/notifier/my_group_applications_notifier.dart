@@ -9,6 +9,11 @@ part 'my_group_applications_notifier.g.dart';
 Future<List<IncomingGroupApplicationModel>> applicationsForGroups(
   Ref ref,
 ) async {
+  final profile = await ref.watch(globalProfileProvider.future);
+  if (profile.isGuest) {
+    return [];
+  }
+
   final result = await ref
       .read(groupsRepositoryProvider)
       .fetchIncomingGroupApplications();
@@ -20,6 +25,11 @@ Future<List<IncomingGroupApplicationModel>> applicationsForGroupsByStatus(
   Ref ref,
   AdApplicationStatus status,
 ) async {
+  final profile = await ref.watch(globalProfileProvider.future);
+  if (profile.isGuest) {
+    return [];
+  }
+
   final result = await ref
       .read(groupsRepositoryProvider)
       .fetchIncomingGroupApplications(status: status);
@@ -31,6 +41,10 @@ Future<IncomingGroupApplicationDetailModel> applicationDetailForGroup(
   Ref ref,
   String applicationId,
 ) async {
+  if (await ref.redirectToAuthIfGuest()) {
+    throw const RemoteException(kind: RemoteExceptionKind.unauthorized);
+  }
+
   final result = await ref
       .read(groupsRepositoryProvider)
       .fetchIncomingGroupApplicationDetails(applicationId);

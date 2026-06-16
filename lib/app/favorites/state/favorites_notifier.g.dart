@@ -33,7 +33,7 @@ final class FavoritesProvider
   Favorites create() => Favorites();
 }
 
-String _$favoritesHash() => r'8ee6d5b9c16f1bc4ca9eaa00c9689683bd5b5988';
+String _$favoritesHash() => r'bd1a694885b159c11c86733a149ae05e1cfc0ca5';
 
 abstract class _$Favorites
     extends $AsyncNotifier<List<ApartamentPreviewModel>> {

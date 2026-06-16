@@ -22,6 +22,7 @@ abstract class ApartamentData with _$ApartamentData {
     @JsonKey(name: 'district') String? district,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'role') String? role,
+    @JsonKey(name: 'application_status') String? applicationStatus,
     @JsonKey(name: 'publish_date') String? publishDate,
     @JsonKey(name: 'total_viewers') String? totalViewers,
     @JsonKey(name: 'layout') String? layout,

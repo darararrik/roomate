@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:domain/domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:roomate/app/neighbours/filters/notifier/who_search_filter_notifier.dart';
+import 'package:roomate/app/neighbours/groups/notifier/groups_notifier.dart';
 import 'package:roomate/lib.dart';
 
 class MainAppBar extends ConsumerWidget {
@@ -27,12 +29,34 @@ class MainAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentCity = ref.watch(currentProfileCityProvider);
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? false),
+    );
+    final currentCity = ref.watch(currentMainCityProvider);
     final effectiveCityTitle = cityTitle?.trim().isNotEmpty == true
         ? cityTitle!
         : currentCity?.title.isNotEmpty == true
         ? currentCity!.title
         : context.l10n.selectRegion;
+    final effectiveSelectedCityFiasId =
+        selectedCityFiasId ?? (isGuest ? currentCity?.fiasId : null);
+    final handleCitySelected = onCitySelected != null || isGuest
+        ? (CityModel city) async {
+            if (isGuest) {
+              ref.read(selectedMainCityProvider.notifier).select(city);
+              ref.read(whoSearchFilterProvider.notifier).setCity(city);
+              ref.invalidate(groupsProvider);
+              ref.invalidate(homeProvider);
+
+              if (onCitySelected == null) {
+                ref.read(apartamentFilterProvider.notifier).setCity(city);
+                ref.invalidate(apartamentsProvider);
+              }
+            }
+
+            await onCitySelected?.call(city);
+          }
+        : null;
 
     return SliverAppBar(
       pinned: pinned,
@@ -45,8 +69,8 @@ class MainAppBar extends ConsumerWidget {
           context: context,
           isScrollControlled: true,
           builder: (context) => RegionBottomSheet(
-            selectedCityFiasId: selectedCityFiasId,
-            onCitySelected: onCitySelected,
+            selectedCityFiasId: effectiveSelectedCityFiasId,
+            onCitySelected: handleCitySelected,
           ),
         ),
         child: Column(

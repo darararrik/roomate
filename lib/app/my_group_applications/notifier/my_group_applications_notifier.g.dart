@@ -49,7 +49,7 @@ final class ApplicationsForGroupsProvider
 }
 
 String _$applicationsForGroupsHash() =>
-    r'de427112a0fad2f5922f729afdd6a85a2976bd05';
+    r'4be3cda2a453eeb936066a934e4eedbf41a365a5';
 
 @ProviderFor(applicationsForGroupsByStatus)
 final applicationsForGroupsByStatusProvider =
@@ -111,7 +111,7 @@ final class ApplicationsForGroupsByStatusProvider
 }
 
 String _$applicationsForGroupsByStatusHash() =>
-    r'74ce282dc5395d040bbbd8e8df1ec0bb03a8406c';
+    r'69eb2e8373622c24d83e1104c3db83259c969aed';
 
 final class ApplicationsForGroupsByStatusFamily extends $Family
     with
@@ -194,7 +194,7 @@ final class ApplicationDetailForGroupProvider
 }
 
 String _$applicationDetailForGroupHash() =>
-    r'64f5e32c586d6278b23503df718aa0868df66c19';
+    r'550c79f92c6d893e85853319cff8fd971f9f3f22';
 
 final class ApplicationDetailForGroupFamily extends $Family
     with

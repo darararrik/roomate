@@ -102,7 +102,7 @@ final class ApartamentsDataSourceProvider
 }
 
 String _$apartamentsDataSourceHash() =>
-    r'9676eab7e60accc0c0bfeb6d4b55eff233d0e20c';
+    r'caa26ef23856846d063fad6846276e2e9964e44b';
 
 @ProviderFor(chatsDataSource)
 final chatsDataSourceProvider = ChatsDataSourceProvider._();
@@ -190,7 +190,7 @@ final class GroupsDataSourceProvider
   }
 }
 
-String _$groupsDataSourceHash() => r'76d417ecc2ed809005c18531965136ee86913bb2';
+String _$groupsDataSourceHash() => r'4419cb1cde4648a91432484294dc6bf37f97b8ef';
 
 @ProviderFor(uploadsDataSource)
 final uploadsDataSourceProvider = UploadsDataSourceProvider._();

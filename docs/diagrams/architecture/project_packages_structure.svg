@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1152" viewBox="0 0 2048 1152">
+  <defs>
+    <style>
+      .bg { fill: #f4f4f4; }
+      .card { fill: #fff; stroke: #d7d7d7; stroke-width: 2; filter: url(#shadow); }
+      .note { fill: #fff8f3; stroke: #ff5a1f; stroke-width: 2; stroke-dasharray: 8 8; }
+      .orange { fill: #ff5a1f; }
+      .orangeStroke { stroke: #ff5a1f; stroke-width: 4; fill: none; }
+      .tree { stroke: #8b8b8b; stroke-width: 2; fill: none; }
+      .connector { stroke: #ff5a1f; stroke-width: 4; fill: none; }
+      .title { font: 700 36px Arial, Helvetica, sans-serif; fill: #0f0f0f; }
+      .sub { font: 400 25px Arial, Helvetica, sans-serif; fill: #5d6270; }
+      .text { font: 400 26px Arial, Helvetica, sans-serif; fill: #111; }
+      .bold { font: 700 29px Arial, Helvetica, sans-serif; fill: #111; }
+      .small { font: 400 21px Arial, Helvetica, sans-serif; fill: #5d6270; }
+      .ideaTitle { font: 700 28px Arial, Helvetica, sans-serif; fill: #ff5a1f; }
+      .ideaText { font: 400 28px Arial, Helvetica, sans-serif; fill: #111; }
+    </style>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect class="bg" width="2048" height="1152"/>
+
+  <!-- helper: folder shapes are repeated inline -->
+
+  <!-- Left card -->
+  <rect class="card" x="70" y="34" width="710" height="1082" rx="20"/>
+
+  <!-- root -->
+  <g transform="translate(104 70)">
+    <path class="orange" d="M0 12 h38 l10 12 h54 a10 10 0 0 1 10 10 v56 a10 10 0 0 1-10 10 H10 a10 10 0 0 1-10-10 Z"/>
+    <path d="M3 44 h106" stroke="#ff9a63" stroke-width="4"/>
+    <text class="title" x="140" y="40">roomate/</text>
+    <text class="sub" x="140" y="80">Flutter проект</text>
+  </g>
+
+  <!-- tree guides -->
+  <path class="tree" d="M112 140 V1054"/>
+  <path class="tree" d="M112 180 H145"/>
+  <path class="tree" d="M112 902 H145"/>
+  <path class="tree" d="M112 966 H145"/>
+  <path class="tree" d="M112 1030 H145"/>
+  <path class="tree" d="M172 230 V865"/>
+  <path class="tree" d="M172 230 H205"/>
+  <path class="tree" d="M172 600 H205"/>
+  <path class="tree" d="M172 640 H205"/>
+  <path class="tree" d="M172 680 H205"/>
+  <path class="tree" d="M172 720 H205"/>
+  <path class="tree" d="M172 760 H205"/>
+  <path class="tree" d="M172 800 H205"/>
+  <path class="tree" d="M172 840 H205"/>
+  <path class="tree" d="M225 278 V572"/>
+
+  <!-- lib -->
+  <g transform="translate(150 162)">
+    <path class="orange" d="M0 6 h25 l7 9 h34 a7 7 0 0 1 7 7 v37 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/>
+    <text class="bold" x="92" y="44">lib/</text>
+  </g>
+
+  <!-- app -->
+  <g transform="translate(207 220)">
+    <path class="orange" d="M0 6 h25 l7 9 h34 a7 7 0 0 1 7 7 v37 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/>
+    <text class="bold" x="92" y="44">app/</text>
+    <text class="small" x="172" y="43">(функциональные модули)</text>
+  </g>
+
+  <!-- app modules -->
+  <g class="text" transform="translate(254 272)">
+    <g transform="translate(0 0)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">auth</text></g>
+    <g transform="translate(0 39)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">apartments</text></g>
+    <g transform="translate(0 78)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">neighbours</text></g>
+    <g transform="translate(0 117)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">create</text></g>
+    <g transform="translate(0 156)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">chats</text></g>
+    <g transform="translate(0 195)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">profile</text></g>
+    <g transform="translate(0 234)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">settings</text></g>
+    <g transform="translate(0 273)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">favorites</text></g>
+    <g transform="translate(0 312)"><path class="orange" d="M0 5 h21 l6 8 h31 a6 6 0 0 1 6 6 v31 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="80" y="35">overview</text></g>
+  </g>
+
+  <!-- inside module note -->
+  <rect class="note" x="500" y="320" width="250" height="268" rx="14"/>
+  <circle class="orange" cx="532" cy="360" r="18"/>
+  <text x="526" y="370" font-family="Arial" font-size="24" font-weight="700" fill="#fff">i</text>
+  <text class="text" x="560" y="372">Внутри каждого</text>
+  <text class="text" x="560" y="406">модуля логика</text>
+  <text class="text" x="560" y="440">вынесена из</text>
+  <text class="text" x="560" y="474">верстки:</text>
+  <text class="text" x="560" y="514">экран → notifier →</text>
+  <text class="text" x="560" y="548">сценарий →</text>
+  <text class="text" x="560" y="582">репозиторий</text>
+
+  <!-- lib subdirs -->
+  <g class="text" transform="translate(207 588)">
+    <g transform="translate(0 0)"><path class="orange" d="M0 5 h23 l6 8 h32 a6 6 0 0 1 6 6 v32 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="84" y="36">di</text></g>
+    <g transform="translate(0 41)"><path class="orange" d="M0 5 h23 l6 8 h32 a6 6 0 0 1 6 6 v32 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="84" y="36">notifier</text></g>
+    <g transform="translate(0 82)"><path class="orange" d="M0 5 h23 l6 8 h32 a6 6 0 0 1 6 6 v32 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="84" y="36">routing</text></g>
+    <g transform="translate(0 123)"><path class="orange" d="M0 5 h23 l6 8 h32 a6 6 0 0 1 6 6 v32 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="84" y="36">widgets</text></g>
+    <g transform="translate(0 164)"><path class="orange" d="M0 5 h23 l6 8 h32 a6 6 0 0 1 6 6 v32 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="84" y="36">theme</text></g>
+    <g transform="translate(0 205)"><path class="orange" d="M0 5 h23 l6 8 h32 a6 6 0 0 1 6 6 v32 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="84" y="36">services</text></g>
+    <g transform="translate(0 246)"><path class="orange" d="M0 5 h23 l6 8 h32 a6 6 0 0 1 6 6 v32 a6 6 0 0 1-6 6 H6 a6 6 0 0 1-6-6 Z"/><text x="84" y="36">utils</text></g>
+  </g>
+
+  <!-- root packages -->
+  <g class="bold" transform="translate(150 880)">
+    <g transform="translate(0 0)"><path class="orange" d="M0 6 h27 l7 9 h37 a7 7 0 0 1 7 7 v39 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/><text x="92" y="44">data/</text><text class="small" x="248" y="41">(отдельный пакет)</text></g>
+    <g transform="translate(0 64)"><path class="orange" d="M0 6 h27 l7 9 h37 a7 7 0 0 1 7 7 v39 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/><text x="92" y="44">domain/</text><text class="small" x="248" y="41">(отдельный пакет)</text></g>
+    <g transform="translate(0 128)"><path class="orange" d="M0 6 h27 l7 9 h37 a7 7 0 0 1 7 7 v39 a7 7 0 0 1-7 7 H7 a7 7 0 0 1-7-7 Z"/><text x="92" y="44">shared/</text><text class="small" x="248" y="41">(отдельный пакет)</text></g>
+  </g>
+
+  <!-- connectors to package cards -->
+  <path class="connector" d="M594 902 H818 V226 H858"/>
+  <circle class="orange" cx="594" cy="902" r="6"/><circle class="orange" cx="858" cy="226" r="6"/>
+  <path class="connector" d="M594 966 H818 V674 H858"/>
+  <circle class="orange" cx="594" cy="966" r="6"/><circle class="orange" cx="858" cy="674" r="6"/>
+  <path class="connector" d="M594 1030 H830 C830 1075 842 1082 858 1082"/>
+  <circle class="orange" cx="594" cy="1030" r="6"/>
+
+  <!-- package cards -->
+  <rect class="card" x="865" y="34" width="520" height="448" rx="20"/>
+  <g transform="translate(900 62)">
+    <path class="orange" d="M32 0 l32 18 v54 L32 90 0 72 V18 Z"/>
+    <path d="M9 21 l23 13 23-13" stroke="#fff" stroke-width="5" fill="none"/>
+    <path d="M32 36 V72" stroke="#fff" stroke-width="5"/>
+    <text class="title" x="88" y="28">data package</text>
+    <text class="sub" x="88" y="68">(отдельный пакет)</text>
+  </g>
+  <g class="text" transform="translate(915 158)">
+    <g transform="translate(0 0)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">constants</text></g>
+    <g transform="translate(0 40)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">datasources/remote</text></g>
+    <g transform="translate(0 80)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">datasources/mocks</text></g>
+    <g transform="translate(0 120)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">entity</text></g>
+    <g transform="translate(0 160)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">mappers</text></g>
+    <g transform="translate(0 200)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">repository</text></g>
+    <g transform="translate(0 240)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">services</text></g>
+    <g transform="translate(0 280)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">utils</text></g>
+  </g>
+
+  <rect class="card" x="865" y="520" width="520" height="260" rx="20"/>
+  <g transform="translate(900 548)">
+    <path class="orange" d="M32 0 l32 18 v54 L32 90 0 72 V18 Z"/>
+    <path d="M9 21 l23 13 23-13" stroke="#fff" stroke-width="5" fill="none"/>
+    <path d="M32 36 V72" stroke="#fff" stroke-width="5"/>
+    <text class="title" x="88" y="28">domain package</text>
+    <text class="sub" x="88" y="68">(отдельный пакет)</text>
+  </g>
+  <g class="text" transform="translate(915 650)">
+    <g transform="translate(0 0)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">enums</text></g>
+    <g transform="translate(0 44)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">models</text></g>
+    <g transform="translate(0 88)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">repository</text></g>
+  </g>
+
+  <rect class="card" x="865" y="820" width="520" height="260" rx="20"/>
+  <g transform="translate(900 848)">
+    <path class="orange" d="M32 0 l32 18 v54 L32 90 0 72 V18 Z"/>
+    <path d="M9 21 l23 13 23-13" stroke="#fff" stroke-width="5" fill="none"/>
+    <path d="M32 36 V72" stroke="#fff" stroke-width="5"/>
+    <text class="title" x="88" y="28">shared package</text>
+    <text class="sub" x="88" y="68">(отдельный пакет)</text>
+  </g>
+  <g class="text" transform="translate(915 950)">
+    <g transform="translate(0 0)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">exception</text></g>
+    <g transform="translate(0 44)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">mocks</text></g>
+    <g transform="translate(0 88)"><path class="orange" d="M0 5 h19 l5 7 h26 a5 5 0 0 1 5 5 v27 a5 5 0 0 1-5 5 H5 a5 5 0 0 1-5-5 Z"/><text x="70" y="32">utils</text></g>
+  </g>
+
+  <!-- idea note -->
+  <rect class="note" x="1420" y="645" width="535" height="386" rx="28"/>
+  <circle class="orange" cx="1504" cy="742" r="48"/>
+  <path d="M1490 732 c0-19 30-25 39-7 6 13-1 24-12 32 v12 h-24 v-13 c-8-6-13-14-13-24z" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1494 784 h22" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1504 684 v18 M1468 704 l13 13 M1540 704 l-13 13" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <text class="ideaTitle" x="1575" y="735">Главная идея:</text>
+  <text class="ideaText" x="1575" y="783">data, domain и shared —</text>
+  <text class="ideaText" x="1575" y="827">отдельные пакеты,</text>
+  <text class="ideaText" x="1575" y="871">а lib/app содержит</text>
+  <text class="ideaText" x="1575" y="915">функциональные модули</text>
+  <text class="ideaText" x="1575" y="959">приложения.</text>
+</svg>

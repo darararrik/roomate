@@ -92,7 +92,7 @@ class RegionBottomSheet extends HookConsumerWidget {
                       ),
                     ),
                     Padding(
-                      padding: const P(top: S.p16),
+                      padding: const P(top: S.p16, horizontal: S.p16),
                       child: PrimaryButton(
                         text: context.l10n.apply,
                         onPressed: () async {

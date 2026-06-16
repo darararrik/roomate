@@ -24,9 +24,11 @@ class OpacityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final foregroundColor = color ?? context.colors.graysWhite;
     Widget content = Text(
       text,
-      style: context.typography.activesLabel.copyWith(color: color ?? context.colors.graysWhite),
+      textAlign: TextAlign.center,
+      style: context.typography.activesLabel.copyWith(color: foregroundColor),
     );
     if (icon != null) {
       content = Row(
@@ -48,7 +50,9 @@ class OpacityButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: bgColor,
-        foregroundColor: color,
+        foregroundColor: foregroundColor,
+        disabledBackgroundColor: bgColor,
+        disabledForegroundColor: foregroundColor,
         minimumSize: height != null ? Size(double.infinity, height!) : null,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius ?? S.p16)),
       ),

@@ -97,7 +97,7 @@ final class ApplicationsForAdsProvider
 }
 
 String _$applicationsForAdsHash() =>
-    r'df53d011a7d965216276bc154a75847decd5d441';
+    r'ed7f6d1dcbe6d281df46f54eb18f9c69685caef5';
 
 @ProviderFor(applicationsForAdsByStatus)
 final applicationsForAdsByStatusProvider = ApplicationsForAdsByStatusFamily._();
@@ -158,7 +158,7 @@ final class ApplicationsForAdsByStatusProvider
 }
 
 String _$applicationsForAdsByStatusHash() =>
-    r'da0ed9bbbfe1a8fe0cb465a7c90f99353b1c5beb';
+    r'ffe13f94e38c52a569569367733f3084fc8f13b4';
 
 final class ApplicationsForAdsByStatusFamily extends $Family
     with
@@ -241,7 +241,7 @@ final class ApplicationDetailForAdProvider
 }
 
 String _$applicationDetailForAdHash() =>
-    r'5354e120cfa5ba2006174d9a072f193cb1798bda';
+    r'1a4ef4edbc129c044ec597c75690b992e1e881c4';
 
 final class ApplicationDetailForAdFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<AdApplicationDetailModel>, String> {

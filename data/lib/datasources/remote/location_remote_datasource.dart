@@ -16,7 +16,6 @@ class LocationRemoteDataSource implements LocationDataSource {
   Future<Either<RemoteException, List<CityModel>>> fetchCities() async {
     final res = await _client.get(
       ApiUrlConstants.cities,
-      needAuth: true,
       transformer: (json) => unpackDtoList(
         json,
         fromJson: CityData.fromJson,

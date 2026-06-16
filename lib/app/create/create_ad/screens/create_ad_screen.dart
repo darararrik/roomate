@@ -11,6 +11,18 @@ class CreateAdScreen extends ConsumerWidget {
   const CreateAdScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
+    if (isGuest) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          ref.redirectToAuthIfGuest();
+        }
+      });
+      return const Scaffold(body: LoadingWidget());
+    }
+
     final optionsAsync = ref.watch(getAdFormOptionsProvider);
     final flowState = ref.watch(createAdFlowProvider);
     final notifier = ref.read(createAdFlowProvider.notifier);

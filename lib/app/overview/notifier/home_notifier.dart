@@ -9,25 +9,51 @@ part 'home_notifier.g.dart';
 class HomeNotifier extends _$HomeNotifier {
   static const int _recentApartmentsLimit = 5;
 
-  IApartamentsRepository get _repository => ref.read(apartamentsRepositoryProvider);
+  IApartamentsRepository get _repository =>
+      ref.read(apartamentsRepositoryProvider);
 
   @override
   Future<HomeState> build() async {
-    final result = await _repository.fetchApartaments(const ApartamentFilterModel());
+    final city = ref.watch(currentMainCityProvider);
+    final result = await _repository.fetchApartaments(
+      ApartamentFilterModel(cityFiasId: city?.fiasId ?? ''),
+    );
 
     return result.fold(
       (error) => throw error,
-      (apartments) => HomeState(recentApartments: apartments.take(_recentApartmentsLimit).toList(growable: false)),
+      (apartments) => HomeState(
+        recentApartments: apartments
+            .take(_recentApartmentsLimit)
+            .toList(growable: false),
+      ),
     );
   }
 
   void openApartments() => ref.nav.push(const ApartamentsRoute());
 
-  void openCreateAd() => ref.nav.push(const CreateAdRoute());
+  Future<void> openCreateAd() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
 
-  void openMyAdvertisements() => ref.nav.push(const MyAdvertisementsRoute());
+    ref.nav.push(const CreateAdRoute());
+  }
 
-  void openIncomingAdApplications() => ref.nav.push(const ApplicationsTabViewRoute());
+  Future<void> openMyAdvertisements() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
+    ref.nav.push(const MyAdvertisementsRoute());
+  }
+
+  Future<void> openIncomingAdApplications() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return;
+    }
+
+    ref.nav.push(const ApplicationsTabViewRoute());
+  }
 
   void openNeighbours() => ref.nav.push(const NeighboursRoute());
 

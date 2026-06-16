@@ -28,7 +28,14 @@ class MainFlow extends ConsumerWidget {
           child: NavigationBar(
             height: S.p72,
             selectedIndex: tabsRouter.activeIndex,
-            onDestinationSelected: tabsRouter.setActiveIndex,
+            onDestinationSelected: (index) async {
+              if ((index == 1 || index == 2 || index == 3) &&
+                  await ref.redirectToAuthIfGuest()) {
+                return;
+              }
+
+              tabsRouter.setActiveIndex(index);
+            },
             destinations: [
               NavigationDestination(
                 icon: const AppIcon(AppIcons.home),

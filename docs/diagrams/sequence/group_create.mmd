@@ -1,0 +1,24 @@
+sequenceDiagram
+    actor U as Арендатор
+    participant UI as Экраны создания группы
+    participant FN as GroupFormNotifier
+    participant N as CreateGroupFlowNotifier
+    participant R as GroupsRepository
+    participant DS as GroupsRemoteDataSource
+    participant API as Backend API
+
+    U->>UI: Заполняет данные группы
+    UI->>FN: Обновляет поля формы
+    FN->>FN: Хранит данные группы, квартиры и предпочтений
+    U->>UI: Нажимает «Создать группу»
+    UI->>N: createGroup()
+    N->>FN: Получает итоговую модель формы
+    N->>R: createGroup(formModel)
+    R->>DS: createGroup(dto)
+    DS->>DS: Маппинг group/apartment/preferences
+    DS->>API: POST /api/groups
+    API-->>DS: 201 Created
+    DS-->>R: GroupModel
+    R-->>N: Успешный результат
+    N-->>UI: Состояние success
+    UI-->>U: Экран завершения создания группы

@@ -11,12 +11,30 @@ class GroupApplicationsTabViewScreen extends ConsumerWidget {
   const GroupApplicationsTabViewScreen({super.key});
 
   static const _newStatuses = [AdApplicationStatus.pending];
-  static const _archivedStatuses = [AdApplicationStatus.accepted, AdApplicationStatus.rejected];
+  static const _archivedStatuses = [
+    AdApplicationStatus.accepted,
+    AdApplicationStatus.rejected,
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
+    if (isGuest) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          ref.redirectToAuthIfGuest();
+        }
+      });
+      return const Scaffold(body: LoadingWidget());
+    }
+
     return AutoTabsRouter.tabBar(
-      routes: const [NewGroupApplicationsRoute(), ArchivedGroupApplicationsRoute()],
+      routes: const [
+        NewGroupApplicationsRoute(),
+        ArchivedGroupApplicationsRoute(),
+      ],
       builder: (context, child, tabController) {
         return Scaffold(
           backgroundColor: context.colors.graysWhite,
@@ -26,7 +44,9 @@ class GroupApplicationsTabViewScreen extends ConsumerWidget {
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
                   SliverOverlapAbsorber(
-                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                      context,
+                    ),
                     sliver: SliverAppBar(
                       title: Text(context.l10n.myAdApplicationsTitle),
                       centerTitle: false,
@@ -46,8 +66,14 @@ class GroupApplicationsTabViewScreen extends ConsumerWidget {
                           controller: tabController,
                           newTabTitle: context.l10n.adApplicationNewTabTitle,
                           archivedTabTitle: context.l10n.myAdsArchive,
-                          newCount: _watchGroupApplicationsCount(ref, _newStatuses),
-                          archivedCount: _watchGroupApplicationsCount(ref, _archivedStatuses),
+                          newCount: _watchGroupApplicationsCount(
+                            ref,
+                            _newStatuses,
+                          ),
+                          archivedCount: _watchGroupApplicationsCount(
+                            ref,
+                            _archivedStatuses,
+                          ),
                         ),
                       ),
                     ),
@@ -95,11 +121,20 @@ class ArchivedGroupApplicationsScreen extends StatelessWidget {
   }
 }
 
-int _watchGroupApplicationsCount(WidgetRef ref, List<AdApplicationStatus> statuses) {
+int _watchGroupApplicationsCount(
+  WidgetRef ref,
+  List<AdApplicationStatus> statuses,
+) {
   var count = 0;
 
   for (final status in statuses) {
-    count += ref.watch(applicationsForGroupsByStatusProvider(status)).asData?.value.length ?? 0;
+    count +=
+        ref
+            .watch(applicationsForGroupsByStatusProvider(status))
+            .asData
+            ?.value
+            .length ??
+        0;
   }
 
   return count;
@@ -109,15 +144,23 @@ AsyncValue<List<IncomingGroupApplicationModel>> _watchGroupApplications(
   WidgetRef ref,
   List<AdApplicationStatus> statuses,
 ) {
-  final states = [for (final status in statuses) ref.watch(applicationsForGroupsByStatusProvider(status))];
+  final states = [
+    for (final status in statuses)
+      ref.watch(applicationsForGroupsByStatusProvider(status)),
+  ];
 
   return _combineApplicationsStates(states);
 }
 
-Widget _buildGroupApplicationItem(BuildContext context, IncomingGroupApplicationModel item) {
+Widget _buildGroupApplicationItem(
+  BuildContext context,
+  IncomingGroupApplicationModel item,
+) {
   return GroupApplicationCard(
     item: item,
-    onTap: () => context.pushRoute(MyGroupApplicationDetailRoute(applicationId: item.id)),
+    onTap: () => context.pushRoute(
+      MyGroupApplicationDetailRoute(applicationId: item.id),
+    ),
   );
 }
 
@@ -133,7 +176,11 @@ class _ApplicationsTabContent<T> extends ConsumerWidget {
   });
 
   final List<AdApplicationStatus> statuses;
-  final AsyncValue<List<T>> Function(WidgetRef ref, List<AdApplicationStatus> statuses) watchItems;
+  final AsyncValue<List<T>> Function(
+    WidgetRef ref,
+    List<AdApplicationStatus> statuses,
+  )
+  watchItems;
   final Widget Function(BuildContext context, T item) itemBuilder;
   final String? infoTitle;
   final String? infoDescription;
@@ -146,12 +193,17 @@ class _ApplicationsTabContent<T> extends ConsumerWidget {
     return CustomScrollView(
       key: PageStorageKey(statuses.map((status) => status.value).join(',')),
       slivers: [
-        SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
+        SliverOverlapInjector(
+          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+        ),
         if (infoTitle != null && infoDescription != null)
           SliverPadding(
             padding: const P(horizontal: S.p16, top: S.p12),
             sliver: SliverToBoxAdapter(
-              child: _ApplicationsInfoCard(title: infoTitle!, description: infoDescription!),
+              child: _ApplicationsInfoCard(
+                title: infoTitle!,
+                description: infoDescription!,
+              ),
             ),
           ),
         asyncState.when(
@@ -162,7 +214,9 @@ class _ApplicationsTabContent<T> extends ConsumerWidget {
                 child: Center(
                   child: Text(
                     emptyText ?? context.l10n.adApplicationNoItems,
-                    style: context.typography.bodyDescription.copyWith(color: context.colors.graysText400),
+                    style: context.typography.bodyDescription.copyWith(
+                      color: context.colors.graysText400,
+                    ),
                   ),
                 ),
               );
@@ -177,20 +231,29 @@ class _ApplicationsTabContent<T> extends ConsumerWidget {
               ),
               sliver: SliverList.separated(
                 itemCount: items.length,
-                itemBuilder: (context, index) => itemBuilder(context, items[index]),
+                itemBuilder: (context, index) =>
+                    itemBuilder(context, items[index]),
                 separatorBuilder: (_, _) => const SizedBox(height: S.p12),
               ),
             );
           },
-          loading: () => const SliverFillRemaining(hasScrollBody: false, child: Center(child: LoadingWidget())),
-          error: (error, _) => SliverFillRemaining(hasScrollBody: false, child: ErrorView(error: error)),
+          loading: () => const SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(child: LoadingWidget()),
+          ),
+          error: (error, _) => SliverFillRemaining(
+            hasScrollBody: false,
+            child: ErrorView(error: error),
+          ),
         ),
       ],
     );
   }
 }
 
-AsyncValue<List<T>> _combineApplicationsStates<T>(List<AsyncValue<List<T>>> states) {
+AsyncValue<List<T>> _combineApplicationsStates<T>(
+  List<AsyncValue<List<T>>> states,
+) {
   for (final state in states) {
     final error = state.asError;
     if (error != null) {
@@ -235,8 +298,16 @@ class _ApplicationsTabs extends StatelessWidget {
           dividerHeight: S.p1,
           overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           tabs: [
-            _ApplicationsTab(title: newTabTitle, count: newCount, isSelected: controller.index == 0),
-            _ApplicationsTab(title: archivedTabTitle, count: archivedCount, isSelected: controller.index == 1),
+            _ApplicationsTab(
+              title: newTabTitle,
+              count: newCount,
+              isSelected: controller.index == 0,
+            ),
+            _ApplicationsTab(
+              title: archivedTabTitle,
+              count: archivedCount,
+              isSelected: controller.index == 1,
+            ),
           ],
         );
       },
@@ -245,7 +316,11 @@ class _ApplicationsTabs extends StatelessWidget {
 }
 
 class _ApplicationsTab extends StatelessWidget {
-  const _ApplicationsTab({required this.title, required this.count, required this.isSelected});
+  const _ApplicationsTab({
+    required this.title,
+    required this.count,
+    required this.isSelected,
+  });
 
   final String title;
   final int count;
@@ -262,17 +337,26 @@ class _ApplicationsTab extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: S.p12,
         children: [
-          Text(title, style: context.typography.activesLabel.copyWith(color: isSelected ? selectedColor : normalColor)),
+          Text(
+            title,
+            style: context.typography.activesLabel.copyWith(
+              color: isSelected ? selectedColor : normalColor,
+            ),
+          ),
           DecoratedBox(
             decoration: BoxDecoration(
-              color: isSelected ? context.colors.opacityOrange20 : context.colors.graysLight50,
+              color: isSelected
+                  ? context.colors.opacityOrange20
+                  : context.colors.graysLight50,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Padding(
               padding: const P(horizontal: S.p8, vertical: S.p4),
               child: Text(
                 '$count',
-                style: context.typography.bodySmall.copyWith(color: isSelected ? selectedColor : normalColor),
+                style: context.typography.bodySmall.copyWith(
+                  color: isSelected ? selectedColor : normalColor,
+                ),
               ),
             ),
           ),
@@ -295,7 +379,11 @@ class _PinnedHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return SizedBox.expand(child: child);
   }
 
@@ -314,7 +402,10 @@ class _ApplicationsInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(color: context.colors.graysLight50, borderRadius: BorderRadius.circular(S.p24)),
+      decoration: BoxDecoration(
+        color: context.colors.graysLight50,
+        borderRadius: BorderRadius.circular(S.p24),
+      ),
       child: Padding(
         padding: const P(vertical: S.p20, horizontal: S.p24),
         child: Column(
@@ -326,7 +417,9 @@ class _ApplicationsInfoCard extends StatelessWidget {
             Text(
               description,
               softWrap: true,
-              style: context.typography.bodySmall.copyWith(color: context.colors.graysText400),
+              style: context.typography.bodySmall.copyWith(
+                color: context.colors.graysText400,
+              ),
             ),
           ],
         ),

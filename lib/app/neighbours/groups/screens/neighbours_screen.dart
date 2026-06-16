@@ -13,6 +13,9 @@ class NeighboursScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncState = ref.watch(groupsProvider);
     final notifier = ref.read(groupsProvider.notifier);
+    final isGuest = ref.watch(
+      globalProfileProvider.select((state) => state.value?.isGuest ?? true),
+    );
 
     return Scaffold(
       body: SafeArea(
@@ -27,7 +30,10 @@ class NeighboursScreen extends ConsumerWidget {
               surfaceTintColor: Colors.transparent,
             ),
             SliverToBoxAdapter(
-              child: ColoredBox(color: context.colors.graysWhite, child: const WhoSearchCard()),
+              child: ColoredBox(
+                color: context.colors.graysWhite,
+                child: const WhoSearchCard(),
+              ),
             ),
             SliverPersistentHeader(
               pinned: true,
@@ -37,7 +43,8 @@ class NeighboursScreen extends ConsumerWidget {
                   color: context.colors.graysWhite,
                   child: NeighboursFiltersRow(
                     optionsCount: asyncState.value?.length ?? 0,
-                    onFiltersTap: () => context.router.push(const NeighboursFiltersRoute()),
+                    onFiltersTap: () =>
+                        context.router.push(const NeighboursFiltersRoute()),
                   ),
                 ),
               ),
@@ -46,11 +53,25 @@ class NeighboursScreen extends ConsumerWidget {
               padding: const P(horizontal: S.p16),
               sliver: asyncState.when(
                 data: (groups) {
+                  if (groups.isEmpty) {
+                    return SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: _EmptyFeedState(
+                        title: 'Пока нет групп',
+                        subtitle: 'Попробуйте изменить город или фильтры',
+                      ),
+                    );
+                  }
+
                   return SliverList.separated(
                     itemCount: groups.length,
                     itemBuilder: (context, index) {
                       final group = groups[index];
-                      return NeighbourCard(onTap: () => notifier.openGroup(group.id), group: group);
+                      return NeighbourCard(
+                        onTap: () => notifier.openGroup(group.id),
+                        group: group,
+                        showMatchPercent: !isGuest,
+                      );
                     },
                     separatorBuilder: (context, index) {
                       return const SizedBox(height: S.p12);
@@ -72,8 +93,43 @@ class NeighboursScreen extends ConsumerWidget {
   }
 }
 
+class _EmptyFeedState extends StatelessWidget {
+  const _EmptyFeedState({required this.title, required this.subtitle});
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const P(horizontal: S.p24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: context.typography.headline1,
+          ),
+          const SizedBox(height: S.p8),
+          Text(
+            subtitle,
+            textAlign: TextAlign.center,
+            style: context.typography.bodyDescription.copyWith(
+              color: context.colors.graysText400,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _NeighboursControlsHeaderDelegate extends SliverPersistentHeaderDelegate {
-  _NeighboursControlsHeaderDelegate({required this.child, required this.height});
+  _NeighboursControlsHeaderDelegate({
+    required this.child,
+    required this.height,
+  });
 
   final Widget child;
   final double height;
@@ -85,7 +141,11 @@ class _NeighboursControlsHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return SizedBox.expand(child: child);
   }
 

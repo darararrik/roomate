@@ -218,8 +218,8 @@ class ApartamnetScreen extends ConsumerWidget {
           ),
         );
       },
-      error: (Object error, StackTrace stackTrace) => const ErrorView(),
-      loading: () => const LoadingWidget(),
+      error: (Object error, StackTrace stackTrace) => const Scaffold(body: ErrorView()),
+      loading: () => const Scaffold(body: LoadingWidget()),
     );
   }
 }

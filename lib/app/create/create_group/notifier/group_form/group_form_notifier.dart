@@ -216,6 +216,10 @@ class GroupFormNotifier extends _$GroupFormNotifier {
   );
 
   Future<RemoteException?> createGroup() async {
+    if (await ref.redirectToAuthIfGuest()) {
+      return const RemoteException(kind: RemoteExceptionKind.unauthorized);
+    }
+
     final draftService = ref.read(createDraftServiceProvider);
     final result = await ref.read(groupsRepositoryProvider).createGroup(state);
     if (!ref.mounted) {
